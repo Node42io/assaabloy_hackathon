@@ -435,15 +435,15 @@ export default function Overview() {
                 <td>{f.technology}</td>
                 <td>
                   <span className={
-                    f.status.startsWith("Current") ? "badge badge--strong" :
-                    f.status.startsWith("Legacy") ? "badge badge--weak" :
+                    (f.status || "").startsWith("Current") ? "badge badge--strong" :
+                    (f.status || "").startsWith("Legacy") ? "badge badge--weak" :
                     "badge badge--moderate"
                   }>
-                    {f.status.split(" — ")[0]}
+                    {(f.status || "—").split(" — ")[0]}
                   </span>
-                  {f.status.includes(" — ") && (
+                  {(f.status || "").includes(" — ") && (
                     <span style={{ display: "block", fontSize: 11, color: "var(--text-gray)", marginTop: 2 }}>
-                      {f.status.split(" — ")[1]}
+                      {(f.status || "").split(" — ")[1]}
                     </span>
                   )}
                 </td>

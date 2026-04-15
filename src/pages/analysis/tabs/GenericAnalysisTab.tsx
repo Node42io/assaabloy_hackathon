@@ -132,7 +132,7 @@ export default function GenericAnalysisTab({
       <h2 style={{ marginBottom: 8 }}>{label}</h2>
 
       {/* Executive summary from first section if it looks like one */}
-      {data.sections.length > 0 && data.sections[0].title.toLowerCase().includes("summary") && (
+      {data.sections.length > 0 && (data.sections[0].title || "").toLowerCase().includes("summary") && (
         <ExecutiveSummary kicker={label}>
           <p className="answer">{data.sections[0].content.slice(0, 500)}</p>
         </ExecutiveSummary>
@@ -203,7 +203,7 @@ export default function GenericAnalysisTab({
 
       {/* Sections as formatted text blocks */}
       {data.sections
-        .filter((s) => !s.title.toLowerCase().includes("structured data"))
+        .filter((s) => !(s.title || "").toLowerCase().includes("structured data"))
         .map((section, i) => (
           <div key={i} style={{ marginBottom: 28 }}>
             <h3

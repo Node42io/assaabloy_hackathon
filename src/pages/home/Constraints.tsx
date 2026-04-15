@@ -243,7 +243,7 @@ export default function Constraints() {
                   marginTop: "2rem",
                 }}
               >
-                {type.charAt(0).toUpperCase() + type.slice(1)} ({group.length})
+                {(type || "other").charAt(0).toUpperCase() + (type || "other").slice(1)} ({group.length})
               </h3>
               {group.map((c) => {
                 const idx = runningIndex++;

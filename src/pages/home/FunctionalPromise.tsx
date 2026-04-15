@@ -384,7 +384,7 @@ export default function FunctionalPromise() {
                 <td><strong>{c.name}</strong></td>
                 <td>
                   <span className={CRITICALITY_CLASS[c.criticality] ?? "badge badge--neutral"}>
-                    {c.criticality.charAt(0).toUpperCase() + c.criticality.slice(1)}
+                    {(c.criticality || "unknown").charAt(0).toUpperCase() + (c.criticality || "unknown").slice(1)}
                   </span>
                 </td>
                 <td>{c.description}</td>

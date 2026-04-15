@@ -96,7 +96,7 @@ const LEVELS: LevelConfig[] = [
  * Priority order matters: more specific patterns are checked first.
  */
 function classifyNeed(statement: string): PyramidLevel {
-  const s = statement.toLowerCase();
+  const s = (statement || "").toLowerCase();
 
   // P5 — Consumption chain (maintenance, lifecycle)
   if (
