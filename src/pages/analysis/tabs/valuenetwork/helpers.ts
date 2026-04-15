@@ -11,13 +11,17 @@ import type { VNUnit, L6System } from "@/types";
 export function deriveDescription(unit: VNUnit, systemName: string): string {
   if (unit.description && unit.description.trim()) return unit.description.trim();
 
+  const fj = unit.functionalJob || "";
+
   // Strip source annotations like [SRC: web_search] and PRIMARY POSITION indicators
-  const clean = unit.functionalJob
+  const clean = fj
     .replace(/\[SRC:[^\]]*\]/gi, "")
     .replace(/\*\*(?:MARQUARDT|TÜRWÄCHTER|PRIMARY)[^*]*\*\*/gi, "")
     .replace(/(?:MARQUARDT|TÜRWÄCHTER) (?:PRIMARY |SECONDARY )?POSITION[^.]*/gi, "")
     .trim()
     .replace(/\s+/g, " ");
+
+  if (!clean) return `Part of the ${systemName} system in the value chain.`;
 
   // Build a 2-sentence description from the functional job
   const sentences = clean.split(/(?<=[.!?])\s+/);
@@ -33,7 +37,7 @@ export function deriveDescription(unit: VNUnit, systemName: string): string {
  * Return true if a VN unit is the product's primary position (Türwächter anchor).
  */
 export function isPrimaryAnchor(unit: VNUnit): boolean {
-  const text = (unit.functionalJob + " " + unit.description).toLowerCase();
+  const text = ((unit.functionalJob || "") + " " + (unit.description || "")).toLowerCase();
   return (
     text.includes("primary position") ||
     text.includes("türwächter") ||
@@ -48,7 +52,7 @@ export function isPrimaryAnchor(unit: VNUnit): boolean {
  * Return the product position label for a unit, if any.
  */
 export function primaryPositionLabel(unit: VNUnit): string | null {
-  const text = unit.functionalJob + " " + unit.description;
+  const text = (unit.functionalJob || "") + " " + (unit.description || "");
   if (/PRIMARY POSITION/i.test(text) || /MARQUARDT PRIMARY/i.test(text)) return "PRIMARY";
   if (/SECONDARY POSITION/i.test(text) || /MARQUARDT SECONDARY/i.test(text)) return "SECONDARY";
   if (/TERTIARY POSITION/i.test(text) || /MARQUARDT TERTIARY/i.test(text)) return "TERTIARY";
@@ -129,7 +133,7 @@ export function groupUnitsByL6(
  * Clean a functional job string for display (remove source tags, tidy whitespace).
  */
 export function cleanFunctionalJob(raw: string): string {
-  return raw
+  return (raw || "")
     .replace(/\[SRC:[^\]]*\]/gi, "")
     .replace(/\*\*/g, "")
     .trim()

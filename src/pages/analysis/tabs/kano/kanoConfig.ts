@@ -141,7 +141,7 @@ const ALIAS_MAP: Record<string, KanoClass> = {
 };
 
 export function normaliseClass(raw: string): KanoClass {
-  const key = raw.toLowerCase().replace(/\s+/g, "_");
+  const key = (raw || "indifferent").toLowerCase().replace(/\s+/g, "_");
   return ALIAS_MAP[key] ?? "indifferent";
 }
 

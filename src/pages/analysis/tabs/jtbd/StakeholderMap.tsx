@@ -84,7 +84,7 @@ const ROLE_ICON_COLORS: Record<string, string> = {
 };
 
 function roleColor(role: string): string {
-  const lower = role.toLowerCase();
+  const lower = (role || "").toLowerCase();
   for (const [key, color] of Object.entries(ROLE_ICON_COLORS)) {
     if (lower.includes(key)) return color;
   }
@@ -93,7 +93,7 @@ function roleColor(role: string): string {
 
 function RoleInitial({ role }: { role: string }) {
   const color = roleColor(role);
-  const initial = role.trim().charAt(0).toUpperCase();
+  const initial = (role || "?").trim().charAt(0).toUpperCase();
   return (
     <div
       style={{
