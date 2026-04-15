@@ -394,7 +394,7 @@ export default function VNDiagram({ data }: { data: ValueNetworkData }) {
     setDetail({ unit, system: sys });
   }
 
-  const hasAnyAnchor = data.vnUnits.some((u) => marquardtPositionLabel(u) !== null);
+  // Product anchor detection handled per-L6 via hasAnchorChild
 
   return (
     <div
