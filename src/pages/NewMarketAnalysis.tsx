@@ -102,7 +102,6 @@ function buildAnalysisTabs(marketSlug: string): AnalysisTab[] {
 }
 
 // Backwards compatibility
-const ANALYSIS_TABS = BASE_TABS;
 
 const DEFAULT_TAB = "jtbd";
 

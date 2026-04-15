@@ -18,7 +18,6 @@ import ExecutiveSummary from "@/components/ExecutiveSummary";
 import ClickableCode from "@/components/ClickableCode";
 import ConfidenceBadge from "@/components/ConfidenceBadge";
 import SectionAnchor from "@/components/SectionAnchor";
-import SourceFootnote from "@/components/SourceFootnote";
 import SourceList from "@/components/SourceList";
 
 import marketDiscovery from "@/data/marketDiscovery.json";

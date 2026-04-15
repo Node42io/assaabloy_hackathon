@@ -23,7 +23,7 @@ interface BOMItem {
  * Build a logical BOM from the product's feature list.
  * Maps technology-scope features to physical components.
  */
-function buildBOMFromProduct(product: ProductDecomposition): BOMItem[] {
+function buildBOMFromProduct(_product: ProductDecomposition): BOMItem[] {
   // Core product components derived from the product data
   const derived: BOMItem[] = [
     {
@@ -36,44 +36,44 @@ function buildBOMFromProduct(product: ProductDecomposition): BOMItem[] {
     {
       id: "BOM-02",
       component: "Piezoelectric Alarm Horn",
-      function: "Emit 95 dB alarm when guard is lifted without authorization",
+      function: "Produces 95 dB audible alarm when guard is activated — no electrical power needed",
       category: "Alarm",
-      keyAttribute: "95 dB at 1 m; piezoelectric driver; immediate trigger on guard lift",
+      keyAttribute: "Piezo element; 95 dB at 1m; volume-adjustable; LED indication",
     },
     {
       id: "BOM-03",
-      component: "EasyWave Radio Module (868 MHz)",
-      function: "Wireless transmission of door events to building management system",
+      component: "EasyWave Radio Module",
+      function: "Transmits guard-state and alarm events wirelessly to centralized receivers",
       category: "Electronics",
-      keyAttribute: "868 MHz EasyWave protocol; range up to 30 m indoor; bidirectional",
+      keyAttribute: "868.3 MHz EasyWave; ~30m range; 9-35mA draw; 9V battery powered",
     },
     {
       id: "BOM-04",
-      component: "Battery Compartment & Power Management",
-      function: "Self-contained power supply for alarm and radio module",
+      component: "Battery Compartment",
+      function: "Houses replaceable 9V block battery powering IoT module and optional pre-alarm",
       category: "Electronics",
-      keyAttribute: "Standard batteries; low-power standby; battery-status monitoring",
+      keyAttribute: "Tool-free battery replacement; battery monitoring variant available",
     },
     {
       id: "BOM-05",
-      component: "Mounting Bracket & Hardware",
-      function: "Secure attachment to EN 179/1125 compliant panic bars and push bars",
+      component: "Mounting Bracket & Adapter",
+      function: "Surface-mount attachment to door handle or panic bar hardware",
       category: "Mechanical",
-      keyAttribute: "Universal mounting; compatible with standard panic hardware profiles",
+      keyAttribute: "Universal fit EN 179 (lever) / EN 1125 (panic bar); glass-frame plate option",
     },
     {
       id: "BOM-06",
-      component: "Tamper Detection Switch",
-      function: "Detect unauthorized removal or manipulation of the guard unit",
+      component: "Key Override Cylinder",
+      function: "Profile half-cylinder allowing authorized bypass without triggering alarm",
       category: "Security",
-      keyAttribute: "Micro-switch based; triggers alarm on housing separation",
+      keyAttribute: "Standard profile half-cylinder; keyed per building/zone",
     },
     {
       id: "BOM-07",
       component: "Status LED & Reset Interface",
-      function: "Visual status indication and authorized reset/arm control",
+      function: "Visual indication of guard state (armed/alarmed/battery low) and manual reset",
       category: "Interface",
-      keyAttribute: "LED for armed/alarm/battery status; key-switch or coded reset",
+      keyAttribute: "LED indicator; reset button; pre-alarm tone circuit",
     },
   ];
 
@@ -169,7 +169,7 @@ export default function BOMSection({ product }: { product: ProductDecomposition 
         </table>
       </div>
 
-      {/* Sensor specifications as supplementary reference */}
+      {/* Product specifications as supplementary reference */}
       <div style={{ marginTop: 32 }}>
         <p
           style={{

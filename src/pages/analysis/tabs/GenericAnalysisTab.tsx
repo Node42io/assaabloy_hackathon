@@ -77,17 +77,13 @@ export default function GenericAnalysisTab({
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Try to load the JSON file dynamically from the data directory
-    // The json_exporter produces files like: APPENG_elevator_guide_rails.json
     const prefixMap: Record<string, string> = {
-      // Base types (Clayton workflow)
       value_network: "VN",
       product_bom: "BOM",
       jtbd_analysis: "JTBD",
       odi_matrix: "ODI",
       feature_market_fit: "FIT",
       constraint_compatibility: "COMPAT",
-      // Extended types (Zollern/Böhmer workflows)
       application_engineering: "APPENG",
       market_sizing: "SIZE",
       business_model_canvas: "BMC",
@@ -137,7 +133,9 @@ export default function GenericAnalysisTab({
 
       {/* Executive summary from first section if it looks like one */}
       {data.sections.length > 0 && data.sections[0].title.toLowerCase().includes("summary") && (
-        <ExecutiveSummary paragraphs={[data.sections[0].content.slice(0, 500)]} />
+        <ExecutiveSummary kicker={label}>
+          <p className="answer">{data.sections[0].content.slice(0, 500)}</p>
+        </ExecutiveSummary>
       )}
 
       {/* Tables first — most valuable for quick scanning */}
