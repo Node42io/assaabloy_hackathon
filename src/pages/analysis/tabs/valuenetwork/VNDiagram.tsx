@@ -26,6 +26,7 @@ const C = {
   textTertiary: "#5a5c5f",
   accent: "#fdff98",
   accentDim: "rgba(253,255,152,0.12)",
+  anchorL6Bg: "rgba(253,255,152,0.06)",
   levelL6Core: { bg: "rgba(42,157,143,0.22)", text: "#b7fff6" },
   levelL6Horiz: { bg: "rgba(42,157,143,0.10)", text: "#7dd6cc" },
   levelL5: { bg: "rgba(233,196,106,0.18)", text: "#e9c46a" },
@@ -268,7 +269,7 @@ function DetailPanel({
           </p>
         </div>
 
-        {/* 2-sentence description (TODO 11) */}
+        {/* 2-sentence description */}
         <div>
           <p style={{ fontFamily: "var(--font-mono)", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.1em", color: C.textTertiary, marginBottom: 6 }}>
             Description
@@ -414,7 +415,7 @@ export default function VNDiagram({ data }: { data: ValueNetworkData }) {
           overflow: "hidden",
         }}
       >
-        {/* Legend at TOP (TODO 10) */}
+        {/* Legend at TOP */}
         <Legend />
 
         {/* Tree header */}
@@ -456,6 +457,21 @@ export default function VNDiagram({ data }: { data: ValueNetworkData }) {
             const isHoriz = sys.type === "Horizontal";
             const hasAnchorChild = children.some((u) => marquardtPositionLabel(u) !== null);
 
+            // Determine L6 row background
+            const l6Bg = isSelected
+              ? "rgba(253,255,152,0.08)"
+              : hasAnchorChild
+              ? C.anchorL6Bg
+              : isHoriz
+              ? "rgba(38,70,83,0.14)"
+              : "transparent";
+
+            const l6RestoreBg = hasAnchorChild
+              ? C.anchorL6Bg
+              : isHoriz
+              ? "rgba(38,70,83,0.14)"
+              : "transparent";
+
             return (
               <div key={sys.id}>
                 {/* L6 row */}
@@ -471,13 +487,13 @@ export default function VNDiagram({ data }: { data: ValueNetworkData }) {
                     padding: "10px 16px",
                     borderBottom: `1px solid rgba(255,255,255,0.04)`,
                     cursor: "pointer",
-                    background: isSelected
-                      ? "rgba(253,255,152,0.04)"
-                      : isHoriz
-                      ? "rgba(38,70,83,0.14)"
-                      : "transparent",
-                    borderLeft: isSelected ? `3px solid ${C.accent}` : "3px solid transparent",
-                    paddingLeft: isSelected ? 13 : 16,
+                    background: l6Bg,
+                    borderLeft: isSelected
+                      ? `3px solid ${C.accent}`
+                      : hasAnchorChild
+                      ? `3px solid rgba(253,255,152,0.35)`
+                      : "3px solid transparent",
+                    paddingLeft: isSelected || hasAnchorChild ? 13 : 16,
                     transition: "background 0.12s",
                   }}
                   onMouseEnter={(e) => {
@@ -486,9 +502,7 @@ export default function VNDiagram({ data }: { data: ValueNetworkData }) {
                   }}
                   onMouseLeave={(e) => {
                     if (!isSelected)
-                      (e.currentTarget as HTMLDivElement).style.background = isHoriz
-                        ? "rgba(38,70,83,0.14)"
-                        : "transparent";
+                      (e.currentTarget as HTMLDivElement).style.background = l6RestoreBg;
                   }}
                 >
                   {/* Chevron */}
@@ -497,7 +511,7 @@ export default function VNDiagram({ data }: { data: ValueNetworkData }) {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      color: C.textTertiary,
+                      color: hasAnchorChild ? C.accent : C.textTertiary,
                       fontSize: 16,
                       transition: "transform 0.2s",
                       transform: isOpen ? "rotate(0deg)" : "rotate(-90deg)",
@@ -515,9 +529,9 @@ export default function VNDiagram({ data }: { data: ValueNetworkData }) {
                   <span
                     style={{
                       fontSize: 13,
-                      fontWeight: isHoriz ? 500 : 600,
-                      color: isHoriz ? C.textSecondary : C.textPrimary,
-                      fontStyle: isHoriz ? "italic" : "normal",
+                      fontWeight: hasAnchorChild ? 700 : isHoriz ? 500 : 600,
+                      color: hasAnchorChild ? C.accent : isHoriz ? C.textSecondary : C.textPrimary,
+                      fontStyle: isHoriz && !hasAnchorChild ? "italic" : "normal",
                       paddingLeft: 4,
                       whiteSpace: "nowrap",
                       overflow: "hidden",
@@ -528,7 +542,7 @@ export default function VNDiagram({ data }: { data: ValueNetworkData }) {
                     }}
                   >
                     {sys.name}
-                    {hasAnchorChild && !hasAnyAnchor && null}
+                    {hasAnchorChild && <MarquardtBadge label="PRODUCT ENTRY" />}
                   </span>
 
                   {/* Unit count */}
@@ -536,7 +550,7 @@ export default function VNDiagram({ data }: { data: ValueNetworkData }) {
                     style={{
                       fontFamily: "var(--font-mono)",
                       fontSize: 12,
-                      color: C.textSecondary,
+                      color: hasAnchorChild ? C.accent : C.textSecondary,
                       textAlign: "center",
                     }}
                   >
