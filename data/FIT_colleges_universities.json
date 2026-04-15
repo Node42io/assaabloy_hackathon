@@ -1,0 +1,701 @@
+{
+  "id": "FIT_colleges_universities",
+  "title": "Feature-Market Fit: Colleges, Universities, and Professional Schools",
+  "type": "feature_market_fit",
+  "market_slug": "colleges_universities",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Context",
+      "content": "| Field | Value |\n|---|---|\n| Market | Colleges, Universities, and Professional Schools |\n| NAICS | 611310 |\n| Architecture distance | 2 (HIGH priority) |\n| Product Job | Help Campus Safety, Security & Emergency Management to secure emergency exit doors against unauthorized use while maintaining fire-code-compliant single-motion escape capability and reporting door status events to centralized monitoring — across distributed campus buildings with aging, heterogeneous infrastructure |\n| Technology class | Emergency Exit Security Devices with Remote Monitoring |\n| Commodity FP | Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm |\n| Constraints in play | C3 (wireless range in concrete), C4 (battery life at dormitories), C6 (EasyWave/PSIM lock-in), C5 (surface mount tamper), C8 (FERPA/GDPR student data) |\n\nTop underserved needs (OS ≥ 13): N18 (15), N19 (15), N01 (14), N10 (14), N03 (13), N08 (13), N11 (13), N13 (13), N17 (13)\n\n---"
+    },
+    {
+      "title": "Step 09 — Technology-Level Feature-Market Fit",
+      "content": "### Top 10 Market Needs (grounding basis)\n\n| # | Statement (short) | Imp | Sat | OS |\n|---|---|---|---|---|\n| N18 | Clery Act compliance gaps from wireless outage records | 9 | 3 | **15** |\n| N19 | Regulatory fine from undocumented exit non-compliance event | 9 | 3 | **15** |\n| N01 | Incomplete coverage mapping leaves exits unmonitored post-deployment | 9 | 4 | **14** |\n| N10 | Time to detect and route unauthorized exit opening to security ops | 9 | 4 | **14** |\n| N03 | RF dead zones in concrete buildings outside effective receiver range | 8 | 3 | **13** |\n| N08 | Mechanical failure in high-traffic dorm/union exits → unguarded door | 9 | 5 | **13** |\n| N11 | Door events lost to RF attenuation in reinforced-concrete buildings | 8 | 3 | **13** |\n| N13 | Connectivity gap detection time from device to security ops center | 8 | 3 | **13** |\n| N17 | Labor to compile compliance docs for fire inspections and Clery filings | 8 | 3 | **13** |\n| N12 | Battery depletion variability across buildings by door-use frequency | 7 | 3 | **11** |\n\n### 09a — Kano Classification + ODI Scoring\n\n| # | Feature | Kano | Time | Cost | Safety | Reli | Skill | Stress | Pain | Conf | Del | **Overall** |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| F1 | Mechanical Alarm Trigger | must_be | 7 | 4 | 8 | 8 | 6 | 6 | 5 | 8 | 2 | **6.00** |\n| F2 | Key Override Mechanism | must_be | 5 | 4 | 5 | 6 | 6 | 7 | 6 | 6 | 2 | **5.22** |\n| F3 | Pre-Alarm Warning Tone | attractive | 3 | 5 | 3 | 4 | 3 | 8 | 7 | 5 | 7 | **5.00** |\n| F4 | Wireless State Transmitter | one_dimensional | 8 | 5 | 7 | 5 | 5 | 8 | 7 | 7 | 5 | **6.33** |\n| F5 | Battery Power Supply (no mains) | must_be | 4 | 9 | 5 | 6 | 8 | 6 | 8 | 6 | 3 | **6.11** |\n| F6 | Remote Battery Status Reporting | attractive | 5 | 6 | 6 | 7 | 6 | 8 | 8 | 8 | 7 | **6.78** |\n| F7 | Retrofit Surface Mount Installation | one_dimensional | 7 | 9 | 3 | 5 | 9 | 7 | 9 | 5 | 6 | **6.67** |\n| F8 | Automated Event Log Generation | attractive | 8 | 8 | 7 | 6 | 7 | 9 | 9 | 9 | 7 | **7.78** |\n\n`overall_fit = (Time + Cost + Safety + Reliability + Skill + Stress + Pain + Confidence + Delight) / 9`\n\n### 09b — Rationale by Feature\n\n**Mechanical Alarm Trigger** (`must_be`, 6.00)  \nNFPA 101, IBC Chapter 10, and DIN EN 179/1125 mandate audible alarm on exit activation — every product in this commodity class provides it. Presence is expected; absence = market rejection. Primary drivers: Safety (8) — 95 dB deterrent at unauthorized access in research labs and dormitories directly addresses N10 (OS=14); Confidence (8) — mechanical fail-safe operation at 0 V eliminates the \"dead alarm\" scenario feared by campus security officers; Reliability (8) — mechanical linkage is robust even in high-traffic dormitory corridors per N08 (OS=13). Delight (2): table-stakes, zero differentiation.\n\n**Key Override Mechanism** (`must_be`, 5.22)  \nFacilities maintenance, lab managers, security officers, and event staff require authorized silent access multiple times daily. A product without key bypass creates unacceptable false alarm frequency and operational disruption. Primary drivers: Stress (7) — eliminates alarm-trigger anxiety during routine authorized access and battery replacement (N15); Pain (6) — removes the operational burden of accidental alarm triggering during normal campus activities. Lower safety and time scores vs. hospitals reflect less acute urgency in routine campus access vs. clinical emergencies.\n\n**Pre-Alarm Warning Tone** (`attractive`, 5.00)  \nNot present on basic mechanical prop alarms (Detex EC-100, Seco-Larm). Campus environments have high incidental door-contact rates — student backpacks, maintenance carts, and crowded corridors in dormitories and student unions generate accidental contact at high frequency. Pre-alarm gives accidental users a chance to withdraw before full activation, reducing false alarm fatigue. Primary drivers: Stress (8) — dramatically reduces alarm desensitization risk in high-student-activity buildings; Pain (7) — eliminates alarm disruption during normal campus operations; Delight (7) — campus security coordinators accustomed to daily false alarms find this genuinely unexpected. Absence does not prevent purchase, but presence earns disproportionate satisfaction from dormitory and student union facility managers.\n\n**Wireless State Transmitter** (`one_dimensional`, 6.33)  \nMore reliable wireless coverage proportionally eliminates more manual patrol burden and closes more detection gaps. Directly addresses N10 (OS=14: detection time) and N13 (OS=13: connectivity gap detection). Primary drivers: Time (8) — real-time remote alert replaces discovery-by-patrol delay (seconds vs. hours); Stress (8) — security officer confidence about exits distributed across a multi-building campus with minimal night-shift staff; Pain (7) — transforms security coordinator from physical patroller to dashboard monitor. Reliability is limited to 5 because C3 (30 m range limit) creates known dead zones in reinforced-concrete campus buildings (N03, N11 OS=13) — a structural constraint that caps value delivery for this feature specifically.\n\n**Battery Power Supply (no mains)** (`must_be`, 6.11)  \nAll products in the Emergency Exit Door Alarm Guards commodity class operate on battery — this is a defining characteristic of the category vs. wired alternatives. Expected without question. In this market specifically, with >75% of campus buildings exceeding 40 years of age and no existing wiring to secondary exits, battery operation is the only viable deployment path for the dominant segment (S1). Primary drivers: Cost (9) — eliminates licensed electrician labor for multi-building campus retrofit (N04, OS=11); Skill (8) — facilities crew installs without trades engagement; Pain (8) — removes the single highest-friction barrier for budget-constrained campus facilities departments. Delight (3): expected within the commodity; not celebrated.\n\n**Remote Battery Status Reporting** (`attractive`, 6.78)  \nBattery management across 50–200+ campus exits distributed across multiple buildings is an undercovered operational burden (N12, OS=11; N13, OS=13). All mechanical-only alternatives and basic prop alarms (A3) provide zero remote battery visibility. Discovery of battery failure after a monitoring gap is the primary anxiety for overnight security staff. Primary drivers: Stress (8) — eliminates the security coordinator's 2am anxiety about dead batteries at unmonitored dormitory exits; Pain (8) — replaces manual battery-level checking rounds across a distributed campus; Confidence (8) — proactive replacement before monitoring loss is achievable, directly enabling Clery Act coverage continuity (N18, OS=15). Absence does not prevent procurement, but presence creates disproportionate satisfaction given the scale of the operational problem.\n\n**Retrofit Surface Mount Installation** (`one_dimensional`, 6.67)  \nMore retrofit-friendly equals proportionally lower total deployment cost and shorter time-to-coverage. Campus buildings >40 years old lack conduit to most emergency exits. Wired alternatives (dormakaba SafeRoute, GEZE SecuLogic) require licensed electrician work at $150–250/hr; a 100-door campus deployment saves $30,000–50,000 in labor vs. wired. Primary drivers: Cost (9) — eliminates contractor labor across all campus buildings; Skill (9) — facilities technician installs in <30 min per door without electrical license; Pain (9) — removes the dominant adoption barrier for the S1 legacy-building-stock segment which represents >60% of US campus buildings. Safety (3) reflects the surface-mount profile creating tamper exposure in student corridors (N05, C5).\n\n**Automated Event Log Generation** (`attractive`, 7.78)  \nHighest scoring feature across the market. Clery Act compliance documentation is the top underserved need cluster in this market (N18 OS=15, N19 OS=15, N17 OS=13) and is chronically addressed by manual log assembly using clipboards and spreadsheets. No competing basic alarm alternative provides timestamped digital event records. Primary drivers: Stress (9) — eliminates pre-inspection documentation scramble for annual Clery Act Annual Security Report and fire marshal visits; Pain (9) — replaces manual compilation of door-event records (N17, OS=13); Confidence (9) — 12-month digitally timestamped audit trail available on demand eliminates Clery Act compliance gap risk (N18, N19). Attractive because automated documentation is entirely outside the commodity FP of \"audible alarm.\" Delight (7): campus security administrators discover a capability they had not associated with door alarm hardware.\n\n### 09c — Feature-Need Coverage Map\n\n| Need | OS | F1 | F2 | F3 | F4 | F5 | F6 | F7 | F8 |\n|---|---|---|---|---|---|---|---|---|---|\n| N18 — Clery Act compliance gaps from wireless outages | 15 | | | | ◐ | | ◐ | | ● |\n| N19 — Regulatory fine from undocumented exit non-compliance | 15 | | | | ◐ | | | | ● |\n| N01 — Incomplete coverage mapping leaves exits unmonitored | 14 | ● | | | ◐ | | | ◐ | |\n| N10 — Time to detect unauthorized exit opening → security ops | 14 | ● | | ◐ | ● | | | | |\n| N03 — RF dead zones in concrete campus buildings | 13 | | | | ● | | | | |\n| N08 — Mechanical failure in high-traffic dorm/union exits | 13 | ● | | | | | | | |\n| N11 — Door events lost to RF attenuation | 13 | | | | ● | | ◐ | | ◐ |\n| N13 — Connectivity gap detection time | 13 | | | | ◐ | | ● | | |\n| N17 — Labor to compile compliance docs for inspections/Clery | 13 | | | | | | | | ● |\n\n● = primary contributor | ◐ = partial contributor\n\n---"
+    },
+    {
+      "title": "Step 10 — Product-Related Needs (Burleson Product Jobs)",
+      "content": "Needs arising **because** of the spring-loaded mechanical guard + 868 MHz EasyWave architecture. Would disappear if replaced by a wired electronic exit control (dormakaba SafeRoute), native-BACnet system, flush-integrated hardware, or mains-powered alarmed exit bars.\n\n| ID | Statement | Source Constraint | Affected Markets | Imp | Sat |\n|---|---|---|---|---|---|\n| PR01 | Minimize the likelihood of wireless signal attenuation below reliable reporting threshold in reinforced-concrete campus buildings where multiple structural floors and walls between emergency exit devices and the nearest gateway exceed the 30 m EasyWave integrated transmitter range | Wireless Range Limitation (C3) | Colleges, Universities, and Professional Schools | 8.0 | 4.0 |\n| PR02 | Minimize the likelihood of wireless coverage gaps discovered only after campus-wide deployment, requiring unplanned repeater infrastructure additions that increase per-door cost and delay full-campus monitoring go-live | Wireless Range Limitation (C3) | Colleges, Universities, and Professional Schools | 7.0 | 4.0 |\n| PR03 | Minimize the likelihood of IoT battery exhaustion on dormitory emergency exits where 24/7 student occupancy and high door-event frequency (10–20 events per day at residential entrances and student union exits) depletes a 9V block battery before the scheduled 2-year maintenance cycle | IoT Battery Life Floor (C4) | Colleges, Universities, and Professional Schools | 8.0 | 3.0 |\n| PR04 | Minimize the integration effort required to relay EasyWave alarm events into campus Physical Security Information Management (PSIM) or building automation platforms standardized on BACnet, KNX, or IP-based protocols, caused by the absence of native open-protocol output on the 868 MHz transmitter requiring a GfS-proprietary BUS gateway intermediary | EasyWave Protocol Lock-In (C6) | Colleges, Universities, and Professional Schools | 7.0 | 3.0 |\n| PR05 | Minimize the likelihood of door-event timestamps logged by the IoT monitoring system creating FERPA or EU GDPR compliance exposure when access event records are attributable to identifiable resident students in university dormitory buildings | GDPR Monitoring Data Compliance (C8) | Colleges, Universities, and Professional Schools | 7.0 | 4.0 |\n| PR06 | Minimize the likelihood of surface-mounted exit alarm guard housings being physically tampered with, vandalized, or accidentally dislodged by students in unsupervised dormitory corridors and student union areas, leaving an emergency exit in an unguarded state without the monitoring system detecting the mechanical displacement | Retrofit-Only Surface Mount (C5) | Colleges, Universities, and Professional Schools | 6.0 | 4.0 |\n\n**Litmus-test verification:**\n- PR01–02: Wired alarmed exit bars or LoRaWAN-native devices have different propagation architecture → disappears ✓\n- PR03: Mains-powered or large lithium-cell alternatives have no 9V depletion problem → disappears ✓\n- PR04: Native BACnet/KNX exit control or IP-native system integrates without GfS gateway → disappears ✓\n- PR05: Mechanical-only alarm with no digital event log creates no FERPA/GDPR exposure → disappears ✓\n- PR06: Flush-integrated or tamper-proof exit hardware is not physically accessible at door-handle height → disappears ✓\n\n---"
+    },
+    {
+      "title": "Fit Summary",
+      "content": "| Dimension | Assessment |\n|---|---|\n| **Strongest fit** | Automated Event Log Generation (7.78) — directly addresses the top underserved need cluster (N18, N19, N17); Remote Battery Status Reporting (6.78); Retrofit Surface Mount Installation (6.67) |\n| **Market must-have** | Mechanical Alarm Trigger, Key Override, Battery Power Supply — must_be baseline; absence = market rejection |\n| **Competitive gap** | Automated Event Log Generation + Remote Battery Status Reporting are `attractive` features absent from all mechanical-only competitors (A3: Detex, Seco-Larm); these are the primary switching arguments for the majority of campuses currently using basic alarms |\n| **Constraint-driven risk** | C3 (wireless range in campus concrete) caps Wireless State Transmitter Reliability; C6 (EasyWave vs. campus PSIM) creates integration friction for tech-forward campuses with existing PSIM investments; C4 (battery at dormitories) generates the primary product-related maintenance burden |\n| **Market differentiator** | Clery Act compliance automation is the #1 underserved need (OS=15) with zero current solution — the single strongest competitive claim vs. all mechanical alternatives |\n| **Overall market fit** | **Strong.** Six of eight features score ≥6.00. Top three attractive features (F6, F8, F3) directly address the Clery Act documentation cluster and dormitory alarm-fatigue problems that are structurally unaddressed by the 64% of campuses using basic mechanical alarms. |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### TechFeatureFitEntry[]\n\n```json\n[\n  {\n    \"feature_name\": \"Mechanical Alarm Trigger\",\n    \"market_name\": \"Colleges, Universities, and Professional Schools\",\n    \"naics_code\": \"611310\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 7,\n    \"fit_score_cost\": 4,\n    \"fit_score_safety\": 8,\n    \"fit_score_reliability\": 8,\n    \"fit_score_skill\": 6,\n    \"fit_score_stress\": 6,\n    \"fit_score_pain\": 5,\n    \"fit_score_confidence\": 8,\n    \"fit_score_delight\": 2,\n    \"overall_fit\": 6.00,\n    \"rationale\": \"Table-stakes per NFPA 101, IBC Chapter 10, DIN EN 179/1125. Primary drivers: Safety (8) — 95 dB deterrent directly addresses N10 OS=14 (detection time); Reliability (8) — mechanical fail-safe closes the unguarded-door risk in high-traffic dorm exits (N08 OS=13); Confidence (8) — 0V operation eliminates dead-alarm scenario. Delight (2): universally expected, no differentiation.\"\n  },\n  {\n    \"feature_name\": \"Key Override Mechanism\",\n    \"market_name\": \"Colleges, Universities, and Professional Schools\",\n    \"naics_code\": \"611310\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 5,\n    \"fit_score_cost\": 4,\n    \"fit_score_safety\": 5,\n    \"fit_score_reliability\": 6,\n    \"fit_score_skill\": 6,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 6,\n    \"fit_score_confidence\": 6,\n    \"fit_score_delight\": 2,\n    \"overall_fit\": 5.22,\n    \"rationale\": \"Mandatory for operational use — facilities maintenance, lab managers, and security staff require authorized silent access daily. Absence creates false alarm frequency that would disqualify deployment. Primary drivers: Stress (7) — eliminates alarm-trigger anxiety during routine authorized access; Pain (6) — removes operational disruption during battery replacement and maintenance rounds (N15).\"\n  },\n  {\n    \"feature_name\": \"Pre-Alarm Warning Tone\",\n    \"market_name\": \"Colleges, Universities, and Professional Schools\",\n    \"naics_code\": \"611310\",\n    \"kano_class\": \"attractive\",\n    \"fit_score_time\": 3,\n    \"fit_score_cost\": 5,\n    \"fit_score_safety\": 3,\n    \"fit_score_reliability\": 4,\n    \"fit_score_skill\": 3,\n    \"fit_score_stress\": 8,\n    \"fit_score_pain\": 7,\n    \"fit_score_confidence\": 5,\n    \"fit_score_delight\": 7,\n    \"overall_fit\": 5.00,\n    \"rationale\": \"Absent from all basic prop alarm alternatives. High incidental door-contact rate in dormitories, student unions, and campus libraries creates chronic false alarm fatigue. Primary drivers: Stress (8) — reduces alarm desensitization in high-student-activity buildings; Pain (7) — eliminates alarm disruption during normal campus activities (N09 OS=12); Delight (7) — security coordinators habituated to daily false alarms find pre-alarm genuinely unexpected.\"\n  },\n  {\n    \"feature_name\": \"Wireless State Transmitter\",\n    \"market_name\": \"Colleges, Universities, and Professional Schools\",\n    \"naics_code\": \"611310\",\n    \"kano_class\": \"one_dimensional\",\n    \"fit_score_time\": 8,\n    \"fit_score_cost\": 5,\n    \"fit_score_safety\": 7,\n    \"fit_score_reliability\": 5,\n    \"fit_score_skill\": 5,\n    \"fit_score_stress\": 8,\n    \"fit_score_pain\": 7,\n    \"fit_score_confidence\": 7,\n    \"fit_score_delight\": 5,\n    \"overall_fit\": 6.33,\n    \"rationale\": \"More reliable wireless coverage proportionally eliminates more patrol burden. Directly addresses N10 OS=14 (detection time) and N13 OS=13 (connectivity gap detection). Primary drivers: Time (8) — real-time alert replaces discovery-by-patrol delay; Stress (8) — overnight security officer confidence across distributed multi-building campus. Reliability capped at 5: C3 (30 m limit) creates known dead zones in reinforced-concrete buildings (N03, N11 OS=13), a structural constraint limiting feature value delivery.\"\n  },\n  {\n    \"feature_name\": \"Battery Power Supply (no mains)\",\n    \"market_name\": \"Colleges, Universities, and Professional Schools\",\n    \"naics_code\": \"611310\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 4,\n    \"fit_score_cost\": 9,\n    \"fit_score_safety\": 5,\n    \"fit_score_reliability\": 6,\n    \"fit_score_skill\": 8,\n    \"fit_score_stress\": 6,\n    \"fit_score_pain\": 8,\n    \"fit_score_confidence\": 6,\n    \"fit_score_delight\": 3,\n    \"overall_fit\": 6.11,\n    \"rationale\": \"Defining characteristic of the Emergency Exit Door Alarm Guards commodity class. Expected without question. In this market, >75% of campus buildings exceed 40 years old with no wiring to secondary exits — battery is the only viable deployment path for the dominant S1 segment. Primary drivers: Cost (9) — eliminates licensed electrician labor across multi-building campus (N04 OS=11); Skill (8) — facilities technician installs without trades; Pain (8) — removes dominant adoption barrier for legacy-building campuses. Delight (3): expected.\"\n  },\n  {\n    \"feature_name\": \"Remote Battery Status Reporting\",\n    \"market_name\": \"Colleges, Universities, and Professional Schools\",\n    \"naics_code\": \"611310\",\n    \"kano_class\": \"attractive\",\n    \"fit_score_time\": 5,\n    \"fit_score_cost\": 6,\n    \"fit_score_safety\": 6,\n    \"fit_score_reliability\": 7,\n    \"fit_score_skill\": 6,\n    \"fit_score_stress\": 8,\n    \"fit_score_pain\": 8,\n    \"fit_score_confidence\": 8,\n    \"fit_score_delight\": 7,\n    \"overall_fit\": 6.78,\n    \"rationale\": \"Zero remote battery visibility in all mechanical and basic prop alarm alternatives. Managing battery health across 50–200+ campus exits distributed across multiple buildings is a documented operational burden (N12 OS=11; N13 OS=13). Primary drivers: Stress (8) — eliminates the overnight security coordinator anxiety about undetected dead batteries at dormitory exits; Pain (8) — replaces manual battery-check rounds across campus; Confidence (8) — proactive replacement before monitoring loss enables Clery Act coverage continuity (N18 OS=15).\"\n  },\n  {\n    \"feature_name\": \"Retrofit Surface Mount Installation\",\n    \"market_name\": \"Colleges, Universities, and Professional Schools\",\n    \"naics_code\": \"611310\",\n    \"kano_class\": \"one_dimensional\",\n    \"fit_score_time\": 7,\n    \"fit_score_cost\": 9,\n    \"fit_score_safety\": 3,\n    \"fit_score_reliability\": 5,\n    \"fit_score_skill\": 9,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 9,\n    \"fit_score_confidence\": 5,\n    \"fit_score_delight\": 6,\n    \"overall_fit\": 6.67,\n    \"rationale\": \"More retrofit-friendly equals proportionally lower total deployment cost. Wired alternatives require $150–250/hr licensed electrician work; 100-door campus deployment saves ~$30,000–50,000 vs. wired. Primary drivers: Cost (9) — zero electrician cost across all campus buildings; Skill (9) — facilities technician installs in <30 min per door; Pain (9) — removes the dominant adoption barrier for the S1 legacy-building segment (>60% of US campus buildings). Safety (3) reflects surface-mount profile creating tamper exposure in student corridors (C5, PR06).\"\n  },\n  {\n    \"feature_name\": \"Automated Event Log Generation\",\n    \"market_name\": \"Colleges, Universities, and Professional Schools\",\n    \"naics_code\": \"611310\",\n    \"kano_class\": \"attractive\",\n    \"fit_score_time\": 8,\n    \"fit_score_cost\": 8,\n    \"fit_score_safety\": 7,\n    \"fit_score_reliability\": 6,\n    \"fit_score_skill\": 7,\n    \"fit_score_stress\": 9,\n    \"fit_score_pain\": 9,\n    \"fit_score_confidence\": 9,\n    \"fit_score_delight\": 7,\n    \"overall_fit\": 7.78,\n    \"rationale\": \"Highest scoring feature in market. Clery Act Annual Security Report filing and annual fire marshal inspections require timestamped door-event documentation — currently assembled manually from clipboard logs and paper patrol sheets by all mechanical and basic alarm alternatives. Primary drivers: Stress (9) — eliminates pre-inspection documentation scramble (N19 OS=15); Pain (9) — replaces manual compilation of door event records (N17 OS=13); Confidence (9) — 12-month digital audit trail available on demand closes Clery Act compliance gap risk (N18 OS=15). Delight (7): campus security administrators do not associate door alarm hardware with compliance documentation; discovery of this capability is genuinely surprising.\"\n  }\n]\n```\n\n### ProductRelatedNeedEntry[]\n\n```json\n[\n  {\n    \"statement\": \"Minimize the likelihood of wireless signal attenuation below reliable reporting threshold in reinforced-concrete campus buildings where multiple structural floors and walls between emergency exit devices and the nearest gateway exceed the 30 m EasyWave integrated transmitter range\",\n    \"source_constraint\": \"Wireless Range Limitation\",\n    \"affected_markets\": [\"Colleges, Universities, and Professional Schools\"],\n    \"importance\": 8.0,\n    \"satisfaction_current\": 4.0\n  },\n  {\n    \"statement\": \"Minimize the likelihood of wireless coverage gaps discovered only after campus-wide deployment, requiring unplanned repeater infrastructure additions that increase per-door cost and delay full-campus monitoring go-live\",\n    \"source_constraint\": \"Wireless Range Limitation\",\n    \"affected_markets\": [\"Colleges, Universities, and Professional Schools\"],\n    \"importance\": 7.0,\n    \"satisfaction_current\": 4.0\n  },\n  {\n    \"statement\": \"Minimize the likelihood of IoT battery exhaustion on dormitory emergency exits where 24/7 student occupancy and high door-event frequency depletes a 9V block battery before the scheduled 2-year maintenance cycle, creating a monitoring gap in a continuously occupied residential building\",\n    \"source_constraint\": \"IoT Battery Life Floor\",\n    \"affected_markets\": [\"Colleges, Universities, and Professional Schools\"],\n    \"importance\": 8.0,\n    \"satisfaction_current\": 3.0\n  },\n  {\n    \"statement\": \"Minimize the integration effort required to relay EasyWave alarm events into campus Physical Security Information Management (PSIM) or building automation platforms standardized on BACnet, KNX, or IP-based protocols, caused by the absence of native open-protocol output on the 868 MHz transmitter requiring a GfS-proprietary BUS gateway intermediary\",\n    \"source_constraint\": \"EasyWave Protocol Lock-In\",\n    \"affected_markets\": [\"Colleges, Universities, and Professional Schools\"],\n    \"importance\": 7.0,\n    \"satisfaction_current\": 3.0\n  },\n  {\n    \"statement\": \"Minimize the likelihood of door-event timestamps logged by the IoT monitoring system creating FERPA or EU GDPR compliance exposure when access event records are attributable to identifiable resident students in university dormitory buildings\",\n    \"source_constraint\": \"GDPR Monitoring Data Compliance\",\n    \"affected_markets\": [\"Colleges, Universities, and Professional Schools\"],\n    \"importance\": 7.0,\n    \"satisfaction_current\": 4.0\n  },\n  {\n    \"statement\": \"Minimize the likelihood of surface-mounted exit alarm guard housings being physically tampered with, vandalized, or accidentally dislodged by students in unsupervised dormitory corridors and student union areas, leaving an emergency exit in an unguarded state without a corresponding monitoring system alert\",\n    \"source_constraint\": \"Retrofit-Only Surface Mount\",\n    \"affected_markets\": [\"Colleges, Universities, and Professional Schools\"],\n    \"importance\": 6.0,\n    \"satisfaction_current\": 4.0\n  }\n]\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "Market",
+          "Value": "Colleges, Universities, and Professional Schools"
+        },
+        {
+          "Field": "NAICS",
+          "Value": "611310"
+        },
+        {
+          "Field": "Architecture distance",
+          "Value": "2 (HIGH priority)"
+        },
+        {
+          "Field": "Product Job",
+          "Value": "Help Campus Safety, Security & Emergency Management to secure emergency exit doors against unauthorized use while maintaining fire-code-compliant single-motion escape capability and reporting door status events to centralized monitoring — across distributed campus buildings with aging, heterogeneous infrastructure"
+        },
+        {
+          "Field": "Technology class",
+          "Value": "Emergency Exit Security Devices with Remote Monitoring"
+        },
+        {
+          "Field": "Commodity FP",
+          "Value": "Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm"
+        },
+        {
+          "Field": "Constraints in play",
+          "Value": "C3 (wireless range in concrete), C4 (battery life at dormitories), C6 (EasyWave/PSIM lock-in), C5 (surface mount tamper), C8 (FERPA/GDPR student data)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Statement (short)",
+        "Imp",
+        "Sat",
+        "OS"
+      ],
+      "rows": [
+        {
+          "#": "N18",
+          "Statement (short)": "Clery Act compliance gaps from wireless outage records",
+          "Imp": "9",
+          "Sat": "3",
+          "OS": "**15**"
+        },
+        {
+          "#": "N19",
+          "Statement (short)": "Regulatory fine from undocumented exit non-compliance event",
+          "Imp": "9",
+          "Sat": "3",
+          "OS": "**15**"
+        },
+        {
+          "#": "N01",
+          "Statement (short)": "Incomplete coverage mapping leaves exits unmonitored post-deployment",
+          "Imp": "9",
+          "Sat": "4",
+          "OS": "**14**"
+        },
+        {
+          "#": "N10",
+          "Statement (short)": "Time to detect and route unauthorized exit opening to security ops",
+          "Imp": "9",
+          "Sat": "4",
+          "OS": "**14**"
+        },
+        {
+          "#": "N03",
+          "Statement (short)": "RF dead zones in concrete buildings outside effective receiver range",
+          "Imp": "8",
+          "Sat": "3",
+          "OS": "**13**"
+        },
+        {
+          "#": "N08",
+          "Statement (short)": "Mechanical failure in high-traffic dorm/union exits → unguarded door",
+          "Imp": "9",
+          "Sat": "5",
+          "OS": "**13**"
+        },
+        {
+          "#": "N11",
+          "Statement (short)": "Door events lost to RF attenuation in reinforced-concrete buildings",
+          "Imp": "8",
+          "Sat": "3",
+          "OS": "**13**"
+        },
+        {
+          "#": "N13",
+          "Statement (short)": "Connectivity gap detection time from device to security ops center",
+          "Imp": "8",
+          "Sat": "3",
+          "OS": "**13**"
+        },
+        {
+          "#": "N17",
+          "Statement (short)": "Labor to compile compliance docs for fire inspections and Clery filings",
+          "Imp": "8",
+          "Sat": "3",
+          "OS": "**13**"
+        },
+        {
+          "#": "N12",
+          "Statement (short)": "Battery depletion variability across buildings by door-use frequency",
+          "Imp": "7",
+          "Sat": "3",
+          "OS": "**11**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Feature",
+        "Kano",
+        "Time",
+        "Cost",
+        "Safety",
+        "Reli",
+        "Skill",
+        "Stress",
+        "Pain",
+        "Conf",
+        "Del",
+        "**Overall**"
+      ],
+      "rows": [
+        {
+          "#": "F1",
+          "Feature": "Mechanical Alarm Trigger",
+          "Kano": "must_be",
+          "Time": "7",
+          "Cost": "4",
+          "Safety": "8",
+          "Reli": "8",
+          "Skill": "6",
+          "Stress": "6",
+          "Pain": "5",
+          "Conf": "8",
+          "Del": "2",
+          "**Overall**": "**6.00**"
+        },
+        {
+          "#": "F2",
+          "Feature": "Key Override Mechanism",
+          "Kano": "must_be",
+          "Time": "5",
+          "Cost": "4",
+          "Safety": "5",
+          "Reli": "6",
+          "Skill": "6",
+          "Stress": "7",
+          "Pain": "6",
+          "Conf": "6",
+          "Del": "2",
+          "**Overall**": "**5.22**"
+        },
+        {
+          "#": "F3",
+          "Feature": "Pre-Alarm Warning Tone",
+          "Kano": "attractive",
+          "Time": "3",
+          "Cost": "5",
+          "Safety": "3",
+          "Reli": "4",
+          "Skill": "3",
+          "Stress": "8",
+          "Pain": "7",
+          "Conf": "5",
+          "Del": "7",
+          "**Overall**": "**5.00**"
+        },
+        {
+          "#": "F4",
+          "Feature": "Wireless State Transmitter",
+          "Kano": "one_dimensional",
+          "Time": "8",
+          "Cost": "5",
+          "Safety": "7",
+          "Reli": "5",
+          "Skill": "5",
+          "Stress": "8",
+          "Pain": "7",
+          "Conf": "7",
+          "Del": "5",
+          "**Overall**": "**6.33**"
+        },
+        {
+          "#": "F5",
+          "Feature": "Battery Power Supply (no mains)",
+          "Kano": "must_be",
+          "Time": "4",
+          "Cost": "9",
+          "Safety": "5",
+          "Reli": "6",
+          "Skill": "8",
+          "Stress": "6",
+          "Pain": "8",
+          "Conf": "6",
+          "Del": "3",
+          "**Overall**": "**6.11**"
+        },
+        {
+          "#": "F6",
+          "Feature": "Remote Battery Status Reporting",
+          "Kano": "attractive",
+          "Time": "5",
+          "Cost": "6",
+          "Safety": "6",
+          "Reli": "7",
+          "Skill": "6",
+          "Stress": "8",
+          "Pain": "8",
+          "Conf": "8",
+          "Del": "7",
+          "**Overall**": "**6.78**"
+        },
+        {
+          "#": "F7",
+          "Feature": "Retrofit Surface Mount Installation",
+          "Kano": "one_dimensional",
+          "Time": "7",
+          "Cost": "9",
+          "Safety": "3",
+          "Reli": "5",
+          "Skill": "9",
+          "Stress": "7",
+          "Pain": "9",
+          "Conf": "5",
+          "Del": "6",
+          "**Overall**": "**6.67**"
+        },
+        {
+          "#": "F8",
+          "Feature": "Automated Event Log Generation",
+          "Kano": "attractive",
+          "Time": "8",
+          "Cost": "8",
+          "Safety": "7",
+          "Reli": "6",
+          "Skill": "7",
+          "Stress": "9",
+          "Pain": "9",
+          "Conf": "9",
+          "Del": "7",
+          "**Overall**": "**7.78**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Need",
+        "OS",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8"
+      ],
+      "rows": [
+        {
+          "Need": "N18 — Clery Act compliance gaps from wireless outages",
+          "OS": "15",
+          "F1": "◐",
+          "F2": "◐",
+          "F3": "●",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": "",
+          "F8": ""
+        },
+        {
+          "Need": "N19 — Regulatory fine from undocumented exit non-compliance",
+          "OS": "15",
+          "F1": "◐",
+          "F2": "●",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": "",
+          "F8": ""
+        },
+        {
+          "Need": "N01 — Incomplete coverage mapping leaves exits unmonitored",
+          "OS": "14",
+          "F1": "●",
+          "F2": "◐",
+          "F3": "◐",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": "",
+          "F8": ""
+        },
+        {
+          "Need": "N10 — Time to detect unauthorized exit opening → security ops",
+          "OS": "14",
+          "F1": "●",
+          "F2": "◐",
+          "F3": "●",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": "",
+          "F8": ""
+        },
+        {
+          "Need": "N03 — RF dead zones in concrete campus buildings",
+          "OS": "13",
+          "F1": "●",
+          "F2": "",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": "",
+          "F8": ""
+        },
+        {
+          "Need": "N08 — Mechanical failure in high-traffic dorm/union exits",
+          "OS": "13",
+          "F1": "●",
+          "F2": "",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": "",
+          "F8": ""
+        },
+        {
+          "Need": "N11 — Door events lost to RF attenuation",
+          "OS": "13",
+          "F1": "●",
+          "F2": "◐",
+          "F3": "◐",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": "",
+          "F8": ""
+        },
+        {
+          "Need": "N13 — Connectivity gap detection time",
+          "OS": "13",
+          "F1": "◐",
+          "F2": "●",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": "",
+          "F8": ""
+        },
+        {
+          "Need": "N17 — Labor to compile compliance docs for inspections/Clery",
+          "OS": "13",
+          "F1": "●",
+          "F2": "",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": "",
+          "F8": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Statement",
+        "Source Constraint",
+        "Affected Markets",
+        "Imp",
+        "Sat"
+      ],
+      "rows": [
+        {
+          "ID": "PR01",
+          "Statement": "Minimize the likelihood of wireless signal attenuation below reliable reporting threshold in reinforced-concrete campus buildings where multiple structural floors and walls between emergency exit devices and the nearest gateway exceed the 30 m EasyWave integrated transmitter range",
+          "Source Constraint": "Wireless Range Limitation (C3)",
+          "Affected Markets": "Colleges, Universities, and Professional Schools",
+          "Imp": "8.0",
+          "Sat": "4.0"
+        },
+        {
+          "ID": "PR02",
+          "Statement": "Minimize the likelihood of wireless coverage gaps discovered only after campus-wide deployment, requiring unplanned repeater infrastructure additions that increase per-door cost and delay full-campus monitoring go-live",
+          "Source Constraint": "Wireless Range Limitation (C3)",
+          "Affected Markets": "Colleges, Universities, and Professional Schools",
+          "Imp": "7.0",
+          "Sat": "4.0"
+        },
+        {
+          "ID": "PR03",
+          "Statement": "Minimize the likelihood of IoT battery exhaustion on dormitory emergency exits where 24/7 student occupancy and high door-event frequency (10–20 events per day at residential entrances and student union exits) depletes a 9V block battery before the scheduled 2-year maintenance cycle",
+          "Source Constraint": "IoT Battery Life Floor (C4)",
+          "Affected Markets": "Colleges, Universities, and Professional Schools",
+          "Imp": "8.0",
+          "Sat": "3.0"
+        },
+        {
+          "ID": "PR04",
+          "Statement": "Minimize the integration effort required to relay EasyWave alarm events into campus Physical Security Information Management (PSIM) or building automation platforms standardized on BACnet, KNX, or IP-based protocols, caused by the absence of native open-protocol output on the 868 MHz transmitter requiring a GfS-proprietary BUS gateway intermediary",
+          "Source Constraint": "EasyWave Protocol Lock-In (C6)",
+          "Affected Markets": "Colleges, Universities, and Professional Schools",
+          "Imp": "7.0",
+          "Sat": "3.0"
+        },
+        {
+          "ID": "PR05",
+          "Statement": "Minimize the likelihood of door-event timestamps logged by the IoT monitoring system creating FERPA or EU GDPR compliance exposure when access event records are attributable to identifiable resident students in university dormitory buildings",
+          "Source Constraint": "GDPR Monitoring Data Compliance (C8)",
+          "Affected Markets": "Colleges, Universities, and Professional Schools",
+          "Imp": "7.0",
+          "Sat": "4.0"
+        },
+        {
+          "ID": "PR06",
+          "Statement": "Minimize the likelihood of surface-mounted exit alarm guard housings being physically tampered with, vandalized, or accidentally dislodged by students in unsupervised dormitory corridors and student union areas, leaving an emergency exit in an unguarded state without the monitoring system detecting the mechanical displacement",
+          "Source Constraint": "Retrofit-Only Surface Mount (C5)",
+          "Affected Markets": "Colleges, Universities, and Professional Schools",
+          "Imp": "6.0",
+          "Sat": "4.0"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Dimension",
+        "Assessment"
+      ],
+      "rows": [
+        {
+          "Dimension": "**Strongest fit**",
+          "Assessment": "Automated Event Log Generation (7.78) — directly addresses the top underserved need cluster (N18, N19, N17); Remote Battery Status Reporting (6.78); Retrofit Surface Mount Installation (6.67)"
+        },
+        {
+          "Dimension": "**Market must-have**",
+          "Assessment": "Mechanical Alarm Trigger, Key Override, Battery Power Supply — must_be baseline; absence = market rejection"
+        },
+        {
+          "Dimension": "**Competitive gap**",
+          "Assessment": "Automated Event Log Generation + Remote Battery Status Reporting are `attractive` features absent from all mechanical-only competitors (A3: Detex, Seco-Larm); these are the primary switching arguments for the majority of campuses currently using basic alarms"
+        },
+        {
+          "Dimension": "**Constraint-driven risk**",
+          "Assessment": "C3 (wireless range in campus concrete) caps Wireless State Transmitter Reliability; C6 (EasyWave vs. campus PSIM) creates integration friction for tech-forward campuses with existing PSIM investments; C4 (battery at dormitories) generates the primary product-related maintenance burden"
+        },
+        {
+          "Dimension": "**Market differentiator**",
+          "Assessment": "Clery Act compliance automation is the #1 underserved need (OS=15) with zero current solution — the single strongest competitive claim vs. all mechanical alternatives"
+        },
+        {
+          "Dimension": "**Overall market fit**",
+          "Assessment": "**Strong.** Six of eight features score ≥6.00. Top three attractive features (F6, F8, F3) directly address the Clery Act documentation cluster and dormitory alarm-fatigue problems that are structurally unaddressed by the 64% of campuses using basic mechanical alarms."
+        }
+      ]
+    }
+  ],
+  "entities": [
+    [
+      {
+        "feature_name": "Mechanical Alarm Trigger",
+        "market_name": "Colleges, Universities, and Professional Schools",
+        "naics_code": "611310",
+        "kano_class": "must_be",
+        "fit_score_time": 7,
+        "fit_score_cost": 4,
+        "fit_score_safety": 8,
+        "fit_score_reliability": 8,
+        "fit_score_skill": 6,
+        "fit_score_stress": 6,
+        "fit_score_pain": 5,
+        "fit_score_confidence": 8,
+        "fit_score_delight": 2,
+        "overall_fit": 6.0,
+        "rationale": "Table-stakes per NFPA 101, IBC Chapter 10, DIN EN 179/1125. Primary drivers: Safety (8) — 95 dB deterrent directly addresses N10 OS=14 (detection time); Reliability (8) — mechanical fail-safe closes the unguarded-door risk in high-traffic dorm exits (N08 OS=13); Confidence (8) — 0V operation eliminates dead-alarm scenario. Delight (2): universally expected, no differentiation."
+      },
+      {
+        "feature_name": "Key Override Mechanism",
+        "market_name": "Colleges, Universities, and Professional Schools",
+        "naics_code": "611310",
+        "kano_class": "must_be",
+        "fit_score_time": 5,
+        "fit_score_cost": 4,
+        "fit_score_safety": 5,
+        "fit_score_reliability": 6,
+        "fit_score_skill": 6,
+        "fit_score_stress": 7,
+        "fit_score_pain": 6,
+        "fit_score_confidence": 6,
+        "fit_score_delight": 2,
+        "overall_fit": 5.22,
+        "rationale": "Mandatory for operational use — facilities maintenance, lab managers, and security staff require authorized silent access daily. Absence creates false alarm frequency that would disqualify deployment. Primary drivers: Stress (7) — eliminates alarm-trigger anxiety during routine authorized access; Pain (6) — removes operational disruption during battery replacement and maintenance rounds (N15)."
+      },
+      {
+        "feature_name": "Pre-Alarm Warning Tone",
+        "market_name": "Colleges, Universities, and Professional Schools",
+        "naics_code": "611310",
+        "kano_class": "attractive",
+        "fit_score_time": 3,
+        "fit_score_cost": 5,
+        "fit_score_safety": 3,
+        "fit_score_reliability": 4,
+        "fit_score_skill": 3,
+        "fit_score_stress": 8,
+        "fit_score_pain": 7,
+        "fit_score_confidence": 5,
+        "fit_score_delight": 7,
+        "overall_fit": 5.0,
+        "rationale": "Absent from all basic prop alarm alternatives. High incidental door-contact rate in dormitories, student unions, and campus libraries creates chronic false alarm fatigue. Primary drivers: Stress (8) — reduces alarm desensitization in high-student-activity buildings; Pain (7) — eliminates alarm disruption during normal campus activities (N09 OS=12); Delight (7) — security coordinators habituated to daily false alarms find pre-alarm genuinely unexpected."
+      },
+      {
+        "feature_name": "Wireless State Transmitter",
+        "market_name": "Colleges, Universities, and Professional Schools",
+        "naics_code": "611310",
+        "kano_class": "one_dimensional",
+        "fit_score_time": 8,
+        "fit_score_cost": 5,
+        "fit_score_safety": 7,
+        "fit_score_reliability": 5,
+        "fit_score_skill": 5,
+        "fit_score_stress": 8,
+        "fit_score_pain": 7,
+        "fit_score_confidence": 7,
+        "fit_score_delight": 5,
+        "overall_fit": 6.33,
+        "rationale": "More reliable wireless coverage proportionally eliminates more patrol burden. Directly addresses N10 OS=14 (detection time) and N13 OS=13 (connectivity gap detection). Primary drivers: Time (8) — real-time alert replaces discovery-by-patrol delay; Stress (8) — overnight security officer confidence across distributed multi-building campus. Reliability capped at 5: C3 (30 m limit) creates known dead zones in reinforced-concrete buildings (N03, N11 OS=13), a structural constraint limiting feature value delivery."
+      },
+      {
+        "feature_name": "Battery Power Supply (no mains)",
+        "market_name": "Colleges, Universities, and Professional Schools",
+        "naics_code": "611310",
+        "kano_class": "must_be",
+        "fit_score_time": 4,
+        "fit_score_cost": 9,
+        "fit_score_safety": 5,
+        "fit_score_reliability": 6,
+        "fit_score_skill": 8,
+        "fit_score_stress": 6,
+        "fit_score_pain": 8,
+        "fit_score_confidence": 6,
+        "fit_score_delight": 3,
+        "overall_fit": 6.11,
+        "rationale": "Defining characteristic of the Emergency Exit Door Alarm Guards commodity class. Expected without question. In this market, >75% of campus buildings exceed 40 years old with no wiring to secondary exits — battery is the only viable deployment path for the dominant S1 segment. Primary drivers: Cost (9) — eliminates licensed electrician labor across multi-building campus (N04 OS=11); Skill (8) — facilities technician installs without trades; Pain (8) — removes dominant adoption barrier for legacy-building campuses. Delight (3): expected."
+      },
+      {
+        "feature_name": "Remote Battery Status Reporting",
+        "market_name": "Colleges, Universities, and Professional Schools",
+        "naics_code": "611310",
+        "kano_class": "attractive",
+        "fit_score_time": 5,
+        "fit_score_cost": 6,
+        "fit_score_safety": 6,
+        "fit_score_reliability": 7,
+        "fit_score_skill": 6,
+        "fit_score_stress": 8,
+        "fit_score_pain": 8,
+        "fit_score_confidence": 8,
+        "fit_score_delight": 7,
+        "overall_fit": 6.78,
+        "rationale": "Zero remote battery visibility in all mechanical and basic prop alarm alternatives. Managing battery health across 50–200+ campus exits distributed across multiple buildings is a documented operational burden (N12 OS=11; N13 OS=13). Primary drivers: Stress (8) — eliminates the overnight security coordinator anxiety about undetected dead batteries at dormitory exits; Pain (8) — replaces manual battery-check rounds across campus; Confidence (8) — proactive replacement before monitoring loss enables Clery Act coverage continuity (N18 OS=15)."
+      },
+      {
+        "feature_name": "Retrofit Surface Mount Installation",
+        "market_name": "Colleges, Universities, and Professional Schools",
+        "naics_code": "611310",
+        "kano_class": "one_dimensional",
+        "fit_score_time": 7,
+        "fit_score_cost": 9,
+        "fit_score_safety": 3,
+        "fit_score_reliability": 5,
+        "fit_score_skill": 9,
+        "fit_score_stress": 7,
+        "fit_score_pain": 9,
+        "fit_score_confidence": 5,
+        "fit_score_delight": 6,
+        "overall_fit": 6.67,
+        "rationale": "More retrofit-friendly equals proportionally lower total deployment cost. Wired alternatives require $150–250/hr licensed electrician work; 100-door campus deployment saves ~$30,000–50,000 vs. wired. Primary drivers: Cost (9) — zero electrician cost across all campus buildings; Skill (9) — facilities technician installs in <30 min per door; Pain (9) — removes the dominant adoption barrier for the S1 legacy-building segment (>60% of US campus buildings). Safety (3) reflects surface-mount profile creating tamper exposure in student corridors (C5, PR06)."
+      },
+      {
+        "feature_name": "Automated Event Log Generation",
+        "market_name": "Colleges, Universities, and Professional Schools",
+        "naics_code": "611310",
+        "kano_class": "attractive",
+        "fit_score_time": 8,
+        "fit_score_cost": 8,
+        "fit_score_safety": 7,
+        "fit_score_reliability": 6,
+        "fit_score_skill": 7,
+        "fit_score_stress": 9,
+        "fit_score_pain": 9,
+        "fit_score_confidence": 9,
+        "fit_score_delight": 7,
+        "overall_fit": 7.78,
+        "rationale": "Highest scoring feature in market. Clery Act Annual Security Report filing and annual fire marshal inspections require timestamped door-event documentation — currently assembled manually from clipboard logs and paper patrol sheets by all mechanical and basic alarm alternatives. Primary drivers: Stress (9) — eliminates pre-inspection documentation scramble (N19 OS=15); Pain (9) — replaces manual compilation of door event records (N17 OS=13); Confidence (9) — 12-month digital audit trail available on demand closes Clery Act compliance gap risk (N18 OS=15). Delight (7): campus security administrators do not associate door alarm hardware with compliance documentation; discovery of this capability is genuinely surprising."
+      }
+    ],
+    [
+      {
+        "statement": "Minimize the likelihood of wireless signal attenuation below reliable reporting threshold in reinforced-concrete campus buildings where multiple structural floors and walls between emergency exit devices and the nearest gateway exceed the 30 m EasyWave integrated transmitter range",
+        "source_constraint": "Wireless Range Limitation",
+        "affected_markets": [
+          "Colleges, Universities, and Professional Schools"
+        ],
+        "importance": 8.0,
+        "satisfaction_current": 4.0
+      },
+      {
+        "statement": "Minimize the likelihood of wireless coverage gaps discovered only after campus-wide deployment, requiring unplanned repeater infrastructure additions that increase per-door cost and delay full-campus monitoring go-live",
+        "source_constraint": "Wireless Range Limitation",
+        "affected_markets": [
+          "Colleges, Universities, and Professional Schools"
+        ],
+        "importance": 7.0,
+        "satisfaction_current": 4.0
+      },
+      {
+        "statement": "Minimize the likelihood of IoT battery exhaustion on dormitory emergency exits where 24/7 student occupancy and high door-event frequency depletes a 9V block battery before the scheduled 2-year maintenance cycle, creating a monitoring gap in a continuously occupied residential building",
+        "source_constraint": "IoT Battery Life Floor",
+        "affected_markets": [
+          "Colleges, Universities, and Professional Schools"
+        ],
+        "importance": 8.0,
+        "satisfaction_current": 3.0
+      },
+      {
+        "statement": "Minimize the integration effort required to relay EasyWave alarm events into campus Physical Security Information Management (PSIM) or building automation platforms standardized on BACnet, KNX, or IP-based protocols, caused by the absence of native open-protocol output on the 868 MHz transmitter requiring a GfS-proprietary BUS gateway intermediary",
+        "source_constraint": "EasyWave Protocol Lock-In",
+        "affected_markets": [
+          "Colleges, Universities, and Professional Schools"
+        ],
+        "importance": 7.0,
+        "satisfaction_current": 3.0
+      },
+      {
+        "statement": "Minimize the likelihood of door-event timestamps logged by the IoT monitoring system creating FERPA or EU GDPR compliance exposure when access event records are attributable to identifiable resident students in university dormitory buildings",
+        "source_constraint": "GDPR Monitoring Data Compliance",
+        "affected_markets": [
+          "Colleges, Universities, and Professional Schools"
+        ],
+        "importance": 7.0,
+        "satisfaction_current": 4.0
+      },
+      {
+        "statement": "Minimize the likelihood of surface-mounted exit alarm guard housings being physically tampered with, vandalized, or accidentally dislodged by students in unsupervised dormitory corridors and student union areas, leaving an emergency exit in an unguarded state without a corresponding monitoring system alert",
+        "source_constraint": "Retrofit-Only Surface Mount",
+        "affected_markets": [
+          "Colleges, Universities, and Professional Schools"
+        ],
+        "importance": 6.0,
+        "satisfaction_current": 4.0
+      }
+    ]
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

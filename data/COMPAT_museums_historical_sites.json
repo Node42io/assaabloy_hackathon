@@ -1,0 +1,480 @@
+{
+  "id": "COMPAT_museums_historical_sites",
+  "title": "Constraint-Market Compatibility: Museums, Historical Sites, and Similar Institutions",
+  "type": "constraint_compatibility",
+  "market_slug": "museums_historical_sites",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Market Snapshot",
+      "content": "| Field | Value |\n|---|---|\n| **NAICS** | 712110 |\n| **Title** | Museums, Historical Sites, and Similar Institutions |\n| **FP fit** | adjacent |\n| **Confidence** | 0.80 |\n| **Est. market size** | ~$120M global |\n| **Job to be done** | Protect exhibition and storage areas by monitoring emergency exits for unauthorized use while maintaining fire evacuation compliance in heritage-listed buildings that prohibit structural modification |\n| **Verdict** | **SURVIVING** — no knockouts |\n\n---"
+    },
+    {
+      "title": "Verdict Table (all 10 constraints)",
+      "content": "| # | Constraint | Type | is_absolute | Verdict | Note |\n|---|---|---|---|---|---|\n| C1 | Emergency Escape Non-Impedance | regulatory | false | **none** | Product pre-certified to EN 179/EN 1125; museum fire codes impose identical requirement already met |\n| C2 | Mechanical Alarm Independence | regulatory | **true** | **none** | Absolute constraint already satisfied by mechanical-primary design; museum context adds no new power-failure risk |\n| C3 | Wireless Range Limitation | physical | false | **mitigable** | Historic stone/masonry walls attenuate 868 MHz beyond standard 30 m; repeaters required in large complexes |\n| C4 | IoT Battery Life Floor | operational | false | **none** | Emergency exit door events are infrequent in museums; battery comfortably exceeds 2-year target |\n| C5 | Retrofit-Only Surface Mount | physical | false | **mitigable** | Most museums: surface mount preferred (reversible, no structural modification). Grade I / Historic Monument contexts need heritage authority consultation on visible attachment |\n| C6 | EasyWave Protocol Lock-In | operational | false | **mitigable** | Museum BMS platforms (Honeywell, Siemens Desigo, Johnson Controls Metasys) use BACnet/IP; GfS BUS gateway bridges protocols |\n| C7 | IoT Price Premium | economic | false | **mitigable** | Public institution / nonprofit budgets constrained; heritage security grant funding and guard-patrol ROI case offsets premium |\n| C8 | GDPR Monitoring Data Compliance | regulatory | false | **mitigable** | EU museums in scope; legitimate interest (fire safety, heritage protection) provides legal basis; DPA + DPIA for staff-monitoring contexts |\n| C9 | IP Protection Boundary | environmental | false | **none** | Museum galleries and collection areas are climate-controlled, dry, indoor environments; IP45 outdoor variant covers any external site access points |\n| C10 | EN 13637 / EltVTR Electrical Compliance | regulatory | false | **mitigable** | Applies only if Türwächter combined with powered locking in conservation vault or restricted zone; standalone alarm-only deployment has no exposure |\n\n---"
+    },
+    {
+      "title": "Mitigable Constraint Details",
+      "content": "### C3 — Wireless Range Limitation\n\n**Rationale:** Heritage museum buildings — stone, brick, reinforced vault structures — attenuate 868 MHz signals significantly. A 30 m effective range can require 3–5 repeater stages across a large gallery wing or underground storage level. RF survey is mandatory pre-installation. Infrastructure cost is low but planning adds lead time.\n\n| Field | Value |\n|---|---|\n| **Mitigation actions** | 1) Conduct RF coverage survey before installation to map attenuation zones; 2) Deploy wireless repeaters at 20–25 m intervals through masonry structure; 3) Install GfS BUS gateway per wing for centralized aggregation |\n| **Cost estimate** | low (<$10K — repeaters ~€50–100 each; typical museum wing: 2–5 units) |\n| **Time estimate** | 2–4 weeks |\n\n---\n\n### C5 — Retrofit-Only Surface Mount\n\n**Rationale:** Surface-mount, non-drilling installation is a **positive differentiator** for heritage buildings — it satisfies the \"reversible modification\" requirement that heritage authorities (English Heritage, Denkmalschutz, DRAC) impose. For the vast majority of museums this is an advantage, not a barrier. The only real risk is aesthetic: RAL 6029 safety green on a historic timber door in a Grade I / Monument Historique context may require heritage authority sign-off.\n\n| Field | Value |\n|---|---|\n| **Mitigation actions** | 1) Request custom RAL color matching historic door finish (GfS supports custom colors); 2) Apply for Listed Building Consent / Denkmalschutzbehörde approval where surface attachment to listed fabric requires permit; 3) Prioritize back-of-house and service exit installations where aesthetic controls are lighter |\n| **Cost estimate** | low (<$10K — heritage consultation €1–3K; no engineering) |\n| **Time estimate** | 4–8 weeks (LBC/permit process) |\n\n---\n\n### C6 — EasyWave Protocol Lock-In\n\n**Rationale:** Museum BMS platforms (Honeywell Building Technologies ~30%, Siemens Desigo CC ~25%, Johnson Controls Metasys ~25% per VN data) all use BACnet/IP or Modbus. EasyWave has no native interoperability. GfS BUS gateway outputs potential-free contacts that can be wired to BMS dry-contact inputs — a standard integration path. For institutions with no BMS or running standalone GfS monitoring dashboards, this constraint disappears entirely.\n\n| Field | Value |\n|---|---|\n| **Mitigation actions** | 1) Deploy GfS Wireless BUS Interface as EasyWave-to-contact bridge; 2) Wire potential-free relay outputs to museum BMS I/O module for event ingestion; 3) For institutions without BMS (<20% of market), use standalone GfS monitoring dashboard — no integration required |\n| **Cost estimate** | low (<$10K — BUS gateway ~€200–500; integration labor 1–2 days) |\n| **Time estimate** | 1–3 weeks |\n\n---\n\n### C7 — IoT Price Premium\n\n**Rationale:** ~€730/door for IoT variant vs. ~€300–400 for basic mechanical. Museums are typically public institutions or nonprofits operating under constrained capital budgets. A 50-door museum deployment is ~€36,500 IoT vs. ~€15,000–20,000 mechanical — a ~€17,000 gap. However: (1) heritage security grant programs exist in EU, UK, and US specifically for building security upgrades; (2) patrol labor savings are significant — museums employ dedicated security staff for exit monitoring; (3) artifact theft prevention value dwarfs hardware cost.\n\n| Field | Value |\n|---|---|\n| **Mitigation actions** | 1) Build guard patrol hour reduction ROI model per institution (target: 60–90% reduction in exit-specific patrol labor); 2) Identify applicable heritage security grants (EU Horizon, UK National Lottery Heritage Fund, US IMLS, national programs); 3) Offer volume deployment pricing for multi-wing rollout |\n| **Cost estimate** | low (<$10K — grant writing and ROI modeling) |\n| **Time estimate** | 3–6 months (grant cycle) |\n\n---\n\n### C8 — GDPR Monitoring Data Compliance\n\n**Rationale:** EU museums in scope for GDPR if door event logs are attributable to identifiable staff (curators, security, maintenance). Visitor use of emergency exits is generally non-attributable. The legal basis for processing is \"legitimate interest\" (fire safety, heritage protection, theft prevention) — well-established and relatively easy to document. DPIA required if systematic staff monitoring is in scope.\n\n| Field | Value |\n|---|---|\n| **Mitigation actions** | 1) Document legitimate interest basis in privacy notice covering fire safety and heritage asset protection; 2) Execute DPA with GfS and/or monitoring platform provider; 3) Complete DPIA for institutions conducting systematic monitoring of employee movement through designated exits |\n| **Cost estimate** | low (<$10K — legal/DPO consultation €2–5K) |\n| **Time estimate** | 4–8 weeks |\n\n---\n\n### C10 — EN 13637 / EltVTR Electrical Compliance\n\n**Rationale:** Applies only when the Türwächter is combined with powered locking (electromagnetic holders, access control readers) in high-security zones — conservation vaults, restricted collection storage. VN data shows museums use IP-based electronic access control from ASSA ABLOY, Dormakaba, and Salto. Combined configurations in these zones must pass EN 13637 fail-safe system design review. Standalone alarm-only deployment (the typical museum scenario) has zero exposure.\n\n| Field | Value |\n|---|---|\n| **Mitigation actions** | 1) For standalone alarm-only deployment: no action required; 2) For combined configurations with powered locking: verify combined system fail-safe release against EN 13637 requirements at system design stage; 3) Obtain combined system certification before commissioning controlled-access areas |\n| **Cost estimate** | low (<$10K — system design review €1–3K; applies to combined-system deployments only) |\n| **Time estimate** | 2–4 weeks |\n\n---"
+    },
+    {
+      "title": "Key Finding",
+      "content": "**No knockouts. Market survives constraint screening.**\n\nThe museum/heritage market is uniquely favorable for the Türwächter's constraint profile:\n\n| Advantage | Mechanism |\n|---|---|\n| C2 (absolute) pre-satisfied | Mechanical-primary design is regulatory requirement — met by architecture |\n| C5 (surface mount) flips positive | \"No structural modification\" is the heritage authority requirement; retrofit surface mount is the compliance answer, not the constraint |\n| C3, C4 mitigated by building type | Stone/masonry RF attenuation addressable with repeaters; low door-event frequency means battery life is excellent |\n| C9 irrelevant | Climate-controlled dry environments; IP45 outdoor variant covers exterior access points |\n\nThe hardest mitigation in this market is C7 (price premium) for budget-constrained public institutions — partially offset by grant pathways — and C3 (range) in large historic stone complexes, both low-cost and well-understood mitigations.\n\n---"
+    },
+    {
+      "title": "Aggregate Result",
+      "content": "| Output | Value |\n|---|---|\n| **markets_eliminated** | `[]` — no knockouts |\n| **markets_surviving** | `[\"712110\"]` |\n| **Highest-cost mitigation** | C7 — IoT Price Premium (budget constraints + grant cycle time) |\n| **Stacked mitigation complexity** | Low-medium (C3 + C5 + C6 + C7 + C8 ± C10 — all low-cost, no single blocker) |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n  \"naics_code\": \"712110\",\n  \"verdict_summary\": \"surviving\",\n  \"assessments\": [\n    {\n      \"constraint_name\": \"Emergency Escape Non-Impedance\",\n      \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n      \"naics_code\": \"712110\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Product is pre-certified to EN 179/EN 1125. Museums are subject to the same fire code escape requirements — the product already satisfies them. No additional compliance burden.\"\n    },\n    {\n      \"constraint_name\": \"Mechanical Alarm Independence\",\n      \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n      \"naics_code\": \"712110\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Absolute constraint already satisfied by product's mechanical-primary architecture. Museum environments present no unique power-failure scenario that would challenge this. The constraint is resolved at product design level.\"\n    },\n    {\n      \"constraint_name\": \"Wireless Range Limitation\",\n      \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n      \"naics_code\": \"712110\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Conduct pre-installation RF coverage survey to map attenuation zones in stone/masonry/vault structures\",\n        \"Deploy wireless repeaters at 20-25 m intervals through RF-attenuating historic fabric\",\n        \"Install GfS Wireless BUS Interface per wing for centralized aggregation across large complexes\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"2-4 weeks\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Historic museum buildings (stone, brick, reinforced vaults) attenuate 868 MHz signals beyond the standard 30 m effective range. Large art museum complexes or underground storage levels may need 3-5 repeater stages. Established mitigation path with low hardware cost.\"\n    },\n    {\n      \"constraint_name\": \"IoT Battery Life Floor\",\n      \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n      \"naics_code\": \"712110\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Museum emergency exits have very low door-event frequency — primarily evacuations and rare unauthorized events. Battery current draw at this duty cycle is minimal; 2-year target is comfortably exceeded. IoT battery monitoring enables predictive replacement, further eliminating failure risk.\"\n    },\n    {\n      \"constraint_name\": \"Retrofit-Only Surface Mount\",\n      \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n      \"naics_code\": \"712110\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Request custom RAL color to match historic door finish (GfS supports custom colors)\",\n        \"Apply for Listed Building Consent or equivalent heritage authority approval where surface attachment to listed fabric requires permit\",\n        \"Prioritize back-of-house and service exit installations where aesthetic controls are lighter for initial deployment\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"4-8 weeks\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Surface-mount no-drill installation is a positive differentiator for heritage buildings — it satisfies the reversible modification requirement imposed by heritage authorities. The primary residual barrier is aesthetic approval for RAL 6029 green on historic door fabric in Grade I or Monument Historique contexts, addressable via consultation and custom color.\"\n    },\n    {\n      \"constraint_name\": \"EasyWave Protocol Lock-In\",\n      \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n      \"naics_code\": \"712110\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Deploy GfS Wireless BUS Interface as EasyWave-to-contact bridge between Türwächter and museum BMS\",\n        \"Wire potential-free relay outputs from wireless receiver to BMS I/O module for BACnet/IP event ingestion\",\n        \"For institutions without BMS (~20% of market), deploy standalone GfS monitoring dashboard — no protocol bridge required\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1-3 weeks\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Museum BMS platforms (Honeywell, Siemens Desigo, Johnson Controls Metasys) use BACnet/IP or Modbus. GfS BUS gateway provides dry-contact bridge — standard integration path. A significant share of smaller museums have no BMS, in which case the proprietary protocol is irrelevant.\"\n    },\n    {\n      \"constraint_name\": \"IoT Price Premium\",\n      \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n      \"naics_code\": \"712110\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Build guard patrol hour reduction ROI model per institution (60-90% reduction in exit-specific patrol labor at typical museum staffing rates)\",\n        \"Identify applicable heritage security grant funding (EU Horizon, UK National Lottery Heritage Fund, US IMLS, national heritage programs)\",\n        \"Offer volume deployment pricing for multi-wing or multi-site museum group rollout\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"3-6 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Public institution and nonprofit budgets are constrained. ~€730/door IoT vs. ~€300-400 mechanical creates a meaningful gap at scale. However, heritage security grant programs, significant guard patrol savings, and artifact theft prevention value establish a viable ROI case. Cost is never a knockout.\"\n    },\n    {\n      \"constraint_name\": \"GDPR Monitoring Data Compliance\",\n      \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n      \"naics_code\": \"712110\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Document legitimate interest legal basis (fire safety, heritage asset protection, theft prevention) in privacy notice\",\n        \"Execute Data Processing Agreement with GfS and/or monitoring platform provider\",\n        \"Complete DPIA for institutions conducting systematic monitoring of staff movement through designated exits\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"4-8 weeks\",\n      \"knockout_reason\": null,\n      \"rationale\": \"EU museums in scope for GDPR where door event logs are attributable to identifiable staff. Legitimate interest (fire safety, heritage protection) is a well-established legal basis. DPIA required for systematic employee monitoring. Established compliance pathway with low legal consultation cost.\"\n    },\n    {\n      \"constraint_name\": \"IP Protection Boundary\",\n      \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n      \"naics_code\": \"712110\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Museum gallery and collection environments are climate-controlled, dry indoor spaces (45-55% RH, 18-21°C conservation grade). No washdown, moisture jet, or corrosive exposure. IP45 outdoor variant (Art. 990000-IP) covers any exterior archaeological site access points where required.\"\n    },\n    {\n      \"constraint_name\": \"EN 13637 / EltVTR Electrical Compliance\",\n      \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n      \"naics_code\": \"712110\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"For standalone alarm-only deployment (typical): no action required\",\n        \"For combined configurations with powered locking in conservation vaults or restricted collection zones: verify fail-safe release design against EN 13637 at system design stage\",\n        \"Obtain combined-system certification before commissioning any controlled-access area that combines Türwächter with electromagnetic or electronic locking\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"2-4 weeks\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Applies only when Türwächter is combined with powered locking in high-security zones (conservation vaults, restricted collection storage). Museums using ASSA ABLOY Seos, Dormakaba, or Salto access control in such areas need system-level EN 13637 compliance check. Standalone alarm-only deployment — the dominant museum scenario — has zero exposure.\"\n    }\n  ],\n  \"markets_eliminated\": [],\n  \"markets_surviving\": [\"712110\"]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**NAICS**",
+          "Value": "712110"
+        },
+        {
+          "Field": "**Title**",
+          "Value": "Museums, Historical Sites, and Similar Institutions"
+        },
+        {
+          "Field": "**FP fit**",
+          "Value": "adjacent"
+        },
+        {
+          "Field": "**Confidence**",
+          "Value": "0.80"
+        },
+        {
+          "Field": "**Est. market size**",
+          "Value": "~$120M global"
+        },
+        {
+          "Field": "**Job to be done**",
+          "Value": "Protect exhibition and storage areas by monitoring emergency exits for unauthorized use while maintaining fire evacuation compliance in heritage-listed buildings that prohibit structural modification"
+        },
+        {
+          "Field": "**Verdict**",
+          "Value": "**SURVIVING** — no knockouts"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Constraint",
+        "Type",
+        "is_absolute",
+        "Verdict",
+        "Note"
+      ],
+      "rows": [
+        {
+          "#": "C1",
+          "Constraint": "Emergency Escape Non-Impedance",
+          "Type": "regulatory",
+          "is_absolute": "false",
+          "Verdict": "**none**",
+          "Note": "Product pre-certified to EN 179/EN 1125; museum fire codes impose identical requirement already met"
+        },
+        {
+          "#": "C2",
+          "Constraint": "Mechanical Alarm Independence",
+          "Type": "regulatory",
+          "is_absolute": "**true**",
+          "Verdict": "**none**",
+          "Note": "Absolute constraint already satisfied by mechanical-primary design; museum context adds no new power-failure risk"
+        },
+        {
+          "#": "C3",
+          "Constraint": "Wireless Range Limitation",
+          "Type": "physical",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Note": "Historic stone/masonry walls attenuate 868 MHz beyond standard 30 m; repeaters required in large complexes"
+        },
+        {
+          "#": "C4",
+          "Constraint": "IoT Battery Life Floor",
+          "Type": "operational",
+          "is_absolute": "false",
+          "Verdict": "**none**",
+          "Note": "Emergency exit door events are infrequent in museums; battery comfortably exceeds 2-year target"
+        },
+        {
+          "#": "C5",
+          "Constraint": "Retrofit-Only Surface Mount",
+          "Type": "physical",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Note": "Most museums: surface mount preferred (reversible, no structural modification). Grade I / Historic Monument contexts need heritage authority consultation on visible attachment"
+        },
+        {
+          "#": "C6",
+          "Constraint": "EasyWave Protocol Lock-In",
+          "Type": "operational",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Note": "Museum BMS platforms (Honeywell, Siemens Desigo, Johnson Controls Metasys) use BACnet/IP; GfS BUS gateway bridges protocols"
+        },
+        {
+          "#": "C7",
+          "Constraint": "IoT Price Premium",
+          "Type": "economic",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Note": "Public institution / nonprofit budgets constrained; heritage security grant funding and guard-patrol ROI case offsets premium"
+        },
+        {
+          "#": "C8",
+          "Constraint": "GDPR Monitoring Data Compliance",
+          "Type": "regulatory",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Note": "EU museums in scope; legitimate interest (fire safety, heritage protection) provides legal basis; DPA + DPIA for staff-monitoring contexts"
+        },
+        {
+          "#": "C9",
+          "Constraint": "IP Protection Boundary",
+          "Type": "environmental",
+          "is_absolute": "false",
+          "Verdict": "**none**",
+          "Note": "Museum galleries and collection areas are climate-controlled, dry, indoor environments; IP45 outdoor variant covers any external site access points"
+        },
+        {
+          "#": "C10",
+          "Constraint": "EN 13637 / EltVTR Electrical Compliance",
+          "Type": "regulatory",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Note": "Applies only if Türwächter combined with powered locking in conservation vault or restricted zone; standalone alarm-only deployment has no exposure"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Mitigation actions**",
+          "Value": "1) Conduct RF coverage survey before installation to map attenuation zones; 2) Deploy wireless repeaters at 20–25 m intervals through masonry structure; 3) Install GfS BUS gateway per wing for centralized aggregation"
+        },
+        {
+          "Field": "**Cost estimate**",
+          "Value": "low (<$10K — repeaters ~€50–100 each; typical museum wing: 2–5 units)"
+        },
+        {
+          "Field": "**Time estimate**",
+          "Value": "2–4 weeks"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Mitigation actions**",
+          "Value": "1) Request custom RAL color matching historic door finish (GfS supports custom colors); 2) Apply for Listed Building Consent / Denkmalschutzbehörde approval where surface attachment to listed fabric requires permit; 3) Prioritize back-of-house and service exit installations where aesthetic controls are lighter"
+        },
+        {
+          "Field": "**Cost estimate**",
+          "Value": "low (<$10K — heritage consultation €1–3K; no engineering)"
+        },
+        {
+          "Field": "**Time estimate**",
+          "Value": "4–8 weeks (LBC/permit process)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Mitigation actions**",
+          "Value": "1) Deploy GfS Wireless BUS Interface as EasyWave-to-contact bridge; 2) Wire potential-free relay outputs to museum BMS I/O module for event ingestion; 3) For institutions without BMS (<20% of market), use standalone GfS monitoring dashboard — no integration required"
+        },
+        {
+          "Field": "**Cost estimate**",
+          "Value": "low (<$10K — BUS gateway ~€200–500; integration labor 1–2 days)"
+        },
+        {
+          "Field": "**Time estimate**",
+          "Value": "1–3 weeks"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Mitigation actions**",
+          "Value": "1) Build guard patrol hour reduction ROI model per institution (target: 60–90% reduction in exit-specific patrol labor); 2) Identify applicable heritage security grants (EU Horizon, UK National Lottery Heritage Fund, US IMLS, national programs); 3) Offer volume deployment pricing for multi-wing rollout"
+        },
+        {
+          "Field": "**Cost estimate**",
+          "Value": "low (<$10K — grant writing and ROI modeling)"
+        },
+        {
+          "Field": "**Time estimate**",
+          "Value": "3–6 months (grant cycle)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Mitigation actions**",
+          "Value": "1) Document legitimate interest basis in privacy notice covering fire safety and heritage asset protection; 2) Execute DPA with GfS and/or monitoring platform provider; 3) Complete DPIA for institutions conducting systematic monitoring of employee movement through designated exits"
+        },
+        {
+          "Field": "**Cost estimate**",
+          "Value": "low (<$10K — legal/DPO consultation €2–5K)"
+        },
+        {
+          "Field": "**Time estimate**",
+          "Value": "4–8 weeks"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Mitigation actions**",
+          "Value": "1) For standalone alarm-only deployment: no action required; 2) For combined configurations with powered locking: verify combined system fail-safe release against EN 13637 requirements at system design stage; 3) Obtain combined system certification before commissioning controlled-access areas"
+        },
+        {
+          "Field": "**Cost estimate**",
+          "Value": "low (<$10K — system design review €1–3K; applies to combined-system deployments only)"
+        },
+        {
+          "Field": "**Time estimate**",
+          "Value": "2–4 weeks"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Advantage",
+        "Mechanism"
+      ],
+      "rows": [
+        {
+          "Advantage": "C2 (absolute) pre-satisfied",
+          "Mechanism": "Mechanical-primary design is regulatory requirement — met by architecture"
+        },
+        {
+          "Advantage": "C5 (surface mount) flips positive",
+          "Mechanism": "\"No structural modification\" is the heritage authority requirement; retrofit surface mount is the compliance answer, not the constraint"
+        },
+        {
+          "Advantage": "C3, C4 mitigated by building type",
+          "Mechanism": "Stone/masonry RF attenuation addressable with repeaters; low door-event frequency means battery life is excellent"
+        },
+        {
+          "Advantage": "C9 irrelevant",
+          "Mechanism": "Climate-controlled dry environments; IP45 outdoor variant covers exterior access points"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Output",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Output": "**markets_eliminated**",
+          "Value": "`[]` — no knockouts"
+        },
+        {
+          "Output": "**markets_surviving**",
+          "Value": "`[\"712110\"]`"
+        },
+        {
+          "Output": "**Highest-cost mitigation**",
+          "Value": "C7 — IoT Price Premium (budget constraints + grant cycle time)"
+        },
+        {
+          "Output": "**Stacked mitigation complexity**",
+          "Value": "Low-medium (C3 + C5 + C6 + C7 + C8 ± C10 — all low-cost, no single blocker)"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market_name": "Museums, Historical Sites, and Similar Institutions",
+      "naics_code": "712110",
+      "verdict_summary": "surviving",
+      "assessments": [
+        {
+          "constraint_name": "Emergency Escape Non-Impedance",
+          "market_name": "Museums, Historical Sites, and Similar Institutions",
+          "naics_code": "712110",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Product is pre-certified to EN 179/EN 1125. Museums are subject to the same fire code escape requirements — the product already satisfies them. No additional compliance burden."
+        },
+        {
+          "constraint_name": "Mechanical Alarm Independence",
+          "market_name": "Museums, Historical Sites, and Similar Institutions",
+          "naics_code": "712110",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Absolute constraint already satisfied by product's mechanical-primary architecture. Museum environments present no unique power-failure scenario that would challenge this. The constraint is resolved at product design level."
+        },
+        {
+          "constraint_name": "Wireless Range Limitation",
+          "market_name": "Museums, Historical Sites, and Similar Institutions",
+          "naics_code": "712110",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Conduct pre-installation RF coverage survey to map attenuation zones in stone/masonry/vault structures",
+            "Deploy wireless repeaters at 20-25 m intervals through RF-attenuating historic fabric",
+            "Install GfS Wireless BUS Interface per wing for centralized aggregation across large complexes"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "2-4 weeks",
+          "knockout_reason": null,
+          "rationale": "Historic museum buildings (stone, brick, reinforced vaults) attenuate 868 MHz signals beyond the standard 30 m effective range. Large art museum complexes or underground storage levels may need 3-5 repeater stages. Established mitigation path with low hardware cost."
+        },
+        {
+          "constraint_name": "IoT Battery Life Floor",
+          "market_name": "Museums, Historical Sites, and Similar Institutions",
+          "naics_code": "712110",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Museum emergency exits have very low door-event frequency — primarily evacuations and rare unauthorized events. Battery current draw at this duty cycle is minimal; 2-year target is comfortably exceeded. IoT battery monitoring enables predictive replacement, further eliminating failure risk."
+        },
+        {
+          "constraint_name": "Retrofit-Only Surface Mount",
+          "market_name": "Museums, Historical Sites, and Similar Institutions",
+          "naics_code": "712110",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Request custom RAL color to match historic door finish (GfS supports custom colors)",
+            "Apply for Listed Building Consent or equivalent heritage authority approval where surface attachment to listed fabric requires permit",
+            "Prioritize back-of-house and service exit installations where aesthetic controls are lighter for initial deployment"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "4-8 weeks",
+          "knockout_reason": null,
+          "rationale": "Surface-mount no-drill installation is a positive differentiator for heritage buildings — it satisfies the reversible modification requirement imposed by heritage authorities. The primary residual barrier is aesthetic approval for RAL 6029 green on historic door fabric in Grade I or Monument Historique contexts, addressable via consultation and custom color."
+        },
+        {
+          "constraint_name": "EasyWave Protocol Lock-In",
+          "market_name": "Museums, Historical Sites, and Similar Institutions",
+          "naics_code": "712110",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Deploy GfS Wireless BUS Interface as EasyWave-to-contact bridge between Türwächter and museum BMS",
+            "Wire potential-free relay outputs from wireless receiver to BMS I/O module for BACnet/IP event ingestion",
+            "For institutions without BMS (~20% of market), deploy standalone GfS monitoring dashboard — no protocol bridge required"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1-3 weeks",
+          "knockout_reason": null,
+          "rationale": "Museum BMS platforms (Honeywell, Siemens Desigo, Johnson Controls Metasys) use BACnet/IP or Modbus. GfS BUS gateway provides dry-contact bridge — standard integration path. A significant share of smaller museums have no BMS, in which case the proprietary protocol is irrelevant."
+        },
+        {
+          "constraint_name": "IoT Price Premium",
+          "market_name": "Museums, Historical Sites, and Similar Institutions",
+          "naics_code": "712110",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Build guard patrol hour reduction ROI model per institution (60-90% reduction in exit-specific patrol labor at typical museum staffing rates)",
+            "Identify applicable heritage security grant funding (EU Horizon, UK National Lottery Heritage Fund, US IMLS, national heritage programs)",
+            "Offer volume deployment pricing for multi-wing or multi-site museum group rollout"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "3-6 months",
+          "knockout_reason": null,
+          "rationale": "Public institution and nonprofit budgets are constrained. ~€730/door IoT vs. ~€300-400 mechanical creates a meaningful gap at scale. However, heritage security grant programs, significant guard patrol savings, and artifact theft prevention value establish a viable ROI case. Cost is never a knockout."
+        },
+        {
+          "constraint_name": "GDPR Monitoring Data Compliance",
+          "market_name": "Museums, Historical Sites, and Similar Institutions",
+          "naics_code": "712110",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Document legitimate interest legal basis (fire safety, heritage asset protection, theft prevention) in privacy notice",
+            "Execute Data Processing Agreement with GfS and/or monitoring platform provider",
+            "Complete DPIA for institutions conducting systematic monitoring of staff movement through designated exits"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "4-8 weeks",
+          "knockout_reason": null,
+          "rationale": "EU museums in scope for GDPR where door event logs are attributable to identifiable staff. Legitimate interest (fire safety, heritage protection) is a well-established legal basis. DPIA required for systematic employee monitoring. Established compliance pathway with low legal consultation cost."
+        },
+        {
+          "constraint_name": "IP Protection Boundary",
+          "market_name": "Museums, Historical Sites, and Similar Institutions",
+          "naics_code": "712110",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Museum gallery and collection environments are climate-controlled, dry indoor spaces (45-55% RH, 18-21°C conservation grade). No washdown, moisture jet, or corrosive exposure. IP45 outdoor variant (Art. 990000-IP) covers any exterior archaeological site access points where required."
+        },
+        {
+          "constraint_name": "EN 13637 / EltVTR Electrical Compliance",
+          "market_name": "Museums, Historical Sites, and Similar Institutions",
+          "naics_code": "712110",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "For standalone alarm-only deployment (typical): no action required",
+            "For combined configurations with powered locking in conservation vaults or restricted collection zones: verify fail-safe release design against EN 13637 at system design stage",
+            "Obtain combined-system certification before commissioning any controlled-access area that combines Türwächter with electromagnetic or electronic locking"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "2-4 weeks",
+          "knockout_reason": null,
+          "rationale": "Applies only when Türwächter is combined with powered locking in high-security zones (conservation vaults, restricted collection storage). Museums using ASSA ABLOY Seos, Dormakaba, or Salto access control in such areas need system-level EN 13637 compliance check. Standalone alarm-only deployment — the dominant museum scenario — has zero exposure."
+        }
+      ],
+      "markets_eliminated": [],
+      "markets_surviving": [
+        "712110"
+      ]
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

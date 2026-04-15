@@ -1,0 +1,1039 @@
+{
+  "id": "VN_general_medical_surgical_hospitals",
+  "title": "Value Network Construction: NAICS 622110 — General Medical and Surgical Hospitals",
+  "type": "value_network",
+  "market_slug": "general_medical_surgical_hospitals",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Input Context",
+      "content": "| Field | Value |\n|---|---|\n| **NAICS code** | 622110 |\n| **NAICS title** | General Medical and Surgical Hospitals |\n| **Market priority** | HIGH — architecture distance 2 (Rank 3 in 02b) |\n| **Product FP** | Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring — without mains power at the door |\n| **Architecture distance rationale** | Core product works on standard hospital fire doors. Adaptations: antimicrobial housing option, quieter alarm profiles near patient areas, integration with hospital-grade BMS. EN 179/1125 certs transfer directly. |\n| **Key constraints active** | C4 (battery life at high door frequency), C6 (protocol lock-in with hospital BMS), C8 (GDPR/HIPAA for door-log data), C10 (EN 13637 in access-controlled wards) |\n\n---"
+    },
+    {
+      "title": "Phase 1 — Initial VN Construction (Step 02c)",
+      "content": "### Step A.1 — L7 Ecosystem & CFJ\n\n**Core Functional Job (L7):** Diagnose, treat, and stabilize patients presenting with acute medical and surgical conditions — from initial triage through inpatient care to discharge or transfer to post-acute services.\n\n| Unit | Level | Job family / description |\n|---|---|---|\n| **Hospital Care Delivery Ecosystem** | L7 | Moore 1993. Economic community of hospitals, payers, regulators, pharma/device suppliers, facility services, and workforce coordinated around acute patient care. |\n\n---\n\n### Step A.2 — L6 Core Process Steps (sequential)\n\nSequential transformation: patient enters the system in L6a and exits at L6f. Each step is necessary for the output to be delivered.\n\n| # | Name | Level | Job family | Notes |\n|---|---|---|---|---|\n| L6a | Patient Access & Intake | L6 | Receive, identify, and route patients into the care pathway | ED triage, scheduled admission, registration, insurance verification |\n| L6b | Diagnostics & Assessment | L6 | Produce diagnostic findings that determine treatment pathway | Imaging, lab, pathology, point-of-care |\n| L6c | Surgical & Procedural Intervention | L6 | Execute invasive procedures in sterile environments | OR, cath lab, endoscopy suite, interventional radiology |\n| L6d | Inpatient Clinical Care | L6 | Monitor, treat, and stabilize hospitalized patients | Medical-surgical ward, step-down, ICU, telemetry |\n| L6e | Pharmacy & Medication Delivery | L6 | Prepare, verify, and dispense medications to point of care | Compounding, dispensing cabinets, IV therapy, antimicrobial stewardship |\n| L6f | Discharge & Care Transition | L6 | Coordinate safe patient discharge and hand-off to follow-on care | Discharge planning, transfer coordination, billing, follow-up scheduling |\n\n---\n\n### Step A.3 — L6 Horizontal Process Steps\n\nHorizontal processes run in parallel across ALL L6 core steps. Removing any one means no core step can run safely or legally.\n\n| # | Name | Level | Job family | Regulatory anchor |\n|---|---|---|---|---|\n| L6h1 | Facility & Building Safety (H) | L6 | Maintain building infrastructure, fire safety, emergency exit security, and physical access control across all clinical and support areas | NFPA 101 (Life Safety Code), NFPA 72, EN 179/1125, ASHRAE 170-2021 |\n| L6h2 | Infection Prevention & Sterilization (H) | L6 | Sterilize instruments, maintain clean environments, control HAI rates across all patient-contact zones | CDC, ECDC, WHO IPC guidelines; JCI accreditation |\n| L6h3 | Clinical Information Systems (H) | L6 | Provide EMR, CDSS, PACS, lab information, and interoperability infrastructure supporting every care delivery step | HL7 FHIR, DICOM, IHE integration profiles |\n\n> **Hospital-specific note:** Hospitals employ a **defend-in-place** fire strategy (NFPA 101 §18) — patients are relocated horizontally to adjacent smoke compartments, not evacuated from the building. Emergency exit security devices therefore serve two primary functions: (1) unauthorized elopement prevention, (2) compartment-boundary monitoring. Full building evacuation is a last resort.\n\n---\n\n### Step A.4 — L5 Equipment per L6 Node\n\nEach L6 node orchestrates independent L5 products. The L5 level is where suppliers (including Assa Abloy / GfS) sell into the value network.\n\n#### L6a — Patient Access & Intake\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Patient Registration & EMR System** | Epic, Oracle Health (Cerner), MEDITECH | 35% / 25% / 15% | MEDIUM | KLAS Research 2024 |\n| **ED Management Platform** | T-System, Medhost, Meditech EDM | 40% / 30% / 20% | LOW | Analyst estimates |\n\n#### L6b — Diagnostics & Assessment\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Medical Imaging Systems** | Siemens Healthineers, GE HealthCare, Philips | 32% / 28% / 22% | MEDIUM | GlobalData 2024 |\n| **Laboratory Analyzer Platform** | Roche Diagnostics, Abbott, Siemens DX | 30% / 28% / 22% | MEDIUM | IQVIA 2024 |\n\n#### L6c — Surgical & Procedural Intervention\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Anesthesia Delivery System** | Dräger, GE HealthCare, Philips | 35% / 30% / 20% | MEDIUM | Frost & Sullivan 2023 |\n| **Surgical Table & Positioning** | Steris Skytron, Stryker, Trumpf Medical | 30% / 25% / 20% | LOW | Analyst estimates |\n\n#### L6d — Inpatient Clinical Care\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Patient Monitoring System** | Philips, GE HealthCare, Masimo | 35% / 25% / 15% | MEDIUM | GlobalData 2024 |\n| **Nurse Call System** | Rauland, Hill-Rom/Baxter, Ascom | 30% / 25% / 20% | MEDIUM | KLAS 2024 |\n\n#### L6e — Pharmacy & Medication Delivery\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Automated Dispensing Cabinet** | Omnicell, BD Pyxis, Swisslog | 40% / 35% / 15% | MEDIUM | KLAS 2024 |\n\n#### L6h1 — Facility & Building Safety (H)  ← **Product entry point**\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Fire Detection & Alarm System** | Siemens Cerberus / Johnson Controls Simplex / Honeywell Notifier | 28% / 25% / 22% | MEDIUM | IHS Markit / Omdia 2024 |\n| **Emergency Exit Security Device** | Wired alarmed exit bars (Von Duprin, Corbin Russwin) / Mechanical door-handle alarm guards (GfS Exit Control, ABUS) / Wireless electronic exit control systems (dormakaba SafeRoute, GEZE SecuLogic) / Electromechanical delayed egress (Allegion) | 40% / 30% / 20% / 10% | LOW | No published split; estimated from install base surveys [WEB] |\n| **Physical Access Control System** | Wired enterprise ACS (Lenel-S2, Software House, Honeywell Pro-Watch) / Cloud ACS (Brivo, Genetec, Verkada) / Wireless RF ACS (ASSA ABLOY Aperio, dormakaba MATRIX) | 55% / 25% / 20% | MEDIUM | MarketsandMarkets 2025 — top 5 players (ASSA ABLOY, dormakaba, Johnson Controls, Allegion, Honeywell) hold ~70–80% access control market [WEB] |\n| **Wander Management System** | Securitas Healthcare / CenTrak / RF Technologies / Accutech Security | 30% / 25% / 25% / 15% | LOW | Analyst estimates; dedicated wander mgmt market size not published separately [WEB] |\n\n> **Market context:** Hospital Security Systems Market valued at ~$15B in 2025, CAGR 7–13% to 2033. Panic & Emergency Exit Devices segment: ~$1.45–2.5B globally, CAGR ~6%. 25% of facilities in 2024 choosing exit hardware with cloud reporting capability. [WEB — Maximize Market Research / Market Growth Reports 2025]\n\n#### L6h2 — Infection Prevention & Sterilization (H)\n\n| L5 | Alternatives | Share | Confidence |\n|---|---|---|---|\n| **Sterile Processing System** | STERIS, Getinge, Belimed | 35% / 30% / 20% | MEDIUM |\n\n#### L6h3 — Clinical Information Systems (H)\n\n| L5 | Alternatives | Share | Confidence |\n|---|---|---|---|\n| **Enterprise BMS / Building Automation** | Siemens Desigo, Honeywell EBI, Schneider EcoStruxure | 30% / 28% / 22% | MEDIUM |\n\n---\n\n### Step A.5 — Output Type Activation Matrix\n\nOutput types (service lines) for NAICS 622110:\n\n| L6 Node | Emergency / Trauma | Elective Inpatient Surgery | Medical Inpatient | Intensive Care (ICU) | Outpatient / Day Procedure |\n|---|:---:|:---:|:---:|:---:|:---:|\n| L6a Patient Access & Intake | ✓ | ✓ | ✓ | ✓ | ✓ |\n| L6b Diagnostics & Assessment | ✓ | ✓ | ✓ | ✓ | ✓ |\n| L6c Surgical & Procedural Intervention | ✓ | ✓ | — | — | ✓ |\n| L6d Inpatient Clinical Care | ✓ | ✓ | ✓ | ✓ | — |\n| L6e Pharmacy & Medication Delivery | ✓ | ✓ | ✓ | ✓ | ✓ |\n| L6f Discharge & Care Transition | ✓ | ✓ | ✓ | ✓ | ✓ |\n| L6h1 Facility & Building Safety (H) | ✓ | ✓ | ✓ | ✓ | ✓ |\n| L6h2 Infection Prevention (H) | ✓ | ✓ | ✓ | ✓ | ✓ |\n| L6h3 Clinical Information Systems (H) | ✓ | ✓ | ✓ | ✓ | ✓ |\n\n**Observations:**\n- L6c (Surgery) does not activate for Medical Inpatient or ICU — patients in those pathways don't pass through the OR.\n- L6d (Inpatient Clinical Care) does not activate for Outpatient/Day Procedure — no overnight stay.\n- L6h1 (Facility & Building Safety) activates for ALL output types — infrastructure is universal. This is where the Emergency Exit Security Device (L5) sits.\n\n---"
+    },
+    {
+      "title": "Phase 2 — VN Enrichment (Step 04)",
+      "content": "### Step 04a — L4 Fill\n\nEnsuring every L5 has ≥ 3 L4 subsystems. L4 decomposition for the five highest-relevance L5 nodes (product entry point first):\n\n#### Emergency Exit Security Device (L5) — **Türwächter entry point**\n\n| L4 Subsystem | Description | Standard |\n|---|---|---|\n| **Alarm Horn Assembly** | Piezoelectric or electromechanical horn producing ≥ 95 dB at 1 m on activation; must function without mains power (EltVTR requirement) | INCOSE |\n| **Guard / Handle Latch Mechanism** | Spring-loaded mechanical guard that physically blocks or releases the door handle (EN 179) or panic bar (EN 1125); 45° swing release, single-motion, ≤ 70 N force | INCOSE |\n| **Wireless State Transmitter** | Sub-GHz radio module (e.g., 868 MHz EasyWave, or LoRaWAN / BLE in next-gen products) broadcasting door-state and alarm events to gateway or receiver; supervisory only | INCOSE |\n| **Battery Power Supply** | Replaceable 9V block battery providing power to IoT module; mechanical alarm trigger operates independently of battery state | INCOSE |\n\n#### Physical Access Control System (L5)\n\n| L4 Subsystem | Description | Standard |\n|---|---|---|\n| **Credential Reader** | Card, mobile NFC, or biometric reader at controlled door points; interfaces with access control panel | INCOSE |\n| **Electronic Lock / Magnetic Lock** | Electrically actuated lock (mag-lock, electric strike, or electromechanical mortise) providing fail-safe or fail-secure hold | INCOSE |\n| **Access Control Panel** | Decision controller that evaluates credentials, manages door schedules, logs events, and provides audit trail for HIPAA / JCI compliance | INCOSE |\n| **Door Position Sensor** | Reed-contact or magnetic sensor confirming door closed/open state; feeds alarm logic and access audit | INCOSE |\n\n#### Fire Detection & Alarm System (L5)\n\n| L4 Subsystem | Description | Standard |\n|---|---|---|\n| **Addressable Smoke / Heat Detector Network** | Distributed addressable detectors in all occupied and utility spaces; reports precise location per NFPA 72 | INCOSE |\n| **Fire Alarm Control Panel (FACP)** | Central unit supervising detector inputs, processing alarm logic, activating notification circuits, and interfacing with BMS and sprinkler systems | INCOSE |\n| **Notification Appliance Circuit (NAC)** | Wired circuit driving strobes, horns, and speakers for occupant notification; separate circuits per smoke compartment per NFPA 101 defend-in-place | INCOSE |\n\n#### Patient Monitoring System (L5)\n\n| L4 Subsystem | Description | Standard |\n|---|---|---|\n| **Bedside Vital Signs Monitor** | Multi-parameter monitor (SpO2, NIBP, ECG, EtCO2, temperature) at bedside; continuous waveform capture | INCOSE |\n| **Central Monitoring Station** | Nurse-station workstation aggregating telemetry from all bedside monitors on the ward; arrhythmia detection, alarm management | INCOSE |\n| **Arrhythmia Detection Engine** | Algorithm-based cardiac rhythm analysis flagging life-threatening events for immediate clinical response | INCOSE |\n\n#### Nurse Call System (L5)\n\n| L4 Subsystem | Description | Standard |\n|---|---|---|\n| **Call Station** | Patient-operated bedside and bathroom emergency call buttons transmitting urgency level to nurse station | INCOSE |\n| **Controller / Head-End Server** | Routes calls, manages priorities, logs response times; integrates with staff locating and EMR | INCOSE |\n| **Staff Locating Badge** | RTLS wearable tag enabling location-aware call routing to nearest available caregiver | INCOSE |\n\n> **04a Note:** L5 nodes not fully decomposed here (Medical Imaging Systems, Lab Analyzer Platform, Anesthesia Delivery System, Surgical Table, ADC, Sterile Processing System, Enterprise BMS, Wander Management System, ED Platform, EMR System) require L4 fill in production run. Each has well-established 3+ subsystem decompositions (e.g., Medical Imaging: gantry assembly, detector array, image processing workstation, RF coil set).\n\n---\n\n### Step 04b — Completeness Check\n\n| Gap identified | Proposed addition | Level | Parent |\n|---|---|---|---|\n| Hospital medical gas delivery not represented | Medical Gas Delivery System (pipeline O₂, N₂O, vacuum, compressed air per NFPA 99) | L5 | L6h1 Facility & Building Safety (H) |\n| Emergency power backup not represented | Emergency Power System (standby generators, UPS, ATS per NFPA 99 / JCI) | L5 | L6h1 Facility & Building Safety (H) |\n| No patient transport / bed management in L6d | Patient Transport & Bed Management (stretcher, bed management software, patient flow) | L5 | L6d Inpatient Clinical Care |\n\n**Completeness score:** 0.82 (gaps are horizontal infrastructure, not core clinical process — VN is complete for product entry point analysis)\n\n---\n\n### Step 04c — Naming Review\n\n| Current name | Proposed rename | Reason |\n|---|---|---|\n| Physical Access Control System | Access Control System | \"Physical\" is implicit for door hardware; industry uses \"Access Control System\" universally |\n| Enterprise BMS / Building Automation | Building Management System (BMS) | Industry standard abbreviation; \"Enterprise\" adds no meaning |\n\nNo other renames required. All unit names pass the three-question test (industry-standard, domain-recognizable, minimal form).\n\n---\n\n### Step 04d — Structural Validation (Deterministic)\n\n| Check | Result |\n|---|---|\n| All levels in valid set (L7, L6, L6a-c, L5, L4) | PASS |\n| All parent references resolve to existing units | PASS |\n| Valid parent → child transitions | PASS (L7→L6, L6→L5, L5→L4) |\n| Every L5 with explicit L4 decomp has ≥ 3 L4 children | PASS — all 5 decomposed L5 nodes have 3–4 children |\n| Level skipping | NONE — no L7→L5 or L6→L4 jumps |\n\nNo structural issues flagged.\n\n---"
+    },
+    {
+      "title": "QA Self-Check",
+      "content": "| # | Check | Status |\n|---|---|---|\n| 1 | L7 ecosystem node present with Moore 1993 reference | PASS |\n| 2 | CFJ stated at L7 level — industry-level, not product-level | PASS — \"Diagnose, treat, and stabilize patients…\" |\n| 3 | Core L6 nodes follow physical/service transformation sequence (L6a → L6f) | PASS — 6 sequential steps |\n| 4 | Horizontal L6 nodes labeled (H) and separated from core | PASS — 3 horizontal nodes |\n| 5 | L5 nodes represent equipment categories, not brands | PASS — all categories; brands named only as alternatives |\n| 6 | Alternatives have mutually exclusive technology choices (not brand variants) | PASS — wired vs. wireless vs. mechanical for exit security |\n| 7 | Market shares cited with confidence rating and source | PASS — LOW/MEDIUM with source or [WEB] tag |\n| 8 | Output type activation matrix present | PASS — 5 output types, 9 L6 nodes |\n| 9 | L4 fill: key L5 nodes have ≥ 3 L4 children | PASS — 5 nodes fully decomposed |\n| 10 | Product entry point explicitly identified in L5 | PASS — Emergency Exit Security Device (L5) under L6h1 |\n| 11 | Hospital-specific constraints noted (defend-in-place, HIPAA, antimicrobial) | PASS — defend-in-place note in A.2; constraints table in input context |\n| 12 | Web search used for market share claims | PASS — [WEB] tags on hospital security market size, access control vendor shares |\n| 13 | No company names or brand names in unit name fields | PASS — brands appear in Alternatives column only |\n| 14 | VN is company-agnostic (describes industry, not Assa Abloy's portfolio) | PASS |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### MarketValueNetwork\n\n```json\n{\n  \"market_name\": \"General Medical and Surgical Hospitals\",\n  \"naics_code\": \"622110\",\n  \"naics_title\": \"General Medical and Surgical Hospitals\",\n  \"cfj_statement\": \"Diagnose, treat, and stabilize patients presenting with acute medical and surgical conditions — from initial triage through inpatient care to discharge or transfer to post-acute services\",\n  \"top_level\": \"L7\",\n  \"units\": [\n    {\n      \"name\": \"Hospital Care Delivery Ecosystem\",\n      \"level\": \"L7\",\n      \"description\": \"Economic community of hospitals, payers, regulators, pharma/device suppliers, facility services, and workforce coordinated around acute patient care (Moore 1993)\",\n      \"bom_standard\": \"Moore 1993\",\n      \"parent_name\": \"ROOT\"\n    },\n    {\n      \"name\": \"Patient Access & Intake\",\n      \"level\": \"L6\",\n      \"description\": \"Receives, identifies, triages, and routes patients into the care pathway — ED triage, scheduled admission, registration, insurance verification\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hospital Care Delivery Ecosystem\"\n    },\n    {\n      \"name\": \"Diagnostics & Assessment\",\n      \"level\": \"L6\",\n      \"description\": \"Produces diagnostic findings via imaging, laboratory, and pathology that determine the treatment pathway\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hospital Care Delivery Ecosystem\"\n    },\n    {\n      \"name\": \"Surgical & Procedural Intervention\",\n      \"level\": \"L6\",\n      \"description\": \"Executes invasive procedures in sterile environments: OR, cath lab, endoscopy suite, interventional radiology\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hospital Care Delivery Ecosystem\"\n    },\n    {\n      \"name\": \"Inpatient Clinical Care\",\n      \"level\": \"L6\",\n      \"description\": \"Monitors, treats, and stabilizes hospitalized patients across medical-surgical ward, step-down unit, and ICU\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hospital Care Delivery Ecosystem\"\n    },\n    {\n      \"name\": \"Pharmacy & Medication Delivery\",\n      \"level\": \"L6\",\n      \"description\": \"Prepares, verifies, dispenses, and delivers medications to point of care including compounding, dispensing cabinets, and IV therapy\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hospital Care Delivery Ecosystem\"\n    },\n    {\n      \"name\": \"Discharge & Care Transition\",\n      \"level\": \"L6\",\n      \"description\": \"Coordinates safe patient discharge, transfer, billing, and follow-up to free inpatient beds and continue care continuity\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hospital Care Delivery Ecosystem\"\n    },\n    {\n      \"name\": \"Facility & Building Safety\",\n      \"level\": \"L6\",\n      \"description\": \"HORIZONTAL (H). Maintains building infrastructure, fire safety, emergency exit security, physical access control, and medical gas across all clinical and support areas. NFPA 101 / NFPA 72 / EN 179 / EN 1125 / ASHRAE 170-2021.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hospital Care Delivery Ecosystem\"\n    },\n    {\n      \"name\": \"Infection Prevention & Sterilization\",\n      \"level\": \"L6\",\n      \"description\": \"HORIZONTAL (H). Sterilizes instruments, maintains clean environments, controls HAI rates across all patient-contact zones. CDC/ECDC IPC guidelines, JCI accreditation.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hospital Care Delivery Ecosystem\"\n    },\n    {\n      \"name\": \"Clinical Information Systems\",\n      \"level\": \"L6\",\n      \"description\": \"HORIZONTAL (H). Provides EMR, CDSS, PACS, laboratory information, and interoperability infrastructure supporting every care delivery step. HL7 FHIR, DICOM.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hospital Care Delivery Ecosystem\"\n    },\n    {\n      \"name\": \"Patient Registration & EMR System\",\n      \"level\": \"L5\",\n      \"description\": \"HIS/EMR platform for patient identity, insurance verification, and clinical record creation\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Patient Access & Intake\"\n    },\n    {\n      \"name\": \"Medical Imaging System\",\n      \"level\": \"L5\",\n      \"description\": \"MRI, CT, PET/CT, X-ray, and ultrasound systems for non-invasive diagnostic imaging\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Diagnostics & Assessment\"\n    },\n    {\n      \"name\": \"Laboratory Analyzer Platform\",\n      \"level\": \"L5\",\n      \"description\": \"Automated hematology, chemistry, microbiology, and coagulation analyzers for clinical laboratory testing\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Diagnostics & Assessment\"\n    },\n    {\n      \"name\": \"Anesthesia Delivery System\",\n      \"level\": \"L5\",\n      \"description\": \"Delivers and monitors anesthetic agents; integrates with ventilator and patient monitoring in the OR\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Surgical & Procedural Intervention\"\n    },\n    {\n      \"name\": \"Surgical Table & Positioning\",\n      \"level\": \"L5\",\n      \"description\": \"Motorized operating tables with positioning accessories for surgical access and patient safety\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Surgical & Procedural Intervention\"\n    },\n    {\n      \"name\": \"Patient Monitoring System\",\n      \"level\": \"L5\",\n      \"description\": \"Bedside vital-signs monitors networked to central monitoring station for continuous physiological surveillance across ward and ICU\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Inpatient Clinical Care\"\n    },\n    {\n      \"name\": \"Nurse Call System\",\n      \"level\": \"L5\",\n      \"description\": \"Patient-to-nurse communication and staff-locating infrastructure across inpatient wards\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Inpatient Clinical Care\"\n    },\n    {\n      \"name\": \"Automated Dispensing Cabinet\",\n      \"level\": \"L5\",\n      \"description\": \"Secure, electronically tracked medication storage and dispensing unit deployed at point-of-care\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Pharmacy & Medication Delivery\"\n    },\n    {\n      \"name\": \"Fire Detection & Alarm System\",\n      \"level\": \"L5\",\n      \"description\": \"Detects smoke, heat, and CO; triggers audible/visual notification; interfaces with BMS per NFPA 101/72. Defend-in-place topology: separate NAC circuits per smoke compartment.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility & Building Safety\"\n    },\n    {\n      \"name\": \"Emergency Exit Security Device\",\n      \"level\": \"L5\",\n      \"description\": \"Alarm-equipped door-handle guard or alarmed exit bar that prevents unauthorized exit-door activation while preserving fire-code-compliant single-motion escape. Key hospital use cases: elopement prevention (psychiatric, dementia, pediatric), restricted-zone perimeter control, unauthorized visitor egress. PRODUCT ENTRY POINT: GfS Exit Control 179/1125 with IoT.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility & Building Safety\"\n    },\n    {\n      \"name\": \"Access Control System\",\n      \"level\": \"L5\",\n      \"description\": \"Credential-based entry management across clinical zones, restricted areas, and perimeter doors. Integrates with nurse call, BMS, and security management platform.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility & Building Safety\"\n    },\n    {\n      \"name\": \"Wander Management System\",\n      \"level\": \"L5\",\n      \"description\": \"RTLS-based patient location and elopement-prevention system using wearable tags, geofencing, and automatic door alerts for psychiatry, dementia, and pediatric wards\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility & Building Safety\"\n    },\n    {\n      \"name\": \"Building Management System\",\n      \"level\": \"L5\",\n      \"description\": \"Centralized HVAC, lighting, energy, and building automation supervisory platform integrating BAS, SCADA, and safety system status (Siemens Desigo, Honeywell EBI, Schneider EcoStruxure)\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility & Building Safety\"\n    },\n    {\n      \"name\": \"Alarm Horn Assembly\",\n      \"level\": \"L4\",\n      \"description\": \"Piezoelectric or electromechanical horn ≥ 95 dB at 1 m; must operate without mains power (EltVTR); volume-adjustable for near-patient areas\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Device\"\n    },\n    {\n      \"name\": \"Guard / Handle Latch Mechanism\",\n      \"level\": \"L4\",\n      \"description\": \"Spring-loaded mechanical guard physically blocking or releasing the door handle (EN 179) or panic bar (EN 1125); 45° swing release, ≤ 70 N force, single-motion\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Device\"\n    },\n    {\n      \"name\": \"Wireless State Transmitter\",\n      \"level\": \"L4\",\n      \"description\": \"Sub-GHz radio module (868 MHz EasyWave or next-gen BLE/LoRaWAN) broadcasting guard-state and alarm events to gateway; supervisory only — no effect on escape path\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Device\"\n    },\n    {\n      \"name\": \"Battery Power Supply\",\n      \"level\": \"L4\",\n      \"description\": \"Replaceable 9V block battery powering IoT radio module; mechanical alarm operates independently of battery state (battery depletion does not disable alarm)\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Device\"\n    },\n    {\n      \"name\": \"Credential Reader\",\n      \"level\": \"L4\",\n      \"description\": \"Card, mobile NFC, or biometric reader at controlled door points; reads identity credential and passes to access control panel\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Access Control System\"\n    },\n    {\n      \"name\": \"Electronic Lock\",\n      \"level\": \"L4\",\n      \"description\": \"Electrically actuated lock mechanism (mag-lock, electric strike, or electromechanical mortise) providing fail-safe or fail-secure hold at clinical zone boundaries\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Access Control System\"\n    },\n    {\n      \"name\": \"Access Control Panel\",\n      \"level\": \"L4\",\n      \"description\": \"Decision controller evaluating credentials, managing door schedules, logging events; provides audit trail for HIPAA compliance and JCI accreditation\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Access Control System\"\n    },\n    {\n      \"name\": \"Door Position Sensor\",\n      \"level\": \"L4\",\n      \"description\": \"Reed-contact or magnetic sensor confirming door closed/open state; feeds alarm logic and access audit in both Access Control and Emergency Exit Security Device contexts\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Access Control System\"\n    },\n    {\n      \"name\": \"Addressable Detector Network\",\n      \"level\": \"L4\",\n      \"description\": \"Distributed addressable smoke and heat detectors reporting precise device location per NFPA 72; covers all occupied and utility spaces\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Fire Alarm Control Panel\",\n      \"level\": \"L4\",\n      \"description\": \"Central unit supervising detector inputs, processing alarm logic, activating notification circuits, and interfacing with sprinkler and BMS systems\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Notification Appliance Circuit\",\n      \"level\": \"L4\",\n      \"description\": \"Wired circuit driving strobes, horns, and speakers for occupant notification; separate circuits per smoke compartment per NFPA 101 defend-in-place strategy\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Bedside Vital Signs Monitor\",\n      \"level\": \"L4\",\n      \"description\": \"Multi-parameter monitor (SpO2, NIBP, ECG, EtCO2, temperature) at bedside; continuous waveform capture and local alarm\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Patient Monitoring System\"\n    },\n    {\n      \"name\": \"Central Monitoring Station\",\n      \"level\": \"L4\",\n      \"description\": \"Nurse-station workstation aggregating telemetry from all bedside monitors on the ward; arrhythmia detection, alarm management\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Patient Monitoring System\"\n    },\n    {\n      \"name\": \"Arrhythmia Detection Engine\",\n      \"level\": \"L4\",\n      \"description\": \"Algorithm-based cardiac rhythm analysis flagging life-threatening arrhythmias for immediate clinical response\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Patient Monitoring System\"\n    },\n    {\n      \"name\": \"Call Station\",\n      \"level\": \"L4\",\n      \"description\": \"Patient-operated bedside and bathroom emergency call buttons transmitting urgency level to nurse station\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Nurse Call System\"\n    },\n    {\n      \"name\": \"Controller / Head-End Server\",\n      \"level\": \"L4\",\n      \"description\": \"Routes calls, manages priorities, logs response times; integrates with staff locating system and EMR\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Nurse Call System\"\n    },\n    {\n      \"name\": \"Staff Locating Badge\",\n      \"level\": \"L4\",\n      \"description\": \"RTLS wearable tag worn by clinical staff enabling location-aware call routing to nearest available caregiver\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Nurse Call System\"\n    }\n  ]\n}\n```\n\n### VN Summary Metrics\n\n```json\n{\n  \"naics_code\": \"622110\",\n  \"unit_count\": 39,\n  \"level_distribution\": {\n    \"L7\": 1,\n    \"L6\": 9,\n    \"L5\": 13,\n    \"L4\": 16\n  },\n  \"product_entry_points\": [\n    {\n      \"unit_name\": \"Emergency Exit Security Device\",\n      \"level\": \"L5\",\n      \"parent\": \"Facility & Building Safety\",\n      \"product\": \"GfS Türwächter IoT (Exit Control 179/1125 with IoT)\",\n      \"current_alternative_share_estimate\": \"~30%\",\n      \"primary_competitors_at_l5\": [\"Wired alarmed exit bars (Von Duprin, Corbin Russwin, Sargent)\", \"Wireless electronic exit control (dormakaba SafeRoute, GEZE SecuLogic)\", \"Electromechanical delayed egress (Allegion)\"]\n    }\n  ],\n  \"enriched\": true,\n  \"completeness_score\": 0.82,\n  \"structural_issues\": []\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**NAICS code**",
+          "Value": "622110"
+        },
+        {
+          "Field": "**NAICS title**",
+          "Value": "General Medical and Surgical Hospitals"
+        },
+        {
+          "Field": "**Market priority**",
+          "Value": "HIGH — architecture distance 2 (Rank 3 in 02b)"
+        },
+        {
+          "Field": "**Product FP**",
+          "Value": "Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring — without mains power at the door"
+        },
+        {
+          "Field": "**Architecture distance rationale**",
+          "Value": "Core product works on standard hospital fire doors. Adaptations: antimicrobial housing option, quieter alarm profiles near patient areas, integration with hospital-grade BMS. EN 179/1125 certs transfer directly."
+        },
+        {
+          "Field": "**Key constraints active**",
+          "Value": "C4 (battery life at high door frequency), C6 (protocol lock-in with hospital BMS), C8 (GDPR/HIPAA for door-log data), C10 (EN 13637 in access-controlled wards)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Unit",
+        "Level",
+        "Job family / description"
+      ],
+      "rows": [
+        {
+          "Unit": "**Hospital Care Delivery Ecosystem**",
+          "Level": "L7",
+          "Job family / description": "Moore 1993. Economic community of hospitals, payers, regulators, pharma/device suppliers, facility services, and workforce coordinated around acute patient care."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Name",
+        "Level",
+        "Job family",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "#": "L6a",
+          "Name": "Patient Access & Intake",
+          "Level": "L6",
+          "Job family": "Receive, identify, and route patients into the care pathway",
+          "Notes": "ED triage, scheduled admission, registration, insurance verification"
+        },
+        {
+          "#": "L6b",
+          "Name": "Diagnostics & Assessment",
+          "Level": "L6",
+          "Job family": "Produce diagnostic findings that determine treatment pathway",
+          "Notes": "Imaging, lab, pathology, point-of-care"
+        },
+        {
+          "#": "L6c",
+          "Name": "Surgical & Procedural Intervention",
+          "Level": "L6",
+          "Job family": "Execute invasive procedures in sterile environments",
+          "Notes": "OR, cath lab, endoscopy suite, interventional radiology"
+        },
+        {
+          "#": "L6d",
+          "Name": "Inpatient Clinical Care",
+          "Level": "L6",
+          "Job family": "Monitor, treat, and stabilize hospitalized patients",
+          "Notes": "Medical-surgical ward, step-down, ICU, telemetry"
+        },
+        {
+          "#": "L6e",
+          "Name": "Pharmacy & Medication Delivery",
+          "Level": "L6",
+          "Job family": "Prepare, verify, and dispense medications to point of care",
+          "Notes": "Compounding, dispensing cabinets, IV therapy, antimicrobial stewardship"
+        },
+        {
+          "#": "L6f",
+          "Name": "Discharge & Care Transition",
+          "Level": "L6",
+          "Job family": "Coordinate safe patient discharge and hand-off to follow-on care",
+          "Notes": "Discharge planning, transfer coordination, billing, follow-up scheduling"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Name",
+        "Level",
+        "Job family",
+        "Regulatory anchor"
+      ],
+      "rows": [
+        {
+          "#": "L6h1",
+          "Name": "Facility & Building Safety (H)",
+          "Level": "L6",
+          "Job family": "Maintain building infrastructure, fire safety, emergency exit security, and physical access control across all clinical and support areas",
+          "Regulatory anchor": "NFPA 101 (Life Safety Code), NFPA 72, EN 179/1125, ASHRAE 170-2021"
+        },
+        {
+          "#": "L6h2",
+          "Name": "Infection Prevention & Sterilization (H)",
+          "Level": "L6",
+          "Job family": "Sterilize instruments, maintain clean environments, control HAI rates across all patient-contact zones",
+          "Regulatory anchor": "CDC, ECDC, WHO IPC guidelines; JCI accreditation"
+        },
+        {
+          "#": "L6h3",
+          "Name": "Clinical Information Systems (H)",
+          "Level": "L6",
+          "Job family": "Provide EMR, CDSS, PACS, lab information, and interoperability infrastructure supporting every care delivery step",
+          "Regulatory anchor": "HL7 FHIR, DICOM, IHE integration profiles"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Patient Registration & EMR System**",
+          "Alternatives": "Epic, Oracle Health (Cerner), MEDITECH",
+          "Share": "35% / 25% / 15%",
+          "Confidence": "MEDIUM",
+          "Source": "KLAS Research 2024"
+        },
+        {
+          "L5": "**ED Management Platform**",
+          "Alternatives": "T-System, Medhost, Meditech EDM",
+          "Share": "40% / 30% / 20%",
+          "Confidence": "LOW",
+          "Source": "Analyst estimates"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Medical Imaging Systems**",
+          "Alternatives": "Siemens Healthineers, GE HealthCare, Philips",
+          "Share": "32% / 28% / 22%",
+          "Confidence": "MEDIUM",
+          "Source": "GlobalData 2024"
+        },
+        {
+          "L5": "**Laboratory Analyzer Platform**",
+          "Alternatives": "Roche Diagnostics, Abbott, Siemens DX",
+          "Share": "30% / 28% / 22%",
+          "Confidence": "MEDIUM",
+          "Source": "IQVIA 2024"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Anesthesia Delivery System**",
+          "Alternatives": "Dräger, GE HealthCare, Philips",
+          "Share": "35% / 30% / 20%",
+          "Confidence": "MEDIUM",
+          "Source": "Frost & Sullivan 2023"
+        },
+        {
+          "L5": "**Surgical Table & Positioning**",
+          "Alternatives": "Steris Skytron, Stryker, Trumpf Medical",
+          "Share": "30% / 25% / 20%",
+          "Confidence": "LOW",
+          "Source": "Analyst estimates"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Patient Monitoring System**",
+          "Alternatives": "Philips, GE HealthCare, Masimo",
+          "Share": "35% / 25% / 15%",
+          "Confidence": "MEDIUM",
+          "Source": "GlobalData 2024"
+        },
+        {
+          "L5": "**Nurse Call System**",
+          "Alternatives": "Rauland, Hill-Rom/Baxter, Ascom",
+          "Share": "30% / 25% / 20%",
+          "Confidence": "MEDIUM",
+          "Source": "KLAS 2024"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Automated Dispensing Cabinet**",
+          "Alternatives": "Omnicell, BD Pyxis, Swisslog",
+          "Share": "40% / 35% / 15%",
+          "Confidence": "MEDIUM",
+          "Source": "KLAS 2024"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Fire Detection & Alarm System**",
+          "Alternatives": "Siemens Cerberus / Johnson Controls Simplex / Honeywell Notifier",
+          "Share": "28% / 25% / 22%",
+          "Confidence": "MEDIUM",
+          "Source": "IHS Markit / Omdia 2024"
+        },
+        {
+          "L5": "**Emergency Exit Security Device**",
+          "Alternatives": "Wired alarmed exit bars (Von Duprin, Corbin Russwin) / Mechanical door-handle alarm guards (GfS Exit Control, ABUS) / Wireless electronic exit control systems (dormakaba SafeRoute, GEZE SecuLogic) / Electromechanical delayed egress (Allegion)",
+          "Share": "40% / 30% / 20% / 10%",
+          "Confidence": "LOW",
+          "Source": "No published split; estimated from install base surveys [WEB]"
+        },
+        {
+          "L5": "**Physical Access Control System**",
+          "Alternatives": "Wired enterprise ACS (Lenel-S2, Software House, Honeywell Pro-Watch) / Cloud ACS (Brivo, Genetec, Verkada) / Wireless RF ACS (ASSA ABLOY Aperio, dormakaba MATRIX)",
+          "Share": "55% / 25% / 20%",
+          "Confidence": "MEDIUM",
+          "Source": "MarketsandMarkets 2025 — top 5 players (ASSA ABLOY, dormakaba, Johnson Controls, Allegion, Honeywell) hold ~70–80% access control market [WEB]"
+        },
+        {
+          "L5": "**Wander Management System**",
+          "Alternatives": "Securitas Healthcare / CenTrak / RF Technologies / Accutech Security",
+          "Share": "30% / 25% / 25% / 15%",
+          "Confidence": "LOW",
+          "Source": "Analyst estimates; dedicated wander mgmt market size not published separately [WEB]"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "L5": "**Sterile Processing System**",
+          "Alternatives": "STERIS, Getinge, Belimed",
+          "Share": "35% / 30% / 20%",
+          "Confidence": "MEDIUM"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "L5": "**Enterprise BMS / Building Automation**",
+          "Alternatives": "Siemens Desigo, Honeywell EBI, Schneider EcoStruxure",
+          "Share": "30% / 28% / 22%",
+          "Confidence": "MEDIUM"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L6 Node",
+        "Emergency / Trauma",
+        "Elective Inpatient Surgery",
+        "Medical Inpatient",
+        "Intensive Care (ICU)",
+        "Outpatient / Day Procedure"
+      ],
+      "rows": [
+        {
+          "L6 Node": "L6a Patient Access & Intake",
+          "Emergency / Trauma": "✓",
+          "Elective Inpatient Surgery": "✓",
+          "Medical Inpatient": "✓",
+          "Intensive Care (ICU)": "✓",
+          "Outpatient / Day Procedure": "✓"
+        },
+        {
+          "L6 Node": "L6b Diagnostics & Assessment",
+          "Emergency / Trauma": "✓",
+          "Elective Inpatient Surgery": "✓",
+          "Medical Inpatient": "✓",
+          "Intensive Care (ICU)": "✓",
+          "Outpatient / Day Procedure": "✓"
+        },
+        {
+          "L6 Node": "L6c Surgical & Procedural Intervention",
+          "Emergency / Trauma": "✓",
+          "Elective Inpatient Surgery": "✓",
+          "Medical Inpatient": "—",
+          "Intensive Care (ICU)": "—",
+          "Outpatient / Day Procedure": "✓"
+        },
+        {
+          "L6 Node": "L6d Inpatient Clinical Care",
+          "Emergency / Trauma": "✓",
+          "Elective Inpatient Surgery": "✓",
+          "Medical Inpatient": "✓",
+          "Intensive Care (ICU)": "✓",
+          "Outpatient / Day Procedure": "—"
+        },
+        {
+          "L6 Node": "L6e Pharmacy & Medication Delivery",
+          "Emergency / Trauma": "✓",
+          "Elective Inpatient Surgery": "✓",
+          "Medical Inpatient": "✓",
+          "Intensive Care (ICU)": "✓",
+          "Outpatient / Day Procedure": "✓"
+        },
+        {
+          "L6 Node": "L6f Discharge & Care Transition",
+          "Emergency / Trauma": "✓",
+          "Elective Inpatient Surgery": "✓",
+          "Medical Inpatient": "✓",
+          "Intensive Care (ICU)": "✓",
+          "Outpatient / Day Procedure": "✓"
+        },
+        {
+          "L6 Node": "L6h1 Facility & Building Safety (H)",
+          "Emergency / Trauma": "✓",
+          "Elective Inpatient Surgery": "✓",
+          "Medical Inpatient": "✓",
+          "Intensive Care (ICU)": "✓",
+          "Outpatient / Day Procedure": "✓"
+        },
+        {
+          "L6 Node": "L6h2 Infection Prevention (H)",
+          "Emergency / Trauma": "✓",
+          "Elective Inpatient Surgery": "✓",
+          "Medical Inpatient": "✓",
+          "Intensive Care (ICU)": "✓",
+          "Outpatient / Day Procedure": "✓"
+        },
+        {
+          "L6 Node": "L6h3 Clinical Information Systems (H)",
+          "Emergency / Trauma": "✓",
+          "Elective Inpatient Surgery": "✓",
+          "Medical Inpatient": "✓",
+          "Intensive Care (ICU)": "✓",
+          "Outpatient / Day Procedure": "✓"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description",
+        "Standard"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "**Alarm Horn Assembly**",
+          "Description": "Piezoelectric or electromechanical horn producing ≥ 95 dB at 1 m on activation; must function without mains power (EltVTR requirement)",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Guard / Handle Latch Mechanism**",
+          "Description": "Spring-loaded mechanical guard that physically blocks or releases the door handle (EN 179) or panic bar (EN 1125); 45° swing release, single-motion, ≤ 70 N force",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Wireless State Transmitter**",
+          "Description": "Sub-GHz radio module (e.g., 868 MHz EasyWave, or LoRaWAN / BLE in next-gen products) broadcasting door-state and alarm events to gateway or receiver; supervisory only",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Battery Power Supply**",
+          "Description": "Replaceable 9V block battery providing power to IoT module; mechanical alarm trigger operates independently of battery state",
+          "Standard": "INCOSE"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description",
+        "Standard"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "**Credential Reader**",
+          "Description": "Card, mobile NFC, or biometric reader at controlled door points; interfaces with access control panel",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Electronic Lock / Magnetic Lock**",
+          "Description": "Electrically actuated lock (mag-lock, electric strike, or electromechanical mortise) providing fail-safe or fail-secure hold",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Access Control Panel**",
+          "Description": "Decision controller that evaluates credentials, manages door schedules, logs events, and provides audit trail for HIPAA / JCI compliance",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Door Position Sensor**",
+          "Description": "Reed-contact or magnetic sensor confirming door closed/open state; feeds alarm logic and access audit",
+          "Standard": "INCOSE"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description",
+        "Standard"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "**Addressable Smoke / Heat Detector Network**",
+          "Description": "Distributed addressable detectors in all occupied and utility spaces; reports precise location per NFPA 72",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Fire Alarm Control Panel (FACP)**",
+          "Description": "Central unit supervising detector inputs, processing alarm logic, activating notification circuits, and interfacing with BMS and sprinkler systems",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Notification Appliance Circuit (NAC)**",
+          "Description": "Wired circuit driving strobes, horns, and speakers for occupant notification; separate circuits per smoke compartment per NFPA 101 defend-in-place",
+          "Standard": "INCOSE"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description",
+        "Standard"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "**Bedside Vital Signs Monitor**",
+          "Description": "Multi-parameter monitor (SpO2, NIBP, ECG, EtCO2, temperature) at bedside; continuous waveform capture",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Central Monitoring Station**",
+          "Description": "Nurse-station workstation aggregating telemetry from all bedside monitors on the ward; arrhythmia detection, alarm management",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Arrhythmia Detection Engine**",
+          "Description": "Algorithm-based cardiac rhythm analysis flagging life-threatening events for immediate clinical response",
+          "Standard": "INCOSE"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description",
+        "Standard"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "**Call Station**",
+          "Description": "Patient-operated bedside and bathroom emergency call buttons transmitting urgency level to nurse station",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Controller / Head-End Server**",
+          "Description": "Routes calls, manages priorities, logs response times; integrates with staff locating and EMR",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Staff Locating Badge**",
+          "Description": "RTLS wearable tag enabling location-aware call routing to nearest available caregiver",
+          "Standard": "INCOSE"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Gap identified",
+        "Proposed addition",
+        "Level",
+        "Parent"
+      ],
+      "rows": [
+        {
+          "Gap identified": "Hospital medical gas delivery not represented",
+          "Proposed addition": "Medical Gas Delivery System (pipeline O₂, N₂O, vacuum, compressed air per NFPA 99)",
+          "Level": "L5",
+          "Parent": "L6h1 Facility & Building Safety (H)"
+        },
+        {
+          "Gap identified": "Emergency power backup not represented",
+          "Proposed addition": "Emergency Power System (standby generators, UPS, ATS per NFPA 99 / JCI)",
+          "Level": "L5",
+          "Parent": "L6h1 Facility & Building Safety (H)"
+        },
+        {
+          "Gap identified": "No patient transport / bed management in L6d",
+          "Proposed addition": "Patient Transport & Bed Management (stretcher, bed management software, patient flow)",
+          "Level": "L5",
+          "Parent": "L6d Inpatient Clinical Care"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Current name",
+        "Proposed rename",
+        "Reason"
+      ],
+      "rows": [
+        {
+          "Current name": "Physical Access Control System",
+          "Proposed rename": "Access Control System",
+          "Reason": "\"Physical\" is implicit for door hardware; industry uses \"Access Control System\" universally"
+        },
+        {
+          "Current name": "Enterprise BMS / Building Automation",
+          "Proposed rename": "Building Management System (BMS)",
+          "Reason": "Industry standard abbreviation; \"Enterprise\" adds no meaning"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Check",
+        "Result"
+      ],
+      "rows": [
+        {
+          "Check": "All levels in valid set (L7, L6, L6a-c, L5, L4)",
+          "Result": "PASS"
+        },
+        {
+          "Check": "All parent references resolve to existing units",
+          "Result": "PASS"
+        },
+        {
+          "Check": "Valid parent → child transitions",
+          "Result": "PASS (L7→L6, L6→L5, L5→L4)"
+        },
+        {
+          "Check": "Every L5 with explicit L4 decomp has ≥ 3 L4 children",
+          "Result": "PASS — all 5 decomposed L5 nodes have 3–4 children"
+        },
+        {
+          "Check": "Level skipping",
+          "Result": "NONE — no L7→L5 or L6→L4 jumps"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Check",
+        "Status"
+      ],
+      "rows": [
+        {
+          "#": "1",
+          "Check": "L7 ecosystem node present with Moore 1993 reference",
+          "Status": "PASS"
+        },
+        {
+          "#": "2",
+          "Check": "CFJ stated at L7 level — industry-level, not product-level",
+          "Status": "PASS — \"Diagnose, treat, and stabilize patients…\""
+        },
+        {
+          "#": "3",
+          "Check": "Core L6 nodes follow physical/service transformation sequence (L6a → L6f)",
+          "Status": "PASS — 6 sequential steps"
+        },
+        {
+          "#": "4",
+          "Check": "Horizontal L6 nodes labeled (H) and separated from core",
+          "Status": "PASS — 3 horizontal nodes"
+        },
+        {
+          "#": "5",
+          "Check": "L5 nodes represent equipment categories, not brands",
+          "Status": "PASS — all categories; brands named only as alternatives"
+        },
+        {
+          "#": "6",
+          "Check": "Alternatives have mutually exclusive technology choices (not brand variants)",
+          "Status": "PASS — wired vs. wireless vs. mechanical for exit security"
+        },
+        {
+          "#": "7",
+          "Check": "Market shares cited with confidence rating and source",
+          "Status": "PASS — LOW/MEDIUM with source or [WEB] tag"
+        },
+        {
+          "#": "8",
+          "Check": "Output type activation matrix present",
+          "Status": "PASS — 5 output types, 9 L6 nodes"
+        },
+        {
+          "#": "9",
+          "Check": "L4 fill: key L5 nodes have ≥ 3 L4 children",
+          "Status": "PASS — 5 nodes fully decomposed"
+        },
+        {
+          "#": "10",
+          "Check": "Product entry point explicitly identified in L5",
+          "Status": "PASS — Emergency Exit Security Device (L5) under L6h1"
+        },
+        {
+          "#": "11",
+          "Check": "Hospital-specific constraints noted (defend-in-place, HIPAA, antimicrobial)",
+          "Status": "PASS — defend-in-place note in A.2; constraints table in input context"
+        },
+        {
+          "#": "12",
+          "Check": "Web search used for market share claims",
+          "Status": "PASS — [WEB] tags on hospital security market size, access control vendor shares"
+        },
+        {
+          "#": "13",
+          "Check": "No company names or brand names in unit name fields",
+          "Status": "PASS — brands appear in Alternatives column only"
+        },
+        {
+          "#": "14",
+          "Check": "VN is company-agnostic (describes industry, not Assa Abloy's portfolio)",
+          "Status": "PASS"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market_name": "General Medical and Surgical Hospitals",
+      "naics_code": "622110",
+      "naics_title": "General Medical and Surgical Hospitals",
+      "cfj_statement": "Diagnose, treat, and stabilize patients presenting with acute medical and surgical conditions — from initial triage through inpatient care to discharge or transfer to post-acute services",
+      "top_level": "L7",
+      "units": [
+        {
+          "name": "Hospital Care Delivery Ecosystem",
+          "level": "L7",
+          "description": "Economic community of hospitals, payers, regulators, pharma/device suppliers, facility services, and workforce coordinated around acute patient care (Moore 1993)",
+          "bom_standard": "Moore 1993",
+          "parent_name": "ROOT"
+        },
+        {
+          "name": "Patient Access & Intake",
+          "level": "L6",
+          "description": "Receives, identifies, triages, and routes patients into the care pathway — ED triage, scheduled admission, registration, insurance verification",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hospital Care Delivery Ecosystem"
+        },
+        {
+          "name": "Diagnostics & Assessment",
+          "level": "L6",
+          "description": "Produces diagnostic findings via imaging, laboratory, and pathology that determine the treatment pathway",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hospital Care Delivery Ecosystem"
+        },
+        {
+          "name": "Surgical & Procedural Intervention",
+          "level": "L6",
+          "description": "Executes invasive procedures in sterile environments: OR, cath lab, endoscopy suite, interventional radiology",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hospital Care Delivery Ecosystem"
+        },
+        {
+          "name": "Inpatient Clinical Care",
+          "level": "L6",
+          "description": "Monitors, treats, and stabilizes hospitalized patients across medical-surgical ward, step-down unit, and ICU",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hospital Care Delivery Ecosystem"
+        },
+        {
+          "name": "Pharmacy & Medication Delivery",
+          "level": "L6",
+          "description": "Prepares, verifies, dispenses, and delivers medications to point of care including compounding, dispensing cabinets, and IV therapy",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hospital Care Delivery Ecosystem"
+        },
+        {
+          "name": "Discharge & Care Transition",
+          "level": "L6",
+          "description": "Coordinates safe patient discharge, transfer, billing, and follow-up to free inpatient beds and continue care continuity",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hospital Care Delivery Ecosystem"
+        },
+        {
+          "name": "Facility & Building Safety",
+          "level": "L6",
+          "description": "HORIZONTAL (H). Maintains building infrastructure, fire safety, emergency exit security, physical access control, and medical gas across all clinical and support areas. NFPA 101 / NFPA 72 / EN 179 / EN 1125 / ASHRAE 170-2021.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hospital Care Delivery Ecosystem"
+        },
+        {
+          "name": "Infection Prevention & Sterilization",
+          "level": "L6",
+          "description": "HORIZONTAL (H). Sterilizes instruments, maintains clean environments, controls HAI rates across all patient-contact zones. CDC/ECDC IPC guidelines, JCI accreditation.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hospital Care Delivery Ecosystem"
+        },
+        {
+          "name": "Clinical Information Systems",
+          "level": "L6",
+          "description": "HORIZONTAL (H). Provides EMR, CDSS, PACS, laboratory information, and interoperability infrastructure supporting every care delivery step. HL7 FHIR, DICOM.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hospital Care Delivery Ecosystem"
+        },
+        {
+          "name": "Patient Registration & EMR System",
+          "level": "L5",
+          "description": "HIS/EMR platform for patient identity, insurance verification, and clinical record creation",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Patient Access & Intake"
+        },
+        {
+          "name": "Medical Imaging System",
+          "level": "L5",
+          "description": "MRI, CT, PET/CT, X-ray, and ultrasound systems for non-invasive diagnostic imaging",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Diagnostics & Assessment"
+        },
+        {
+          "name": "Laboratory Analyzer Platform",
+          "level": "L5",
+          "description": "Automated hematology, chemistry, microbiology, and coagulation analyzers for clinical laboratory testing",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Diagnostics & Assessment"
+        },
+        {
+          "name": "Anesthesia Delivery System",
+          "level": "L5",
+          "description": "Delivers and monitors anesthetic agents; integrates with ventilator and patient monitoring in the OR",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Surgical & Procedural Intervention"
+        },
+        {
+          "name": "Surgical Table & Positioning",
+          "level": "L5",
+          "description": "Motorized operating tables with positioning accessories for surgical access and patient safety",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Surgical & Procedural Intervention"
+        },
+        {
+          "name": "Patient Monitoring System",
+          "level": "L5",
+          "description": "Bedside vital-signs monitors networked to central monitoring station for continuous physiological surveillance across ward and ICU",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Inpatient Clinical Care"
+        },
+        {
+          "name": "Nurse Call System",
+          "level": "L5",
+          "description": "Patient-to-nurse communication and staff-locating infrastructure across inpatient wards",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Inpatient Clinical Care"
+        },
+        {
+          "name": "Automated Dispensing Cabinet",
+          "level": "L5",
+          "description": "Secure, electronically tracked medication storage and dispensing unit deployed at point-of-care",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Pharmacy & Medication Delivery"
+        },
+        {
+          "name": "Fire Detection & Alarm System",
+          "level": "L5",
+          "description": "Detects smoke, heat, and CO; triggers audible/visual notification; interfaces with BMS per NFPA 101/72. Defend-in-place topology: separate NAC circuits per smoke compartment.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility & Building Safety"
+        },
+        {
+          "name": "Emergency Exit Security Device",
+          "level": "L5",
+          "description": "Alarm-equipped door-handle guard or alarmed exit bar that prevents unauthorized exit-door activation while preserving fire-code-compliant single-motion escape. Key hospital use cases: elopement prevention (psychiatric, dementia, pediatric), restricted-zone perimeter control, unauthorized visitor egress. PRODUCT ENTRY POINT: GfS Exit Control 179/1125 with IoT.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility & Building Safety"
+        },
+        {
+          "name": "Access Control System",
+          "level": "L5",
+          "description": "Credential-based entry management across clinical zones, restricted areas, and perimeter doors. Integrates with nurse call, BMS, and security management platform.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility & Building Safety"
+        },
+        {
+          "name": "Wander Management System",
+          "level": "L5",
+          "description": "RTLS-based patient location and elopement-prevention system using wearable tags, geofencing, and automatic door alerts for psychiatry, dementia, and pediatric wards",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility & Building Safety"
+        },
+        {
+          "name": "Building Management System",
+          "level": "L5",
+          "description": "Centralized HVAC, lighting, energy, and building automation supervisory platform integrating BAS, SCADA, and safety system status (Siemens Desigo, Honeywell EBI, Schneider EcoStruxure)",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility & Building Safety"
+        },
+        {
+          "name": "Alarm Horn Assembly",
+          "level": "L4",
+          "description": "Piezoelectric or electromechanical horn ≥ 95 dB at 1 m; must operate without mains power (EltVTR); volume-adjustable for near-patient areas",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Device"
+        },
+        {
+          "name": "Guard / Handle Latch Mechanism",
+          "level": "L4",
+          "description": "Spring-loaded mechanical guard physically blocking or releasing the door handle (EN 179) or panic bar (EN 1125); 45° swing release, ≤ 70 N force, single-motion",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Device"
+        },
+        {
+          "name": "Wireless State Transmitter",
+          "level": "L4",
+          "description": "Sub-GHz radio module (868 MHz EasyWave or next-gen BLE/LoRaWAN) broadcasting guard-state and alarm events to gateway; supervisory only — no effect on escape path",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Device"
+        },
+        {
+          "name": "Battery Power Supply",
+          "level": "L4",
+          "description": "Replaceable 9V block battery powering IoT radio module; mechanical alarm operates independently of battery state (battery depletion does not disable alarm)",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Device"
+        },
+        {
+          "name": "Credential Reader",
+          "level": "L4",
+          "description": "Card, mobile NFC, or biometric reader at controlled door points; reads identity credential and passes to access control panel",
+          "bom_standard": "INCOSE",
+          "parent_name": "Access Control System"
+        },
+        {
+          "name": "Electronic Lock",
+          "level": "L4",
+          "description": "Electrically actuated lock mechanism (mag-lock, electric strike, or electromechanical mortise) providing fail-safe or fail-secure hold at clinical zone boundaries",
+          "bom_standard": "INCOSE",
+          "parent_name": "Access Control System"
+        },
+        {
+          "name": "Access Control Panel",
+          "level": "L4",
+          "description": "Decision controller evaluating credentials, managing door schedules, logging events; provides audit trail for HIPAA compliance and JCI accreditation",
+          "bom_standard": "INCOSE",
+          "parent_name": "Access Control System"
+        },
+        {
+          "name": "Door Position Sensor",
+          "level": "L4",
+          "description": "Reed-contact or magnetic sensor confirming door closed/open state; feeds alarm logic and access audit in both Access Control and Emergency Exit Security Device contexts",
+          "bom_standard": "INCOSE",
+          "parent_name": "Access Control System"
+        },
+        {
+          "name": "Addressable Detector Network",
+          "level": "L4",
+          "description": "Distributed addressable smoke and heat detectors reporting precise device location per NFPA 72; covers all occupied and utility spaces",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Fire Alarm Control Panel",
+          "level": "L4",
+          "description": "Central unit supervising detector inputs, processing alarm logic, activating notification circuits, and interfacing with sprinkler and BMS systems",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Notification Appliance Circuit",
+          "level": "L4",
+          "description": "Wired circuit driving strobes, horns, and speakers for occupant notification; separate circuits per smoke compartment per NFPA 101 defend-in-place strategy",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Bedside Vital Signs Monitor",
+          "level": "L4",
+          "description": "Multi-parameter monitor (SpO2, NIBP, ECG, EtCO2, temperature) at bedside; continuous waveform capture and local alarm",
+          "bom_standard": "INCOSE",
+          "parent_name": "Patient Monitoring System"
+        },
+        {
+          "name": "Central Monitoring Station",
+          "level": "L4",
+          "description": "Nurse-station workstation aggregating telemetry from all bedside monitors on the ward; arrhythmia detection, alarm management",
+          "bom_standard": "INCOSE",
+          "parent_name": "Patient Monitoring System"
+        },
+        {
+          "name": "Arrhythmia Detection Engine",
+          "level": "L4",
+          "description": "Algorithm-based cardiac rhythm analysis flagging life-threatening arrhythmias for immediate clinical response",
+          "bom_standard": "INCOSE",
+          "parent_name": "Patient Monitoring System"
+        },
+        {
+          "name": "Call Station",
+          "level": "L4",
+          "description": "Patient-operated bedside and bathroom emergency call buttons transmitting urgency level to nurse station",
+          "bom_standard": "INCOSE",
+          "parent_name": "Nurse Call System"
+        },
+        {
+          "name": "Controller / Head-End Server",
+          "level": "L4",
+          "description": "Routes calls, manages priorities, logs response times; integrates with staff locating system and EMR",
+          "bom_standard": "INCOSE",
+          "parent_name": "Nurse Call System"
+        },
+        {
+          "name": "Staff Locating Badge",
+          "level": "L4",
+          "description": "RTLS wearable tag worn by clinical staff enabling location-aware call routing to nearest available caregiver",
+          "bom_standard": "INCOSE",
+          "parent_name": "Nurse Call System"
+        }
+      ]
+    },
+    {
+      "naics_code": "622110",
+      "unit_count": 39,
+      "level_distribution": {
+        "L7": 1,
+        "L6": 9,
+        "L5": 13,
+        "L4": 16
+      },
+      "product_entry_points": [
+        {
+          "unit_name": "Emergency Exit Security Device",
+          "level": "L5",
+          "parent": "Facility & Building Safety",
+          "product": "GfS Türwächter IoT (Exit Control 179/1125 with IoT)",
+          "current_alternative_share_estimate": "~30%",
+          "primary_competitors_at_l5": [
+            "Wired alarmed exit bars (Von Duprin, Corbin Russwin, Sargent)",
+            "Wireless electronic exit control (dormakaba SafeRoute, GEZE SecuLogic)",
+            "Electromechanical delayed egress (Allegion)"
+          ]
+        }
+      ],
+      "enriched": true,
+      "completeness_score": 0.82,
+      "structural_issues": []
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

@@ -1,0 +1,1440 @@
+{
+  "id": "JTBD_facilities_support_services",
+  "title": "JTBD Analysis: Facilities Support Services (NAICS 561210)",
+  "type": "jtbd_analysis",
+  "market_slug": "facilities_support_services",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Meta",
+      "content": "| Field | Value |\n|---|---|\n| Market | Facilities Support Services |\n| NAICS | 561210 |\n| VN file | VN_facilities_support_services.md |\n| Türwächter anchor | L4 Door Guardian Device → L5 Door & Exit Monitoring → L6e Safety & Compliance Management |\n| Architecture distance | 2 |\n| Offering level | L7 (service ecosystem) |\n| Routing | B2B / service NAICS — Phase 1 skips BOM (1.4) and Edges (1.5) |\n\n---"
+    },
+    {
+      "title": "Derivation Chain",
+      "content": "```\nCFJ: \"Operate and maintain a client's built environment to achieve continuous safety\n     compliance, operational readiness, and regulatory conformance while minimising\n     client-side labour\"\n  extracted from NAICS 561210 description\n  |\n  output types → IFM, HS, SS, CFM, PFM (5 service engagement types)\n  |\n  Process VN → L6e Safety & Regulatory Compliance Management (primary insertion point)\n               L6c Planned Preventive Maintenance (battery/device maintenance cycle)\n  |\n  company enters → L4 Door Guardian Device within L5 Door & Exit Monitoring System\n  |\n  parent unit → L5 Door & Exit Monitoring System (defines job context)\n  |\n  lens → \"What detection and documentation capabilities does an FM safety compliance\n          manager need to deliver continuous, evidence-grade monitoring of emergency\n          exit doors across client building portfolios?\"\n  |\n  Product Job → \"Help Door & Exit Monitoring System to detect unauthorized emergency\n                 exit door activations and produce audit-ready event logs for FM\n                 compliance workflows — without wired infrastructure or manual\n                 inspection rounds\"\n  |\n  alternatives → Hardwired electronic (45%), Battery-powered wireless (35%),\n                 Mechanical-only (20%), CCTV monitoring, Do nothing\n  |\n  scenarios → New client onboarding, Annual fire audit, Incident investigation,\n              Battery maintenance cycle\n  |\n  pyramid (Executor) → P1 per alternative (5 lifecycle stages)\n                     → P2 core job (7 error types × 8 job map steps)\n                     → P3 Role / P4 Image / P5 Emotional\n  |\n  market needs → 22 error statements (ODI scored)\n                 Top underserved: N04 (16), N08 (16), N14 (16)\n```\n\n---"
+    },
+    {
+      "title": "Phase 1 — Industry Landscape",
+      "content": "### 1.1 CFJ, Output Types, Offering Level\n\n| Field | Value |\n|---|---|\n| NAICS | 561210 — Facilities Support Services |\n| CFJ | Operate and maintain a client's built environment to achieve continuous safety compliance, operational readiness, and regulatory conformance while minimising client-side labour |\n| Offering Level | L7 — service ecosystem: FM provider coordinates sub-contractors, vendors, and regulators toward operational readiness of client buildings |\n\n| Code | Output Type | Description |\n|---|---|---|\n| IFM | Integrated FM | Full multi-discipline bundled contract (hard + soft + compliance) |\n| HS | Hard Services | MEP, fire safety, structural maintenance only |\n| SS | Soft Services | Cleaning, security, catering, landscaping |\n| CFM | Compliance FM | Regulatory inspection and documentation only |\n| PFM | Portfolio FM | Multi-site, multi-building management |\n\nL6e (Safety & Compliance Management) is the **only** core process step activated by CFM — the narrow wedge where the Türwächter anchors. L6a and L6f activate all 5 output types but are commodity steps with low competitive moat.\n\n### 1.2 Segments\n\nDefined by FM operator circumstance, not organisation size or sector.\n\n| Segment | Circumstance | Alternatives change? |\n|---|---|---|\n| Portfolio FM operator | 20+ client sites across mixed building types; requires standardised devices deployable per-site and centralised multi-building dashboard | Yes — single-site solutions don't aggregate; wired solutions don't scale cost-effectively |\n| Compliance FM specialist | Inspection-only contracts; client demands digital, audit-proof evidence chains with no paper archives or manual log assembly | Yes — documentation capability becomes the competitive differentiator |\n| Single-site IFM contract | One large building (hospital campus, corporate HQ); deep BMS integration required; wired alternatives reduce integration friction | Yes — proprietary gateway friction (C6) tips decision toward wired for BMS-heavy sites |\n| Hard Services operator | MEP and fire safety maintenance only; device must be low-maintenance and high-reliability across diverse door hardware types | Yes — maintenance overhead per device is the primary total cost driver |\n\nAnti-pattern avoided: \"Large FM companies vs. small FM companies\" is demographics. \"Portfolio management vs. inspection-only contracts\" is circumstance.\n\n### 1.3 Process VN\n\nFull VN documented in **VN_facilities_support_services.md** (L7→L6→L5→L4, ~45 nodes).\n\nKey insertion path:\n- L6e Safety & Regulatory Compliance Management → L5 Door & Exit Monitoring System → **L4 Door Guardian Device** (anchor)\n- Adjacent complement: L5 Fire Safety Inspection Platform feeds L6f compliance documentation\n\n### 1.4–1.5 BOM / Edges\n\n**Skipped.** NAICS 561210 is a service sector code. Service composition is documented in the VN file. No physical product BOM applies.\n\n---"
+    },
+    {
+      "title": "Phase 2 — Company Enters",
+      "content": "### 2.1 VN Anchor\n\n| Field | Value |\n|---|---|\n| Anchor type | PROCESS_VN |\n| Anchor unit | Door Guardian Device |\n| Anchor level | L4 |\n| Parent unit (job context) | Door & Exit Monitoring System (L5) |\n| Grand-parent | Safety & Regulatory Compliance Management (L6e) |\n| Route | B2B — FM operator is buyer; building owner is beneficiary |\n\nThe Türwächter does not end up *in* the FM service output. It enables the FM operator to *perform* compliance management. PROCESS_VN confirmed. The parent L5 unit (Door & Exit Monitoring System) defines the job context for all downstream need derivation.\n\n### 2.2 Lens\n\n| Route | Lens Source | Lens |\n|---|---|---|\n| Maker — PROCESS_VN | L6e job_family: \"Inspect, test, document, and certify compliance with fire safety, health, and environmental regulations across client sites\" | \"What detection and documentation capabilities does an FM safety compliance manager need to deliver continuous, evidence-grade monitoring of emergency exit doors across client building portfolios?\" |\n\nAll 4 segments pass Level A filter (L6e serves IFM/HS/CFM/PFM) and Level B filter (product modality applies across commercial/institutional door hardware in all FM contract types).\n\n### 2.3 Product Job\n\n| Job Level | Statement |\n|---|---|\n| CFJ (L7) | Operate and maintain a client's built environment to achieve continuous safety compliance, operational readiness, and regulatory conformance while minimising client-side labour |\n| **Product Job (L4 anchored to L5 parent)** | **Help Door & Exit Monitoring System to detect unauthorized emergency exit door activations and produce audit-ready event logs for FM compliance workflows — without requiring wired infrastructure or on-site inspection rounds** |\n\nAbstraction test passed: 5 alternatives from distinct technology categories can fulfill this product job (see 2.4). Correctly a Product Job, not a scenario.\n\n### 2.4 Alternatives\n\n| # | Alternative | UNSPSC | Inherent Trade-offs |\n|---|---|---|---|\n| A | Hardwired electronic alarm systems (door contacts wired to fire panel) | 46171600 | Requires mains cabling and conduit in retrofit buildings; electrician sign-off; €150–300 labour/door on top of hardware; single cable-fault can drop a circuit; asbestos risk in pre-1980 buildings |\n| **B** | **Battery-powered wireless alarm devices (Türwächter class, LoRaWAN door sensors)** | **46171600** | **Battery replacement cycles (1–3 yr); wireless range limits (~30–60 m); proprietary protocol friction (EasyWave ≠ BACnet/KNX); higher unit cost than mechanical** |\n| C | Mechanical-only door alarms (no monitoring, no wireless) | 46171501 | No event logging; no remote alerting; compliance evidence requires manual inspection; declining installed base; no portfolio visibility |\n| D | CCTV / video monitoring at exit points | 46171610 | No alarm-on-open; requires active human review; high infrastructure cost; GDPR data-retention complexity; no audit-grade timestamped event log |\n| E | Do nothing / manual inspection rounds [Status Quo] | — | **Zero P1 burden** — FM inspection labor cost only (est. €6–12/door/visit quarterly); compliance gap risk accepted |\n\n**Existential flag:** Alternative E (do nothing) carries zero P1 burden and remains the dominant incumbent at lower-spend or lower-scrutiny FM contracts. It competes on cost alone.\n\n### 2.5 Scenarios\n\n| Scenario | Output Types Activated | L4 Positions in Play |\n|---|---|---|\n| New client onboarding — FM deploys exit monitoring across 50+ doors | IFM, HS, PFM | Door Guardian Device, Wireless Radio Transmitter, Gateway / BUS Interface |\n| Annual fire safety audit — FM generates compliance evidence for fire marshal | IFM, CFM, PFM | Door Guardian Device (event log), Fire Safety Inspection Platform |\n| Unauthorized exit incident — FM retrieves historical event logs for client incident report | IFM, HS, CFM, PFM | Door Guardian Device (log), Gateway / BUS Interface |\n| Battery maintenance cycle — FM schedules battery replacement across all monitored doors | IFM, HS, PFM | Battery Power Unit, CMMS work order (L5) |\n\nSparsity check: SS (soft services) never activates any of these scenarios — correctly dormant.\n\n---"
+    },
+    {
+      "title": "Phase 3 — Needs Derivation",
+      "content": "### Stakeholder Roles\n\n| Role | Person | Pyramid Levels |\n|---|---|---|\n| **Job Executor** | FM safety compliance engineer / compliance technician | ALL (P1–P5) — primary needs source |\n| **Job Overseer** | FM contract manager / safety director | P1 (own), P2 (own), P4, P5 (rarely) |\n| **Job Beneficiary** | Building owner / client operations director | P2, P3, P5 |\n| Lifecycle Support — Installer | FM field technician | P1 Preparation only |\n| Lifecycle Support — Maintainer | FM maintenance engineer | P1 Maintenance only |\n| Purchase Executor | FM procurement manager | P1 Acquisition only |\n| Purchase Influencer | Fire safety consultant / building insurer | P2, P4 |\n\n### 3.1 Burleson P1 — Product Jobs by Alternative\n\n| Lifecycle Stage | Alt A: Hardwired | Alt B: Battery Wireless (Türwächter) | Alt C: Mechanical-only |\n|---|---|---|---|\n| **Acquisition** | Tender electrical contractor; specify conduit routes; obtain electrical sign-off; procure panel capacity | Qualify hardware vendor; verify BMS gateway compatibility; negotiate volume per-door pricing | Simple purchase; no specialist required |\n| **Preparation** | Cable runs, conduit, panel wiring, electrician commissioning (2–4 hr/door) | Surface-mount device; battery insert; gateway configure; BMS pair (0.5–1 hr/door) | Surface-mount only (0.25 hr/door) |\n| **Usage** | Monitor fire panel faults; coordinate panel maintenance; track cable-fault tickets | Monitor wireless dashboard; receive real-time alerts; manage gateway status and coverage maps | Schedule manual inspection rounds; log visits in CMMS or paper |\n| **Maintenance** | Cable continuity checks; panel card replacement; contracted electrician visits | Battery replacement (annually); signal health checks; firmware updates via gateway | Annual physical inspection visit per door; paper log archiving; no remote diagnostics |\n| **Disposal** | Cable extraction (asbestos risk in pre-1980 buildings); panel decommissioning | Battery disposal (WEEE); device swap without wall modification | Device removal; no environmental obligations |\n\n**Key structural insight:** Alt A creates the highest P1 burden at Preparation and Maintenance in retrofit FM contracts. Alt E (do nothing) carries zero P1 burden — the primary reason it persists despite compliance gaps. The Türwächter (Alt B) wins on Preparation and Usage burden vs. Alt A, but creates a unique P1 burden at Maintenance (battery management) that Alt A does not have.\n\n### 3.2 Job Map — Ulwick 8 Steps\n\n| # | Step | Statement for Product Job | Relevant to Product | Rationale |\n|---|---|---|---|---|\n| 1 | DEFINE | Define which door points require monitoring, alarm thresholds, and compliance reporting requirements per client building | false | Scoping occurs at FM contract level before device selection |\n| 2 | LOCATE | Map and record all emergency exit door points and hardware specifications across client buildings | false | Asset mapping precedes device deployment |\n| 3 | PREPARE | Install monitoring devices, configure gateways, integrate with client BMS/CMMS, and commission alarm triggers | **true** | Device installation and commissioning is the core Türwächter deployment task |\n| 4 | CONFIRM | Verify all monitoring devices trigger alarms within specification and events reach the FM dashboard correctly | **true** | Commissioning verification directly tests device reliability at scale |\n| 5 | EXECUTE | Detect unauthorized door activations in real time, trigger alarms, and log events to FM monitoring platform | **true** | Primary operational function of the device |\n| 6 | MONITOR | Track real-time device health — battery levels, wireless signal integrity, alarm frequency per door point | **true** | IoT reporting capability is the primary Türwächter differentiator vs. mechanical alternatives |\n| 7 | MODIFY | Respond to alarms, investigate false positives, adjust device configuration, dispatch battery replacement | **true** | FM operator response workflows driven by device-generated events |\n| 8 | CONCLUDE | Generate compliance reports, close inspection records, archive event logs, deliver evidence certificates to client | **true** | Event log → compliance document chain is the primary FM business value of the IoT layer |\n\n### 3.3 Error Statements — P1 + P2\n\n*Executor = FM safety compliance engineer. All statements use Format 1 (Minimize likelihood of…) or Format 2 (Increase ability to…). ONE KPI per statement.*\n\n| ID | Step | Error Type | Statement | Pyramid | Prod-Related | Alt | ImpCat | Imp | Sat | **Score** | Class |\n|---|---|---|---|---|---|---|---|---|---|---|---|\n| N01 | PREPARE | EFFORT | Minimize installation labor-hours per door point required to deploy wireless exit monitoring devices on existing door hardware without conduit runs or frame modification | P1 | true | B | time | 8 | 7 | 9 | — |\n| N02 | PREPARE | EFFORT | Minimize cost per door point of electrical conduit routing and cable installation required to connect hardwired exit alarm contacts to fire panels in occupied retrofit buildings | P1 | true | A | cost | 9 | 3 | **15** | UNDERSERVED |\n| N03 | MAINTENANCE | DETECTION | Minimize the number of wireless door monitoring devices reaching critical battery depletion without generating a preventive maintenance alert in the FM CMMS — measured by undetected depletions per 100 devices per year | P1 | true | B | reliability | 9 | 4 | **14** | UNDERSERVED |\n| N04 | CONFIRM | ACCURACY | Minimize the likelihood that exit monitoring devices pass initial commissioning tests but fail to trigger an alarm under actual emergency conditions due to misconfiguration — measured by post-commissioning alarm failure rate per 1,000 devices | P2 | false | — | safety | 10 | 4 | **16** | UNDERSERVED |\n| N05 | CONFIRM | ACCURACY | Minimize the likelihood of deploying exit monitoring configurations that render escape routes non-compliant with EN 179 / EN 1125 single-motion release requirements — measured by non-compliant configurations per 100 installations | P2 | false | — | safety | 10 | 6 | 14 | — |\n| N06 | EXECUTE | THROUGHPUT | Minimize elapsed time between an unauthorized emergency exit door activation and alert notification reaching the responsible FM monitoring operator — measured in minutes per event | P2 | false | — | time | 9 | 5 | 13 | — |\n| N07 | EXECUTE | ROBUSTNESS | Minimize the likelihood that emergency exit alarm devices fail to trigger under zero-voltage conditions (mains outage or complete battery depletion) — measured by alarm failure rate under power-loss test | P2 | false | — | safety | 10 | 7 | 13 | — |\n| N08 | EXECUTE | DETECTION | Minimize the number of emergency exit door openings that occur without generating a monitoring alert during a standard operating period — measured by undetected events per 100 door activations per month | P2 | false | — | safety | 10 | 4 | **16** | UNDERSERVED |\n| N09 | MONITOR | CONSISTENCY | Minimize variability in event reporting latency across door monitoring devices within a single client building — measured by maximum deviation from median report time in seconds | P2 | false | — | reliability | 7 | 4 | 10 | — |\n| N10 | MONITOR | DETECTION | Minimize the number of battery depletion events that reach critical failure level before triggering a preventive maintenance work order in the FM CMMS — measured by ratio of critical-depletion incidents to total depletions | P2 | false | — | reliability | 8 | 4 | 12 | — |\n| N11 | MODIFY | RECOVERY | Minimize time to restore exit monitoring coverage at a door point following device fault, wireless disconnection, or battery depletion — measured in hours from failure detection to restored monitoring coverage | P2 | false | — | time | 8 | 5 | 11 | — |\n| N12 | MODIFY | ACCURACY | Minimize the false positive alarm rate from exit monitoring devices — unauthorized activation alerts triggered by door vibration, accidental contact, or signal interference — measured by false positives per 100 logged alarm events | P2 | false | — | skill | 8 | 4 | 12 | — |\n| N13 | CONCLUDE | EFFORT | Minimize FM labor-hours required to compile emergency exit door event logs into audit-ready fire safety inspection certificates — measured in hours per compliance report per building | P2 | false | — | time | 9 | 3 | **15** | UNDERSERVED |\n| N14 | CONCLUDE | ACCURACY | Minimize the likelihood that emergency exit event logs contain gaps or discontinuities that cause fire safety compliance documentation to fail regulatory audit — measured by audit failure rate per 100 compliance submissions | P2 | false | — | safety | 10 | 4 | **16** | UNDERSERVED |\n| N15 | CONCLUDE | THROUGHPUT | Increase the ability to generate real-time portfolio-level compliance dashboards showing monitoring health across all client exit door points with data latency under 24 hours | P2 | false | — | time | 8 | 3 | 13 | — |\n| N16 | DEFINE | EFFORT | Minimize time required to generate a complete inventory of emergency exit door points requiring monitoring across a new multi-building client portfolio — measured in hours per 100 doors scoped | P2 | false | — | time | 7 | 5 | 9 | — |\n| N17 | ACQUIRE | EFFORT | Minimize the total cost-per-door-per-year of emergency exit monitoring across portfolios of 50+ client buildings — measured in EUR per door per year including hardware, installation, and ongoing maintenance | P1 | false | cross | cost | 9 | 4 | **14** | UNDERSERVED |\n| N18 | ACQUIRE | ACCURACY | Minimize the likelihood of deploying wireless exit monitoring devices that require proprietary gateways incompatible with the client building's existing BMS protocol — measured by BMS integration rework rate per 100 deployments | P1 | true | B | reliability | 8 | 4 | 12 | — |\n| N19 | ACQUIRE | EFFORT | Minimize evaluation time for FM procurement teams to qualify wireless exit monitoring hardware for multi-client portfolio standardization — measured in days from vendor shortlist to approved FM specification | P1 | true | B | time | 7 | 5 | 9 | — |\n\n### 3.4 P3–P5 Bridge Needs\n\n| Level | Role | Retrieval Answer | Bridge Question Answer | Market Need | ImpCat | Imp | Sat | Score |\n|---|---|---|---|---|---|---|---|---|\n| **P3 Role** | FM compliance engineer | \"A professional whose audit documentation is accepted by fire marshals without question — trusted by clients, never surprised by inspections\" | Product must produce tamper-evident, timestamped event logs as primary regulatory evidence without manual assembly | N20: Maximize completeness and tamper-evidence of emergency exit event logs that FM compliance engineers can present as primary evidence during unannounced fire safety inspections — without manual data aggregation | time | 8 | 3 | 13 |\n| **P4 Image** | FM contract manager [Overseer] | \"Building owner sees FM manager as operationally proactive; fire marshal sees FM as compliant and audit-ready without prompting\" | Product must generate client-presentable compliance dashboards without FM analyst post-processing | N21: Minimize manual post-processing effort required to convert exit monitoring event data into client-facing compliance reports demonstrating FM operational excellence — measured in hours per monthly client report | time | 7 | 4 | 10 |\n| **P5 Emotional** | FM compliance technician | \"Want: confidence that every door point is covered and no gaps exist. Avoid: discovering an unmonitored door during a fire marshal inspection\" | Product must surface coverage gaps proactively before they become incidents or audit failures | N22: Minimize FM compliance technicians' exposure to undiscovered monitoring coverage gaps across distributed client sites that could result in unrecorded incidents prior to fire safety inspection [hypothesis] | safety | 7 | 4 | 10 |\n\n---"
+    },
+    {
+      "title": "ODI Summary",
+      "content": "### Underserved Needs (score ≥ 14, importance > 7, satisfaction ≤ 5)\n\n| ID | Score | Need (abbreviated) | Step | Prod-Related | Türwächter addresses? |\n|---|---|---|---|---|---|\n| N04 | 16 | Commissioning-passing devices that fail under real alarm conditions | CONFIRM | false | Partial — mechanical alarm is power-independent, but IoT misconfiguration risk remains |\n| N08 | 16 | Undetected door openings during operating period | EXECUTE | false | Direct — IoT layer provides real-time event detection vs. mechanical-only gap |\n| N14 | 16 | Audit-failing gaps in event logs | CONCLUDE | false | Direct — continuous IoT logging vs. manual inspection gaps |\n| N02 | 15 | Hardwired cable cost in occupied retrofit buildings | PREPARE | true (Alt A) | Direct — wireless retrofit vs. hardwired is the primary positioning axis |\n| N13 | 15 | Manual compilation of compliance certificates | CONCLUDE | false | Direct — automated event log export replaces manual FM paperwork |\n| N03 | 14 | Battery depletion without CMMS alert | MAINTENANCE | true (Alt B) | Partial — low-battery alert via IoT exists but field reliability unconfirmed |\n| N05 | 14 | Non-compliant escape route configuration | CONFIRM | false | Addressed — EN 179/1125 certification pre-satisfies this |\n| N17 | 14 | Total cost-per-door-per-year at portfolio scale | ACQUIRE | false | Contested — requires documented ROI case (per constraint C7) |\n\n### Strategic Pattern\n\nThe strongest unmet needs cluster at **CONFIRM** (post-deployment reliability) and **CONCLUDE** (compliance evidence automation). Both are product-agnostic (not product_related=true) — representing market-inherent pain that any solution must address. The Türwächter's IoT event logging directly attacks N08/N13/N14/N15/N20. The gap: **N04** (commissioning failure detection) and **N12** (false positive rate) are not currently addressed by any alternative — they represent a product development and deployment-quality opportunity.\n\n---"
+    },
+    {
+      "title": "Incumbent Anchors",
+      "content": "| Technology | VN Anchor Unit | Level | Market Share | Trend |\n|---|---|---|---|---|\n| Hardwired electronic alarm systems (door contacts → fire panel) | Door & Exit Monitoring System | L5 | ~45% | Stable — high switching cost once installed |\n| Battery-powered wireless alarm devices (Türwächter class) | Door Guardian Device | L4 | ~35% | Growing — driven by retrofit FM contract growth |\n| Mechanical-only door alarms | Door Guardian Device | L4 | ~20% | Declining — compliance pressure reducing paper-log acceptance |\n\n**Displacement target:** Mechanical-only (L4, 20%) is the direct share capture opportunity. Hardwired (L5, 45%) is the long-term displacement opportunity in net-new or renovation contracts.\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### JobMap\n\n```json\n{\n  \"label\": \"JobMap\",\n  \"market_name\": \"Facilities Support Services\",\n  \"naics_code\": \"561210\",\n  \"anchor_vn_unit\": \"Door Guardian Device\",\n  \"anchor_level\": \"L4\",\n  \"parent_vn_unit\": \"Door & Exit Monitoring System\",\n  \"parent_level\": \"L5\",\n  \"product_job_statement\": \"Help Door & Exit Monitoring System to detect unauthorized emergency exit door activations and produce audit-ready event logs for FM compliance workflows — without requiring wired infrastructure or on-site inspection rounds\",\n  \"cfj_statement\": \"Operate and maintain a client's built environment to achieve continuous safety compliance, operational readiness, and regulatory conformance while minimising client-side labour\"\n}\n```\n\n### JobStep[]\n\n```json\n[\n  {\n    \"label\": \"JobStep\",\n    \"step_number\": 1,\n    \"step_name\": \"DEFINE\",\n    \"naics_code\": \"561210\",\n    \"statement\": \"Define which door points require monitoring, alarm thresholds, and compliance reporting requirements per client building\",\n    \"relevant_to_product\": false,\n    \"relevance_rationale\": \"Scoping occurs at FM contract level before device selection; product does not influence this step\"\n  },\n  {\n    \"label\": \"JobStep\",\n    \"step_number\": 2,\n    \"step_name\": \"LOCATE\",\n    \"naics_code\": \"561210\",\n    \"statement\": \"Map and record all emergency exit door points and hardware specifications across client buildings\",\n    \"relevant_to_product\": false,\n    \"relevance_rationale\": \"Asset mapping precedes device deployment; product does not influence inventory creation\"\n  },\n  {\n    \"label\": \"JobStep\",\n    \"step_number\": 3,\n    \"step_name\": \"PREPARE\",\n    \"naics_code\": \"561210\",\n    \"statement\": \"Install monitoring devices, configure gateways, integrate with client BMS/CMMS, and commission alarm triggers across all door points\",\n    \"relevant_to_product\": true,\n    \"relevance_rationale\": \"Device installation and commissioning is the core Türwächter deployment task; installation method (surface-mount wireless vs. wired) directly determines FM labor cost\"\n  },\n  {\n    \"label\": \"JobStep\",\n    \"step_number\": 4,\n    \"step_name\": \"CONFIRM\",\n    \"naics_code\": \"561210\",\n    \"statement\": \"Verify all monitoring devices trigger alarms within specification and that events reach the FM dashboard correctly before handover\",\n    \"relevant_to_product\": true,\n    \"relevance_rationale\": \"Post-commissioning verification tests device reliability; misconfiguration at this step is the leading cause of compliance failures discovered during fire marshal inspections\"\n  },\n  {\n    \"label\": \"JobStep\",\n    \"step_number\": 5,\n    \"step_name\": \"EXECUTE\",\n    \"naics_code\": \"561210\",\n    \"statement\": \"Detect unauthorized door activations in real time, trigger audible alarms, and log events timestamped to the FM monitoring platform\",\n    \"relevant_to_product\": true,\n    \"relevance_rationale\": \"Primary operational function of the device; detection latency and alarm reliability are the core performance KPIs\"\n  },\n  {\n    \"label\": \"JobStep\",\n    \"step_number\": 6,\n    \"step_name\": \"MONITOR\",\n    \"naics_code\": \"561210\",\n    \"statement\": \"Track real-time device health — battery levels, wireless signal integrity, and alarm frequency per door point — across the FM portfolio\",\n    \"relevant_to_product\": true,\n    \"relevance_rationale\": \"IoT reporting capability (battery alerts, signal health, dashboard coverage maps) is the primary differentiator of the Türwächter vs. mechanical-only alternatives\"\n  },\n  {\n    \"label\": \"JobStep\",\n    \"step_number\": 7,\n    \"step_name\": \"MODIFY\",\n    \"naics_code\": \"561210\",\n    \"statement\": \"Respond to alarms, investigate false positives, adjust device configuration, and dispatch maintenance work orders for battery replacement or fault resolution\",\n    \"relevant_to_product\": true,\n    \"relevance_rationale\": \"FM operator response workflows are triggered by device-generated events; false positive rate and recovery time directly affect FM labor costs\"\n  },\n  {\n    \"label\": \"JobStep\",\n    \"step_number\": 8,\n    \"step_name\": \"CONCLUDE\",\n    \"naics_code\": \"561210\",\n    \"statement\": \"Generate compliance reports, close inspection records, archive event logs, and deliver fire safety evidence certificates to clients and regulators\",\n    \"relevant_to_product\": true,\n    \"relevance_rationale\": \"Automated event log → compliance document chain is the primary FM business value of the IoT layer; manual compilation is the top underserved need in this market\"\n  }\n]\n```\n\n### ErrorStatement[]\n\n```json\n[\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N01\",\n    \"full_statement\": \"Minimize installation labor-hours per door point required to deploy wireless exit monitoring devices on existing door hardware without conduit runs or frame modification\",\n    \"job_step_number\": 3,\n    \"job_step_name\": \"PREPARE\",\n    \"error_type\": \"EFFORT\",\n    \"pyramid_level\": \"P1\",\n    \"alternative\": \"Battery-powered wireless (Alt B)\",\n    \"importance\": 8,\n    \"satisfaction_current\": 7,\n    \"opportunity_score\": 9,\n    \"impact_category\": \"time\",\n    \"product_related\": true,\n    \"rationale\": \"Wireless surface-mount deployment is the key install-time advantage vs. hardwired; already partially satisfied by the Türwächter's 0.5–1 hr/door profile\",\n    \"confidence\": 0.8\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N02\",\n    \"full_statement\": \"Minimize cost per door point of electrical conduit routing and cable installation required to connect hardwired exit alarm contacts to fire panels in occupied retrofit buildings\",\n    \"job_step_number\": 3,\n    \"job_step_name\": \"PREPARE\",\n    \"error_type\": \"EFFORT\",\n    \"pyramid_level\": \"P1\",\n    \"alternative\": \"Hardwired electronic (Alt A)\",\n    \"importance\": 9,\n    \"satisfaction_current\": 3,\n    \"opportunity_score\": 15,\n    \"impact_category\": \"cost\",\n    \"product_related\": true,\n    \"rationale\": \"Retrofit cable runs in occupied buildings cost €150–300 labour per door on top of hardware; this pain point is poorly addressed by all hardwired alternatives and is well-documented in FM procurement data\",\n    \"confidence\": 0.85\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N03\",\n    \"full_statement\": \"Minimize the number of wireless door monitoring devices reaching critical battery depletion without generating a preventive maintenance alert in the FM CMMS — measured by undetected depletions per 100 devices per year\",\n    \"job_step_number\": 7,\n    \"job_step_name\": \"MODIFY\",\n    \"error_type\": \"DETECTION\",\n    \"pyramid_level\": \"P1\",\n    \"alternative\": \"Battery-powered wireless (Alt B)\",\n    \"importance\": 9,\n    \"satisfaction_current\": 4,\n    \"opportunity_score\": 14,\n    \"impact_category\": \"reliability\",\n    \"product_related\": true,\n    \"rationale\": \"Battery life is not published by GfS for the IoT variant; FM operators report that undiscovered battery failures are a leading cause of monitoring coverage gaps in wireless safety hardware deployments\",\n    \"confidence\": 0.75\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N04\",\n    \"full_statement\": \"Minimize the likelihood that exit monitoring devices pass initial commissioning tests but fail to trigger an alarm under actual emergency conditions due to misconfiguration — measured by post-commissioning alarm failure rate per 1,000 devices\",\n    \"job_step_number\": 4,\n    \"job_step_name\": \"CONFIRM\",\n    \"error_type\": \"ACCURACY\",\n    \"pyramid_level\": \"P2\",\n    \"alternative\": null,\n    \"importance\": 10,\n    \"satisfaction_current\": 4,\n    \"opportunity_score\": 16,\n    \"impact_category\": \"safety\",\n    \"product_related\": false,\n    \"rationale\": \"FM operators have no standardised post-commissioning verification protocol for door monitoring devices; commissioning failures are typically discovered during fire marshal inspections, not during deployment\",\n    \"confidence\": 0.8\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N05\",\n    \"full_statement\": \"Minimize the likelihood of deploying exit monitoring configurations that render escape routes non-compliant with EN 179 / EN 1125 single-motion release requirements — measured by non-compliant configurations per 100 installations\",\n    \"job_step_number\": 4,\n    \"job_step_name\": \"CONFIRM\",\n    \"error_type\": \"ACCURACY\",\n    \"pyramid_level\": \"P2\",\n    \"alternative\": null,\n    \"importance\": 10,\n    \"satisfaction_current\": 6,\n    \"opportunity_score\": 14,\n    \"impact_category\": \"safety\",\n    \"product_related\": false,\n    \"rationale\": \"Türwächter's EN 179/1125 certification pre-satisfies this; satisfaction is higher than N04 because the product is designed to the standard. Remains important for FM operators deploying third-party or mixed-vendor solutions.\",\n    \"confidence\": 0.9\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N06\",\n    \"full_statement\": \"Minimize elapsed time between an unauthorized emergency exit door activation and alert notification reaching the responsible FM monitoring operator — measured in minutes per event\",\n    \"job_step_number\": 5,\n    \"job_step_name\": \"EXECUTE\",\n    \"error_type\": \"THROUGHPUT\",\n    \"pyramid_level\": \"P2\",\n    \"alternative\": null,\n    \"importance\": 9,\n    \"satisfaction_current\": 5,\n    \"opportunity_score\": 13,\n    \"impact_category\": \"time\",\n    \"product_related\": false,\n    \"rationale\": \"Alert latency is partially addressed by existing wireless systems but varies significantly across gateway configurations and building RF environments\",\n    \"confidence\": 0.7\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N07\",\n    \"full_statement\": \"Minimize the likelihood that emergency exit alarm devices fail to trigger under zero-voltage conditions (mains outage or complete battery depletion) — measured by alarm failure rate under power-loss test\",\n    \"job_step_number\": 5,\n    \"job_step_name\": \"EXECUTE\",\n    \"error_type\": \"ROBUSTNESS\",\n    \"pyramid_level\": \"P2\",\n    \"alternative\": null,\n    \"importance\": 10,\n    \"satisfaction_current\": 7,\n    \"opportunity_score\": 13,\n    \"impact_category\": \"safety\",\n    \"product_related\": false,\n    \"rationale\": \"Türwächter's mechanical-primary architecture satisfies this well (alarm works at 0V). Satisfaction=7 reflects the Türwächter's strength here. Hardwired alternatives also satisfy this via fire panel battery backup.\",\n    \"confidence\": 0.9\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N08\",\n    \"full_statement\": \"Minimize the number of emergency exit door openings that occur without generating a monitoring alert during a standard operating period — measured by undetected events per 100 door activations per month\",\n    \"job_step_number\": 5,\n    \"job_step_name\": \"EXECUTE\",\n    \"error_type\": \"DETECTION\",\n    \"pyramid_level\": \"P2\",\n    \"alternative\": null,\n    \"importance\": 10,\n    \"satisfaction_current\": 4,\n    \"opportunity_score\": 16,\n    \"impact_category\": \"safety\",\n    \"product_related\": false,\n    \"rationale\": \"Mechanical-only and manual-inspection alternatives generate significant undetected openings. IoT monitoring directly addresses this but gaps exist during gateway outages, wireless coverage holes, and battery depletion periods.\",\n    \"confidence\": 0.85\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N09\",\n    \"full_statement\": \"Minimize variability in event reporting latency across door monitoring devices within a single client building — measured by maximum deviation from median report time in seconds\",\n    \"job_step_number\": 6,\n    \"job_step_name\": \"MONITOR\",\n    \"error_type\": \"CONSISTENCY\",\n    \"pyramid_level\": \"P2\",\n    \"alternative\": null,\n    \"importance\": 7,\n    \"satisfaction_current\": 4,\n    \"opportunity_score\": 10,\n    \"impact_category\": \"reliability\",\n    \"product_related\": false,\n    \"rationale\": \"Mixed-vendor or mixed-protocol deployments create inconsistent reporting cadences that complicate FM dashboard interpretation\",\n    \"confidence\": 0.6\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N10\",\n    \"full_statement\": \"Minimize the number of battery depletion events that reach critical failure level before triggering a preventive maintenance work order in the FM CMMS — measured by ratio of critical-depletion incidents to total depletions\",\n    \"job_step_number\": 6,\n    \"job_step_name\": \"MONITOR\",\n    \"error_type\": \"DETECTION\",\n    \"pyramid_level\": \"P2\",\n    \"alternative\": null,\n    \"importance\": 8,\n    \"satisfaction_current\": 4,\n    \"opportunity_score\": 12,\n    \"impact_category\": \"reliability\",\n    \"product_related\": false,\n    \"rationale\": \"CMMS integration for battery health alerts is available in principle but rarely configured in practice; FM operators frequently discover depleted batteries reactively during manual rounds\",\n    \"confidence\": 0.7\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N11\",\n    \"full_statement\": \"Minimize time to restore exit monitoring coverage at a door point following device fault, wireless disconnection, or battery depletion — measured in hours from failure detection to restored monitoring coverage\",\n    \"job_step_number\": 7,\n    \"job_step_name\": \"MODIFY\",\n    \"error_type\": \"RECOVERY\",\n    \"pyramid_level\": \"P2\",\n    \"alternative\": null,\n    \"importance\": 8,\n    \"satisfaction_current\": 5,\n    \"opportunity_score\": 11,\n    \"impact_category\": \"time\",\n    \"product_related\": false,\n    \"rationale\": \"Recovery time depends on dispatch speed, spare parts availability, and CMMS work order routing — all external to the device itself\",\n    \"confidence\": 0.65\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N12\",\n    \"full_statement\": \"Minimize the false positive alarm rate from exit monitoring devices — unauthorized activation alerts triggered by door vibration, accidental contact, or signal interference — measured by false positives per 100 logged alarm events\",\n    \"job_step_number\": 7,\n    \"job_step_name\": \"MODIFY\",\n    \"error_type\": \"ACCURACY\",\n    \"pyramid_level\": \"P2\",\n    \"alternative\": null,\n    \"importance\": 8,\n    \"satisfaction_current\": 4,\n    \"opportunity_score\": 12,\n    \"impact_category\": \"skill\",\n    \"product_related\": false,\n    \"rationale\": \"Pre-alarm feature on the Türwächter reduces false positives but does not eliminate them in high-traffic doors; FM operators report alarm fatigue in dense deployments as a barrier to dashboard adoption\",\n    \"confidence\": 0.7\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N13\",\n    \"full_statement\": \"Minimize FM labor-hours required to compile emergency exit door event logs into audit-ready fire safety inspection certificates — measured in hours per compliance report per building\",\n    \"job_step_number\": 8,\n    \"job_step_name\": \"CONCLUDE\",\n    \"error_type\": \"EFFORT\",\n    \"pyramid_level\": \"P2\",\n    \"alternative\": null,\n    \"importance\": 9,\n    \"satisfaction_current\": 3,\n    \"opportunity_score\": 15,\n    \"impact_category\": \"time\",\n    \"product_related\": false,\n    \"rationale\": \"Manual compliance documentation is confirmed as a top FM pain point by industry sources (Facilitate Magazine 2026: fragmented record-keeping between contractors). IoT event logs that auto-generate compliance certificates directly address this.\",\n    \"confidence\": 0.9\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N14\",\n    \"full_statement\": \"Minimize the likelihood that emergency exit event logs contain gaps or discontinuities that cause fire safety compliance documentation to fail regulatory audit — measured by audit failure rate per 100 compliance submissions\",\n    \"job_step_number\": 8,\n    \"job_step_name\": \"CONCLUDE\",\n    \"error_type\": \"ACCURACY\",\n    \"pyramid_level\": \"P2\",\n    \"alternative\": null,\n    \"importance\": 10,\n    \"satisfaction_current\": 4,\n    \"opportunity_score\": 16,\n    \"impact_category\": \"safety\",\n    \"product_related\": false,\n    \"rationale\": \"Compliance documentation failures are the most severe commercial risk for FM operators — they expose the FM company to liability and client contract penalties. Continuous IoT logging eliminates gaps that manual inspection cannot prevent.\",\n    \"confidence\": 0.88\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N15\",\n    \"full_statement\": \"Increase the ability to generate real-time portfolio-level compliance dashboards showing monitoring health across all client exit door points with data latency under 24 hours\",\n    \"job_step_number\": 8,\n    \"job_step_name\": \"CONCLUDE\",\n    \"error_type\": \"THROUGHPUT\",\n    \"pyramid_level\": \"P2\",\n    \"alternative\": null,\n    \"importance\": 8,\n    \"satisfaction_current\": 3,\n    \"opportunity_score\": 13,\n    \"impact_category\": \"time\",\n    \"product_related\": false,\n    \"rationale\": \"Portfolio FM operators (PFM segment) require cross-site visibility that is not available with mechanical or per-building hardwired systems; current IoT dashboards are per-gateway, not portfolio-aggregated\",\n    \"confidence\": 0.75\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N16\",\n    \"full_statement\": \"Minimize time required to generate a complete inventory of emergency exit door points requiring monitoring across a new multi-building client portfolio — measured in hours per 100 doors scoped\",\n    \"job_step_number\": 1,\n    \"job_step_name\": \"DEFINE\",\n    \"error_type\": \"EFFORT\",\n    \"pyramid_level\": \"P2\",\n    \"alternative\": null,\n    \"importance\": 7,\n    \"satisfaction_current\": 5,\n    \"opportunity_score\": 9,\n    \"impact_category\": \"time\",\n    \"product_related\": false,\n    \"rationale\": \"Asset discovery is a FM onboarding bottleneck but is addressed partially by CAFM/IWMS platforms; the Türwächter does not directly address this step\",\n    \"confidence\": 0.6\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N17\",\n    \"full_statement\": \"Minimize the total cost-per-door-per-year of emergency exit monitoring across portfolios of 50+ client buildings — measured in EUR per door per year including hardware, installation, and ongoing maintenance\",\n    \"job_step_number\": 1,\n    \"job_step_name\": \"DEFINE\",\n    \"error_type\": \"EFFORT\",\n    \"pyramid_level\": \"P1\",\n    \"alternative\": \"cross-alternative\",\n    \"importance\": 9,\n    \"satisfaction_current\": 4,\n    \"opportunity_score\": 14,\n    \"impact_category\": \"cost\",\n    \"product_related\": false,\n    \"rationale\": \"FM procurement teams negotiate per-door unit economics at scale; the Türwächter IoT variant at ~€730/unit requires a documented ROI case vs. mechanical (~€350) and manual inspection (~€30–50/door/year labor) alternatives\",\n    \"confidence\": 0.8\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N18\",\n    \"full_statement\": \"Minimize the likelihood of deploying wireless exit monitoring devices that require proprietary gateways incompatible with the client building's existing BMS protocol — measured by BMS integration rework rate per 100 deployments\",\n    \"job_step_number\": 1,\n    \"job_step_name\": \"DEFINE\",\n    \"error_type\": \"ACCURACY\",\n    \"pyramid_level\": \"P1\",\n    \"alternative\": \"Battery-powered wireless (Alt B)\",\n    \"importance\": 8,\n    \"satisfaction_current\": 4,\n    \"opportunity_score\": 12,\n    \"impact_category\": \"reliability\",\n    \"product_related\": true,\n    \"rationale\": \"EasyWave protocol incompatibility with BACnet/KNX (Constraint C6) directly manifests here; FM operators on standardised BMS platforms face gateway procurement and integration costs not anticipated at spec time\",\n    \"confidence\": 0.85\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N19\",\n    \"full_statement\": \"Minimize evaluation time for FM procurement teams to qualify wireless exit monitoring hardware for multi-client portfolio standardization — measured in days from vendor shortlist to approved FM specification\",\n    \"job_step_number\": 1,\n    \"job_step_name\": \"DEFINE\",\n    \"error_type\": \"EFFORT\",\n    \"pyramid_level\": \"P1\",\n    \"alternative\": \"Battery-powered wireless (Alt B)\",\n    \"importance\": 7,\n    \"satisfaction_current\": 5,\n    \"opportunity_score\": 9,\n    \"impact_category\": \"time\",\n    \"product_related\": true,\n    \"rationale\": \"FM procurement standardisation cycles are slow (3–6 months) but this is a sector-wide process issue not specific to any alternative\",\n    \"confidence\": 0.6\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N20\",\n    \"full_statement\": \"Maximize completeness and tamper-evidence of emergency exit event logs that FM compliance engineers can present as primary evidence during unannounced fire safety inspections — without manual data aggregation\",\n    \"job_step_number\": 8,\n    \"job_step_name\": \"CONCLUDE\",\n    \"error_type\": \"ACCURACY\",\n    \"pyramid_level\": \"P3\",\n    \"alternative\": null,\n    \"importance\": 8,\n    \"satisfaction_current\": 3,\n    \"opportunity_score\": 13,\n    \"impact_category\": \"time\",\n    \"product_related\": false,\n    \"rationale\": \"P3 Role Identity: FM compliance engineer wants to be the professional whose documentation holds up in any audit without scrambling. IoT continuous logging with tamper-evident timestamps is the enabling product capability.\",\n    \"confidence\": 0.75\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N21\",\n    \"full_statement\": \"Minimize manual post-processing effort required to convert exit monitoring event data into client-facing compliance reports demonstrating FM operational excellence — measured in hours per monthly client report\",\n    \"job_step_number\": 8,\n    \"job_step_name\": \"CONCLUDE\",\n    \"error_type\": \"EFFORT\",\n    \"pyramid_level\": \"P4\",\n    \"alternative\": null,\n    \"importance\": 7,\n    \"satisfaction_current\": 4,\n    \"opportunity_score\": 10,\n    \"impact_category\": \"time\",\n    \"product_related\": false,\n    \"rationale\": \"P4 Image Identity: FM contract manager needs client-presentable outputs that demonstrate operational excellence without manual analyst effort; current CAFM integrations still require custom report configuration\",\n    \"confidence\": 0.65\n  },\n  {\n    \"label\": \"ErrorStatement\",\n    \"id\": \"N22\",\n    \"full_statement\": \"Minimize FM compliance technicians' exposure to undiscovered monitoring coverage gaps across distributed client sites that could result in unrecorded incidents prior to fire safety inspection [hypothesis]\",\n    \"job_step_number\": 6,\n    \"job_step_name\": \"MONITOR\",\n    \"error_type\": \"DETECTION\",\n    \"pyramid_level\": \"P5\",\n    \"alternative\": null,\n    \"importance\": 7,\n    \"satisfaction_current\": 4,\n    \"opportunity_score\": 10,\n    \"impact_category\": \"safety\",\n    \"product_related\": false,\n    \"rationale\": \"P5 Emotional: FM technicians working in distributed portfolios report anxiety about undiscovered gaps (unconfirmed — marked hypothesis pending interview validation). Proactive coverage-gap alerting on the IoT dashboard would address this.\",\n    \"confidence\": 0.4\n  }\n]\n```\n\n### IncumbentAnchor[]\n\n```json\n[\n  {\n    \"label\": \"IncumbentAnchor\",\n    \"technology_name\": \"Hardwired electronic alarm systems\",\n    \"naics_code\": \"561210\",\n    \"anchor_vn_unit\": \"Door & Exit Monitoring System\",\n    \"anchor_level\": \"L5\",\n    \"market_name\": \"Facilities Support Services\",\n    \"market_share_pct\": 45,\n    \"trend\": \"stable\",\n    \"rationale\": \"Dominant installed base in commercial FM contracts; high switching cost once cabled; serves BACnet/KNX BMS environments natively\"\n  },\n  {\n    \"label\": \"IncumbentAnchor\",\n    \"technology_name\": \"Mechanical-only door alarms\",\n    \"naics_code\": \"561210\",\n    \"anchor_vn_unit\": \"Door Guardian Device\",\n    \"anchor_level\": \"L4\",\n    \"market_name\": \"Facilities Support Services\",\n    \"market_share_pct\": 20,\n    \"trend\": \"declining\",\n    \"rationale\": \"Legacy installed base; compliance pressure from fire safety regulators reducing paper-log acceptance; direct displacement target for the Türwächter\"\n  }\n]\n```\n\n### Alternative[]\n\n```json\n[\n  {\n    \"label\": \"Alternative\",\n    \"name\": \"Hardwired electronic alarm systems\",\n    \"unspsc_code\": \"46171600\",\n    \"market_share_pct\": 45,\n    \"trade_offs\": [\"Requires mains cabling and conduit in retrofit buildings\", \"€150–300 electrician labour per door point on top of hardware\", \"Single cable-fault drops entire circuit\", \"Asbestos risk in pre-1980 buildings during cable routing\"],\n    \"is_existential\": false\n  },\n  {\n    \"label\": \"Alternative\",\n    \"name\": \"Battery-powered wireless alarm devices (Türwächter class)\",\n    \"unspsc_code\": \"46171600\",\n    \"market_share_pct\": 35,\n    \"trade_offs\": [\"Battery replacement cycles (1–3 yr)\", \"Wireless range ~30–60 m per gateway\", \"EasyWave protocol requires GfS-specific BUS gateway for BACnet/KNX BMS integration\", \"Higher unit cost than mechanical variants\"],\n    \"is_existential\": false\n  },\n  {\n    \"label\": \"Alternative\",\n    \"name\": \"Mechanical-only door alarms\",\n    \"unspsc_code\": \"46171501\",\n    \"market_share_pct\": 20,\n    \"trade_offs\": [\"No remote monitoring or event logging\", \"Compliance evidence requires manual inspection rounds\", \"No portfolio-level visibility for FM operators\", \"Declining regulatory acceptance of paper-based compliance logs\"],\n    \"is_existential\": false\n  },\n  {\n    \"label\": \"Alternative\",\n    \"name\": \"CCTV / video monitoring at exit points\",\n    \"unspsc_code\": \"46171610\",\n    \"market_share_pct\": 5,\n    \"trade_offs\": [\"No alarm-on-open; requires active human review\", \"High infrastructure cost and GDPR data-retention obligations\", \"No audit-grade timestamped event log for fire safety compliance\", \"Does not prevent unauthorized use — only records it\"],\n    \"is_existential\": false\n  },\n  {\n    \"label\": \"Alternative\",\n    \"name\": \"Do nothing / manual inspection rounds\",\n    \"unspsc_code\": null,\n    \"market_share_pct\": null,\n    \"trade_offs\": [\"Zero P1 product burden — FM inspection labour only (~€6–12/door/visit quarterly)\", \"Compliance gap risk accepted\", \"Paper logs increasingly rejected by fire marshals under digital compliance directives\"],\n    \"is_existential\": true,\n    \"existential_note\": \"Zero P1 burden makes this the default choice at lower-scrutiny FM contracts; only regulatory enforcement pressure drives displacement\"\n  }\n]\n```\n\n---\n\n*Sources:*\n- *[Compliance uncertainty leaves lift fire safety exposed in FM sector](https://www.facilitatemagazine.com/2026/02/04/compliance-uncertainty-leaves-lift-fire-safety-exposed-fm-sector) — Facilitate Magazine, Feb 2026*\n- *[Facility Safety and Compliance Management 2026](https://oxmaint.com/industries/facility-management/facility-safety-compliance-management-regulations) — oxmaint.com*\n- *[Five stages of the fire safety life cycle FMs need to know](https://www.facilitatemagazine.com/2025/12/09/five-stages-fire-safety-life-cycle-fms-need-know) — Facilitate Magazine, Dec 2025*\n- *VN_facilities_support_services.md (this project), 01_product_decomposition.md, 02_functional_promise.md, 03_constraints.md, 05_market_discovery.md*"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "Market",
+          "Value": "Facilities Support Services"
+        },
+        {
+          "Field": "NAICS",
+          "Value": "561210"
+        },
+        {
+          "Field": "VN file",
+          "Value": "VN_facilities_support_services.md"
+        },
+        {
+          "Field": "Türwächter anchor",
+          "Value": "L4 Door Guardian Device → L5 Door & Exit Monitoring → L6e Safety & Compliance Management"
+        },
+        {
+          "Field": "Architecture distance",
+          "Value": "2"
+        },
+        {
+          "Field": "Offering level",
+          "Value": "L7 (service ecosystem)"
+        },
+        {
+          "Field": "Routing",
+          "Value": "B2B / service NAICS — Phase 1 skips BOM (1.4) and Edges (1.5)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "NAICS",
+          "Value": "561210 — Facilities Support Services"
+        },
+        {
+          "Field": "CFJ",
+          "Value": "Operate and maintain a client's built environment to achieve continuous safety compliance, operational readiness, and regulatory conformance while minimising client-side labour"
+        },
+        {
+          "Field": "Offering Level",
+          "Value": "L7 — service ecosystem: FM provider coordinates sub-contractors, vendors, and regulators toward operational readiness of client buildings"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Code",
+        "Output Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Code": "IFM",
+          "Output Type": "Integrated FM",
+          "Description": "Full multi-discipline bundled contract (hard + soft + compliance)"
+        },
+        {
+          "Code": "HS",
+          "Output Type": "Hard Services",
+          "Description": "MEP, fire safety, structural maintenance only"
+        },
+        {
+          "Code": "SS",
+          "Output Type": "Soft Services",
+          "Description": "Cleaning, security, catering, landscaping"
+        },
+        {
+          "Code": "CFM",
+          "Output Type": "Compliance FM",
+          "Description": "Regulatory inspection and documentation only"
+        },
+        {
+          "Code": "PFM",
+          "Output Type": "Portfolio FM",
+          "Description": "Multi-site, multi-building management"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Segment",
+        "Circumstance",
+        "Alternatives change?"
+      ],
+      "rows": [
+        {
+          "Segment": "Portfolio FM operator",
+          "Circumstance": "20+ client sites across mixed building types; requires standardised devices deployable per-site and centralised multi-building dashboard",
+          "Alternatives change?": "Yes — single-site solutions don't aggregate; wired solutions don't scale cost-effectively"
+        },
+        {
+          "Segment": "Compliance FM specialist",
+          "Circumstance": "Inspection-only contracts; client demands digital, audit-proof evidence chains with no paper archives or manual log assembly",
+          "Alternatives change?": "Yes — documentation capability becomes the competitive differentiator"
+        },
+        {
+          "Segment": "Single-site IFM contract",
+          "Circumstance": "One large building (hospital campus, corporate HQ); deep BMS integration required; wired alternatives reduce integration friction",
+          "Alternatives change?": "Yes — proprietary gateway friction (C6) tips decision toward wired for BMS-heavy sites"
+        },
+        {
+          "Segment": "Hard Services operator",
+          "Circumstance": "MEP and fire safety maintenance only; device must be low-maintenance and high-reliability across diverse door hardware types",
+          "Alternatives change?": "Yes — maintenance overhead per device is the primary total cost driver"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "Anchor type",
+          "Value": "PROCESS_VN"
+        },
+        {
+          "Field": "Anchor unit",
+          "Value": "Door Guardian Device"
+        },
+        {
+          "Field": "Anchor level",
+          "Value": "L4"
+        },
+        {
+          "Field": "Parent unit (job context)",
+          "Value": "Door & Exit Monitoring System (L5)"
+        },
+        {
+          "Field": "Grand-parent",
+          "Value": "Safety & Regulatory Compliance Management (L6e)"
+        },
+        {
+          "Field": "Route",
+          "Value": "B2B — FM operator is buyer; building owner is beneficiary"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Route",
+        "Lens Source",
+        "Lens"
+      ],
+      "rows": [
+        {
+          "Route": "Maker — PROCESS_VN",
+          "Lens Source": "L6e job_family: \"Inspect, test, document, and certify compliance with fire safety, health, and environmental regulations across client sites\"",
+          "Lens": "\"What detection and documentation capabilities does an FM safety compliance manager need to deliver continuous, evidence-grade monitoring of emergency exit doors across client building portfolios?\""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Job Level",
+        "Statement"
+      ],
+      "rows": [
+        {
+          "Job Level": "CFJ (L7)",
+          "Statement": "Operate and maintain a client's built environment to achieve continuous safety compliance, operational readiness, and regulatory conformance while minimising client-side labour"
+        },
+        {
+          "Job Level": "**Product Job (L4 anchored to L5 parent)**",
+          "Statement": "**Help Door & Exit Monitoring System to detect unauthorized emergency exit door activations and produce audit-ready event logs for FM compliance workflows — without requiring wired infrastructure or on-site inspection rounds**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Alternative",
+        "UNSPSC",
+        "Inherent Trade-offs"
+      ],
+      "rows": [
+        {
+          "#": "A",
+          "Alternative": "Hardwired electronic alarm systems (door contacts wired to fire panel)",
+          "UNSPSC": "46171600",
+          "Inherent Trade-offs": "Requires mains cabling and conduit in retrofit buildings; electrician sign-off; €150–300 labour/door on top of hardware; single cable-fault can drop a circuit; asbestos risk in pre-1980 buildings"
+        },
+        {
+          "#": "**B**",
+          "Alternative": "**Battery-powered wireless alarm devices (Türwächter class, LoRaWAN door sensors)**",
+          "UNSPSC": "**46171600**",
+          "Inherent Trade-offs": "**Battery replacement cycles (1–3 yr); wireless range limits (~30–60 m); proprietary protocol friction (EasyWave ≠ BACnet/KNX); higher unit cost than mechanical**"
+        },
+        {
+          "#": "C",
+          "Alternative": "Mechanical-only door alarms (no monitoring, no wireless)",
+          "UNSPSC": "46171501",
+          "Inherent Trade-offs": "No event logging; no remote alerting; compliance evidence requires manual inspection; declining installed base; no portfolio visibility"
+        },
+        {
+          "#": "D",
+          "Alternative": "CCTV / video monitoring at exit points",
+          "UNSPSC": "46171610",
+          "Inherent Trade-offs": "No alarm-on-open; requires active human review; high infrastructure cost; GDPR data-retention complexity; no audit-grade timestamped event log"
+        },
+        {
+          "#": "E",
+          "Alternative": "Do nothing / manual inspection rounds [Status Quo]",
+          "UNSPSC": "—",
+          "Inherent Trade-offs": "**Zero P1 burden** — FM inspection labor cost only (est. €6–12/door/visit quarterly); compliance gap risk accepted"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Scenario",
+        "Output Types Activated",
+        "L4 Positions in Play"
+      ],
+      "rows": [
+        {
+          "Scenario": "New client onboarding — FM deploys exit monitoring across 50+ doors",
+          "Output Types Activated": "IFM, HS, PFM",
+          "L4 Positions in Play": "Door Guardian Device, Wireless Radio Transmitter, Gateway / BUS Interface"
+        },
+        {
+          "Scenario": "Annual fire safety audit — FM generates compliance evidence for fire marshal",
+          "Output Types Activated": "IFM, CFM, PFM",
+          "L4 Positions in Play": "Door Guardian Device (event log), Fire Safety Inspection Platform"
+        },
+        {
+          "Scenario": "Unauthorized exit incident — FM retrieves historical event logs for client incident report",
+          "Output Types Activated": "IFM, HS, CFM, PFM",
+          "L4 Positions in Play": "Door Guardian Device (log), Gateway / BUS Interface"
+        },
+        {
+          "Scenario": "Battery maintenance cycle — FM schedules battery replacement across all monitored doors",
+          "Output Types Activated": "IFM, HS, PFM",
+          "L4 Positions in Play": "Battery Power Unit, CMMS work order (L5)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Role",
+        "Person",
+        "Pyramid Levels"
+      ],
+      "rows": [
+        {
+          "Role": "**Job Executor**",
+          "Person": "FM safety compliance engineer / compliance technician",
+          "Pyramid Levels": "ALL (P1–P5) — primary needs source"
+        },
+        {
+          "Role": "**Job Overseer**",
+          "Person": "FM contract manager / safety director",
+          "Pyramid Levels": "P1 (own), P2 (own), P4, P5 (rarely)"
+        },
+        {
+          "Role": "**Job Beneficiary**",
+          "Person": "Building owner / client operations director",
+          "Pyramid Levels": "P2, P3, P5"
+        },
+        {
+          "Role": "Lifecycle Support — Installer",
+          "Person": "FM field technician",
+          "Pyramid Levels": "P1 Preparation only"
+        },
+        {
+          "Role": "Lifecycle Support — Maintainer",
+          "Person": "FM maintenance engineer",
+          "Pyramid Levels": "P1 Maintenance only"
+        },
+        {
+          "Role": "Purchase Executor",
+          "Person": "FM procurement manager",
+          "Pyramid Levels": "P1 Acquisition only"
+        },
+        {
+          "Role": "Purchase Influencer",
+          "Person": "Fire safety consultant / building insurer",
+          "Pyramid Levels": "P2, P4"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Lifecycle Stage",
+        "Alt A: Hardwired",
+        "Alt B: Battery Wireless (Türwächter)",
+        "Alt C: Mechanical-only"
+      ],
+      "rows": [
+        {
+          "Lifecycle Stage": "**Acquisition**",
+          "Alt A: Hardwired": "Tender electrical contractor; specify conduit routes; obtain electrical sign-off; procure panel capacity",
+          "Alt B: Battery Wireless (Türwächter)": "Qualify hardware vendor; verify BMS gateway compatibility; negotiate volume per-door pricing",
+          "Alt C: Mechanical-only": "Simple purchase; no specialist required"
+        },
+        {
+          "Lifecycle Stage": "**Preparation**",
+          "Alt A: Hardwired": "Cable runs, conduit, panel wiring, electrician commissioning (2–4 hr/door)",
+          "Alt B: Battery Wireless (Türwächter)": "Surface-mount device; battery insert; gateway configure; BMS pair (0.5–1 hr/door)",
+          "Alt C: Mechanical-only": "Surface-mount only (0.25 hr/door)"
+        },
+        {
+          "Lifecycle Stage": "**Usage**",
+          "Alt A: Hardwired": "Monitor fire panel faults; coordinate panel maintenance; track cable-fault tickets",
+          "Alt B: Battery Wireless (Türwächter)": "Monitor wireless dashboard; receive real-time alerts; manage gateway status and coverage maps",
+          "Alt C: Mechanical-only": "Schedule manual inspection rounds; log visits in CMMS or paper"
+        },
+        {
+          "Lifecycle Stage": "**Maintenance**",
+          "Alt A: Hardwired": "Cable continuity checks; panel card replacement; contracted electrician visits",
+          "Alt B: Battery Wireless (Türwächter)": "Battery replacement (annually); signal health checks; firmware updates via gateway",
+          "Alt C: Mechanical-only": "Annual physical inspection visit per door; paper log archiving; no remote diagnostics"
+        },
+        {
+          "Lifecycle Stage": "**Disposal**",
+          "Alt A: Hardwired": "Cable extraction (asbestos risk in pre-1980 buildings); panel decommissioning",
+          "Alt B: Battery Wireless (Türwächter)": "Battery disposal (WEEE); device swap without wall modification",
+          "Alt C: Mechanical-only": "Device removal; no environmental obligations"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Step",
+        "Statement for Product Job",
+        "Relevant to Product",
+        "Rationale"
+      ],
+      "rows": [
+        {
+          "#": "1",
+          "Step": "DEFINE",
+          "Statement for Product Job": "Define which door points require monitoring, alarm thresholds, and compliance reporting requirements per client building",
+          "Relevant to Product": "false",
+          "Rationale": "Scoping occurs at FM contract level before device selection"
+        },
+        {
+          "#": "2",
+          "Step": "LOCATE",
+          "Statement for Product Job": "Map and record all emergency exit door points and hardware specifications across client buildings",
+          "Relevant to Product": "false",
+          "Rationale": "Asset mapping precedes device deployment"
+        },
+        {
+          "#": "3",
+          "Step": "PREPARE",
+          "Statement for Product Job": "Install monitoring devices, configure gateways, integrate with client BMS/CMMS, and commission alarm triggers",
+          "Relevant to Product": "**true**",
+          "Rationale": "Device installation and commissioning is the core Türwächter deployment task"
+        },
+        {
+          "#": "4",
+          "Step": "CONFIRM",
+          "Statement for Product Job": "Verify all monitoring devices trigger alarms within specification and events reach the FM dashboard correctly",
+          "Relevant to Product": "**true**",
+          "Rationale": "Commissioning verification directly tests device reliability at scale"
+        },
+        {
+          "#": "5",
+          "Step": "EXECUTE",
+          "Statement for Product Job": "Detect unauthorized door activations in real time, trigger alarms, and log events to FM monitoring platform",
+          "Relevant to Product": "**true**",
+          "Rationale": "Primary operational function of the device"
+        },
+        {
+          "#": "6",
+          "Step": "MONITOR",
+          "Statement for Product Job": "Track real-time device health — battery levels, wireless signal integrity, alarm frequency per door point",
+          "Relevant to Product": "**true**",
+          "Rationale": "IoT reporting capability is the primary Türwächter differentiator vs. mechanical alternatives"
+        },
+        {
+          "#": "7",
+          "Step": "MODIFY",
+          "Statement for Product Job": "Respond to alarms, investigate false positives, adjust device configuration, dispatch battery replacement",
+          "Relevant to Product": "**true**",
+          "Rationale": "FM operator response workflows driven by device-generated events"
+        },
+        {
+          "#": "8",
+          "Step": "CONCLUDE",
+          "Statement for Product Job": "Generate compliance reports, close inspection records, archive event logs, deliver evidence certificates to client",
+          "Relevant to Product": "**true**",
+          "Rationale": "Event log → compliance document chain is the primary FM business value of the IoT layer"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Step",
+        "Error Type",
+        "Statement",
+        "Pyramid",
+        "Prod-Related",
+        "Alt",
+        "ImpCat",
+        "Imp",
+        "Sat",
+        "**Score**",
+        "Class"
+      ],
+      "rows": [
+        {
+          "ID": "N01",
+          "Step": "PREPARE",
+          "Error Type": "EFFORT",
+          "Statement": "Minimize installation labor-hours per door point required to deploy wireless exit monitoring devices on existing door hardware without conduit runs or frame modification",
+          "Pyramid": "P1",
+          "Prod-Related": "true",
+          "Alt": "B",
+          "ImpCat": "time",
+          "Imp": "8",
+          "Sat": "7",
+          "**Score**": "9",
+          "Class": "—"
+        },
+        {
+          "ID": "N02",
+          "Step": "PREPARE",
+          "Error Type": "EFFORT",
+          "Statement": "Minimize cost per door point of electrical conduit routing and cable installation required to connect hardwired exit alarm contacts to fire panels in occupied retrofit buildings",
+          "Pyramid": "P1",
+          "Prod-Related": "true",
+          "Alt": "A",
+          "ImpCat": "cost",
+          "Imp": "9",
+          "Sat": "3",
+          "**Score**": "**15**",
+          "Class": "UNDERSERVED"
+        },
+        {
+          "ID": "N03",
+          "Step": "MAINTENANCE",
+          "Error Type": "DETECTION",
+          "Statement": "Minimize the number of wireless door monitoring devices reaching critical battery depletion without generating a preventive maintenance alert in the FM CMMS — measured by undetected depletions per 100 devices per year",
+          "Pyramid": "P1",
+          "Prod-Related": "true",
+          "Alt": "B",
+          "ImpCat": "reliability",
+          "Imp": "9",
+          "Sat": "4",
+          "**Score**": "**14**",
+          "Class": "UNDERSERVED"
+        },
+        {
+          "ID": "N04",
+          "Step": "CONFIRM",
+          "Error Type": "ACCURACY",
+          "Statement": "Minimize the likelihood that exit monitoring devices pass initial commissioning tests but fail to trigger an alarm under actual emergency conditions due to misconfiguration — measured by post-commissioning alarm failure rate per 1,000 devices",
+          "Pyramid": "P2",
+          "Prod-Related": "false",
+          "Alt": "—",
+          "ImpCat": "safety",
+          "Imp": "10",
+          "Sat": "4",
+          "**Score**": "**16**",
+          "Class": "UNDERSERVED"
+        },
+        {
+          "ID": "N05",
+          "Step": "CONFIRM",
+          "Error Type": "ACCURACY",
+          "Statement": "Minimize the likelihood of deploying exit monitoring configurations that render escape routes non-compliant with EN 179 / EN 1125 single-motion release requirements — measured by non-compliant configurations per 100 installations",
+          "Pyramid": "P2",
+          "Prod-Related": "false",
+          "Alt": "—",
+          "ImpCat": "safety",
+          "Imp": "10",
+          "Sat": "6",
+          "**Score**": "14",
+          "Class": "—"
+        },
+        {
+          "ID": "N06",
+          "Step": "EXECUTE",
+          "Error Type": "THROUGHPUT",
+          "Statement": "Minimize elapsed time between an unauthorized emergency exit door activation and alert notification reaching the responsible FM monitoring operator — measured in minutes per event",
+          "Pyramid": "P2",
+          "Prod-Related": "false",
+          "Alt": "—",
+          "ImpCat": "time",
+          "Imp": "9",
+          "Sat": "5",
+          "**Score**": "13",
+          "Class": "—"
+        },
+        {
+          "ID": "N07",
+          "Step": "EXECUTE",
+          "Error Type": "ROBUSTNESS",
+          "Statement": "Minimize the likelihood that emergency exit alarm devices fail to trigger under zero-voltage conditions (mains outage or complete battery depletion) — measured by alarm failure rate under power-loss test",
+          "Pyramid": "P2",
+          "Prod-Related": "false",
+          "Alt": "—",
+          "ImpCat": "safety",
+          "Imp": "10",
+          "Sat": "7",
+          "**Score**": "13",
+          "Class": "—"
+        },
+        {
+          "ID": "N08",
+          "Step": "EXECUTE",
+          "Error Type": "DETECTION",
+          "Statement": "Minimize the number of emergency exit door openings that occur without generating a monitoring alert during a standard operating period — measured by undetected events per 100 door activations per month",
+          "Pyramid": "P2",
+          "Prod-Related": "false",
+          "Alt": "—",
+          "ImpCat": "safety",
+          "Imp": "10",
+          "Sat": "4",
+          "**Score**": "**16**",
+          "Class": "UNDERSERVED"
+        },
+        {
+          "ID": "N09",
+          "Step": "MONITOR",
+          "Error Type": "CONSISTENCY",
+          "Statement": "Minimize variability in event reporting latency across door monitoring devices within a single client building — measured by maximum deviation from median report time in seconds",
+          "Pyramid": "P2",
+          "Prod-Related": "false",
+          "Alt": "—",
+          "ImpCat": "reliability",
+          "Imp": "7",
+          "Sat": "4",
+          "**Score**": "10",
+          "Class": "—"
+        },
+        {
+          "ID": "N10",
+          "Step": "MONITOR",
+          "Error Type": "DETECTION",
+          "Statement": "Minimize the number of battery depletion events that reach critical failure level before triggering a preventive maintenance work order in the FM CMMS — measured by ratio of critical-depletion incidents to total depletions",
+          "Pyramid": "P2",
+          "Prod-Related": "false",
+          "Alt": "—",
+          "ImpCat": "reliability",
+          "Imp": "8",
+          "Sat": "4",
+          "**Score**": "12",
+          "Class": "—"
+        },
+        {
+          "ID": "N11",
+          "Step": "MODIFY",
+          "Error Type": "RECOVERY",
+          "Statement": "Minimize time to restore exit monitoring coverage at a door point following device fault, wireless disconnection, or battery depletion — measured in hours from failure detection to restored monitoring coverage",
+          "Pyramid": "P2",
+          "Prod-Related": "false",
+          "Alt": "—",
+          "ImpCat": "time",
+          "Imp": "8",
+          "Sat": "5",
+          "**Score**": "11",
+          "Class": "—"
+        },
+        {
+          "ID": "N12",
+          "Step": "MODIFY",
+          "Error Type": "ACCURACY",
+          "Statement": "Minimize the false positive alarm rate from exit monitoring devices — unauthorized activation alerts triggered by door vibration, accidental contact, or signal interference — measured by false positives per 100 logged alarm events",
+          "Pyramid": "P2",
+          "Prod-Related": "false",
+          "Alt": "—",
+          "ImpCat": "skill",
+          "Imp": "8",
+          "Sat": "4",
+          "**Score**": "12",
+          "Class": "—"
+        },
+        {
+          "ID": "N13",
+          "Step": "CONCLUDE",
+          "Error Type": "EFFORT",
+          "Statement": "Minimize FM labor-hours required to compile emergency exit door event logs into audit-ready fire safety inspection certificates — measured in hours per compliance report per building",
+          "Pyramid": "P2",
+          "Prod-Related": "false",
+          "Alt": "—",
+          "ImpCat": "time",
+          "Imp": "9",
+          "Sat": "3",
+          "**Score**": "**15**",
+          "Class": "UNDERSERVED"
+        },
+        {
+          "ID": "N14",
+          "Step": "CONCLUDE",
+          "Error Type": "ACCURACY",
+          "Statement": "Minimize the likelihood that emergency exit event logs contain gaps or discontinuities that cause fire safety compliance documentation to fail regulatory audit — measured by audit failure rate per 100 compliance submissions",
+          "Pyramid": "P2",
+          "Prod-Related": "false",
+          "Alt": "—",
+          "ImpCat": "safety",
+          "Imp": "10",
+          "Sat": "4",
+          "**Score**": "**16**",
+          "Class": "UNDERSERVED"
+        },
+        {
+          "ID": "N15",
+          "Step": "CONCLUDE",
+          "Error Type": "THROUGHPUT",
+          "Statement": "Increase the ability to generate real-time portfolio-level compliance dashboards showing monitoring health across all client exit door points with data latency under 24 hours",
+          "Pyramid": "P2",
+          "Prod-Related": "false",
+          "Alt": "—",
+          "ImpCat": "time",
+          "Imp": "8",
+          "Sat": "3",
+          "**Score**": "13",
+          "Class": "—"
+        },
+        {
+          "ID": "N16",
+          "Step": "DEFINE",
+          "Error Type": "EFFORT",
+          "Statement": "Minimize time required to generate a complete inventory of emergency exit door points requiring monitoring across a new multi-building client portfolio — measured in hours per 100 doors scoped",
+          "Pyramid": "P2",
+          "Prod-Related": "false",
+          "Alt": "—",
+          "ImpCat": "time",
+          "Imp": "7",
+          "Sat": "5",
+          "**Score**": "9",
+          "Class": "—"
+        },
+        {
+          "ID": "N17",
+          "Step": "ACQUIRE",
+          "Error Type": "EFFORT",
+          "Statement": "Minimize the total cost-per-door-per-year of emergency exit monitoring across portfolios of 50+ client buildings — measured in EUR per door per year including hardware, installation, and ongoing maintenance",
+          "Pyramid": "P1",
+          "Prod-Related": "false",
+          "Alt": "cross",
+          "ImpCat": "cost",
+          "Imp": "9",
+          "Sat": "4",
+          "**Score**": "**14**",
+          "Class": "UNDERSERVED"
+        },
+        {
+          "ID": "N18",
+          "Step": "ACQUIRE",
+          "Error Type": "ACCURACY",
+          "Statement": "Minimize the likelihood of deploying wireless exit monitoring devices that require proprietary gateways incompatible with the client building's existing BMS protocol — measured by BMS integration rework rate per 100 deployments",
+          "Pyramid": "P1",
+          "Prod-Related": "true",
+          "Alt": "B",
+          "ImpCat": "reliability",
+          "Imp": "8",
+          "Sat": "4",
+          "**Score**": "12",
+          "Class": "—"
+        },
+        {
+          "ID": "N19",
+          "Step": "ACQUIRE",
+          "Error Type": "EFFORT",
+          "Statement": "Minimize evaluation time for FM procurement teams to qualify wireless exit monitoring hardware for multi-client portfolio standardization — measured in days from vendor shortlist to approved FM specification",
+          "Pyramid": "P1",
+          "Prod-Related": "true",
+          "Alt": "B",
+          "ImpCat": "time",
+          "Imp": "7",
+          "Sat": "5",
+          "**Score**": "9",
+          "Class": "—"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Level",
+        "Role",
+        "Retrieval Answer",
+        "Bridge Question Answer",
+        "Market Need",
+        "ImpCat",
+        "Imp",
+        "Sat",
+        "Score"
+      ],
+      "rows": [
+        {
+          "Level": "**P3 Role**",
+          "Role": "FM compliance engineer",
+          "Retrieval Answer": "\"A professional whose audit documentation is accepted by fire marshals without question — trusted by clients, never surprised by inspections\"",
+          "Bridge Question Answer": "Product must produce tamper-evident, timestamped event logs as primary regulatory evidence without manual assembly",
+          "Market Need": "N20: Maximize completeness and tamper-evidence of emergency exit event logs that FM compliance engineers can present as primary evidence during unannounced fire safety inspections — without manual data aggregation",
+          "ImpCat": "time",
+          "Imp": "8",
+          "Sat": "3",
+          "Score": "13"
+        },
+        {
+          "Level": "**P4 Image**",
+          "Role": "FM contract manager [Overseer]",
+          "Retrieval Answer": "\"Building owner sees FM manager as operationally proactive; fire marshal sees FM as compliant and audit-ready without prompting\"",
+          "Bridge Question Answer": "Product must generate client-presentable compliance dashboards without FM analyst post-processing",
+          "Market Need": "N21: Minimize manual post-processing effort required to convert exit monitoring event data into client-facing compliance reports demonstrating FM operational excellence — measured in hours per monthly client report",
+          "ImpCat": "time",
+          "Imp": "7",
+          "Sat": "4",
+          "Score": "10"
+        },
+        {
+          "Level": "**P5 Emotional**",
+          "Role": "FM compliance technician",
+          "Retrieval Answer": "\"Want: confidence that every door point is covered and no gaps exist. Avoid: discovering an unmonitored door during a fire marshal inspection\"",
+          "Bridge Question Answer": "Product must surface coverage gaps proactively before they become incidents or audit failures",
+          "Market Need": "N22: Minimize FM compliance technicians' exposure to undiscovered monitoring coverage gaps across distributed client sites that could result in unrecorded incidents prior to fire safety inspection [hypothesis]",
+          "ImpCat": "safety",
+          "Imp": "7",
+          "Sat": "4",
+          "Score": "10"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Score",
+        "Need (abbreviated)",
+        "Step",
+        "Prod-Related",
+        "Türwächter addresses?"
+      ],
+      "rows": [
+        {
+          "ID": "N04",
+          "Score": "16",
+          "Need (abbreviated)": "Commissioning-passing devices that fail under real alarm conditions",
+          "Step": "CONFIRM",
+          "Prod-Related": "false",
+          "Türwächter addresses?": "Partial — mechanical alarm is power-independent, but IoT misconfiguration risk remains"
+        },
+        {
+          "ID": "N08",
+          "Score": "16",
+          "Need (abbreviated)": "Undetected door openings during operating period",
+          "Step": "EXECUTE",
+          "Prod-Related": "false",
+          "Türwächter addresses?": "Direct — IoT layer provides real-time event detection vs. mechanical-only gap"
+        },
+        {
+          "ID": "N14",
+          "Score": "16",
+          "Need (abbreviated)": "Audit-failing gaps in event logs",
+          "Step": "CONCLUDE",
+          "Prod-Related": "false",
+          "Türwächter addresses?": "Direct — continuous IoT logging vs. manual inspection gaps"
+        },
+        {
+          "ID": "N02",
+          "Score": "15",
+          "Need (abbreviated)": "Hardwired cable cost in occupied retrofit buildings",
+          "Step": "PREPARE",
+          "Prod-Related": "true (Alt A)",
+          "Türwächter addresses?": "Direct — wireless retrofit vs. hardwired is the primary positioning axis"
+        },
+        {
+          "ID": "N13",
+          "Score": "15",
+          "Need (abbreviated)": "Manual compilation of compliance certificates",
+          "Step": "CONCLUDE",
+          "Prod-Related": "false",
+          "Türwächter addresses?": "Direct — automated event log export replaces manual FM paperwork"
+        },
+        {
+          "ID": "N03",
+          "Score": "14",
+          "Need (abbreviated)": "Battery depletion without CMMS alert",
+          "Step": "MAINTENANCE",
+          "Prod-Related": "true (Alt B)",
+          "Türwächter addresses?": "Partial — low-battery alert via IoT exists but field reliability unconfirmed"
+        },
+        {
+          "ID": "N05",
+          "Score": "14",
+          "Need (abbreviated)": "Non-compliant escape route configuration",
+          "Step": "CONFIRM",
+          "Prod-Related": "false",
+          "Türwächter addresses?": "Addressed — EN 179/1125 certification pre-satisfies this"
+        },
+        {
+          "ID": "N17",
+          "Score": "14",
+          "Need (abbreviated)": "Total cost-per-door-per-year at portfolio scale",
+          "Step": "ACQUIRE",
+          "Prod-Related": "false",
+          "Türwächter addresses?": "Contested — requires documented ROI case (per constraint C7)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Technology",
+        "VN Anchor Unit",
+        "Level",
+        "Market Share",
+        "Trend"
+      ],
+      "rows": [
+        {
+          "Technology": "Hardwired electronic alarm systems (door contacts → fire panel)",
+          "VN Anchor Unit": "Door & Exit Monitoring System",
+          "Level": "L5",
+          "Market Share": "~45%",
+          "Trend": "Stable — high switching cost once installed"
+        },
+        {
+          "Technology": "Battery-powered wireless alarm devices (Türwächter class)",
+          "VN Anchor Unit": "Door Guardian Device",
+          "Level": "L4",
+          "Market Share": "~35%",
+          "Trend": "Growing — driven by retrofit FM contract growth"
+        },
+        {
+          "Technology": "Mechanical-only door alarms",
+          "VN Anchor Unit": "Door Guardian Device",
+          "Level": "L4",
+          "Market Share": "~20%",
+          "Trend": "Declining — compliance pressure reducing paper-log acceptance"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "label": "JobMap",
+      "market_name": "Facilities Support Services",
+      "naics_code": "561210",
+      "anchor_vn_unit": "Door Guardian Device",
+      "anchor_level": "L4",
+      "parent_vn_unit": "Door & Exit Monitoring System",
+      "parent_level": "L5",
+      "product_job_statement": "Help Door & Exit Monitoring System to detect unauthorized emergency exit door activations and produce audit-ready event logs for FM compliance workflows — without requiring wired infrastructure or on-site inspection rounds",
+      "cfj_statement": "Operate and maintain a client's built environment to achieve continuous safety compliance, operational readiness, and regulatory conformance while minimising client-side labour"
+    },
+    [
+      {
+        "label": "JobStep",
+        "step_number": 1,
+        "step_name": "DEFINE",
+        "naics_code": "561210",
+        "statement": "Define which door points require monitoring, alarm thresholds, and compliance reporting requirements per client building",
+        "relevant_to_product": false,
+        "relevance_rationale": "Scoping occurs at FM contract level before device selection; product does not influence this step"
+      },
+      {
+        "label": "JobStep",
+        "step_number": 2,
+        "step_name": "LOCATE",
+        "naics_code": "561210",
+        "statement": "Map and record all emergency exit door points and hardware specifications across client buildings",
+        "relevant_to_product": false,
+        "relevance_rationale": "Asset mapping precedes device deployment; product does not influence inventory creation"
+      },
+      {
+        "label": "JobStep",
+        "step_number": 3,
+        "step_name": "PREPARE",
+        "naics_code": "561210",
+        "statement": "Install monitoring devices, configure gateways, integrate with client BMS/CMMS, and commission alarm triggers across all door points",
+        "relevant_to_product": true,
+        "relevance_rationale": "Device installation and commissioning is the core Türwächter deployment task; installation method (surface-mount wireless vs. wired) directly determines FM labor cost"
+      },
+      {
+        "label": "JobStep",
+        "step_number": 4,
+        "step_name": "CONFIRM",
+        "naics_code": "561210",
+        "statement": "Verify all monitoring devices trigger alarms within specification and that events reach the FM dashboard correctly before handover",
+        "relevant_to_product": true,
+        "relevance_rationale": "Post-commissioning verification tests device reliability; misconfiguration at this step is the leading cause of compliance failures discovered during fire marshal inspections"
+      },
+      {
+        "label": "JobStep",
+        "step_number": 5,
+        "step_name": "EXECUTE",
+        "naics_code": "561210",
+        "statement": "Detect unauthorized door activations in real time, trigger audible alarms, and log events timestamped to the FM monitoring platform",
+        "relevant_to_product": true,
+        "relevance_rationale": "Primary operational function of the device; detection latency and alarm reliability are the core performance KPIs"
+      },
+      {
+        "label": "JobStep",
+        "step_number": 6,
+        "step_name": "MONITOR",
+        "naics_code": "561210",
+        "statement": "Track real-time device health — battery levels, wireless signal integrity, and alarm frequency per door point — across the FM portfolio",
+        "relevant_to_product": true,
+        "relevance_rationale": "IoT reporting capability (battery alerts, signal health, dashboard coverage maps) is the primary differentiator of the Türwächter vs. mechanical-only alternatives"
+      },
+      {
+        "label": "JobStep",
+        "step_number": 7,
+        "step_name": "MODIFY",
+        "naics_code": "561210",
+        "statement": "Respond to alarms, investigate false positives, adjust device configuration, and dispatch maintenance work orders for battery replacement or fault resolution",
+        "relevant_to_product": true,
+        "relevance_rationale": "FM operator response workflows are triggered by device-generated events; false positive rate and recovery time directly affect FM labor costs"
+      },
+      {
+        "label": "JobStep",
+        "step_number": 8,
+        "step_name": "CONCLUDE",
+        "naics_code": "561210",
+        "statement": "Generate compliance reports, close inspection records, archive event logs, and deliver fire safety evidence certificates to clients and regulators",
+        "relevant_to_product": true,
+        "relevance_rationale": "Automated event log → compliance document chain is the primary FM business value of the IoT layer; manual compilation is the top underserved need in this market"
+      }
+    ],
+    [
+      {
+        "label": "ErrorStatement",
+        "id": "N01",
+        "full_statement": "Minimize installation labor-hours per door point required to deploy wireless exit monitoring devices on existing door hardware without conduit runs or frame modification",
+        "job_step_number": 3,
+        "job_step_name": "PREPARE",
+        "error_type": "EFFORT",
+        "pyramid_level": "P1",
+        "alternative": "Battery-powered wireless (Alt B)",
+        "importance": 8,
+        "satisfaction_current": 7,
+        "opportunity_score": 9,
+        "impact_category": "time",
+        "product_related": true,
+        "rationale": "Wireless surface-mount deployment is the key install-time advantage vs. hardwired; already partially satisfied by the Türwächter's 0.5–1 hr/door profile",
+        "confidence": 0.8
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N02",
+        "full_statement": "Minimize cost per door point of electrical conduit routing and cable installation required to connect hardwired exit alarm contacts to fire panels in occupied retrofit buildings",
+        "job_step_number": 3,
+        "job_step_name": "PREPARE",
+        "error_type": "EFFORT",
+        "pyramid_level": "P1",
+        "alternative": "Hardwired electronic (Alt A)",
+        "importance": 9,
+        "satisfaction_current": 3,
+        "opportunity_score": 15,
+        "impact_category": "cost",
+        "product_related": true,
+        "rationale": "Retrofit cable runs in occupied buildings cost €150–300 labour per door on top of hardware; this pain point is poorly addressed by all hardwired alternatives and is well-documented in FM procurement data",
+        "confidence": 0.85
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N03",
+        "full_statement": "Minimize the number of wireless door monitoring devices reaching critical battery depletion without generating a preventive maintenance alert in the FM CMMS — measured by undetected depletions per 100 devices per year",
+        "job_step_number": 7,
+        "job_step_name": "MODIFY",
+        "error_type": "DETECTION",
+        "pyramid_level": "P1",
+        "alternative": "Battery-powered wireless (Alt B)",
+        "importance": 9,
+        "satisfaction_current": 4,
+        "opportunity_score": 14,
+        "impact_category": "reliability",
+        "product_related": true,
+        "rationale": "Battery life is not published by GfS for the IoT variant; FM operators report that undiscovered battery failures are a leading cause of monitoring coverage gaps in wireless safety hardware deployments",
+        "confidence": 0.75
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N04",
+        "full_statement": "Minimize the likelihood that exit monitoring devices pass initial commissioning tests but fail to trigger an alarm under actual emergency conditions due to misconfiguration — measured by post-commissioning alarm failure rate per 1,000 devices",
+        "job_step_number": 4,
+        "job_step_name": "CONFIRM",
+        "error_type": "ACCURACY",
+        "pyramid_level": "P2",
+        "alternative": null,
+        "importance": 10,
+        "satisfaction_current": 4,
+        "opportunity_score": 16,
+        "impact_category": "safety",
+        "product_related": false,
+        "rationale": "FM operators have no standardised post-commissioning verification protocol for door monitoring devices; commissioning failures are typically discovered during fire marshal inspections, not during deployment",
+        "confidence": 0.8
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N05",
+        "full_statement": "Minimize the likelihood of deploying exit monitoring configurations that render escape routes non-compliant with EN 179 / EN 1125 single-motion release requirements — measured by non-compliant configurations per 100 installations",
+        "job_step_number": 4,
+        "job_step_name": "CONFIRM",
+        "error_type": "ACCURACY",
+        "pyramid_level": "P2",
+        "alternative": null,
+        "importance": 10,
+        "satisfaction_current": 6,
+        "opportunity_score": 14,
+        "impact_category": "safety",
+        "product_related": false,
+        "rationale": "Türwächter's EN 179/1125 certification pre-satisfies this; satisfaction is higher than N04 because the product is designed to the standard. Remains important for FM operators deploying third-party or mixed-vendor solutions.",
+        "confidence": 0.9
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N06",
+        "full_statement": "Minimize elapsed time between an unauthorized emergency exit door activation and alert notification reaching the responsible FM monitoring operator — measured in minutes per event",
+        "job_step_number": 5,
+        "job_step_name": "EXECUTE",
+        "error_type": "THROUGHPUT",
+        "pyramid_level": "P2",
+        "alternative": null,
+        "importance": 9,
+        "satisfaction_current": 5,
+        "opportunity_score": 13,
+        "impact_category": "time",
+        "product_related": false,
+        "rationale": "Alert latency is partially addressed by existing wireless systems but varies significantly across gateway configurations and building RF environments",
+        "confidence": 0.7
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N07",
+        "full_statement": "Minimize the likelihood that emergency exit alarm devices fail to trigger under zero-voltage conditions (mains outage or complete battery depletion) — measured by alarm failure rate under power-loss test",
+        "job_step_number": 5,
+        "job_step_name": "EXECUTE",
+        "error_type": "ROBUSTNESS",
+        "pyramid_level": "P2",
+        "alternative": null,
+        "importance": 10,
+        "satisfaction_current": 7,
+        "opportunity_score": 13,
+        "impact_category": "safety",
+        "product_related": false,
+        "rationale": "Türwächter's mechanical-primary architecture satisfies this well (alarm works at 0V). Satisfaction=7 reflects the Türwächter's strength here. Hardwired alternatives also satisfy this via fire panel battery backup.",
+        "confidence": 0.9
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N08",
+        "full_statement": "Minimize the number of emergency exit door openings that occur without generating a monitoring alert during a standard operating period — measured by undetected events per 100 door activations per month",
+        "job_step_number": 5,
+        "job_step_name": "EXECUTE",
+        "error_type": "DETECTION",
+        "pyramid_level": "P2",
+        "alternative": null,
+        "importance": 10,
+        "satisfaction_current": 4,
+        "opportunity_score": 16,
+        "impact_category": "safety",
+        "product_related": false,
+        "rationale": "Mechanical-only and manual-inspection alternatives generate significant undetected openings. IoT monitoring directly addresses this but gaps exist during gateway outages, wireless coverage holes, and battery depletion periods.",
+        "confidence": 0.85
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N09",
+        "full_statement": "Minimize variability in event reporting latency across door monitoring devices within a single client building — measured by maximum deviation from median report time in seconds",
+        "job_step_number": 6,
+        "job_step_name": "MONITOR",
+        "error_type": "CONSISTENCY",
+        "pyramid_level": "P2",
+        "alternative": null,
+        "importance": 7,
+        "satisfaction_current": 4,
+        "opportunity_score": 10,
+        "impact_category": "reliability",
+        "product_related": false,
+        "rationale": "Mixed-vendor or mixed-protocol deployments create inconsistent reporting cadences that complicate FM dashboard interpretation",
+        "confidence": 0.6
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N10",
+        "full_statement": "Minimize the number of battery depletion events that reach critical failure level before triggering a preventive maintenance work order in the FM CMMS — measured by ratio of critical-depletion incidents to total depletions",
+        "job_step_number": 6,
+        "job_step_name": "MONITOR",
+        "error_type": "DETECTION",
+        "pyramid_level": "P2",
+        "alternative": null,
+        "importance": 8,
+        "satisfaction_current": 4,
+        "opportunity_score": 12,
+        "impact_category": "reliability",
+        "product_related": false,
+        "rationale": "CMMS integration for battery health alerts is available in principle but rarely configured in practice; FM operators frequently discover depleted batteries reactively during manual rounds",
+        "confidence": 0.7
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N11",
+        "full_statement": "Minimize time to restore exit monitoring coverage at a door point following device fault, wireless disconnection, or battery depletion — measured in hours from failure detection to restored monitoring coverage",
+        "job_step_number": 7,
+        "job_step_name": "MODIFY",
+        "error_type": "RECOVERY",
+        "pyramid_level": "P2",
+        "alternative": null,
+        "importance": 8,
+        "satisfaction_current": 5,
+        "opportunity_score": 11,
+        "impact_category": "time",
+        "product_related": false,
+        "rationale": "Recovery time depends on dispatch speed, spare parts availability, and CMMS work order routing — all external to the device itself",
+        "confidence": 0.65
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N12",
+        "full_statement": "Minimize the false positive alarm rate from exit monitoring devices — unauthorized activation alerts triggered by door vibration, accidental contact, or signal interference — measured by false positives per 100 logged alarm events",
+        "job_step_number": 7,
+        "job_step_name": "MODIFY",
+        "error_type": "ACCURACY",
+        "pyramid_level": "P2",
+        "alternative": null,
+        "importance": 8,
+        "satisfaction_current": 4,
+        "opportunity_score": 12,
+        "impact_category": "skill",
+        "product_related": false,
+        "rationale": "Pre-alarm feature on the Türwächter reduces false positives but does not eliminate them in high-traffic doors; FM operators report alarm fatigue in dense deployments as a barrier to dashboard adoption",
+        "confidence": 0.7
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N13",
+        "full_statement": "Minimize FM labor-hours required to compile emergency exit door event logs into audit-ready fire safety inspection certificates — measured in hours per compliance report per building",
+        "job_step_number": 8,
+        "job_step_name": "CONCLUDE",
+        "error_type": "EFFORT",
+        "pyramid_level": "P2",
+        "alternative": null,
+        "importance": 9,
+        "satisfaction_current": 3,
+        "opportunity_score": 15,
+        "impact_category": "time",
+        "product_related": false,
+        "rationale": "Manual compliance documentation is confirmed as a top FM pain point by industry sources (Facilitate Magazine 2026: fragmented record-keeping between contractors). IoT event logs that auto-generate compliance certificates directly address this.",
+        "confidence": 0.9
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N14",
+        "full_statement": "Minimize the likelihood that emergency exit event logs contain gaps or discontinuities that cause fire safety compliance documentation to fail regulatory audit — measured by audit failure rate per 100 compliance submissions",
+        "job_step_number": 8,
+        "job_step_name": "CONCLUDE",
+        "error_type": "ACCURACY",
+        "pyramid_level": "P2",
+        "alternative": null,
+        "importance": 10,
+        "satisfaction_current": 4,
+        "opportunity_score": 16,
+        "impact_category": "safety",
+        "product_related": false,
+        "rationale": "Compliance documentation failures are the most severe commercial risk for FM operators — they expose the FM company to liability and client contract penalties. Continuous IoT logging eliminates gaps that manual inspection cannot prevent.",
+        "confidence": 0.88
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N15",
+        "full_statement": "Increase the ability to generate real-time portfolio-level compliance dashboards showing monitoring health across all client exit door points with data latency under 24 hours",
+        "job_step_number": 8,
+        "job_step_name": "CONCLUDE",
+        "error_type": "THROUGHPUT",
+        "pyramid_level": "P2",
+        "alternative": null,
+        "importance": 8,
+        "satisfaction_current": 3,
+        "opportunity_score": 13,
+        "impact_category": "time",
+        "product_related": false,
+        "rationale": "Portfolio FM operators (PFM segment) require cross-site visibility that is not available with mechanical or per-building hardwired systems; current IoT dashboards are per-gateway, not portfolio-aggregated",
+        "confidence": 0.75
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N16",
+        "full_statement": "Minimize time required to generate a complete inventory of emergency exit door points requiring monitoring across a new multi-building client portfolio — measured in hours per 100 doors scoped",
+        "job_step_number": 1,
+        "job_step_name": "DEFINE",
+        "error_type": "EFFORT",
+        "pyramid_level": "P2",
+        "alternative": null,
+        "importance": 7,
+        "satisfaction_current": 5,
+        "opportunity_score": 9,
+        "impact_category": "time",
+        "product_related": false,
+        "rationale": "Asset discovery is a FM onboarding bottleneck but is addressed partially by CAFM/IWMS platforms; the Türwächter does not directly address this step",
+        "confidence": 0.6
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N17",
+        "full_statement": "Minimize the total cost-per-door-per-year of emergency exit monitoring across portfolios of 50+ client buildings — measured in EUR per door per year including hardware, installation, and ongoing maintenance",
+        "job_step_number": 1,
+        "job_step_name": "DEFINE",
+        "error_type": "EFFORT",
+        "pyramid_level": "P1",
+        "alternative": "cross-alternative",
+        "importance": 9,
+        "satisfaction_current": 4,
+        "opportunity_score": 14,
+        "impact_category": "cost",
+        "product_related": false,
+        "rationale": "FM procurement teams negotiate per-door unit economics at scale; the Türwächter IoT variant at ~€730/unit requires a documented ROI case vs. mechanical (~€350) and manual inspection (~€30–50/door/year labor) alternatives",
+        "confidence": 0.8
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N18",
+        "full_statement": "Minimize the likelihood of deploying wireless exit monitoring devices that require proprietary gateways incompatible with the client building's existing BMS protocol — measured by BMS integration rework rate per 100 deployments",
+        "job_step_number": 1,
+        "job_step_name": "DEFINE",
+        "error_type": "ACCURACY",
+        "pyramid_level": "P1",
+        "alternative": "Battery-powered wireless (Alt B)",
+        "importance": 8,
+        "satisfaction_current": 4,
+        "opportunity_score": 12,
+        "impact_category": "reliability",
+        "product_related": true,
+        "rationale": "EasyWave protocol incompatibility with BACnet/KNX (Constraint C6) directly manifests here; FM operators on standardised BMS platforms face gateway procurement and integration costs not anticipated at spec time",
+        "confidence": 0.85
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N19",
+        "full_statement": "Minimize evaluation time for FM procurement teams to qualify wireless exit monitoring hardware for multi-client portfolio standardization — measured in days from vendor shortlist to approved FM specification",
+        "job_step_number": 1,
+        "job_step_name": "DEFINE",
+        "error_type": "EFFORT",
+        "pyramid_level": "P1",
+        "alternative": "Battery-powered wireless (Alt B)",
+        "importance": 7,
+        "satisfaction_current": 5,
+        "opportunity_score": 9,
+        "impact_category": "time",
+        "product_related": true,
+        "rationale": "FM procurement standardisation cycles are slow (3–6 months) but this is a sector-wide process issue not specific to any alternative",
+        "confidence": 0.6
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N20",
+        "full_statement": "Maximize completeness and tamper-evidence of emergency exit event logs that FM compliance engineers can present as primary evidence during unannounced fire safety inspections — without manual data aggregation",
+        "job_step_number": 8,
+        "job_step_name": "CONCLUDE",
+        "error_type": "ACCURACY",
+        "pyramid_level": "P3",
+        "alternative": null,
+        "importance": 8,
+        "satisfaction_current": 3,
+        "opportunity_score": 13,
+        "impact_category": "time",
+        "product_related": false,
+        "rationale": "P3 Role Identity: FM compliance engineer wants to be the professional whose documentation holds up in any audit without scrambling. IoT continuous logging with tamper-evident timestamps is the enabling product capability.",
+        "confidence": 0.75
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N21",
+        "full_statement": "Minimize manual post-processing effort required to convert exit monitoring event data into client-facing compliance reports demonstrating FM operational excellence — measured in hours per monthly client report",
+        "job_step_number": 8,
+        "job_step_name": "CONCLUDE",
+        "error_type": "EFFORT",
+        "pyramid_level": "P4",
+        "alternative": null,
+        "importance": 7,
+        "satisfaction_current": 4,
+        "opportunity_score": 10,
+        "impact_category": "time",
+        "product_related": false,
+        "rationale": "P4 Image Identity: FM contract manager needs client-presentable outputs that demonstrate operational excellence without manual analyst effort; current CAFM integrations still require custom report configuration",
+        "confidence": 0.65
+      },
+      {
+        "label": "ErrorStatement",
+        "id": "N22",
+        "full_statement": "Minimize FM compliance technicians' exposure to undiscovered monitoring coverage gaps across distributed client sites that could result in unrecorded incidents prior to fire safety inspection [hypothesis]",
+        "job_step_number": 6,
+        "job_step_name": "MONITOR",
+        "error_type": "DETECTION",
+        "pyramid_level": "P5",
+        "alternative": null,
+        "importance": 7,
+        "satisfaction_current": 4,
+        "opportunity_score": 10,
+        "impact_category": "safety",
+        "product_related": false,
+        "rationale": "P5 Emotional: FM technicians working in distributed portfolios report anxiety about undiscovered gaps (unconfirmed — marked hypothesis pending interview validation). Proactive coverage-gap alerting on the IoT dashboard would address this.",
+        "confidence": 0.4
+      }
+    ],
+    [
+      {
+        "label": "IncumbentAnchor",
+        "technology_name": "Hardwired electronic alarm systems",
+        "naics_code": "561210",
+        "anchor_vn_unit": "Door & Exit Monitoring System",
+        "anchor_level": "L5",
+        "market_name": "Facilities Support Services",
+        "market_share_pct": 45,
+        "trend": "stable",
+        "rationale": "Dominant installed base in commercial FM contracts; high switching cost once cabled; serves BACnet/KNX BMS environments natively"
+      },
+      {
+        "label": "IncumbentAnchor",
+        "technology_name": "Mechanical-only door alarms",
+        "naics_code": "561210",
+        "anchor_vn_unit": "Door Guardian Device",
+        "anchor_level": "L4",
+        "market_name": "Facilities Support Services",
+        "market_share_pct": 20,
+        "trend": "declining",
+        "rationale": "Legacy installed base; compliance pressure from fire safety regulators reducing paper-log acceptance; direct displacement target for the Türwächter"
+      }
+    ],
+    [
+      {
+        "label": "Alternative",
+        "name": "Hardwired electronic alarm systems",
+        "unspsc_code": "46171600",
+        "market_share_pct": 45,
+        "trade_offs": [
+          "Requires mains cabling and conduit in retrofit buildings",
+          "€150–300 electrician labour per door point on top of hardware",
+          "Single cable-fault drops entire circuit",
+          "Asbestos risk in pre-1980 buildings during cable routing"
+        ],
+        "is_existential": false
+      },
+      {
+        "label": "Alternative",
+        "name": "Battery-powered wireless alarm devices (Türwächter class)",
+        "unspsc_code": "46171600",
+        "market_share_pct": 35,
+        "trade_offs": [
+          "Battery replacement cycles (1–3 yr)",
+          "Wireless range ~30–60 m per gateway",
+          "EasyWave protocol requires GfS-specific BUS gateway for BACnet/KNX BMS integration",
+          "Higher unit cost than mechanical variants"
+        ],
+        "is_existential": false
+      },
+      {
+        "label": "Alternative",
+        "name": "Mechanical-only door alarms",
+        "unspsc_code": "46171501",
+        "market_share_pct": 20,
+        "trade_offs": [
+          "No remote monitoring or event logging",
+          "Compliance evidence requires manual inspection rounds",
+          "No portfolio-level visibility for FM operators",
+          "Declining regulatory acceptance of paper-based compliance logs"
+        ],
+        "is_existential": false
+      },
+      {
+        "label": "Alternative",
+        "name": "CCTV / video monitoring at exit points",
+        "unspsc_code": "46171610",
+        "market_share_pct": 5,
+        "trade_offs": [
+          "No alarm-on-open; requires active human review",
+          "High infrastructure cost and GDPR data-retention obligations",
+          "No audit-grade timestamped event log for fire safety compliance",
+          "Does not prevent unauthorized use — only records it"
+        ],
+        "is_existential": false
+      },
+      {
+        "label": "Alternative",
+        "name": "Do nothing / manual inspection rounds",
+        "unspsc_code": null,
+        "market_share_pct": null,
+        "trade_offs": [
+          "Zero P1 product burden — FM inspection labour only (~€6–12/door/visit quarterly)",
+          "Compliance gap risk accepted",
+          "Paper logs increasingly rejected by fire marshals under digital compliance directives"
+        ],
+        "is_existential": true,
+        "existential_note": "Zero P1 burden makes this the default choice at lower-scrutiny FM contracts; only regulatory enforcement pressure drives displacement"
+      }
+    ]
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

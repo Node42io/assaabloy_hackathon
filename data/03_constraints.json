@@ -1,0 +1,443 @@
+{
+  "id": "03_constraints",
+  "title": "Constraints Analysis: GfS Türwächter IoT (Exit Control 179/1125)",
+  "type": "constraints",
+  "market_slug": null,
+  "is_per_market": false,
+  "sections": [
+    {
+      "title": "3.1 Constraint Summary",
+      "content": "| # | Name | Type | is_absolute | Threshold | Markets most affected |\n|---|---|---|---|---|---|\n| C1 | Emergency Escape Non-Impedance | regulatory | false | 0 additional steps vs. EN 179 / EN 1125 | All building markets universally |\n| C2 | Mechanical Alarm Independence (Power Fail) | regulatory | true | 100% mechanical availability at 0 V | Markets requiring fail-safe life safety systems |\n| C3 | Wireless Range Limitation | physical | false | ~30 m integrated TX; ~60 m with one repeater | Large industrial plants, airports, warehouses |\n| C4 | IoT Battery Life Floor | operational | false | >2 years at ≤35 mA average current draw | High-activity doors; markets with infrequent maintenance access |\n| C5 | Retrofit-Only Surface Mount | physical | false | Surface-mount only; no flush-frame integration | Premium architecture, high-security flush-door contexts |\n| C6 | EasyWave Protocol Lock-In | operational | false | Not interoperable with BACnet / KNX / Zigbee / LoRaWAN / Matter | Smart-building platform markets, BMS-integrated facilities |\n| C7 | IoT Price Premium | economic | false | ~730 EUR (~2x basic mechanical variant) | Price-sensitive markets: SME offices, budget housing, small retail |\n| C8 | GDPR Monitoring Data Compliance | regulatory | false | Data processing agreement + DPIA required for EU deployments | EU commercial/public buildings with identifiable occupants |\n| C9 | IP Protection Boundary | environmental | false | IP45 outdoor variant only; standard IP class not published | Wet industrial environments, food processing, marine facilities |\n| C10 | EN 13637 / EltVTR Electrical Compliance | regulatory | false | IoT config must not create single point of failure on escape path | Any configuration with powered electronic locking components |\n\n---"
+    },
+    {
+      "title": "3.2 Constraint Details",
+      "content": "### C1 — Emergency Escape Non-Impedance\n**Type:** regulatory | **is_absolute:** false (certification path exists via correct product design)\n\nThe product must comply with DIN EN 179 (lever handle, force ≤70 N, single motion) and DIN EN 1125 (panic bar, ≥60% door width coverage, single motion). The Türwächter's 45° swing-release is specifically engineered to the standard. Any derivative product or configuration change that adds a step, increases force, or requires prior knowledge triggers a regulatory knockout for all emergency exit markets. The IoT module adds no operational step — it is purely supervisory.\n\n- **threshold_value:** 0 | **threshold_unit:** additional operational steps vs. standard\n- **affected_markets_hint:** All commercial buildings, public buildings, healthcare, education, industrial, transportation, hospitality\n\n### C2 — Mechanical Alarm Independence (Power Fail)\n**Type:** regulatory | **is_absolute:** true\n\nThe alarm horn must function at 0 V. This is not a design preference — it is the explicit requirement of EltVTR (German electrical locking directive) and the underlying principle behind EN 13637's fail-safe clause. The mechanical trigger (guard swing → piezo linkage) is hardwired to the alarm with no electrical dependency. This constraint is absolute: any design that makes the alarm dependent on battery power is non-compliant and cannot be certified.\n\n- **threshold_value:** 0 | **threshold_unit:** V (minimum operating voltage for alarm)\n- **affected_markets_hint:** All life-safety-regulated markets — healthcare, education, government, industrial, public assembly\n\n### C3 — Wireless Range Limitation\n**Type:** physical | **is_absolute:** false\n\nThe integrated 868.3 MHz EasyWave transmitter reaches ~30 m line-of-sight. Concrete walls, steel structures, and building geometry reduce effective range. A single repeater stage extends to ~60 m. Buildings with distances >60 m to the nearest gateway, or with heavy RF-attenuating structures (reinforced concrete, metallic cladding), require multiple repeaters, adding infrastructure cost and installation complexity.\n\n- **threshold_value:** 30 | **threshold_unit:** m (integrated TX, no repeater)\n- **threshold_value (with 1 repeater):** 60 | **threshold_unit:** m\n- **affected_markets_hint:** Large industrial plants (>10,000 m²), airports, convention centers, underground facilities, data centers with Faraday cage construction\n\n### C4 — IoT Battery Life Floor\n**Type:** operational | **is_absolute:** false\n\nThe radio module draws 9–35 mA during active transmission. On a standard 9V block battery (~500 mAh), continuous high-activity operation (frequent door events) would exhaust the battery well below the 2-year maintenance target. Battery life is not published by GfS. In markets with high door-use frequency (hospitals, schools, airport boarding areas) or where maintenance access is infrequent (remote industrial sites, locked utility rooms), battery change cycles could become operationally burdensome or create alarm gaps.\n\n- **threshold_value:** 2 | **threshold_unit:** years (minimum target battery replacement interval)\n- **affected_markets_hint:** High-traffic public buildings, healthcare wards, industrial facilities with restricted access maintenance schedules\n\n### C5 — Retrofit-Only Surface Mount\n**Type:** physical | **is_absolute:** false\n\nThe Türwächter is a surface-mounted device. It cannot be recessed into the door or frame. This creates a visible protrusion on the handle and a physical footprint that may be unacceptable in:\n(a) premium architectural contexts where a door guardian is visible on a designed façade or interior;\n(b) high-security applications where tamper-resistance of flush-integrated hardware is required.\nA glass-frame mounting plate (Art. 991170) addresses one variant but does not resolve the surface-mount limitation.\n\n- **threshold_value:** N/A | **threshold_unit:** N/A (binary — surface-mount only)\n- **affected_markets_hint:** Luxury hotels, premium corporate HQ, secure government facilities, high-security data centers\n\n### C6 — EasyWave Protocol Lock-In\n**Type:** operational | **is_absolute:** false\n\n868 MHz EasyWave is a proprietary GfS protocol. It does not natively interoperate with open smart-building protocols: BACnet, KNX, Zigbee, Z-Wave, LoRaWAN, Matter, or IP-based building automation platforms. Integration with these systems requires a GfS-specific wireless BUS gateway. Facilities standardized on a competing protocol face additional gateway hardware, integration development, and long-term vendor dependency risk.\n\n- **threshold_value:** 0 | **threshold_unit:** standard open protocols supported natively\n- **affected_markets_hint:** Modern smart office buildings (KNX/BACnet), industrial IoT platforms (LoRaWAN), hospitality BMS (BACnet/IP), healthcare nurse-call systems\n\n### C7 — IoT Price Premium\n**Type:** economic | **is_absolute:** false\n\nThe pre-alarm + radio variant retails at ~730 EUR (incl. VAT, Germany). The basic mechanical variant (no pre-alarm, no radio) is substantially cheaper. For facilities deploying dozens to hundreds of doors, the per-door cost differential accumulates significantly. The INSTRUCTIONS.md target is <2x premium over non-IoT alternatives. At scale (100 doors), the IoT deployment is ~€73,000 vs. a mechanical-only deployment of ~€30,000–40,000 — a gap that requires a clear ROI case (reduced labor, compliance documentation, insurance) to justify.\n\n- **threshold_value:** 2 | **threshold_unit:** x price multiple vs. basic non-IoT variant\n- **affected_markets_hint:** SME offices (<50 employees), budget housing/social housing, small retail chains, budget hospitality\n\n### C8 — GDPR Monitoring Data Compliance\n**Type:** regulatory | **is_absolute:** false\n\nDoor-open timestamps, alarm events, and access patterns logged by the IoT monitoring system may constitute personal data under GDPR (EU 2016/679) if they are attributable to identified or identifiable individuals (employees, patients, students). Building operators in the EU must:\n(a) establish a legal basis for processing (legitimate interest or consent);\n(b) execute a Data Processing Agreement (DPA) with any third-party monitoring SaaS provider;\n(c) complete a Data Protection Impact Assessment (DPIA) if the processing is high-risk (systematic monitoring of employees or vulnerable populations).\n\n- **threshold_value:** N/A | **threshold_unit:** N/A (binary compliance requirement)\n- **affected_markets_hint:** All EU commercial buildings with employees, EU healthcare (patient privacy overlay), EU government facilities, EU educational institutions\n\n### C9 — IP Protection Boundary\n**Type:** environmental | **is_absolute:** false\n\nOnly the IP45 outdoor variant (Art. 990000-IP) carries a published weather protection rating. The standard indoor variant has no published IP class. IP45 provides protection against water jets from any direction but does not meet the higher ratings required in:\n- Food and beverage manufacturing (IP65/IP69K for washdown environments)\n- Marine and offshore installations (IP66/IP67)\n- Chemical processing with liquid splashing\n\nDeploying the standard variant in wet, dusty, or corrosive environments risks electronic failure of the IoT module (the mechanical alarm may survive longer, but monitoring is lost).\n\n- **threshold_value:** 45 | **threshold_unit:** IP class (minimum; IP65+ required for washdown markets)\n- **affected_markets_hint:** Food and beverage processing, breweries, pharmaceutical washdown areas, marine facilities, outdoor industrial sites\n\n### C10 — EN 13637 / EltVTR Electrical Compliance\n**Type:** regulatory | **is_absolute:** false\n\nEN 13637 governs electrically controlled exit systems. While the base Türwächter is mechanical-first, any configuration that incorporates electrically powered locking (e.g., electromagnetic holders, electronic access control combined with the Türwächter) must comply with EN 13637's fail-safe release requirements. EltVTR (German directive) additionally requires that no electrical component can impede escape under any failure mode. The IoT module itself is compliant (purely supervisory), but integrators combining the Türwächter with powered locking hardware must design the combined system to the standard.\n\n- **threshold_value:** N/A | **threshold_unit:** N/A (system-level compliance check at integration)\n- **affected_markets_hint:** Controlled-access healthcare, secure government, data centers with combined access control + emergency exit\n\n---"
+    },
+    {
+      "title": "3.3 Absolute vs. Conditional Classification",
+      "content": "| Constraint | is_absolute | Rationale |\n|---|---|---|\n| C1 — Escape Non-Impedance | false | Certification and compliance path exists; the product is already designed to the standard |\n| C2 — Mechanical Alarm Independence | **true** | Fundamental physics/regulatory necessity — no engineering can make the alarm function at 0V with zero stored energy; the mechanism must be mechanical |\n| C3 — Wireless Range | false | Repeaters exist; antenna design and frequency selection are engineering choices |\n| C4 — Battery Life | false | Sleep mode firmware, lower-power radios, larger batteries, or wired power options can extend life |\n| C5 — Surface Mount | false | Custom enclosures, flush-mount variants (product redesign), or architectural trim can mitigate |\n| C6 — Protocol Lock-In | false | Gateway translation hardware and firmware upgrades can bridge protocols |\n| C7 — Price Premium | false | Cost reduction, volume pricing, and ROI-based selling overcome price barriers |\n| C8 — GDPR | false | Data minimization, anonymization, DPA, and DPIA are established compliance paths |\n| C9 — IP Class | false | IP65/IP69K enclosures and sealed variants exist as engineering options |\n| C10 — EN 13637 | false | System-level design compliance is achievable; certification path is defined |\n\n---"
+    },
+    {
+      "title": "3.4 Constraint Severity Heatmap (for downstream market scoring)",
+      "content": "Markets where multiple non-absolute constraints collide become \"mitigable with high cost/time.\" Markets where C2 (the only absolute) cannot be met are knockouts regardless of all other factors.\n\n| Constraint | Large Industrial | Healthcare | Premium Hospitality | Smart Office (BMS) | Food Processing | Budget SME |\n|---|---|---|---|---|---|---|\n| C1 Escape non-impedance | none | none | none | none | none | none |\n| C2 Mechanical alarm | none | none | none | none | none | none |\n| C3 Wireless range | **mitigable** | mitigable | none | none | mitigable | none |\n| C4 Battery life | **mitigable** | **mitigable** | none | none | mitigable | none |\n| C5 Surface mount | none | none | **mitigable** | none | none | none |\n| C6 Protocol lock-in | none | **mitigable** | none | **mitigable** | none | none |\n| C7 Price premium | none | none | none | none | none | **mitigable** |\n| C8 GDPR | mitigable | **mitigable** | mitigable | mitigable | mitigable | mitigable |\n| C9 IP class | none | mitigable | none | none | **mitigable** | none |\n| C10 EN 13637 | none | mitigable | none | none | none | none |\n\nLegend: **bold** = primary concern for that market. No knockouts identified across any market segment — C2 (the sole absolute constraint) is already satisfied by the product's mechanical-primary architecture.\n\n---"
+    },
+    {
+      "title": "3.5 Key Finding",
+      "content": "**No market segments are knocked out by constraints.** The Türwächter IoT's mechanical-primary design pre-satisfies the only absolute constraint (C2). All remaining constraints are mitigable with known engineering or compliance actions. The most complex mitigation clusters are:\n\n1. **Healthcare**: C4 (battery life at high door frequency) + C8 (GDPR + patient privacy) + C10 (EN 13637 in access-controlled wards)\n2. **Smart Office / BMS**: C6 (protocol lock-in) + C8 (GDPR for employee monitoring)\n3. **Food/Pharma Processing**: C9 (IP class for washdown) + C3 (range in dense buildings) + C8 (GDPR)\n4. **Large Industrial**: C3 (range) + C4 (battery at high-use emergency exits)\n\nThese do not eliminate markets — they define the engineering investment and go-to-market customization required per segment.\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"product_name\": \"GfS Türwächter IoT (Exit Control 179/1125)\",\n  \"technology_class\": \"Emergency Exit Security Devices with Remote Monitoring\",\n  \"underlying_mechanism\": \"Spring-loaded mechanical door-handle guard with piezoelectric alarm horn and 868 MHz wireless state transmitter\",\n  \"constraints\": [\n    {\n      \"name\": \"Emergency Escape Non-Impedance\",\n      \"constraint_type\": \"regulatory\",\n      \"description\": \"Must not add any operational step or increase force beyond DIN EN 179 (lever, ≤70N) or DIN EN 1125 (panic bar, single motion) requirements. Single-motion release is non-negotiable and product is certified to this standard.\",\n      \"threshold_value\": \"0\",\n      \"threshold_unit\": \"additional operational steps vs. EN 179/EN 1125\",\n      \"is_absolute\": false,\n      \"affected_markets_hint\": [\"Commercial Buildings\", \"Healthcare\", \"Education\", \"Industrial Facilities\", \"Public Assembly\", \"Transportation Hubs\"]\n    },\n    {\n      \"name\": \"Mechanical Alarm Independence\",\n      \"constraint_type\": \"regulatory\",\n      \"description\": \"Alarm horn must function at 0V — no electrical power whatsoever. EltVTR and fire safety codes mandate mechanical trigger as primary system. IoT module is supervisory only. This is a fundamental physics and regulatory requirement that cannot be waived.\",\n      \"threshold_value\": \"0\",\n      \"threshold_unit\": \"V (minimum operating voltage for alarm trigger)\",\n      \"is_absolute\": true,\n      \"affected_markets_hint\": [\"Healthcare\", \"Education\", \"Government Buildings\", \"Public Assembly\", \"Industrial Safety-Regulated Facilities\"]\n    },\n    {\n      \"name\": \"Wireless Range Limitation\",\n      \"constraint_type\": \"physical\",\n      \"description\": \"Integrated 868.3 MHz EasyWave transmitter reaches ~30m line-of-sight. Concrete, steel, and building geometry reduce effective range. Single repeater extends to ~60m. Multi-stage repeater chains add infrastructure cost and latency.\",\n      \"threshold_value\": \"30\",\n      \"threshold_unit\": \"m (integrated TX, no repeater); 60m with one repeater stage\",\n      \"is_absolute\": false,\n      \"affected_markets_hint\": [\"Large Industrial Plants\", \"Airports\", \"Convention Centers\", \"Underground Facilities\", \"Data Centers with Dense RF Shielding\"]\n    },\n    {\n      \"name\": \"IoT Battery Life Floor\",\n      \"constraint_type\": \"operational\",\n      \"description\": \"Radio module draws 9–35mA during active transmission. On a 9V block battery (~500mAh), high door-event frequency can exhaust battery below the 2-year maintenance target. Battery life not published by GfS for IoT variant.\",\n      \"threshold_value\": \"2\",\n      \"threshold_unit\": \"years (minimum target replacement interval)\",\n      \"is_absolute\": false,\n      \"affected_markets_hint\": [\"High-Traffic Healthcare\", \"School Corridors\", \"Airport Boarding Gates\", \"Remote Industrial Sites with Infrequent Maintenance Access\"]\n    },\n    {\n      \"name\": \"Retrofit-Only Surface Mount\",\n      \"constraint_type\": \"physical\",\n      \"description\": \"Surface-mounted device only. Cannot be flush-integrated into door or frame. Creates visible protrusion that may be unacceptable in premium architectural contexts or high-security flush-door applications.\",\n      \"threshold_value\": null,\n      \"threshold_unit\": null,\n      \"is_absolute\": false,\n      \"affected_markets_hint\": [\"Luxury Hotels\", \"Premium Corporate HQ\", \"Secure Government Facilities\", \"High-Security Data Centers\"]\n    },\n    {\n      \"name\": \"EasyWave Protocol Lock-In\",\n      \"constraint_type\": \"operational\",\n      \"description\": \"868 MHz EasyWave is a proprietary GfS protocol. No native interoperability with BACnet, KNX, Zigbee, Z-Wave, LoRaWAN, or Matter. Integration requires GfS-specific wireless BUS gateway, creating vendor dependency.\",\n      \"threshold_value\": \"0\",\n      \"threshold_unit\": \"open standard protocols supported natively\",\n      \"is_absolute\": false,\n      \"affected_markets_hint\": [\"KNX/BACnet Smart Office Buildings\", \"Industrial IoT LoRaWAN Platforms\", \"Hospitality BMS\", \"Healthcare Nurse-Call Systems\"]\n    },\n    {\n      \"name\": \"IoT Price Premium\",\n      \"constraint_type\": \"economic\",\n      \"description\": \"Pre-alarm + radio variant retails at ~730 EUR. Target ceiling is <2x basic non-IoT variant. At scale deployments (100+ doors), cost differential requires documented ROI (labor reduction, compliance automation, insurance) to justify procurement.\",\n      \"threshold_value\": \"2\",\n      \"threshold_unit\": \"x price multiple vs. basic mechanical variant\",\n      \"is_absolute\": false,\n      \"affected_markets_hint\": [\"SME Offices\", \"Budget Social Housing\", \"Small Retail Chains\", \"Budget Hospitality\"]\n    },\n    {\n      \"name\": \"GDPR Monitoring Data Compliance\",\n      \"constraint_type\": \"regulatory\",\n      \"description\": \"Door-open timestamps and access event logs may constitute personal data under GDPR (EU 2016/679) if attributable to identifiable individuals. Requires legal basis for processing, DPA with SaaS provider, and DPIA for high-risk systematic monitoring.\",\n      \"threshold_value\": null,\n      \"threshold_unit\": null,\n      \"is_absolute\": false,\n      \"affected_markets_hint\": [\"EU Commercial Buildings with Employees\", \"EU Healthcare\", \"EU Government\", \"EU Educational Institutions\"]\n    },\n    {\n      \"name\": \"IP Protection Boundary\",\n      \"constraint_type\": \"environmental\",\n      \"description\": \"Only the IP45 outdoor variant (Art. 990000-IP) carries a published weather protection rating. Standard indoor variant has no published IP class. Wet, dusty, or corrosive environments risk electronic IoT module failure. IP65/IP69K required for washdown markets.\",\n      \"threshold_value\": \"45\",\n      \"threshold_unit\": \"IP class (minimum published; IP65+ required for washdown environments)\",\n      \"is_absolute\": false,\n      \"affected_markets_hint\": [\"Food and Beverage Processing\", \"Breweries\", \"Pharmaceutical Washdown\", \"Marine Facilities\", \"Outdoor Industrial Sites\"]\n    },\n    {\n      \"name\": \"EN 13637 / EltVTR Electrical Compliance\",\n      \"constraint_type\": \"regulatory\",\n      \"description\": \"EN 13637 governs electrically controlled exit systems. Combined configurations (Türwächter + powered locking) must maintain fail-safe escape release. IoT module alone is compliant (supervisory only). System integrators combining with electromagnetic holders or electronic access control must certify the combined system.\",\n      \"threshold_value\": null,\n      \"threshold_unit\": null,\n      \"is_absolute\": false,\n      \"affected_markets_hint\": [\"Controlled-Access Healthcare\", \"Secure Government Facilities\", \"Data Centers with Combined Access + Emergency Exit\"]\n    }\n  ]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "#",
+        "Name",
+        "Type",
+        "is_absolute",
+        "Threshold",
+        "Markets most affected"
+      ],
+      "rows": [
+        {
+          "#": "C1",
+          "Name": "Emergency Escape Non-Impedance",
+          "Type": "regulatory",
+          "is_absolute": "false",
+          "Threshold": "0 additional steps vs. EN 179 / EN 1125",
+          "Markets most affected": "All building markets universally"
+        },
+        {
+          "#": "C2",
+          "Name": "Mechanical Alarm Independence (Power Fail)",
+          "Type": "regulatory",
+          "is_absolute": "true",
+          "Threshold": "100% mechanical availability at 0 V",
+          "Markets most affected": "Markets requiring fail-safe life safety systems"
+        },
+        {
+          "#": "C3",
+          "Name": "Wireless Range Limitation",
+          "Type": "physical",
+          "is_absolute": "false",
+          "Threshold": "~30 m integrated TX; ~60 m with one repeater",
+          "Markets most affected": "Large industrial plants, airports, warehouses"
+        },
+        {
+          "#": "C4",
+          "Name": "IoT Battery Life Floor",
+          "Type": "operational",
+          "is_absolute": "false",
+          "Threshold": ">2 years at ≤35 mA average current draw",
+          "Markets most affected": "High-activity doors; markets with infrequent maintenance access"
+        },
+        {
+          "#": "C5",
+          "Name": "Retrofit-Only Surface Mount",
+          "Type": "physical",
+          "is_absolute": "false",
+          "Threshold": "Surface-mount only; no flush-frame integration",
+          "Markets most affected": "Premium architecture, high-security flush-door contexts"
+        },
+        {
+          "#": "C6",
+          "Name": "EasyWave Protocol Lock-In",
+          "Type": "operational",
+          "is_absolute": "false",
+          "Threshold": "Not interoperable with BACnet / KNX / Zigbee / LoRaWAN / Matter",
+          "Markets most affected": "Smart-building platform markets, BMS-integrated facilities"
+        },
+        {
+          "#": "C7",
+          "Name": "IoT Price Premium",
+          "Type": "economic",
+          "is_absolute": "false",
+          "Threshold": "~730 EUR (~2x basic mechanical variant)",
+          "Markets most affected": "Price-sensitive markets: SME offices, budget housing, small retail"
+        },
+        {
+          "#": "C8",
+          "Name": "GDPR Monitoring Data Compliance",
+          "Type": "regulatory",
+          "is_absolute": "false",
+          "Threshold": "Data processing agreement + DPIA required for EU deployments",
+          "Markets most affected": "EU commercial/public buildings with identifiable occupants"
+        },
+        {
+          "#": "C9",
+          "Name": "IP Protection Boundary",
+          "Type": "environmental",
+          "is_absolute": "false",
+          "Threshold": "IP45 outdoor variant only; standard IP class not published",
+          "Markets most affected": "Wet industrial environments, food processing, marine facilities"
+        },
+        {
+          "#": "C10",
+          "Name": "EN 13637 / EltVTR Electrical Compliance",
+          "Type": "regulatory",
+          "is_absolute": "false",
+          "Threshold": "IoT config must not create single point of failure on escape path",
+          "Markets most affected": "Any configuration with powered electronic locking components"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Constraint",
+        "is_absolute",
+        "Rationale"
+      ],
+      "rows": [
+        {
+          "Constraint": "C1 — Escape Non-Impedance",
+          "is_absolute": "false",
+          "Rationale": "Certification and compliance path exists; the product is already designed to the standard"
+        },
+        {
+          "Constraint": "C2 — Mechanical Alarm Independence",
+          "is_absolute": "**true**",
+          "Rationale": "Fundamental physics/regulatory necessity — no engineering can make the alarm function at 0V with zero stored energy; the mechanism must be mechanical"
+        },
+        {
+          "Constraint": "C3 — Wireless Range",
+          "is_absolute": "false",
+          "Rationale": "Repeaters exist; antenna design and frequency selection are engineering choices"
+        },
+        {
+          "Constraint": "C4 — Battery Life",
+          "is_absolute": "false",
+          "Rationale": "Sleep mode firmware, lower-power radios, larger batteries, or wired power options can extend life"
+        },
+        {
+          "Constraint": "C5 — Surface Mount",
+          "is_absolute": "false",
+          "Rationale": "Custom enclosures, flush-mount variants (product redesign), or architectural trim can mitigate"
+        },
+        {
+          "Constraint": "C6 — Protocol Lock-In",
+          "is_absolute": "false",
+          "Rationale": "Gateway translation hardware and firmware upgrades can bridge protocols"
+        },
+        {
+          "Constraint": "C7 — Price Premium",
+          "is_absolute": "false",
+          "Rationale": "Cost reduction, volume pricing, and ROI-based selling overcome price barriers"
+        },
+        {
+          "Constraint": "C8 — GDPR",
+          "is_absolute": "false",
+          "Rationale": "Data minimization, anonymization, DPA, and DPIA are established compliance paths"
+        },
+        {
+          "Constraint": "C9 — IP Class",
+          "is_absolute": "false",
+          "Rationale": "IP65/IP69K enclosures and sealed variants exist as engineering options"
+        },
+        {
+          "Constraint": "C10 — EN 13637",
+          "is_absolute": "false",
+          "Rationale": "System-level design compliance is achievable; certification path is defined"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Constraint",
+        "Large Industrial",
+        "Healthcare",
+        "Premium Hospitality",
+        "Smart Office (BMS)",
+        "Food Processing",
+        "Budget SME"
+      ],
+      "rows": [
+        {
+          "Constraint": "C1 Escape non-impedance",
+          "Large Industrial": "none",
+          "Healthcare": "none",
+          "Premium Hospitality": "none",
+          "Smart Office (BMS)": "none",
+          "Food Processing": "none",
+          "Budget SME": "none"
+        },
+        {
+          "Constraint": "C2 Mechanical alarm",
+          "Large Industrial": "none",
+          "Healthcare": "none",
+          "Premium Hospitality": "none",
+          "Smart Office (BMS)": "none",
+          "Food Processing": "none",
+          "Budget SME": "none"
+        },
+        {
+          "Constraint": "C3 Wireless range",
+          "Large Industrial": "**mitigable**",
+          "Healthcare": "mitigable",
+          "Premium Hospitality": "none",
+          "Smart Office (BMS)": "none",
+          "Food Processing": "mitigable",
+          "Budget SME": "none"
+        },
+        {
+          "Constraint": "C4 Battery life",
+          "Large Industrial": "**mitigable**",
+          "Healthcare": "**mitigable**",
+          "Premium Hospitality": "none",
+          "Smart Office (BMS)": "none",
+          "Food Processing": "mitigable",
+          "Budget SME": "none"
+        },
+        {
+          "Constraint": "C5 Surface mount",
+          "Large Industrial": "none",
+          "Healthcare": "none",
+          "Premium Hospitality": "**mitigable**",
+          "Smart Office (BMS)": "none",
+          "Food Processing": "none",
+          "Budget SME": "none"
+        },
+        {
+          "Constraint": "C6 Protocol lock-in",
+          "Large Industrial": "none",
+          "Healthcare": "**mitigable**",
+          "Premium Hospitality": "none",
+          "Smart Office (BMS)": "**mitigable**",
+          "Food Processing": "none",
+          "Budget SME": "none"
+        },
+        {
+          "Constraint": "C7 Price premium",
+          "Large Industrial": "none",
+          "Healthcare": "none",
+          "Premium Hospitality": "none",
+          "Smart Office (BMS)": "none",
+          "Food Processing": "none",
+          "Budget SME": "**mitigable**"
+        },
+        {
+          "Constraint": "C8 GDPR",
+          "Large Industrial": "mitigable",
+          "Healthcare": "**mitigable**",
+          "Premium Hospitality": "mitigable",
+          "Smart Office (BMS)": "mitigable",
+          "Food Processing": "mitigable",
+          "Budget SME": "mitigable"
+        },
+        {
+          "Constraint": "C9 IP class",
+          "Large Industrial": "none",
+          "Healthcare": "mitigable",
+          "Premium Hospitality": "none",
+          "Smart Office (BMS)": "none",
+          "Food Processing": "**mitigable**",
+          "Budget SME": "none"
+        },
+        {
+          "Constraint": "C10 EN 13637",
+          "Large Industrial": "none",
+          "Healthcare": "mitigable",
+          "Premium Hospitality": "none",
+          "Smart Office (BMS)": "none",
+          "Food Processing": "none",
+          "Budget SME": "none"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "product_name": "GfS Türwächter IoT (Exit Control 179/1125)",
+      "technology_class": "Emergency Exit Security Devices with Remote Monitoring",
+      "underlying_mechanism": "Spring-loaded mechanical door-handle guard with piezoelectric alarm horn and 868 MHz wireless state transmitter",
+      "constraints": [
+        {
+          "name": "Emergency Escape Non-Impedance",
+          "constraint_type": "regulatory",
+          "description": "Must not add any operational step or increase force beyond DIN EN 179 (lever, ≤70N) or DIN EN 1125 (panic bar, single motion) requirements. Single-motion release is non-negotiable and product is certified to this standard.",
+          "threshold_value": "0",
+          "threshold_unit": "additional operational steps vs. EN 179/EN 1125",
+          "is_absolute": false,
+          "affected_markets_hint": [
+            "Commercial Buildings",
+            "Healthcare",
+            "Education",
+            "Industrial Facilities",
+            "Public Assembly",
+            "Transportation Hubs"
+          ]
+        },
+        {
+          "name": "Mechanical Alarm Independence",
+          "constraint_type": "regulatory",
+          "description": "Alarm horn must function at 0V — no electrical power whatsoever. EltVTR and fire safety codes mandate mechanical trigger as primary system. IoT module is supervisory only. This is a fundamental physics and regulatory requirement that cannot be waived.",
+          "threshold_value": "0",
+          "threshold_unit": "V (minimum operating voltage for alarm trigger)",
+          "is_absolute": true,
+          "affected_markets_hint": [
+            "Healthcare",
+            "Education",
+            "Government Buildings",
+            "Public Assembly",
+            "Industrial Safety-Regulated Facilities"
+          ]
+        },
+        {
+          "name": "Wireless Range Limitation",
+          "constraint_type": "physical",
+          "description": "Integrated 868.3 MHz EasyWave transmitter reaches ~30m line-of-sight. Concrete, steel, and building geometry reduce effective range. Single repeater extends to ~60m. Multi-stage repeater chains add infrastructure cost and latency.",
+          "threshold_value": "30",
+          "threshold_unit": "m (integrated TX, no repeater); 60m with one repeater stage",
+          "is_absolute": false,
+          "affected_markets_hint": [
+            "Large Industrial Plants",
+            "Airports",
+            "Convention Centers",
+            "Underground Facilities",
+            "Data Centers with Dense RF Shielding"
+          ]
+        },
+        {
+          "name": "IoT Battery Life Floor",
+          "constraint_type": "operational",
+          "description": "Radio module draws 9–35mA during active transmission. On a 9V block battery (~500mAh), high door-event frequency can exhaust battery below the 2-year maintenance target. Battery life not published by GfS for IoT variant.",
+          "threshold_value": "2",
+          "threshold_unit": "years (minimum target replacement interval)",
+          "is_absolute": false,
+          "affected_markets_hint": [
+            "High-Traffic Healthcare",
+            "School Corridors",
+            "Airport Boarding Gates",
+            "Remote Industrial Sites with Infrequent Maintenance Access"
+          ]
+        },
+        {
+          "name": "Retrofit-Only Surface Mount",
+          "constraint_type": "physical",
+          "description": "Surface-mounted device only. Cannot be flush-integrated into door or frame. Creates visible protrusion that may be unacceptable in premium architectural contexts or high-security flush-door applications.",
+          "threshold_value": null,
+          "threshold_unit": null,
+          "is_absolute": false,
+          "affected_markets_hint": [
+            "Luxury Hotels",
+            "Premium Corporate HQ",
+            "Secure Government Facilities",
+            "High-Security Data Centers"
+          ]
+        },
+        {
+          "name": "EasyWave Protocol Lock-In",
+          "constraint_type": "operational",
+          "description": "868 MHz EasyWave is a proprietary GfS protocol. No native interoperability with BACnet, KNX, Zigbee, Z-Wave, LoRaWAN, or Matter. Integration requires GfS-specific wireless BUS gateway, creating vendor dependency.",
+          "threshold_value": "0",
+          "threshold_unit": "open standard protocols supported natively",
+          "is_absolute": false,
+          "affected_markets_hint": [
+            "KNX/BACnet Smart Office Buildings",
+            "Industrial IoT LoRaWAN Platforms",
+            "Hospitality BMS",
+            "Healthcare Nurse-Call Systems"
+          ]
+        },
+        {
+          "name": "IoT Price Premium",
+          "constraint_type": "economic",
+          "description": "Pre-alarm + radio variant retails at ~730 EUR. Target ceiling is <2x basic non-IoT variant. At scale deployments (100+ doors), cost differential requires documented ROI (labor reduction, compliance automation, insurance) to justify procurement.",
+          "threshold_value": "2",
+          "threshold_unit": "x price multiple vs. basic mechanical variant",
+          "is_absolute": false,
+          "affected_markets_hint": [
+            "SME Offices",
+            "Budget Social Housing",
+            "Small Retail Chains",
+            "Budget Hospitality"
+          ]
+        },
+        {
+          "name": "GDPR Monitoring Data Compliance",
+          "constraint_type": "regulatory",
+          "description": "Door-open timestamps and access event logs may constitute personal data under GDPR (EU 2016/679) if attributable to identifiable individuals. Requires legal basis for processing, DPA with SaaS provider, and DPIA for high-risk systematic monitoring.",
+          "threshold_value": null,
+          "threshold_unit": null,
+          "is_absolute": false,
+          "affected_markets_hint": [
+            "EU Commercial Buildings with Employees",
+            "EU Healthcare",
+            "EU Government",
+            "EU Educational Institutions"
+          ]
+        },
+        {
+          "name": "IP Protection Boundary",
+          "constraint_type": "environmental",
+          "description": "Only the IP45 outdoor variant (Art. 990000-IP) carries a published weather protection rating. Standard indoor variant has no published IP class. Wet, dusty, or corrosive environments risk electronic IoT module failure. IP65/IP69K required for washdown markets.",
+          "threshold_value": "45",
+          "threshold_unit": "IP class (minimum published; IP65+ required for washdown environments)",
+          "is_absolute": false,
+          "affected_markets_hint": [
+            "Food and Beverage Processing",
+            "Breweries",
+            "Pharmaceutical Washdown",
+            "Marine Facilities",
+            "Outdoor Industrial Sites"
+          ]
+        },
+        {
+          "name": "EN 13637 / EltVTR Electrical Compliance",
+          "constraint_type": "regulatory",
+          "description": "EN 13637 governs electrically controlled exit systems. Combined configurations (Türwächter + powered locking) must maintain fail-safe escape release. IoT module alone is compliant (supervisory only). System integrators combining with electromagnetic holders or electronic access control must certify the combined system.",
+          "threshold_value": null,
+          "threshold_unit": null,
+          "is_absolute": false,
+          "affected_markets_hint": [
+            "Controlled-Access Healthcare",
+            "Secure Government Facilities",
+            "Data Centers with Combined Access + Emergency Exit"
+          ]
+        }
+      ]
+    }
+  ],
+  "has_bom": false
+}

@@ -1,0 +1,1323 @@
+{
+  "id": "JTBD_hotels_motels",
+  "title": "JTBD Analysis — Hotels (except Casino Hotels) and Motels",
+  "type": "jtbd_analysis",
+  "market_slug": "hotels_motels",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Phase 1 — Industry Landscape",
+      "content": "### 1.1 CFJ, Output Types, and Offering Level\n\n| NAICS | CFJ | Output Type | Offering Level |\n|---|---|---|---|\n| 721110 | Provide paid temporary accommodation that meets guests' comfort, safety, and accessibility needs while maintaining full regulatory compliance with fire safety and building codes | Full-service hotel (upscale/luxury) | L7 (Ecosystem) |\n| | | Select-service hotel (branded mid-scale) | L7 |\n| | | Limited-service / budget hotel / motel | L7 |\n| | | Extended-stay hotel | L7 |\n\n**Routing:** L7 Ecosystem → service NAICS. Phases 1.4 (Product BOM) and 1.5 (Edges) are skipped — no physical output; service composition applies. Emergency exit monitoring activates universally across all four output types.\n\n### 1.2 Segments\n\nCircumscribed by **operational context** (different alternatives and trade-offs), not demographics.\n\n| # | Segment | Defining Circumstance | Why distinct |\n|---|---|---|---|\n| S1 | Multi-property hotel chain (portfolio) | Manages 10–500+ properties with centralized security oversight | Needs cross-property monitoring aggregation; individual property economics differ |\n| S2 | Full-service / upscale single property | High brand-standard scrutiny; architect-designed interiors; integrated BMS common | Aesthetic sensitivity (C5 surface mount friction); BMS protocol integration required (C6) |\n| S3 | Select-service / mid-scale property | Retrofit budget approved; cost-ROI driven; limited in-house facilities staff | Commissioning ease and IoT dashboard value proposition are primary evaluation criteria |\n| S4 | Budget / limited-service motel | Minimal infrastructure; no BMS; price-sensitive; owner-operated | IoT premium (C7) is barrier; mechanical-only may dominate; simple deployment required |\n| S5 | Extended-stay property | Semi-residential guest tenure (7–30+ days); reduced after-hours staffing | Battery life more critical (long cycles between maintenance); semi-public exit use patterns |\n\n**Anti-pattern avoided:** \"Large hotel vs. small hotel\" is demographics. S1–S5 are circumstance-defined.\n\n### 1.3 Process Value Network\n\nFull VN documented in `VN_hotels_motels.md`. Key nodes:\n\n| L6 Node | Job Family | Türwächter Relevance |\n|---|---|---|\n| L6H-SEC Building Security & Life Safety | Protect occupants, assets, and escape routes at all times | **DIRECT ANCHOR** — product enters at L5 Emergency Exit Security Devices |\n| L6H-FM Facility Management & Maintenance | Maintain physical plant and utilities in operational condition | Adjacent — BMS integration and maintenance scheduling |\n| L6b Guest Arrival & Check-in | Process guest arrival, assign room, issue access credentials | Indirect — access control context at same security layer |\n\n---"
+    },
+    {
+      "title": "Phase 2 — Company Enters",
+      "content": "### 2.1 VN Anchor\n\n| Field | Value |\n|---|---|\n| **Anchor unit** | Emergency Exit Security Devices |\n| **Anchor level** | L5 (standalone product/system) |\n| **Parent VN unit** | Building Security & Life Safety (L6H-SEC) |\n| **Parent level** | L6 (horizontal process) |\n| **Anchor type** | PROCESS_VN — product is used by the hotel operator; it does not end up inside the accommodation output |\n| **Alternative slot** | Alarmed exit hardware with IoT monitoring (~25% market share) |\n| **Key constraints active** | C5 (surface mount — luxury), C6 (EasyWave protocol — BMS), C7 (price premium — budget), C8 (GDPR — EU hotels) |\n\n### 2.2 Lens\n\n**Function verb** from L6H-SEC job_family: *protect*\n\n> \"What must hotels be able to **protect** emergency exit doors against unauthorized use [in the context of Building Security & Life Safety] while maintaining full fire-code-compliant escape capability?\"\n\nSegments filtered to: S1, S2, S3, S5 (primary); S4 (budget) is adjacent — product relevance lower but not absent.\n\n### 2.3 Core Job and Product Job\n\n| Level | Type | Statement |\n|---|---|---|\n| L6H-SEC parent | Core Functional Job (CFJ) | Provide paid temporary accommodation that meets guests' comfort, safety, and accessibility needs while maintaining full regulatory compliance with fire safety and building codes |\n| L5 anchor | **Product Job** | Help Building Security & Life Safety to detect and deter unauthorized use of emergency exit doors while maintaining unimpeded fire-code-compliant escape capability across all floors and wings |\n\n**Abstraction test:** 3+ alternatives from different categories exist (mechanical alarm, wired panic bar, security guard patrols, access-control integration, do nothing) → confirmed Core Job at this level.\n\n### 2.4 Alternatives\n\n| # | Alternative | UNSPSC | Inherent Trade-offs |\n|---|---|---|---|\n| A1 | Basic mechanical door alarm (no monitoring) — 45% share | 46171610 | No remote visibility; staff must physically patrol to detect unreported propping; no audit log; battery-free |\n| A2 | Wired panic bar / crash bar alarm — 20% share | 46171601 | Requires mains wiring conduit to each door; high retrofit cost in existing buildings; no wireless aggregation |\n| A3 | **Alarmed exit hardware with IoT monitoring** (Türwächter) — 25% share | 46171601 | Proprietary wireless protocol (C6); surface-mount profile visible (C5); battery dependency (C4); ~730 EUR per door (C7) |\n| A4 | Security guard patrols | 92121500 | Labor-intensive; coverage gaps at shift changes; no event log; scales linearly with door count; high recurring cost |\n| A5 | No dedicated exit monitoring (do nothing) — 10% share | — | Zero installation burden; zero P1 burden; full compliance and brand audit risk; undetected misuse propagates |\n\n**\"Do nothing\" is A5** — zero trade-offs, zero P1 burden; explains 10% market position despite clear regulatory exposure.\n\n### 2.5 Scenarios and Output Type Activation\n\n| # | Scenario | Output type activated | Alternatives in play |\n|---|---|---|---|\n| SC1 | Guest propping stairwell exit door for balcony/roof access or smoking | All four | A1, A3, A4 |\n| SC2 | Staff propping service exit for delivery shortcut | All four | A1, A3, A4 |\n| SC3 | Night audit: minimal staffing, all floors unsupervised | FS, SS, ES | A3, A4 |\n| SC4 | Multi-property chain: centralized security team monitors remote portfolio | FS, SS | A3 (IoT only) |\n| SC5 | Annual fire marshal / brand standards audit | All four | A1, A2, A3 (documentation requirement) |\n| SC6 | Renovation / retrofit: replace outdated wired door alarms without structural work | FS, SS | A3 vs. A2 |\n\n**Sparsity check:** SC4 only activates FS/SS (not BU/ES at multi-property chain level) → Core Job is granular enough, no split required.\n\n---"
+    },
+    {
+      "title": "Phase 3 — Needs Derivation",
+      "content": "### Stakeholder Roles\n\n| Role | Person in 721110 | Pyramid levels | Notes |\n|---|---|---|---|\n| Job Executor | Security officer / night duty manager | P1 (all), P2, P3, P4, P5 | Operates dashboard, responds to alerts |\n| Job Overseer | Director of Security / Hotel GM | P1 (own), P2, P4 | Accountable for compliance KPIs; franchise audits |\n| Job Beneficiary | Hotel guests (and staff) | P2, P5 | Safe evacuation; unimpeded escape |\n| Lifecycle Support — Specifier | Facilities consultant / engineer | P1 Acquisition | Defines specification for renovation project |\n| Lifecycle Support — Installer | Maintenance technician / security integrator | P1 Preparation | Commissions hardware; pairs devices |\n| Lifecycle Support — Validator | Fire marshal / building inspector | P1 Confirm | Signs off on escape route compliance |\n| Lifecycle Support — Maintainer | Hotel maintenance team | P1 Maintenance | Battery replacement; dashboard health checks |\n| Purchase Executor | Facilities/Engineering director | P1 Acquisition | Approves CAPEX; ROI evaluation |\n| Purchase Influencer | Insurance underwriter; brand standards auditor | P2, P4 | Sets compliance requirements; influences specification |\n\n### 3.1 Burleson Pyramid — P1 Product Jobs per Alternative\n\n| Stage | A1 Basic mech. alarm | A2 Wired panic bar | A3 IoT monitoring (Türwächter) | A4 Guard patrol | A5 Do nothing |\n|---|---|---|---|---|---|\n| **Acquire** | Specify per-door unit; quote; order | Engage integrator; wiring design; structural survey; permitting | Specify device+gateway; assess RF coverage; quote; certify compatibility with BMS | Issue RFP; evaluate guard firm; SLA negotiation | — |\n| **Prepare** | Surface-mount per door; key provisioning | Install conduit; pull wire; mount bar; panel programming | Mount device; pair to gateway; configure zones; test alarm + radio | Define patrol schedules; brief staff; configure incident log | — |\n| **Use** | Manual patrol to verify no propping; respond to audible alarm if heard | Alarm panel event response; physical site investigation | Dashboard monitoring; alert triage; investigation dispatch | Guard responds in person per schedule or on-call | Accept compliance gap |\n| **Maintain** | Periodic tamper check; no battery required | Annual panel service; wiring inspection | Battery replacement (~every 2 yrs); firmware update; signal level check | Staff turnover; re-training; scheduling gaps | — |\n| **Dispose** | Remove hardware; patch door | Remove hardware; remove conduit; patch walls | Remove device; decommission from dashboard | Contract termination | — |\n\n**Key insight:** A3 (Türwächter) creates the highest Acquisition and Preparation P1 burden (RF survey, BMS compatibility check, gateway pairing) but the lowest Use-stage burden — security officer monitors remotely without patrol. A5 (Do nothing) has **zero P1 burden** — explains its persistence despite compliance risk.\n\n### 3.2 Job Map — 8 Universal Steps\n\n| # | Step | Statement (hotel context) | Relevant to product |\n|---|---|---|---|\n| 1 | DEFINE | Determine which emergency exit doors require monitoring, alert thresholds, notification rules, and coverage zones | YES — configuration scope |\n| 2 | LOCATE | Identify all emergency exit points across floors; assess wireless signal paths; map gateway placement | YES — RF coverage planning |\n| 3 | PREPARE | Install monitoring devices on door handles; pair to gateway; configure zones; test alarm tone | YES — commissioning |\n| 4 | CONFIRM | Verify every device transmits correctly, alarm is unobstructed, and escape motion is unrestricted | YES — acceptance testing |\n| 5 | EXECUTE | Maintain all exits in secured state 24/7; trigger alert on unauthorized activation | YES — core function |\n| 6 | MONITOR | Track real-time exit door status from centralized dashboard; receive alerts; correlate with CCTV or BMS | YES — primary value |\n| 7 | MODIFY | Respond to and reset triggered devices; adjust alert rules; replace failed units | YES — operational |\n| 8 | CONCLUDE | Generate compliance audit reports; log fire marshal inspections; replace low-battery units proactively | YES — compliance output |\n\n### 3.3 Error Statements — P1 + P2 (Seven Error Types)\n\n| # | Full Statement | Step | Error Type | Imp | Sat | OS | Impact | p_related | Confidence | Underserved |\n|---|---|---|---|---|---|---|---|---|---|---|\n| E1 | Minimize the likelihood of high-risk emergency exits remaining unmonitored due to incomplete upfront coverage mapping, leaving ≥1 undetected propping event per month | DEFINE | DETECTION | 7 | 5 | 9 | safety | false | 0.70 | — |\n| E2 | Increase the ability to determine wireless receiver placement achieving >95% floor-level signal coverage before hardware purchase or installation | LOCATE | ACCURACY | 7 | 4 | 10 | reliability | **true** | 0.70 | — |\n| E3 | Minimize the time required to install and commission emergency exit monitoring devices across a 100-room hotel to <4 hours without structural door modification | PREPARE | EFFORT | 8 | 5 | 11 | time | **true** | 0.75 | — |\n| E4 | Minimize the likelihood of emergency exit alarm functionality being impaired during device mounting, pairing, or initial configuration | PREPARE | ROBUSTNESS | 9 | 7 | 11 | safety | false | 0.80 | — |\n| E5 | Increase the ability to verify that every installed exit monitoring device is transmitting correctly and that the audible alarm operates without obstruction — within a single end-to-end commissioning test | CONFIRM | ACCURACY | 9 | 5 | 13 | reliability | false | 0.80 | ✓ |\n| E6 | Minimize the likelihood of an emergency exit remaining in an unauthorized open state for >5 minutes without triggering a staff alert | EXECUTE | DETECTION | 9 | 4 | 14 | safety | false | 0.85 | ✓ |\n| E7 | Minimize the likelihood of legitimate authorized staff uses of emergency exits (housekeeping, maintenance) generating false alerts that erode security staff confidence in the monitoring system | EXECUTE | ACCURACY | 8 | 4 | 12 | reliability | false | 0.80 | ✓ |\n| E8 | Minimize the likelihood of an emergency exit monitoring device adding any additional step or force requirement that delays occupant evacuation during a fire emergency | EXECUTE | ROBUSTNESS | 10 | 8 | 12 | safety | false | 0.90 | — |\n| E9 | Increase the ability of a single security officer to monitor real-time exit door status across all floors from one centralized interface without physical patrol — covering ≥50 exit points simultaneously | MONITOR | THROUGHPUT | 9 | 4 | 14 | time | false | 0.85 | ✓ |\n| E10 | Minimize the time from emergency exit activation event to security staff notification to <30 seconds regardless of time of day | MONITOR | DETECTION | 9 | 5 | 13 | time | false | 0.85 | ✓ |\n| E11 | Minimize the likelihood of wireless connectivity loss causing undetected monitoring gaps exceeding 15 minutes during hotel occupied hours | MONITOR | ROBUSTNESS | 8 | 5 | 11 | reliability | **true** | 0.75 | — |\n| E12 | Minimize the likelihood of the monitoring system misclassifying an emergency evacuation event as an unauthorized door use, triggering an incorrect security response that delays fire evacuation | MONITOR | ACCURACY | 8 | 5 | 11 | safety | false | 0.70 | — |\n| E13 | Minimize the time required to reset a triggered exit monitoring device and restore it to active state after investigation, to <2 minutes | MODIFY | EFFORT | 7 | 6 | 8 | time | false | 0.70 | — |\n| E14 | Minimize the likelihood of a high-priority unauthorized exit event being missed due to alert saturation from high-frequency low-priority activations | MODIFY | DETECTION | 8 | 5 | 11 | safety | false | 0.75 | — |\n| E15 | Increase the ability to produce a complete, timestamped digital audit log of all emergency exit activations and response actions, formatted for fire marshal inspection without manual compilation | CONCLUDE | EFFORT | 8 | 3 | 13 | safety | false | 0.80 | ✓ |\n| E16 | Minimize the time required to identify and proactively replace batteries approaching depletion threshold across a deployment of ≥30 exit monitoring devices before monitoring capability is lost | CONCLUDE | DETECTION | 7 | 4 | 10 | reliability | **true** | 0.75 | — |\n| E17 | Minimize the effort required to integrate emergency exit monitoring event data with an existing hotel BMS or security management platform running standard building protocols | CONCLUDE | EFFORT | 7 | 4 | 10 | cost | **true** | 0.70 | — |\n| E18 | Minimize the variability in emergency exit compliance status across all floor levels at any given time of day | P2 Core | CONSISTENCY | 8 | 4 | 12 | safety | false | 0.80 | ✓ |\n| E19 | Minimize the likelihood of emergency exit door management violations being cited during annual fire authority inspection or franchise brand standards audit | P2 Core | ACCURACY | 9 | 6 | 12 | safety | false | 0.80 | — |\n\n**Count:** 19 statements. Product-related=true: E2, E3, E11, E16, E17 = **5/19 = 26%**. Market-inherent=false: **14/19 = 74%**.\n\n**Underserved (imp > 7 AND sat < 5):** E6, E7, E9, E10, E15, E18 — 6 needs.\n\n### 3.4 P3–P5 Bridge Questions\n\n| Level | Role | Retrieval | Bridge | Market Need |\n|---|---|---|---|---|\n| P3 Role | Security officer (executor) | \"Becomes the person who runs a systematic, audit-proof safety operation that never fails inspection\" | \"What must the system do so they CAN demonstrate systematic control?\" | Increase the ability to demonstrate evidence-based emergency exit management to insurance underwriters and brand auditors with a single report — without manual data assembly [hypothesis] |\n| P4 Image | Hotel GM (overseer) | \"Franchise auditors and insurers must see: this property manages safety proactively, not reactively\" | \"What must the system do so auditors SEE a professional, documented process?\" | Minimize the likelihood of a preventable emergency exit failure becoming a documented finding in a franchise brand standards audit [hypothesis] |\n| P5 Emotional | Security officer (executor, night shift) | \"Wants to feel in control; fears being responsible when an undetected exit breach contributes to a security incident\" | \"What must the system do to produce the feeling of continuous, reliable coverage even when alone?\" | Minimize the sense of uncertainty about whether unmanned emergency exits remain secured during overnight minimum-staffing periods [hypothesis] |\n\n### 3.5 ODI Score Summary\n\n| Rank | Error Statement (short) | OS | Segment priority | Action |\n|---|---|---|---|---|\n| 1 | E6 — Unauthorized exit open >5 min undetected | **14** | S1, S2, S3 | Core value proof point |\n| 2 | E9 — Centralized monitoring ≥50 exits, 1 officer | **14** | S1, S2 | Dashboard differentiation |\n| 3 | E5 — End-to-end commissioning verification | **13** | S3 | Onboarding simplicity |\n| 4 | E10 — Alert latency <30 sec | **13** | S1, S2, S3 | Network reliability |\n| 5 | E15 — Digital audit log, fire marshal ready | **13** | S1, S2, S3, S5 | Compliance automation |\n| 6 | E18 — Consistency across all floors | **12** | S1, S2 | Portfolio visibility |\n| 7 | E7 — False alert fatigue | **12** | S3, S4 | Alert precision tuning |\n| 8 | E19 — Fire authority inspection compliance | **12** | All | Regulatory hygiene |\n\n**Top opportunity cluster:** Remote visibility (E6 + E9 + E10 + E18) — the Türwächter's IoT dashboard directly addresses 4 of the 8 top-ranked needs. Compliance documentation (E15) is the highest-satisfaction gap (sat=3) in the set.\n\n---"
+    },
+    {
+      "title": "Constraint Impact on Segments",
+      "content": "| Constraint | S1 Chain | S2 Upscale | S3 Mid-scale | S4 Budget | S5 Extended |\n|---|---|---|---|---|---|\n| C5 Surface mount (aesthetics) | — | **Friction** | none | none | none |\n| C6 EasyWave protocol lock-in | **Friction** | **Friction** | minor | none | minor |\n| C7 IoT price premium | — | none | **ROI case needed** | **Barrier** | minor |\n| C8 GDPR (EU properties) | **Required** | required | required | minor | required |\n| C4 Battery life | minor | none | minor | none | **Friction** |\n\nNo knockout constraints — all are mitigable.\n\n---"
+    },
+    {
+      "title": "## Structured Data",
+      "content": "```json\n{\n  \"jtbd\": {\n    \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n    \"naics_code\": \"721110\",\n    \"product\": \"GfS Türwächter / Exit Control 179/1125 with IoT\",\n    \"job_map\": {\n      \"anchor_vn_unit\": \"Emergency Exit Security Devices\",\n      \"anchor_level\": \"L5\",\n      \"parent_vn_unit\": \"Building Security & Life Safety\",\n      \"parent_level\": \"L6\",\n      \"product_job_statement\": \"Help Building Security & Life Safety to detect and deter unauthorized use of emergency exit doors while maintaining unimpeded fire-code-compliant escape capability across all floors and wings\"\n    },\n    \"job_steps\": [\n      {\"step_number\": 1, \"step_name\": \"DEFINE\", \"relevant_to_product\": true, \"relevance_rationale\": \"Coverage scope, alert threshold, and notification rule configuration\"},\n      {\"step_number\": 2, \"step_name\": \"LOCATE\", \"relevant_to_product\": true, \"relevance_rationale\": \"Wireless RF coverage mapping and gateway placement\"},\n      {\"step_number\": 3, \"step_name\": \"PREPARE\", \"relevant_to_product\": true, \"relevance_rationale\": \"Device installation, gateway pairing, zone configuration\"},\n      {\"step_number\": 4, \"step_name\": \"CONFIRM\", \"relevant_to_product\": true, \"relevance_rationale\": \"Acceptance testing of alarm and radio transmission\"},\n      {\"step_number\": 5, \"step_name\": \"EXECUTE\", \"relevant_to_product\": true, \"relevance_rationale\": \"Core 24/7 exit security function\"},\n      {\"step_number\": 6, \"step_name\": \"MONITOR\", \"relevant_to_product\": true, \"relevance_rationale\": \"Centralized dashboard and alert delivery — primary IoT value\"},\n      {\"step_number\": 7, \"step_name\": \"MODIFY\", \"relevant_to_product\": true, \"relevance_rationale\": \"Alert response, device reset, rule adjustment\"},\n      {\"step_number\": 8, \"step_name\": \"CONCLUDE\", \"relevant_to_product\": true, \"relevance_rationale\": \"Compliance documentation, battery management\"}\n    ],\n    \"alternatives\": [\n      {\"name\": \"Basic mechanical door alarm (no monitoring)\", \"unspsc\": \"46171610\", \"market_share_pct\": 45, \"existential\": false},\n      {\"name\": \"Wired panic bar / crash bar alarm\", \"unspsc\": \"46171601\", \"market_share_pct\": 20, \"existential\": false},\n      {\"name\": \"Alarmed exit hardware with IoT monitoring (Türwächter)\", \"unspsc\": \"46171601\", \"market_share_pct\": 25, \"existential\": false},\n      {\"name\": \"Security guard patrols\", \"unspsc\": \"92121500\", \"market_share_pct\": null, \"existential\": false},\n      {\"name\": \"No dedicated exit monitoring (do nothing)\", \"unspsc\": null, \"market_share_pct\": 10, \"existential\": false}\n    ],\n    \"error_statements\": [\n      {\n        \"id\": \"E1\",\n        \"full_statement\": \"Minimize the likelihood of high-risk emergency exits remaining unmonitored due to incomplete upfront coverage mapping, leaving ≥1 undetected propping event per month\",\n        \"job_step_number\": 1, \"job_step_name\": \"DEFINE\",\n        \"importance\": 7, \"satisfaction_current\": 5, \"opportunity_score\": 9,\n        \"impact_category\": \"safety\", \"product_related\": false, \"confidence\": 0.70\n      },\n      {\n        \"id\": \"E2\",\n        \"full_statement\": \"Increase the ability to determine wireless receiver placement achieving >95% floor-level signal coverage before hardware purchase or installation\",\n        \"job_step_number\": 2, \"job_step_name\": \"LOCATE\",\n        \"importance\": 7, \"satisfaction_current\": 4, \"opportunity_score\": 10,\n        \"impact_category\": \"reliability\", \"product_related\": true, \"confidence\": 0.70\n      },\n      {\n        \"id\": \"E3\",\n        \"full_statement\": \"Minimize the time required to install and commission emergency exit monitoring devices across a 100-room hotel to <4 hours without structural door modification\",\n        \"job_step_number\": 3, \"job_step_name\": \"PREPARE\",\n        \"importance\": 8, \"satisfaction_current\": 5, \"opportunity_score\": 11,\n        \"impact_category\": \"time\", \"product_related\": true, \"confidence\": 0.75\n      },\n      {\n        \"id\": \"E4\",\n        \"full_statement\": \"Minimize the likelihood of emergency exit alarm functionality being impaired during device mounting, pairing, or initial configuration\",\n        \"job_step_number\": 3, \"job_step_name\": \"PREPARE\",\n        \"importance\": 9, \"satisfaction_current\": 7, \"opportunity_score\": 11,\n        \"impact_category\": \"safety\", \"product_related\": false, \"confidence\": 0.80\n      },\n      {\n        \"id\": \"E5\",\n        \"full_statement\": \"Increase the ability to verify that every installed exit monitoring device is transmitting correctly and that the audible alarm operates without obstruction — within a single end-to-end commissioning test\",\n        \"job_step_number\": 4, \"job_step_name\": \"CONFIRM\",\n        \"importance\": 9, \"satisfaction_current\": 5, \"opportunity_score\": 13,\n        \"impact_category\": \"reliability\", \"product_related\": false, \"confidence\": 0.80\n      },\n      {\n        \"id\": \"E6\",\n        \"full_statement\": \"Minimize the likelihood of an emergency exit remaining in an unauthorized open state for >5 minutes without triggering a staff alert\",\n        \"job_step_number\": 5, \"job_step_name\": \"EXECUTE\",\n        \"importance\": 9, \"satisfaction_current\": 4, \"opportunity_score\": 14,\n        \"impact_category\": \"safety\", \"product_related\": false, \"confidence\": 0.85,\n        \"underserved\": true\n      },\n      {\n        \"id\": \"E7\",\n        \"full_statement\": \"Minimize the likelihood of legitimate authorized staff uses of emergency exits generating false alerts that erode security staff confidence in the monitoring system\",\n        \"job_step_number\": 5, \"job_step_name\": \"EXECUTE\",\n        \"importance\": 8, \"satisfaction_current\": 4, \"opportunity_score\": 12,\n        \"impact_category\": \"reliability\", \"product_related\": false, \"confidence\": 0.80,\n        \"underserved\": true\n      },\n      {\n        \"id\": \"E8\",\n        \"full_statement\": \"Minimize the likelihood of an emergency exit monitoring device adding any additional step or force requirement that delays occupant evacuation during a fire emergency\",\n        \"job_step_number\": 5, \"job_step_name\": \"EXECUTE\",\n        \"importance\": 10, \"satisfaction_current\": 8, \"opportunity_score\": 12,\n        \"impact_category\": \"safety\", \"product_related\": false, \"confidence\": 0.90\n      },\n      {\n        \"id\": \"E9\",\n        \"full_statement\": \"Increase the ability of a single security officer to monitor real-time exit door status across all floors from one centralized interface without physical patrol — covering ≥50 exit points simultaneously\",\n        \"job_step_number\": 6, \"job_step_name\": \"MONITOR\",\n        \"importance\": 9, \"satisfaction_current\": 4, \"opportunity_score\": 14,\n        \"impact_category\": \"time\", \"product_related\": false, \"confidence\": 0.85,\n        \"underserved\": true\n      },\n      {\n        \"id\": \"E10\",\n        \"full_statement\": \"Minimize the time from emergency exit activation event to security staff notification to <30 seconds regardless of time of day\",\n        \"job_step_number\": 6, \"job_step_name\": \"MONITOR\",\n        \"importance\": 9, \"satisfaction_current\": 5, \"opportunity_score\": 13,\n        \"impact_category\": \"time\", \"product_related\": false, \"confidence\": 0.85\n      },\n      {\n        \"id\": \"E11\",\n        \"full_statement\": \"Minimize the likelihood of wireless connectivity loss causing undetected monitoring gaps exceeding 15 minutes during hotel occupied hours\",\n        \"job_step_number\": 6, \"job_step_name\": \"MONITOR\",\n        \"importance\": 8, \"satisfaction_current\": 5, \"opportunity_score\": 11,\n        \"impact_category\": \"reliability\", \"product_related\": true, \"confidence\": 0.75\n      },\n      {\n        \"id\": \"E12\",\n        \"full_statement\": \"Minimize the likelihood of the monitoring system misclassifying an emergency evacuation event as an unauthorized door use, triggering an incorrect security response that delays fire evacuation\",\n        \"job_step_number\": 6, \"job_step_name\": \"MONITOR\",\n        \"importance\": 8, \"satisfaction_current\": 5, \"opportunity_score\": 11,\n        \"impact_category\": \"safety\", \"product_related\": false, \"confidence\": 0.70\n      },\n      {\n        \"id\": \"E13\",\n        \"full_statement\": \"Minimize the time required to reset a triggered exit monitoring device and restore it to active state after investigation, to <2 minutes\",\n        \"job_step_number\": 7, \"job_step_name\": \"MODIFY\",\n        \"importance\": 7, \"satisfaction_current\": 6, \"opportunity_score\": 8,\n        \"impact_category\": \"time\", \"product_related\": false, \"confidence\": 0.70\n      },\n      {\n        \"id\": \"E14\",\n        \"full_statement\": \"Minimize the likelihood of a high-priority unauthorized exit event being missed due to alert saturation from high-frequency low-priority activations\",\n        \"job_step_number\": 7, \"job_step_name\": \"MODIFY\",\n        \"importance\": 8, \"satisfaction_current\": 5, \"opportunity_score\": 11,\n        \"impact_category\": \"safety\", \"product_related\": false, \"confidence\": 0.75\n      },\n      {\n        \"id\": \"E15\",\n        \"full_statement\": \"Increase the ability to produce a complete, timestamped digital audit log of all emergency exit activations and response actions, formatted for fire marshal inspection without manual compilation\",\n        \"job_step_number\": 8, \"job_step_name\": \"CONCLUDE\",\n        \"importance\": 8, \"satisfaction_current\": 3, \"opportunity_score\": 13,\n        \"impact_category\": \"safety\", \"product_related\": false, \"confidence\": 0.80,\n        \"underserved\": true\n      },\n      {\n        \"id\": \"E16\",\n        \"full_statement\": \"Minimize the time required to identify and proactively replace batteries approaching depletion threshold across a deployment of ≥30 exit monitoring devices before monitoring capability is lost\",\n        \"job_step_number\": 8, \"job_step_name\": \"CONCLUDE\",\n        \"importance\": 7, \"satisfaction_current\": 4, \"opportunity_score\": 10,\n        \"impact_category\": \"reliability\", \"product_related\": true, \"confidence\": 0.75\n      },\n      {\n        \"id\": \"E17\",\n        \"full_statement\": \"Minimize the effort required to integrate emergency exit monitoring event data with an existing hotel BMS or security platform running standard building protocols\",\n        \"job_step_number\": 8, \"job_step_name\": \"CONCLUDE\",\n        \"importance\": 7, \"satisfaction_current\": 4, \"opportunity_score\": 10,\n        \"impact_category\": \"cost\", \"product_related\": true, \"confidence\": 0.70\n      },\n      {\n        \"id\": \"E18\",\n        \"full_statement\": \"Minimize the variability in emergency exit compliance status across all floor levels at any given time of day\",\n        \"job_step_number\": \"P2_CORE\", \"job_step_name\": \"P2 Core Job\",\n        \"importance\": 8, \"satisfaction_current\": 4, \"opportunity_score\": 12,\n        \"impact_category\": \"safety\", \"product_related\": false, \"confidence\": 0.80,\n        \"underserved\": true\n      },\n      {\n        \"id\": \"E19\",\n        \"full_statement\": \"Minimize the likelihood of emergency exit door management violations being cited during annual fire authority inspection or franchise brand standards audit\",\n        \"job_step_number\": \"P2_CORE\", \"job_step_name\": \"P2 Core Job\",\n        \"importance\": 9, \"satisfaction_current\": 6, \"opportunity_score\": 12,\n        \"impact_category\": \"safety\", \"product_related\": false, \"confidence\": 0.80\n      }\n    ],\n    \"p3_p5_needs\": [\n      {\n        \"level\": \"P3\",\n        \"role\": \"Security officer (executor)\",\n        \"retrieval\": \"Becomes the person who runs a systematic, audit-proof safety operation that never fails inspection\",\n        \"bridge\": \"What must the system do so they CAN demonstrate systematic control?\",\n        \"need\": \"Increase the ability to demonstrate evidence-based emergency exit management to insurance underwriters and brand auditors with a single report without manual data assembly\",\n        \"hypothesis\": true\n      },\n      {\n        \"level\": \"P4\",\n        \"role\": \"Hotel GM (overseer)\",\n        \"retrieval\": \"Franchise auditors and insurers must see this property manages safety proactively, not reactively\",\n        \"bridge\": \"What must the system do so auditors SEE a professional, documented process?\",\n        \"need\": \"Minimize the likelihood of a preventable emergency exit failure becoming a documented finding in a franchise brand standards audit\",\n        \"hypothesis\": true\n      },\n      {\n        \"level\": \"P5\",\n        \"role\": \"Security officer — night shift (executor)\",\n        \"retrieval\": \"Wants to feel in control; fears being responsible when an undetected exit breach contributes to a security incident\",\n        \"bridge\": \"What must the system do to produce the feeling of continuous, reliable coverage even when alone?\",\n        \"need\": \"Minimize the sense of uncertainty about whether unmanned emergency exits remain secured during overnight minimum-staffing periods\",\n        \"hypothesis\": true\n      }\n    ],\n    \"odi_top_opportunities\": [\n      {\"rank\": 1, \"id\": \"E6\", \"os\": 14, \"label\": \"Unauthorized exit undetected >5 min\"},\n      {\"rank\": 2, \"id\": \"E9\", \"os\": 14, \"label\": \"Centralized monitoring ≥50 exits, 1 officer\"},\n      {\"rank\": 3, \"id\": \"E5\", \"os\": 13, \"label\": \"End-to-end commissioning verification\"},\n      {\"rank\": 4, \"id\": \"E10\", \"os\": 13, \"label\": \"Alert latency <30 sec\"},\n      {\"rank\": 5, \"id\": \"E15\", \"os\": 13, \"label\": \"Digital audit log, fire-marshal-ready\"},\n      {\"rank\": 6, \"id\": \"E18\", \"os\": 12, \"label\": \"Compliance consistency across all floors\"},\n      {\"rank\": 7, \"id\": \"E7\", \"os\": 12, \"label\": \"False alert fatigue elimination\"},\n      {\"rank\": 8, \"id\": \"E19\", \"os\": 12, \"label\": \"Fire authority inspection pass rate\"}\n    ]\n  }\n}\n```\n\n---"
+    },
+    {
+      "title": "QA Self-Check",
+      "content": "| # | Check | Status |\n|---|---|---|\n| V1 | All statements start with \"Minimize the likelihood of…\" or \"Increase the ability to…\" with ONE measurable KPI | PASS |\n| V2 | product_related=true only where need disappears with a different technology (e.g., guard patrol has no battery/RF need) | PASS |\n| V3 | No uniform importance/satisfaction pattern; safety/regulatory at 8-10; operational at 7-8 | PASS |\n| V4 | Impact category matches KPI (audit log → safety; alert latency → time; battery → reliability) | PASS |\n| V5 | ≥2 needs per job step; 5/19 product-specific (26%); 6 underserved identified | PASS |\n| V6 | Zero references to EasyWave, 868 MHz, GfS, Türwächter, or piezoelectric in need statements | PASS |\n| V7 | Anchor at L5 — standalone system; parent L6H-SEC | PASS |\n| V8 | Product job: \"Help Building Security & Life Safety to…\" includes parent VN unit and context qualifier | PASS |\n\n---\n\n*Sources consulted:*\n- [Hotel Security Best Practices — Omnilert](https://www.omnilert.com/blog/best-practices-in-hotel-security)\n- [Fire and Life Safety Services Market — GM Insights](https://www.gminsights.com/industry-analysis/fire-and-life-safety-protections-services-market) (commercial sector $71.5B, 2024)\n- [Fire Safety Systems Market — Mordor Intelligence](https://www.mordorintelligence.com/industry-reports/fire-safety-systems-market-industry) ($75B in 2025, 6.67% CAGR to 2030)\n- [IoT in Fire Protection — Impact Fire Services](https://resources.impactfireservices.com/iot-in-fire-protection)\n- [Hotel Fire Protection Guide — Century FP](https://blog.centuryfp.com/hotel-fire-protection-guide-top-5-systems)\n- [Emergency Exit Stair Signage for Hotels — Hotel Signs Blog](https://blog.hotelsigns.com/2025/01/01/keeping-guests-and-staff-safe-a-guide-to-emergency-exit-stair-signage-in-hotels/)\n- [Panic & Emergency Exit Devices Market — Verified Market Reports](https://www.verifiedmarketreports.com/product/panic-emergency-exit-devices-market-size-and-forecast/)\n- VN_hotels_motels.md — internal, confirmed anchor L5 + constraint mapping\n- 03_constraints.md — C4, C5, C6, C7, C8 applicability per segment"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "NAICS",
+        "CFJ",
+        "Output Type",
+        "Offering Level"
+      ],
+      "rows": [
+        {
+          "NAICS": "721110",
+          "CFJ": "Provide paid temporary accommodation that meets guests' comfort, safety, and accessibility needs while maintaining full regulatory compliance with fire safety and building codes",
+          "Output Type": "Full-service hotel (upscale/luxury)",
+          "Offering Level": "L7 (Ecosystem)"
+        },
+        {
+          "NAICS": "Select-service hotel (branded mid-scale)",
+          "CFJ": "L7",
+          "Output Type": "",
+          "Offering Level": ""
+        },
+        {
+          "NAICS": "Limited-service / budget hotel / motel",
+          "CFJ": "L7",
+          "Output Type": "",
+          "Offering Level": ""
+        },
+        {
+          "NAICS": "Extended-stay hotel",
+          "CFJ": "L7",
+          "Output Type": "",
+          "Offering Level": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Segment",
+        "Defining Circumstance",
+        "Why distinct"
+      ],
+      "rows": [
+        {
+          "#": "S1",
+          "Segment": "Multi-property hotel chain (portfolio)",
+          "Defining Circumstance": "Manages 10–500+ properties with centralized security oversight",
+          "Why distinct": "Needs cross-property monitoring aggregation; individual property economics differ"
+        },
+        {
+          "#": "S2",
+          "Segment": "Full-service / upscale single property",
+          "Defining Circumstance": "High brand-standard scrutiny; architect-designed interiors; integrated BMS common",
+          "Why distinct": "Aesthetic sensitivity (C5 surface mount friction); BMS protocol integration required (C6)"
+        },
+        {
+          "#": "S3",
+          "Segment": "Select-service / mid-scale property",
+          "Defining Circumstance": "Retrofit budget approved; cost-ROI driven; limited in-house facilities staff",
+          "Why distinct": "Commissioning ease and IoT dashboard value proposition are primary evaluation criteria"
+        },
+        {
+          "#": "S4",
+          "Segment": "Budget / limited-service motel",
+          "Defining Circumstance": "Minimal infrastructure; no BMS; price-sensitive; owner-operated",
+          "Why distinct": "IoT premium (C7) is barrier; mechanical-only may dominate; simple deployment required"
+        },
+        {
+          "#": "S5",
+          "Segment": "Extended-stay property",
+          "Defining Circumstance": "Semi-residential guest tenure (7–30+ days); reduced after-hours staffing",
+          "Why distinct": "Battery life more critical (long cycles between maintenance); semi-public exit use patterns"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L6 Node",
+        "Job Family",
+        "Türwächter Relevance"
+      ],
+      "rows": [
+        {
+          "L6 Node": "L6H-SEC Building Security & Life Safety",
+          "Job Family": "Protect occupants, assets, and escape routes at all times",
+          "Türwächter Relevance": "**DIRECT ANCHOR** — product enters at L5 Emergency Exit Security Devices"
+        },
+        {
+          "L6 Node": "L6H-FM Facility Management & Maintenance",
+          "Job Family": "Maintain physical plant and utilities in operational condition",
+          "Türwächter Relevance": "Adjacent — BMS integration and maintenance scheduling"
+        },
+        {
+          "L6 Node": "L6b Guest Arrival & Check-in",
+          "Job Family": "Process guest arrival, assign room, issue access credentials",
+          "Türwächter Relevance": "Indirect — access control context at same security layer"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Anchor unit**",
+          "Value": "Emergency Exit Security Devices"
+        },
+        {
+          "Field": "**Anchor level**",
+          "Value": "L5 (standalone product/system)"
+        },
+        {
+          "Field": "**Parent VN unit**",
+          "Value": "Building Security & Life Safety (L6H-SEC)"
+        },
+        {
+          "Field": "**Parent level**",
+          "Value": "L6 (horizontal process)"
+        },
+        {
+          "Field": "**Anchor type**",
+          "Value": "PROCESS_VN — product is used by the hotel operator; it does not end up inside the accommodation output"
+        },
+        {
+          "Field": "**Alternative slot**",
+          "Value": "Alarmed exit hardware with IoT monitoring (~25% market share)"
+        },
+        {
+          "Field": "**Key constraints active**",
+          "Value": "C5 (surface mount — luxury), C6 (EasyWave protocol — BMS), C7 (price premium — budget), C8 (GDPR — EU hotels)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Level",
+        "Type",
+        "Statement"
+      ],
+      "rows": [
+        {
+          "Level": "L6H-SEC parent",
+          "Type": "Core Functional Job (CFJ)",
+          "Statement": "Provide paid temporary accommodation that meets guests' comfort, safety, and accessibility needs while maintaining full regulatory compliance with fire safety and building codes"
+        },
+        {
+          "Level": "L5 anchor",
+          "Type": "**Product Job**",
+          "Statement": "Help Building Security & Life Safety to detect and deter unauthorized use of emergency exit doors while maintaining unimpeded fire-code-compliant escape capability across all floors and wings"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Alternative",
+        "UNSPSC",
+        "Inherent Trade-offs"
+      ],
+      "rows": [
+        {
+          "#": "A1",
+          "Alternative": "Basic mechanical door alarm (no monitoring) — 45% share",
+          "UNSPSC": "46171610",
+          "Inherent Trade-offs": "No remote visibility; staff must physically patrol to detect unreported propping; no audit log; battery-free"
+        },
+        {
+          "#": "A2",
+          "Alternative": "Wired panic bar / crash bar alarm — 20% share",
+          "UNSPSC": "46171601",
+          "Inherent Trade-offs": "Requires mains wiring conduit to each door; high retrofit cost in existing buildings; no wireless aggregation"
+        },
+        {
+          "#": "A3",
+          "Alternative": "**Alarmed exit hardware with IoT monitoring** (Türwächter) — 25% share",
+          "UNSPSC": "46171601",
+          "Inherent Trade-offs": "Proprietary wireless protocol (C6); surface-mount profile visible (C5); battery dependency (C4); ~730 EUR per door (C7)"
+        },
+        {
+          "#": "A4",
+          "Alternative": "Security guard patrols",
+          "UNSPSC": "92121500",
+          "Inherent Trade-offs": "Labor-intensive; coverage gaps at shift changes; no event log; scales linearly with door count; high recurring cost"
+        },
+        {
+          "#": "A5",
+          "Alternative": "No dedicated exit monitoring (do nothing) — 10% share",
+          "UNSPSC": "—",
+          "Inherent Trade-offs": "Zero installation burden; zero P1 burden; full compliance and brand audit risk; undetected misuse propagates"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Scenario",
+        "Output type activated",
+        "Alternatives in play"
+      ],
+      "rows": [
+        {
+          "#": "SC1",
+          "Scenario": "Guest propping stairwell exit door for balcony/roof access or smoking",
+          "Output type activated": "All four",
+          "Alternatives in play": "A1, A3, A4"
+        },
+        {
+          "#": "SC2",
+          "Scenario": "Staff propping service exit for delivery shortcut",
+          "Output type activated": "All four",
+          "Alternatives in play": "A1, A3, A4"
+        },
+        {
+          "#": "SC3",
+          "Scenario": "Night audit: minimal staffing, all floors unsupervised",
+          "Output type activated": "FS, SS, ES",
+          "Alternatives in play": "A3, A4"
+        },
+        {
+          "#": "SC4",
+          "Scenario": "Multi-property chain: centralized security team monitors remote portfolio",
+          "Output type activated": "FS, SS",
+          "Alternatives in play": "A3 (IoT only)"
+        },
+        {
+          "#": "SC5",
+          "Scenario": "Annual fire marshal / brand standards audit",
+          "Output type activated": "All four",
+          "Alternatives in play": "A1, A2, A3 (documentation requirement)"
+        },
+        {
+          "#": "SC6",
+          "Scenario": "Renovation / retrofit: replace outdated wired door alarms without structural work",
+          "Output type activated": "FS, SS",
+          "Alternatives in play": "A3 vs. A2"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Role",
+        "Person in 721110",
+        "Pyramid levels",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "Role": "Job Executor",
+          "Person in 721110": "Security officer / night duty manager",
+          "Pyramid levels": "P1 (all), P2, P3, P4, P5",
+          "Notes": "Operates dashboard, responds to alerts"
+        },
+        {
+          "Role": "Job Overseer",
+          "Person in 721110": "Director of Security / Hotel GM",
+          "Pyramid levels": "P1 (own), P2, P4",
+          "Notes": "Accountable for compliance KPIs; franchise audits"
+        },
+        {
+          "Role": "Job Beneficiary",
+          "Person in 721110": "Hotel guests (and staff)",
+          "Pyramid levels": "P2, P5",
+          "Notes": "Safe evacuation; unimpeded escape"
+        },
+        {
+          "Role": "Lifecycle Support — Specifier",
+          "Person in 721110": "Facilities consultant / engineer",
+          "Pyramid levels": "P1 Acquisition",
+          "Notes": "Defines specification for renovation project"
+        },
+        {
+          "Role": "Lifecycle Support — Installer",
+          "Person in 721110": "Maintenance technician / security integrator",
+          "Pyramid levels": "P1 Preparation",
+          "Notes": "Commissions hardware; pairs devices"
+        },
+        {
+          "Role": "Lifecycle Support — Validator",
+          "Person in 721110": "Fire marshal / building inspector",
+          "Pyramid levels": "P1 Confirm",
+          "Notes": "Signs off on escape route compliance"
+        },
+        {
+          "Role": "Lifecycle Support — Maintainer",
+          "Person in 721110": "Hotel maintenance team",
+          "Pyramid levels": "P1 Maintenance",
+          "Notes": "Battery replacement; dashboard health checks"
+        },
+        {
+          "Role": "Purchase Executor",
+          "Person in 721110": "Facilities/Engineering director",
+          "Pyramid levels": "P1 Acquisition",
+          "Notes": "Approves CAPEX; ROI evaluation"
+        },
+        {
+          "Role": "Purchase Influencer",
+          "Person in 721110": "Insurance underwriter; brand standards auditor",
+          "Pyramid levels": "P2, P4",
+          "Notes": "Sets compliance requirements; influences specification"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Stage",
+        "A1 Basic mech. alarm",
+        "A2 Wired panic bar",
+        "A3 IoT monitoring (Türwächter)",
+        "A4 Guard patrol",
+        "A5 Do nothing"
+      ],
+      "rows": [
+        {
+          "Stage": "**Acquire**",
+          "A1 Basic mech. alarm": "Specify per-door unit; quote; order",
+          "A2 Wired panic bar": "Engage integrator; wiring design; structural survey; permitting",
+          "A3 IoT monitoring (Türwächter)": "Specify device+gateway; assess RF coverage; quote; certify compatibility with BMS",
+          "A4 Guard patrol": "Issue RFP; evaluate guard firm; SLA negotiation",
+          "A5 Do nothing": "—"
+        },
+        {
+          "Stage": "**Prepare**",
+          "A1 Basic mech. alarm": "Surface-mount per door; key provisioning",
+          "A2 Wired panic bar": "Install conduit; pull wire; mount bar; panel programming",
+          "A3 IoT monitoring (Türwächter)": "Mount device; pair to gateway; configure zones; test alarm + radio",
+          "A4 Guard patrol": "Define patrol schedules; brief staff; configure incident log",
+          "A5 Do nothing": "—"
+        },
+        {
+          "Stage": "**Use**",
+          "A1 Basic mech. alarm": "Manual patrol to verify no propping; respond to audible alarm if heard",
+          "A2 Wired panic bar": "Alarm panel event response; physical site investigation",
+          "A3 IoT monitoring (Türwächter)": "Dashboard monitoring; alert triage; investigation dispatch",
+          "A4 Guard patrol": "Guard responds in person per schedule or on-call",
+          "A5 Do nothing": "Accept compliance gap"
+        },
+        {
+          "Stage": "**Maintain**",
+          "A1 Basic mech. alarm": "Periodic tamper check; no battery required",
+          "A2 Wired panic bar": "Annual panel service; wiring inspection",
+          "A3 IoT monitoring (Türwächter)": "Battery replacement (~every 2 yrs); firmware update; signal level check",
+          "A4 Guard patrol": "Staff turnover; re-training; scheduling gaps",
+          "A5 Do nothing": "—"
+        },
+        {
+          "Stage": "**Dispose**",
+          "A1 Basic mech. alarm": "Remove hardware; patch door",
+          "A2 Wired panic bar": "Remove hardware; remove conduit; patch walls",
+          "A3 IoT monitoring (Türwächter)": "Remove device; decommission from dashboard",
+          "A4 Guard patrol": "Contract termination",
+          "A5 Do nothing": "—"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Step",
+        "Statement (hotel context)",
+        "Relevant to product"
+      ],
+      "rows": [
+        {
+          "#": "1",
+          "Step": "DEFINE",
+          "Statement (hotel context)": "Determine which emergency exit doors require monitoring, alert thresholds, notification rules, and coverage zones",
+          "Relevant to product": "YES — configuration scope"
+        },
+        {
+          "#": "2",
+          "Step": "LOCATE",
+          "Statement (hotel context)": "Identify all emergency exit points across floors; assess wireless signal paths; map gateway placement",
+          "Relevant to product": "YES — RF coverage planning"
+        },
+        {
+          "#": "3",
+          "Step": "PREPARE",
+          "Statement (hotel context)": "Install monitoring devices on door handles; pair to gateway; configure zones; test alarm tone",
+          "Relevant to product": "YES — commissioning"
+        },
+        {
+          "#": "4",
+          "Step": "CONFIRM",
+          "Statement (hotel context)": "Verify every device transmits correctly, alarm is unobstructed, and escape motion is unrestricted",
+          "Relevant to product": "YES — acceptance testing"
+        },
+        {
+          "#": "5",
+          "Step": "EXECUTE",
+          "Statement (hotel context)": "Maintain all exits in secured state 24/7; trigger alert on unauthorized activation",
+          "Relevant to product": "YES — core function"
+        },
+        {
+          "#": "6",
+          "Step": "MONITOR",
+          "Statement (hotel context)": "Track real-time exit door status from centralized dashboard; receive alerts; correlate with CCTV or BMS",
+          "Relevant to product": "YES — primary value"
+        },
+        {
+          "#": "7",
+          "Step": "MODIFY",
+          "Statement (hotel context)": "Respond to and reset triggered devices; adjust alert rules; replace failed units",
+          "Relevant to product": "YES — operational"
+        },
+        {
+          "#": "8",
+          "Step": "CONCLUDE",
+          "Statement (hotel context)": "Generate compliance audit reports; log fire marshal inspections; replace low-battery units proactively",
+          "Relevant to product": "YES — compliance output"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Full Statement",
+        "Step",
+        "Error Type",
+        "Imp",
+        "Sat",
+        "OS",
+        "Impact",
+        "p_related",
+        "Confidence",
+        "Underserved"
+      ],
+      "rows": [
+        {
+          "#": "E1",
+          "Full Statement": "Minimize the likelihood of high-risk emergency exits remaining unmonitored due to incomplete upfront coverage mapping, leaving ≥1 undetected propping event per month",
+          "Step": "DEFINE",
+          "Error Type": "DETECTION",
+          "Imp": "7",
+          "Sat": "5",
+          "OS": "9",
+          "Impact": "safety",
+          "p_related": "false",
+          "Confidence": "0.70",
+          "Underserved": "—"
+        },
+        {
+          "#": "E2",
+          "Full Statement": "Increase the ability to determine wireless receiver placement achieving >95% floor-level signal coverage before hardware purchase or installation",
+          "Step": "LOCATE",
+          "Error Type": "ACCURACY",
+          "Imp": "7",
+          "Sat": "4",
+          "OS": "10",
+          "Impact": "reliability",
+          "p_related": "**true**",
+          "Confidence": "0.70",
+          "Underserved": "—"
+        },
+        {
+          "#": "E3",
+          "Full Statement": "Minimize the time required to install and commission emergency exit monitoring devices across a 100-room hotel to <4 hours without structural door modification",
+          "Step": "PREPARE",
+          "Error Type": "EFFORT",
+          "Imp": "8",
+          "Sat": "5",
+          "OS": "11",
+          "Impact": "time",
+          "p_related": "**true**",
+          "Confidence": "0.75",
+          "Underserved": "—"
+        },
+        {
+          "#": "E4",
+          "Full Statement": "Minimize the likelihood of emergency exit alarm functionality being impaired during device mounting, pairing, or initial configuration",
+          "Step": "PREPARE",
+          "Error Type": "ROBUSTNESS",
+          "Imp": "9",
+          "Sat": "7",
+          "OS": "11",
+          "Impact": "safety",
+          "p_related": "false",
+          "Confidence": "0.80",
+          "Underserved": "—"
+        },
+        {
+          "#": "E5",
+          "Full Statement": "Increase the ability to verify that every installed exit monitoring device is transmitting correctly and that the audible alarm operates without obstruction — within a single end-to-end commissioning test",
+          "Step": "CONFIRM",
+          "Error Type": "ACCURACY",
+          "Imp": "9",
+          "Sat": "5",
+          "OS": "13",
+          "Impact": "reliability",
+          "p_related": "false",
+          "Confidence": "0.80",
+          "Underserved": "✓"
+        },
+        {
+          "#": "E6",
+          "Full Statement": "Minimize the likelihood of an emergency exit remaining in an unauthorized open state for >5 minutes without triggering a staff alert",
+          "Step": "EXECUTE",
+          "Error Type": "DETECTION",
+          "Imp": "9",
+          "Sat": "4",
+          "OS": "14",
+          "Impact": "safety",
+          "p_related": "false",
+          "Confidence": "0.85",
+          "Underserved": "✓"
+        },
+        {
+          "#": "E7",
+          "Full Statement": "Minimize the likelihood of legitimate authorized staff uses of emergency exits (housekeeping, maintenance) generating false alerts that erode security staff confidence in the monitoring system",
+          "Step": "EXECUTE",
+          "Error Type": "ACCURACY",
+          "Imp": "8",
+          "Sat": "4",
+          "OS": "12",
+          "Impact": "reliability",
+          "p_related": "false",
+          "Confidence": "0.80",
+          "Underserved": "✓"
+        },
+        {
+          "#": "E8",
+          "Full Statement": "Minimize the likelihood of an emergency exit monitoring device adding any additional step or force requirement that delays occupant evacuation during a fire emergency",
+          "Step": "EXECUTE",
+          "Error Type": "ROBUSTNESS",
+          "Imp": "10",
+          "Sat": "8",
+          "OS": "12",
+          "Impact": "safety",
+          "p_related": "false",
+          "Confidence": "0.90",
+          "Underserved": "—"
+        },
+        {
+          "#": "E9",
+          "Full Statement": "Increase the ability of a single security officer to monitor real-time exit door status across all floors from one centralized interface without physical patrol — covering ≥50 exit points simultaneously",
+          "Step": "MONITOR",
+          "Error Type": "THROUGHPUT",
+          "Imp": "9",
+          "Sat": "4",
+          "OS": "14",
+          "Impact": "time",
+          "p_related": "false",
+          "Confidence": "0.85",
+          "Underserved": "✓"
+        },
+        {
+          "#": "E10",
+          "Full Statement": "Minimize the time from emergency exit activation event to security staff notification to <30 seconds regardless of time of day",
+          "Step": "MONITOR",
+          "Error Type": "DETECTION",
+          "Imp": "9",
+          "Sat": "5",
+          "OS": "13",
+          "Impact": "time",
+          "p_related": "false",
+          "Confidence": "0.85",
+          "Underserved": "✓"
+        },
+        {
+          "#": "E11",
+          "Full Statement": "Minimize the likelihood of wireless connectivity loss causing undetected monitoring gaps exceeding 15 minutes during hotel occupied hours",
+          "Step": "MONITOR",
+          "Error Type": "ROBUSTNESS",
+          "Imp": "8",
+          "Sat": "5",
+          "OS": "11",
+          "Impact": "reliability",
+          "p_related": "**true**",
+          "Confidence": "0.75",
+          "Underserved": "—"
+        },
+        {
+          "#": "E12",
+          "Full Statement": "Minimize the likelihood of the monitoring system misclassifying an emergency evacuation event as an unauthorized door use, triggering an incorrect security response that delays fire evacuation",
+          "Step": "MONITOR",
+          "Error Type": "ACCURACY",
+          "Imp": "8",
+          "Sat": "5",
+          "OS": "11",
+          "Impact": "safety",
+          "p_related": "false",
+          "Confidence": "0.70",
+          "Underserved": "—"
+        },
+        {
+          "#": "E13",
+          "Full Statement": "Minimize the time required to reset a triggered exit monitoring device and restore it to active state after investigation, to <2 minutes",
+          "Step": "MODIFY",
+          "Error Type": "EFFORT",
+          "Imp": "7",
+          "Sat": "6",
+          "OS": "8",
+          "Impact": "time",
+          "p_related": "false",
+          "Confidence": "0.70",
+          "Underserved": "—"
+        },
+        {
+          "#": "E14",
+          "Full Statement": "Minimize the likelihood of a high-priority unauthorized exit event being missed due to alert saturation from high-frequency low-priority activations",
+          "Step": "MODIFY",
+          "Error Type": "DETECTION",
+          "Imp": "8",
+          "Sat": "5",
+          "OS": "11",
+          "Impact": "safety",
+          "p_related": "false",
+          "Confidence": "0.75",
+          "Underserved": "—"
+        },
+        {
+          "#": "E15",
+          "Full Statement": "Increase the ability to produce a complete, timestamped digital audit log of all emergency exit activations and response actions, formatted for fire marshal inspection without manual compilation",
+          "Step": "CONCLUDE",
+          "Error Type": "EFFORT",
+          "Imp": "8",
+          "Sat": "3",
+          "OS": "13",
+          "Impact": "safety",
+          "p_related": "false",
+          "Confidence": "0.80",
+          "Underserved": "✓"
+        },
+        {
+          "#": "E16",
+          "Full Statement": "Minimize the time required to identify and proactively replace batteries approaching depletion threshold across a deployment of ≥30 exit monitoring devices before monitoring capability is lost",
+          "Step": "CONCLUDE",
+          "Error Type": "DETECTION",
+          "Imp": "7",
+          "Sat": "4",
+          "OS": "10",
+          "Impact": "reliability",
+          "p_related": "**true**",
+          "Confidence": "0.75",
+          "Underserved": "—"
+        },
+        {
+          "#": "E17",
+          "Full Statement": "Minimize the effort required to integrate emergency exit monitoring event data with an existing hotel BMS or security management platform running standard building protocols",
+          "Step": "CONCLUDE",
+          "Error Type": "EFFORT",
+          "Imp": "7",
+          "Sat": "4",
+          "OS": "10",
+          "Impact": "cost",
+          "p_related": "**true**",
+          "Confidence": "0.70",
+          "Underserved": "—"
+        },
+        {
+          "#": "E18",
+          "Full Statement": "Minimize the variability in emergency exit compliance status across all floor levels at any given time of day",
+          "Step": "P2 Core",
+          "Error Type": "CONSISTENCY",
+          "Imp": "8",
+          "Sat": "4",
+          "OS": "12",
+          "Impact": "safety",
+          "p_related": "false",
+          "Confidence": "0.80",
+          "Underserved": "✓"
+        },
+        {
+          "#": "E19",
+          "Full Statement": "Minimize the likelihood of emergency exit door management violations being cited during annual fire authority inspection or franchise brand standards audit",
+          "Step": "P2 Core",
+          "Error Type": "ACCURACY",
+          "Imp": "9",
+          "Sat": "6",
+          "OS": "12",
+          "Impact": "safety",
+          "p_related": "false",
+          "Confidence": "0.80",
+          "Underserved": "—"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Level",
+        "Role",
+        "Retrieval",
+        "Bridge",
+        "Market Need"
+      ],
+      "rows": [
+        {
+          "Level": "P3 Role",
+          "Role": "Security officer (executor)",
+          "Retrieval": "\"Becomes the person who runs a systematic, audit-proof safety operation that never fails inspection\"",
+          "Bridge": "\"What must the system do so they CAN demonstrate systematic control?\"",
+          "Market Need": "Increase the ability to demonstrate evidence-based emergency exit management to insurance underwriters and brand auditors with a single report — without manual data assembly [hypothesis]"
+        },
+        {
+          "Level": "P4 Image",
+          "Role": "Hotel GM (overseer)",
+          "Retrieval": "\"Franchise auditors and insurers must see: this property manages safety proactively, not reactively\"",
+          "Bridge": "\"What must the system do so auditors SEE a professional, documented process?\"",
+          "Market Need": "Minimize the likelihood of a preventable emergency exit failure becoming a documented finding in a franchise brand standards audit [hypothesis]"
+        },
+        {
+          "Level": "P5 Emotional",
+          "Role": "Security officer (executor, night shift)",
+          "Retrieval": "\"Wants to feel in control; fears being responsible when an undetected exit breach contributes to a security incident\"",
+          "Bridge": "\"What must the system do to produce the feeling of continuous, reliable coverage even when alone?\"",
+          "Market Need": "Minimize the sense of uncertainty about whether unmanned emergency exits remain secured during overnight minimum-staffing periods [hypothesis]"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Rank",
+        "Error Statement (short)",
+        "OS",
+        "Segment priority",
+        "Action"
+      ],
+      "rows": [
+        {
+          "Rank": "1",
+          "Error Statement (short)": "E6 — Unauthorized exit open >5 min undetected",
+          "OS": "**14**",
+          "Segment priority": "S1, S2, S3",
+          "Action": "Core value proof point"
+        },
+        {
+          "Rank": "2",
+          "Error Statement (short)": "E9 — Centralized monitoring ≥50 exits, 1 officer",
+          "OS": "**14**",
+          "Segment priority": "S1, S2",
+          "Action": "Dashboard differentiation"
+        },
+        {
+          "Rank": "3",
+          "Error Statement (short)": "E5 — End-to-end commissioning verification",
+          "OS": "**13**",
+          "Segment priority": "S3",
+          "Action": "Onboarding simplicity"
+        },
+        {
+          "Rank": "4",
+          "Error Statement (short)": "E10 — Alert latency <30 sec",
+          "OS": "**13**",
+          "Segment priority": "S1, S2, S3",
+          "Action": "Network reliability"
+        },
+        {
+          "Rank": "5",
+          "Error Statement (short)": "E15 — Digital audit log, fire marshal ready",
+          "OS": "**13**",
+          "Segment priority": "S1, S2, S3, S5",
+          "Action": "Compliance automation"
+        },
+        {
+          "Rank": "6",
+          "Error Statement (short)": "E18 — Consistency across all floors",
+          "OS": "**12**",
+          "Segment priority": "S1, S2",
+          "Action": "Portfolio visibility"
+        },
+        {
+          "Rank": "7",
+          "Error Statement (short)": "E7 — False alert fatigue",
+          "OS": "**12**",
+          "Segment priority": "S3, S4",
+          "Action": "Alert precision tuning"
+        },
+        {
+          "Rank": "8",
+          "Error Statement (short)": "E19 — Fire authority inspection compliance",
+          "OS": "**12**",
+          "Segment priority": "All",
+          "Action": "Regulatory hygiene"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Constraint",
+        "S1 Chain",
+        "S2 Upscale",
+        "S3 Mid-scale",
+        "S4 Budget",
+        "S5 Extended"
+      ],
+      "rows": [
+        {
+          "Constraint": "C5 Surface mount (aesthetics)",
+          "S1 Chain": "—",
+          "S2 Upscale": "**Friction**",
+          "S3 Mid-scale": "none",
+          "S4 Budget": "none",
+          "S5 Extended": "none"
+        },
+        {
+          "Constraint": "C6 EasyWave protocol lock-in",
+          "S1 Chain": "**Friction**",
+          "S2 Upscale": "**Friction**",
+          "S3 Mid-scale": "minor",
+          "S4 Budget": "none",
+          "S5 Extended": "minor"
+        },
+        {
+          "Constraint": "C7 IoT price premium",
+          "S1 Chain": "—",
+          "S2 Upscale": "none",
+          "S3 Mid-scale": "**ROI case needed**",
+          "S4 Budget": "**Barrier**",
+          "S5 Extended": "minor"
+        },
+        {
+          "Constraint": "C8 GDPR (EU properties)",
+          "S1 Chain": "**Required**",
+          "S2 Upscale": "required",
+          "S3 Mid-scale": "required",
+          "S4 Budget": "minor",
+          "S5 Extended": "required"
+        },
+        {
+          "Constraint": "C4 Battery life",
+          "S1 Chain": "minor",
+          "S2 Upscale": "none",
+          "S3 Mid-scale": "minor",
+          "S4 Budget": "none",
+          "S5 Extended": "**Friction**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Check",
+        "Status"
+      ],
+      "rows": [
+        {
+          "#": "V1",
+          "Check": "All statements start with \"Minimize the likelihood of…\" or \"Increase the ability to…\" with ONE measurable KPI",
+          "Status": "PASS"
+        },
+        {
+          "#": "V2",
+          "Check": "product_related=true only where need disappears with a different technology (e.g., guard patrol has no battery/RF need)",
+          "Status": "PASS"
+        },
+        {
+          "#": "V3",
+          "Check": "No uniform importance/satisfaction pattern; safety/regulatory at 8-10; operational at 7-8",
+          "Status": "PASS"
+        },
+        {
+          "#": "V4",
+          "Check": "Impact category matches KPI (audit log → safety; alert latency → time; battery → reliability)",
+          "Status": "PASS"
+        },
+        {
+          "#": "V5",
+          "Check": "≥2 needs per job step; 5/19 product-specific (26%); 6 underserved identified",
+          "Status": "PASS"
+        },
+        {
+          "#": "V6",
+          "Check": "Zero references to EasyWave, 868 MHz, GfS, Türwächter, or piezoelectric in need statements",
+          "Status": "PASS"
+        },
+        {
+          "#": "V7",
+          "Check": "Anchor at L5 — standalone system; parent L6H-SEC",
+          "Status": "PASS"
+        },
+        {
+          "#": "V8",
+          "Check": "Product job: \"Help Building Security & Life Safety to…\" includes parent VN unit and context qualifier",
+          "Status": "PASS"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "jtbd": {
+        "market_name": "Hotels (except Casino Hotels) and Motels",
+        "naics_code": "721110",
+        "product": "GfS Türwächter / Exit Control 179/1125 with IoT",
+        "job_map": {
+          "anchor_vn_unit": "Emergency Exit Security Devices",
+          "anchor_level": "L5",
+          "parent_vn_unit": "Building Security & Life Safety",
+          "parent_level": "L6",
+          "product_job_statement": "Help Building Security & Life Safety to detect and deter unauthorized use of emergency exit doors while maintaining unimpeded fire-code-compliant escape capability across all floors and wings"
+        },
+        "job_steps": [
+          {
+            "step_number": 1,
+            "step_name": "DEFINE",
+            "relevant_to_product": true,
+            "relevance_rationale": "Coverage scope, alert threshold, and notification rule configuration"
+          },
+          {
+            "step_number": 2,
+            "step_name": "LOCATE",
+            "relevant_to_product": true,
+            "relevance_rationale": "Wireless RF coverage mapping and gateway placement"
+          },
+          {
+            "step_number": 3,
+            "step_name": "PREPARE",
+            "relevant_to_product": true,
+            "relevance_rationale": "Device installation, gateway pairing, zone configuration"
+          },
+          {
+            "step_number": 4,
+            "step_name": "CONFIRM",
+            "relevant_to_product": true,
+            "relevance_rationale": "Acceptance testing of alarm and radio transmission"
+          },
+          {
+            "step_number": 5,
+            "step_name": "EXECUTE",
+            "relevant_to_product": true,
+            "relevance_rationale": "Core 24/7 exit security function"
+          },
+          {
+            "step_number": 6,
+            "step_name": "MONITOR",
+            "relevant_to_product": true,
+            "relevance_rationale": "Centralized dashboard and alert delivery — primary IoT value"
+          },
+          {
+            "step_number": 7,
+            "step_name": "MODIFY",
+            "relevant_to_product": true,
+            "relevance_rationale": "Alert response, device reset, rule adjustment"
+          },
+          {
+            "step_number": 8,
+            "step_name": "CONCLUDE",
+            "relevant_to_product": true,
+            "relevance_rationale": "Compliance documentation, battery management"
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "Basic mechanical door alarm (no monitoring)",
+            "unspsc": "46171610",
+            "market_share_pct": 45,
+            "existential": false
+          },
+          {
+            "name": "Wired panic bar / crash bar alarm",
+            "unspsc": "46171601",
+            "market_share_pct": 20,
+            "existential": false
+          },
+          {
+            "name": "Alarmed exit hardware with IoT monitoring (Türwächter)",
+            "unspsc": "46171601",
+            "market_share_pct": 25,
+            "existential": false
+          },
+          {
+            "name": "Security guard patrols",
+            "unspsc": "92121500",
+            "market_share_pct": null,
+            "existential": false
+          },
+          {
+            "name": "No dedicated exit monitoring (do nothing)",
+            "unspsc": null,
+            "market_share_pct": 10,
+            "existential": false
+          }
+        ],
+        "error_statements": [
+          {
+            "id": "E1",
+            "full_statement": "Minimize the likelihood of high-risk emergency exits remaining unmonitored due to incomplete upfront coverage mapping, leaving ≥1 undetected propping event per month",
+            "job_step_number": 1,
+            "job_step_name": "DEFINE",
+            "importance": 7,
+            "satisfaction_current": 5,
+            "opportunity_score": 9,
+            "impact_category": "safety",
+            "product_related": false,
+            "confidence": 0.7
+          },
+          {
+            "id": "E2",
+            "full_statement": "Increase the ability to determine wireless receiver placement achieving >95% floor-level signal coverage before hardware purchase or installation",
+            "job_step_number": 2,
+            "job_step_name": "LOCATE",
+            "importance": 7,
+            "satisfaction_current": 4,
+            "opportunity_score": 10,
+            "impact_category": "reliability",
+            "product_related": true,
+            "confidence": 0.7
+          },
+          {
+            "id": "E3",
+            "full_statement": "Minimize the time required to install and commission emergency exit monitoring devices across a 100-room hotel to <4 hours without structural door modification",
+            "job_step_number": 3,
+            "job_step_name": "PREPARE",
+            "importance": 8,
+            "satisfaction_current": 5,
+            "opportunity_score": 11,
+            "impact_category": "time",
+            "product_related": true,
+            "confidence": 0.75
+          },
+          {
+            "id": "E4",
+            "full_statement": "Minimize the likelihood of emergency exit alarm functionality being impaired during device mounting, pairing, or initial configuration",
+            "job_step_number": 3,
+            "job_step_name": "PREPARE",
+            "importance": 9,
+            "satisfaction_current": 7,
+            "opportunity_score": 11,
+            "impact_category": "safety",
+            "product_related": false,
+            "confidence": 0.8
+          },
+          {
+            "id": "E5",
+            "full_statement": "Increase the ability to verify that every installed exit monitoring device is transmitting correctly and that the audible alarm operates without obstruction — within a single end-to-end commissioning test",
+            "job_step_number": 4,
+            "job_step_name": "CONFIRM",
+            "importance": 9,
+            "satisfaction_current": 5,
+            "opportunity_score": 13,
+            "impact_category": "reliability",
+            "product_related": false,
+            "confidence": 0.8
+          },
+          {
+            "id": "E6",
+            "full_statement": "Minimize the likelihood of an emergency exit remaining in an unauthorized open state for >5 minutes without triggering a staff alert",
+            "job_step_number": 5,
+            "job_step_name": "EXECUTE",
+            "importance": 9,
+            "satisfaction_current": 4,
+            "opportunity_score": 14,
+            "impact_category": "safety",
+            "product_related": false,
+            "confidence": 0.85,
+            "underserved": true
+          },
+          {
+            "id": "E7",
+            "full_statement": "Minimize the likelihood of legitimate authorized staff uses of emergency exits generating false alerts that erode security staff confidence in the monitoring system",
+            "job_step_number": 5,
+            "job_step_name": "EXECUTE",
+            "importance": 8,
+            "satisfaction_current": 4,
+            "opportunity_score": 12,
+            "impact_category": "reliability",
+            "product_related": false,
+            "confidence": 0.8,
+            "underserved": true
+          },
+          {
+            "id": "E8",
+            "full_statement": "Minimize the likelihood of an emergency exit monitoring device adding any additional step or force requirement that delays occupant evacuation during a fire emergency",
+            "job_step_number": 5,
+            "job_step_name": "EXECUTE",
+            "importance": 10,
+            "satisfaction_current": 8,
+            "opportunity_score": 12,
+            "impact_category": "safety",
+            "product_related": false,
+            "confidence": 0.9
+          },
+          {
+            "id": "E9",
+            "full_statement": "Increase the ability of a single security officer to monitor real-time exit door status across all floors from one centralized interface without physical patrol — covering ≥50 exit points simultaneously",
+            "job_step_number": 6,
+            "job_step_name": "MONITOR",
+            "importance": 9,
+            "satisfaction_current": 4,
+            "opportunity_score": 14,
+            "impact_category": "time",
+            "product_related": false,
+            "confidence": 0.85,
+            "underserved": true
+          },
+          {
+            "id": "E10",
+            "full_statement": "Minimize the time from emergency exit activation event to security staff notification to <30 seconds regardless of time of day",
+            "job_step_number": 6,
+            "job_step_name": "MONITOR",
+            "importance": 9,
+            "satisfaction_current": 5,
+            "opportunity_score": 13,
+            "impact_category": "time",
+            "product_related": false,
+            "confidence": 0.85
+          },
+          {
+            "id": "E11",
+            "full_statement": "Minimize the likelihood of wireless connectivity loss causing undetected monitoring gaps exceeding 15 minutes during hotel occupied hours",
+            "job_step_number": 6,
+            "job_step_name": "MONITOR",
+            "importance": 8,
+            "satisfaction_current": 5,
+            "opportunity_score": 11,
+            "impact_category": "reliability",
+            "product_related": true,
+            "confidence": 0.75
+          },
+          {
+            "id": "E12",
+            "full_statement": "Minimize the likelihood of the monitoring system misclassifying an emergency evacuation event as an unauthorized door use, triggering an incorrect security response that delays fire evacuation",
+            "job_step_number": 6,
+            "job_step_name": "MONITOR",
+            "importance": 8,
+            "satisfaction_current": 5,
+            "opportunity_score": 11,
+            "impact_category": "safety",
+            "product_related": false,
+            "confidence": 0.7
+          },
+          {
+            "id": "E13",
+            "full_statement": "Minimize the time required to reset a triggered exit monitoring device and restore it to active state after investigation, to <2 minutes",
+            "job_step_number": 7,
+            "job_step_name": "MODIFY",
+            "importance": 7,
+            "satisfaction_current": 6,
+            "opportunity_score": 8,
+            "impact_category": "time",
+            "product_related": false,
+            "confidence": 0.7
+          },
+          {
+            "id": "E14",
+            "full_statement": "Minimize the likelihood of a high-priority unauthorized exit event being missed due to alert saturation from high-frequency low-priority activations",
+            "job_step_number": 7,
+            "job_step_name": "MODIFY",
+            "importance": 8,
+            "satisfaction_current": 5,
+            "opportunity_score": 11,
+            "impact_category": "safety",
+            "product_related": false,
+            "confidence": 0.75
+          },
+          {
+            "id": "E15",
+            "full_statement": "Increase the ability to produce a complete, timestamped digital audit log of all emergency exit activations and response actions, formatted for fire marshal inspection without manual compilation",
+            "job_step_number": 8,
+            "job_step_name": "CONCLUDE",
+            "importance": 8,
+            "satisfaction_current": 3,
+            "opportunity_score": 13,
+            "impact_category": "safety",
+            "product_related": false,
+            "confidence": 0.8,
+            "underserved": true
+          },
+          {
+            "id": "E16",
+            "full_statement": "Minimize the time required to identify and proactively replace batteries approaching depletion threshold across a deployment of ≥30 exit monitoring devices before monitoring capability is lost",
+            "job_step_number": 8,
+            "job_step_name": "CONCLUDE",
+            "importance": 7,
+            "satisfaction_current": 4,
+            "opportunity_score": 10,
+            "impact_category": "reliability",
+            "product_related": true,
+            "confidence": 0.75
+          },
+          {
+            "id": "E17",
+            "full_statement": "Minimize the effort required to integrate emergency exit monitoring event data with an existing hotel BMS or security platform running standard building protocols",
+            "job_step_number": 8,
+            "job_step_name": "CONCLUDE",
+            "importance": 7,
+            "satisfaction_current": 4,
+            "opportunity_score": 10,
+            "impact_category": "cost",
+            "product_related": true,
+            "confidence": 0.7
+          },
+          {
+            "id": "E18",
+            "full_statement": "Minimize the variability in emergency exit compliance status across all floor levels at any given time of day",
+            "job_step_number": "P2_CORE",
+            "job_step_name": "P2 Core Job",
+            "importance": 8,
+            "satisfaction_current": 4,
+            "opportunity_score": 12,
+            "impact_category": "safety",
+            "product_related": false,
+            "confidence": 0.8,
+            "underserved": true
+          },
+          {
+            "id": "E19",
+            "full_statement": "Minimize the likelihood of emergency exit door management violations being cited during annual fire authority inspection or franchise brand standards audit",
+            "job_step_number": "P2_CORE",
+            "job_step_name": "P2 Core Job",
+            "importance": 9,
+            "satisfaction_current": 6,
+            "opportunity_score": 12,
+            "impact_category": "safety",
+            "product_related": false,
+            "confidence": 0.8
+          }
+        ],
+        "p3_p5_needs": [
+          {
+            "level": "P3",
+            "role": "Security officer (executor)",
+            "retrieval": "Becomes the person who runs a systematic, audit-proof safety operation that never fails inspection",
+            "bridge": "What must the system do so they CAN demonstrate systematic control?",
+            "need": "Increase the ability to demonstrate evidence-based emergency exit management to insurance underwriters and brand auditors with a single report without manual data assembly",
+            "hypothesis": true
+          },
+          {
+            "level": "P4",
+            "role": "Hotel GM (overseer)",
+            "retrieval": "Franchise auditors and insurers must see this property manages safety proactively, not reactively",
+            "bridge": "What must the system do so auditors SEE a professional, documented process?",
+            "need": "Minimize the likelihood of a preventable emergency exit failure becoming a documented finding in a franchise brand standards audit",
+            "hypothesis": true
+          },
+          {
+            "level": "P5",
+            "role": "Security officer — night shift (executor)",
+            "retrieval": "Wants to feel in control; fears being responsible when an undetected exit breach contributes to a security incident",
+            "bridge": "What must the system do to produce the feeling of continuous, reliable coverage even when alone?",
+            "need": "Minimize the sense of uncertainty about whether unmanned emergency exits remain secured during overnight minimum-staffing periods",
+            "hypothesis": true
+          }
+        ],
+        "odi_top_opportunities": [
+          {
+            "rank": 1,
+            "id": "E6",
+            "os": 14,
+            "label": "Unauthorized exit undetected >5 min"
+          },
+          {
+            "rank": 2,
+            "id": "E9",
+            "os": 14,
+            "label": "Centralized monitoring ≥50 exits, 1 officer"
+          },
+          {
+            "rank": 3,
+            "id": "E5",
+            "os": 13,
+            "label": "End-to-end commissioning verification"
+          },
+          {
+            "rank": 4,
+            "id": "E10",
+            "os": 13,
+            "label": "Alert latency <30 sec"
+          },
+          {
+            "rank": 5,
+            "id": "E15",
+            "os": 13,
+            "label": "Digital audit log, fire-marshal-ready"
+          },
+          {
+            "rank": 6,
+            "id": "E18",
+            "os": 12,
+            "label": "Compliance consistency across all floors"
+          },
+          {
+            "rank": 7,
+            "id": "E7",
+            "os": 12,
+            "label": "False alert fatigue elimination"
+          },
+          {
+            "rank": 8,
+            "id": "E19",
+            "os": 12,
+            "label": "Fire authority inspection pass rate"
+          }
+        ]
+      }
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

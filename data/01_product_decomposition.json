@@ -1,0 +1,1077 @@
+{
+  "id": "01_product_decomposition",
+  "title": "Product Decomposition: GfS Turwachter (Exit Control 179/1125) with IoT",
+  "type": "product_decomposition",
+  "market_slug": null,
+  "is_per_market": false,
+  "sections": [
+    {
+      "title": "1.1 Physical Features (Level 0 -- Raw)",
+      "content": "### 1.1.1 Product variants\n\n| Variant | Standard | Handle type | Alarm | Pre-alarm | Wireless | Article |\n|---|---|---|---|---|---|---|\n| Exit Control 179 Basic | DIN EN 179 | Lever handle | 95 dB | No | No | 990000 |\n| Exit Control 179 Pre-alarm | DIN EN 179 | Lever handle | 95 dB | Yes | No | 990100 |\n| Exit Control 179 Pre-alarm + Radio | DIN EN 179 | Lever handle | 95 dB | Yes | 868 MHz | 990140 |\n| Exit Control 1125 Basic | DIN EN 1125 | Panic bar | 95 dB | No | No | 994000 |\n| Exit Control 1125 Pre-alarm | DIN EN 1125 | Panic bar | 95 dB | Yes | No | 994100 |\n| Exit Control 179 Basic IP45 | DIN EN 179 | Lever handle | 95 dB | No | No | 990000-IP |\n\nSource: [GfS Exit Control 179/1125 product page](https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/), [GfS Exit Control Variants](https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control/Variants/).\n\n### 1.1.2 Technical specifications\n\n| Parameter | Value | Source |\n|---|---|---|\n| Alarm volume | 95 dB at 1 m, volume-adjustable, LED indication | GfS product page |\n| Pre-alarm | Warning tone on slight handle touch; ceases on release | GfS product page |\n| Power supply | 9 V block battery (replaceable without tools) | GfS product page; Amazon listing |\n| Operating voltage (radio) | 9 -- 28 V | GfS wireless specs |\n| Current consumption (radio) | 9 -- 35 mA | GfS wireless specs |\n| Wireless frequency | 868.3 MHz (EasyWave protocol) | GfS wireless specs |\n| Wireless range | ~30 m (integrated transmitter); extendable via repeater | GfS product page |\n| Protection class | IP 45 (outdoor variant) | GfS IP45 variant |\n| Color | RAL 6029 (safety green, standard) | GfS product page |\n| Installation | Surface-mounted on door handle; mounting plate for glass frames available | GfS accessories page |\n| Battery monitoring | Optional variant with battery status indicator | GfS product page |\n| Key override | Profile half-cylinder for authorized bypass | GfS product page |\n| Certifications | CE, DIN EN 179, DIN EN 1125 | GfS product page |\n\n### 1.1.3 Wireless and BUS integration\n\n| Component | Function | Range/Specs |\n|---|---|---|\n| Integrated radio transmitter | Sends alarm/status to receiver | ~30 m, 868.3 MHz EasyWave |\n| Wireless repeater | Extends signal range | +30 m per repeater |\n| Wireless receiver (70 x 62 x 35 mm, 57 g) | Receives and forwards signals | Potential-free contact output |\n| Wireless BUS Interface | Centralizes door guardian status into Master BUS | Multi-device integration |\n| External signal devices | Strobe lights, sirens, BMS integration | Wired from receiver |\n\nSource: [GfS Exit Control Wireless Signal Transmission](https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/GfS-Exit-Control-179-1125-with-external-signal-devices/), [GfS Accessories](https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control/Accessories/).\n\n### 1.1.4 Related GfS product family\n\n| Product | Positioning | Key difference vs. Turwachter |\n|---|---|---|\n| GfS DEXCON | Door/window monitoring device | Reed-contact-based open/close detection; no handle-locking mechanism |\n| GfS e-Bar | Push bar with integrated alarm | Alarm built into the push bar itself; replaces separate exit control |\n| GfS Day Alarm | Cost-effective door monitoring | Simpler, lower-cost alarm for daytime monitoring only |\n\nSource: [GfS DEXCON](https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-DEXCON-95dB-75dB-9V-with-battery-monitoring-and-integrated-reed-contact/), [GfS e-Bar](https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-e-Bar/).\n\n---"
+    },
+    {
+      "title": "1.2 Level 1 -- Mechanism",
+      "content": "**Mechanism statement:** *A spring-loaded mechanical guard mounted over the door handle prevents handle depression in the locked position. Swinging the guard 45 degrees releases the handle and mechanically triggers a piezo-electric horn (95 dB). The IoT variant adds an 868 MHz radio transmitter (EasyWave protocol) that broadcasts guard-state and alarm events to centralized receivers and BUS interfaces for remote monitoring.*\n\n### 1.2.1 How the mechanism works\n\nThe Turwachter operates on a purely mechanical principle for its safety-critical function:\n\n1. **Locked state**: The guard housing sits over the door handle, physically blocking downward motion. The door cannot be opened.\n2. **Emergency activation**: A person swings the guard vertically downward (single-hand operation per EN 179) or pushes through the panic bar (per EN 1125). This motion simultaneously releases the handle and triggers the alarm horn via a mechanical linkage -- no electrical power is required for the alarm trigger.\n3. **Pre-alarm (optional)**: Slight contact with the handle triggers a warning tone. If the handle is released, the warning ceases. Full depression triggers the main 95 dB alarm.\n4. **Key override**: Authorized personnel insert a profile half-cylinder key to disengage the guard without triggering the alarm.\n5. **IoT layer**: The radio transmitter detects state changes (guard opened, alarm triggered, battery low) and broadcasts on 868.3 MHz to receivers within 30 m, which relay to BUS systems or building management.\n\n### 1.2.2 Why mechanical-primary design is load-bearing\n\nThe entire regulatory framework (DIN EN 179, DIN EN 1125) mandates that emergency exit operation must never depend on electrical power. The Turwachter's architecture -- mechanical alarm as the primary system, IoT as a supervisory overlay -- is not a design choice but a regulatory necessity. The IoT module adds monitoring value without creating a single-point-of-failure on the escape path.\n\n### 1.2.3 Alternative-test (passes)\n\nAlternative mechanisms that achieve the same function: electromagnetic door holders with alarm, electronic access control with panic release, alarmed push bars (e.g., GfS e-Bar), magnetic reed contact alarm systems (e.g., GfS DEXCON), integrated electronic exit control systems (e.g., dormakaba SafeRoute, GEZE SecuLogic). The mechanism statement passes.\n\n---"
+    },
+    {
+      "title": "1.3 Level 2 -- Function (solution-agnostic)",
+      "content": "**Function statement:**\n\n> *Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability per regulatory standards, and report door status events to a centralized monitoring system without requiring mains power at the door.*\n\nThis is the capability any replacement technology would have to deliver. Note what it contains and does not contain:\n\n* It contains: the dual mandate (security + escape compliance), the regulatory constraint (single-motion, standards-compliant), the monitoring capability (centralized reporting), and the power independence constraint (no mains at door).\n* It does **not** contain: \"Turwachter\", \"GfS\", \"guard\", \"swing\", \"868 MHz\", \"EasyWave\", \"piezo horn\", or any mechanism-specific term.\n\n**Substitution test (passes):** Replace the mechanical guard + radio transmitter with an electromagnetic lock + BLE sensor, an electronic panic bar with WiFi, or a magnetic contact + LoRaWAN gateway, and the Function statement still applies.\n\n### Functional Promise (structured)\n\n| Field | Value |\n|---|---|\n| **Statement** | Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring without mains power at the door |\n| **Verb** | Secure |\n| **Object** | emergency exit doors against unauthorized use |\n| **Context** | while preserving escape capability and reporting status to centralized monitoring without mains power |\n| **Differentiator 1** | Mechanical alarm operates independently of electrical power (fail-safe) |\n| **Differentiator 2** | Single-motion escape compliant with both EN 179 (lever) and EN 1125 (panic bar) |\n| **Differentiator 3** | Wireless status reporting without mains wiring at the door point |\n\n---"
+    },
+    {
+      "title": "1.4 Level 3 -- Outcome (customer language)",
+      "content": "| # | Outcome (facility manager voice) | Quantifiable metric | Value captured by |\n|---|---|---|---|\n| O1 | \"I know instantly when an emergency exit is opened -- I don't find out hours later from a propped-open door\" | Mean time-to-detect unauthorized opening: seconds vs. hours | Facility manager, security team |\n| O2 | \"I pass my fire safety inspection without scrambling -- every door's status is documented automatically\" | Inspection preparation time reduction (target: -80%); documented compliance log completeness | Building owner, compliance officer |\n| O3 | \"I don't need a security guard to patrol emergency exits every shift\" | Security patrol hours/week for exit monitoring (target: -60-90%); EUR/yr staffing cost | Facility manager, CFO |\n| O4 | \"I can retrofit every exit in a weekend without calling an electrician\" | Installation time per door: <30 min; electrician labor cost: EUR 0 | Building owner, installer |\n| O5 | \"The alarm works even during a power outage -- I never have an unmonitored exit\" | Power-independent alarm uptime: 100%; battery replacement cycle: >2 years | Safety officer, insurance |\n| O6 | \"I see battery status remotely and replace before failure -- no dead alarms\" | Preventive battery replacement rate vs. failure-discovered rate (target: >95% preventive) | Maintenance team |\n\n---"
+    },
+    {
+      "title": "1.5 Level 4 -- Job (Core Functional Job candidates)",
+      "content": "| ID | Candidate Core Functional Job | Beneficiary scope | Cross-market reusability |\n|---|---|---|---|\n| **CFJ-1** | **Ensure emergency exit compliance while preventing unauthorized door use for the building operator** | All building types with mandated emergency exits: commercial, public, healthcare, industrial, education, hospitality | **Highest -- primary candidate** |\n| CFJ-2 | Monitor the operational status of distributed safety-critical hardware for the facility manager | Fire extinguishers, emergency lighting, smoke detectors, sprinklers, exit hardware | High (horizontal safety-equipment monitoring) |\n| CFJ-3 | Reduce the cost of regulatory compliance documentation for the compliance officer | Fire safety audits, building inspections, insurance documentation | Medium-high |\n| CFJ-4 | Prevent unauthorized access through secondary building openings for the security manager | Loading docks, roof hatches, basement exits, perimeter doors | Medium |\n\n### 1.5.1 Why CFJ-1 is primary\n\n1. **Regulatory mandate**: Emergency exit compliance is legally required in every commercial and public building across the EU. The job cannot be eliminated or deferred -- it is non-discretionary.\n2. **Dual-tension stability**: The tension between \"keep the door secure\" and \"keep the door usable for escape\" is inherent to the building code and will not change with technology evolution.\n3. **IoT value multiplier**: CFJ-1 directly benefits from IoT because the current solution (manual patrol + paper inspection logs) is the bottleneck. Remote monitoring transforms the economics.\n4. **Cross-market transfer**: Every building type has emergency exits. The job is identical in a hospital, a school, a warehouse, or an airport terminal.\n\n---"
+    },
+    {
+      "title": "1.6 Abstraction Ladder (stacked)",
+      "content": "```\n+-----------------------------------------------------------------------+\n|  LEVEL 4 -- JOB (stable, beneficiary-anchored)                       |\n|  \"Ensure emergency exit compliance while preventing unauthorized      |\n|   door use for the building operator.\"                                |\n+-----------------------------------------------------------------------+\n                                   ^\n+-----------------------------------------------------------------------+\n|  LEVEL 3 -- OUTCOME (customer voice, quantified)                      |\n|  Instant breach detection . automated compliance logs . no patrol     |\n|  cost . no-electrician retrofit . power-independent alarm .           |\n|  predictive battery replacement                                       |\n+-----------------------------------------------------------------------+\n                                   ^\n+-----------------------------------------------------------------------+\n|  LEVEL 2 -- FUNCTION (solution-agnostic, VERB + OBJECT)               |\n|  \"Secure emergency exit doors against unauthorized use while          |\n|   preserving unimpeded single-motion escape capability and reporting  |\n|   door status events to centralized monitoring without mains power.\"  |\n+-----------------------------------------------------------------------+\n                                   ^\n+-----------------------------------------------------------------------+\n|  LEVEL 1 -- MECHANISM (technology-specific)                           |\n|  Spring-loaded mechanical guard over door handle with piezo horn      |\n|  (95 dB) + 868 MHz EasyWave radio transmitter for status reporting   |\n|  to wireless BUS interface.                                           |\n+-----------------------------------------------------------------------+\n                                   ^\n                                   |\n                     [GfS Turwachter / Exit Control 179/1125]\n              DIN EN 179 (lever) / DIN EN 1125 (panic bar)\n              9V battery . 868.3 MHz . ~30 m range . IP45 option\n              RAL 6029 . profile half-cylinder key override\n```\n\n---"
+    },
+    {
+      "title": "1.7 Technology Classification",
+      "content": "| Field | Value |\n|---|---|\n| **technology_class** | Emergency Exit Security Devices with Remote Monitoring |\n| **underlying_mechanism** | Spring-loaded mechanical door-handle guard with piezoelectric alarm horn and 868 MHz wireless state transmitter |\n\n---"
+    },
+    {
+      "title": "1.8 UNSPSC Classification",
+      "content": "| Rank | Code | Commodity name | Confidence | Reasoning |\n|---|---|---|---|---|\n| 1 | 46171501 | Padlocks | 25% | Wrong product type entirely -- reject |\n| 2 | 46171500 | Locks and security hardware and accessories (class) | 55% | Correct family but too broad; this is a class not a commodity |\n| 3 | 46171610 | Security cameras | 15% | Wrong -- surveillance, not door hardware |\n\n**Assessment:** No standard UNSPSC commodity code at the 8-digit level precisely describes \"emergency exit door alarm guards with IoT monitoring.\" The product sits at the intersection of door hardware (46171500 class) and alarm/monitoring systems (46171600 class), but no single commodity captures the combined function.\n\n**Fallback -- Custom Product Group:**\n\n| Field | Value |\n|---|---|\n| **custom_product_group** | Emergency Exit Door Alarm Guards |\n| **Rationale** | UNSPSC lacks a commodity-level code for door-mounted alarm guards that combine physical handle-locking with alarm triggering and wireless monitoring. \"Emergency Exit Door Alarm Guards\" is a UNSPSC-style name (plural nouns, no brand, no marketing) that accurately describes the product category. |\n\n---"
+    },
+    {
+      "title": "1.9 Commodity-Level Functional Promise",
+      "content": "| Field | Value |\n|---|---|\n| **Commodity/Group** | Emergency Exit Door Alarm Guards |\n| **Functional Promise** | Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability, alerting to door activation via audible alarm and optional remote notification |\n| **Reasoning** | All products in this category -- mechanical door guardians, electronic exit controls, alarmed push bars -- share the same dual mandate: (1) deter misuse of emergency exits and (2) never impede escape. The alarm function (audible or electronic) is universal. Remote monitoring is an optional but increasingly standard capability. The promise must cover both purely mechanical devices (GfS Basic) and IoT-enhanced variants. |\n\n---"
+    },
+    {
+      "title": "1.10 Features",
+      "content": "### Technology-scoped features (any emergency exit door alarm guard)\n\n| Name | Description | Long description | Category |\n|---|---|---|---|\n| Mechanical Handle Locking | Block door handle depression in secured state | A physical barrier prevents the door handle from being operated, securing the door against casual or unauthorized use. The lock must be defeatable in a single motion for emergency escape. Does not require electrical power. | safety |\n| Audible Alarm Trigger | Sound loud alarm on unauthorized door activation | When the door guardian is defeated (handle depressed), a horn or siren activates at high volume (typically 85-105 dB at 1 m) to deter misuse and alert personnel. Must operate without mains power. | safety |\n| Single-Motion Emergency Release | Allow escape in one hand movement per EN 179/1125 | Regulatory standards mandate that emergency exits must be operable in a single motion without prior knowledge or tools. The guard mechanism must not add operational steps beyond what standards permit. | usability |\n| Key Override Bypass | Allow authorized access without triggering alarm | A keyed mechanism (profile half-cylinder, electronic credential) allows authorized personnel to open the door silently, distinguishing routine authorized use from emergency or unauthorized activation. | usability |\n| Battery-Powered Operation | Operate alarm and monitoring on replaceable batteries | Eliminates requirement for mains wiring at the door point. Enables retrofit installation without electrical work. Battery life must span maintenance cycles (typically 1-3 years). | maintenance |\n| Pre-Alarm Warning | Sound preliminary tone on initial contact before full alarm | A softer warning tone activates on light handle touch, giving accidental users a chance to withdraw before the full alarm sounds. Reduces false alarm fatigue. | usability |\n\n### Vendor-scoped features (GfS Turwachter / Exit Control specific)\n\n| Name | Description | Long description | Category |\n|---|---|---|---|\n| 868 MHz EasyWave Radio Transmission | Transmit guard state wirelessly to central receivers | GfS-proprietary integration using the 868.3 MHz EasyWave protocol (reserved low-power band in EU). Integrated transmitter broadcasts alarm, guard-open, and battery-low events to receivers within ~30 m. Extendable via wireless repeaters. Not interoperable with other protocols. | integration |\n| Wireless BUS Interface Integration | Centralize multiple door guardians into Master BUS | GfS Wireless BUS Interface aggregates status messages from multiple Turwachter units into a single centralized monitoring point. Enables integration with building management systems and external alarm infrastructure. | integration |\n| Dual-Standard Variant Range (EN 179 + EN 1125) | Cover both lever-handle and panic-bar installations | GfS offers matched variants for DIN EN 179 (lever handle, known-route buildings) and DIN EN 1125 (panic bar, public buildings with unfamiliar occupants) from the same product family, enabling standardized deployment across mixed building portfolios. | usability |\n| IP45 Outdoor Variant | Operate in outdoor and semi-exposed installations | Weatherproofed variant (IP45) for emergency exits exposed to rain, dust, and temperature variation. Extends deployment to loading docks, external stairwells, and covered outdoor areas. | reliability |\n| Glass-Frame Mounting Plate | Install on glass-framed emergency exit doors | Custom mounting plate (Art. 991170) enables installation on glass-frame doors without structural modification, addressing a common retrofit gap in modern building architectures. | usability |\n\n---"
+    },
+    {
+      "title": "1.11 Specifications",
+      "content": "| Name | Value | Unit | Test condition |\n|---|---|---|---|\n| Alarm volume | 95 | dB at 1 m | Volume-adjustable |\n| Power source | 9 V block battery | - | Standard alkaline; replaceable without tools |\n| Wireless frequency | 868.3 | MHz | EasyWave protocol, EU reserved band |\n| Wireless range (integrated TX) | ~30 | m | Line-of-sight; structural obstructions reduce range |\n| Wireless range (with repeater) | ~60 | m | One repeater stage |\n| Operating voltage (radio module) | 9-28 | V | External supply option |\n| Current consumption (radio module) | 9-35 | mA | Active transmission |\n| Wireless receiver dimensions | 70 x 62 x 35 | mm | - |\n| Wireless receiver weight | 0.057 | kg | - |\n| Protection class (outdoor) | IP 45 | - | 990000-IP variant |\n| Retail price (pre-alarm + radio) | ~730 | EUR | incl. VAT, Germany |\n\n---"
+    },
+    {
+      "title": "1.12 Constraints",
+      "content": "| Name | Type | Description | Severity | Threshold |\n|---|---|---|---|---|\n| Emergency Escape Non-Impedance | regulatory | Must not add any operational step or delay to emergency escape beyond what DIN EN 179 (lever) or DIN EN 1125 (panic bar) permits. Single-motion release is non-negotiable. | hard | 0 additional steps |\n| Mechanical Alarm Independence | regulatory | Alarm horn must function without any electrical power. Mechanical trigger is the primary system; IoT is supervisory only. Required by EltVTR and fire safety codes. | hard | 100% mechanical availability |\n| Wireless Range Limitation | physical | Integrated 868 MHz transmitter reaches ~30 m. Buildings with thick concrete, metal structures, or distances >30 m require repeaters, adding cost and installation complexity. | soft | 30 m (extendable) |\n| Battery Life Uncertainty | operational | Battery life for the 9V block battery is not published by GfS. IoT module current draw (9-35 mA) suggests battery replacement cycles may be shorter than the 2-year target for high-activity doors. | soft | TBD (target: >2 years) |\n| Retrofit-Only Installation | physical | Surface-mounted design. Cannot be flush-integrated into the door or frame. Adds a visible protrusion on the door handle, which may be aesthetically unacceptable in premium architectural settings. | soft | - |\n| Protocol Lock-In (EasyWave) | operational | 868 MHz EasyWave is a proprietary protocol. Not interoperable with standard smart-building protocols (BACnet, KNX, Zigbee, LoRaWAN, Matter). Integration requires GfS-specific gateway hardware. | soft | - |\n| Price Premium for IoT | economic | The radio-enabled variant (~730 EUR) represents a significant premium over the basic mechanical variant. Facility operators with hundreds of doors face high total deployment cost. | soft | ~2x vs. basic variant |\n| GDPR Compliance for Monitoring Data | regulatory | Door-open/close timestamps combined with access patterns may constitute personal data under GDPR if attributable to individuals. Data processing agreements and privacy impact assessments may be required. | hard | - |\n\n---"
+    },
+    {
+      "title": "1.13 Competitive Landscape (mechanism-level context)",
+      "content": "| Competitor | Product | Approach | IoT capability | Standard |\n|---|---|---|---|---|\n| **GfS (Assa Abloy)** | Exit Control 179/1125 + DEXCON + e-Bar | Mechanical guard + alarm + optional radio | 868 MHz EasyWave, BUS interface | DIN EN 179, EN 1125 |\n| **dormakaba** | SafeRoute | Electronic escape route protection system | LON bus networks, BMS integration, central software | EN 13637 |\n| **GEZE** | SecuLogic | Electronic door control with integrated access control | Web-based BMS, biometric access, smoke alarm integration | EN 13637 |\n| **Allegion (Von Duprin)** | Various exit devices | Electrified panic hardware with monitoring | Proprietary, some IP-connected | UL 305, ANSI/BHMA |\n| **SimonsVoss (Allegion)** | SmartHandle AX | Digital access control for doors | Wireless, cloud-managed | - |\n\n**Key competitive observation**: GfS occupies the mechanical-first, retrofit-friendly segment. dormakaba SafeRoute and GEZE SecuLogic are full electronic systems requiring mains wiring and professional installation -- they compete at a higher price point and complexity level. The IoT Turwachter sits between these poles: mechanical reliability with digital overlay.\n\n---"
+    },
+    {
+      "title": "1.14 Regulatory Framework Summary",
+      "content": "| Standard | Scope | Key requirement | Turwachter relevance |\n|---|---|---|---|\n| **DIN EN 179** | Emergency exit devices operated by lever handle or push pad | For buildings where occupants know the escape route (offices, factories). Force <=70N for lever. | Exit Control 179 variants |\n| **DIN EN 1125** | Panic exit devices operated by horizontal bar | For buildings where occupants may not know the route (hospitals, schools, public). Bar must cover >=60% of door width. | Exit Control 1125 (panic bar) variants |\n| **EN 13637** | Electrically controlled exit systems | Governs powered locks on escape routes. Requires fail-safe release on power loss, fire alarm, or emergency button. | Relevant for IoT-enhanced configurations |\n| **EltVTR** | German directive for electrical locking on escape doors | Mandates that electrical components must not impede escape under any failure condition. | Constrains IoT architecture design |\n| **GDPR** | Personal data protection | Door access timestamps may be personal data if attributable. | Relevant for IoT monitoring data |\n\nSource: [DIN EN 179 -- HOPPE](https://www.hoppe.com/in-en/contacts-service/standards/din-en-179/), [EN 1125 -- Intertek](https://www.intertek.com/building/standards/en-1125/), [Classification Guide -- Allegion](https://mea.allegion.com/content/dam/mea/EN_Classification_16%20(1).pdf).\n\n---"
+    },
+    {
+      "title": "1.15 Solution-Agnosticism Check",
+      "content": "| Forbidden term | Present in Function? |\n|---|---|\n| \"Turwachter\" / \"door guardian\" | No |\n| \"GfS\" / \"Assa Abloy\" | No |\n| \"piezo\" / \"horn\" / \"siren\" | No |\n| \"868 MHz\" / \"EasyWave\" / \"BUS\" | No |\n| \"swing\" / \"spring-loaded\" | No |\n| \"9V battery\" | No |\n| Any brand or product model number | No |\n\nThe Function statement uses only controlled vocabulary: *secure, emergency exit doors, unauthorized use, single-motion escape capability, regulatory standards, door status events, centralized monitoring, mains power*. Every term describes a capability, not an implementation. The statement passes the substitution test.\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### NeutralProductGroup\n\n```json\n{\n  \"name\": \"Emergency Exit Security Devices with Remote Monitoring\",\n  \"description\": \"Devices that secure emergency exit doors against unauthorized use while maintaining regulatory-compliant escape capability, with wireless status reporting to centralized monitoring systems\",\n  \"underlying_mechanism\": \"Spring-loaded mechanical door-handle guard with piezoelectric alarm horn and 868 MHz wireless state transmitter\",\n  \"commodity_functional_promise\": \"Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability, alerting to door activation via audible alarm and optional remote notification\",\n  \"unspsc_code\": null,\n  \"unspsc_title\": null,\n  \"custom_product_group\": \"Emergency Exit Door Alarm Guards\"\n}\n```\n\n### FunctionalPromise\n\n```json\n{\n  \"statement\": \"Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring without mains power\",\n  \"verb\": \"Secure\",\n  \"object\": \"emergency exit doors against unauthorized use\",\n  \"context\": \"while preserving escape capability and reporting status to centralized monitoring without mains power\",\n  \"differentiators\": [\n    \"Mechanical alarm operates independently of electrical power (fail-safe)\",\n    \"Single-motion escape compliant with both EN 179 (lever) and EN 1125 (panic bar)\",\n    \"Wireless status reporting without mains wiring at the door point\"\n  ]\n}\n```\n\n### Features\n\n```json\n[\n  {\n    \"name\": \"Mechanical Handle Locking\",\n    \"description\": \"Block door handle depression in secured state\",\n    \"long_description\": \"A physical barrier prevents the door handle from being operated, securing the door against casual or unauthorized use. The lock must be defeatable in a single motion for emergency escape. Does not require electrical power.\",\n    \"scope\": \"technology\",\n    \"category\": \"safety\"\n  },\n  {\n    \"name\": \"Audible Alarm Trigger\",\n    \"description\": \"Sound loud alarm on unauthorized door activation\",\n    \"long_description\": \"When the door guardian is defeated, a horn or siren activates at high volume (typically 85-105 dB at 1 m) to deter misuse and alert personnel. Must operate without mains power.\",\n    \"scope\": \"technology\",\n    \"category\": \"safety\"\n  },\n  {\n    \"name\": \"Single-Motion Emergency Release\",\n    \"description\": \"Allow escape in one hand movement per EN 179/1125\",\n    \"long_description\": \"Regulatory standards mandate that emergency exits must be operable in a single motion without prior knowledge or tools. The guard mechanism must not add operational steps beyond what standards permit.\",\n    \"scope\": \"technology\",\n    \"category\": \"usability\"\n  },\n  {\n    \"name\": \"Key Override Bypass\",\n    \"description\": \"Allow authorized access without triggering alarm\",\n    \"long_description\": \"A keyed mechanism allows authorized personnel to open the door silently, distinguishing routine authorized use from emergency or unauthorized activation.\",\n    \"scope\": \"technology\",\n    \"category\": \"usability\"\n  },\n  {\n    \"name\": \"Battery-Powered Operation\",\n    \"description\": \"Operate alarm and monitoring on replaceable batteries\",\n    \"long_description\": \"Eliminates requirement for mains wiring at the door point. Enables retrofit installation without electrical work. Battery life must span maintenance cycles (typically 1-3 years).\",\n    \"scope\": \"technology\",\n    \"category\": \"maintenance\"\n  },\n  {\n    \"name\": \"Pre-Alarm Warning\",\n    \"description\": \"Sound preliminary tone on initial contact before full alarm\",\n    \"long_description\": \"A softer warning tone activates on light handle touch, giving accidental users a chance to withdraw before the full alarm sounds. Reduces false alarm fatigue.\",\n    \"scope\": \"technology\",\n    \"category\": \"usability\"\n  },\n  {\n    \"name\": \"868 MHz EasyWave Radio Transmission\",\n    \"description\": \"Transmit guard state wirelessly to central receivers\",\n    \"long_description\": \"GfS-proprietary integration using the 868.3 MHz EasyWave protocol. Integrated transmitter broadcasts alarm, guard-open, and battery-low events to receivers within ~30 m. Extendable via wireless repeaters. Not interoperable with other protocols.\",\n    \"scope\": \"vendor\",\n    \"category\": \"integration\"\n  },\n  {\n    \"name\": \"Wireless BUS Interface Integration\",\n    \"description\": \"Centralize multiple door guardians into Master BUS\",\n    \"long_description\": \"GfS Wireless BUS Interface aggregates status messages from multiple Turwachter units into a single centralized monitoring point. Enables integration with building management systems and external alarm infrastructure.\",\n    \"scope\": \"vendor\",\n    \"category\": \"integration\"\n  },\n  {\n    \"name\": \"Dual-Standard Variant Range\",\n    \"description\": \"Cover both lever-handle and panic-bar installations from one product family\",\n    \"long_description\": \"GfS offers matched variants for DIN EN 179 and DIN EN 1125 from the same product family, enabling standardized deployment across mixed building portfolios.\",\n    \"scope\": \"vendor\",\n    \"category\": \"usability\"\n  },\n  {\n    \"name\": \"IP45 Outdoor Variant\",\n    \"description\": \"Operate in outdoor and semi-exposed installations\",\n    \"long_description\": \"Weatherproofed variant for emergency exits exposed to rain, dust, and temperature variation. Extends deployment to loading docks, external stairwells, and covered outdoor areas.\",\n    \"scope\": \"vendor\",\n    \"category\": \"reliability\"\n  },\n  {\n    \"name\": \"Glass-Frame Mounting Plate\",\n    \"description\": \"Install on glass-framed emergency exit doors\",\n    \"long_description\": \"Custom mounting plate enables installation on glass-frame doors without structural modification, addressing a common retrofit gap in modern building architectures.\",\n    \"scope\": \"vendor\",\n    \"category\": \"usability\"\n  }\n]\n```\n\n### Specifications\n\n```json\n[\n  {\"name\": \"Alarm Volume\", \"value\": \"95\", \"unit\": \"dB at 1 m\", \"test_condition\": \"Volume-adjustable\"},\n  {\"name\": \"Power Source\", \"value\": \"9V block battery\", \"unit\": null, \"test_condition\": \"Standard alkaline, replaceable without tools\"},\n  {\"name\": \"Wireless Frequency\", \"value\": \"868.3\", \"unit\": \"MHz\", \"test_condition\": \"EasyWave protocol, EU reserved band\"},\n  {\"name\": \"Wireless Range (integrated TX)\", \"value\": \"~30\", \"unit\": \"m\", \"test_condition\": \"Line-of-sight; structural obstructions reduce range\"},\n  {\"name\": \"Wireless Range (with repeater)\", \"value\": \"~60\", \"unit\": \"m\", \"test_condition\": \"One repeater stage\"},\n  {\"name\": \"Operating Voltage (radio module)\", \"value\": \"9-28\", \"unit\": \"V\", \"test_condition\": \"External supply option\"},\n  {\"name\": \"Current Consumption (radio module)\", \"value\": \"9-35\", \"unit\": \"mA\", \"test_condition\": \"Active transmission\"},\n  {\"name\": \"Protection Class (outdoor variant)\", \"value\": \"IP 45\", \"unit\": null, \"test_condition\": \"990000-IP variant\"},\n  {\"name\": \"Retail Price (pre-alarm + radio)\", \"value\": \"~730\", \"unit\": \"EUR\", \"test_condition\": \"incl. VAT, Germany 2025\"}\n]\n```\n\n### Constraints\n\n```json\n[\n  {\n    \"name\": \"Emergency Escape Non-Impedance\",\n    \"constraint_type\": \"regulatory\",\n    \"description\": \"Must not add any operational step or delay to emergency escape beyond what DIN EN 179 or DIN EN 1125 permits. Single-motion release is non-negotiable.\",\n    \"severity\": \"hard\",\n    \"threshold_value\": \"0\",\n    \"threshold_unit\": \"additional steps\"\n  },\n  {\n    \"name\": \"Mechanical Alarm Independence\",\n    \"constraint_type\": \"regulatory\",\n    \"description\": \"Alarm horn must function without any electrical power. Mechanical trigger is the primary system; IoT is supervisory only. Required by EltVTR and fire safety codes.\",\n    \"severity\": \"hard\",\n    \"threshold_value\": \"100\",\n    \"threshold_unit\": \"% mechanical availability\"\n  },\n  {\n    \"name\": \"Wireless Range Limitation\",\n    \"constraint_type\": \"physical\",\n    \"description\": \"Integrated 868 MHz transmitter reaches ~30 m. Buildings with thick concrete, metal structures, or distances >30 m require repeaters, adding cost and complexity.\",\n    \"severity\": \"soft\",\n    \"threshold_value\": \"30\",\n    \"threshold_unit\": \"m\"\n  },\n  {\n    \"name\": \"Battery Life Uncertainty\",\n    \"constraint_type\": \"operational\",\n    \"description\": \"Battery life for the 9V block battery is not published by GfS. IoT module current draw (9-35 mA) suggests replacement cycles may be shorter than the 2-year target for high-activity doors.\",\n    \"severity\": \"soft\",\n    \"threshold_value\": null,\n    \"threshold_unit\": null\n  },\n  {\n    \"name\": \"Retrofit-Only Installation\",\n    \"constraint_type\": \"physical\",\n    \"description\": \"Surface-mounted design adds a visible protrusion on the door handle. Cannot be flush-integrated. May be aesthetically unacceptable in premium architectural settings.\",\n    \"severity\": \"soft\",\n    \"threshold_value\": null,\n    \"threshold_unit\": null\n  },\n  {\n    \"name\": \"Protocol Lock-In (EasyWave)\",\n    \"constraint_type\": \"operational\",\n    \"description\": \"868 MHz EasyWave is proprietary. Not interoperable with BACnet, KNX, Zigbee, LoRaWAN, or Matter. Integration requires GfS-specific gateway hardware.\",\n    \"severity\": \"soft\",\n    \"threshold_value\": null,\n    \"threshold_unit\": null\n  },\n  {\n    \"name\": \"Price Premium for IoT Variant\",\n    \"constraint_type\": \"economic\",\n    \"description\": \"Radio-enabled variant (~730 EUR) at approximately 2x the basic mechanical variant. High total deployment cost for large building portfolios with hundreds of doors.\",\n    \"severity\": \"soft\",\n    \"threshold_value\": \"730\",\n    \"threshold_unit\": \"EUR per unit\"\n  },\n  {\n    \"name\": \"GDPR Compliance for Monitoring Data\",\n    \"constraint_type\": \"regulatory\",\n    \"description\": \"Door-open/close timestamps combined with access patterns may constitute personal data under GDPR if attributable to individuals. Requires data processing agreements and privacy impact assessments.\",\n    \"severity\": \"hard\",\n    \"threshold_value\": null,\n    \"threshold_unit\": null\n  }\n]\n```\n\n### UNSPSC Classification\n\n```json\n{\n  \"product_name\": \"GfS Turwachter (Exit Control 179/1125) with IoT\",\n  \"evaluations\": [\n    {\n      \"commodity_code\": \"46171500\",\n      \"commodity_name\": \"Locks and security hardware and accessories\",\n      \"confidence_pct\": 55,\n      \"reasoning\": \"Correct UNSPSC class but too broad -- covers all locks, padlocks, deadbolts, etc. The Turwachter is specifically an emergency exit alarm guard, not a general lock.\"\n    },\n    {\n      \"commodity_code\": \"46171501\",\n      \"commodity_name\": \"Padlocks\",\n      \"confidence_pct\": 15,\n      \"reasoning\": \"Wrong product type entirely. Padlocks are portable locks, not door-mounted alarm guards.\"\n    },\n    {\n      \"commodity_code\": \"46171610\",\n      \"commodity_name\": \"Security cameras\",\n      \"confidence_pct\": 10,\n      \"reasoning\": \"Wrong product category. Security cameras are surveillance devices, not door hardware.\"\n    }\n  ],\n  \"suggested_product_group\": \"Emergency Exit Door Alarm Guards\"\n}\n```\n\n---"
+    },
+    {
+      "title": "Sources",
+      "content": "Internal:\n- `/Users/florianstrauss/Desktop/Node42 Backend/Clayton/Customers/Assa Abloy/INSTRUCTIONS.md` -- product brief and project scope.\n- `/Users/florianstrauss/Desktop/Node42 Backend/Clayton/Docs/components/product-decomposition.html` -- Clayton component spec governing this section.\n\nExternal:\n- [GfS Exit Control 179/1125 product page](https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/)\n- [GfS Exit Control Variants](https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control/Variants/)\n- [GfS Exit Control Wireless Signal Transmission](https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/GfS-Exit-Control-179-1125-with-external-signal-devices/)\n- [GfS Exit Control Accessories](https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control/Accessories/)\n- [GfS DEXCON](https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-DEXCON-95dB-75dB-9V-with-battery-monitoring-and-integrated-reed-contact/)\n- [GfS e-Bar](https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-e-Bar/)\n- [DIN EN 179 -- HOPPE](https://www.hoppe.com/in-en/contacts-service/standards/din-en-179/)\n- [EN 1125 -- Intertek](https://www.intertek.com/building/standards/en-1125/)\n- [EN 179 vs EN 1125 Classification -- Allegion](https://mea.allegion.com/content/dam/mea/EN_Classification_16%20(1).pdf)\n- [dormakaba SafeRoute](https://www.dormakaba.com/gb-en/saferoute-escape-route)\n- [GEZE SecuLogic Emergency Exit Systems](https://www.geze.com/en/products-solutions/access_control_and_safety/emergency_exit_systems/c_36819)\n- [UNSPSC 46171500 -- Locks and security hardware](https://usa.databasesets.com/unspsc/class/46171500)\n- [UNSPSC 46171501 -- Padlocks](https://usa.databasesets.com/unspsc/commodity/46171501)\n- [Amazon DE -- GfS EH-Turwachter](https://www.amazon.de/GFS-Fluchtt%C3%BCrw%C3%A4chter-Batteriebetrieben-T%C3%BCrsicherung-Stangengriff/dp/B089SXGK7C)\n- [GfS EH-Turwachter Basic with battery monitoring](https://www.gfs-online.com/GfS-EH-Tuerwaechter-Basis-Batterieueberwachung-RAL-6029/990000-BUE)"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Variant",
+        "Standard",
+        "Handle type",
+        "Alarm",
+        "Pre-alarm",
+        "Wireless",
+        "Article"
+      ],
+      "rows": [
+        {
+          "Variant": "Exit Control 179 Basic",
+          "Standard": "DIN EN 179",
+          "Handle type": "Lever handle",
+          "Alarm": "95 dB",
+          "Pre-alarm": "No",
+          "Wireless": "No",
+          "Article": "990000"
+        },
+        {
+          "Variant": "Exit Control 179 Pre-alarm",
+          "Standard": "DIN EN 179",
+          "Handle type": "Lever handle",
+          "Alarm": "95 dB",
+          "Pre-alarm": "Yes",
+          "Wireless": "No",
+          "Article": "990100"
+        },
+        {
+          "Variant": "Exit Control 179 Pre-alarm + Radio",
+          "Standard": "DIN EN 179",
+          "Handle type": "Lever handle",
+          "Alarm": "95 dB",
+          "Pre-alarm": "Yes",
+          "Wireless": "868 MHz",
+          "Article": "990140"
+        },
+        {
+          "Variant": "Exit Control 1125 Basic",
+          "Standard": "DIN EN 1125",
+          "Handle type": "Panic bar",
+          "Alarm": "95 dB",
+          "Pre-alarm": "No",
+          "Wireless": "No",
+          "Article": "994000"
+        },
+        {
+          "Variant": "Exit Control 1125 Pre-alarm",
+          "Standard": "DIN EN 1125",
+          "Handle type": "Panic bar",
+          "Alarm": "95 dB",
+          "Pre-alarm": "Yes",
+          "Wireless": "No",
+          "Article": "994100"
+        },
+        {
+          "Variant": "Exit Control 179 Basic IP45",
+          "Standard": "DIN EN 179",
+          "Handle type": "Lever handle",
+          "Alarm": "95 dB",
+          "Pre-alarm": "No",
+          "Wireless": "No",
+          "Article": "990000-IP"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Parameter",
+        "Value",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Parameter": "Alarm volume",
+          "Value": "95 dB at 1 m, volume-adjustable, LED indication",
+          "Source": "GfS product page"
+        },
+        {
+          "Parameter": "Pre-alarm",
+          "Value": "Warning tone on slight handle touch; ceases on release",
+          "Source": "GfS product page"
+        },
+        {
+          "Parameter": "Power supply",
+          "Value": "9 V block battery (replaceable without tools)",
+          "Source": "GfS product page; Amazon listing"
+        },
+        {
+          "Parameter": "Operating voltage (radio)",
+          "Value": "9 -- 28 V",
+          "Source": "GfS wireless specs"
+        },
+        {
+          "Parameter": "Current consumption (radio)",
+          "Value": "9 -- 35 mA",
+          "Source": "GfS wireless specs"
+        },
+        {
+          "Parameter": "Wireless frequency",
+          "Value": "868.3 MHz (EasyWave protocol)",
+          "Source": "GfS wireless specs"
+        },
+        {
+          "Parameter": "Wireless range",
+          "Value": "~30 m (integrated transmitter); extendable via repeater",
+          "Source": "GfS product page"
+        },
+        {
+          "Parameter": "Protection class",
+          "Value": "IP 45 (outdoor variant)",
+          "Source": "GfS IP45 variant"
+        },
+        {
+          "Parameter": "Color",
+          "Value": "RAL 6029 (safety green, standard)",
+          "Source": "GfS product page"
+        },
+        {
+          "Parameter": "Installation",
+          "Value": "Surface-mounted on door handle; mounting plate for glass frames available",
+          "Source": "GfS accessories page"
+        },
+        {
+          "Parameter": "Battery monitoring",
+          "Value": "Optional variant with battery status indicator",
+          "Source": "GfS product page"
+        },
+        {
+          "Parameter": "Key override",
+          "Value": "Profile half-cylinder for authorized bypass",
+          "Source": "GfS product page"
+        },
+        {
+          "Parameter": "Certifications",
+          "Value": "CE, DIN EN 179, DIN EN 1125",
+          "Source": "GfS product page"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Component",
+        "Function",
+        "Range/Specs"
+      ],
+      "rows": [
+        {
+          "Component": "Integrated radio transmitter",
+          "Function": "Sends alarm/status to receiver",
+          "Range/Specs": "~30 m, 868.3 MHz EasyWave"
+        },
+        {
+          "Component": "Wireless repeater",
+          "Function": "Extends signal range",
+          "Range/Specs": "+30 m per repeater"
+        },
+        {
+          "Component": "Wireless receiver (70 x 62 x 35 mm, 57 g)",
+          "Function": "Receives and forwards signals",
+          "Range/Specs": "Potential-free contact output"
+        },
+        {
+          "Component": "Wireless BUS Interface",
+          "Function": "Centralizes door guardian status into Master BUS",
+          "Range/Specs": "Multi-device integration"
+        },
+        {
+          "Component": "External signal devices",
+          "Function": "Strobe lights, sirens, BMS integration",
+          "Range/Specs": "Wired from receiver"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Product",
+        "Positioning",
+        "Key difference vs. Turwachter"
+      ],
+      "rows": [
+        {
+          "Product": "GfS DEXCON",
+          "Positioning": "Door/window monitoring device",
+          "Key difference vs. Turwachter": "Reed-contact-based open/close detection; no handle-locking mechanism"
+        },
+        {
+          "Product": "GfS e-Bar",
+          "Positioning": "Push bar with integrated alarm",
+          "Key difference vs. Turwachter": "Alarm built into the push bar itself; replaces separate exit control"
+        },
+        {
+          "Product": "GfS Day Alarm",
+          "Positioning": "Cost-effective door monitoring",
+          "Key difference vs. Turwachter": "Simpler, lower-cost alarm for daytime monitoring only"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Statement**",
+          "Value": "Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring without mains power at the door"
+        },
+        {
+          "Field": "**Verb**",
+          "Value": "Secure"
+        },
+        {
+          "Field": "**Object**",
+          "Value": "emergency exit doors against unauthorized use"
+        },
+        {
+          "Field": "**Context**",
+          "Value": "while preserving escape capability and reporting status to centralized monitoring without mains power"
+        },
+        {
+          "Field": "**Differentiator 1**",
+          "Value": "Mechanical alarm operates independently of electrical power (fail-safe)"
+        },
+        {
+          "Field": "**Differentiator 2**",
+          "Value": "Single-motion escape compliant with both EN 179 (lever) and EN 1125 (panic bar)"
+        },
+        {
+          "Field": "**Differentiator 3**",
+          "Value": "Wireless status reporting without mains wiring at the door point"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Outcome (facility manager voice)",
+        "Quantifiable metric",
+        "Value captured by"
+      ],
+      "rows": [
+        {
+          "#": "O1",
+          "Outcome (facility manager voice)": "\"I know instantly when an emergency exit is opened -- I don't find out hours later from a propped-open door\"",
+          "Quantifiable metric": "Mean time-to-detect unauthorized opening: seconds vs. hours",
+          "Value captured by": "Facility manager, security team"
+        },
+        {
+          "#": "O2",
+          "Outcome (facility manager voice)": "\"I pass my fire safety inspection without scrambling -- every door's status is documented automatically\"",
+          "Quantifiable metric": "Inspection preparation time reduction (target: -80%); documented compliance log completeness",
+          "Value captured by": "Building owner, compliance officer"
+        },
+        {
+          "#": "O3",
+          "Outcome (facility manager voice)": "\"I don't need a security guard to patrol emergency exits every shift\"",
+          "Quantifiable metric": "Security patrol hours/week for exit monitoring (target: -60-90%); EUR/yr staffing cost",
+          "Value captured by": "Facility manager, CFO"
+        },
+        {
+          "#": "O4",
+          "Outcome (facility manager voice)": "\"I can retrofit every exit in a weekend without calling an electrician\"",
+          "Quantifiable metric": "Installation time per door: <30 min; electrician labor cost: EUR 0",
+          "Value captured by": "Building owner, installer"
+        },
+        {
+          "#": "O5",
+          "Outcome (facility manager voice)": "\"The alarm works even during a power outage -- I never have an unmonitored exit\"",
+          "Quantifiable metric": "Power-independent alarm uptime: 100%; battery replacement cycle: >2 years",
+          "Value captured by": "Safety officer, insurance"
+        },
+        {
+          "#": "O6",
+          "Outcome (facility manager voice)": "\"I see battery status remotely and replace before failure -- no dead alarms\"",
+          "Quantifiable metric": "Preventive battery replacement rate vs. failure-discovered rate (target: >95% preventive)",
+          "Value captured by": "Maintenance team"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Candidate Core Functional Job",
+        "Beneficiary scope",
+        "Cross-market reusability"
+      ],
+      "rows": [
+        {
+          "ID": "**CFJ-1**",
+          "Candidate Core Functional Job": "**Ensure emergency exit compliance while preventing unauthorized door use for the building operator**",
+          "Beneficiary scope": "All building types with mandated emergency exits: commercial, public, healthcare, industrial, education, hospitality",
+          "Cross-market reusability": "**Highest -- primary candidate**"
+        },
+        {
+          "ID": "CFJ-2",
+          "Candidate Core Functional Job": "Monitor the operational status of distributed safety-critical hardware for the facility manager",
+          "Beneficiary scope": "Fire extinguishers, emergency lighting, smoke detectors, sprinklers, exit hardware",
+          "Cross-market reusability": "High (horizontal safety-equipment monitoring)"
+        },
+        {
+          "ID": "CFJ-3",
+          "Candidate Core Functional Job": "Reduce the cost of regulatory compliance documentation for the compliance officer",
+          "Beneficiary scope": "Fire safety audits, building inspections, insurance documentation",
+          "Cross-market reusability": "Medium-high"
+        },
+        {
+          "ID": "CFJ-4",
+          "Candidate Core Functional Job": "Prevent unauthorized access through secondary building openings for the security manager",
+          "Beneficiary scope": "Loading docks, roof hatches, basement exits, perimeter doors",
+          "Cross-market reusability": "Medium"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**technology_class**",
+          "Value": "Emergency Exit Security Devices with Remote Monitoring"
+        },
+        {
+          "Field": "**underlying_mechanism**",
+          "Value": "Spring-loaded mechanical door-handle guard with piezoelectric alarm horn and 868 MHz wireless state transmitter"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Rank",
+        "Code",
+        "Commodity name",
+        "Confidence",
+        "Reasoning"
+      ],
+      "rows": [
+        {
+          "Rank": "1",
+          "Code": "46171501",
+          "Commodity name": "Padlocks",
+          "Confidence": "25%",
+          "Reasoning": "Wrong product type entirely -- reject"
+        },
+        {
+          "Rank": "2",
+          "Code": "46171500",
+          "Commodity name": "Locks and security hardware and accessories (class)",
+          "Confidence": "55%",
+          "Reasoning": "Correct family but too broad; this is a class not a commodity"
+        },
+        {
+          "Rank": "3",
+          "Code": "46171610",
+          "Commodity name": "Security cameras",
+          "Confidence": "15%",
+          "Reasoning": "Wrong -- surveillance, not door hardware"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**custom_product_group**",
+          "Value": "Emergency Exit Door Alarm Guards"
+        },
+        {
+          "Field": "**Rationale**",
+          "Value": "UNSPSC lacks a commodity-level code for door-mounted alarm guards that combine physical handle-locking with alarm triggering and wireless monitoring. \"Emergency Exit Door Alarm Guards\" is a UNSPSC-style name (plural nouns, no brand, no marketing) that accurately describes the product category."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Commodity/Group**",
+          "Value": "Emergency Exit Door Alarm Guards"
+        },
+        {
+          "Field": "**Functional Promise**",
+          "Value": "Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability, alerting to door activation via audible alarm and optional remote notification"
+        },
+        {
+          "Field": "**Reasoning**",
+          "Value": "All products in this category -- mechanical door guardians, electronic exit controls, alarmed push bars -- share the same dual mandate: (1) deter misuse of emergency exits and (2) never impede escape. The alarm function (audible or electronic) is universal. Remote monitoring is an optional but increasingly standard capability. The promise must cover both purely mechanical devices (GfS Basic) and IoT-enhanced variants."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Name",
+        "Description",
+        "Long description",
+        "Category"
+      ],
+      "rows": [
+        {
+          "Name": "Mechanical Handle Locking",
+          "Description": "Block door handle depression in secured state",
+          "Long description": "A physical barrier prevents the door handle from being operated, securing the door against casual or unauthorized use. The lock must be defeatable in a single motion for emergency escape. Does not require electrical power.",
+          "Category": "safety"
+        },
+        {
+          "Name": "Audible Alarm Trigger",
+          "Description": "Sound loud alarm on unauthorized door activation",
+          "Long description": "When the door guardian is defeated (handle depressed), a horn or siren activates at high volume (typically 85-105 dB at 1 m) to deter misuse and alert personnel. Must operate without mains power.",
+          "Category": "safety"
+        },
+        {
+          "Name": "Single-Motion Emergency Release",
+          "Description": "Allow escape in one hand movement per EN 179/1125",
+          "Long description": "Regulatory standards mandate that emergency exits must be operable in a single motion without prior knowledge or tools. The guard mechanism must not add operational steps beyond what standards permit.",
+          "Category": "usability"
+        },
+        {
+          "Name": "Key Override Bypass",
+          "Description": "Allow authorized access without triggering alarm",
+          "Long description": "A keyed mechanism (profile half-cylinder, electronic credential) allows authorized personnel to open the door silently, distinguishing routine authorized use from emergency or unauthorized activation.",
+          "Category": "usability"
+        },
+        {
+          "Name": "Battery-Powered Operation",
+          "Description": "Operate alarm and monitoring on replaceable batteries",
+          "Long description": "Eliminates requirement for mains wiring at the door point. Enables retrofit installation without electrical work. Battery life must span maintenance cycles (typically 1-3 years).",
+          "Category": "maintenance"
+        },
+        {
+          "Name": "Pre-Alarm Warning",
+          "Description": "Sound preliminary tone on initial contact before full alarm",
+          "Long description": "A softer warning tone activates on light handle touch, giving accidental users a chance to withdraw before the full alarm sounds. Reduces false alarm fatigue.",
+          "Category": "usability"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Name",
+        "Description",
+        "Long description",
+        "Category"
+      ],
+      "rows": [
+        {
+          "Name": "868 MHz EasyWave Radio Transmission",
+          "Description": "Transmit guard state wirelessly to central receivers",
+          "Long description": "GfS-proprietary integration using the 868.3 MHz EasyWave protocol (reserved low-power band in EU). Integrated transmitter broadcasts alarm, guard-open, and battery-low events to receivers within ~30 m. Extendable via wireless repeaters. Not interoperable with other protocols.",
+          "Category": "integration"
+        },
+        {
+          "Name": "Wireless BUS Interface Integration",
+          "Description": "Centralize multiple door guardians into Master BUS",
+          "Long description": "GfS Wireless BUS Interface aggregates status messages from multiple Turwachter units into a single centralized monitoring point. Enables integration with building management systems and external alarm infrastructure.",
+          "Category": "integration"
+        },
+        {
+          "Name": "Dual-Standard Variant Range (EN 179 + EN 1125)",
+          "Description": "Cover both lever-handle and panic-bar installations",
+          "Long description": "GfS offers matched variants for DIN EN 179 (lever handle, known-route buildings) and DIN EN 1125 (panic bar, public buildings with unfamiliar occupants) from the same product family, enabling standardized deployment across mixed building portfolios.",
+          "Category": "usability"
+        },
+        {
+          "Name": "IP45 Outdoor Variant",
+          "Description": "Operate in outdoor and semi-exposed installations",
+          "Long description": "Weatherproofed variant (IP45) for emergency exits exposed to rain, dust, and temperature variation. Extends deployment to loading docks, external stairwells, and covered outdoor areas.",
+          "Category": "reliability"
+        },
+        {
+          "Name": "Glass-Frame Mounting Plate",
+          "Description": "Install on glass-framed emergency exit doors",
+          "Long description": "Custom mounting plate (Art. 991170) enables installation on glass-frame doors without structural modification, addressing a common retrofit gap in modern building architectures.",
+          "Category": "usability"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Name",
+        "Value",
+        "Unit",
+        "Test condition"
+      ],
+      "rows": [
+        {
+          "Name": "Alarm volume",
+          "Value": "95",
+          "Unit": "dB at 1 m",
+          "Test condition": "Volume-adjustable"
+        },
+        {
+          "Name": "Power source",
+          "Value": "9 V block battery",
+          "Unit": "-",
+          "Test condition": "Standard alkaline; replaceable without tools"
+        },
+        {
+          "Name": "Wireless frequency",
+          "Value": "868.3",
+          "Unit": "MHz",
+          "Test condition": "EasyWave protocol, EU reserved band"
+        },
+        {
+          "Name": "Wireless range (integrated TX)",
+          "Value": "~30",
+          "Unit": "m",
+          "Test condition": "Line-of-sight; structural obstructions reduce range"
+        },
+        {
+          "Name": "Wireless range (with repeater)",
+          "Value": "~60",
+          "Unit": "m",
+          "Test condition": "One repeater stage"
+        },
+        {
+          "Name": "Operating voltage (radio module)",
+          "Value": "9-28",
+          "Unit": "V",
+          "Test condition": "External supply option"
+        },
+        {
+          "Name": "Current consumption (radio module)",
+          "Value": "9-35",
+          "Unit": "mA",
+          "Test condition": "Active transmission"
+        },
+        {
+          "Name": "Wireless receiver dimensions",
+          "Value": "70 x 62 x 35",
+          "Unit": "mm",
+          "Test condition": "-"
+        },
+        {
+          "Name": "Wireless receiver weight",
+          "Value": "0.057",
+          "Unit": "kg",
+          "Test condition": "-"
+        },
+        {
+          "Name": "Protection class (outdoor)",
+          "Value": "IP 45",
+          "Unit": "-",
+          "Test condition": "990000-IP variant"
+        },
+        {
+          "Name": "Retail price (pre-alarm + radio)",
+          "Value": "~730",
+          "Unit": "EUR",
+          "Test condition": "incl. VAT, Germany"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Name",
+        "Type",
+        "Description",
+        "Severity",
+        "Threshold"
+      ],
+      "rows": [
+        {
+          "Name": "Emergency Escape Non-Impedance",
+          "Type": "regulatory",
+          "Description": "Must not add any operational step or delay to emergency escape beyond what DIN EN 179 (lever) or DIN EN 1125 (panic bar) permits. Single-motion release is non-negotiable.",
+          "Severity": "hard",
+          "Threshold": "0 additional steps"
+        },
+        {
+          "Name": "Mechanical Alarm Independence",
+          "Type": "regulatory",
+          "Description": "Alarm horn must function without any electrical power. Mechanical trigger is the primary system; IoT is supervisory only. Required by EltVTR and fire safety codes.",
+          "Severity": "hard",
+          "Threshold": "100% mechanical availability"
+        },
+        {
+          "Name": "Wireless Range Limitation",
+          "Type": "physical",
+          "Description": "Integrated 868 MHz transmitter reaches ~30 m. Buildings with thick concrete, metal structures, or distances >30 m require repeaters, adding cost and installation complexity.",
+          "Severity": "soft",
+          "Threshold": "30 m (extendable)"
+        },
+        {
+          "Name": "Battery Life Uncertainty",
+          "Type": "operational",
+          "Description": "Battery life for the 9V block battery is not published by GfS. IoT module current draw (9-35 mA) suggests battery replacement cycles may be shorter than the 2-year target for high-activity doors.",
+          "Severity": "soft",
+          "Threshold": "TBD (target: >2 years)"
+        },
+        {
+          "Name": "Retrofit-Only Installation",
+          "Type": "physical",
+          "Description": "Surface-mounted design. Cannot be flush-integrated into the door or frame. Adds a visible protrusion on the door handle, which may be aesthetically unacceptable in premium architectural settings.",
+          "Severity": "soft",
+          "Threshold": "-"
+        },
+        {
+          "Name": "Protocol Lock-In (EasyWave)",
+          "Type": "operational",
+          "Description": "868 MHz EasyWave is a proprietary protocol. Not interoperable with standard smart-building protocols (BACnet, KNX, Zigbee, LoRaWAN, Matter). Integration requires GfS-specific gateway hardware.",
+          "Severity": "soft",
+          "Threshold": "-"
+        },
+        {
+          "Name": "Price Premium for IoT",
+          "Type": "economic",
+          "Description": "The radio-enabled variant (~730 EUR) represents a significant premium over the basic mechanical variant. Facility operators with hundreds of doors face high total deployment cost.",
+          "Severity": "soft",
+          "Threshold": "~2x vs. basic variant"
+        },
+        {
+          "Name": "GDPR Compliance for Monitoring Data",
+          "Type": "regulatory",
+          "Description": "Door-open/close timestamps combined with access patterns may constitute personal data under GDPR if attributable to individuals. Data processing agreements and privacy impact assessments may be required.",
+          "Severity": "hard",
+          "Threshold": "-"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Competitor",
+        "Product",
+        "Approach",
+        "IoT capability",
+        "Standard"
+      ],
+      "rows": [
+        {
+          "Competitor": "**GfS (Assa Abloy)**",
+          "Product": "Exit Control 179/1125 + DEXCON + e-Bar",
+          "Approach": "Mechanical guard + alarm + optional radio",
+          "IoT capability": "868 MHz EasyWave, BUS interface",
+          "Standard": "DIN EN 179, EN 1125"
+        },
+        {
+          "Competitor": "**dormakaba**",
+          "Product": "SafeRoute",
+          "Approach": "Electronic escape route protection system",
+          "IoT capability": "LON bus networks, BMS integration, central software",
+          "Standard": "EN 13637"
+        },
+        {
+          "Competitor": "**GEZE**",
+          "Product": "SecuLogic",
+          "Approach": "Electronic door control with integrated access control",
+          "IoT capability": "Web-based BMS, biometric access, smoke alarm integration",
+          "Standard": "EN 13637"
+        },
+        {
+          "Competitor": "**Allegion (Von Duprin)**",
+          "Product": "Various exit devices",
+          "Approach": "Electrified panic hardware with monitoring",
+          "IoT capability": "Proprietary, some IP-connected",
+          "Standard": "UL 305, ANSI/BHMA"
+        },
+        {
+          "Competitor": "**SimonsVoss (Allegion)**",
+          "Product": "SmartHandle AX",
+          "Approach": "Digital access control for doors",
+          "IoT capability": "Wireless, cloud-managed",
+          "Standard": "-"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Standard",
+        "Scope",
+        "Key requirement",
+        "Turwachter relevance"
+      ],
+      "rows": [
+        {
+          "Standard": "**DIN EN 179**",
+          "Scope": "Emergency exit devices operated by lever handle or push pad",
+          "Key requirement": "For buildings where occupants know the escape route (offices, factories). Force <=70N for lever.",
+          "Turwachter relevance": "Exit Control 179 variants"
+        },
+        {
+          "Standard": "**DIN EN 1125**",
+          "Scope": "Panic exit devices operated by horizontal bar",
+          "Key requirement": "For buildings where occupants may not know the route (hospitals, schools, public). Bar must cover >=60% of door width.",
+          "Turwachter relevance": "Exit Control 1125 (panic bar) variants"
+        },
+        {
+          "Standard": "**EN 13637**",
+          "Scope": "Electrically controlled exit systems",
+          "Key requirement": "Governs powered locks on escape routes. Requires fail-safe release on power loss, fire alarm, or emergency button.",
+          "Turwachter relevance": "Relevant for IoT-enhanced configurations"
+        },
+        {
+          "Standard": "**EltVTR**",
+          "Scope": "German directive for electrical locking on escape doors",
+          "Key requirement": "Mandates that electrical components must not impede escape under any failure condition.",
+          "Turwachter relevance": "Constrains IoT architecture design"
+        },
+        {
+          "Standard": "**GDPR**",
+          "Scope": "Personal data protection",
+          "Key requirement": "Door access timestamps may be personal data if attributable.",
+          "Turwachter relevance": "Relevant for IoT monitoring data"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Forbidden term",
+        "Present in Function?"
+      ],
+      "rows": [
+        {
+          "Forbidden term": "\"Turwachter\" / \"door guardian\"",
+          "Present in Function?": "No"
+        },
+        {
+          "Forbidden term": "\"GfS\" / \"Assa Abloy\"",
+          "Present in Function?": "No"
+        },
+        {
+          "Forbidden term": "\"piezo\" / \"horn\" / \"siren\"",
+          "Present in Function?": "No"
+        },
+        {
+          "Forbidden term": "\"868 MHz\" / \"EasyWave\" / \"BUS\"",
+          "Present in Function?": "No"
+        },
+        {
+          "Forbidden term": "\"swing\" / \"spring-loaded\"",
+          "Present in Function?": "No"
+        },
+        {
+          "Forbidden term": "\"9V battery\"",
+          "Present in Function?": "No"
+        },
+        {
+          "Forbidden term": "Any brand or product model number",
+          "Present in Function?": "No"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Emergency Exit Security Devices with Remote Monitoring",
+      "description": "Devices that secure emergency exit doors against unauthorized use while maintaining regulatory-compliant escape capability, with wireless status reporting to centralized monitoring systems",
+      "underlying_mechanism": "Spring-loaded mechanical door-handle guard with piezoelectric alarm horn and 868 MHz wireless state transmitter",
+      "commodity_functional_promise": "Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability, alerting to door activation via audible alarm and optional remote notification",
+      "unspsc_code": null,
+      "unspsc_title": null,
+      "custom_product_group": "Emergency Exit Door Alarm Guards"
+    },
+    {
+      "statement": "Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring without mains power",
+      "verb": "Secure",
+      "object": "emergency exit doors against unauthorized use",
+      "context": "while preserving escape capability and reporting status to centralized monitoring without mains power",
+      "differentiators": [
+        "Mechanical alarm operates independently of electrical power (fail-safe)",
+        "Single-motion escape compliant with both EN 179 (lever) and EN 1125 (panic bar)",
+        "Wireless status reporting without mains wiring at the door point"
+      ]
+    },
+    [
+      {
+        "name": "Mechanical Handle Locking",
+        "description": "Block door handle depression in secured state",
+        "long_description": "A physical barrier prevents the door handle from being operated, securing the door against casual or unauthorized use. The lock must be defeatable in a single motion for emergency escape. Does not require electrical power.",
+        "scope": "technology",
+        "category": "safety"
+      },
+      {
+        "name": "Audible Alarm Trigger",
+        "description": "Sound loud alarm on unauthorized door activation",
+        "long_description": "When the door guardian is defeated, a horn or siren activates at high volume (typically 85-105 dB at 1 m) to deter misuse and alert personnel. Must operate without mains power.",
+        "scope": "technology",
+        "category": "safety"
+      },
+      {
+        "name": "Single-Motion Emergency Release",
+        "description": "Allow escape in one hand movement per EN 179/1125",
+        "long_description": "Regulatory standards mandate that emergency exits must be operable in a single motion without prior knowledge or tools. The guard mechanism must not add operational steps beyond what standards permit.",
+        "scope": "technology",
+        "category": "usability"
+      },
+      {
+        "name": "Key Override Bypass",
+        "description": "Allow authorized access without triggering alarm",
+        "long_description": "A keyed mechanism allows authorized personnel to open the door silently, distinguishing routine authorized use from emergency or unauthorized activation.",
+        "scope": "technology",
+        "category": "usability"
+      },
+      {
+        "name": "Battery-Powered Operation",
+        "description": "Operate alarm and monitoring on replaceable batteries",
+        "long_description": "Eliminates requirement for mains wiring at the door point. Enables retrofit installation without electrical work. Battery life must span maintenance cycles (typically 1-3 years).",
+        "scope": "technology",
+        "category": "maintenance"
+      },
+      {
+        "name": "Pre-Alarm Warning",
+        "description": "Sound preliminary tone on initial contact before full alarm",
+        "long_description": "A softer warning tone activates on light handle touch, giving accidental users a chance to withdraw before the full alarm sounds. Reduces false alarm fatigue.",
+        "scope": "technology",
+        "category": "usability"
+      },
+      {
+        "name": "868 MHz EasyWave Radio Transmission",
+        "description": "Transmit guard state wirelessly to central receivers",
+        "long_description": "GfS-proprietary integration using the 868.3 MHz EasyWave protocol. Integrated transmitter broadcasts alarm, guard-open, and battery-low events to receivers within ~30 m. Extendable via wireless repeaters. Not interoperable with other protocols.",
+        "scope": "vendor",
+        "category": "integration"
+      },
+      {
+        "name": "Wireless BUS Interface Integration",
+        "description": "Centralize multiple door guardians into Master BUS",
+        "long_description": "GfS Wireless BUS Interface aggregates status messages from multiple Turwachter units into a single centralized monitoring point. Enables integration with building management systems and external alarm infrastructure.",
+        "scope": "vendor",
+        "category": "integration"
+      },
+      {
+        "name": "Dual-Standard Variant Range",
+        "description": "Cover both lever-handle and panic-bar installations from one product family",
+        "long_description": "GfS offers matched variants for DIN EN 179 and DIN EN 1125 from the same product family, enabling standardized deployment across mixed building portfolios.",
+        "scope": "vendor",
+        "category": "usability"
+      },
+      {
+        "name": "IP45 Outdoor Variant",
+        "description": "Operate in outdoor and semi-exposed installations",
+        "long_description": "Weatherproofed variant for emergency exits exposed to rain, dust, and temperature variation. Extends deployment to loading docks, external stairwells, and covered outdoor areas.",
+        "scope": "vendor",
+        "category": "reliability"
+      },
+      {
+        "name": "Glass-Frame Mounting Plate",
+        "description": "Install on glass-framed emergency exit doors",
+        "long_description": "Custom mounting plate enables installation on glass-frame doors without structural modification, addressing a common retrofit gap in modern building architectures.",
+        "scope": "vendor",
+        "category": "usability"
+      }
+    ],
+    [
+      {
+        "name": "Alarm Volume",
+        "value": "95",
+        "unit": "dB at 1 m",
+        "test_condition": "Volume-adjustable"
+      },
+      {
+        "name": "Power Source",
+        "value": "9V block battery",
+        "unit": null,
+        "test_condition": "Standard alkaline, replaceable without tools"
+      },
+      {
+        "name": "Wireless Frequency",
+        "value": "868.3",
+        "unit": "MHz",
+        "test_condition": "EasyWave protocol, EU reserved band"
+      },
+      {
+        "name": "Wireless Range (integrated TX)",
+        "value": "~30",
+        "unit": "m",
+        "test_condition": "Line-of-sight; structural obstructions reduce range"
+      },
+      {
+        "name": "Wireless Range (with repeater)",
+        "value": "~60",
+        "unit": "m",
+        "test_condition": "One repeater stage"
+      },
+      {
+        "name": "Operating Voltage (radio module)",
+        "value": "9-28",
+        "unit": "V",
+        "test_condition": "External supply option"
+      },
+      {
+        "name": "Current Consumption (radio module)",
+        "value": "9-35",
+        "unit": "mA",
+        "test_condition": "Active transmission"
+      },
+      {
+        "name": "Protection Class (outdoor variant)",
+        "value": "IP 45",
+        "unit": null,
+        "test_condition": "990000-IP variant"
+      },
+      {
+        "name": "Retail Price (pre-alarm + radio)",
+        "value": "~730",
+        "unit": "EUR",
+        "test_condition": "incl. VAT, Germany 2025"
+      }
+    ],
+    [
+      {
+        "name": "Emergency Escape Non-Impedance",
+        "constraint_type": "regulatory",
+        "description": "Must not add any operational step or delay to emergency escape beyond what DIN EN 179 or DIN EN 1125 permits. Single-motion release is non-negotiable.",
+        "severity": "hard",
+        "threshold_value": "0",
+        "threshold_unit": "additional steps"
+      },
+      {
+        "name": "Mechanical Alarm Independence",
+        "constraint_type": "regulatory",
+        "description": "Alarm horn must function without any electrical power. Mechanical trigger is the primary system; IoT is supervisory only. Required by EltVTR and fire safety codes.",
+        "severity": "hard",
+        "threshold_value": "100",
+        "threshold_unit": "% mechanical availability"
+      },
+      {
+        "name": "Wireless Range Limitation",
+        "constraint_type": "physical",
+        "description": "Integrated 868 MHz transmitter reaches ~30 m. Buildings with thick concrete, metal structures, or distances >30 m require repeaters, adding cost and complexity.",
+        "severity": "soft",
+        "threshold_value": "30",
+        "threshold_unit": "m"
+      },
+      {
+        "name": "Battery Life Uncertainty",
+        "constraint_type": "operational",
+        "description": "Battery life for the 9V block battery is not published by GfS. IoT module current draw (9-35 mA) suggests replacement cycles may be shorter than the 2-year target for high-activity doors.",
+        "severity": "soft",
+        "threshold_value": null,
+        "threshold_unit": null
+      },
+      {
+        "name": "Retrofit-Only Installation",
+        "constraint_type": "physical",
+        "description": "Surface-mounted design adds a visible protrusion on the door handle. Cannot be flush-integrated. May be aesthetically unacceptable in premium architectural settings.",
+        "severity": "soft",
+        "threshold_value": null,
+        "threshold_unit": null
+      },
+      {
+        "name": "Protocol Lock-In (EasyWave)",
+        "constraint_type": "operational",
+        "description": "868 MHz EasyWave is proprietary. Not interoperable with BACnet, KNX, Zigbee, LoRaWAN, or Matter. Integration requires GfS-specific gateway hardware.",
+        "severity": "soft",
+        "threshold_value": null,
+        "threshold_unit": null
+      },
+      {
+        "name": "Price Premium for IoT Variant",
+        "constraint_type": "economic",
+        "description": "Radio-enabled variant (~730 EUR) at approximately 2x the basic mechanical variant. High total deployment cost for large building portfolios with hundreds of doors.",
+        "severity": "soft",
+        "threshold_value": "730",
+        "threshold_unit": "EUR per unit"
+      },
+      {
+        "name": "GDPR Compliance for Monitoring Data",
+        "constraint_type": "regulatory",
+        "description": "Door-open/close timestamps combined with access patterns may constitute personal data under GDPR if attributable to individuals. Requires data processing agreements and privacy impact assessments.",
+        "severity": "hard",
+        "threshold_value": null,
+        "threshold_unit": null
+      }
+    ],
+    {
+      "product_name": "GfS Turwachter (Exit Control 179/1125) with IoT",
+      "evaluations": [
+        {
+          "commodity_code": "46171500",
+          "commodity_name": "Locks and security hardware and accessories",
+          "confidence_pct": 55,
+          "reasoning": "Correct UNSPSC class but too broad -- covers all locks, padlocks, deadbolts, etc. The Turwachter is specifically an emergency exit alarm guard, not a general lock."
+        },
+        {
+          "commodity_code": "46171501",
+          "commodity_name": "Padlocks",
+          "confidence_pct": 15,
+          "reasoning": "Wrong product type entirely. Padlocks are portable locks, not door-mounted alarm guards."
+        },
+        {
+          "commodity_code": "46171610",
+          "commodity_name": "Security cameras",
+          "confidence_pct": 10,
+          "reasoning": "Wrong product category. Security cameras are surveillance devices, not door hardware."
+        }
+      ],
+      "suggested_product_group": "Emergency Exit Door Alarm Guards"
+    }
+  ],
+  "has_bom": false
+}

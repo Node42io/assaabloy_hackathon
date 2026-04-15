@@ -1,0 +1,928 @@
+{
+  "id": "ODI_general_warehousing_storage",
+  "title": "ODI Matrix: GfS Türwächter IoT — General Warehousing and Storage (NAICS 493110)",
+  "type": "odi_matrix",
+  "market_slug": "general_warehousing_storage",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Context",
+      "content": "| Field | Value |\n|---|---|\n| **Market** | General Warehousing and Storage |\n| **NAICS** | 493110 |\n| **Total needs scored** | 25 (20 market-level + 5 product-constraint injections) |\n| **Incumbents used for recalibration** | Wired Alarmed Exit Bars ~45% share · Mechanical-Only Guard ~30% · Wireless Electronic Exit Control ~15% |\n\n---"
+    },
+    {
+      "title": "Step 1 — Error Statement Collection",
+      "content": "20 market-level needs (N01–N20) from Step 06 (JTBD), fields preserved. 5 product-related needs (PR1–PR5) from Step 10 injected as `job_step_number=0`, `job_step_name=\"product_constraint\"`, `impact_category=\"reliability\"`, `product_related=true`.\n\n**Merge summary:**\n\n| Source | Count | p_rel=false | p_rel=true |\n|---|---|---|---|\n| Step 06 (JTBD) | 20 | 14 | 6 |\n| Step 10 (FIT PR1–PR5) injected | 5 | 0 | 5 |\n| **Total** | **25** | **14** | **11** |\n\n---"
+    },
+    {
+      "title": "Step 2 — Satisfaction Recalibration",
+      "content": "Three satisfaction scores adjusted based on incumbent evidence. Remaining 22 scores unchanged — Step 06 estimates aligned with incumbent profiles.\n\n| Need | Original Sat | Recalibrated Sat | Incumbent Evidence |\n|---|---|---|---|\n| N04 — Installation without electrician | 6 | **5** | Wired exit bars (45% share) require licensed electrician per door — pulling down market satisfaction from the dominant incumbent. Original 6 was too optimistic. |\n| N06 — Mounting impairs escape compliance | 4 | **5** | Wired bars (45%) are integrated into door hardware — no surface-mount alignment risk. This raises aggregate market satisfaction vs. Türwächter-specific view. |\n| N10 — False alarm from inadvertent handle contact | 4 | **5** | Wired panic bars (Von Duprin, 45%) require deliberate multi-pound push — far lower inadvertent activation rate than surface-mount handle guards. Incumbents outperform here. |\n\nNo importance scores adjusted. All remaining satisfaction scores preserved from Step 06.\n\n---"
+    },
+    {
+      "title": "Step 3 — ODI Scores (Deterministic)",
+      "content": "Formula: `opp = importance + max(importance - satisfaction, 0)` · Underserved: `imp > 7 AND sat < 5` · Overserved: `imp < 3 AND sat > 7`\n\n### Market-Level Needs (N01–N20)\n\n| ID | Statement (summary) | Step | Imp | Sat | Opp | Under? | Over? | p_rel |\n|---|---|---|---|---|---|---|---|---|\n| N01 | Missing compliance coverage gap (>1 door/10,000 m²) | DEFINE | 9 | 3 | **15.00** | ✓ | — | false |\n| N02 | RF coverage plan effort for DC >30,000 m² | DEFINE | 7 | 3 | 11.00 | — | — | true |\n| N03 | RF signal penetration through steel racking/metal cladding | LOCATE | 8 | 3 | **13.00** | ✓ | — | true |\n| N04 | Installation time without licensed electrician | PREPARE | 7 | 5 | 9.00 | — | — | false |\n| N05 | Installation quality variability across EN 179 / EN 1125 | PREPARE | 6 | 5 | 7.00 | — | — | false |\n| N06 | Mounting configuration impairs single-motion escape | PREPARE | 9 | 5 | **13.00** | — | — | false |\n| N07 | 95 dB alarm masked by dock ambient noise (85–112 dB) | CONFIRM | 9 | 4 | **14.00** | ✓ | — | false |\n| N08 | Commissioning failure detection before system handover | CONFIRM | 8 | 4 | **12.00** | ✓ | — | true |\n| N09 | Battery depletion → undetected door-opening event | EXECUTE | 9 | 3 | **15.00** | ✓ | — | true |\n| N10 | False alarm rate from inadvertent handle contact | EXECUTE | 7 | 5 | 9.00 | — | — | true |\n| N11 | Door coverage density per wireless gateway | EXECUTE | 7 | 4 | 10.00 | — | — | true |\n| N12 | Alert delivery latency to shift operations staff | MONITOR | 9 | 4 | **14.00** | ✓ | — | false |\n| N13 | Physical door location identification during active alarm | MONITOR | 8 | 3 | **13.00** | ✓ | — | false |\n| N14 | Monitoring downtime from gateway/receiver outage | MONITOR | 8 | 4 | **12.00** | ✓ | — | true |\n| N15 | Reset time to secured state after activation event | MODIFY | 7 | 5 | 9.00 | — | — | false |\n| N16 | Unauthorized vs. inadvertent activation discrimination | MODIFY | 8 | 3 | **13.00** | ✓ | — | false |\n| N17 | Fire marshal / OSHA audit prep time | CONCLUDE | 8 | 2 | **14.00** | ✓ | — | false |\n| N18 | Compliance log gaps from manual entry errors at handover | CONCLUDE | 9 | 3 | **15.00** | ✓ | — | false |\n| N19 | Automated tamper-evident audit log coverage | CONCLUDE | 8 | 3 | **13.00** | ✓ | — | false |\n| N20 | Battery degradation detection lead time | CONCLUDE | 8 | 3 | **13.00** | ✓ | — | true |\n\n### Product-Constraint Injections (PR1–PR5) — Step 10, job_step_number=0\n\n| ID | Statement (summary) | Imp | Sat | Opp | Under? | Over? | Source Constraint |\n|---|---|---|---|---|---|---|---|\n| PR1 | 868 MHz blind spots in DC ≥5,000 m² (steel racking/cladding) | 8 | 3 | **13.00** | ✓ | — | C3 Wireless Range |\n| PR2 | Battery replacement planning with unpublished IoT power data | 7 | 2 | 12.00 | — | — | C4 Battery Life Floor |\n| PR3 | Guard misalignment on worn/non-standard EN 179 handles | 7 | 4 | 10.00 | — | — | C5 Surface Mount |\n| PR4 | EasyWave→BACnet/Modbus translation integration effort | 6 | 3 | 9.00 | — | — | C6 Protocol Lock-In |\n| PR5 | RF interference from MHE / 865 MHz barcode scanners | 7 | 3 | 11.00 | — | — | C3 Wireless Range |\n\n> Note: PR2 importance=7 is not > 7, so `is_underserved=false` despite sat=2. Formula still yields opp=12.00.\n\n---"
+    },
+    {
+      "title": "Step 4 — Market ODI Summary",
+      "content": "| Field | Value |\n|---|---|\n| **Market** | General Warehousing and Storage |\n| **NAICS** | 493110 |\n| **Total needs** | 25 |\n| **Underserved (imp > 7 AND sat < 5)** | **14** |\n| **Overserved (imp < 3 AND sat > 7)** | 0 |\n| **Avg opportunity score** | **11.96** |\n\n**Top 5 Opportunities (by score, original order for ties):**\n\n| Rank | ID | Statement | Opp |\n|---|---|---|---|\n| 1 | N01 | Minimize likelihood of missing a compliance-required exit door in multi-building DC campus | 15.00 |\n| 2 | N09 | Minimize likelihood of undetected door-opening event due to battery depletion at high-traffic dock exit | 15.00 |\n| 3 | N18 | Minimize likelihood of compliance log gaps from manual entry errors during shift handover | 15.00 |\n| 4 | N07 | Minimize likelihood that 95 dB alarm falls below audibility in dock ambient noise (85–112 dB) | 14.00 |\n| 5 | N12 | Minimize time from door-opening event to alert delivery to shift operations staff | 14.00 |\n\n**Opportunity clusters:**\n\n| Theme | Needs | Avg Opp |\n|---|---|---|\n| Compliance & audit automation | N01, N17, N18, N19 | 14.25 |\n| Monitoring visibility (detection) | N09, N12, N13, N16, N20, PR1 | 13.83 |\n| Wireless infrastructure (RF/battery) | N02, N03, N08, N14, PR2, PR5 | 12.00 |\n| Installation & deployment | N04, N05, N06, PR3, PR4 | 10.60 |\n| Operational false-alarm reduction | N10, N11, N15 | 9.33 |\n\n---"
+    },
+    {
+      "title": "Step 5 — Cross-Check vs. Feature-Market Fit",
+      "content": "| Metric | Value |\n|---|---|\n| ODI avg opportunity score | 11.96 |\n| Feature-Market Fit avg (Step 09, 6 features) | 5.26 |\n| Threshold 1: ODI avg > 12 AND FMF avg < 4 | **Not triggered** (ODI=11.96, FMF=5.26) |\n| Threshold 2: ODI avg < 8 AND FMF avg > 7 | **Not triggered** |\n\n**Result:** No ODI–Feature-Fit inconsistency. Market has high-to-moderate unmet needs (11.96 avg opp, 14 underserved needs) and moderate technology fit (5.26 avg FMF). Consistent picture: product addresses the market's real needs but does not fully resolve them — particularly the monitoring visibility cluster (N09, N12, N13) where Battery-Powered Operation (FMF 6.11, the highest feature score) creates both the primary value AND the primary liability (N09 battery depletion, opp=15).\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"odi_matrix_result\": {\n    \"market_name\": \"General Warehousing and Storage\",\n    \"naics_code\": \"493110\",\n    \"run_info\": \"Step 12 — ODI Matrix\",\n    \"satisfaction_recalibrations\": [\n      {\n        \"need_id\": \"N04\",\n        \"original_sat\": 6,\n        \"recalibrated_sat\": 5,\n        \"reason\": \"Wired exit bars (45% share) require licensed electrician per door — incumbent data lowers market-level satisfaction vs. Step 06 estimate\"\n      },\n      {\n        \"need_id\": \"N06\",\n        \"original_sat\": 4,\n        \"recalibrated_sat\": 5,\n        \"reason\": \"Wired exit bars (45%) are hardware-integrated with no surface-mount misalignment risk — raises market aggregate satisfaction\"\n      },\n      {\n        \"need_id\": \"N10\",\n        \"original_sat\": 4,\n        \"recalibrated_sat\": 5,\n        \"reason\": \"Von Duprin wired panic bars (45%) require deliberate multi-pound push — far lower inadvertent activation rate than surface-mount guards\"\n      }\n    ],\n    \"entries\": [\n      { \"error_statement\": \"Minimize the likelihood of missing an emergency exit door requiring compliance coverage in a multi-building DC campus, resulting in a citation gap exceeding 1 door per 10,000 m² floor area\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 1, \"job_step_name\": \"DEFINE\", \"importance\": 9.0, \"satisfaction_current\": 3.0, \"opportunity_score\": 15.0, \"is_underserved\": true, \"is_overserved\": false, \"product_related\": false },\n      { \"error_statement\": \"Minimize the effort required to generate a site-specific wireless coverage plan for a DC facility with >30,000 m² floor area and steel racking infrastructure\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 1, \"job_step_name\": \"DEFINE\", \"importance\": 7.0, \"satisfaction_current\": 3.0, \"opportunity_score\": 11.0, \"is_underserved\": false, \"is_overserved\": false, \"product_related\": true },\n      { \"error_statement\": \"Minimize the likelihood of deploying wireless receivers in locations with insufficient RF signal penetration through steel racking, corrugated metal cladding, and reinforced concrete walls\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 2, \"job_step_name\": \"LOCATE\", \"importance\": 8.0, \"satisfaction_current\": 3.0, \"opportunity_score\": 13.0, \"is_underserved\": true, \"is_overserved\": false, \"product_related\": true },\n      { \"error_statement\": \"Minimize the installation time per door for surface-mount emergency exit security retrofit without requiring licensed electrical contractors or structural modification\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 3, \"job_step_name\": \"PREPARE\", \"importance\": 7.0, \"satisfaction_current\": 5.0, \"opportunity_score\": 9.0, \"is_underserved\": false, \"is_overserved\": false, \"product_related\": false },\n      { \"error_statement\": \"Minimize variability in installation quality across different EN 179 lever handle and EN 1125 panic bar configurations within the same DC facility\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 3, \"job_step_name\": \"PREPARE\", \"importance\": 6.0, \"satisfaction_current\": 5.0, \"opportunity_score\": 7.0, \"is_underserved\": false, \"is_overserved\": false, \"product_related\": false },\n      { \"error_statement\": \"Minimize the likelihood that mounting configuration impairs single-motion escape capability, creating a non-compliance condition detectable only at fire marshal inspection\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 3, \"job_step_name\": \"PREPARE\", \"importance\": 9.0, \"satisfaction_current\": 5.0, \"opportunity_score\": 13.0, \"is_underserved\": false, \"is_overserved\": false, \"product_related\": false },\n      { \"error_statement\": \"Minimize the likelihood that 95 dB alarm output falls below audibility threshold in dock areas with ambient noise levels of 85–95 dB from IC forklifts and backup alarms (97–112 dB)\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 4, \"job_step_name\": \"CONFIRM\", \"importance\": 9.0, \"satisfaction_current\": 4.0, \"opportunity_score\": 14.0, \"is_underserved\": true, \"is_overserved\": false, \"product_related\": false },\n      { \"error_statement\": \"Minimize the time to detect wireless device commissioning failures (dead zones, signal interference from MHE) before system handover to operations\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 4, \"job_step_name\": \"CONFIRM\", \"importance\": 8.0, \"satisfaction_current\": 4.0, \"opportunity_score\": 12.0, \"is_underserved\": true, \"is_overserved\": false, \"product_related\": true },\n      { \"error_statement\": \"Minimize the likelihood of an unauthorized door-opening event going undetected due to battery depletion at a high-traffic dock exit during multi-shift operations\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 5, \"job_step_name\": \"EXECUTE\", \"importance\": 9.0, \"satisfaction_current\": 3.0, \"opportunity_score\": 15.0, \"is_underserved\": true, \"is_overserved\": false, \"product_related\": true },\n      { \"error_statement\": \"Minimize the false alarm rate caused by inadvertent handle contact by dock workers and forklift operators in narrow dock corridors\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 5, \"job_step_name\": \"EXECUTE\", \"importance\": 7.0, \"satisfaction_current\": 5.0, \"opportunity_score\": 9.0, \"is_underserved\": false, \"is_overserved\": false, \"product_related\": true },\n      { \"error_statement\": \"Maximize the number of emergency exit doors that can be monitored per wireless gateway installation across a DC facility exceeding 20,000 m²\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 5, \"job_step_name\": \"EXECUTE\", \"importance\": 7.0, \"satisfaction_current\": 4.0, \"opportunity_score\": 10.0, \"is_underserved\": false, \"is_overserved\": false, \"product_related\": true },\n      { \"error_statement\": \"Minimize the time between an emergency door-opening event and alert delivery to shift operations staff during 24/7 multi-shift DC operations\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 6, \"job_step_name\": \"MONITOR\", \"importance\": 9.0, \"satisfaction_current\": 4.0, \"opportunity_score\": 14.0, \"is_underserved\": true, \"is_overserved\": false, \"product_related\": false },\n      { \"error_statement\": \"Minimize the effort required for operations staff to identify the precise physical location of the door that triggered an active alarm in a DC exceeding 20,000 m² floor area\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 6, \"job_step_name\": \"MONITOR\", \"importance\": 8.0, \"satisfaction_current\": 3.0, \"opportunity_score\": 13.0, \"is_underserved\": true, \"is_overserved\": false, \"product_related\": false },\n      { \"error_statement\": \"Minimize monitoring system downtime when a wireless gateway or receiver loses connectivity due to power outage or RF interference from warehouse equipment\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 6, \"job_step_name\": \"MONITOR\", \"importance\": 8.0, \"satisfaction_current\": 4.0, \"opportunity_score\": 12.0, \"is_underserved\": true, \"is_overserved\": false, \"product_related\": true },\n      { \"error_statement\": \"Minimize the time to restore an emergency exit door to its secured state and return the monitoring system to active status following an authorized or unauthorized activation event\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 7, \"job_step_name\": \"MODIFY\", \"importance\": 7.0, \"satisfaction_current\": 5.0, \"opportunity_score\": 9.0, \"is_underserved\": false, \"is_overserved\": false, \"product_related\": false },\n      { \"error_statement\": \"Increase the ability to distinguish between genuine unauthorized door use and inadvertent activation, with sufficient event context (timestamp, door ID, pre-event status) to support post-event investigation with >90% accuracy\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 7, \"job_step_name\": \"MODIFY\", \"importance\": 8.0, \"satisfaction_current\": 3.0, \"opportunity_score\": 13.0, \"is_underserved\": true, \"is_overserved\": false, \"product_related\": false },\n      { \"error_statement\": \"Minimize the time required to compile emergency exit compliance evidence for bi-annual fire marshal inspection and OSHA 29 CFR 1910.36 audit, measured in staff-hours per inspection cycle\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 8, \"job_step_name\": \"CONCLUDE\", \"importance\": 8.0, \"satisfaction_current\": 2.0, \"opportunity_score\": 14.0, \"is_underserved\": true, \"is_overserved\": false, \"product_related\": false },\n      { \"error_statement\": \"Minimize the likelihood of compliance documentation gaps caused by manual event log entry errors or missed recording during shift handover\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 8, \"job_step_name\": \"CONCLUDE\", \"importance\": 9.0, \"satisfaction_current\": 3.0, \"opportunity_score\": 15.0, \"is_underserved\": true, \"is_overserved\": false, \"product_related\": false },\n      { \"error_statement\": \"Maximize the percentage of door events automatically captured in an audit-ready tamper-evident log without manual data entry by operations staff\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 8, \"job_step_name\": \"CONCLUDE\", \"importance\": 8.0, \"satisfaction_current\": 3.0, \"opportunity_score\": 13.0, \"is_underserved\": true, \"is_overserved\": false, \"product_related\": false },\n      { \"error_statement\": \"Minimize the time to detect battery status degradation below the replacement threshold before alarm or monitoring capability is compromised, measured as lead time between alert and battery failure\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 8, \"job_step_name\": \"CONCLUDE\", \"importance\": 8.0, \"satisfaction_current\": 3.0, \"opportunity_score\": 13.0, \"is_underserved\": true, \"is_overserved\": false, \"product_related\": true },\n      { \"error_statement\": \"Minimize the likelihood of monitoring blind spots caused by 868 MHz signal attenuation through steel racking structures, corrugated metal cladding, and reinforced concrete dock walls when positioning wireless receivers in DC facilities exceeding 5,000 m²\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 0, \"job_step_name\": \"product_constraint\", \"importance\": 8.0, \"satisfaction_current\": 3.0, \"opportunity_score\": 13.0, \"is_underserved\": true, \"is_overserved\": false, \"product_related\": true },\n      { \"error_statement\": \"Minimize the effort required to predict battery replacement intervals when IoT module power consumption under high door-activation frequency is not published and must be field-estimated per DC deployment\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 0, \"job_step_name\": \"product_constraint\", \"importance\": 7.0, \"satisfaction_current\": 2.0, \"opportunity_score\": 12.0, \"is_underserved\": false, \"is_overserved\": false, \"product_related\": true },\n      { \"error_statement\": \"Minimize the likelihood of guard misalignment from surface-mounting on non-standard or worn EN 179 lever handle geometries in a mixed DC door hardware estate, resulting in degraded alarm trigger reliability or impaired single-motion escape force compliance\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 0, \"job_step_name\": \"product_constraint\", \"importance\": 7.0, \"satisfaction_current\": 4.0, \"opportunity_score\": 10.0, \"is_underserved\": false, \"is_overserved\": false, \"product_related\": true },\n      { \"error_statement\": \"Minimize the integration effort required to translate EasyWave 868 MHz event messages into standard building automation formats (BACnet, Modbus, OPC-UA) for DCs with existing third-party BMS infrastructure\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 0, \"job_step_name\": \"product_constraint\", \"importance\": 6.0, \"satisfaction_current\": 3.0, \"opportunity_score\": 9.0, \"is_underserved\": false, \"is_overserved\": false, \"product_related\": true },\n      { \"error_statement\": \"Minimize the likelihood of repeated receiver-to-gateway communication failures caused by RF interference from mobile warehouse equipment (MHE, automated conveyors, 865 MHz barcode scanners) operating on frequency bands adjacent to 868 MHz EasyWave\", \"market_name\": \"General Warehousing and Storage\", \"naics_code\": \"493110\", \"job_step_number\": 0, \"job_step_name\": \"product_constraint\", \"importance\": 7.0, \"satisfaction_current\": 3.0, \"opportunity_score\": 11.0, \"is_underserved\": false, \"is_overserved\": false, \"product_related\": true }\n    ],\n    \"market_summary\": {\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"total_needs\": 25,\n      \"underserved_count\": 14,\n      \"overserved_count\": 0,\n      \"avg_opportunity_score\": 11.96,\n      \"top_opportunities\": [\n        \"Minimize the likelihood of missing an emergency exit door requiring compliance coverage in a multi-building DC campus, resulting in a citation gap exceeding 1 door per 10,000 m² floor area\",\n        \"Minimize the likelihood of an unauthorized door-opening event going undetected due to battery depletion at a high-traffic dock exit during multi-shift operations\",\n        \"Minimize the likelihood of compliance documentation gaps caused by manual event log entry errors or missed recording during shift handover\",\n        \"Minimize the likelihood that 95 dB alarm output falls below audibility threshold in dock areas with ambient noise levels of 85–95 dB from IC forklifts and backup alarms (97–112 dB)\",\n        \"Minimize the time between an emergency door-opening event and alert delivery to shift operations staff during 24/7 multi-shift DC operations\"\n      ]\n    },\n    \"cross_check\": {\n      \"odi_avg\": 11.96,\n      \"feature_fit_avg\": 5.26,\n      \"threshold_high_opp_low_fit\": false,\n      \"threshold_low_opp_high_fit\": false,\n      \"status\": \"No inconsistencies. ODI avg (11.96) below >12 threshold; FMF avg (5.26) above <4 threshold. Consistent: market has substantial unmet needs (14 underserved) and moderate technology fit. Battery-Powered Operation (FMF=6.11) is both the primary value driver and the source of the highest-opportunity gap (N09, opp=15.0).\"\n    }\n  }\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Market**",
+          "Value": "General Warehousing and Storage"
+        },
+        {
+          "Field": "**NAICS**",
+          "Value": "493110"
+        },
+        {
+          "Field": "**Total needs scored**",
+          "Value": "25 (20 market-level + 5 product-constraint injections)"
+        },
+        {
+          "Field": "**Incumbents used for recalibration**",
+          "Value": "Wired Alarmed Exit Bars ~45% share · Mechanical-Only Guard ~30% · Wireless Electronic Exit Control ~15%"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Source",
+        "Count",
+        "p_rel=false",
+        "p_rel=true"
+      ],
+      "rows": [
+        {
+          "Source": "Step 06 (JTBD)",
+          "Count": "20",
+          "p_rel=false": "14",
+          "p_rel=true": "6"
+        },
+        {
+          "Source": "Step 10 (FIT PR1–PR5) injected",
+          "Count": "5",
+          "p_rel=false": "0",
+          "p_rel=true": "5"
+        },
+        {
+          "Source": "**Total**",
+          "Count": "**25**",
+          "p_rel=false": "**14**",
+          "p_rel=true": "**11**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Need",
+        "Original Sat",
+        "Recalibrated Sat",
+        "Incumbent Evidence"
+      ],
+      "rows": [
+        {
+          "Need": "N04 — Installation without electrician",
+          "Original Sat": "6",
+          "Recalibrated Sat": "**5**",
+          "Incumbent Evidence": "Wired exit bars (45% share) require licensed electrician per door — pulling down market satisfaction from the dominant incumbent. Original 6 was too optimistic."
+        },
+        {
+          "Need": "N06 — Mounting impairs escape compliance",
+          "Original Sat": "4",
+          "Recalibrated Sat": "**5**",
+          "Incumbent Evidence": "Wired bars (45%) are integrated into door hardware — no surface-mount alignment risk. This raises aggregate market satisfaction vs. Türwächter-specific view."
+        },
+        {
+          "Need": "N10 — False alarm from inadvertent handle contact",
+          "Original Sat": "4",
+          "Recalibrated Sat": "**5**",
+          "Incumbent Evidence": "Wired panic bars (Von Duprin, 45%) require deliberate multi-pound push — far lower inadvertent activation rate than surface-mount handle guards. Incumbents outperform here."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Statement (summary)",
+        "Step",
+        "Imp",
+        "Sat",
+        "Opp",
+        "Under?",
+        "Over?",
+        "p_rel"
+      ],
+      "rows": [
+        {
+          "ID": "N01",
+          "Statement (summary)": "Missing compliance coverage gap (>1 door/10,000 m²)",
+          "Step": "DEFINE",
+          "Imp": "9",
+          "Sat": "3",
+          "Opp": "**15.00**",
+          "Under?": "✓",
+          "Over?": "—",
+          "p_rel": "false"
+        },
+        {
+          "ID": "N02",
+          "Statement (summary)": "RF coverage plan effort for DC >30,000 m²",
+          "Step": "DEFINE",
+          "Imp": "7",
+          "Sat": "3",
+          "Opp": "11.00",
+          "Under?": "—",
+          "Over?": "—",
+          "p_rel": "true"
+        },
+        {
+          "ID": "N03",
+          "Statement (summary)": "RF signal penetration through steel racking/metal cladding",
+          "Step": "LOCATE",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "**13.00**",
+          "Under?": "✓",
+          "Over?": "—",
+          "p_rel": "true"
+        },
+        {
+          "ID": "N04",
+          "Statement (summary)": "Installation time without licensed electrician",
+          "Step": "PREPARE",
+          "Imp": "7",
+          "Sat": "5",
+          "Opp": "9.00",
+          "Under?": "—",
+          "Over?": "—",
+          "p_rel": "false"
+        },
+        {
+          "ID": "N05",
+          "Statement (summary)": "Installation quality variability across EN 179 / EN 1125",
+          "Step": "PREPARE",
+          "Imp": "6",
+          "Sat": "5",
+          "Opp": "7.00",
+          "Under?": "—",
+          "Over?": "—",
+          "p_rel": "false"
+        },
+        {
+          "ID": "N06",
+          "Statement (summary)": "Mounting configuration impairs single-motion escape",
+          "Step": "PREPARE",
+          "Imp": "9",
+          "Sat": "5",
+          "Opp": "**13.00**",
+          "Under?": "—",
+          "Over?": "—",
+          "p_rel": "false"
+        },
+        {
+          "ID": "N07",
+          "Statement (summary)": "95 dB alarm masked by dock ambient noise (85–112 dB)",
+          "Step": "CONFIRM",
+          "Imp": "9",
+          "Sat": "4",
+          "Opp": "**14.00**",
+          "Under?": "✓",
+          "Over?": "—",
+          "p_rel": "false"
+        },
+        {
+          "ID": "N08",
+          "Statement (summary)": "Commissioning failure detection before system handover",
+          "Step": "CONFIRM",
+          "Imp": "8",
+          "Sat": "4",
+          "Opp": "**12.00**",
+          "Under?": "✓",
+          "Over?": "—",
+          "p_rel": "true"
+        },
+        {
+          "ID": "N09",
+          "Statement (summary)": "Battery depletion → undetected door-opening event",
+          "Step": "EXECUTE",
+          "Imp": "9",
+          "Sat": "3",
+          "Opp": "**15.00**",
+          "Under?": "✓",
+          "Over?": "—",
+          "p_rel": "true"
+        },
+        {
+          "ID": "N10",
+          "Statement (summary)": "False alarm rate from inadvertent handle contact",
+          "Step": "EXECUTE",
+          "Imp": "7",
+          "Sat": "5",
+          "Opp": "9.00",
+          "Under?": "—",
+          "Over?": "—",
+          "p_rel": "true"
+        },
+        {
+          "ID": "N11",
+          "Statement (summary)": "Door coverage density per wireless gateway",
+          "Step": "EXECUTE",
+          "Imp": "7",
+          "Sat": "4",
+          "Opp": "10.00",
+          "Under?": "—",
+          "Over?": "—",
+          "p_rel": "true"
+        },
+        {
+          "ID": "N12",
+          "Statement (summary)": "Alert delivery latency to shift operations staff",
+          "Step": "MONITOR",
+          "Imp": "9",
+          "Sat": "4",
+          "Opp": "**14.00**",
+          "Under?": "✓",
+          "Over?": "—",
+          "p_rel": "false"
+        },
+        {
+          "ID": "N13",
+          "Statement (summary)": "Physical door location identification during active alarm",
+          "Step": "MONITOR",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "**13.00**",
+          "Under?": "✓",
+          "Over?": "—",
+          "p_rel": "false"
+        },
+        {
+          "ID": "N14",
+          "Statement (summary)": "Monitoring downtime from gateway/receiver outage",
+          "Step": "MONITOR",
+          "Imp": "8",
+          "Sat": "4",
+          "Opp": "**12.00**",
+          "Under?": "✓",
+          "Over?": "—",
+          "p_rel": "true"
+        },
+        {
+          "ID": "N15",
+          "Statement (summary)": "Reset time to secured state after activation event",
+          "Step": "MODIFY",
+          "Imp": "7",
+          "Sat": "5",
+          "Opp": "9.00",
+          "Under?": "—",
+          "Over?": "—",
+          "p_rel": "false"
+        },
+        {
+          "ID": "N16",
+          "Statement (summary)": "Unauthorized vs. inadvertent activation discrimination",
+          "Step": "MODIFY",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "**13.00**",
+          "Under?": "✓",
+          "Over?": "—",
+          "p_rel": "false"
+        },
+        {
+          "ID": "N17",
+          "Statement (summary)": "Fire marshal / OSHA audit prep time",
+          "Step": "CONCLUDE",
+          "Imp": "8",
+          "Sat": "2",
+          "Opp": "**14.00**",
+          "Under?": "✓",
+          "Over?": "—",
+          "p_rel": "false"
+        },
+        {
+          "ID": "N18",
+          "Statement (summary)": "Compliance log gaps from manual entry errors at handover",
+          "Step": "CONCLUDE",
+          "Imp": "9",
+          "Sat": "3",
+          "Opp": "**15.00**",
+          "Under?": "✓",
+          "Over?": "—",
+          "p_rel": "false"
+        },
+        {
+          "ID": "N19",
+          "Statement (summary)": "Automated tamper-evident audit log coverage",
+          "Step": "CONCLUDE",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "**13.00**",
+          "Under?": "✓",
+          "Over?": "—",
+          "p_rel": "false"
+        },
+        {
+          "ID": "N20",
+          "Statement (summary)": "Battery degradation detection lead time",
+          "Step": "CONCLUDE",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "**13.00**",
+          "Under?": "✓",
+          "Over?": "—",
+          "p_rel": "true"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Statement (summary)",
+        "Imp",
+        "Sat",
+        "Opp",
+        "Under?",
+        "Over?",
+        "Source Constraint"
+      ],
+      "rows": [
+        {
+          "ID": "PR1",
+          "Statement (summary)": "868 MHz blind spots in DC ≥5,000 m² (steel racking/cladding)",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "**13.00**",
+          "Under?": "✓",
+          "Over?": "—",
+          "Source Constraint": "C3 Wireless Range"
+        },
+        {
+          "ID": "PR2",
+          "Statement (summary)": "Battery replacement planning with unpublished IoT power data",
+          "Imp": "7",
+          "Sat": "2",
+          "Opp": "12.00",
+          "Under?": "—",
+          "Over?": "—",
+          "Source Constraint": "C4 Battery Life Floor"
+        },
+        {
+          "ID": "PR3",
+          "Statement (summary)": "Guard misalignment on worn/non-standard EN 179 handles",
+          "Imp": "7",
+          "Sat": "4",
+          "Opp": "10.00",
+          "Under?": "—",
+          "Over?": "—",
+          "Source Constraint": "C5 Surface Mount"
+        },
+        {
+          "ID": "PR4",
+          "Statement (summary)": "EasyWave→BACnet/Modbus translation integration effort",
+          "Imp": "6",
+          "Sat": "3",
+          "Opp": "9.00",
+          "Under?": "—",
+          "Over?": "—",
+          "Source Constraint": "C6 Protocol Lock-In"
+        },
+        {
+          "ID": "PR5",
+          "Statement (summary)": "RF interference from MHE / 865 MHz barcode scanners",
+          "Imp": "7",
+          "Sat": "3",
+          "Opp": "11.00",
+          "Under?": "—",
+          "Over?": "—",
+          "Source Constraint": "C3 Wireless Range"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Market**",
+          "Value": "General Warehousing and Storage"
+        },
+        {
+          "Field": "**NAICS**",
+          "Value": "493110"
+        },
+        {
+          "Field": "**Total needs**",
+          "Value": "25"
+        },
+        {
+          "Field": "**Underserved (imp > 7 AND sat < 5)**",
+          "Value": "**14**"
+        },
+        {
+          "Field": "**Overserved (imp < 3 AND sat > 7)**",
+          "Value": "0"
+        },
+        {
+          "Field": "**Avg opportunity score**",
+          "Value": "**11.96**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Rank",
+        "ID",
+        "Statement",
+        "Opp"
+      ],
+      "rows": [
+        {
+          "Rank": "1",
+          "ID": "N01",
+          "Statement": "Minimize likelihood of missing a compliance-required exit door in multi-building DC campus",
+          "Opp": "15.00"
+        },
+        {
+          "Rank": "2",
+          "ID": "N09",
+          "Statement": "Minimize likelihood of undetected door-opening event due to battery depletion at high-traffic dock exit",
+          "Opp": "15.00"
+        },
+        {
+          "Rank": "3",
+          "ID": "N18",
+          "Statement": "Minimize likelihood of compliance log gaps from manual entry errors during shift handover",
+          "Opp": "15.00"
+        },
+        {
+          "Rank": "4",
+          "ID": "N07",
+          "Statement": "Minimize likelihood that 95 dB alarm falls below audibility in dock ambient noise (85–112 dB)",
+          "Opp": "14.00"
+        },
+        {
+          "Rank": "5",
+          "ID": "N12",
+          "Statement": "Minimize time from door-opening event to alert delivery to shift operations staff",
+          "Opp": "14.00"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Theme",
+        "Needs",
+        "Avg Opp"
+      ],
+      "rows": [
+        {
+          "Theme": "Compliance & audit automation",
+          "Needs": "N01, N17, N18, N19",
+          "Avg Opp": "14.25"
+        },
+        {
+          "Theme": "Monitoring visibility (detection)",
+          "Needs": "N09, N12, N13, N16, N20, PR1",
+          "Avg Opp": "13.83"
+        },
+        {
+          "Theme": "Wireless infrastructure (RF/battery)",
+          "Needs": "N02, N03, N08, N14, PR2, PR5",
+          "Avg Opp": "12.00"
+        },
+        {
+          "Theme": "Installation & deployment",
+          "Needs": "N04, N05, N06, PR3, PR4",
+          "Avg Opp": "10.60"
+        },
+        {
+          "Theme": "Operational false-alarm reduction",
+          "Needs": "N10, N11, N15",
+          "Avg Opp": "9.33"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Metric",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Metric": "ODI avg opportunity score",
+          "Value": "11.96"
+        },
+        {
+          "Metric": "Feature-Market Fit avg (Step 09, 6 features)",
+          "Value": "5.26"
+        },
+        {
+          "Metric": "Threshold 1: ODI avg > 12 AND FMF avg < 4",
+          "Value": "**Not triggered** (ODI=11.96, FMF=5.26)"
+        },
+        {
+          "Metric": "Threshold 2: ODI avg < 8 AND FMF avg > 7",
+          "Value": "**Not triggered**"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "odi_matrix_result": {
+        "market_name": "General Warehousing and Storage",
+        "naics_code": "493110",
+        "run_info": "Step 12 — ODI Matrix",
+        "satisfaction_recalibrations": [
+          {
+            "need_id": "N04",
+            "original_sat": 6,
+            "recalibrated_sat": 5,
+            "reason": "Wired exit bars (45% share) require licensed electrician per door — incumbent data lowers market-level satisfaction vs. Step 06 estimate"
+          },
+          {
+            "need_id": "N06",
+            "original_sat": 4,
+            "recalibrated_sat": 5,
+            "reason": "Wired exit bars (45%) are hardware-integrated with no surface-mount misalignment risk — raises market aggregate satisfaction"
+          },
+          {
+            "need_id": "N10",
+            "original_sat": 4,
+            "recalibrated_sat": 5,
+            "reason": "Von Duprin wired panic bars (45%) require deliberate multi-pound push — far lower inadvertent activation rate than surface-mount guards"
+          }
+        ],
+        "entries": [
+          {
+            "error_statement": "Minimize the likelihood of missing an emergency exit door requiring compliance coverage in a multi-building DC campus, resulting in a citation gap exceeding 1 door per 10,000 m² floor area",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 1,
+            "job_step_name": "DEFINE",
+            "importance": 9.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 15.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "error_statement": "Minimize the effort required to generate a site-specific wireless coverage plan for a DC facility with >30,000 m² floor area and steel racking infrastructure",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 1,
+            "job_step_name": "DEFINE",
+            "importance": 7.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 11.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "error_statement": "Minimize the likelihood of deploying wireless receivers in locations with insufficient RF signal penetration through steel racking, corrugated metal cladding, and reinforced concrete walls",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 2,
+            "job_step_name": "LOCATE",
+            "importance": 8.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 13.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "error_statement": "Minimize the installation time per door for surface-mount emergency exit security retrofit without requiring licensed electrical contractors or structural modification",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 3,
+            "job_step_name": "PREPARE",
+            "importance": 7.0,
+            "satisfaction_current": 5.0,
+            "opportunity_score": 9.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "error_statement": "Minimize variability in installation quality across different EN 179 lever handle and EN 1125 panic bar configurations within the same DC facility",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 3,
+            "job_step_name": "PREPARE",
+            "importance": 6.0,
+            "satisfaction_current": 5.0,
+            "opportunity_score": 7.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "error_statement": "Minimize the likelihood that mounting configuration impairs single-motion escape capability, creating a non-compliance condition detectable only at fire marshal inspection",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 3,
+            "job_step_name": "PREPARE",
+            "importance": 9.0,
+            "satisfaction_current": 5.0,
+            "opportunity_score": 13.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "error_statement": "Minimize the likelihood that 95 dB alarm output falls below audibility threshold in dock areas with ambient noise levels of 85–95 dB from IC forklifts and backup alarms (97–112 dB)",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 4,
+            "job_step_name": "CONFIRM",
+            "importance": 9.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 14.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "error_statement": "Minimize the time to detect wireless device commissioning failures (dead zones, signal interference from MHE) before system handover to operations",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 4,
+            "job_step_name": "CONFIRM",
+            "importance": 8.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 12.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "error_statement": "Minimize the likelihood of an unauthorized door-opening event going undetected due to battery depletion at a high-traffic dock exit during multi-shift operations",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 5,
+            "job_step_name": "EXECUTE",
+            "importance": 9.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 15.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "error_statement": "Minimize the false alarm rate caused by inadvertent handle contact by dock workers and forklift operators in narrow dock corridors",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 5,
+            "job_step_name": "EXECUTE",
+            "importance": 7.0,
+            "satisfaction_current": 5.0,
+            "opportunity_score": 9.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "error_statement": "Maximize the number of emergency exit doors that can be monitored per wireless gateway installation across a DC facility exceeding 20,000 m²",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 5,
+            "job_step_name": "EXECUTE",
+            "importance": 7.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 10.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "error_statement": "Minimize the time between an emergency door-opening event and alert delivery to shift operations staff during 24/7 multi-shift DC operations",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 6,
+            "job_step_name": "MONITOR",
+            "importance": 9.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 14.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "error_statement": "Minimize the effort required for operations staff to identify the precise physical location of the door that triggered an active alarm in a DC exceeding 20,000 m² floor area",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 6,
+            "job_step_name": "MONITOR",
+            "importance": 8.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 13.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "error_statement": "Minimize monitoring system downtime when a wireless gateway or receiver loses connectivity due to power outage or RF interference from warehouse equipment",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 6,
+            "job_step_name": "MONITOR",
+            "importance": 8.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 12.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "error_statement": "Minimize the time to restore an emergency exit door to its secured state and return the monitoring system to active status following an authorized or unauthorized activation event",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 7,
+            "job_step_name": "MODIFY",
+            "importance": 7.0,
+            "satisfaction_current": 5.0,
+            "opportunity_score": 9.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "error_statement": "Increase the ability to distinguish between genuine unauthorized door use and inadvertent activation, with sufficient event context (timestamp, door ID, pre-event status) to support post-event investigation with >90% accuracy",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 7,
+            "job_step_name": "MODIFY",
+            "importance": 8.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 13.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "error_statement": "Minimize the time required to compile emergency exit compliance evidence for bi-annual fire marshal inspection and OSHA 29 CFR 1910.36 audit, measured in staff-hours per inspection cycle",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 8,
+            "job_step_name": "CONCLUDE",
+            "importance": 8.0,
+            "satisfaction_current": 2.0,
+            "opportunity_score": 14.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "error_statement": "Minimize the likelihood of compliance documentation gaps caused by manual event log entry errors or missed recording during shift handover",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 8,
+            "job_step_name": "CONCLUDE",
+            "importance": 9.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 15.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "error_statement": "Maximize the percentage of door events automatically captured in an audit-ready tamper-evident log without manual data entry by operations staff",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 8,
+            "job_step_name": "CONCLUDE",
+            "importance": 8.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 13.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "error_statement": "Minimize the time to detect battery status degradation below the replacement threshold before alarm or monitoring capability is compromised, measured as lead time between alert and battery failure",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 8,
+            "job_step_name": "CONCLUDE",
+            "importance": 8.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 13.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "error_statement": "Minimize the likelihood of monitoring blind spots caused by 868 MHz signal attenuation through steel racking structures, corrugated metal cladding, and reinforced concrete dock walls when positioning wireless receivers in DC facilities exceeding 5,000 m²",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "importance": 8.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 13.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "error_statement": "Minimize the effort required to predict battery replacement intervals when IoT module power consumption under high door-activation frequency is not published and must be field-estimated per DC deployment",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "importance": 7.0,
+            "satisfaction_current": 2.0,
+            "opportunity_score": 12.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "error_statement": "Minimize the likelihood of guard misalignment from surface-mounting on non-standard or worn EN 179 lever handle geometries in a mixed DC door hardware estate, resulting in degraded alarm trigger reliability or impaired single-motion escape force compliance",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "importance": 7.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 10.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "error_statement": "Minimize the integration effort required to translate EasyWave 868 MHz event messages into standard building automation formats (BACnet, Modbus, OPC-UA) for DCs with existing third-party BMS infrastructure",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "importance": 6.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 9.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "error_statement": "Minimize the likelihood of repeated receiver-to-gateway communication failures caused by RF interference from mobile warehouse equipment (MHE, automated conveyors, 865 MHz barcode scanners) operating on frequency bands adjacent to 868 MHz EasyWave",
+            "market_name": "General Warehousing and Storage",
+            "naics_code": "493110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "importance": 7.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 11.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true
+          }
+        ],
+        "market_summary": {
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "total_needs": 25,
+          "underserved_count": 14,
+          "overserved_count": 0,
+          "avg_opportunity_score": 11.96,
+          "top_opportunities": [
+            "Minimize the likelihood of missing an emergency exit door requiring compliance coverage in a multi-building DC campus, resulting in a citation gap exceeding 1 door per 10,000 m² floor area",
+            "Minimize the likelihood of an unauthorized door-opening event going undetected due to battery depletion at a high-traffic dock exit during multi-shift operations",
+            "Minimize the likelihood of compliance documentation gaps caused by manual event log entry errors or missed recording during shift handover",
+            "Minimize the likelihood that 95 dB alarm output falls below audibility threshold in dock areas with ambient noise levels of 85–95 dB from IC forklifts and backup alarms (97–112 dB)",
+            "Minimize the time between an emergency door-opening event and alert delivery to shift operations staff during 24/7 multi-shift DC operations"
+          ]
+        },
+        "cross_check": {
+          "odi_avg": 11.96,
+          "feature_fit_avg": 5.26,
+          "threshold_high_opp_low_fit": false,
+          "threshold_low_opp_high_fit": false,
+          "status": "No inconsistencies. ODI avg (11.96) below >12 threshold; FMF avg (5.26) above <4 threshold. Consistent: market has substantial unmet needs (14 underserved) and moderate technology fit. Battery-Powered Operation (FMF=6.11) is both the primary value driver and the source of the highest-opportunity gap (N09, opp=15.0)."
+        }
+      }
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

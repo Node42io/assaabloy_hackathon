@@ -1,0 +1,1034 @@
+{
+  "id": "VN_facilities_support_services",
+  "title": "Value Network: Facilities Support Services (NAICS 561210)",
+  "type": "value_network",
+  "market_slug": "facilities_support_services",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Header",
+      "content": "| Field | Value |\n|---|---|\n| **NAICS code** | 561210 |\n| **NAICS title** | Facilities Support Services |\n| **Source market** | Market 09 — 05_market_discovery.md |\n| **VN type** | Process VN (service output = operational readiness outcomes) |\n| **Top level** | L7 |\n| **Türwächter anchor** | L4 Door Guardian Device → L5 Door & Exit Monitoring → L6e Safety & Compliance Management |\n| **Architecture distance** | 2 (from Phase 02b ranking) |\n\n---"
+    },
+    {
+      "title": "Core Functional Job (L7)",
+      "content": "> Operate and maintain a client's built environment to achieve continuous safety compliance, operational readiness, and regulatory conformance while minimising client-side labour\n\n---"
+    },
+    {
+      "title": "L7 — Ecosystem",
+      "content": "| Field | Value |\n|---|---|\n| **Name** | Building Operations & Facilities Management Ecosystem |\n| **Standard** | Moore 1993 |\n| **Description** | Community of FM providers, technology vendors, subcontractors, regulators, and building owners coordinated toward continuous operational readiness of built environments |\n\n---"
+    },
+    {
+      "title": "Output Types",
+      "content": "Five service engagement types activate different subsets of the process chain:\n\n| Code | Output Type | Description |\n|---|---|---|\n| **IFM** | Integrated FM | Full multi-discipline bundled contract (hard + soft + compliance) |\n| **HS** | Hard Services | MEP, fire safety, structural — no soft services |\n| **SS** | Soft Services | Cleaning, security, catering, landscaping — no hard services |\n| **CFM** | Compliance FM | Regulatory inspection and documentation only |\n| **PFM** | Portfolio FM | Multi-site, multi-building management |\n\n---"
+    },
+    {
+      "title": "L6 Core Process Steps",
+      "content": "Sequential service delivery chain for NAICS 561210.\n\n| Node | Name | Job Family | Output Types |\n|---|---|---|---|\n| **L6a** | Facility Assessment & Contract Scoping | Assess client site conditions and define service scope and SLA obligations | IFM, HS, SS, CFM, PFM |\n| **L6b** | Facility Onboarding & System Setup | Deploy monitoring infrastructure and configure service management platforms at client sites | IFM, HS, SS, PFM |\n| **L6c** | Planned Preventive Maintenance | Execute scheduled maintenance tasks to preserve equipment integrity and prevent regulatory non-compliance | IFM, HS, PFM |\n| **L6d** | Corrective Maintenance & Repair | Respond to and remediate unplanned failures, incidents, and work orders | IFM, HS, PFM |\n| **L6e** | Safety & Regulatory Compliance Management | Inspect, test, document, and certify compliance with fire safety, health, and environmental regulations across client sites | IFM, HS, CFM, PFM |\n| **L6f** | Service Reporting & Client Delivery | Report service performance, close work orders, and deliver compliance documentation and SLA evidence to clients | IFM, HS, SS, CFM, PFM |\n\n---"
+    },
+    {
+      "title": "L6 Horizontal Processes",
+      "content": "Run in parallel across all core steps; do not transform output but are required for safe and legal operation.\n\n| Node | Name | Rationale |\n|---|---|---|\n| **(H)** | Workforce & Labour Management | Technician scheduling, certification tracking, and contractor coordination run across every L6 step |\n| **(H)** | Supply Chain & Procurement | Spare parts, consumables, and subcontractor sourcing support L6c and L6d |\n| **(H)** | IT/OT & Building Automation Systems | BMS, CMMS, and IoT infrastructure underpin all data-dependent steps |\n| **(H)** | Quality Assurance & Audit | SLA compliance checks and audit trails apply to all service outputs |\n| **(H)** | HSE Management | Health, safety, and environmental compliance governs all on-site operations |\n\n---"
+    },
+    {
+      "title": "Output Type Activation Matrix",
+      "content": "| | IFM | HS | SS | CFM | PFM |\n|---|---|---|---|---|---|\n| L6a Assessment & Scoping | x | x | x | x | x |\n| L6b Onboarding & Setup | x | x | x | | x |\n| L6c Preventive Maintenance | x | x | | | x |\n| L6d Corrective Maintenance | x | x | | | x |\n| L6e Safety & Compliance | x | x | | x | x |\n| L6f Reporting & Delivery | x | x | x | x | x |\n\n**Read a column:** L6e is the only core step activated by Compliance FM — this is the narrow wedge where the Türwächter sits. **Read a row:** L6a and L6f are infrastructure steps activated by all output types — commodity process, low competitive moat.\n\n---"
+    },
+    {
+      "title": "L5 Equipment per L6 Node",
+      "content": "### L6a — Facility Assessment & Contract Scoping\n\n#### L5: Site Survey & Audit Tools\n\n| Alternative | Share | Confidence | Source |\n|---|---|---|---|\n| Digital laser measurement + floor-plan software (Bluebeam, AutoCAD) | 55% | MEDIUM | Analyst estimates, IFM provider service descriptions |\n| Manual tape measure + paper plans | 30% | MEDIUM | Field observation |\n| BIM-based digital twin survey (Matterport, NavVis) | 15% | LOW | Emerging adoption; no published split |\n\n**L4 subsystems:**\n- Laser Distance Meter\n- Floor Plan Editor (software)\n- Photo Documentation App\n\n#### L5: Contract & CAFM Onboarding Platform\n\n| Alternative | Share | Confidence | Source |\n|---|---|---|---|\n| Integrated IWMS/CAFM (IBM Tririga, Planon, MRI) | 45% | MEDIUM | Mordor Intelligence FM Software Market 2025 |\n| Standalone contract management software | 35% | MEDIUM | |\n| Spreadsheet-based (Excel) | 20% | LOW | FM industry observation |\n\n**L4 subsystems:**\n- SLA Template Engine\n- Asset Register Importer\n- Client Portal Provisioning\n\n---\n\n### L6b — Facility Onboarding & System Setup\n\n#### L5: Building Management System (BMS/BAS)\n\n| Alternative | Share | Confidence | Source |\n|---|---|---|---|\n| Wired BAS (BACnet / KNX / Modbus — Siemens, Honeywell, Johnson Controls) | 50% | MEDIUM | MarketsandMarkets FM market report; Mordor Intelligence BMS |\n| Cloud-connected smart BMS (IP-based, open API) | 35% | MEDIUM | FM market reports 2025 |\n| Legacy proprietary BAS (pre-IP, manufacturer-locked) | 15% | MEDIUM | |\n\n**L4 subsystems:**\n- Building Automation Controller (BAC)\n- Protocol Gateway (BACnet/KNX/Modbus)\n- Energy Metering Unit\n- Alarm & Event Processor\n\n#### L5: IoT Sensor Infrastructure\n\n| Alternative | Share | Confidence | Source |\n|---|---|---|---|\n| LoRaWAN sensors (LPWAN, long range, low power) | 35% | MEDIUM | IoT Analytics, building IoT market estimates |\n| BLE/Zigbee mesh sensors (short range, dense deployment) | 35% | MEDIUM | |\n| 868 MHz / proprietary RF (EasyWave, EnOcean) | 20% | LOW | No published FM-sector split |\n| Cellular IoT (NB-IoT, LTE-M) | 10% | LOW | |\n\n**L4 subsystems:**\n- Wireless Sensor Node\n- RF Gateway / Concentrator\n- Battery Management Unit\n- Sensor Firmware Controller\n\n---\n\n### L6c — Planned Preventive Maintenance\n\n#### L5: CMMS (Computerised Maintenance Management System)\n\n| Alternative | Share | Confidence | Source |\n|---|---|---|---|\n| Cloud/SaaS CMMS (IBM Maximo, ServiceMax, MaintainX, Fiix) | 55% | MEDIUM | Grand View Research FM Software Market 2025; CMMS segment 32% share per Mordor |\n| On-premise CMMS (Infor EAM, Oracle Maintenance Cloud) | 30% | MEDIUM | |\n| Spreadsheet / paper-based work orders | 15% | MEDIUM | |\n\n**L4 subsystems:**\n- Work Order Engine\n- Preventive Maintenance Scheduler\n- Asset Register (equipment database)\n- Mobile Technician App\n- Integration API Layer\n\n#### L5: Mechanical Inspection & Test Equipment\n\n| Alternative | Share | Confidence | Source |\n|---|---|---|---|\n| Handheld digital test instruments (multimeter, thermal camera, vibration analyser) | 60% | LOW | Field observation; no published market split |\n| Fixed condition monitoring sensors (permanent attachment) | 30% | LOW | |\n| Manual gauges and analogue instruments | 10% | LOW | |\n\n**L4 subsystems:**\n- Thermal Imaging Camera\n- Vibration Sensor Probe\n- Electrical Continuity Tester\n- Data Logger\n\n---\n\n### L6d — Corrective Maintenance & Repair\n\n#### L5: Mobile Field Service Platform\n\n| Alternative | Share | Confidence | Source |\n|---|---|---|---|\n| CMMS mobile app (integrated, same vendor as L6c CMMS) | 55% | LOW | Estimated from CMMS market adoption |\n| Standalone field service app (ServiceMax, FieldAware) | 30% | LOW | |\n| Telephone / paper-based dispatch | 15% | LOW | |\n\n**L4 subsystems:**\n- Work Order Receiver (mobile)\n- On-site Parts Lookup Module\n- Digital Sign-Off / Closure Form\n- GPS Dispatch Tracker\n\n#### L5: Spare Parts & Asset Store\n\n| Alternative | Share | Confidence | Source |\n|---|---|---|---|\n| Centralised FM depot (van stock + warehouse) | 50% | LOW | No published split |\n| Just-in-time procurement (direct from supplier) | 35% | LOW | |\n| Client-side stockroom (managed by FM provider) | 15% | LOW | |\n\n**L4 subsystems:**\n- Barcode / RFID Inventory Scanner\n- Parts Reorder Trigger System\n- Shelf Storage Racking\n- Van Storage Unit\n\n---\n\n### L6e — Safety & Regulatory Compliance Management\n\n*This is the primary insertion point for the Türwächter product.*\n\n#### L5: Door & Exit Monitoring System\n\n| Alternative | Share | Confidence | Source |\n|---|---|---|---|\n| Hardwired electronic alarm systems (door contacts wired to fire panel) | 45% | LOW | No published FM-sector split; inferred from fire safety product market |\n| Battery-powered wireless alarm devices (EasyWave, LoRaWAN door sensors) | 35% | LOW | Growing segment per FM IoT adoption data |\n| Mechanical-only door alarms (no monitoring, no wireless) | 20% | LOW | Declining; legacy installed base |\n\n**L4 subsystems:**\n- Door Guardian Device (mechanical alarm + handle guard) ← **Türwächter anchors here**\n- Wireless Radio Transmitter (868 MHz / LoRaWAN / BLE)\n- Gateway / BUS Interface (signal aggregator to BMS)\n- Battery Power Unit (9V block + level monitor)\n- Alarm Horn (piezoelectric, ≥90 dB)\n\n#### L5: Fire Safety Inspection Platform\n\n| Alternative | Share | Confidence | Source |\n|---|---|---|---|\n| Digital CAFM-integrated inspection platform (Planon, Planninq) | 40% | LOW | No published split |\n| Standalone mobile inspection app (iAuditor/SafetyCulture, Protex AI) | 35% | LOW | |\n| Paper-based inspection logs | 25% | LOW | Declining; compliance pressure reducing paper use |\n\n**L4 subsystems:**\n- Inspection Checklist Engine\n- Fire Panel Status Interface\n- Smoke/Heat Detector Node\n- Emergency Lighting Test Unit\n- Inspection Report Generator\n\n#### L5: Emergency Lighting Test System\n\n| Alternative | Share | Confidence | Source |\n|---|---|---|---|\n| Automated self-test emergency luminaires (BS EN 62034) | 50% | MEDIUM | Industry standard; widely adopted in EU post-2015 |\n| Manual portable test units (handheld testers) | 35% | LOW | |\n| Third-party monitoring services | 15% | LOW | |\n\n**L4 subsystems:**\n- Self-Test Emergency Luminaire\n- Central Battery Controller\n- Test Trigger Module\n- Failure Reporting Interface\n\n---\n\n### L6f — Service Reporting & Client Delivery\n\n#### L5: FM Analytics & Reporting Platform\n\n| Alternative | Share | Confidence | Source |\n|---|---|---|---|\n| Embedded analytics in IWMS/CAFM | 50% | LOW | CAFM market estimated at $1.26B in 2025 (Future Market Insights) |\n| Standalone BI tools (Power BI, Tableau, Looker) | 30% | LOW | |\n| Custom client portal / PDF export | 20% | LOW | |\n\n**L4 subsystems:**\n- SLA KPI Dashboard\n- Work Order Closure Report Engine\n- Compliance Log Exporter (PDF/API)\n- Client Notification Trigger\n\n#### L5: Compliance Documentation Platform\n\n| Alternative | Share | Confidence | Source |\n|---|---|---|---|\n| Integrated CAFM document module | 45% | LOW | |\n| Standalone document management (SharePoint, DocuSign) | 40% | LOW | |\n| Paper archive | 15% | LOW | Declining under GDPR and audit requirements |\n\n**L4 subsystems:**\n- Inspection Certificate Store\n- Audit Trail Logger\n- Digital Signature Module\n- Regulatory Submission Gateway\n\n---"
+    },
+    {
+      "title": "QA Self-Check",
+      "content": "| # | Check | Status | Notes |\n|---|---|---|---|\n| Q1 | CFJ is industry-level | PASS | No technology reference — states operational outcome |\n| Q2 | No orphan nodes | PASS | All L5/L4 have valid parent references |\n| Q3 | Valid level transitions | PASS | L7→L6→L5→L4 transitions followed throughout |\n| Q4 | L4 children per L5 ≥ 2 | PASS | All L5 nodes have ≥3 L4 subsystems |\n| Q5 | No solution-specific L7/L6 names | PASS | L7 and L6 names are industry process terms |\n| Q6 | Naming test (5 spot-checks) | PASS | \"CMMS\", \"BMS\", \"Door Guardian Device\", \"Alarm Horn\", \"Thermal Imaging Camera\" — all domain-standard |\n| Q7 | Unit count in range | PASS | ~45 units (L7: 1, L6 core: 6, L6 horiz: 5, L5: 14, L4: ~50 entries) |\n\n---"
+    },
+    {
+      "title": "Product Fit Summary",
+      "content": "| Dimension | Assessment |\n|---|---|\n| **VN anchor level** | L4 — component within L5 Door & Exit Monitoring System |\n| **Entry point** | L6e Safety & Compliance Management — activated by IFM, HS, CFM, PFM (4/5 output types) |\n| **Current alternative held** | Mechanical-only door alarms (20% share, declining) — direct displacement opportunity |\n| **Adjacent L5 complement** | Fire Safety Inspection Platform — Türwächter event logs feed compliance documentation |\n| **BMS integration path** | L5 BMS/BAS (BACnet/KNX) via existing EasyWave→BUS Interface gateway |\n| **Key constraint interaction** | C6 (EasyWave lock-in) conflicts with BMS operator preference for BACnet/KNX; gateway required |\n| **Buyer in this VN** | FM operator (Facilities Support Services company) — not building owner directly |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"market_value_network\": {\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"naics_title\": \"Facilities Support Services\",\n    \"cfj_statement\": \"Operate and maintain a client's built environment to achieve continuous safety compliance, operational readiness, and regulatory conformance while minimising client-side labour\",\n    \"top_level\": \"L7\",\n    \"output_types\": [\n      { \"code\": \"IFM\", \"name\": \"Integrated FM\" },\n      { \"code\": \"HS\", \"name\": \"Hard Services FM\" },\n      { \"code\": \"SS\", \"name\": \"Soft Services FM\" },\n      { \"code\": \"CFM\", \"name\": \"Compliance FM\" },\n      { \"code\": \"PFM\", \"name\": \"Portfolio FM\" }\n    ]\n  },\n  \"units\": [\n    {\n      \"name\": \"Building Operations & Facilities Management Ecosystem\",\n      \"level\": \"L7\",\n      \"description\": \"Community of FM providers, technology vendors, subcontractors, regulators, and building owners coordinated toward continuous operational readiness of built environments\",\n      \"bom_standard\": \"Moore 1993\",\n      \"parent_name\": \"ROOT\"\n    },\n    {\n      \"name\": \"Facility Assessment & Contract Scoping\",\n      \"level\": \"L6\",\n      \"label\": \"L6a\",\n      \"description\": \"Assess client site conditions and define service scope, SLA obligations, and asset baseline\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Building Operations & Facilities Management Ecosystem\",\n      \"output_types\": [\"IFM\",\"HS\",\"SS\",\"CFM\",\"PFM\"]\n    },\n    {\n      \"name\": \"Facility Onboarding & System Setup\",\n      \"level\": \"L6\",\n      \"label\": \"L6b\",\n      \"description\": \"Deploy monitoring infrastructure and configure service management platforms at client sites\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Building Operations & Facilities Management Ecosystem\",\n      \"output_types\": [\"IFM\",\"HS\",\"SS\",\"PFM\"]\n    },\n    {\n      \"name\": \"Planned Preventive Maintenance\",\n      \"level\": \"L6\",\n      \"label\": \"L6c\",\n      \"description\": \"Execute scheduled maintenance tasks to preserve equipment integrity and prevent regulatory non-compliance\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Building Operations & Facilities Management Ecosystem\",\n      \"output_types\": [\"IFM\",\"HS\",\"PFM\"]\n    },\n    {\n      \"name\": \"Corrective Maintenance & Repair\",\n      \"level\": \"L6\",\n      \"label\": \"L6d\",\n      \"description\": \"Respond to and remediate unplanned equipment failures, incidents, and work orders\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Building Operations & Facilities Management Ecosystem\",\n      \"output_types\": [\"IFM\",\"HS\",\"PFM\"]\n    },\n    {\n      \"name\": \"Safety & Regulatory Compliance Management\",\n      \"level\": \"L6\",\n      \"label\": \"L6e\",\n      \"description\": \"Inspect, test, document, and certify compliance with fire safety, health, and environmental regulations across client sites\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Building Operations & Facilities Management Ecosystem\",\n      \"output_types\": [\"IFM\",\"HS\",\"CFM\",\"PFM\"]\n    },\n    {\n      \"name\": \"Service Reporting & Client Delivery\",\n      \"level\": \"L6\",\n      \"label\": \"L6f\",\n      \"description\": \"Report service performance, close work orders, and deliver compliance documentation and SLA evidence to clients\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Building Operations & Facilities Management Ecosystem\",\n      \"output_types\": [\"IFM\",\"HS\",\"SS\",\"CFM\",\"PFM\"]\n    },\n    {\n      \"name\": \"CMMS\",\n      \"level\": \"L5\",\n      \"description\": \"Computerised Maintenance Management System for work order management, asset tracking, and PPM scheduling\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Planned Preventive Maintenance\",\n      \"alternatives\": [\n        { \"name\": \"Cloud/SaaS CMMS\", \"share_pct\": 55, \"examples\": \"IBM Maximo, MaintainX, Fiix\" },\n        { \"name\": \"On-premise CMMS\", \"share_pct\": 30, \"examples\": \"Infor EAM, Oracle Maintenance Cloud\" },\n        { \"name\": \"Spreadsheet / paper-based\", \"share_pct\": 15 }\n      ],\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Grand View Research FM Software Market 2025; Mordor Intelligence\"\n    },\n    {\n      \"name\": \"Building Management System\",\n      \"level\": \"L5\",\n      \"description\": \"Centralised BAS/BMS controlling HVAC, access, fire safety, and energy across client building\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility Onboarding & System Setup\",\n      \"alternatives\": [\n        { \"name\": \"Wired BAS (BACnet/KNX/Modbus)\", \"share_pct\": 50, \"examples\": \"Siemens Desigo, Honeywell EBI, JCI Metasys\" },\n        { \"name\": \"Cloud-connected smart BMS\", \"share_pct\": 35 },\n        { \"name\": \"Legacy proprietary BAS\", \"share_pct\": 15 }\n      ],\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"MarketsandMarkets Facility Management Market 2025\"\n    },\n    {\n      \"name\": \"Door & Exit Monitoring System\",\n      \"level\": \"L5\",\n      \"description\": \"Hardware and software platform for detecting, alarming, and logging emergency exit door events for compliance and security\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Safety & Regulatory Compliance Management\",\n      \"alternatives\": [\n        { \"name\": \"Hardwired electronic alarm systems\", \"share_pct\": 45, \"examples\": \"Door contacts wired to fire panel\" },\n        { \"name\": \"Battery-powered wireless alarm devices\", \"share_pct\": 35, \"examples\": \"EasyWave (GfS Türwächter), LoRaWAN door sensors\" },\n        { \"name\": \"Mechanical-only door alarms\", \"share_pct\": 20, \"examples\": \"No monitoring, no wireless — declining\" }\n      ],\n      \"confidence\": \"LOW\",\n      \"source\": \"No published FM-sector split; inferred from fire safety product market data and FM IoT adoption trends\"\n    },\n    {\n      \"name\": \"Door Guardian Device\",\n      \"level\": \"L4\",\n      \"description\": \"Mechanical handle guard with integrated alarm trigger — physical blocking + 95 dB alarm on 45° rotation. Product anchor for Türwächter.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Door & Exit Monitoring System\"\n    },\n    {\n      \"name\": \"Wireless Radio Transmitter\",\n      \"level\": \"L4\",\n      \"description\": \"868 MHz / LoRaWAN / BLE transmitter broadcasting guard-state and alarm events to gateway\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Door & Exit Monitoring System\"\n    },\n    {\n      \"name\": \"Gateway / BUS Interface\",\n      \"level\": \"L4\",\n      \"description\": \"Aggregates wireless signals from multiple door monitoring devices; relays to BMS or monitoring dashboard\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Door & Exit Monitoring System\"\n    },\n    {\n      \"name\": \"Battery Power Unit\",\n      \"level\": \"L4\",\n      \"description\": \"9V replaceable battery block with optional battery-level monitoring and low-battery alert\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Door & Exit Monitoring System\"\n    },\n    {\n      \"name\": \"Alarm Horn\",\n      \"level\": \"L4\",\n      \"description\": \"Piezoelectric horn emitting ≥90 dB alarm on door guardian activation — mechanical trigger, zero electrical dependency\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Door & Exit Monitoring System\"\n    },\n    {\n      \"name\": \"Fire Safety Inspection Platform\",\n      \"level\": \"L5\",\n      \"description\": \"Digital platform for scheduling, executing, documenting, and certifying fire safety inspections across client buildings\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Safety & Regulatory Compliance Management\",\n      \"alternatives\": [\n        { \"name\": \"CAFM-integrated inspection platform\", \"share_pct\": 40, \"examples\": \"Planon, Planninq, Accruent\" },\n        { \"name\": \"Standalone mobile inspection app\", \"share_pct\": 35, \"examples\": \"SafetyCulture/iAuditor, Certainty\" },\n        { \"name\": \"Paper-based inspection logs\", \"share_pct\": 25 }\n      ],\n      \"confidence\": \"LOW\",\n      \"source\": \"No published split; estimated from CAFM adoption and FM digitalisation trend data\"\n    },\n    {\n      \"name\": \"FM Analytics & Reporting Platform\",\n      \"level\": \"L5\",\n      \"description\": \"Analytics and reporting tooling delivering SLA evidence, compliance certificates, and performance dashboards to clients\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Service Reporting & Client Delivery\",\n      \"alternatives\": [\n        { \"name\": \"Embedded IWMS/CAFM analytics\", \"share_pct\": 50, \"examples\": \"IBM Tririga, Planon, MRI\" },\n        { \"name\": \"Standalone BI tools\", \"share_pct\": 30, \"examples\": \"Power BI, Tableau, Looker\" },\n        { \"name\": \"Custom client portal / PDF export\", \"share_pct\": 20 }\n      ],\n      \"confidence\": \"LOW\",\n      \"source\": \"Future Market Insights CAFM Market 2025 ($1.26B); no published reporting-split data\"\n    }\n  ],\n  \"product_fit\": {\n    \"product\": \"GfS Türwächter IoT (Exit Control 179/1125)\",\n    \"vn_anchor_level\": \"L4\",\n    \"anchor_unit\": \"Door Guardian Device\",\n    \"parent_l5\": \"Door & Exit Monitoring System\",\n    \"parent_l6\": \"Safety & Regulatory Compliance Management\",\n    \"current_alternative_displaced\": \"Mechanical-only door alarms (20% share)\",\n    \"target_alternative\": \"Battery-powered wireless alarm devices (35% share, growing)\",\n    \"key_constraint_interaction\": \"C6 EasyWave protocol lock-in requires BUS gateway for BMS integration; FM operators on BACnet/KNX must procure GfS-specific gateway\"\n  }\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**NAICS code**",
+          "Value": "561210"
+        },
+        {
+          "Field": "**NAICS title**",
+          "Value": "Facilities Support Services"
+        },
+        {
+          "Field": "**Source market**",
+          "Value": "Market 09 — 05_market_discovery.md"
+        },
+        {
+          "Field": "**VN type**",
+          "Value": "Process VN (service output = operational readiness outcomes)"
+        },
+        {
+          "Field": "**Top level**",
+          "Value": "L7"
+        },
+        {
+          "Field": "**Türwächter anchor**",
+          "Value": "L4 Door Guardian Device → L5 Door & Exit Monitoring → L6e Safety & Compliance Management"
+        },
+        {
+          "Field": "**Architecture distance**",
+          "Value": "2 (from Phase 02b ranking)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Name**",
+          "Value": "Building Operations & Facilities Management Ecosystem"
+        },
+        {
+          "Field": "**Standard**",
+          "Value": "Moore 1993"
+        },
+        {
+          "Field": "**Description**",
+          "Value": "Community of FM providers, technology vendors, subcontractors, regulators, and building owners coordinated toward continuous operational readiness of built environments"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Code",
+        "Output Type",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Code": "**IFM**",
+          "Output Type": "Integrated FM",
+          "Description": "Full multi-discipline bundled contract (hard + soft + compliance)"
+        },
+        {
+          "Code": "**HS**",
+          "Output Type": "Hard Services",
+          "Description": "MEP, fire safety, structural — no soft services"
+        },
+        {
+          "Code": "**SS**",
+          "Output Type": "Soft Services",
+          "Description": "Cleaning, security, catering, landscaping — no hard services"
+        },
+        {
+          "Code": "**CFM**",
+          "Output Type": "Compliance FM",
+          "Description": "Regulatory inspection and documentation only"
+        },
+        {
+          "Code": "**PFM**",
+          "Output Type": "Portfolio FM",
+          "Description": "Multi-site, multi-building management"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Node",
+        "Name",
+        "Job Family",
+        "Output Types"
+      ],
+      "rows": [
+        {
+          "Node": "**L6a**",
+          "Name": "Facility Assessment & Contract Scoping",
+          "Job Family": "Assess client site conditions and define service scope and SLA obligations",
+          "Output Types": "IFM, HS, SS, CFM, PFM"
+        },
+        {
+          "Node": "**L6b**",
+          "Name": "Facility Onboarding & System Setup",
+          "Job Family": "Deploy monitoring infrastructure and configure service management platforms at client sites",
+          "Output Types": "IFM, HS, SS, PFM"
+        },
+        {
+          "Node": "**L6c**",
+          "Name": "Planned Preventive Maintenance",
+          "Job Family": "Execute scheduled maintenance tasks to preserve equipment integrity and prevent regulatory non-compliance",
+          "Output Types": "IFM, HS, PFM"
+        },
+        {
+          "Node": "**L6d**",
+          "Name": "Corrective Maintenance & Repair",
+          "Job Family": "Respond to and remediate unplanned failures, incidents, and work orders",
+          "Output Types": "IFM, HS, PFM"
+        },
+        {
+          "Node": "**L6e**",
+          "Name": "Safety & Regulatory Compliance Management",
+          "Job Family": "Inspect, test, document, and certify compliance with fire safety, health, and environmental regulations across client sites",
+          "Output Types": "IFM, HS, CFM, PFM"
+        },
+        {
+          "Node": "**L6f**",
+          "Name": "Service Reporting & Client Delivery",
+          "Job Family": "Report service performance, close work orders, and deliver compliance documentation and SLA evidence to clients",
+          "Output Types": "IFM, HS, SS, CFM, PFM"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Node",
+        "Name",
+        "Rationale"
+      ],
+      "rows": [
+        {
+          "Node": "**(H)**",
+          "Name": "Workforce & Labour Management",
+          "Rationale": "Technician scheduling, certification tracking, and contractor coordination run across every L6 step"
+        },
+        {
+          "Node": "**(H)**",
+          "Name": "Supply Chain & Procurement",
+          "Rationale": "Spare parts, consumables, and subcontractor sourcing support L6c and L6d"
+        },
+        {
+          "Node": "**(H)**",
+          "Name": "IT/OT & Building Automation Systems",
+          "Rationale": "BMS, CMMS, and IoT infrastructure underpin all data-dependent steps"
+        },
+        {
+          "Node": "**(H)**",
+          "Name": "Quality Assurance & Audit",
+          "Rationale": "SLA compliance checks and audit trails apply to all service outputs"
+        },
+        {
+          "Node": "**(H)**",
+          "Name": "HSE Management",
+          "Rationale": "Health, safety, and environmental compliance governs all on-site operations"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "IFM",
+        "HS",
+        "SS",
+        "CFM",
+        "PFM"
+      ],
+      "rows": [
+        {
+          "IFM": "L6a Assessment & Scoping",
+          "HS": "x",
+          "SS": "x",
+          "CFM": "x",
+          "PFM": "x"
+        },
+        {
+          "IFM": "L6b Onboarding & Setup",
+          "HS": "x",
+          "SS": "x",
+          "CFM": "x",
+          "PFM": "x"
+        },
+        {
+          "IFM": "L6c Preventive Maintenance",
+          "HS": "x",
+          "SS": "x",
+          "CFM": "x",
+          "PFM": ""
+        },
+        {
+          "IFM": "L6d Corrective Maintenance",
+          "HS": "x",
+          "SS": "x",
+          "CFM": "x",
+          "PFM": ""
+        },
+        {
+          "IFM": "L6e Safety & Compliance",
+          "HS": "x",
+          "SS": "x",
+          "CFM": "x",
+          "PFM": "x"
+        },
+        {
+          "IFM": "L6f Reporting & Delivery",
+          "HS": "x",
+          "SS": "x",
+          "CFM": "x",
+          "PFM": "x"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Digital laser measurement + floor-plan software (Bluebeam, AutoCAD)",
+          "Share": "55%",
+          "Confidence": "MEDIUM",
+          "Source": "Analyst estimates, IFM provider service descriptions"
+        },
+        {
+          "Alternative": "Manual tape measure + paper plans",
+          "Share": "30%",
+          "Confidence": "MEDIUM",
+          "Source": "Field observation"
+        },
+        {
+          "Alternative": "BIM-based digital twin survey (Matterport, NavVis)",
+          "Share": "15%",
+          "Confidence": "LOW",
+          "Source": "Emerging adoption; no published split"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Integrated IWMS/CAFM (IBM Tririga, Planon, MRI)",
+          "Share": "45%",
+          "Confidence": "MEDIUM",
+          "Source": "Mordor Intelligence FM Software Market 2025"
+        },
+        {
+          "Alternative": "Standalone contract management software",
+          "Share": "35%",
+          "Confidence": "MEDIUM",
+          "Source": ""
+        },
+        {
+          "Alternative": "Spreadsheet-based (Excel)",
+          "Share": "20%",
+          "Confidence": "LOW",
+          "Source": "FM industry observation"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Wired BAS (BACnet / KNX / Modbus — Siemens, Honeywell, Johnson Controls)",
+          "Share": "50%",
+          "Confidence": "MEDIUM",
+          "Source": "MarketsandMarkets FM market report; Mordor Intelligence BMS"
+        },
+        {
+          "Alternative": "Cloud-connected smart BMS (IP-based, open API)",
+          "Share": "35%",
+          "Confidence": "MEDIUM",
+          "Source": "FM market reports 2025"
+        },
+        {
+          "Alternative": "Legacy proprietary BAS (pre-IP, manufacturer-locked)",
+          "Share": "15%",
+          "Confidence": "MEDIUM",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "LoRaWAN sensors (LPWAN, long range, low power)",
+          "Share": "35%",
+          "Confidence": "MEDIUM",
+          "Source": "IoT Analytics, building IoT market estimates"
+        },
+        {
+          "Alternative": "BLE/Zigbee mesh sensors (short range, dense deployment)",
+          "Share": "35%",
+          "Confidence": "MEDIUM",
+          "Source": ""
+        },
+        {
+          "Alternative": "868 MHz / proprietary RF (EasyWave, EnOcean)",
+          "Share": "20%",
+          "Confidence": "LOW",
+          "Source": "No published FM-sector split"
+        },
+        {
+          "Alternative": "Cellular IoT (NB-IoT, LTE-M)",
+          "Share": "10%",
+          "Confidence": "LOW",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Cloud/SaaS CMMS (IBM Maximo, ServiceMax, MaintainX, Fiix)",
+          "Share": "55%",
+          "Confidence": "MEDIUM",
+          "Source": "Grand View Research FM Software Market 2025; CMMS segment 32% share per Mordor"
+        },
+        {
+          "Alternative": "On-premise CMMS (Infor EAM, Oracle Maintenance Cloud)",
+          "Share": "30%",
+          "Confidence": "MEDIUM",
+          "Source": ""
+        },
+        {
+          "Alternative": "Spreadsheet / paper-based work orders",
+          "Share": "15%",
+          "Confidence": "MEDIUM",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Handheld digital test instruments (multimeter, thermal camera, vibration analyser)",
+          "Share": "60%",
+          "Confidence": "LOW",
+          "Source": "Field observation; no published market split"
+        },
+        {
+          "Alternative": "Fixed condition monitoring sensors (permanent attachment)",
+          "Share": "30%",
+          "Confidence": "LOW",
+          "Source": ""
+        },
+        {
+          "Alternative": "Manual gauges and analogue instruments",
+          "Share": "10%",
+          "Confidence": "LOW",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "CMMS mobile app (integrated, same vendor as L6c CMMS)",
+          "Share": "55%",
+          "Confidence": "LOW",
+          "Source": "Estimated from CMMS market adoption"
+        },
+        {
+          "Alternative": "Standalone field service app (ServiceMax, FieldAware)",
+          "Share": "30%",
+          "Confidence": "LOW",
+          "Source": ""
+        },
+        {
+          "Alternative": "Telephone / paper-based dispatch",
+          "Share": "15%",
+          "Confidence": "LOW",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Centralised FM depot (van stock + warehouse)",
+          "Share": "50%",
+          "Confidence": "LOW",
+          "Source": "No published split"
+        },
+        {
+          "Alternative": "Just-in-time procurement (direct from supplier)",
+          "Share": "35%",
+          "Confidence": "LOW",
+          "Source": ""
+        },
+        {
+          "Alternative": "Client-side stockroom (managed by FM provider)",
+          "Share": "15%",
+          "Confidence": "LOW",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Hardwired electronic alarm systems (door contacts wired to fire panel)",
+          "Share": "45%",
+          "Confidence": "LOW",
+          "Source": "No published FM-sector split; inferred from fire safety product market"
+        },
+        {
+          "Alternative": "Battery-powered wireless alarm devices (EasyWave, LoRaWAN door sensors)",
+          "Share": "35%",
+          "Confidence": "LOW",
+          "Source": "Growing segment per FM IoT adoption data"
+        },
+        {
+          "Alternative": "Mechanical-only door alarms (no monitoring, no wireless)",
+          "Share": "20%",
+          "Confidence": "LOW",
+          "Source": "Declining; legacy installed base"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Digital CAFM-integrated inspection platform (Planon, Planninq)",
+          "Share": "40%",
+          "Confidence": "LOW",
+          "Source": "No published split"
+        },
+        {
+          "Alternative": "Standalone mobile inspection app (iAuditor/SafetyCulture, Protex AI)",
+          "Share": "35%",
+          "Confidence": "LOW",
+          "Source": ""
+        },
+        {
+          "Alternative": "Paper-based inspection logs",
+          "Share": "25%",
+          "Confidence": "LOW",
+          "Source": "Declining; compliance pressure reducing paper use"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Automated self-test emergency luminaires (BS EN 62034)",
+          "Share": "50%",
+          "Confidence": "MEDIUM",
+          "Source": "Industry standard; widely adopted in EU post-2015"
+        },
+        {
+          "Alternative": "Manual portable test units (handheld testers)",
+          "Share": "35%",
+          "Confidence": "LOW",
+          "Source": ""
+        },
+        {
+          "Alternative": "Third-party monitoring services",
+          "Share": "15%",
+          "Confidence": "LOW",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Embedded analytics in IWMS/CAFM",
+          "Share": "50%",
+          "Confidence": "LOW",
+          "Source": "CAFM market estimated at $1.26B in 2025 (Future Market Insights)"
+        },
+        {
+          "Alternative": "Standalone BI tools (Power BI, Tableau, Looker)",
+          "Share": "30%",
+          "Confidence": "LOW",
+          "Source": ""
+        },
+        {
+          "Alternative": "Custom client portal / PDF export",
+          "Share": "20%",
+          "Confidence": "LOW",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Integrated CAFM document module",
+          "Share": "45%",
+          "Confidence": "LOW",
+          "Source": ""
+        },
+        {
+          "Alternative": "Standalone document management (SharePoint, DocuSign)",
+          "Share": "40%",
+          "Confidence": "LOW",
+          "Source": ""
+        },
+        {
+          "Alternative": "Paper archive",
+          "Share": "15%",
+          "Confidence": "LOW",
+          "Source": "Declining under GDPR and audit requirements"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Check",
+        "Status",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "#": "Q1",
+          "Check": "CFJ is industry-level",
+          "Status": "PASS",
+          "Notes": "No technology reference — states operational outcome"
+        },
+        {
+          "#": "Q2",
+          "Check": "No orphan nodes",
+          "Status": "PASS",
+          "Notes": "All L5/L4 have valid parent references"
+        },
+        {
+          "#": "Q3",
+          "Check": "Valid level transitions",
+          "Status": "PASS",
+          "Notes": "L7→L6→L5→L4 transitions followed throughout"
+        },
+        {
+          "#": "Q4",
+          "Check": "L4 children per L5 ≥ 2",
+          "Status": "PASS",
+          "Notes": "All L5 nodes have ≥3 L4 subsystems"
+        },
+        {
+          "#": "Q5",
+          "Check": "No solution-specific L7/L6 names",
+          "Status": "PASS",
+          "Notes": "L7 and L6 names are industry process terms"
+        },
+        {
+          "#": "Q6",
+          "Check": "Naming test (5 spot-checks)",
+          "Status": "PASS",
+          "Notes": "\"CMMS\", \"BMS\", \"Door Guardian Device\", \"Alarm Horn\", \"Thermal Imaging Camera\" — all domain-standard"
+        },
+        {
+          "#": "Q7",
+          "Check": "Unit count in range",
+          "Status": "PASS",
+          "Notes": "~45 units (L7: 1, L6 core: 6, L6 horiz: 5, L5: 14, L4: ~50 entries)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Dimension",
+        "Assessment"
+      ],
+      "rows": [
+        {
+          "Dimension": "**VN anchor level**",
+          "Assessment": "L4 — component within L5 Door & Exit Monitoring System"
+        },
+        {
+          "Dimension": "**Entry point**",
+          "Assessment": "L6e Safety & Compliance Management — activated by IFM, HS, CFM, PFM (4/5 output types)"
+        },
+        {
+          "Dimension": "**Current alternative held**",
+          "Assessment": "Mechanical-only door alarms (20% share, declining) — direct displacement opportunity"
+        },
+        {
+          "Dimension": "**Adjacent L5 complement**",
+          "Assessment": "Fire Safety Inspection Platform — Türwächter event logs feed compliance documentation"
+        },
+        {
+          "Dimension": "**BMS integration path**",
+          "Assessment": "L5 BMS/BAS (BACnet/KNX) via existing EasyWave→BUS Interface gateway"
+        },
+        {
+          "Dimension": "**Key constraint interaction**",
+          "Assessment": "C6 (EasyWave lock-in) conflicts with BMS operator preference for BACnet/KNX; gateway required"
+        },
+        {
+          "Dimension": "**Buyer in this VN**",
+          "Assessment": "FM operator (Facilities Support Services company) — not building owner directly"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market_value_network": {
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "naics_title": "Facilities Support Services",
+        "cfj_statement": "Operate and maintain a client's built environment to achieve continuous safety compliance, operational readiness, and regulatory conformance while minimising client-side labour",
+        "top_level": "L7",
+        "output_types": [
+          {
+            "code": "IFM",
+            "name": "Integrated FM"
+          },
+          {
+            "code": "HS",
+            "name": "Hard Services FM"
+          },
+          {
+            "code": "SS",
+            "name": "Soft Services FM"
+          },
+          {
+            "code": "CFM",
+            "name": "Compliance FM"
+          },
+          {
+            "code": "PFM",
+            "name": "Portfolio FM"
+          }
+        ]
+      },
+      "units": [
+        {
+          "name": "Building Operations & Facilities Management Ecosystem",
+          "level": "L7",
+          "description": "Community of FM providers, technology vendors, subcontractors, regulators, and building owners coordinated toward continuous operational readiness of built environments",
+          "bom_standard": "Moore 1993",
+          "parent_name": "ROOT"
+        },
+        {
+          "name": "Facility Assessment & Contract Scoping",
+          "level": "L6",
+          "label": "L6a",
+          "description": "Assess client site conditions and define service scope, SLA obligations, and asset baseline",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Building Operations & Facilities Management Ecosystem",
+          "output_types": [
+            "IFM",
+            "HS",
+            "SS",
+            "CFM",
+            "PFM"
+          ]
+        },
+        {
+          "name": "Facility Onboarding & System Setup",
+          "level": "L6",
+          "label": "L6b",
+          "description": "Deploy monitoring infrastructure and configure service management platforms at client sites",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Building Operations & Facilities Management Ecosystem",
+          "output_types": [
+            "IFM",
+            "HS",
+            "SS",
+            "PFM"
+          ]
+        },
+        {
+          "name": "Planned Preventive Maintenance",
+          "level": "L6",
+          "label": "L6c",
+          "description": "Execute scheduled maintenance tasks to preserve equipment integrity and prevent regulatory non-compliance",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Building Operations & Facilities Management Ecosystem",
+          "output_types": [
+            "IFM",
+            "HS",
+            "PFM"
+          ]
+        },
+        {
+          "name": "Corrective Maintenance & Repair",
+          "level": "L6",
+          "label": "L6d",
+          "description": "Respond to and remediate unplanned equipment failures, incidents, and work orders",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Building Operations & Facilities Management Ecosystem",
+          "output_types": [
+            "IFM",
+            "HS",
+            "PFM"
+          ]
+        },
+        {
+          "name": "Safety & Regulatory Compliance Management",
+          "level": "L6",
+          "label": "L6e",
+          "description": "Inspect, test, document, and certify compliance with fire safety, health, and environmental regulations across client sites",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Building Operations & Facilities Management Ecosystem",
+          "output_types": [
+            "IFM",
+            "HS",
+            "CFM",
+            "PFM"
+          ]
+        },
+        {
+          "name": "Service Reporting & Client Delivery",
+          "level": "L6",
+          "label": "L6f",
+          "description": "Report service performance, close work orders, and deliver compliance documentation and SLA evidence to clients",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Building Operations & Facilities Management Ecosystem",
+          "output_types": [
+            "IFM",
+            "HS",
+            "SS",
+            "CFM",
+            "PFM"
+          ]
+        },
+        {
+          "name": "CMMS",
+          "level": "L5",
+          "description": "Computerised Maintenance Management System for work order management, asset tracking, and PPM scheduling",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Planned Preventive Maintenance",
+          "alternatives": [
+            {
+              "name": "Cloud/SaaS CMMS",
+              "share_pct": 55,
+              "examples": "IBM Maximo, MaintainX, Fiix"
+            },
+            {
+              "name": "On-premise CMMS",
+              "share_pct": 30,
+              "examples": "Infor EAM, Oracle Maintenance Cloud"
+            },
+            {
+              "name": "Spreadsheet / paper-based",
+              "share_pct": 15
+            }
+          ],
+          "confidence": "MEDIUM",
+          "source": "Grand View Research FM Software Market 2025; Mordor Intelligence"
+        },
+        {
+          "name": "Building Management System",
+          "level": "L5",
+          "description": "Centralised BAS/BMS controlling HVAC, access, fire safety, and energy across client building",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility Onboarding & System Setup",
+          "alternatives": [
+            {
+              "name": "Wired BAS (BACnet/KNX/Modbus)",
+              "share_pct": 50,
+              "examples": "Siemens Desigo, Honeywell EBI, JCI Metasys"
+            },
+            {
+              "name": "Cloud-connected smart BMS",
+              "share_pct": 35
+            },
+            {
+              "name": "Legacy proprietary BAS",
+              "share_pct": 15
+            }
+          ],
+          "confidence": "MEDIUM",
+          "source": "MarketsandMarkets Facility Management Market 2025"
+        },
+        {
+          "name": "Door & Exit Monitoring System",
+          "level": "L5",
+          "description": "Hardware and software platform for detecting, alarming, and logging emergency exit door events for compliance and security",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Safety & Regulatory Compliance Management",
+          "alternatives": [
+            {
+              "name": "Hardwired electronic alarm systems",
+              "share_pct": 45,
+              "examples": "Door contacts wired to fire panel"
+            },
+            {
+              "name": "Battery-powered wireless alarm devices",
+              "share_pct": 35,
+              "examples": "EasyWave (GfS Türwächter), LoRaWAN door sensors"
+            },
+            {
+              "name": "Mechanical-only door alarms",
+              "share_pct": 20,
+              "examples": "No monitoring, no wireless — declining"
+            }
+          ],
+          "confidence": "LOW",
+          "source": "No published FM-sector split; inferred from fire safety product market data and FM IoT adoption trends"
+        },
+        {
+          "name": "Door Guardian Device",
+          "level": "L4",
+          "description": "Mechanical handle guard with integrated alarm trigger — physical blocking + 95 dB alarm on 45° rotation. Product anchor for Türwächter.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Door & Exit Monitoring System"
+        },
+        {
+          "name": "Wireless Radio Transmitter",
+          "level": "L4",
+          "description": "868 MHz / LoRaWAN / BLE transmitter broadcasting guard-state and alarm events to gateway",
+          "bom_standard": "INCOSE",
+          "parent_name": "Door & Exit Monitoring System"
+        },
+        {
+          "name": "Gateway / BUS Interface",
+          "level": "L4",
+          "description": "Aggregates wireless signals from multiple door monitoring devices; relays to BMS or monitoring dashboard",
+          "bom_standard": "INCOSE",
+          "parent_name": "Door & Exit Monitoring System"
+        },
+        {
+          "name": "Battery Power Unit",
+          "level": "L4",
+          "description": "9V replaceable battery block with optional battery-level monitoring and low-battery alert",
+          "bom_standard": "INCOSE",
+          "parent_name": "Door & Exit Monitoring System"
+        },
+        {
+          "name": "Alarm Horn",
+          "level": "L4",
+          "description": "Piezoelectric horn emitting ≥90 dB alarm on door guardian activation — mechanical trigger, zero electrical dependency",
+          "bom_standard": "INCOSE",
+          "parent_name": "Door & Exit Monitoring System"
+        },
+        {
+          "name": "Fire Safety Inspection Platform",
+          "level": "L5",
+          "description": "Digital platform for scheduling, executing, documenting, and certifying fire safety inspections across client buildings",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Safety & Regulatory Compliance Management",
+          "alternatives": [
+            {
+              "name": "CAFM-integrated inspection platform",
+              "share_pct": 40,
+              "examples": "Planon, Planninq, Accruent"
+            },
+            {
+              "name": "Standalone mobile inspection app",
+              "share_pct": 35,
+              "examples": "SafetyCulture/iAuditor, Certainty"
+            },
+            {
+              "name": "Paper-based inspection logs",
+              "share_pct": 25
+            }
+          ],
+          "confidence": "LOW",
+          "source": "No published split; estimated from CAFM adoption and FM digitalisation trend data"
+        },
+        {
+          "name": "FM Analytics & Reporting Platform",
+          "level": "L5",
+          "description": "Analytics and reporting tooling delivering SLA evidence, compliance certificates, and performance dashboards to clients",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Service Reporting & Client Delivery",
+          "alternatives": [
+            {
+              "name": "Embedded IWMS/CAFM analytics",
+              "share_pct": 50,
+              "examples": "IBM Tririga, Planon, MRI"
+            },
+            {
+              "name": "Standalone BI tools",
+              "share_pct": 30,
+              "examples": "Power BI, Tableau, Looker"
+            },
+            {
+              "name": "Custom client portal / PDF export",
+              "share_pct": 20
+            }
+          ],
+          "confidence": "LOW",
+          "source": "Future Market Insights CAFM Market 2025 ($1.26B); no published reporting-split data"
+        }
+      ],
+      "product_fit": {
+        "product": "GfS Türwächter IoT (Exit Control 179/1125)",
+        "vn_anchor_level": "L4",
+        "anchor_unit": "Door Guardian Device",
+        "parent_l5": "Door & Exit Monitoring System",
+        "parent_l6": "Safety & Regulatory Compliance Management",
+        "current_alternative_displaced": "Mechanical-only door alarms (20% share)",
+        "target_alternative": "Battery-powered wireless alarm devices (35% share, growing)",
+        "key_constraint_interaction": "C6 EasyWave protocol lock-in requires BUS gateway for BMS integration; FM operators on BACnet/KNX must procure GfS-specific gateway"
+      }
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

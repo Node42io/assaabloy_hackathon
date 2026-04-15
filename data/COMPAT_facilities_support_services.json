@@ -1,0 +1,718 @@
+{
+  "id": "COMPAT_facilities_support_services",
+  "title": "COMPAT — Constraint-Market Compatibility: Facilities Support Services (NAICS 561210)",
+  "type": "constraint_compatibility",
+  "market_slug": "facilities_support_services",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Step 07 — Enriched Product Constraints",
+      "content": "10 constraints from upstream Step 01 / Step 03. 1 absolute (C2), 9 conditional. All 6 taxonomy types represented.\n\n| # | Constraint | Type | Threshold | Unit | Absolute | Affected Markets Hint |\n|---|-----------|------|-----------|------|----------|-----------------------|\n| C1 | Emergency Escape Non-Impedance | regulatory | 0 | additional steps vs. EN 179/EN 1125 | no | All commercial, healthcare, education, industrial buildings |\n| C2 | Mechanical Alarm Independence | regulatory | 0 | V (min operating voltage for alarm) | **yes** | All life-safety-regulated markets |\n| C3 | Wireless Range Limitation | physical | 30 / 60 | m (no repeater / 1-stage repeater) | no | Large industrial plants, airports, convention centers, underground facilities |\n| C4 | IoT Battery Life Floor | operational | 2 | years (min replacement interval) | no | High-traffic healthcare, school corridors, remote industrial sites |\n| C5 | Retrofit-Only Surface Mount | physical | — | binary | no | Luxury hotels, premium corporate HQ, high-security data centers |\n| C6 | EasyWave Protocol Lock-In | operational | 0 | open protocols supported natively | no | BACnet/KNX smart office buildings, industrial IoT platforms, hospitality BMS |\n| C7 | IoT Price Premium | economic | 2 | × price multiple vs. basic mechanical | no | SME offices, budget social housing, small retail chains |\n| C8 | GDPR Monitoring Data Compliance | regulatory | — | binary compliance requirement | no | All EU commercial buildings with employees, healthcare, government, education |\n| C9 | IP Protection Boundary | environmental | 45 | IP class (standard; IP65+ for washdown) | no | Food/beverage processing, breweries, pharma washdown, marine, outdoor industrial |\n| C10 | EN 13637 / EltVTR Electrical Compliance | regulatory | — | system-level compliance at integration | no | Controlled-access healthcare, secure government, data centers with combined access + emergency exit |\n\n**Type distribution:** 2 physical, 1 operational (×2 counting C4+C6), 1 economic, 3 regulatory, 1 environmental — all 6 types present.\n\n---"
+    },
+    {
+      "title": "Step 08 — Constraint-Market Assessment: Facilities Support Services (561210)",
+      "content": "Türwächter anchors in the FM value network [SRC: VN_facilities_support_services]:\n- **Primary entry:** L6e Safety & Compliance Management → L5 Door & Exit Monitoring System → L4 Door Guardian Device\n- **Activated by:** IFM, HS, CFM, PFM (4/5 output types)\n- **Current alternative displaced:** Mechanical-only door alarms (20% share, declining)\n- **Buyer:** FM operator (specifies and maintains hardware across client portfolio) — not building owner\n\n### Assessment Matrix\n\n| # | Constraint | Verdict | Rationale |\n|---|-----------|---------|-----------|\n| C1 | Emergency Escape Non-Impedance | **none** | FM operators mandate EN 179/EN 1125 compliance across client buildings. The Türwächter is certified to both standards. Single-motion release is the product's core design premise, not a barrier. No additional operational steps imposed. |\n| C2 | Mechanical Alarm Independence | **none** | The absolute is satisfied by the product's inherent mechanical-primary architecture (piezo horn triggered by spring-loaded guard swing, zero electrical dependency). FM operators require fail-safe compliance — this is a positive differentiator, not a barrier. |\n| C3 | Wireless Range Limitation | **mitigable** | FM portfolios include large-format buildings (warehouses, hospitals, multi-storey office complexes) where distances to gateway can exceed 30–60m. FM onboarding teams (L6b) can plan gateway and repeater placement during site survey. Standard EasyWave repeaters exist; per-building infrastructure design is routine FM deployment practice. |\n|   |   |   | **Mitigation:** (1) Include wireless repeater placement in L6a site survey and L6b onboarding plan; (2) Deploy RF gateway per building or per floor for portfolios with large footprints; (3) Prioritise IoT value-add on standard-size buildings (≤60m span) in initial roll-out. |\n|   |   |   | **Cost:** low (<$10K per building) — **Time:** 1–2 months (per site commissioning) |\n| C4 | IoT Battery Life Floor | **mitigable** | FM companies operate CMMS-based PPM schedules (L6c) that can absorb battery replacement as a scheduled maintenance task. High-traffic doors (hospital wards, school corridors) in a portfolio accelerate battery depletion but are predictable. Battery replacement adds technician labour cost; however, CMMS-triggered proactive replacement prevents alarm gaps and reduces emergency callout cost. |\n|   |   |   | **Mitigation:** (1) Integrate battery-level monitoring alerts into CMMS work order engine; (2) Add battery replacement to PPM schedule for high-traffic door zones; (3) Evaluate larger capacity or USB-C rechargeable battery modules for high-activity sites. |\n|   |   |   | **Cost:** low (<$10K) — **Time:** included in onboarding and PPM cycle setup (1 month) |\n| C5 | Retrofit-Only Surface Mount | **none** | FM companies operate primarily in existing buildings (retrofit is their natural context). Surface-mount installation without drilling is an advantage for FM deployment speed and eliminates structural modification risk. A small minority of premium architectural client buildings may have aesthetic objections, but this is a negotiation point, not a technical barrier. Glass-frame mounting plate (Art. 991170) covers the most sensitive variant. |\n| C6 | EasyWave Protocol Lock-In | **mitigable** | FM operators standardise on BACnet/KNX (50% share of BMS in their portfolio) or cloud-connected platforms. EasyWave does not interoperate natively. GfS provides a wireless BUS interface gateway that bridges EasyWave to BMS. Each managed building requires this gateway, adding per-site hardware cost and creating a vendor dependency that FM procurement must account for. This is the most significant constraint for this market. |\n|   |   |   | **Mitigation:** (1) Procure GfS wireless BUS gateway per building (or per floor in large buildings) during L6b onboarding; (2) Configure gateway-to-BACnet/KNX/IP bridge as standard line item in IFM/HS service delivery template; (3) Escalate to GfS for bulk gateway pricing under portfolio contract. |\n|   |   |   | **Cost:** medium ($10K–100K across portfolio) — **Time:** 2–3 months (integration design + commissioning) |\n| C7 | IoT Price Premium | **mitigable** | FM operators procure hardware at portfolio scale (100+ door units across client buildings). At €730/unit, a 100-door deployment is ~€73K vs. ~€35K for mechanical-only. FM operators can pass hardware cost through to clients under IFM/PFM contracts and justify premium via documented labour savings (elimination of manual inspection rounds, automated compliance logs, proactive battery alerts). Volume pricing with GfS is standard for FM framework agreements. |\n|   |   |   | **Mitigation:** (1) Develop ROI model: automated compliance logs eliminate 2–4 inspection visits/year per building; (2) Negotiate volume framework agreement with GfS for portfolio deployments; (3) Bundle IoT monitoring as a value-add service line in IFM contracts (revenue opportunity, not just cost). |\n|   |   |   | **Cost:** low (<$10K for pricing and ROI work) — **Time:** 1–2 months (commercial framework) |\n| C8 | GDPR Monitoring Data Compliance | **mitigable** | Door-event timestamps logged by the IoT platform constitute personal data under GDPR when attributable to employees or occupants in EU client buildings. FM operators act as data processors; they must execute a DPA with any SaaS monitoring provider and complete DPIA for high-risk systematic monitoring (e.g., employee attendance profiling). Large FM companies (ISS, Sodexo, CBRE) have established data governance and compliance teams; DPA templates are standardised. Feeds into L6f compliance documentation. |\n|   |   |   | **Mitigation:** (1) Execute DPA with GfS IoT platform provider as part of FM master services agreement; (2) Apply data minimisation (log door events, not identities; timestamps only); (3) Include GDPR annex in client FM contract template. |\n|   |   |   | **Cost:** low (<$10K) — **Time:** 1–2 months (legal review per client contract) |\n| C9 | IP Protection Boundary | **mitigable** | Standard indoor variant (no published IP class) covers the majority of FM client buildings (offices, healthcare, education, retail). IP45 outdoor variant covers light external applications. FM portfolios occasionally include food processing, brewery, or wet-industrial clients where IP65/IP69K is required for washdown environments — the standard indoor unit would fail in these applications. IP65 variant (Art. 990000-IP) exists; specifying it for wet-environment clients is a procurement decision. |\n|   |   |   | **Mitigation:** (1) Segment FM client portfolio by environment type during L6a scoping; (2) Specify IP65 variant as standard for any wet-environment client building; (3) Flag pharma/food-processing clients as requiring product variant confirmation before deployment. |\n|   |   |   | **Cost:** low (<$10K — product variant already exists) — **Time:** included in L6a site survey (no added timeline) |\n| C10 | EN 13637 / EltVTR Electrical Compliance | **mitigable** | FM companies increasingly deploy combined access control + emergency exit configurations (e.g., electromagnetic door holders + Türwächter on healthcare ward doors, secure server rooms). EN 13637 governs the combined system's fail-safe behaviour. The IoT module alone is compliant. FM system integrators and subcontractors are familiar with EN 13637 requirements. This is a system design responsibility at commissioning, not a product deficiency. |\n|   |   |   | **Mitigation:** (1) Include EN 13637 compliance check in L6e safety inspection protocol for all combined access + exit configurations; (2) Brief FM system integrator subcontractors on fail-safe wiring requirements; (3) Provide GfS integration guidance documentation for combined configurations. |\n|   |   |   | **Cost:** low (<$10K) — **Time:** 1 month (documentation and training) |\n\n### Verdict Summary\n\n| Verdict | Count | Constraints |\n|---------|-------|-------------|\n| **knockout** | 0 | — |\n| **mitigable** | 7 | C3 Wireless Range, C4 Battery Life, C6 Protocol Lock-In, C7 Price Premium, C8 GDPR, C9 IP Class, C10 EN 13637 |\n| **none** | 3 | C1 Escape Non-Impedance, C2 Mechanical Alarm Independence, C5 Surface Mount |\n\n### Conservative Review (08b)\n\nNo knockouts present — nothing to downgrade. Mitigable verdicts reviewed:\n\n- **C3 Wireless range:** Genuine infrastructure planning requirement for large buildings. Repeaters and gateways exist; standard FM deployment practice. Confirmed mitigable.\n- **C4 Battery life:** PPM schedules absorb battery replacement; CMMS alerts manage it proactively. Confirmed mitigable (not knockout — even at high traffic, alarm function continues; only IoT monitoring is lost if battery fails, and degradation is monitored).\n- **C6 Protocol lock-in:** Most significant constraint. BUS gateway is required for BMS integration. No native open protocol support. Cost is real but manageable at portfolio scale. Confirmed mitigable (not knockout — gateway product exists and is in GfS catalogue).\n- **C7 Price premium:** Cost is never a knockout. ROI case is clear at FM scale. Confirmed mitigable.\n- **C8 GDPR:** Standard compliance path (DPA, DPIA) is well-established in EU FM sector. Confirmed mitigable.\n- **C9 IP class:** IP65 variant already available; only relevant for wet-environment subset of FM portfolio. Confirmed mitigable.\n- **C10 EN 13637:** Defined certification and compliance path; FM integrators are trained on this. Confirmed mitigable.\n\nNo verdict changes after review.\n\n---"
+    },
+    {
+      "title": "Result",
+      "content": "| Field | Value |\n|-------|-------|\n| **Market** | Facilities Support Services (NAICS 561210) |\n| **Status** | **SURVIVING** |\n| **Knockouts** | 0 |\n| **Mitigable** | 7 (low: 5, medium: 1, low-medium: 1) |\n| **None** | 3 |\n| **markets_eliminated** | [] |\n| **markets_surviving** | [\"561210\"] |\n\n**Entry strategy implication:** No constraints eliminate this market. The primary commercial barrier is **C6 (EasyWave protocol lock-in)**, which requires a GfS BUS gateway per building and drives medium mitigation cost at scale. All other mitigable constraints are operational (battery, IP class) or contractual (GDPR, EN 13637) — resolved through FM standard practice. The optimal entry path is **IFM/PFM portfolio contracts with mid-to-large FM operators**, where gateway investment is amortised across many buildings and IoT monitoring becomes a billable service line.\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"component\": \"constraint_market_compatibility\",\n  \"product_name\": \"GfS Türwächter IoT (Exit Control 179/1125)\",\n  \"vendor_name\": \"GfS (distributed via Assa Abloy channel)\",\n  \"market_name\": \"Facilities Support Services\",\n  \"naics_code\": \"561210\",\n  \"constraint_count\": 10,\n  \"assessments\": [\n    {\n      \"constraint_name\": \"Emergency Escape Non-Impedance\",\n      \"constraint_type\": \"regulatory\",\n      \"is_absolute\": false,\n      \"market_name\": \"Facilities Support Services\",\n      \"naics_code\": \"561210\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"FM operators mandate EN 179/EN 1125 compliance across client buildings. Türwächter is certified to both standards — single-motion release is the product's core design premise, not a barrier.\"\n    },\n    {\n      \"constraint_name\": \"Mechanical Alarm Independence\",\n      \"constraint_type\": \"regulatory\",\n      \"is_absolute\": true,\n      \"market_name\": \"Facilities Support Services\",\n      \"naics_code\": \"561210\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Absolute constraint satisfied by the product's mechanical-primary architecture. FM operators require fail-safe compliance — this is a positive differentiator in this market.\"\n    },\n    {\n      \"constraint_name\": \"Wireless Range Limitation\",\n      \"constraint_type\": \"physical\",\n      \"is_absolute\": false,\n      \"market_name\": \"Facilities Support Services\",\n      \"naics_code\": \"561210\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Include wireless repeater placement in L6a site survey and L6b onboarding plan\",\n        \"Deploy RF gateway per building or per floor for large-footprint buildings\",\n        \"Prioritise standard-size buildings (≤60m span) in initial portfolio roll-out\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1-2 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"FM portfolios include large-format buildings where distances can exceed 60m. Standard repeaters exist; gateway and repeater planning is routine FM deployment practice during onboarding.\"\n    },\n    {\n      \"constraint_name\": \"IoT Battery Life Floor\",\n      \"constraint_type\": \"operational\",\n      \"is_absolute\": false,\n      \"market_name\": \"Facilities Support Services\",\n      \"naics_code\": \"561210\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Integrate battery-level monitoring alerts into CMMS work order engine\",\n        \"Add battery replacement to PPM schedule for high-traffic door zones\",\n        \"Evaluate larger or rechargeable battery modules for high-activity sites\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1 month\",\n      \"knockout_reason\": null,\n      \"rationale\": \"FM operators run CMMS-based PPM schedules that absorb battery replacement as a scheduled task. High-traffic door batteries are predictable; proactive replacement eliminates alarm gaps and reduces emergency callout cost.\"\n    },\n    {\n      \"constraint_name\": \"Retrofit-Only Surface Mount\",\n      \"constraint_type\": \"physical\",\n      \"is_absolute\": false,\n      \"market_name\": \"Facilities Support Services\",\n      \"naics_code\": \"561210\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"FM companies operate primarily in existing buildings. Surface-mount without drilling is an advantage for deployment speed and structural risk avoidance. Glass-frame mounting plate (Art. 991170) covers the most sensitive architectural variant.\"\n    },\n    {\n      \"constraint_name\": \"EasyWave Protocol Lock-In\",\n      \"constraint_type\": \"operational\",\n      \"is_absolute\": false,\n      \"market_name\": \"Facilities Support Services\",\n      \"naics_code\": \"561210\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Procure GfS wireless BUS gateway per building during L6b onboarding\",\n        \"Configure gateway-to-BACnet/KNX/IP bridge as standard line item in IFM/HS service template\",\n        \"Negotiate bulk gateway pricing with GfS under portfolio framework agreement\"\n      ],\n      \"mitigation_cost_estimate\": \"medium\",\n      \"mitigation_time_estimate\": \"2-3 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"FM operators standardise on BACnet/KNX (50% BMS share) or cloud-connected platforms. EasyWave has zero native interoperability. GfS BUS gateway bridges the gap but adds per-building hardware cost and vendor dependency. Most significant constraint for this market.\"\n    },\n    {\n      \"constraint_name\": \"IoT Price Premium\",\n      \"constraint_type\": \"economic\",\n      \"is_absolute\": false,\n      \"market_name\": \"Facilities Support Services\",\n      \"naics_code\": \"561210\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Develop ROI model: automated compliance logs eliminate 2-4 inspection visits/year per building\",\n        \"Negotiate GfS volume framework agreement for portfolio deployments\",\n        \"Bundle IoT monitoring as a billable service line in IFM contracts\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1-2 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"FM operators procure at scale (100+ units). Hardware cost is passed through to building owner clients under IFM/PFM contracts. Labour savings from automated compliance documentation and proactive battery alerts justify the premium. Volume pricing is standard in FM framework agreements.\"\n    },\n    {\n      \"constraint_name\": \"GDPR Monitoring Data Compliance\",\n      \"constraint_type\": \"regulatory\",\n      \"is_absolute\": false,\n      \"market_name\": \"Facilities Support Services\",\n      \"naics_code\": \"561210\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Execute DPA with GfS IoT platform provider as part of FM master services agreement\",\n        \"Apply data minimisation: log door events and timestamps only, not occupant identities\",\n        \"Include GDPR compliance annex in standard client FM contract template\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1-2 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"FM operators are data processors under GDPR for EU client buildings. Large FM companies have established compliance teams and standardised DPA templates. Data minimisation (timestamps, not identities) reduces DPIA risk. Standard contractual process.\"\n    },\n    {\n      \"constraint_name\": \"IP Protection Boundary\",\n      \"constraint_type\": \"environmental\",\n      \"is_absolute\": false,\n      \"market_name\": \"Facilities Support Services\",\n      \"naics_code\": \"561210\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Segment FM client portfolio by environment type during L6a site survey\",\n        \"Specify IP65 variant (Art. 990000-IP) as standard for wet-environment client buildings\",\n        \"Flag food-processing and pharma clients as requiring product variant confirmation before deployment\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"included in L6a scoping\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Standard indoor variant covers the majority of FM client buildings (offices, healthcare, education). IP65 variant already available for wet-environment clients (food processing, breweries, pharma washdown) in portfolio. Procurement decision, not engineering barrier.\"\n    },\n    {\n      \"constraint_name\": \"EN 13637 / EltVTR Electrical Compliance\",\n      \"constraint_type\": \"regulatory\",\n      \"is_absolute\": false,\n      \"market_name\": \"Facilities Support Services\",\n      \"naics_code\": \"561210\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Include EN 13637 compliance check in L6e safety inspection protocol for combined access + exit configurations\",\n        \"Brief FM system integrator subcontractors on fail-safe wiring requirements for combined systems\",\n        \"Include GfS integration guidance documentation in FM technical library\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1 month\",\n      \"knockout_reason\": null,\n      \"rationale\": \"FM companies deploy combined access control + emergency exit configurations in healthcare wards, server rooms, and secure areas. EN 13637 compliance is a system design responsibility at commissioning. FM integrators are trained on this standard; defined certification path exists.\"\n    }\n  ],\n  \"markets_eliminated\": [],\n  \"markets_surviving\": [\"561210\"],\n  \"summary\": {\n    \"knockout_count\": 0,\n    \"mitigable_count\": 7,\n    \"none_count\": 3,\n    \"mitigable_constraints\": [\n      {\"name\": \"Wireless Range Limitation\", \"cost\": \"low\", \"time\": \"1-2 months\"},\n      {\"name\": \"IoT Battery Life Floor\", \"cost\": \"low\", \"time\": \"1 month\"},\n      {\"name\": \"EasyWave Protocol Lock-In\", \"cost\": \"medium\", \"time\": \"2-3 months\"},\n      {\"name\": \"IoT Price Premium\", \"cost\": \"low\", \"time\": \"1-2 months\"},\n      {\"name\": \"GDPR Monitoring Data Compliance\", \"cost\": \"low\", \"time\": \"1-2 months\"},\n      {\"name\": \"IP Protection Boundary\", \"cost\": \"low\", \"time\": \"included in scoping\"},\n      {\"name\": \"EN 13637 / EltVTR Electrical Compliance\", \"cost\": \"low\", \"time\": \"1 month\"}\n    ]\n  },\n  \"entities_produced\": {\n    \"nodes\": [\n      {\"label\": \"Constraint\", \"key\": {\"name\": \"Emergency Escape Non-Impedance\", \"run_id\": \"TBD\"}},\n      {\"label\": \"Constraint\", \"key\": {\"name\": \"Mechanical Alarm Independence\", \"run_id\": \"TBD\"}},\n      {\"label\": \"Constraint\", \"key\": {\"name\": \"Wireless Range Limitation\", \"run_id\": \"TBD\"}},\n      {\"label\": \"Constraint\", \"key\": {\"name\": \"IoT Battery Life Floor\", \"run_id\": \"TBD\"}},\n      {\"label\": \"Constraint\", \"key\": {\"name\": \"Retrofit-Only Surface Mount\", \"run_id\": \"TBD\"}},\n      {\"label\": \"Constraint\", \"key\": {\"name\": \"EasyWave Protocol Lock-In\", \"run_id\": \"TBD\"}},\n      {\"label\": \"Constraint\", \"key\": {\"name\": \"IoT Price Premium\", \"run_id\": \"TBD\"}},\n      {\"label\": \"Constraint\", \"key\": {\"name\": \"GDPR Monitoring Data Compliance\", \"run_id\": \"TBD\"}},\n      {\"label\": \"Constraint\", \"key\": {\"name\": \"IP Protection Boundary\", \"run_id\": \"TBD\"}},\n      {\"label\": \"Constraint\", \"key\": {\"name\": \"EN 13637 / EltVTR Electrical Compliance\", \"run_id\": \"TBD\"}}\n    ],\n    \"relationships\": [\n      {\"type\": \"has_constraint\", \"source\": \"NeutralProductGroup:Emergency Exit Security Devices with Remote Monitoring\", \"target\": \"Constraint:<each>\", \"count\": 10},\n      {\"type\": \"incompatible_with\", \"source\": \"Constraint:Wireless Range Limitation\", \"target\": \"Market:561210\", \"properties\": {\"compatibility\": \"mitigable\", \"mitigation_cost_estimate\": \"low\", \"mitigation_time_estimate\": \"1-2 months\"}},\n      {\"type\": \"incompatible_with\", \"source\": \"Constraint:IoT Battery Life Floor\", \"target\": \"Market:561210\", \"properties\": {\"compatibility\": \"mitigable\", \"mitigation_cost_estimate\": \"low\", \"mitigation_time_estimate\": \"1 month\"}},\n      {\"type\": \"incompatible_with\", \"source\": \"Constraint:EasyWave Protocol Lock-In\", \"target\": \"Market:561210\", \"properties\": {\"compatibility\": \"mitigable\", \"mitigation_cost_estimate\": \"medium\", \"mitigation_time_estimate\": \"2-3 months\"}},\n      {\"type\": \"incompatible_with\", \"source\": \"Constraint:IoT Price Premium\", \"target\": \"Market:561210\", \"properties\": {\"compatibility\": \"mitigable\", \"mitigation_cost_estimate\": \"low\", \"mitigation_time_estimate\": \"1-2 months\"}},\n      {\"type\": \"incompatible_with\", \"source\": \"Constraint:GDPR Monitoring Data Compliance\", \"target\": \"Market:561210\", \"properties\": {\"compatibility\": \"mitigable\", \"mitigation_cost_estimate\": \"low\", \"mitigation_time_estimate\": \"1-2 months\"}},\n      {\"type\": \"incompatible_with\", \"source\": \"Constraint:IP Protection Boundary\", \"target\": \"Market:561210\", \"properties\": {\"compatibility\": \"mitigable\", \"mitigation_cost_estimate\": \"low\", \"mitigation_time_estimate\": \"included in scoping\"}},\n      {\"type\": \"incompatible_with\", \"source\": \"Constraint:EN 13637 / EltVTR Electrical Compliance\", \"target\": \"Market:561210\", \"properties\": {\"compatibility\": \"mitigable\", \"mitigation_cost_estimate\": \"low\", \"mitigation_time_estimate\": \"1 month\"}}\n    ]\n  }\n}\n```\n\n---"
+    },
+    {
+      "title": "Sources",
+      "content": "- `01_product_decomposition.md` — Technology class, underlying mechanism, specifications, UNSPSC classification\n- `02_functional_promise.md` — Functional promise, complements, BOM position, FP extension\n- `03_constraints.md` — All 10 product constraints with types, thresholds, absolute classification\n- `05_market_discovery.md` — Facilities Support Services (NAICS 561210): relevance rationale, JTBD, architecture distance 2, priority HIGH\n- `VN_facilities_support_services.md` — Value network structure, L6e entry point, BMS alternative shares, Türwächter anchor at L4 Door Guardian Device\n\n---\n\n*End of COMPAT — Facilities Support Services (561210) passes all constraints with 0 knockouts. Seven mitigable barriers identified; the most commercially significant is C6 EasyWave Protocol Lock-In (medium cost, requires GfS BUS gateway per building). Optimal entry: IFM/PFM portfolio contracts with mid-to-large FM operators where gateway investment is amortised across many buildings. Feeds into Feature-Market Fit, Competitive Landscape, and Market Prioritization.*"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "#",
+        "Constraint",
+        "Type",
+        "Threshold",
+        "Unit",
+        "Absolute",
+        "Affected Markets Hint"
+      ],
+      "rows": [
+        {
+          "#": "C1",
+          "Constraint": "Emergency Escape Non-Impedance",
+          "Type": "regulatory",
+          "Threshold": "0",
+          "Unit": "additional steps vs. EN 179/EN 1125",
+          "Absolute": "no",
+          "Affected Markets Hint": "All commercial, healthcare, education, industrial buildings"
+        },
+        {
+          "#": "C2",
+          "Constraint": "Mechanical Alarm Independence",
+          "Type": "regulatory",
+          "Threshold": "0",
+          "Unit": "V (min operating voltage for alarm)",
+          "Absolute": "**yes**",
+          "Affected Markets Hint": "All life-safety-regulated markets"
+        },
+        {
+          "#": "C3",
+          "Constraint": "Wireless Range Limitation",
+          "Type": "physical",
+          "Threshold": "30 / 60",
+          "Unit": "m (no repeater / 1-stage repeater)",
+          "Absolute": "no",
+          "Affected Markets Hint": "Large industrial plants, airports, convention centers, underground facilities"
+        },
+        {
+          "#": "C4",
+          "Constraint": "IoT Battery Life Floor",
+          "Type": "operational",
+          "Threshold": "2",
+          "Unit": "years (min replacement interval)",
+          "Absolute": "no",
+          "Affected Markets Hint": "High-traffic healthcare, school corridors, remote industrial sites"
+        },
+        {
+          "#": "C5",
+          "Constraint": "Retrofit-Only Surface Mount",
+          "Type": "physical",
+          "Threshold": "—",
+          "Unit": "binary",
+          "Absolute": "no",
+          "Affected Markets Hint": "Luxury hotels, premium corporate HQ, high-security data centers"
+        },
+        {
+          "#": "C6",
+          "Constraint": "EasyWave Protocol Lock-In",
+          "Type": "operational",
+          "Threshold": "0",
+          "Unit": "open protocols supported natively",
+          "Absolute": "no",
+          "Affected Markets Hint": "BACnet/KNX smart office buildings, industrial IoT platforms, hospitality BMS"
+        },
+        {
+          "#": "C7",
+          "Constraint": "IoT Price Premium",
+          "Type": "economic",
+          "Threshold": "2",
+          "Unit": "× price multiple vs. basic mechanical",
+          "Absolute": "no",
+          "Affected Markets Hint": "SME offices, budget social housing, small retail chains"
+        },
+        {
+          "#": "C8",
+          "Constraint": "GDPR Monitoring Data Compliance",
+          "Type": "regulatory",
+          "Threshold": "—",
+          "Unit": "binary compliance requirement",
+          "Absolute": "no",
+          "Affected Markets Hint": "All EU commercial buildings with employees, healthcare, government, education"
+        },
+        {
+          "#": "C9",
+          "Constraint": "IP Protection Boundary",
+          "Type": "environmental",
+          "Threshold": "45",
+          "Unit": "IP class (standard; IP65+ for washdown)",
+          "Absolute": "no",
+          "Affected Markets Hint": "Food/beverage processing, breweries, pharma washdown, marine, outdoor industrial"
+        },
+        {
+          "#": "C10",
+          "Constraint": "EN 13637 / EltVTR Electrical Compliance",
+          "Type": "regulatory",
+          "Threshold": "—",
+          "Unit": "system-level compliance at integration",
+          "Absolute": "no",
+          "Affected Markets Hint": "Controlled-access healthcare, secure government, data centers with combined access + emergency exit"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Constraint",
+        "Verdict",
+        "Rationale"
+      ],
+      "rows": [
+        {
+          "#": "C1",
+          "Constraint": "Emergency Escape Non-Impedance",
+          "Verdict": "**none**",
+          "Rationale": "FM operators mandate EN 179/EN 1125 compliance across client buildings. The Türwächter is certified to both standards. Single-motion release is the product's core design premise, not a barrier. No additional operational steps imposed."
+        },
+        {
+          "#": "C2",
+          "Constraint": "Mechanical Alarm Independence",
+          "Verdict": "**none**",
+          "Rationale": "The absolute is satisfied by the product's inherent mechanical-primary architecture (piezo horn triggered by spring-loaded guard swing, zero electrical dependency). FM operators require fail-safe compliance — this is a positive differentiator, not a barrier."
+        },
+        {
+          "#": "C3",
+          "Constraint": "Wireless Range Limitation",
+          "Verdict": "**mitigable**",
+          "Rationale": "FM portfolios include large-format buildings (warehouses, hospitals, multi-storey office complexes) where distances to gateway can exceed 30–60m. FM onboarding teams (L6b) can plan gateway and repeater placement during site survey. Standard EasyWave repeaters exist; per-building infrastructure design is routine FM deployment practice."
+        },
+        {
+          "#": "**Mitigation:** (1) Include wireless repeater placement in L6a site survey and L6b onboarding plan; (2) Deploy RF gateway per building or per floor for portfolios with large footprints; (3) Prioritise IoT value-add on standard-size buildings (≤60m span) in initial roll-out.",
+          "Constraint": "",
+          "Verdict": "",
+          "Rationale": ""
+        },
+        {
+          "#": "**Cost:** low (<$10K per building) — **Time:** 1–2 months (per site commissioning)",
+          "Constraint": "",
+          "Verdict": "",
+          "Rationale": ""
+        },
+        {
+          "#": "C4",
+          "Constraint": "IoT Battery Life Floor",
+          "Verdict": "**mitigable**",
+          "Rationale": "FM companies operate CMMS-based PPM schedules (L6c) that can absorb battery replacement as a scheduled maintenance task. High-traffic doors (hospital wards, school corridors) in a portfolio accelerate battery depletion but are predictable. Battery replacement adds technician labour cost; however, CMMS-triggered proactive replacement prevents alarm gaps and reduces emergency callout cost."
+        },
+        {
+          "#": "**Mitigation:** (1) Integrate battery-level monitoring alerts into CMMS work order engine; (2) Add battery replacement to PPM schedule for high-traffic door zones; (3) Evaluate larger capacity or USB-C rechargeable battery modules for high-activity sites.",
+          "Constraint": "",
+          "Verdict": "",
+          "Rationale": ""
+        },
+        {
+          "#": "**Cost:** low (<$10K) — **Time:** included in onboarding and PPM cycle setup (1 month)",
+          "Constraint": "",
+          "Verdict": "",
+          "Rationale": ""
+        },
+        {
+          "#": "C5",
+          "Constraint": "Retrofit-Only Surface Mount",
+          "Verdict": "**none**",
+          "Rationale": "FM companies operate primarily in existing buildings (retrofit is their natural context). Surface-mount installation without drilling is an advantage for FM deployment speed and eliminates structural modification risk. A small minority of premium architectural client buildings may have aesthetic objections, but this is a negotiation point, not a technical barrier. Glass-frame mounting plate (Art. 991170) covers the most sensitive variant."
+        },
+        {
+          "#": "C6",
+          "Constraint": "EasyWave Protocol Lock-In",
+          "Verdict": "**mitigable**",
+          "Rationale": "FM operators standardise on BACnet/KNX (50% share of BMS in their portfolio) or cloud-connected platforms. EasyWave does not interoperate natively. GfS provides a wireless BUS interface gateway that bridges EasyWave to BMS. Each managed building requires this gateway, adding per-site hardware cost and creating a vendor dependency that FM procurement must account for. This is the most significant constraint for this market."
+        },
+        {
+          "#": "**Mitigation:** (1) Procure GfS wireless BUS gateway per building (or per floor in large buildings) during L6b onboarding; (2) Configure gateway-to-BACnet/KNX/IP bridge as standard line item in IFM/HS service delivery template; (3) Escalate to GfS for bulk gateway pricing under portfolio contract.",
+          "Constraint": "",
+          "Verdict": "",
+          "Rationale": ""
+        },
+        {
+          "#": "**Cost:** medium ($10K–100K across portfolio) — **Time:** 2–3 months (integration design + commissioning)",
+          "Constraint": "",
+          "Verdict": "",
+          "Rationale": ""
+        },
+        {
+          "#": "C7",
+          "Constraint": "IoT Price Premium",
+          "Verdict": "**mitigable**",
+          "Rationale": "FM operators procure hardware at portfolio scale (100+ door units across client buildings). At €730/unit, a 100-door deployment is ~€73K vs. ~€35K for mechanical-only. FM operators can pass hardware cost through to clients under IFM/PFM contracts and justify premium via documented labour savings (elimination of manual inspection rounds, automated compliance logs, proactive battery alerts). Volume pricing with GfS is standard for FM framework agreements."
+        },
+        {
+          "#": "**Mitigation:** (1) Develop ROI model: automated compliance logs eliminate 2–4 inspection visits/year per building; (2) Negotiate volume framework agreement with GfS for portfolio deployments; (3) Bundle IoT monitoring as a value-add service line in IFM contracts (revenue opportunity, not just cost).",
+          "Constraint": "",
+          "Verdict": "",
+          "Rationale": ""
+        },
+        {
+          "#": "**Cost:** low (<$10K for pricing and ROI work) — **Time:** 1–2 months (commercial framework)",
+          "Constraint": "",
+          "Verdict": "",
+          "Rationale": ""
+        },
+        {
+          "#": "C8",
+          "Constraint": "GDPR Monitoring Data Compliance",
+          "Verdict": "**mitigable**",
+          "Rationale": "Door-event timestamps logged by the IoT platform constitute personal data under GDPR when attributable to employees or occupants in EU client buildings. FM operators act as data processors; they must execute a DPA with any SaaS monitoring provider and complete DPIA for high-risk systematic monitoring (e.g., employee attendance profiling). Large FM companies (ISS, Sodexo, CBRE) have established data governance and compliance teams; DPA templates are standardised. Feeds into L6f compliance documentation."
+        },
+        {
+          "#": "**Mitigation:** (1) Execute DPA with GfS IoT platform provider as part of FM master services agreement; (2) Apply data minimisation (log door events, not identities; timestamps only); (3) Include GDPR annex in client FM contract template.",
+          "Constraint": "",
+          "Verdict": "",
+          "Rationale": ""
+        },
+        {
+          "#": "**Cost:** low (<$10K) — **Time:** 1–2 months (legal review per client contract)",
+          "Constraint": "",
+          "Verdict": "",
+          "Rationale": ""
+        },
+        {
+          "#": "C9",
+          "Constraint": "IP Protection Boundary",
+          "Verdict": "**mitigable**",
+          "Rationale": "Standard indoor variant (no published IP class) covers the majority of FM client buildings (offices, healthcare, education, retail). IP45 outdoor variant covers light external applications. FM portfolios occasionally include food processing, brewery, or wet-industrial clients where IP65/IP69K is required for washdown environments — the standard indoor unit would fail in these applications. IP65 variant (Art. 990000-IP) exists; specifying it for wet-environment clients is a procurement decision."
+        },
+        {
+          "#": "**Mitigation:** (1) Segment FM client portfolio by environment type during L6a scoping; (2) Specify IP65 variant as standard for any wet-environment client building; (3) Flag pharma/food-processing clients as requiring product variant confirmation before deployment.",
+          "Constraint": "",
+          "Verdict": "",
+          "Rationale": ""
+        },
+        {
+          "#": "**Cost:** low (<$10K — product variant already exists) — **Time:** included in L6a site survey (no added timeline)",
+          "Constraint": "",
+          "Verdict": "",
+          "Rationale": ""
+        },
+        {
+          "#": "C10",
+          "Constraint": "EN 13637 / EltVTR Electrical Compliance",
+          "Verdict": "**mitigable**",
+          "Rationale": "FM companies increasingly deploy combined access control + emergency exit configurations (e.g., electromagnetic door holders + Türwächter on healthcare ward doors, secure server rooms). EN 13637 governs the combined system's fail-safe behaviour. The IoT module alone is compliant. FM system integrators and subcontractors are familiar with EN 13637 requirements. This is a system design responsibility at commissioning, not a product deficiency."
+        },
+        {
+          "#": "**Mitigation:** (1) Include EN 13637 compliance check in L6e safety inspection protocol for all combined access + exit configurations; (2) Brief FM system integrator subcontractors on fail-safe wiring requirements; (3) Provide GfS integration guidance documentation for combined configurations.",
+          "Constraint": "",
+          "Verdict": "",
+          "Rationale": ""
+        },
+        {
+          "#": "**Cost:** low (<$10K) — **Time:** 1 month (documentation and training)",
+          "Constraint": "",
+          "Verdict": "",
+          "Rationale": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Verdict",
+        "Count",
+        "Constraints"
+      ],
+      "rows": [
+        {
+          "Verdict": "**knockout**",
+          "Count": "0",
+          "Constraints": "—"
+        },
+        {
+          "Verdict": "**mitigable**",
+          "Count": "7",
+          "Constraints": "C3 Wireless Range, C4 Battery Life, C6 Protocol Lock-In, C7 Price Premium, C8 GDPR, C9 IP Class, C10 EN 13637"
+        },
+        {
+          "Verdict": "**none**",
+          "Count": "3",
+          "Constraints": "C1 Escape Non-Impedance, C2 Mechanical Alarm Independence, C5 Surface Mount"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Market**",
+          "Value": "Facilities Support Services (NAICS 561210)"
+        },
+        {
+          "Field": "**Status**",
+          "Value": "**SURVIVING**"
+        },
+        {
+          "Field": "**Knockouts**",
+          "Value": "0"
+        },
+        {
+          "Field": "**Mitigable**",
+          "Value": "7 (low: 5, medium: 1, low-medium: 1)"
+        },
+        {
+          "Field": "**None**",
+          "Value": "3"
+        },
+        {
+          "Field": "**markets_eliminated**",
+          "Value": "[]"
+        },
+        {
+          "Field": "**markets_surviving**",
+          "Value": "[\"561210\"]"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "component": "constraint_market_compatibility",
+      "product_name": "GfS Türwächter IoT (Exit Control 179/1125)",
+      "vendor_name": "GfS (distributed via Assa Abloy channel)",
+      "market_name": "Facilities Support Services",
+      "naics_code": "561210",
+      "constraint_count": 10,
+      "assessments": [
+        {
+          "constraint_name": "Emergency Escape Non-Impedance",
+          "constraint_type": "regulatory",
+          "is_absolute": false,
+          "market_name": "Facilities Support Services",
+          "naics_code": "561210",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "FM operators mandate EN 179/EN 1125 compliance across client buildings. Türwächter is certified to both standards — single-motion release is the product's core design premise, not a barrier."
+        },
+        {
+          "constraint_name": "Mechanical Alarm Independence",
+          "constraint_type": "regulatory",
+          "is_absolute": true,
+          "market_name": "Facilities Support Services",
+          "naics_code": "561210",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Absolute constraint satisfied by the product's mechanical-primary architecture. FM operators require fail-safe compliance — this is a positive differentiator in this market."
+        },
+        {
+          "constraint_name": "Wireless Range Limitation",
+          "constraint_type": "physical",
+          "is_absolute": false,
+          "market_name": "Facilities Support Services",
+          "naics_code": "561210",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Include wireless repeater placement in L6a site survey and L6b onboarding plan",
+            "Deploy RF gateway per building or per floor for large-footprint buildings",
+            "Prioritise standard-size buildings (≤60m span) in initial portfolio roll-out"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1-2 months",
+          "knockout_reason": null,
+          "rationale": "FM portfolios include large-format buildings where distances can exceed 60m. Standard repeaters exist; gateway and repeater planning is routine FM deployment practice during onboarding."
+        },
+        {
+          "constraint_name": "IoT Battery Life Floor",
+          "constraint_type": "operational",
+          "is_absolute": false,
+          "market_name": "Facilities Support Services",
+          "naics_code": "561210",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Integrate battery-level monitoring alerts into CMMS work order engine",
+            "Add battery replacement to PPM schedule for high-traffic door zones",
+            "Evaluate larger or rechargeable battery modules for high-activity sites"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1 month",
+          "knockout_reason": null,
+          "rationale": "FM operators run CMMS-based PPM schedules that absorb battery replacement as a scheduled task. High-traffic door batteries are predictable; proactive replacement eliminates alarm gaps and reduces emergency callout cost."
+        },
+        {
+          "constraint_name": "Retrofit-Only Surface Mount",
+          "constraint_type": "physical",
+          "is_absolute": false,
+          "market_name": "Facilities Support Services",
+          "naics_code": "561210",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "FM companies operate primarily in existing buildings. Surface-mount without drilling is an advantage for deployment speed and structural risk avoidance. Glass-frame mounting plate (Art. 991170) covers the most sensitive architectural variant."
+        },
+        {
+          "constraint_name": "EasyWave Protocol Lock-In",
+          "constraint_type": "operational",
+          "is_absolute": false,
+          "market_name": "Facilities Support Services",
+          "naics_code": "561210",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Procure GfS wireless BUS gateway per building during L6b onboarding",
+            "Configure gateway-to-BACnet/KNX/IP bridge as standard line item in IFM/HS service template",
+            "Negotiate bulk gateway pricing with GfS under portfolio framework agreement"
+          ],
+          "mitigation_cost_estimate": "medium",
+          "mitigation_time_estimate": "2-3 months",
+          "knockout_reason": null,
+          "rationale": "FM operators standardise on BACnet/KNX (50% BMS share) or cloud-connected platforms. EasyWave has zero native interoperability. GfS BUS gateway bridges the gap but adds per-building hardware cost and vendor dependency. Most significant constraint for this market."
+        },
+        {
+          "constraint_name": "IoT Price Premium",
+          "constraint_type": "economic",
+          "is_absolute": false,
+          "market_name": "Facilities Support Services",
+          "naics_code": "561210",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Develop ROI model: automated compliance logs eliminate 2-4 inspection visits/year per building",
+            "Negotiate GfS volume framework agreement for portfolio deployments",
+            "Bundle IoT monitoring as a billable service line in IFM contracts"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1-2 months",
+          "knockout_reason": null,
+          "rationale": "FM operators procure at scale (100+ units). Hardware cost is passed through to building owner clients under IFM/PFM contracts. Labour savings from automated compliance documentation and proactive battery alerts justify the premium. Volume pricing is standard in FM framework agreements."
+        },
+        {
+          "constraint_name": "GDPR Monitoring Data Compliance",
+          "constraint_type": "regulatory",
+          "is_absolute": false,
+          "market_name": "Facilities Support Services",
+          "naics_code": "561210",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Execute DPA with GfS IoT platform provider as part of FM master services agreement",
+            "Apply data minimisation: log door events and timestamps only, not occupant identities",
+            "Include GDPR compliance annex in standard client FM contract template"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1-2 months",
+          "knockout_reason": null,
+          "rationale": "FM operators are data processors under GDPR for EU client buildings. Large FM companies have established compliance teams and standardised DPA templates. Data minimisation (timestamps, not identities) reduces DPIA risk. Standard contractual process."
+        },
+        {
+          "constraint_name": "IP Protection Boundary",
+          "constraint_type": "environmental",
+          "is_absolute": false,
+          "market_name": "Facilities Support Services",
+          "naics_code": "561210",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Segment FM client portfolio by environment type during L6a site survey",
+            "Specify IP65 variant (Art. 990000-IP) as standard for wet-environment client buildings",
+            "Flag food-processing and pharma clients as requiring product variant confirmation before deployment"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "included in L6a scoping",
+          "knockout_reason": null,
+          "rationale": "Standard indoor variant covers the majority of FM client buildings (offices, healthcare, education). IP65 variant already available for wet-environment clients (food processing, breweries, pharma washdown) in portfolio. Procurement decision, not engineering barrier."
+        },
+        {
+          "constraint_name": "EN 13637 / EltVTR Electrical Compliance",
+          "constraint_type": "regulatory",
+          "is_absolute": false,
+          "market_name": "Facilities Support Services",
+          "naics_code": "561210",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Include EN 13637 compliance check in L6e safety inspection protocol for combined access + exit configurations",
+            "Brief FM system integrator subcontractors on fail-safe wiring requirements for combined systems",
+            "Include GfS integration guidance documentation in FM technical library"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1 month",
+          "knockout_reason": null,
+          "rationale": "FM companies deploy combined access control + emergency exit configurations in healthcare wards, server rooms, and secure areas. EN 13637 compliance is a system design responsibility at commissioning. FM integrators are trained on this standard; defined certification path exists."
+        }
+      ],
+      "markets_eliminated": [],
+      "markets_surviving": [
+        "561210"
+      ],
+      "summary": {
+        "knockout_count": 0,
+        "mitigable_count": 7,
+        "none_count": 3,
+        "mitigable_constraints": [
+          {
+            "name": "Wireless Range Limitation",
+            "cost": "low",
+            "time": "1-2 months"
+          },
+          {
+            "name": "IoT Battery Life Floor",
+            "cost": "low",
+            "time": "1 month"
+          },
+          {
+            "name": "EasyWave Protocol Lock-In",
+            "cost": "medium",
+            "time": "2-3 months"
+          },
+          {
+            "name": "IoT Price Premium",
+            "cost": "low",
+            "time": "1-2 months"
+          },
+          {
+            "name": "GDPR Monitoring Data Compliance",
+            "cost": "low",
+            "time": "1-2 months"
+          },
+          {
+            "name": "IP Protection Boundary",
+            "cost": "low",
+            "time": "included in scoping"
+          },
+          {
+            "name": "EN 13637 / EltVTR Electrical Compliance",
+            "cost": "low",
+            "time": "1 month"
+          }
+        ]
+      },
+      "entities_produced": {
+        "nodes": [
+          {
+            "label": "Constraint",
+            "key": {
+              "name": "Emergency Escape Non-Impedance",
+              "run_id": "TBD"
+            }
+          },
+          {
+            "label": "Constraint",
+            "key": {
+              "name": "Mechanical Alarm Independence",
+              "run_id": "TBD"
+            }
+          },
+          {
+            "label": "Constraint",
+            "key": {
+              "name": "Wireless Range Limitation",
+              "run_id": "TBD"
+            }
+          },
+          {
+            "label": "Constraint",
+            "key": {
+              "name": "IoT Battery Life Floor",
+              "run_id": "TBD"
+            }
+          },
+          {
+            "label": "Constraint",
+            "key": {
+              "name": "Retrofit-Only Surface Mount",
+              "run_id": "TBD"
+            }
+          },
+          {
+            "label": "Constraint",
+            "key": {
+              "name": "EasyWave Protocol Lock-In",
+              "run_id": "TBD"
+            }
+          },
+          {
+            "label": "Constraint",
+            "key": {
+              "name": "IoT Price Premium",
+              "run_id": "TBD"
+            }
+          },
+          {
+            "label": "Constraint",
+            "key": {
+              "name": "GDPR Monitoring Data Compliance",
+              "run_id": "TBD"
+            }
+          },
+          {
+            "label": "Constraint",
+            "key": {
+              "name": "IP Protection Boundary",
+              "run_id": "TBD"
+            }
+          },
+          {
+            "label": "Constraint",
+            "key": {
+              "name": "EN 13637 / EltVTR Electrical Compliance",
+              "run_id": "TBD"
+            }
+          }
+        ],
+        "relationships": [
+          {
+            "type": "has_constraint",
+            "source": "NeutralProductGroup:Emergency Exit Security Devices with Remote Monitoring",
+            "target": "Constraint:<each>",
+            "count": 10
+          },
+          {
+            "type": "incompatible_with",
+            "source": "Constraint:Wireless Range Limitation",
+            "target": "Market:561210",
+            "properties": {
+              "compatibility": "mitigable",
+              "mitigation_cost_estimate": "low",
+              "mitigation_time_estimate": "1-2 months"
+            }
+          },
+          {
+            "type": "incompatible_with",
+            "source": "Constraint:IoT Battery Life Floor",
+            "target": "Market:561210",
+            "properties": {
+              "compatibility": "mitigable",
+              "mitigation_cost_estimate": "low",
+              "mitigation_time_estimate": "1 month"
+            }
+          },
+          {
+            "type": "incompatible_with",
+            "source": "Constraint:EasyWave Protocol Lock-In",
+            "target": "Market:561210",
+            "properties": {
+              "compatibility": "mitigable",
+              "mitigation_cost_estimate": "medium",
+              "mitigation_time_estimate": "2-3 months"
+            }
+          },
+          {
+            "type": "incompatible_with",
+            "source": "Constraint:IoT Price Premium",
+            "target": "Market:561210",
+            "properties": {
+              "compatibility": "mitigable",
+              "mitigation_cost_estimate": "low",
+              "mitigation_time_estimate": "1-2 months"
+            }
+          },
+          {
+            "type": "incompatible_with",
+            "source": "Constraint:GDPR Monitoring Data Compliance",
+            "target": "Market:561210",
+            "properties": {
+              "compatibility": "mitigable",
+              "mitigation_cost_estimate": "low",
+              "mitigation_time_estimate": "1-2 months"
+            }
+          },
+          {
+            "type": "incompatible_with",
+            "source": "Constraint:IP Protection Boundary",
+            "target": "Market:561210",
+            "properties": {
+              "compatibility": "mitigable",
+              "mitigation_cost_estimate": "low",
+              "mitigation_time_estimate": "included in scoping"
+            }
+          },
+          {
+            "type": "incompatible_with",
+            "source": "Constraint:EN 13637 / EltVTR Electrical Compliance",
+            "target": "Market:561210",
+            "properties": {
+              "compatibility": "mitigable",
+              "mitigation_cost_estimate": "low",
+              "mitigation_time_estimate": "1 month"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

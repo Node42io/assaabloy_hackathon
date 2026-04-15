@@ -1,0 +1,734 @@
+{
+  "id": "ODI_facilities_support_services",
+  "title": "ODI Matrix: Facilities Support Services (NAICS 561210)",
+  "type": "odi_matrix",
+  "market_slug": "facilities_support_services",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Context",
+      "content": "| Field | Value |\n|---|---|\n| Market | Facilities Support Services |\n| NAICS | 561210 |\n| Job | Help FM operators detect unauthorized emergency exit door activations and produce audit-ready event logs across client building portfolios — without wired infrastructure or on-site inspection rounds |\n| Surviving market | Yes |\n| Constraints in play | C3 (range), C4 (battery), C6 (protocol lock-in), C7 (price), C8 (GDPR) |\n| Market needs (Step 06) | 18 |\n| Product-related needs injected (Step 10) | 4 (PR1–PR4) |\n| Total scored entries | **22** |\n\n---"
+    },
+    {
+      "title": "Incumbent Recalibration Basis",
+      "content": "Satisfaction scores recalibrated against dominant FM alternatives. Source: FIT file (Alt references) and market discovery incumbents.\n\n| Alternative | Share | Key Strengths | Key Weaknesses | Recalibration effect |\n|---|---|---|---|---|\n| Alt A — Wired alarm panels (hardwired) | ~45% | Reliable continuous detection, no battery | High retrofit cost, electrician required, no portfolio dashboard | ↓ Sat on N02, N17 (cost); ↑ Sat on N07 (power independence via mains) |\n| Alt C — Mechanical-only door alarms | ~20% | Low cost, no power required, fail-safe | No remote monitoring, no event log, alarm local only | ↓ Sat on N06, N08, N13, N14, N15 (zero monitoring capability) |\n| Alt D — Manual patrol rounds + paper logs | ~25% | Low upfront cost | Hours-to-detect latency, manual log assembly, no real-time data | ↓ Sat on N06, N08, N13, N14 (systematic latency and gaps) |\n\n---"
+    },
+    {
+      "title": "ODI Entries",
+      "content": "`opp = importance + max(importance − satisfaction, 0)` | `US = imp > 7 AND sat < 5` | `OS = imp < 3 AND sat > 7`\n\n### Market Needs (Step 06)\n\n| ID | Error Statement | Job Step | Imp | Sat | **Opp** | US | OS |\n|---|---|---|---|---|---|---|---|\n| N01 | Minimize installation labor-hours per door when deploying exit monitoring in occupied FM client buildings | Install | 7.5 | 5.0 | 10.00 | — | — |\n| N02 | Minimize conduit wiring and electrical installation cost per door in FM buildings not pre-wired for alarm systems | Install | 9.0 | 3.0 | **15.00** | ✓ | — |\n| N03 | Minimize battery depletion events reaching critical failure before a CMMS maintenance alert is generated for the affected door guardian | Maintain | 9.0 | 4.0 | **14.00** | ✓ | — |\n| N04 | Minimize the likelihood of door guardians that pass commissioning tests but fail to detect activations under real operating conditions | Commission | 9.0 | 2.0 | **16.00** | ✓ | — |\n| N05 | Minimize the likelihood of an FM-managed emergency exit being found non-compliant with EN 179 or EN 1125 at a fire marshal inspection | Specify | 8.0 | 2.0 | **14.00** | ✓ | — |\n| N06 | Minimize elapsed time between unauthorized exit activation and FM operations center notification | Monitor | 9.0 | 4.5 | **13.50** | ✓ | — |\n| N07 | Minimize the likelihood of emergency exit alarm failure during a building-wide power loss event | Monitor | 10.0 | 7.0 | 13.00 | — | — |\n| N08 | Minimize unauthorized emergency exit activations going undetected between scheduled FM inspection visits | Monitor | 9.0 | 2.0 | **16.00** | ✓ | — |\n| N09 | Minimize integration effort required to relay exit event data into the FM company's CMMS or CAFM system | Specify | 7.5 | 4.0 | 11.00 | ✓ | — |\n| N10 | Minimize the proportion of deployed door guardians with critically depleted batteries across the FM portfolio at any time | Maintain | 8.0 | 3.5 | 12.50 | ✓ | — |\n| N11 | Minimize the time to identify exact door location and dispatch a technician following an alarm event | Respond | 7.0 | 4.5 | 9.50 | — | — |\n| N12 | Minimize the risk of FM client insurance premium increases due to gaps in documented exit monitoring coverage | Document | 7.0 | 4.0 | 10.00 | — | — |\n| N13 | Minimize FM labor-hours required to compile audit-ready fire safety inspection certificates per client building | Document | 8.5 | 2.0 | **15.00** | ✓ | — |\n| N14 | Minimize emergency exit event log gaps that cause an FM client to fail an unannounced fire safety inspection | Document | 9.5 | 3.0 | **16.00** | ✓ | — |\n| N15 | Minimize unavailability of real-time portfolio-level exit status data for FM client account management reporting | Report | 7.0 | 3.0 | 11.00 | — | — |\n| N16 | Minimize unplanned FM site visits caused by alarm activations that battery monitoring data could have predicted | Maintain | 6.5 | 5.0 | 8.00 | — | — |\n| N17 | Minimize total lifecycle cost-per-door for exit monitoring hardware, installation, and maintenance across FM portfolios of 100+ doors | Procure | 8.5 | 3.0 | **14.00** | ✓ | — |\n| N18 | Minimize the likelihood of authorized door guardian re-arming after activation creating a false event in the compliance log | Respond | 5.5 | 6.0 | 5.50 | — | — |\n\n### Product-Related Needs (Step 10 injection)\n\n*job_step_number=0, job_step_name=\"product_constraint\", impact_category=\"reliability\", product_related=true*\n\n| ID | Error Statement | Source Constraint | Imp | Sat | **Opp** | US | OS |\n|---|---|---|---|---|---|---|---|\n| PR1 | Minimize wireless monitoring coverage gaps in large-footprint FM buildings caused by 868 MHz EasyWave signal attenuation through reinforced concrete and steel | C3 — Wireless Range | 7.0 | 3.0 | 11.00 | — | — |\n| PR2 | Minimize EasyWave radio module battery depletion below monitoring threshold between FM maintenance visits in high-traffic deployments exceeding 5 activations per day | C4 — Battery Life | 8.0 | 4.0 | 12.00 | ✓ | — |\n| PR3 | Minimize integration rework required to relay EasyWave alarm events to client BMS systems on BACnet or KNX via GfS-proprietary BUS gateway intermediary | C6 — Protocol Lock-In | 7.5 | 3.5 | 11.50 | ✓ | — |\n| PR4 | Minimize FM contract rejections in premium buildings due to surface-mounted door guardian protrusion conflicting with interior design requirements | C5 — Surface Mount | 5.0 | 5.0 | 5.00 | — | — |\n\n---"
+    },
+    {
+      "title": "Market Summary",
+      "content": "| Field | Value |\n|---|---|\n| Market | Facilities Support Services |\n| NAICS | 561210 |\n| Total needs | 22 |\n| **Underserved** (is_underserved=true) | **13** |\n| Overserved (is_overserved=true) | **0** |\n| **Avg opportunity score** | **11.98** |\n\n**Top 5 opportunities (sorted by score desc):**\n\n| Rank | Score | Need | Statement |\n|---|---|---|---|\n| 1 | **16.00** | N04 | Minimize door guardians that pass commissioning tests but fail under real operating conditions |\n| 2 | **16.00** | N08 | Minimize unauthorized activations going undetected between FM inspection visits |\n| 3 | **16.00** | N14 | Minimize event log gaps that cause FM clients to fail unannounced fire safety inspections |\n| 4 | **15.00** | N02 | Minimize conduit wiring and electrical installation cost per door in retrofit buildings |\n| 5 | **15.00** | N13 | Minimize FM labor-hours to compile audit-ready inspection certificates per building |\n\n**Cross-check (Step 09 Feature-Fit):** FIT avg = 6.53 | ODI avg = 11.98. No inconsistency flag. (Flags: ODI > 12 + FIT < 4 = No; ODI < 8 + FIT > 7 = No.)\n\n---"
+    },
+    {
+      "title": "Key Observations",
+      "content": "- **13/22 needs underserved** — FM market is chronically underserved. Mechanical-only alarms (Alt C) and manual rounds (Alt D) leave detection, logging, and documentation jobs entirely unmet.\n- **Documentation cluster dominates** — N04, N08, N14 (all 16.0) and N13 (15.0) are all about evidence continuity. Incumbents produce no automated audit trail — their failure mode is systematic.\n- **N07 is not underserved despite Imp=10** — Mechanical alarm incumbents (Alt C) already satisfy power-independence (Sat=7.0). The Türwächter meets a bar that's already met. No differentiation here.\n- **Product-related needs add friction, not opportunity** — PR2 (12.0, battery) and PR3 (11.5, BACnet/KNX rework) are EasyWave architecture liabilities that would disappear with a LoRaWAN or BACnet-native device. They are cost of technology, not market signal.\n- **Installation cost (N02=15) is the primary switching barrier** — Alt A's 45% share persists because switching to IoT triggers rewiring cost. The Türwächter's retrofit capability directly addresses this.\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### ODIEntry[]\n\n```json\n[\n  {\n    \"error_statement\": \"Minimize installation labor-hours per door when deploying exit monitoring in occupied FM client buildings\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 3,\n    \"job_step_name\": \"Install\",\n    \"importance\": 7.5,\n    \"satisfaction_current\": 5.0,\n    \"opportunity_score\": 10.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize conduit wiring and electrical installation cost per door in FM buildings not pre-wired for alarm systems\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 3,\n    \"job_step_name\": \"Install\",\n    \"importance\": 9.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 15.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize battery depletion events reaching critical failure before a CMMS maintenance alert is generated for the affected door guardian\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 8,\n    \"job_step_name\": \"Maintain\",\n    \"importance\": 9.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 14.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of door guardians that pass commissioning tests but fail to detect activations under real operating conditions\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 4,\n    \"job_step_name\": \"Commission\",\n    \"importance\": 9.0,\n    \"satisfaction_current\": 2.0,\n    \"opportunity_score\": 16.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of an FM-managed emergency exit being found non-compliant with EN 179 or EN 1125 at a fire marshal inspection\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 1,\n    \"job_step_name\": \"Specify\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 2.0,\n    \"opportunity_score\": 14.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize elapsed time between unauthorized exit activation and FM operations center notification\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 5,\n    \"job_step_name\": \"Monitor\",\n    \"importance\": 9.0,\n    \"satisfaction_current\": 4.5,\n    \"opportunity_score\": 13.5,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of emergency exit alarm failure during a building-wide power loss event\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 5,\n    \"job_step_name\": \"Monitor\",\n    \"importance\": 10.0,\n    \"satisfaction_current\": 7.0,\n    \"opportunity_score\": 13.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize unauthorized emergency exit activations going undetected between scheduled FM inspection visits\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 5,\n    \"job_step_name\": \"Monitor\",\n    \"importance\": 9.0,\n    \"satisfaction_current\": 2.0,\n    \"opportunity_score\": 16.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize integration effort required to relay exit event data into the FM company's CMMS or CAFM system\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 1,\n    \"job_step_name\": \"Specify\",\n    \"importance\": 7.5,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 11.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize the proportion of deployed door guardians with critically depleted batteries across the FM portfolio at any time\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 8,\n    \"job_step_name\": \"Maintain\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 3.5,\n    \"opportunity_score\": 12.5,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize the time to identify exact door location and dispatch a technician following an alarm event\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 6,\n    \"job_step_name\": \"Respond\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 4.5,\n    \"opportunity_score\": 9.5,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize the risk of FM client insurance premium increases due to gaps in documented exit monitoring coverage\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 7,\n    \"job_step_name\": \"Document\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 10.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize FM labor-hours required to compile audit-ready fire safety inspection certificates per client building\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 7,\n    \"job_step_name\": \"Document\",\n    \"importance\": 8.5,\n    \"satisfaction_current\": 2.0,\n    \"opportunity_score\": 15.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize emergency exit event log gaps that cause an FM client to fail an unannounced fire safety inspection\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 7,\n    \"job_step_name\": \"Document\",\n    \"importance\": 9.5,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 16.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize unavailability of real-time portfolio-level exit status data for FM client account management reporting\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 9,\n    \"job_step_name\": \"Report\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 11.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize unplanned FM site visits caused by alarm activations that battery monitoring data could have predicted\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 8,\n    \"job_step_name\": \"Maintain\",\n    \"importance\": 6.5,\n    \"satisfaction_current\": 5.0,\n    \"opportunity_score\": 8.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize total lifecycle cost-per-door for exit monitoring hardware, installation, and maintenance across FM portfolios of 100+ doors\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 2,\n    \"job_step_name\": \"Procure\",\n    \"importance\": 8.5,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 14.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of authorized door guardian re-arming after activation creating a false event in the compliance log\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 6,\n    \"job_step_name\": \"Respond\",\n    \"importance\": 5.5,\n    \"satisfaction_current\": 6.0,\n    \"opportunity_score\": 5.5,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize wireless monitoring coverage gaps in large-footprint FM buildings caused by 868 MHz EasyWave signal attenuation through reinforced concrete and steel\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 0,\n    \"job_step_name\": \"product_constraint\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 11.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": true\n  },\n  {\n    \"error_statement\": \"Minimize EasyWave radio module battery depletion below monitoring threshold between FM maintenance visits in high-traffic deployments exceeding 5 activations per day\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 0,\n    \"job_step_name\": \"product_constraint\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 12.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": true\n  },\n  {\n    \"error_statement\": \"Minimize integration rework required to relay EasyWave alarm events to client BMS systems on BACnet or KNX via GfS-proprietary BUS gateway intermediary\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 0,\n    \"job_step_name\": \"product_constraint\",\n    \"importance\": 7.5,\n    \"satisfaction_current\": 3.5,\n    \"opportunity_score\": 11.5,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": true\n  },\n  {\n    \"error_statement\": \"Minimize FM contract rejections in premium buildings due to surface-mounted door guardian protrusion conflicting with interior design requirements\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"job_step_number\": 0,\n    \"job_step_name\": \"product_constraint\",\n    \"importance\": 5.0,\n    \"satisfaction_current\": 5.0,\n    \"opportunity_score\": 5.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": true\n  }\n]\n```\n\n### MarketODISummary\n\n```json\n{\n  \"market_name\": \"Facilities Support Services\",\n  \"naics_code\": \"561210\",\n  \"total_needs\": 22,\n  \"underserved_count\": 13,\n  \"overserved_count\": 0,\n  \"avg_opportunity_score\": 11.98,\n  \"top_opportunities\": [\n    \"Minimize the likelihood of door guardians that pass commissioning tests but fail to detect activations under real operating conditions\",\n    \"Minimize unauthorized emergency exit activations going undetected between scheduled FM inspection visits\",\n    \"Minimize emergency exit event log gaps that cause an FM client to fail an unannounced fire safety inspection\",\n    \"Minimize conduit wiring and electrical installation cost per door in FM buildings not pre-wired for alarm systems\",\n    \"Minimize FM labor-hours required to compile audit-ready fire safety inspection certificates per client building\"\n  ]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "Market",
+          "Value": "Facilities Support Services"
+        },
+        {
+          "Field": "NAICS",
+          "Value": "561210"
+        },
+        {
+          "Field": "Job",
+          "Value": "Help FM operators detect unauthorized emergency exit door activations and produce audit-ready event logs across client building portfolios — without wired infrastructure or on-site inspection rounds"
+        },
+        {
+          "Field": "Surviving market",
+          "Value": "Yes"
+        },
+        {
+          "Field": "Constraints in play",
+          "Value": "C3 (range), C4 (battery), C6 (protocol lock-in), C7 (price), C8 (GDPR)"
+        },
+        {
+          "Field": "Market needs (Step 06)",
+          "Value": "18"
+        },
+        {
+          "Field": "Product-related needs injected (Step 10)",
+          "Value": "4 (PR1–PR4)"
+        },
+        {
+          "Field": "Total scored entries",
+          "Value": "**22**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Key Strengths",
+        "Key Weaknesses",
+        "Recalibration effect"
+      ],
+      "rows": [
+        {
+          "Alternative": "Alt A — Wired alarm panels (hardwired)",
+          "Share": "~45%",
+          "Key Strengths": "Reliable continuous detection, no battery",
+          "Key Weaknesses": "High retrofit cost, electrician required, no portfolio dashboard",
+          "Recalibration effect": "↓ Sat on N02, N17 (cost); ↑ Sat on N07 (power independence via mains)"
+        },
+        {
+          "Alternative": "Alt C — Mechanical-only door alarms",
+          "Share": "~20%",
+          "Key Strengths": "Low cost, no power required, fail-safe",
+          "Key Weaknesses": "No remote monitoring, no event log, alarm local only",
+          "Recalibration effect": "↓ Sat on N06, N08, N13, N14, N15 (zero monitoring capability)"
+        },
+        {
+          "Alternative": "Alt D — Manual patrol rounds + paper logs",
+          "Share": "~25%",
+          "Key Strengths": "Low upfront cost",
+          "Key Weaknesses": "Hours-to-detect latency, manual log assembly, no real-time data",
+          "Recalibration effect": "↓ Sat on N06, N08, N13, N14 (systematic latency and gaps)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Error Statement",
+        "Job Step",
+        "Imp",
+        "Sat",
+        "**Opp**",
+        "US",
+        "OS"
+      ],
+      "rows": [
+        {
+          "ID": "N01",
+          "Error Statement": "Minimize installation labor-hours per door when deploying exit monitoring in occupied FM client buildings",
+          "Job Step": "Install",
+          "Imp": "7.5",
+          "Sat": "5.0",
+          "**Opp**": "10.00",
+          "US": "—",
+          "OS": "—"
+        },
+        {
+          "ID": "N02",
+          "Error Statement": "Minimize conduit wiring and electrical installation cost per door in FM buildings not pre-wired for alarm systems",
+          "Job Step": "Install",
+          "Imp": "9.0",
+          "Sat": "3.0",
+          "**Opp**": "**15.00**",
+          "US": "✓",
+          "OS": "—"
+        },
+        {
+          "ID": "N03",
+          "Error Statement": "Minimize battery depletion events reaching critical failure before a CMMS maintenance alert is generated for the affected door guardian",
+          "Job Step": "Maintain",
+          "Imp": "9.0",
+          "Sat": "4.0",
+          "**Opp**": "**14.00**",
+          "US": "✓",
+          "OS": "—"
+        },
+        {
+          "ID": "N04",
+          "Error Statement": "Minimize the likelihood of door guardians that pass commissioning tests but fail to detect activations under real operating conditions",
+          "Job Step": "Commission",
+          "Imp": "9.0",
+          "Sat": "2.0",
+          "**Opp**": "**16.00**",
+          "US": "✓",
+          "OS": "—"
+        },
+        {
+          "ID": "N05",
+          "Error Statement": "Minimize the likelihood of an FM-managed emergency exit being found non-compliant with EN 179 or EN 1125 at a fire marshal inspection",
+          "Job Step": "Specify",
+          "Imp": "8.0",
+          "Sat": "2.0",
+          "**Opp**": "**14.00**",
+          "US": "✓",
+          "OS": "—"
+        },
+        {
+          "ID": "N06",
+          "Error Statement": "Minimize elapsed time between unauthorized exit activation and FM operations center notification",
+          "Job Step": "Monitor",
+          "Imp": "9.0",
+          "Sat": "4.5",
+          "**Opp**": "**13.50**",
+          "US": "✓",
+          "OS": "—"
+        },
+        {
+          "ID": "N07",
+          "Error Statement": "Minimize the likelihood of emergency exit alarm failure during a building-wide power loss event",
+          "Job Step": "Monitor",
+          "Imp": "10.0",
+          "Sat": "7.0",
+          "**Opp**": "13.00",
+          "US": "—",
+          "OS": "—"
+        },
+        {
+          "ID": "N08",
+          "Error Statement": "Minimize unauthorized emergency exit activations going undetected between scheduled FM inspection visits",
+          "Job Step": "Monitor",
+          "Imp": "9.0",
+          "Sat": "2.0",
+          "**Opp**": "**16.00**",
+          "US": "✓",
+          "OS": "—"
+        },
+        {
+          "ID": "N09",
+          "Error Statement": "Minimize integration effort required to relay exit event data into the FM company's CMMS or CAFM system",
+          "Job Step": "Specify",
+          "Imp": "7.5",
+          "Sat": "4.0",
+          "**Opp**": "11.00",
+          "US": "✓",
+          "OS": "—"
+        },
+        {
+          "ID": "N10",
+          "Error Statement": "Minimize the proportion of deployed door guardians with critically depleted batteries across the FM portfolio at any time",
+          "Job Step": "Maintain",
+          "Imp": "8.0",
+          "Sat": "3.5",
+          "**Opp**": "12.50",
+          "US": "✓",
+          "OS": "—"
+        },
+        {
+          "ID": "N11",
+          "Error Statement": "Minimize the time to identify exact door location and dispatch a technician following an alarm event",
+          "Job Step": "Respond",
+          "Imp": "7.0",
+          "Sat": "4.5",
+          "**Opp**": "9.50",
+          "US": "—",
+          "OS": "—"
+        },
+        {
+          "ID": "N12",
+          "Error Statement": "Minimize the risk of FM client insurance premium increases due to gaps in documented exit monitoring coverage",
+          "Job Step": "Document",
+          "Imp": "7.0",
+          "Sat": "4.0",
+          "**Opp**": "10.00",
+          "US": "—",
+          "OS": "—"
+        },
+        {
+          "ID": "N13",
+          "Error Statement": "Minimize FM labor-hours required to compile audit-ready fire safety inspection certificates per client building",
+          "Job Step": "Document",
+          "Imp": "8.5",
+          "Sat": "2.0",
+          "**Opp**": "**15.00**",
+          "US": "✓",
+          "OS": "—"
+        },
+        {
+          "ID": "N14",
+          "Error Statement": "Minimize emergency exit event log gaps that cause an FM client to fail an unannounced fire safety inspection",
+          "Job Step": "Document",
+          "Imp": "9.5",
+          "Sat": "3.0",
+          "**Opp**": "**16.00**",
+          "US": "✓",
+          "OS": "—"
+        },
+        {
+          "ID": "N15",
+          "Error Statement": "Minimize unavailability of real-time portfolio-level exit status data for FM client account management reporting",
+          "Job Step": "Report",
+          "Imp": "7.0",
+          "Sat": "3.0",
+          "**Opp**": "11.00",
+          "US": "—",
+          "OS": "—"
+        },
+        {
+          "ID": "N16",
+          "Error Statement": "Minimize unplanned FM site visits caused by alarm activations that battery monitoring data could have predicted",
+          "Job Step": "Maintain",
+          "Imp": "6.5",
+          "Sat": "5.0",
+          "**Opp**": "8.00",
+          "US": "—",
+          "OS": "—"
+        },
+        {
+          "ID": "N17",
+          "Error Statement": "Minimize total lifecycle cost-per-door for exit monitoring hardware, installation, and maintenance across FM portfolios of 100+ doors",
+          "Job Step": "Procure",
+          "Imp": "8.5",
+          "Sat": "3.0",
+          "**Opp**": "**14.00**",
+          "US": "✓",
+          "OS": "—"
+        },
+        {
+          "ID": "N18",
+          "Error Statement": "Minimize the likelihood of authorized door guardian re-arming after activation creating a false event in the compliance log",
+          "Job Step": "Respond",
+          "Imp": "5.5",
+          "Sat": "6.0",
+          "**Opp**": "5.50",
+          "US": "—",
+          "OS": "—"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Error Statement",
+        "Source Constraint",
+        "Imp",
+        "Sat",
+        "**Opp**",
+        "US",
+        "OS"
+      ],
+      "rows": [
+        {
+          "ID": "PR1",
+          "Error Statement": "Minimize wireless monitoring coverage gaps in large-footprint FM buildings caused by 868 MHz EasyWave signal attenuation through reinforced concrete and steel",
+          "Source Constraint": "C3 — Wireless Range",
+          "Imp": "7.0",
+          "Sat": "3.0",
+          "**Opp**": "11.00",
+          "US": "—",
+          "OS": "—"
+        },
+        {
+          "ID": "PR2",
+          "Error Statement": "Minimize EasyWave radio module battery depletion below monitoring threshold between FM maintenance visits in high-traffic deployments exceeding 5 activations per day",
+          "Source Constraint": "C4 — Battery Life",
+          "Imp": "8.0",
+          "Sat": "4.0",
+          "**Opp**": "12.00",
+          "US": "✓",
+          "OS": "—"
+        },
+        {
+          "ID": "PR3",
+          "Error Statement": "Minimize integration rework required to relay EasyWave alarm events to client BMS systems on BACnet or KNX via GfS-proprietary BUS gateway intermediary",
+          "Source Constraint": "C6 — Protocol Lock-In",
+          "Imp": "7.5",
+          "Sat": "3.5",
+          "**Opp**": "11.50",
+          "US": "✓",
+          "OS": "—"
+        },
+        {
+          "ID": "PR4",
+          "Error Statement": "Minimize FM contract rejections in premium buildings due to surface-mounted door guardian protrusion conflicting with interior design requirements",
+          "Source Constraint": "C5 — Surface Mount",
+          "Imp": "5.0",
+          "Sat": "5.0",
+          "**Opp**": "5.00",
+          "US": "—",
+          "OS": "—"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "Market",
+          "Value": "Facilities Support Services"
+        },
+        {
+          "Field": "NAICS",
+          "Value": "561210"
+        },
+        {
+          "Field": "Total needs",
+          "Value": "22"
+        },
+        {
+          "Field": "**Underserved** (is_underserved=true)",
+          "Value": "**13**"
+        },
+        {
+          "Field": "Overserved (is_overserved=true)",
+          "Value": "**0**"
+        },
+        {
+          "Field": "**Avg opportunity score**",
+          "Value": "**11.98**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Rank",
+        "Score",
+        "Need",
+        "Statement"
+      ],
+      "rows": [
+        {
+          "Rank": "1",
+          "Score": "**16.00**",
+          "Need": "N04",
+          "Statement": "Minimize door guardians that pass commissioning tests but fail under real operating conditions"
+        },
+        {
+          "Rank": "2",
+          "Score": "**16.00**",
+          "Need": "N08",
+          "Statement": "Minimize unauthorized activations going undetected between FM inspection visits"
+        },
+        {
+          "Rank": "3",
+          "Score": "**16.00**",
+          "Need": "N14",
+          "Statement": "Minimize event log gaps that cause FM clients to fail unannounced fire safety inspections"
+        },
+        {
+          "Rank": "4",
+          "Score": "**15.00**",
+          "Need": "N02",
+          "Statement": "Minimize conduit wiring and electrical installation cost per door in retrofit buildings"
+        },
+        {
+          "Rank": "5",
+          "Score": "**15.00**",
+          "Need": "N13",
+          "Statement": "Minimize FM labor-hours to compile audit-ready inspection certificates per building"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    [
+      {
+        "error_statement": "Minimize installation labor-hours per door when deploying exit monitoring in occupied FM client buildings",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 3,
+        "job_step_name": "Install",
+        "importance": 7.5,
+        "satisfaction_current": 5.0,
+        "opportunity_score": 10.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize conduit wiring and electrical installation cost per door in FM buildings not pre-wired for alarm systems",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 3,
+        "job_step_name": "Install",
+        "importance": 9.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 15.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize battery depletion events reaching critical failure before a CMMS maintenance alert is generated for the affected door guardian",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 8,
+        "job_step_name": "Maintain",
+        "importance": 9.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 14.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize the likelihood of door guardians that pass commissioning tests but fail to detect activations under real operating conditions",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 4,
+        "job_step_name": "Commission",
+        "importance": 9.0,
+        "satisfaction_current": 2.0,
+        "opportunity_score": 16.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize the likelihood of an FM-managed emergency exit being found non-compliant with EN 179 or EN 1125 at a fire marshal inspection",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 1,
+        "job_step_name": "Specify",
+        "importance": 8.0,
+        "satisfaction_current": 2.0,
+        "opportunity_score": 14.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize elapsed time between unauthorized exit activation and FM operations center notification",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 5,
+        "job_step_name": "Monitor",
+        "importance": 9.0,
+        "satisfaction_current": 4.5,
+        "opportunity_score": 13.5,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize the likelihood of emergency exit alarm failure during a building-wide power loss event",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 5,
+        "job_step_name": "Monitor",
+        "importance": 10.0,
+        "satisfaction_current": 7.0,
+        "opportunity_score": 13.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize unauthorized emergency exit activations going undetected between scheduled FM inspection visits",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 5,
+        "job_step_name": "Monitor",
+        "importance": 9.0,
+        "satisfaction_current": 2.0,
+        "opportunity_score": 16.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize integration effort required to relay exit event data into the FM company's CMMS or CAFM system",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 1,
+        "job_step_name": "Specify",
+        "importance": 7.5,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 11.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize the proportion of deployed door guardians with critically depleted batteries across the FM portfolio at any time",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 8,
+        "job_step_name": "Maintain",
+        "importance": 8.0,
+        "satisfaction_current": 3.5,
+        "opportunity_score": 12.5,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize the time to identify exact door location and dispatch a technician following an alarm event",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 6,
+        "job_step_name": "Respond",
+        "importance": 7.0,
+        "satisfaction_current": 4.5,
+        "opportunity_score": 9.5,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize the risk of FM client insurance premium increases due to gaps in documented exit monitoring coverage",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 7,
+        "job_step_name": "Document",
+        "importance": 7.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 10.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize FM labor-hours required to compile audit-ready fire safety inspection certificates per client building",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 7,
+        "job_step_name": "Document",
+        "importance": 8.5,
+        "satisfaction_current": 2.0,
+        "opportunity_score": 15.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize emergency exit event log gaps that cause an FM client to fail an unannounced fire safety inspection",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 7,
+        "job_step_name": "Document",
+        "importance": 9.5,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 16.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize unavailability of real-time portfolio-level exit status data for FM client account management reporting",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 9,
+        "job_step_name": "Report",
+        "importance": 7.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 11.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize unplanned FM site visits caused by alarm activations that battery monitoring data could have predicted",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 8,
+        "job_step_name": "Maintain",
+        "importance": 6.5,
+        "satisfaction_current": 5.0,
+        "opportunity_score": 8.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize total lifecycle cost-per-door for exit monitoring hardware, installation, and maintenance across FM portfolios of 100+ doors",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 2,
+        "job_step_name": "Procure",
+        "importance": 8.5,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 14.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize the likelihood of authorized door guardian re-arming after activation creating a false event in the compliance log",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 6,
+        "job_step_name": "Respond",
+        "importance": 5.5,
+        "satisfaction_current": 6.0,
+        "opportunity_score": 5.5,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize wireless monitoring coverage gaps in large-footprint FM buildings caused by 868 MHz EasyWave signal attenuation through reinforced concrete and steel",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 0,
+        "job_step_name": "product_constraint",
+        "importance": 7.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 11.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": true
+      },
+      {
+        "error_statement": "Minimize EasyWave radio module battery depletion below monitoring threshold between FM maintenance visits in high-traffic deployments exceeding 5 activations per day",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 0,
+        "job_step_name": "product_constraint",
+        "importance": 8.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 12.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": true
+      },
+      {
+        "error_statement": "Minimize integration rework required to relay EasyWave alarm events to client BMS systems on BACnet or KNX via GfS-proprietary BUS gateway intermediary",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 0,
+        "job_step_name": "product_constraint",
+        "importance": 7.5,
+        "satisfaction_current": 3.5,
+        "opportunity_score": 11.5,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": true
+      },
+      {
+        "error_statement": "Minimize FM contract rejections in premium buildings due to surface-mounted door guardian protrusion conflicting with interior design requirements",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "job_step_number": 0,
+        "job_step_name": "product_constraint",
+        "importance": 5.0,
+        "satisfaction_current": 5.0,
+        "opportunity_score": 5.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": true
+      }
+    ],
+    {
+      "market_name": "Facilities Support Services",
+      "naics_code": "561210",
+      "total_needs": 22,
+      "underserved_count": 13,
+      "overserved_count": 0,
+      "avg_opportunity_score": 11.98,
+      "top_opportunities": [
+        "Minimize the likelihood of door guardians that pass commissioning tests but fail to detect activations under real operating conditions",
+        "Minimize unauthorized emergency exit activations going undetected between scheduled FM inspection visits",
+        "Minimize emergency exit event log gaps that cause an FM client to fail an unannounced fire safety inspection",
+        "Minimize conduit wiring and electrical installation cost per door in FM buildings not pre-wired for alarm systems",
+        "Minimize FM labor-hours required to compile audit-ready fire safety inspection certificates per client building"
+      ]
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

@@ -1,0 +1,680 @@
+{
+  "id": "FIT_lessors_nonresidential_buildings",
+  "title": "Feature-Market Fit: Lessors of Nonresidential Buildings (NAICS 531120)",
+  "type": "feature_market_fit",
+  "market_slug": "lessors_nonresidential_buildings",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Input Context",
+      "content": "| Field | Value |\n|---|---|\n| Technology class | Emergency Exit Security Devices with Remote Monitoring |\n| Commodity FP | Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm |\n| Product FP | Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring — without mains power at the door |\n| Market needs source | JTBD_lessors_nonresidential_buildings.md — 22 error statements (N01–N22) |\n| Top underserved needs | N10 (opp 16), N05 / N13 / N17 (opp 15 each), N04 / N11 / N22 (opp 14 each) |\n| Dominant alternative | A1 — mechanical-only door alarms (~40% share); A5 — manual patrol (~30%) |\n| Best monitoring incumbent | A3 — dormakaba SafeRoute (wired electronic, LON/BACnet, ~25% share) |\n\n---"
+    },
+    {
+      "title": "Step 09 — Technology-Level Feature-Market Fit",
+      "content": "### Kano + Overall Fit Summary\n\n| # | Feature | Category | Kano Class | Overall Fit |\n|---|---|---|---|---|\n| F1 | Mechanical Handle Locking | safety | `must_be` | 5.22 |\n| F2 | Audible Alarm Trigger | safety | `must_be` | 5.78 |\n| F3 | Single-Motion Emergency Release | usability | `must_be` | 5.78 |\n| F4 | Key Override Bypass | usability | `one_dimensional` | 5.44 |\n| F5 | Battery-Powered Operation | maintenance | `must_be` | 5.44 |\n| F6 | Pre-Alarm Warning | usability | `attractive` | 5.00 |\n\n### ODI Dimension Scores (1–10 scale)\n\n| Feature | Time | Cost | Safety | Reliability | Skill | Stress | Pain | Confidence | Delight | **Overall** |\n|---|---|---|---|---|---|---|---|---|---|---|\n| Mechanical Handle Locking | 2 | 4 | 9 | 8 | 5 | 6 | 4 | 8 | 1 | **5.22** |\n| Audible Alarm Trigger | 2 | 4 | 10 | 8 | 6 | 7 | 6 | 7 | 2 | **5.78** |\n| Single-Motion Emergency Release | 3 | 3 | 10 | 7 | 8 | 7 | 4 | 9 | 1 | **5.78** |\n| Key Override Bypass | 6 | 5 | 5 | 6 | 5 | 7 | 6 | 6 | 3 | **5.44** |\n| Battery-Powered Operation | 5 | 8 | 3 | 4 | 7 | 6 | 8 | 5 | 3 | **5.44** |\n| Pre-Alarm Warning | 3 | 4 | 4 | 5 | 5 | 7 | 6 | 5 | 6 | **5.00** |\n\n*overall_fit = arithmetic mean of 9 dimension scores, rounded to 2 decimal places.*\n\n### Rationale Per Feature\n\n| Feature | Kano justification | Primary ODI drivers | Market evidence |\n|---|---|---|---|\n| **Mechanical Handle Locking** | Commodity FP core. Absence = total product failure. Presence assumed. | Safety (9): sole mechanism preventing unauthorized access; Reliability (8): spring fatigue is the primary failure mode | N04 (false-negative alarm, imp=10) depends on this mechanism not failing |\n| **Audible Alarm Trigger** | Commodity FP explicitly names audible alert. No building lessor is \"delighted\" by it — they expect it. | Safety (10): primary deterrence + alerting; Stress (7): FM trusts notification without dashboard; Pain (6): displaces dedicated door-watcher | N04 (false-negative, imp=10); Stress (7) directly relevant for buildings without IoT monitoring |\n| **Single-Motion Emergency Release** | Absolute regulatory requirement (EN 179 / EN 1125). Failure = certification withdrawal. | Safety (10): fire evacuation compliance; Confidence (9): certification provides legal certainty; Skill (8): no prior knowledge needed for transient building occupants | N07 (power-independent alarm readiness, imp=10); passes litmus for all building-type subsets |\n| **Key Override Bypass** | `one_dimensional` — more granular access management (electronic log, per-door programming) proportionally improves FM operations. Not expected by default. | Stress (7): directly addresses N08 (false alarms from authorized access, imp=8, sat=5); Pain (6): eliminates alarm-trigger/silence cycle for routine maintenance | N08 (authorized access false positives, imp=8, sat=5) — improvement is linear with key management quality |\n| **Battery-Powered Operation** | `must_be` for this market: existing commercial building stock makes electrical retrofit prohibitively disruptive. Without battery operation, the product cannot reach >80% of portfolio. | Cost (8): eliminates electrician labor + conduit + permits (N01, imp=8, sat=3, opp=13); Pain (8): removes wiring-project management from FM workload; Confidence (5): battery life uncertainty (C4) and N13 (opp=15) lower trust vs. wired | N01 (no permanent electrical modification, imp=8, sat=3): dominant market need this feature serves |\n| **Pre-Alarm Warning** | `attractive` — dominant A1 competitor (40% share) does not have this. Absence is not a disappointment. Multi-tenant commercial buildings have diverse occupants (cleaning staff, couriers, contractors) who trigger accidental alarms regularly. | Delight (6): \"warns before it alarms\" is genuinely unexpected in this market; Stress (7): reduces FM anxiety about false alarms in busy buildings; Pain (6): reduces alarm-fatigue from accidental activations | N08 (false alarms from authorized access, imp=8): pre-alarm is a softer catch before key override is even needed |\n\n---"
+    },
+    {
+      "title": "Step 10 — Product-Related Needs (Burleson Product Jobs)",
+      "content": "Needs that exist BECAUSE of choosing this technology. Would disappear if a wired electronic system (A3) or mechanical-only system (A1) were chosen instead. Do NOT duplicate N01–N22 from JTBD analysis.\n\n| ID | Statement | Source Constraint | Imp | Sat | Opp |\n|---|---|---|---|---|---|\n| PR1 | Minimize the likelihood of EasyWave protocol dependency requiring full hardware replacement when a commercial property portfolio transitions to an open-standard BMS platform (KNX or BACnet), measured as percentage of installed door guardian units requiring hardware replacement versus gateway reconfiguration during BMS platform migration | EasyWave Protocol Lock-In (C6) | 8 | 2 | 14 |\n| PR2 | Minimize the likelihood of 868 MHz signal attenuation through reinforced concrete floor slabs creating per-floor monitoring blackouts in multi-story commercial office buildings, measured as number of unplanned repeater additions required to achieve full portfolio coverage versus initial installation plan | Wireless Range Limitation (C3) | 7 | 3 | 11 |\n| PR3 | Minimize the likelihood of IoT door-event timestamp collection triggering a GDPR Article 35 Data Protection Impact Assessment in EU commercial office deployments with employee-occupied areas, measured as percentage of deployments requiring DPIA completion before system activation | GDPR Monitoring Data Compliance (C8) | 7 | 3 | 11 |\n| PR4 | Minimize the likelihood of unheated commercial stairwell and service corridor temperature variations reducing battery service life below the 2-year maintenance target, measured as mean observed battery replacement interval deviation for units in HVAC-dark zones versus conditioned-space units | IoT Battery Life Floor (C4) | 6 | 4 | 8 |\n\n**Litmus-test confirmations:**\n- PR1: A3 (wired/SafeRoute) uses open protocols natively → need disappears ✓\n- PR2: A3 (wired) has no RF constraint → need disappears ✓\n- PR3: A1 (mechanical-only) collects no data → no DPIA required → need disappears ✓\n- PR4: A3 (wired/mains-powered) has no battery → need disappears ✓\n\n---"
+    },
+    {
+      "title": "Step 11 — Vendor Feature-Market Fit",
+      "content": "*Vendor: GfS Rettungswegtechnik / Exit Control 179/1125 with IoT*\n*Best incumbent benchmark: dormakaba SafeRoute (wired electronic exit control, LON/BACnet, ~25% share in monitored exit control)*\n\n| # | Feature | Kano | Vendor Score | Incumbent Score | Advantage |\n|---|---|---|---|---|---|\n| V1 | 868 MHz Wireless Radio Transmission | `attractive` | 7 | 4 | **superior** |\n| V2 | Wireless BUS Interface Integration | `attractive` | 6 | 5 | **parity** |\n| V3 | Dual-Standard Variant Range (EN 179 + EN 1125) | `attractive` | 8 | 5 | **superior** |\n| V4 | IP45 Outdoor Variant | `attractive` | 6 | 3 | **superior** |\n| V5 | Glass-Frame Mounting Plate | `attractive` | 7 | 2 | **superior** |\n\n### Vendor Feature Rationale\n\n| Feature | Vendor assessment | Incumbent comparison | Key trade-offs |\n|---|---|---|---|\n| **868 MHz Wireless Radio** | 868.3 MHz EasyWave, ~30 m integrated TX, extendable via repeater. Enables retrofit in occupied buildings without electrical conduit. Proprietary protocol. | dormakaba SafeRoute delivers richer monitoring via wired LON bus with BMS integration — but requires mains wiring + conduit per door, directly conflicting with N01 (imp=8, sat=3). SafeRoute cannot address the 80% of existing building stock where wiring retrofit is disruptive. | Vendor wins on deployment accessibility; loses on protocol openness (C6) and BMS integration depth |\n| **Wireless BUS Interface** | GfS Wireless BUS Interface aggregates multi-unit status wirelessly into a central monitoring point. Enables portfolio-level dashboards addressing N11 (opp=14). Limited to ~50 units per gateway; EasyWave-only. | SafeRoute offers centralized PC-based monitoring software with richer reporting but requires full wired network. Per-building monitoring depth favors SafeRoute; portfolio retrofit accessibility favors GfS. Net outcome parity for medium portfolios. | Gap within measurement uncertainty (delta=1); SafeRoute better at scale, GfS better at retrofit |\n| **Dual-Standard Variant Range** | Matched EN 179 (lever handle) and EN 1125 (panic bar) variants from the same product family — identical receiver, BUS interface, and installation procedure. Reduces procurement complexity for mixed commercial portfolios. | GEZE SecuLogic covers EN 179 + EN 13637 (electronic), not a matched EN 1125 panic-bar variant. dormakaba SafeRoute is electronic-first and covers EN 13637 only. No identified incumbent offers a wireless-ready matched EN 179 + EN 1125 product family from a single system. | Clear advantage for mixed-door commercial portfolios (Class A + retail + industrial flex) |\n| **IP45 Outdoor Variant** | Art. 990000-IP provides light weather protection for loading dock exits, covered stairwells, and underground parking emergency exits — relevant for ~15–20% of commercial portfolio doors. Not suitable for washdown (IP65+ required). | No identified mechanical or electronic competitor publishes a specific IP-rated variant with wireless monitoring capability. Mechanical-only competitors occasionally offer weatherized housings but no wireless monitoring. | Genuine differentiator for outdoor/semi-exposed doors; not relevant for the majority of internal office exits |\n| **Glass-Frame Mounting Plate** | Art. 991170 enables installation on glass-panel emergency exit doors without structural modification. Critical for Class A commercial offices with glass-partition layouts — a large and growing segment. | No identified competitor (dormakaba, GEZE, Allegion) offers an equivalent non-invasive glass-frame mounting solution. Most alternatives either require hardware replacement or cannot be installed on glass-frame doors. | Strongest competitive advantage in premium Class A office market (S5 segment) |\n\n---"
+    },
+    {
+      "title": "QA Check",
+      "content": "| # | Check | Status |\n|---|---|---|\n| 1 | All 6 technology features assessed with Kano + 9 ODI scores | PASS |\n| 2 | overall_fit computed arithmetically (sum/9 rounded to 2dp) | PASS |\n| 3 | Safety ≥ 7 → Confidence ≥ 5 (internal consistency) | PASS — no violations |\n| 4 | Skill ≥ 7 → Stress ≥ 5 (internal consistency) | PASS — no violations |\n| 5 | Product-related needs pass litmus test (disappear with A1/A3) | PASS — all 4 confirmed |\n| 6 | Product-related needs do not duplicate N01–N22 | PASS |\n| 7 | Each product-related need traces to a specific constraint | PASS |\n| 8 | Vendor features assessed on 0–10 scale vs. specific incumbent | PASS — dormakaba SafeRoute named |\n| 9 | Advantage classification: vendor_score vs. incumbent delta > 1 for superior | PASS |\n| 10 | Vendor bias check: 4/5 superior — defensible given these ARE vendor-specific differentiators | PASS — vendor features selected by GfS precisely to differentiate |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### TechFeatureFitEntry[]\n\n```json\n[\n  {\n    \"feature_name\": \"Mechanical Handle Locking\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 2,\n    \"fit_score_cost\": 4,\n    \"fit_score_safety\": 9,\n    \"fit_score_reliability\": 8,\n    \"fit_score_skill\": 5,\n    \"fit_score_stress\": 6,\n    \"fit_score_pain\": 4,\n    \"fit_score_confidence\": 8,\n    \"fit_score_delight\": 1,\n    \"overall_fit\": 5.22,\n    \"rationale\": \"must_be — physical handle block is the commodity FP core. Absence = total product failure. Safety (9) and Reliability (8) are primary: directly addresses N04 (false-negative alarm rate, imp=10) which requires the mechanism to reliably engage. Cost (4) reflects displacement of wired lock hardware. Delight (1) — no lessor is surprised by a handle-locking emergency exit device having a handle lock.\"\n  },\n  {\n    \"feature_name\": \"Audible Alarm Trigger\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 2,\n    \"fit_score_cost\": 4,\n    \"fit_score_safety\": 10,\n    \"fit_score_reliability\": 8,\n    \"fit_score_skill\": 6,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 6,\n    \"fit_score_confidence\": 7,\n    \"fit_score_delight\": 2,\n    \"overall_fit\": 5.78,\n    \"rationale\": \"must_be — commodity FP explicitly names audible alarm. Safety (10): primary deterrence and immediate notification mechanism; directly serves N04 (imp=10). Stress (7): FM receives local notification even without IoT dashboard. Pain (6): displaces need for dedicated door-watcher on high-traffic exits. Confidence (7): 95 dB piezo is well-understood and trusted in life-safety contexts.\"\n  },\n  {\n    \"feature_name\": \"Single-Motion Emergency Release\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 3,\n    \"fit_score_cost\": 3,\n    \"fit_score_safety\": 10,\n    \"fit_score_reliability\": 7,\n    \"fit_score_skill\": 8,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 4,\n    \"fit_score_confidence\": 9,\n    \"fit_score_delight\": 1,\n    \"overall_fit\": 5.78,\n    \"rationale\": \"must_be — EN 179/EN 1125 certification requirement; absence is a regulatory knockout. Safety (10): fire evacuation compliance is a non-negotiable for any commercial building lessor. Confidence (9): certification provides legal certainty that reduces FM and asset manager liability exposure. Skill (8): no prior knowledge required — critical for multi-tenant buildings with diverse, transient occupant populations. Delight (1) — legally required; no delight possible.\"\n  },\n  {\n    \"feature_name\": \"Key Override Bypass\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"kano_class\": \"one_dimensional\",\n    \"fit_score_time\": 6,\n    \"fit_score_cost\": 5,\n    \"fit_score_safety\": 5,\n    \"fit_score_reliability\": 6,\n    \"fit_score_skill\": 5,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 6,\n    \"fit_score_confidence\": 6,\n    \"fit_score_delight\": 3,\n    \"overall_fit\": 5.44,\n    \"rationale\": \"one_dimensional — richer key management (electronic credential, per-door audit log, multi-level access) proportionally improves FM operations. More granular = proportionally less false-alarm friction. Stress (7): directly addresses N08 (false alarms from authorized access, imp=8, sat=5). Pain (6): eliminates alarm-trigger/silence cycle for routine maintenance, delivery, and FM inspections. Time (6): authorized access is faster and less disruptive with a reliable bypass.\"\n  },\n  {\n    \"feature_name\": \"Battery-Powered Operation\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 5,\n    \"fit_score_cost\": 8,\n    \"fit_score_safety\": 3,\n    \"fit_score_reliability\": 4,\n    \"fit_score_skill\": 7,\n    \"fit_score_stress\": 6,\n    \"fit_score_pain\": 8,\n    \"fit_score_confidence\": 5,\n    \"fit_score_delight\": 3,\n    \"overall_fit\": 5.44,\n    \"rationale\": \"must_be for this market — commercial lessors operate primarily existing building stock where adding electrical conduit per door is prohibitively expensive and disruptive. Cost (8) and Pain (8) are primary: directly serves N01 (no permanent electrical modification, imp=8, sat=3, opp=13). Skill (7): no electrician required, standard building staff can install. Confidence (5) and Reliability (4) are depressed: battery life uncertainty (C4) and N13 (battery depletion detection, opp=15) create unresolved monitoring gaps.\"\n  },\n  {\n    \"feature_name\": \"Pre-Alarm Warning\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"kano_class\": \"attractive\",\n    \"fit_score_time\": 3,\n    \"fit_score_cost\": 4,\n    \"fit_score_safety\": 4,\n    \"fit_score_reliability\": 5,\n    \"fit_score_skill\": 5,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 6,\n    \"fit_score_confidence\": 5,\n    \"fit_score_delight\": 6,\n    \"overall_fit\": 5.00,\n    \"rationale\": \"attractive — dominant A1 competitor (40% share) does not have this feature; absence does not cause dissatisfaction. Multi-tenant commercial buildings have high accidental-activation frequency from cleaning staff, couriers, and contractors. Delight (6): 'warns before it alarms' is genuinely unexpected in this market. Stress (7): reduces FM false-alarm anxiety. Pain (6): eliminates accidental full-alarm events before key-override management even becomes necessary. Partial complement to N08 (false alarms from authorized access).\"\n  }\n]\n```\n\n### ProductRelatedNeedEntry[]\n\n```json\n[\n  {\n    \"statement\": \"Minimize the likelihood of EasyWave protocol dependency requiring full hardware replacement when a commercial property portfolio transitions to an open-standard BMS platform (KNX or BACnet), measured as percentage of installed door guardian units requiring hardware replacement versus gateway reconfiguration during BMS platform migration\",\n    \"source_constraint\": \"EasyWave Protocol Lock-In\",\n    \"affected_markets\": [\"Lessors of Nonresidential Buildings\"],\n    \"importance\": 8.0,\n    \"satisfaction_current\": 2.0,\n    \"opportunity_score\": 14,\n    \"product_related\": true,\n    \"litmus_confirmed\": \"A3 (dormakaba SafeRoute) uses LON/BACnet natively — no migration lock-in. Need disappears.\"\n  },\n  {\n    \"statement\": \"Minimize the likelihood of 868 MHz signal attenuation through reinforced concrete floor slabs creating per-floor monitoring blackouts in multi-story commercial office buildings, measured as number of unplanned repeater additions required to achieve full portfolio coverage versus initial installation plan\",\n    \"source_constraint\": \"Wireless Range Limitation\",\n    \"affected_markets\": [\"Lessors of Nonresidential Buildings\"],\n    \"importance\": 7.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 11,\n    \"product_related\": true,\n    \"litmus_confirmed\": \"A3 (wired) has no RF constraint. A1 (mechanical) has no monitoring at all. Need disappears for both.\"\n  },\n  {\n    \"statement\": \"Minimize the likelihood of IoT door-event timestamp collection triggering a GDPR Article 35 Data Protection Impact Assessment in EU commercial office deployments with employee-occupied areas, measured as percentage of deployments requiring DPIA completion before system activation\",\n    \"source_constraint\": \"GDPR Monitoring Data Compliance\",\n    \"affected_markets\": [\"Lessors of Nonresidential Buildings\"],\n    \"importance\": 7.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 11,\n    \"product_related\": true,\n    \"litmus_confirmed\": \"A1 (mechanical-only) collects no data — zero DPIA exposure. Need disappears.\"\n  },\n  {\n    \"statement\": \"Minimize the likelihood of unheated commercial stairwell and service corridor temperature variations reducing battery service life below the 2-year maintenance target, measured as mean observed battery replacement interval deviation for units in HVAC-dark zones versus conditioned-space units\",\n    \"source_constraint\": \"IoT Battery Life Floor\",\n    \"affected_markets\": [\"Lessors of Nonresidential Buildings\"],\n    \"importance\": 6.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 8,\n    \"product_related\": true,\n    \"litmus_confirmed\": \"A3 (mains-powered) has no battery. A1 has no IoT module. Need disappears.\"\n  }\n]\n```\n\n### VendorFeatureComparison[]\n\n```json\n[\n  {\n    \"feature_name\": \"868 MHz Wireless Radio Transmission\",\n    \"feature_description\": \"Transmit door guardian state and alarm events wirelessly to central receivers using 868.3 MHz EasyWave protocol without mains wiring at the door\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"kano_class\": \"attractive\",\n    \"vendor_score\": 7,\n    \"best_incumbent_score\": 4,\n    \"best_incumbent_technology\": \"dormakaba SafeRoute (wired LON/BACnet electronic exit control)\",\n    \"advantage\": \"superior\",\n    \"rationale\": \"GfS 868.3 MHz EasyWave enables retrofit in occupied commercial buildings without electrical conduit — directly serves N01 (imp=8, sat=3, opp=13). SafeRoute delivers richer protocol support and BMS integration depth but requires mains wiring per door, conflicting with N01 and excluding >80% of existing commercial building stock. Vendor scores 7 (not 8–9) due to EasyWave proprietary lock-in (C6) and 30 m range constraint (C3) which add post-sale infrastructure cost. SafeRoute scores 4 on this feature specifically because it requires full wiring infrastructure — not because the product is poor overall.\"\n  },\n  {\n    \"feature_name\": \"Wireless BUS Interface Integration\",\n    \"feature_description\": \"Aggregate emergency exit monitoring status from multiple door guardian units into a centralized Master BUS for portfolio-level visibility\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"kano_class\": \"attractive\",\n    \"vendor_score\": 6,\n    \"best_incumbent_score\": 5,\n    \"best_incumbent_technology\": \"dormakaba SafeRoute central monitoring software (wired)\",\n    \"advantage\": \"parity\",\n    \"rationale\": \"GfS Wireless BUS Interface aggregates up to ~50 units per gateway wirelessly, addressing N11 (portfolio dashboard, imp=8, opp=14) for small-to-mid portfolios without infrastructure investment. SafeRoute offers richer PC-based centralized monitoring software with reporting and event management — but requires full wired network per building. At 20–50 door scale in retrofit scenarios, both achieve comparable monitoring aggregation outcomes via different deployment models. Net gap within measurement uncertainty (delta=1).\"\n  },\n  {\n    \"feature_name\": \"Dual-Standard Variant Range\",\n    \"feature_description\": \"Cover both lever-handle (EN 179) and panic-bar (EN 1125) emergency exit doors from a single product family with shared wireless infrastructure\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"kano_class\": \"attractive\",\n    \"vendor_score\": 8,\n    \"best_incumbent_score\": 5,\n    \"best_incumbent_technology\": \"GEZE SecuLogic (EN 179 + EN 13637 electronic; no matched wireless EN 1125 variant)\",\n    \"advantage\": \"superior\",\n    \"rationale\": \"GfS offers matched EN 179 (lever handle) and EN 1125 (panic bar) variants from the same product family — identical receiver, BUS gateway, and installation procedure. Commercial lessors managing mixed portfolios (Class A office with EN 179, retail with EN 1125, industrial flex with both) can standardize on a single procurement. GEZE SecuLogic covers EN 179 and EN 13637 electronic but not a wireless-ready EN 1125 panic-bar variant. dormakaba SafeRoute is electronic-first (EN 13637) only. No identified wireless incumbent matches this dual-standard coverage.\"\n  },\n  {\n    \"feature_name\": \"IP45 Outdoor Variant\",\n    \"feature_description\": \"Operate emergency exit monitoring in outdoor and semi-exposed installations with weather protection against dust and water jets\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"kano_class\": \"attractive\",\n    \"vendor_score\": 6,\n    \"best_incumbent_score\": 3,\n    \"best_incumbent_technology\": \"Generic mechanical door alarms (no IP rating published)\",\n    \"advantage\": \"superior\",\n    \"rationale\": \"GfS Art. 990000-IP provides IP45 protection for loading dock exits, covered parking garage stairwells, and external emergency exits — applicable to approximately 15–20% of doors in commercial property portfolios. No identified competitor publishes a specific IP-rated variant with wireless monitoring capability. Vendor scores 6 (not higher) because IP45 is inadequate for washdown environments (IP65+ needed) and does not apply to the majority of indoor office exits. Attracts interest in S6 (industrial flex/logistics park lessors) where outdoor emergency exits are more common.\"\n  },\n  {\n    \"feature_name\": \"Glass-Frame Mounting Plate\",\n    \"feature_description\": \"Enable emergency exit device installation on glass-framed doors without structural modification using a dedicated mounting accessory\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"kano_class\": \"attractive\",\n    \"vendor_score\": 7,\n    \"best_incumbent_score\": 2,\n    \"best_incumbent_technology\": \"dormakaba SafeRoute / GEZE SecuLogic (no glass-frame specific solution)\",\n    \"advantage\": \"superior\",\n    \"rationale\": \"GfS Art. 991170 glass-frame mounting plate enables installation on glass-panel emergency exit doors — a significant and growing portion of Class A commercial office stock (open-plan layouts, glass partitions). Installation requires no drilling or structural modification, directly satisfying N03 (retrofit without structural modification, imp=8). No identified competitor (dormakaba, GEZE, Allegion) offers an equivalent non-invasive glass-frame mounting solution for emergency exit alarm guards. Strongest competitive advantage in S5 (Class A smart-office campus) and S3 (medical office with glass partition walls) segments.\"\n  }\n]\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "Technology class",
+          "Value": "Emergency Exit Security Devices with Remote Monitoring"
+        },
+        {
+          "Field": "Commodity FP",
+          "Value": "Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm"
+        },
+        {
+          "Field": "Product FP",
+          "Value": "Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring — without mains power at the door"
+        },
+        {
+          "Field": "Market needs source",
+          "Value": "JTBD_lessors_nonresidential_buildings.md — 22 error statements (N01–N22)"
+        },
+        {
+          "Field": "Top underserved needs",
+          "Value": "N10 (opp 16), N05 / N13 / N17 (opp 15 each), N04 / N11 / N22 (opp 14 each)"
+        },
+        {
+          "Field": "Dominant alternative",
+          "Value": "A1 — mechanical-only door alarms (~40% share); A5 — manual patrol (~30%)"
+        },
+        {
+          "Field": "Best monitoring incumbent",
+          "Value": "A3 — dormakaba SafeRoute (wired electronic, LON/BACnet, ~25% share)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Feature",
+        "Category",
+        "Kano Class",
+        "Overall Fit"
+      ],
+      "rows": [
+        {
+          "#": "F1",
+          "Feature": "Mechanical Handle Locking",
+          "Category": "safety",
+          "Kano Class": "`must_be`",
+          "Overall Fit": "5.22"
+        },
+        {
+          "#": "F2",
+          "Feature": "Audible Alarm Trigger",
+          "Category": "safety",
+          "Kano Class": "`must_be`",
+          "Overall Fit": "5.78"
+        },
+        {
+          "#": "F3",
+          "Feature": "Single-Motion Emergency Release",
+          "Category": "usability",
+          "Kano Class": "`must_be`",
+          "Overall Fit": "5.78"
+        },
+        {
+          "#": "F4",
+          "Feature": "Key Override Bypass",
+          "Category": "usability",
+          "Kano Class": "`one_dimensional`",
+          "Overall Fit": "5.44"
+        },
+        {
+          "#": "F5",
+          "Feature": "Battery-Powered Operation",
+          "Category": "maintenance",
+          "Kano Class": "`must_be`",
+          "Overall Fit": "5.44"
+        },
+        {
+          "#": "F6",
+          "Feature": "Pre-Alarm Warning",
+          "Category": "usability",
+          "Kano Class": "`attractive`",
+          "Overall Fit": "5.00"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Feature",
+        "Time",
+        "Cost",
+        "Safety",
+        "Reliability",
+        "Skill",
+        "Stress",
+        "Pain",
+        "Confidence",
+        "Delight",
+        "**Overall**"
+      ],
+      "rows": [
+        {
+          "Feature": "Mechanical Handle Locking",
+          "Time": "2",
+          "Cost": "4",
+          "Safety": "9",
+          "Reliability": "8",
+          "Skill": "5",
+          "Stress": "6",
+          "Pain": "4",
+          "Confidence": "8",
+          "Delight": "1",
+          "**Overall**": "**5.22**"
+        },
+        {
+          "Feature": "Audible Alarm Trigger",
+          "Time": "2",
+          "Cost": "4",
+          "Safety": "10",
+          "Reliability": "8",
+          "Skill": "6",
+          "Stress": "7",
+          "Pain": "6",
+          "Confidence": "7",
+          "Delight": "2",
+          "**Overall**": "**5.78**"
+        },
+        {
+          "Feature": "Single-Motion Emergency Release",
+          "Time": "3",
+          "Cost": "3",
+          "Safety": "10",
+          "Reliability": "7",
+          "Skill": "8",
+          "Stress": "7",
+          "Pain": "4",
+          "Confidence": "9",
+          "Delight": "1",
+          "**Overall**": "**5.78**"
+        },
+        {
+          "Feature": "Key Override Bypass",
+          "Time": "6",
+          "Cost": "5",
+          "Safety": "5",
+          "Reliability": "6",
+          "Skill": "5",
+          "Stress": "7",
+          "Pain": "6",
+          "Confidence": "6",
+          "Delight": "3",
+          "**Overall**": "**5.44**"
+        },
+        {
+          "Feature": "Battery-Powered Operation",
+          "Time": "5",
+          "Cost": "8",
+          "Safety": "3",
+          "Reliability": "4",
+          "Skill": "7",
+          "Stress": "6",
+          "Pain": "8",
+          "Confidence": "5",
+          "Delight": "3",
+          "**Overall**": "**5.44**"
+        },
+        {
+          "Feature": "Pre-Alarm Warning",
+          "Time": "3",
+          "Cost": "4",
+          "Safety": "4",
+          "Reliability": "5",
+          "Skill": "5",
+          "Stress": "7",
+          "Pain": "6",
+          "Confidence": "5",
+          "Delight": "6",
+          "**Overall**": "**5.00**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Feature",
+        "Kano justification",
+        "Primary ODI drivers",
+        "Market evidence"
+      ],
+      "rows": [
+        {
+          "Feature": "**Mechanical Handle Locking**",
+          "Kano justification": "Commodity FP core. Absence = total product failure. Presence assumed.",
+          "Primary ODI drivers": "Safety (9): sole mechanism preventing unauthorized access; Reliability (8): spring fatigue is the primary failure mode",
+          "Market evidence": "N04 (false-negative alarm, imp=10) depends on this mechanism not failing"
+        },
+        {
+          "Feature": "**Audible Alarm Trigger**",
+          "Kano justification": "Commodity FP explicitly names audible alert. No building lessor is \"delighted\" by it — they expect it.",
+          "Primary ODI drivers": "Safety (10): primary deterrence + alerting; Stress (7): FM trusts notification without dashboard; Pain (6): displaces dedicated door-watcher",
+          "Market evidence": "N04 (false-negative, imp=10); Stress (7) directly relevant for buildings without IoT monitoring"
+        },
+        {
+          "Feature": "**Single-Motion Emergency Release**",
+          "Kano justification": "Absolute regulatory requirement (EN 179 / EN 1125). Failure = certification withdrawal.",
+          "Primary ODI drivers": "Safety (10): fire evacuation compliance; Confidence (9): certification provides legal certainty; Skill (8): no prior knowledge needed for transient building occupants",
+          "Market evidence": "N07 (power-independent alarm readiness, imp=10); passes litmus for all building-type subsets"
+        },
+        {
+          "Feature": "**Key Override Bypass**",
+          "Kano justification": "`one_dimensional` — more granular access management (electronic log, per-door programming) proportionally improves FM operations. Not expected by default.",
+          "Primary ODI drivers": "Stress (7): directly addresses N08 (false alarms from authorized access, imp=8, sat=5); Pain (6): eliminates alarm-trigger/silence cycle for routine maintenance",
+          "Market evidence": "N08 (authorized access false positives, imp=8, sat=5) — improvement is linear with key management quality"
+        },
+        {
+          "Feature": "**Battery-Powered Operation**",
+          "Kano justification": "`must_be` for this market: existing commercial building stock makes electrical retrofit prohibitively disruptive. Without battery operation, the product cannot reach >80% of portfolio.",
+          "Primary ODI drivers": "Cost (8): eliminates electrician labor + conduit + permits (N01, imp=8, sat=3, opp=13); Pain (8): removes wiring-project management from FM workload; Confidence (5): battery life uncertainty (C4) and N13 (opp=15) lower trust vs. wired",
+          "Market evidence": "N01 (no permanent electrical modification, imp=8, sat=3): dominant market need this feature serves"
+        },
+        {
+          "Feature": "**Pre-Alarm Warning**",
+          "Kano justification": "`attractive` — dominant A1 competitor (40% share) does not have this. Absence is not a disappointment. Multi-tenant commercial buildings have diverse occupants (cleaning staff, couriers, contractors) who trigger accidental alarms regularly.",
+          "Primary ODI drivers": "Delight (6): \"warns before it alarms\" is genuinely unexpected in this market; Stress (7): reduces FM anxiety about false alarms in busy buildings; Pain (6): reduces alarm-fatigue from accidental activations",
+          "Market evidence": "N08 (false alarms from authorized access, imp=8): pre-alarm is a softer catch before key override is even needed"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Statement",
+        "Source Constraint",
+        "Imp",
+        "Sat",
+        "Opp"
+      ],
+      "rows": [
+        {
+          "ID": "PR1",
+          "Statement": "Minimize the likelihood of EasyWave protocol dependency requiring full hardware replacement when a commercial property portfolio transitions to an open-standard BMS platform (KNX or BACnet), measured as percentage of installed door guardian units requiring hardware replacement versus gateway reconfiguration during BMS platform migration",
+          "Source Constraint": "EasyWave Protocol Lock-In (C6)",
+          "Imp": "8",
+          "Sat": "2",
+          "Opp": "14"
+        },
+        {
+          "ID": "PR2",
+          "Statement": "Minimize the likelihood of 868 MHz signal attenuation through reinforced concrete floor slabs creating per-floor monitoring blackouts in multi-story commercial office buildings, measured as number of unplanned repeater additions required to achieve full portfolio coverage versus initial installation plan",
+          "Source Constraint": "Wireless Range Limitation (C3)",
+          "Imp": "7",
+          "Sat": "3",
+          "Opp": "11"
+        },
+        {
+          "ID": "PR3",
+          "Statement": "Minimize the likelihood of IoT door-event timestamp collection triggering a GDPR Article 35 Data Protection Impact Assessment in EU commercial office deployments with employee-occupied areas, measured as percentage of deployments requiring DPIA completion before system activation",
+          "Source Constraint": "GDPR Monitoring Data Compliance (C8)",
+          "Imp": "7",
+          "Sat": "3",
+          "Opp": "11"
+        },
+        {
+          "ID": "PR4",
+          "Statement": "Minimize the likelihood of unheated commercial stairwell and service corridor temperature variations reducing battery service life below the 2-year maintenance target, measured as mean observed battery replacement interval deviation for units in HVAC-dark zones versus conditioned-space units",
+          "Source Constraint": "IoT Battery Life Floor (C4)",
+          "Imp": "6",
+          "Sat": "4",
+          "Opp": "8"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Feature",
+        "Kano",
+        "Vendor Score",
+        "Incumbent Score",
+        "Advantage"
+      ],
+      "rows": [
+        {
+          "#": "V1",
+          "Feature": "868 MHz Wireless Radio Transmission",
+          "Kano": "`attractive`",
+          "Vendor Score": "7",
+          "Incumbent Score": "4",
+          "Advantage": "**superior**"
+        },
+        {
+          "#": "V2",
+          "Feature": "Wireless BUS Interface Integration",
+          "Kano": "`attractive`",
+          "Vendor Score": "6",
+          "Incumbent Score": "5",
+          "Advantage": "**parity**"
+        },
+        {
+          "#": "V3",
+          "Feature": "Dual-Standard Variant Range (EN 179 + EN 1125)",
+          "Kano": "`attractive`",
+          "Vendor Score": "8",
+          "Incumbent Score": "5",
+          "Advantage": "**superior**"
+        },
+        {
+          "#": "V4",
+          "Feature": "IP45 Outdoor Variant",
+          "Kano": "`attractive`",
+          "Vendor Score": "6",
+          "Incumbent Score": "3",
+          "Advantage": "**superior**"
+        },
+        {
+          "#": "V5",
+          "Feature": "Glass-Frame Mounting Plate",
+          "Kano": "`attractive`",
+          "Vendor Score": "7",
+          "Incumbent Score": "2",
+          "Advantage": "**superior**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Feature",
+        "Vendor assessment",
+        "Incumbent comparison",
+        "Key trade-offs"
+      ],
+      "rows": [
+        {
+          "Feature": "**868 MHz Wireless Radio**",
+          "Vendor assessment": "868.3 MHz EasyWave, ~30 m integrated TX, extendable via repeater. Enables retrofit in occupied buildings without electrical conduit. Proprietary protocol.",
+          "Incumbent comparison": "dormakaba SafeRoute delivers richer monitoring via wired LON bus with BMS integration — but requires mains wiring + conduit per door, directly conflicting with N01 (imp=8, sat=3). SafeRoute cannot address the 80% of existing building stock where wiring retrofit is disruptive.",
+          "Key trade-offs": "Vendor wins on deployment accessibility; loses on protocol openness (C6) and BMS integration depth"
+        },
+        {
+          "Feature": "**Wireless BUS Interface**",
+          "Vendor assessment": "GfS Wireless BUS Interface aggregates multi-unit status wirelessly into a central monitoring point. Enables portfolio-level dashboards addressing N11 (opp=14). Limited to ~50 units per gateway; EasyWave-only.",
+          "Incumbent comparison": "SafeRoute offers centralized PC-based monitoring software with richer reporting but requires full wired network. Per-building monitoring depth favors SafeRoute; portfolio retrofit accessibility favors GfS. Net outcome parity for medium portfolios.",
+          "Key trade-offs": "Gap within measurement uncertainty (delta=1); SafeRoute better at scale, GfS better at retrofit"
+        },
+        {
+          "Feature": "**Dual-Standard Variant Range**",
+          "Vendor assessment": "Matched EN 179 (lever handle) and EN 1125 (panic bar) variants from the same product family — identical receiver, BUS interface, and installation procedure. Reduces procurement complexity for mixed commercial portfolios.",
+          "Incumbent comparison": "GEZE SecuLogic covers EN 179 + EN 13637 (electronic), not a matched EN 1125 panic-bar variant. dormakaba SafeRoute is electronic-first and covers EN 13637 only. No identified incumbent offers a wireless-ready matched EN 179 + EN 1125 product family from a single system.",
+          "Key trade-offs": "Clear advantage for mixed-door commercial portfolios (Class A + retail + industrial flex)"
+        },
+        {
+          "Feature": "**IP45 Outdoor Variant**",
+          "Vendor assessment": "Art. 990000-IP provides light weather protection for loading dock exits, covered stairwells, and underground parking emergency exits — relevant for ~15–20% of commercial portfolio doors. Not suitable for washdown (IP65+ required).",
+          "Incumbent comparison": "No identified mechanical or electronic competitor publishes a specific IP-rated variant with wireless monitoring capability. Mechanical-only competitors occasionally offer weatherized housings but no wireless monitoring.",
+          "Key trade-offs": "Genuine differentiator for outdoor/semi-exposed doors; not relevant for the majority of internal office exits"
+        },
+        {
+          "Feature": "**Glass-Frame Mounting Plate**",
+          "Vendor assessment": "Art. 991170 enables installation on glass-panel emergency exit doors without structural modification. Critical for Class A commercial offices with glass-partition layouts — a large and growing segment.",
+          "Incumbent comparison": "No identified competitor (dormakaba, GEZE, Allegion) offers an equivalent non-invasive glass-frame mounting solution. Most alternatives either require hardware replacement or cannot be installed on glass-frame doors.",
+          "Key trade-offs": "Strongest competitive advantage in premium Class A office market (S5 segment)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Check",
+        "Status"
+      ],
+      "rows": [
+        {
+          "#": "1",
+          "Check": "All 6 technology features assessed with Kano + 9 ODI scores",
+          "Status": "PASS"
+        },
+        {
+          "#": "2",
+          "Check": "overall_fit computed arithmetically (sum/9 rounded to 2dp)",
+          "Status": "PASS"
+        },
+        {
+          "#": "3",
+          "Check": "Safety ≥ 7 → Confidence ≥ 5 (internal consistency)",
+          "Status": "PASS — no violations"
+        },
+        {
+          "#": "4",
+          "Check": "Skill ≥ 7 → Stress ≥ 5 (internal consistency)",
+          "Status": "PASS — no violations"
+        },
+        {
+          "#": "5",
+          "Check": "Product-related needs pass litmus test (disappear with A1/A3)",
+          "Status": "PASS — all 4 confirmed"
+        },
+        {
+          "#": "6",
+          "Check": "Product-related needs do not duplicate N01–N22",
+          "Status": "PASS"
+        },
+        {
+          "#": "7",
+          "Check": "Each product-related need traces to a specific constraint",
+          "Status": "PASS"
+        },
+        {
+          "#": "8",
+          "Check": "Vendor features assessed on 0–10 scale vs. specific incumbent",
+          "Status": "PASS — dormakaba SafeRoute named"
+        },
+        {
+          "#": "9",
+          "Check": "Advantage classification: vendor_score vs. incumbent delta > 1 for superior",
+          "Status": "PASS"
+        },
+        {
+          "#": "10",
+          "Check": "Vendor bias check: 4/5 superior — defensible given these ARE vendor-specific differentiators",
+          "Status": "PASS — vendor features selected by GfS precisely to differentiate"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    [
+      {
+        "feature_name": "Mechanical Handle Locking",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "kano_class": "must_be",
+        "fit_score_time": 2,
+        "fit_score_cost": 4,
+        "fit_score_safety": 9,
+        "fit_score_reliability": 8,
+        "fit_score_skill": 5,
+        "fit_score_stress": 6,
+        "fit_score_pain": 4,
+        "fit_score_confidence": 8,
+        "fit_score_delight": 1,
+        "overall_fit": 5.22,
+        "rationale": "must_be — physical handle block is the commodity FP core. Absence = total product failure. Safety (9) and Reliability (8) are primary: directly addresses N04 (false-negative alarm rate, imp=10) which requires the mechanism to reliably engage. Cost (4) reflects displacement of wired lock hardware. Delight (1) — no lessor is surprised by a handle-locking emergency exit device having a handle lock."
+      },
+      {
+        "feature_name": "Audible Alarm Trigger",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "kano_class": "must_be",
+        "fit_score_time": 2,
+        "fit_score_cost": 4,
+        "fit_score_safety": 10,
+        "fit_score_reliability": 8,
+        "fit_score_skill": 6,
+        "fit_score_stress": 7,
+        "fit_score_pain": 6,
+        "fit_score_confidence": 7,
+        "fit_score_delight": 2,
+        "overall_fit": 5.78,
+        "rationale": "must_be — commodity FP explicitly names audible alarm. Safety (10): primary deterrence and immediate notification mechanism; directly serves N04 (imp=10). Stress (7): FM receives local notification even without IoT dashboard. Pain (6): displaces need for dedicated door-watcher on high-traffic exits. Confidence (7): 95 dB piezo is well-understood and trusted in life-safety contexts."
+      },
+      {
+        "feature_name": "Single-Motion Emergency Release",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "kano_class": "must_be",
+        "fit_score_time": 3,
+        "fit_score_cost": 3,
+        "fit_score_safety": 10,
+        "fit_score_reliability": 7,
+        "fit_score_skill": 8,
+        "fit_score_stress": 7,
+        "fit_score_pain": 4,
+        "fit_score_confidence": 9,
+        "fit_score_delight": 1,
+        "overall_fit": 5.78,
+        "rationale": "must_be — EN 179/EN 1125 certification requirement; absence is a regulatory knockout. Safety (10): fire evacuation compliance is a non-negotiable for any commercial building lessor. Confidence (9): certification provides legal certainty that reduces FM and asset manager liability exposure. Skill (8): no prior knowledge required — critical for multi-tenant buildings with diverse, transient occupant populations. Delight (1) — legally required; no delight possible."
+      },
+      {
+        "feature_name": "Key Override Bypass",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "kano_class": "one_dimensional",
+        "fit_score_time": 6,
+        "fit_score_cost": 5,
+        "fit_score_safety": 5,
+        "fit_score_reliability": 6,
+        "fit_score_skill": 5,
+        "fit_score_stress": 7,
+        "fit_score_pain": 6,
+        "fit_score_confidence": 6,
+        "fit_score_delight": 3,
+        "overall_fit": 5.44,
+        "rationale": "one_dimensional — richer key management (electronic credential, per-door audit log, multi-level access) proportionally improves FM operations. More granular = proportionally less false-alarm friction. Stress (7): directly addresses N08 (false alarms from authorized access, imp=8, sat=5). Pain (6): eliminates alarm-trigger/silence cycle for routine maintenance, delivery, and FM inspections. Time (6): authorized access is faster and less disruptive with a reliable bypass."
+      },
+      {
+        "feature_name": "Battery-Powered Operation",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "kano_class": "must_be",
+        "fit_score_time": 5,
+        "fit_score_cost": 8,
+        "fit_score_safety": 3,
+        "fit_score_reliability": 4,
+        "fit_score_skill": 7,
+        "fit_score_stress": 6,
+        "fit_score_pain": 8,
+        "fit_score_confidence": 5,
+        "fit_score_delight": 3,
+        "overall_fit": 5.44,
+        "rationale": "must_be for this market — commercial lessors operate primarily existing building stock where adding electrical conduit per door is prohibitively expensive and disruptive. Cost (8) and Pain (8) are primary: directly serves N01 (no permanent electrical modification, imp=8, sat=3, opp=13). Skill (7): no electrician required, standard building staff can install. Confidence (5) and Reliability (4) are depressed: battery life uncertainty (C4) and N13 (battery depletion detection, opp=15) create unresolved monitoring gaps."
+      },
+      {
+        "feature_name": "Pre-Alarm Warning",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "kano_class": "attractive",
+        "fit_score_time": 3,
+        "fit_score_cost": 4,
+        "fit_score_safety": 4,
+        "fit_score_reliability": 5,
+        "fit_score_skill": 5,
+        "fit_score_stress": 7,
+        "fit_score_pain": 6,
+        "fit_score_confidence": 5,
+        "fit_score_delight": 6,
+        "overall_fit": 5.0,
+        "rationale": "attractive — dominant A1 competitor (40% share) does not have this feature; absence does not cause dissatisfaction. Multi-tenant commercial buildings have high accidental-activation frequency from cleaning staff, couriers, and contractors. Delight (6): 'warns before it alarms' is genuinely unexpected in this market. Stress (7): reduces FM false-alarm anxiety. Pain (6): eliminates accidental full-alarm events before key-override management even becomes necessary. Partial complement to N08 (false alarms from authorized access)."
+      }
+    ],
+    [
+      {
+        "statement": "Minimize the likelihood of EasyWave protocol dependency requiring full hardware replacement when a commercial property portfolio transitions to an open-standard BMS platform (KNX or BACnet), measured as percentage of installed door guardian units requiring hardware replacement versus gateway reconfiguration during BMS platform migration",
+        "source_constraint": "EasyWave Protocol Lock-In",
+        "affected_markets": [
+          "Lessors of Nonresidential Buildings"
+        ],
+        "importance": 8.0,
+        "satisfaction_current": 2.0,
+        "opportunity_score": 14,
+        "product_related": true,
+        "litmus_confirmed": "A3 (dormakaba SafeRoute) uses LON/BACnet natively — no migration lock-in. Need disappears."
+      },
+      {
+        "statement": "Minimize the likelihood of 868 MHz signal attenuation through reinforced concrete floor slabs creating per-floor monitoring blackouts in multi-story commercial office buildings, measured as number of unplanned repeater additions required to achieve full portfolio coverage versus initial installation plan",
+        "source_constraint": "Wireless Range Limitation",
+        "affected_markets": [
+          "Lessors of Nonresidential Buildings"
+        ],
+        "importance": 7.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 11,
+        "product_related": true,
+        "litmus_confirmed": "A3 (wired) has no RF constraint. A1 (mechanical) has no monitoring at all. Need disappears for both."
+      },
+      {
+        "statement": "Minimize the likelihood of IoT door-event timestamp collection triggering a GDPR Article 35 Data Protection Impact Assessment in EU commercial office deployments with employee-occupied areas, measured as percentage of deployments requiring DPIA completion before system activation",
+        "source_constraint": "GDPR Monitoring Data Compliance",
+        "affected_markets": [
+          "Lessors of Nonresidential Buildings"
+        ],
+        "importance": 7.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 11,
+        "product_related": true,
+        "litmus_confirmed": "A1 (mechanical-only) collects no data — zero DPIA exposure. Need disappears."
+      },
+      {
+        "statement": "Minimize the likelihood of unheated commercial stairwell and service corridor temperature variations reducing battery service life below the 2-year maintenance target, measured as mean observed battery replacement interval deviation for units in HVAC-dark zones versus conditioned-space units",
+        "source_constraint": "IoT Battery Life Floor",
+        "affected_markets": [
+          "Lessors of Nonresidential Buildings"
+        ],
+        "importance": 6.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 8,
+        "product_related": true,
+        "litmus_confirmed": "A3 (mains-powered) has no battery. A1 has no IoT module. Need disappears."
+      }
+    ],
+    [
+      {
+        "feature_name": "868 MHz Wireless Radio Transmission",
+        "feature_description": "Transmit door guardian state and alarm events wirelessly to central receivers using 868.3 MHz EasyWave protocol without mains wiring at the door",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "kano_class": "attractive",
+        "vendor_score": 7,
+        "best_incumbent_score": 4,
+        "best_incumbent_technology": "dormakaba SafeRoute (wired LON/BACnet electronic exit control)",
+        "advantage": "superior",
+        "rationale": "GfS 868.3 MHz EasyWave enables retrofit in occupied commercial buildings without electrical conduit — directly serves N01 (imp=8, sat=3, opp=13). SafeRoute delivers richer protocol support and BMS integration depth but requires mains wiring per door, conflicting with N01 and excluding >80% of existing commercial building stock. Vendor scores 7 (not 8–9) due to EasyWave proprietary lock-in (C6) and 30 m range constraint (C3) which add post-sale infrastructure cost. SafeRoute scores 4 on this feature specifically because it requires full wiring infrastructure — not because the product is poor overall."
+      },
+      {
+        "feature_name": "Wireless BUS Interface Integration",
+        "feature_description": "Aggregate emergency exit monitoring status from multiple door guardian units into a centralized Master BUS for portfolio-level visibility",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "kano_class": "attractive",
+        "vendor_score": 6,
+        "best_incumbent_score": 5,
+        "best_incumbent_technology": "dormakaba SafeRoute central monitoring software (wired)",
+        "advantage": "parity",
+        "rationale": "GfS Wireless BUS Interface aggregates up to ~50 units per gateway wirelessly, addressing N11 (portfolio dashboard, imp=8, opp=14) for small-to-mid portfolios without infrastructure investment. SafeRoute offers richer PC-based centralized monitoring software with reporting and event management — but requires full wired network per building. At 20–50 door scale in retrofit scenarios, both achieve comparable monitoring aggregation outcomes via different deployment models. Net gap within measurement uncertainty (delta=1)."
+      },
+      {
+        "feature_name": "Dual-Standard Variant Range",
+        "feature_description": "Cover both lever-handle (EN 179) and panic-bar (EN 1125) emergency exit doors from a single product family with shared wireless infrastructure",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "kano_class": "attractive",
+        "vendor_score": 8,
+        "best_incumbent_score": 5,
+        "best_incumbent_technology": "GEZE SecuLogic (EN 179 + EN 13637 electronic; no matched wireless EN 1125 variant)",
+        "advantage": "superior",
+        "rationale": "GfS offers matched EN 179 (lever handle) and EN 1125 (panic bar) variants from the same product family — identical receiver, BUS gateway, and installation procedure. Commercial lessors managing mixed portfolios (Class A office with EN 179, retail with EN 1125, industrial flex with both) can standardize on a single procurement. GEZE SecuLogic covers EN 179 and EN 13637 electronic but not a wireless-ready EN 1125 panic-bar variant. dormakaba SafeRoute is electronic-first (EN 13637) only. No identified wireless incumbent matches this dual-standard coverage."
+      },
+      {
+        "feature_name": "IP45 Outdoor Variant",
+        "feature_description": "Operate emergency exit monitoring in outdoor and semi-exposed installations with weather protection against dust and water jets",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "kano_class": "attractive",
+        "vendor_score": 6,
+        "best_incumbent_score": 3,
+        "best_incumbent_technology": "Generic mechanical door alarms (no IP rating published)",
+        "advantage": "superior",
+        "rationale": "GfS Art. 990000-IP provides IP45 protection for loading dock exits, covered parking garage stairwells, and external emergency exits — applicable to approximately 15–20% of doors in commercial property portfolios. No identified competitor publishes a specific IP-rated variant with wireless monitoring capability. Vendor scores 6 (not higher) because IP45 is inadequate for washdown environments (IP65+ needed) and does not apply to the majority of indoor office exits. Attracts interest in S6 (industrial flex/logistics park lessors) where outdoor emergency exits are more common."
+      },
+      {
+        "feature_name": "Glass-Frame Mounting Plate",
+        "feature_description": "Enable emergency exit device installation on glass-framed doors without structural modification using a dedicated mounting accessory",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "kano_class": "attractive",
+        "vendor_score": 7,
+        "best_incumbent_score": 2,
+        "best_incumbent_technology": "dormakaba SafeRoute / GEZE SecuLogic (no glass-frame specific solution)",
+        "advantage": "superior",
+        "rationale": "GfS Art. 991170 glass-frame mounting plate enables installation on glass-panel emergency exit doors — a significant and growing portion of Class A commercial office stock (open-plan layouts, glass partitions). Installation requires no drilling or structural modification, directly satisfying N03 (retrofit without structural modification, imp=8). No identified competitor (dormakaba, GEZE, Allegion) offers an equivalent non-invasive glass-frame mounting solution for emergency exit alarm guards. Strongest competitive advantage in S5 (Class A smart-office campus) and S3 (medical office with glass partition walls) segments."
+      }
+    ]
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

@@ -1,0 +1,1216 @@
+{
+  "id": "VN_elementary_secondary_schools",
+  "title": "Value Network — Elementary and Secondary Schools (NAICS 611110)",
+  "type": "value_network",
+  "market_slug": "elementary_secondary_schools",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Header",
+      "content": "| Field | Value |\n|---|---|\n| **NAICS code** | 611110 — Elementary and Secondary Schools |\n| **CFJ** | Deliver structured K-12 academic instruction to enrolled students within a safe, legally compliant, and supervised facility environment |\n| **Output types** | Public elementary school (K–5/K–6); Public middle/junior high school (6–8); Public high school (9–12); Private/parochial school (K–12 or subset); Charter school (K–12 or subset) |\n| **Hierarchy** | Process VN only (L7 → L4). No Product BOM — output is an educational outcome. |\n| **Scale** | ~130,900 K-12 schools in the US; ~34M students enrolled; average building age 49 years (significant retrofit demand) |\n| **Key operators** | Public school districts (LEAs), private school networks (KIPP, diocesan Catholic schools), charter management organizations (CMOs), independent private schools |\n| **Security market size** | Global school/campus security: USD 4.2B (2025), growing at ~20% CAGR. US alone: USD 1.27B (2025). Panic & Emergency Exit Devices globally: USD 3.9B (2025), North America 35% share (~USD 1.37B). |\n\n---"
+    },
+    {
+      "title": "L7 — Ecosystem",
+      "content": "### L7: K-12 Education Delivery Ecosystem\n\nThe complete ecosystem of local education agencies (LEAs), state education departments, federal regulators (ED, OSHA, NFPA), facility managers, technology vendors, safety system suppliers, food service operators, transportation providers, and community stakeholders that co-produce educational outcomes for K-12 students. The ecosystem is shaped by dual regulatory pressure — federal safety mandates (IDEA, Title I, ESEA) and local fire/building codes — which drive recurring capital expenditure across facilities, security, and operations. Post-Uvalde (2022), school security spending in the US exceeded USD 3B annually and continues to accelerate.\n\n---"
+    },
+    {
+      "title": "L6 — System-of-Systems Decomposition",
+      "content": "Seven L6 nodes cover the full operational process for K-12 school delivery. Five are core (sequential process steps); two are horizontal (run in parallel across all core steps).\n\n| L6 ID | Type | Name | Job Family | Description |\n|---|---|---|---|---|\n| **L6a** | Core | Student Enrollment & Records Management | Admit and track enrolled students against legal, funding, and safety requirements | Intake, demographic records, IEP/504 management, attendance tracking, custody authorization, enrollment reporting to state |\n| **L6b** | Core | Instructional Program Delivery | Deliver accredited curriculum to enrolled students | Classroom instruction, labs, library/media centers, physical education, extracurriculars, special education instruction |\n| **L6c** | Core | Student Support & Welfare Services | Sustain physical safety and wellbeing of students during the school day | School nursing, counseling, social work, food service (NSLP), psychological services, student transportation arrival/departure |\n| **L6d** | Core | Campus Safety, Security & Emergency Management | Protect occupants and property while enabling legally compliant evacuation at all times | Access control, emergency exit monitoring, surveillance, lockdown, fire detection, emergency communication, compliance documentation |\n| **L6e** | Core | Facilities Management & Building Operations | Maintain physical environment to code and operational readiness | HVAC, electrical, plumbing, custodial, grounds, deferred maintenance, ADA compliance, energy management |\n| **L6-H1** | Horizontal | IT & EdTech Infrastructure (H) | Provide reliable network, device, and software infrastructure for all core steps | LAN/WiFi, student devices (1:1 programs), SIS platforms (PowerSchool, Infinite Campus), LMS (Canvas, Schoology), identity management |\n| **L6-H2** | Horizontal | Administrative, Finance & Regulatory Compliance (H) | Ensure legal, financial, and reporting compliance across all operations | HR/payroll, budget management, state/federal reporting (ESSA, IDEA), internal audit, insurance, board governance |\n\n---"
+    },
+    {
+      "title": "L6a — Student Enrollment & Records Management",
+      "content": "### L5 Systems under L6a\n\n#### L5.a.1: Student Information System (SIS)\n\nCentral database for all student records: enrollment, demographics, attendance, grades, IEP status, custody alerts. Required for state funding reporting. Accessed by administrators, teachers, counselors.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| PowerSchool | ~40% | MEDIUM |\n| Infinite Campus | ~25% | MEDIUM |\n| Skyward | ~15% | MEDIUM |\n| Tyler Technologies (Munis SIS) | ~10% | MEDIUM |\n| Other / district-built | ~10% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Enrollment & Demographic Module | Student intake forms, address verification, prior school records transfer |\n| Attendance Tracking Engine | Daily period-by-period attendance, state reporting feeds, truancy triggers |\n| IEP / 504 Document Vault | Compliance document storage, service log, IDEA reporting |\n| Parent/Guardian Portal | Secure access for guardians; custody restriction flags visible to staff |\n\n---\n\n#### L5.a.2: Identity & Access Credential Management\n\nIssues and manages staff and student credentials used for building access, IT login, library, and cashless food service. Integrates with the physical access control layer in L6d.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Active Directory / Entra ID (Microsoft) | ~50% | MEDIUM |\n| Google Workspace for Education | ~35% | MEDIUM |\n| District-managed LDAP | ~10% | LOW |\n| Third-party IdP (Okta, Clever) | ~5% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Directory Service | User provisioning, role-based access, single sign-on (SSO) |\n| Smart Card / ID Badge Issuance | Staff and student photo ID cards; optional proximity card for door access |\n| Multi-Factor Authentication | Staff login MFA; mandatory for systems with student PII |\n\n---"
+    },
+    {
+      "title": "L6b — Instructional Program Delivery",
+      "content": "### L5 Systems under L6b\n\n#### L5.b.1: Learning Management System (LMS)\n\nHosts curriculum, assignments, assessments, and parent communication. Increasingly the instructional core post-pandemic.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Canvas (Instructure) | ~30% | MEDIUM |\n| Schoology (PowerSchool) | ~25% | MEDIUM |\n| Google Classroom | ~30% | MEDIUM |\n| Blackboard/Anthology | ~10% | MEDIUM |\n| Other | ~5% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Course Content Repository | Standards-aligned curriculum modules, teacher-created content |\n| Assessment & Gradebook Engine | Formative/summative assessments; grade sync to SIS |\n| Parent/Student Communication | Messaging, progress notifications, announcement feeds |\n\n---\n\n#### L5.b.2: Classroom AV & Display Technology\n\nInteractive whiteboards, projectors, displays that enable multimodal instruction.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Interactive flat-panel display (IFPD) | ~60% | MEDIUM |\n| Projector + screen | ~25% | MEDIUM |\n| Traditional whiteboard only | ~15% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Display Panel / Projector | 65-86\" touchscreen IFPD or ceiling-mounted projector |\n| Control Interface | Touch, stylus, or gesture input; OPS slot for embedded PC |\n| Audio Amplification | Classroom speaker for PA integration and audio instruction |\n\n---"
+    },
+    {
+      "title": "L6c — Student Support & Welfare Services",
+      "content": "### L5 Systems under L6c\n\n#### L5.c.1: School Nutrition Management System\n\nManages USDA National School Lunch Program (NSLP) eligibility, meal transactions, and reimbursement claims. Cafeteria POS at every school is federal mandate.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Heartland School Solutions | ~25% | MEDIUM |\n| Titan School Solutions | ~20% | MEDIUM |\n| Meal Magic / LINQ | ~15% | MEDIUM |\n| Nutrislice / other | ~40% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Eligibility & Free/Reduced Meal Module | Income verification, application processing, USDA claim generation |\n| Cafeteria POS Terminal | Student ID swipe/biometric reader, cashless transaction |\n| Menu & Nutrition Planner | USDA nutrient compliance, allergen flagging |\n\n---\n\n#### L5.c.2: Health & Medical Records Platform\n\nStores student health information, medication orders, immunization records, and emergency contacts. Required for HIPAA compliance in nurse operations.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| SchoolDude / Dude Solutions | ~20% | LOW |\n| EHR-linked platforms | ~15% | LOW |\n| SIS health module (PowerSchool, Infinite Campus) | ~40% | MEDIUM |\n| Paper-based / spreadsheet | ~25% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Immunization Record Vault | State-required immunization documentation |\n| Medication Administration Log | Daily medication dispensing records, physician orders |\n| Emergency Contact & Allergy Registry | First-responder-accessible student health alerts |\n\n---"
+    },
+    {
+      "title": "L6d — Campus Safety, Security & Emergency Management",
+      "content": "**This is the primary entry domain for the Türwächter.** Schools face a dual mandate under building code: emergency exits must be instantly usable for evacuation (IBC Chapter 10, NFPA 101) while being monitored to prevent unauthorized entry/exit during school hours. Post-Uvalde legislation in 32+ US states has dramatically increased spending on door security and monitoring.\n\n### L5 Systems under L6d\n\n#### L5.d.1: Visitor Management & Building Entry Control\n\nManages who enters the building at the main entrance. The first physical security layer.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Video intercom + electric strike at main entry | ~40% | MEDIUM |\n| Visitor management kiosk (Raptor, Verkada, Envoy) | ~35% | MEDIUM |\n| Manual security desk check-in only | ~20% | LOW |\n| Full card-reader access control at main entry | ~5% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Video Intercom Station | Two-way audio/video at main entrance; door release button at front office |\n| Electric Door Strike / Magnetic Lock | Fail-safe electromagnetic lock (releases on power loss for fire egress) |\n| Visitor Kiosk & Badge Printer | ID scan, sex offender registry check, printed visitor badge |\n| Front Office Release Controller | Staff-side buzzer/button or web interface to grant entry |\n\n---\n\n#### L5.d.2: Emergency Exit Alarm & Monitoring Systems\n\n**← TÜRWÄCHTER ENTRY POINT.** Guards secondary fire exits, stairwell doors, and perimeter doors against unauthorized opening during school hours while maintaining instant single-motion evacuation capability per IBC / NFPA 101. Post-Uvalde, these doors are a primary security gap in most schools — any intruder can enter through an unmonitored propped fire exit.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Wired panic hardware (crash bar) with alarm panel integration | ~55% | MEDIUM |\n| Mechanical-only door prop / door contact alarms (no monitoring) | ~30% | MEDIUM |\n| Wireless IoT alarmed exit guards (battery-powered, remote monitoring) | ~15% | LOW |\n\n*Note: Wireless IoT segment is the fastest-growing alternative, driven by school inability to run wire to every perimeter door in aging stock (avg. building age: 49 years). Primary vendors: GfS (Türwächter), Detex EAX series, dormakaba SafeRoute.*\n\n| L4 Subsystem | Description |\n|---|---|\n| Door Handle Guard / Panic Bar Interface | Mechanical blocking arm or clip that physically prevents handle depression; releases by swing or single motion |\n| Alarm Horn / Sounder | 90–95 dB audible alarm triggered on door activation; must function without electrical power (EN 179 / NFPA 101 fail-safe requirement) |\n| Door Position Sensor | Reed switch or magnetic contact detecting open/closed state; feeds monitoring dashboard |\n| Wireless Radio Transmitter (IoT Module) | 868 MHz or BLE/LoRaWAN radio broadcasting door-open events and alarm trigger to central receiver |\n| Battery Pack | Primary power for IoT module; mechanical alarm operates independently with zero power requirement |\n| Wall-Mount Receiver / Gateway | Aggregates radio events from multiple door units; relays to building management or security dashboard |\n\n---\n\n#### L5.d.3: Video Surveillance (CCTV)\n\nMonitors building perimeter, corridors, entry/exit points. Required by many state school safety laws post-2018.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| IP-based cameras + NVR/VMS | ~65% | MEDIUM |\n| Analog CCTV + DVR | ~25% | MEDIUM |\n| Cloud-managed cameras (Verkada, Avigilon) | ~10% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| IP/Analog Camera | Fixed or PTZ dome/bullet camera; outdoor-rated at perimeter |\n| Network Video Recorder (NVR) / DVR | Local video storage; 30–90 day retention typical for evidentiary use |\n| Video Management Software (VMS) | Live view, playback, alert on motion/object detection; integrates with access events |\n| PoE Network Switch | Power + data for IP cameras via Ethernet |\n\n---\n\n#### L5.d.4: Lockdown & Duress Alert System\n\nEnables instant all-staff and law enforcement notification in an active threat. Fastest-growing category since 2018.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Wearable staff badge alert (CENTEGIX, Motorola) | ~30% | MEDIUM |\n| Fixed panic buttons (classroom and corridor) | ~40% | MEDIUM |\n| Unified mass notification + lockdown platform (Raptor, Rave) | ~30% | MEDIUM |\n\n| L4 Subsystem | Description |\n|---|---|\n| Staff Wearable Badge / Duress Button | One-press distress signal; room-level location via BLE beacons |\n| Fixed Panic Button | Wall-mounted button at classroom or front desk; wired or wireless |\n| Alert Management Server | Receives distress signal, triggers lockdown automation (door locks, PA announcement, 911 relay) |\n| Law Enforcement Integration API | Direct feed to dispatch CAD system; reduces average response time |\n\n---\n\n#### L5.d.5: Fire Detection & Alarm System\n\nMandatory life-safety system. Governed by NFPA 72 (National Fire Alarm Code) and IBC Chapter 9. Activates evacuation protocols.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Addressable fire alarm panel | ~60% | MEDIUM |\n| Conventional (zoned) fire alarm panel | ~35% | MEDIUM |\n| Wireless addressable (retrofit) | ~5% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Smoke / Heat Detectors | Photoelectric, ionization, or combination units per NFPA 72 |\n| Pull Stations (Manual Initiating Devices) | Red pull-handle at exits; initiates evacuation alarm |\n| Notification Appliances (Horns / Strobes) | Audible + visible alarm throughout the building |\n| Fire Alarm Control Panel (FACP) | Monitors all initiating devices; reports to central monitoring; integrates with HVAC shutdown |\n\n---\n\n#### L5.d.6: Emergency Communication & PA System\n\nProvides real-time occupant notification during emergencies and daily operations.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| IP intercom / IP-based PA (Syn-Apps, Singlewire, Rauland) | ~40% | MEDIUM |\n| Analog PA (amplifier + speaker network) | ~40% | MEDIUM |\n| Unified mass notification platform (Rave, Omnilert) | ~20% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| IP Speaker / Analog Speaker | Classroom ceiling speaker; outdoor-rated at building perimeter |\n| Amplifier / IP Audio Controller | Zone-based or building-wide audio distribution |\n| Mass Notification Software | Push alerts to phones, digital displays, intercom; integrates with lockdown triggers |\n\n---"
+    },
+    {
+      "title": "L6e — Facilities Management & Building Operations",
+      "content": "### L5 Systems under L6e\n\n#### L5.e.1: Building Automation & HVAC Controls\n\nControls HVAC, lighting, and building systems. IAQ-monitoring requirements post-COVID have accelerated upgrades.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| BACnet/IP BMS (Johnson Controls, Honeywell, Siemens) | ~45% | MEDIUM |\n| Legacy pneumatic controls | ~30% | LOW |\n| Standalone unit controllers (no BMS integration) | ~25% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| DDC Controllers | Direct digital control of AHUs, VAV boxes, boilers, chillers |\n| IAQ Sensors (CO₂, PM2.5) | EPA guidance (CDC/ASHRAE) on school ventilation compliance |\n| BMS Workstation & Dashboard | Facilities staff monitoring, scheduling, energy reporting |\n\n---\n\n#### L5.e.2: Facilities Work Order & Asset Management\n\nManages maintenance requests, preventive maintenance schedules, and asset lifecycle for the building portfolio.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| SchoolDude / Dude Solutions | ~30% | MEDIUM |\n| eMaint / Fiix (Rockwell) | ~15% | LOW |\n| ServiceTrade / generic CMMS | ~20% | LOW |\n| Spreadsheet / paper-based | ~35% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Work Order Engine | Staff submit requests; technicians dispatch and close via mobile |\n| Preventive Maintenance Scheduler | Equipment-linked PM triggers by calendar or runtime hours |\n| Asset Registry | Equipment inventory, warranty tracking, inspection log |\n\n---"
+    },
+    {
+      "title": "L6-H1 — IT & EdTech Infrastructure (Horizontal)",
+      "content": "Runs in parallel across all five core L6 steps. Without reliable network and device infrastructure, SIS, LMS, surveillance, fire alarm monitoring, and facilities platforms all fail.\n\n### L5 Systems under L6-H1\n\n#### L5.h1.1: Campus Network Infrastructure\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Cisco Meraki (cloud-managed) | ~30% | MEDIUM |\n| Ubiquiti / unmanaged alternatives | ~25% | LOW |\n| HPE Aruba | ~20% | MEDIUM |\n| Legacy wired-only networks | ~25% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Core / Distribution Switching | Data center switch stack; VLAN segmentation for safety vs. student traffic |\n| Wireless Access Points | 802.11ax (Wi-Fi 6/6E); classroom-density deployment |\n| Firewall & Content Filter | CIPA-compliant internet filtering; threat detection |\n\n---"
+    },
+    {
+      "title": "Output Type Activation Matrix",
+      "content": "| Process Step | Public Elementary (K–5) | Public Middle (6–8) | Public High (9–12) | Private/Parochial | Charter |\n|---|---|---|---|---|---|\n| L6a Enrollment & Records | ✓ | ✓ | ✓ | ✓ | ✓ |\n| L6b Instructional Delivery | ✓ | ✓ | ✓ | ✓ | ✓ |\n| L6c Student Support & Welfare | ✓ | ✓ | ✓ | ✓ | ✓ |\n| L6d Campus Safety & Security | ✓ | ✓ | **✓ (highest intensity)** | ✓ | ✓ |\n| L6e Facilities Management | ✓ | ✓ | ✓ | ✓ | ✓ |\n| L6-H1 IT & EdTech (H) | ✓ | ✓ | ✓ | varies | ✓ |\n| L6-H2 Admin & Compliance (H) | ✓ | ✓ | ✓ | ✓ | ✓ |\n\n**Reading a column**: High schools activate L6d at the highest intensity — larger occupant loads, more perimeter doors, stricter access control legislation. Private/parochial schools activate L6-H1 at reduced intensity (fewer budget/device mandates).\n\n**Reading a row**: L6d (Campus Safety) is the only step with differentiated activation intensity across output types. All other steps activate uniformly — the CFJ (safe educational delivery) is universal across school types.\n\n---"
+    },
+    {
+      "title": "Türwächter Entry Point Summary",
+      "content": "| Field | Value |\n|---|---|\n| **VN position** | L5.d.2 — Emergency Exit Alarm & Monitoring Systems, under L6d (Campus Safety, Security & Emergency Management) |\n| **Current market share at L5.d.2** | Wireless IoT alarmed exit guards: ~15% of L5.d.2 total installed base (LOW confidence) |\n| **Primary competition at L5.d.2** | Wired panic hardware with panel integration (~55%), mechanical-only door props/alarms (~30%) |\n| **Why L5.d.2 is the entry point** | School emergency exits must simultaneously enable instant evacuation (IBC/NFPA 101) AND be monitored for unauthorized opening during school hours. This dual mandate is the exact functional promise of the Türwächter commodity. |\n| **Upgrade trigger** | ~130,900 K-12 buildings; avg. age 49 years → most lack wired monitoring at secondary/perimeter exits. Wireless retrofit is the only cost-feasible path. |\n| **Constraint relevance** | C4 (battery life) matters at high-traffic exits (school corridors); C6 (EasyWave protocol) matters where districts have standardized BACnet/KNX; C8 (GDPR/FERPA) applies to data-logging of door events in EU and US contexts. |\n| **Adjacent opportunity at L5.d.4** | Lockdown systems increasingly require door-state data as an input (is exit X propped? is hallway Z door closed?). IoT exit monitors can feed this intelligence layer. |\n\n---"
+    },
+    {
+      "title": "QA Self-Check",
+      "content": "| # | Check | Status |\n|---|---|---|\n| Q1 | CFJ is industry-level (zero technology reference) | PASS — \"Deliver structured K-12 academic instruction…\" has no product/technology reference |\n| Q2 | No orphan nodes | PASS — every L5 and L4 unit has a named parent |\n| Q3 | Valid level transitions | PASS — L7→L6→L5→L4 throughout; no level skipping |\n| Q4 | L4 children per L5 ≥ 2 | PASS — minimum 3 L4 subsystems per L5 |\n| Q5 | No solution-specific L7 or L6 names | PASS — L7 is \"K-12 Education Delivery Ecosystem\"; L6 names are process steps, not products |\n| Q6 | Three-question naming test (spot-check 5) | PASS — \"Fire Alarm Control Panel\", \"Video Intercom Station\", \"Alarm Horn / Sounder\", \"DDC Controllers\", \"Work Order Engine\" all pass: industry-standard terms, wrapper removal keeps meaning, expert-recognizable |\n| Q7 | Unit count in range (15–60 target: 20–40) | PASS — ~38 named units across L6 through L4 |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"market_name\": \"Elementary and Secondary Schools\",\n  \"naics_code\": \"611110\",\n  \"naics_title\": \"Elementary and Secondary Schools\",\n  \"cfj_statement\": \"Deliver structured K-12 academic instruction to enrolled students within a safe, legally compliant, and supervised facility environment\",\n  \"top_level\": \"L7\",\n  \"units\": [\n    {\n      \"name\": \"K-12 Education Delivery Ecosystem\",\n      \"level\": \"L7\",\n      \"description\": \"The complete ecosystem of LEAs, state education agencies, federal regulators, facility managers, security system suppliers, food service operators, transportation providers, and EdTech vendors that co-produce educational outcomes for K-12 students\",\n      \"bom_standard\": \"Moore 1993\",\n      \"parent_name\": \"ROOT\"\n    },\n    {\n      \"name\": \"Student Enrollment & Records Management\",\n      \"level\": \"L6\",\n      \"description\": \"Student intake, demographic records, IEP/504 management, attendance tracking, and state enrollment reporting\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"K-12 Education Delivery Ecosystem\"\n    },\n    {\n      \"name\": \"Instructional Program Delivery\",\n      \"level\": \"L6\",\n      \"description\": \"Classroom instruction, labs, library/media centers, physical education, extracurriculars, and special education delivery\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"K-12 Education Delivery Ecosystem\"\n    },\n    {\n      \"name\": \"Student Support & Welfare Services\",\n      \"level\": \"L6\",\n      \"description\": \"School nursing, counseling, food service (NSLP), psychological services, and student transportation safety during arrival/departure\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"K-12 Education Delivery Ecosystem\"\n    },\n    {\n      \"name\": \"Campus Safety, Security & Emergency Management\",\n      \"level\": \"L6\",\n      \"description\": \"Access control, emergency exit monitoring, video surveillance, lockdown systems, fire detection, emergency communication, and compliance documentation. Primary entry domain for the Türwächter.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"K-12 Education Delivery Ecosystem\"\n    },\n    {\n      \"name\": \"Facilities Management & Building Operations\",\n      \"level\": \"L6\",\n      \"description\": \"HVAC, electrical, plumbing, custodial, ADA compliance, and energy management across building stock (avg. age 49 years)\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"K-12 Education Delivery Ecosystem\"\n    },\n    {\n      \"name\": \"IT & EdTech Infrastructure\",\n      \"level\": \"L6\",\n      \"description\": \"HORIZONTAL — Campus network, student devices, SIS, LMS, and identity management. Runs in parallel across all core steps.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"K-12 Education Delivery Ecosystem\"\n    },\n    {\n      \"name\": \"Visitor Management & Building Entry Control\",\n      \"level\": \"L5\",\n      \"description\": \"Main entrance access control: video intercom, electric strike, visitor kiosk with ID scan and sex offender check\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Campus Safety, Security & Emergency Management\"\n    },\n    {\n      \"name\": \"Emergency Exit Alarm & Monitoring Systems\",\n      \"level\": \"L5\",\n      \"description\": \"Guards secondary fire exits and perimeter doors against unauthorized opening during school hours while maintaining instant single-motion evacuation capability per IBC / NFPA 101. TÜRWÄCHTER ENTRY POINT.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Campus Safety, Security & Emergency Management\"\n    },\n    {\n      \"name\": \"Video Surveillance\",\n      \"level\": \"L5\",\n      \"description\": \"IP or analog cameras monitoring building perimeter, corridors, and entry/exit points; NVR/VMS storage and review\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Campus Safety, Security & Emergency Management\"\n    },\n    {\n      \"name\": \"Lockdown & Duress Alert System\",\n      \"level\": \"L5\",\n      \"description\": \"Staff wearable badges, fixed panic buttons, or unified platforms for instant all-occupant and law-enforcement notification during active threats\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Campus Safety, Security & Emergency Management\"\n    },\n    {\n      \"name\": \"Fire Detection & Alarm System\",\n      \"level\": \"L5\",\n      \"description\": \"NFPA 72-compliant addressable or conventional fire alarm panel with smoke detectors, pull stations, and notification appliances\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Campus Safety, Security & Emergency Management\"\n    },\n    {\n      \"name\": \"Emergency Communication & PA System\",\n      \"level\": \"L5\",\n      \"description\": \"IP intercom or analog PA for building-wide occupant notification; integrates with lockdown and mass notification platforms\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Campus Safety, Security & Emergency Management\"\n    },\n    {\n      \"name\": \"Door Handle Guard / Panic Bar Interface\",\n      \"level\": \"L4\",\n      \"description\": \"Mechanical arm or clip mounted on door handle; physically prevents handle depression until released by authorized single-motion swing. No power required.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Alarm & Monitoring Systems\"\n    },\n    {\n      \"name\": \"Alarm Horn / Sounder\",\n      \"level\": \"L4\",\n      \"description\": \"90–95 dB piezoelectric or electronic alarm triggered on door activation. Must function without electrical power (NFPA 101 / EN 179 fail-safe requirement).\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Alarm & Monitoring Systems\"\n    },\n    {\n      \"name\": \"Door Position Sensor\",\n      \"level\": \"L4\",\n      \"description\": \"Reed switch or magnetic contact detecting door open/closed state; state change triggers alarm and IoT event broadcast\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Alarm & Monitoring Systems\"\n    },\n    {\n      \"name\": \"Wireless Radio Transmitter\",\n      \"level\": \"L4\",\n      \"description\": \"868 MHz, BLE, or LoRaWAN module broadcasting door-open events, alarm state, and battery status to the central receiver/gateway\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Alarm & Monitoring Systems\"\n    },\n    {\n      \"name\": \"Battery Pack\",\n      \"level\": \"L4\",\n      \"description\": \"Primary power supply (9V block typical) for the wireless IoT module. Mechanical alarm operates independently with zero electrical power requirement.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Alarm & Monitoring Systems\"\n    },\n    {\n      \"name\": \"Wall-Mount Receiver / Gateway\",\n      \"level\": \"L4\",\n      \"description\": \"Aggregates radio events from multiple door units across the building; relays status to the building security dashboard or central monitoring platform\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Alarm & Monitoring Systems\"\n    }\n  ],\n  \"product_entry_point\": {\n    \"product\": \"GfS Türwächter IoT (Exit Control 179/1125)\",\n    \"vn_level\": \"L5\",\n    \"parent_unit\": \"Campus Safety, Security & Emergency Management\",\n    \"unit_name\": \"Emergency Exit Alarm & Monitoring Systems\",\n    \"alternative_type\": \"Wireless IoT alarmed exit guards\",\n    \"current_market_share_pct\": 15,\n    \"share_confidence\": \"LOW\",\n    \"primary_competitors_at_l5\": [\"Wired panic hardware with alarm panel integration (55%)\", \"Mechanical-only door props/alarms (30%)\"],\n    \"l4_match\": {\n      \"Door Handle Guard / Panic Bar Interface\": \"Türwächter mechanical guard housing\",\n      \"Alarm Horn / Sounder\": \"95 dB piezo alarm horn (power-independent)\",\n      \"Door Position Sensor\": \"Guard-state detection via mechanical switch\",\n      \"Wireless Radio Transmitter\": \"868 MHz EasyWave radio module\",\n      \"Battery Pack\": \"9V block battery\",\n      \"Wall-Mount Receiver / Gateway\": \"GfS EasyWave receiver unit (sold separately)\"\n    }\n  }\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**NAICS code**",
+          "Value": "611110 — Elementary and Secondary Schools"
+        },
+        {
+          "Field": "**CFJ**",
+          "Value": "Deliver structured K-12 academic instruction to enrolled students within a safe, legally compliant, and supervised facility environment"
+        },
+        {
+          "Field": "**Output types**",
+          "Value": "Public elementary school (K–5/K–6); Public middle/junior high school (6–8); Public high school (9–12); Private/parochial school (K–12 or subset); Charter school (K–12 or subset)"
+        },
+        {
+          "Field": "**Hierarchy**",
+          "Value": "Process VN only (L7 → L4). No Product BOM — output is an educational outcome."
+        },
+        {
+          "Field": "**Scale**",
+          "Value": "~130,900 K-12 schools in the US; ~34M students enrolled; average building age 49 years (significant retrofit demand)"
+        },
+        {
+          "Field": "**Key operators**",
+          "Value": "Public school districts (LEAs), private school networks (KIPP, diocesan Catholic schools), charter management organizations (CMOs), independent private schools"
+        },
+        {
+          "Field": "**Security market size**",
+          "Value": "Global school/campus security: USD 4.2B (2025), growing at ~20% CAGR. US alone: USD 1.27B (2025). Panic & Emergency Exit Devices globally: USD 3.9B (2025), North America 35% share (~USD 1.37B)."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L6 ID",
+        "Type",
+        "Name",
+        "Job Family",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L6 ID": "**L6a**",
+          "Type": "Core",
+          "Name": "Student Enrollment & Records Management",
+          "Job Family": "Admit and track enrolled students against legal, funding, and safety requirements",
+          "Description": "Intake, demographic records, IEP/504 management, attendance tracking, custody authorization, enrollment reporting to state"
+        },
+        {
+          "L6 ID": "**L6b**",
+          "Type": "Core",
+          "Name": "Instructional Program Delivery",
+          "Job Family": "Deliver accredited curriculum to enrolled students",
+          "Description": "Classroom instruction, labs, library/media centers, physical education, extracurriculars, special education instruction"
+        },
+        {
+          "L6 ID": "**L6c**",
+          "Type": "Core",
+          "Name": "Student Support & Welfare Services",
+          "Job Family": "Sustain physical safety and wellbeing of students during the school day",
+          "Description": "School nursing, counseling, social work, food service (NSLP), psychological services, student transportation arrival/departure"
+        },
+        {
+          "L6 ID": "**L6d**",
+          "Type": "Core",
+          "Name": "Campus Safety, Security & Emergency Management",
+          "Job Family": "Protect occupants and property while enabling legally compliant evacuation at all times",
+          "Description": "Access control, emergency exit monitoring, surveillance, lockdown, fire detection, emergency communication, compliance documentation"
+        },
+        {
+          "L6 ID": "**L6e**",
+          "Type": "Core",
+          "Name": "Facilities Management & Building Operations",
+          "Job Family": "Maintain physical environment to code and operational readiness",
+          "Description": "HVAC, electrical, plumbing, custodial, grounds, deferred maintenance, ADA compliance, energy management"
+        },
+        {
+          "L6 ID": "**L6-H1**",
+          "Type": "Horizontal",
+          "Name": "IT & EdTech Infrastructure (H)",
+          "Job Family": "Provide reliable network, device, and software infrastructure for all core steps",
+          "Description": "LAN/WiFi, student devices (1:1 programs), SIS platforms (PowerSchool, Infinite Campus), LMS (Canvas, Schoology), identity management"
+        },
+        {
+          "L6 ID": "**L6-H2**",
+          "Type": "Horizontal",
+          "Name": "Administrative, Finance & Regulatory Compliance (H)",
+          "Job Family": "Ensure legal, financial, and reporting compliance across all operations",
+          "Description": "HR/payroll, budget management, state/federal reporting (ESSA, IDEA), internal audit, insurance, board governance"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "PowerSchool",
+          "Market Share": "~40%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Infinite Campus",
+          "Market Share": "~25%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Skyward",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Tyler Technologies (Munis SIS)",
+          "Market Share": "~10%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Other / district-built",
+          "Market Share": "~10%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Enrollment & Demographic Module",
+          "Description": "Student intake forms, address verification, prior school records transfer"
+        },
+        {
+          "L4 Subsystem": "Attendance Tracking Engine",
+          "Description": "Daily period-by-period attendance, state reporting feeds, truancy triggers"
+        },
+        {
+          "L4 Subsystem": "IEP / 504 Document Vault",
+          "Description": "Compliance document storage, service log, IDEA reporting"
+        },
+        {
+          "L4 Subsystem": "Parent/Guardian Portal",
+          "Description": "Secure access for guardians; custody restriction flags visible to staff"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Active Directory / Entra ID (Microsoft)",
+          "Market Share": "~50%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Google Workspace for Education",
+          "Market Share": "~35%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "District-managed LDAP",
+          "Market Share": "~10%",
+          "Confidence": "LOW"
+        },
+        {
+          "Alternative": "Third-party IdP (Okta, Clever)",
+          "Market Share": "~5%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Directory Service",
+          "Description": "User provisioning, role-based access, single sign-on (SSO)"
+        },
+        {
+          "L4 Subsystem": "Smart Card / ID Badge Issuance",
+          "Description": "Staff and student photo ID cards; optional proximity card for door access"
+        },
+        {
+          "L4 Subsystem": "Multi-Factor Authentication",
+          "Description": "Staff login MFA; mandatory for systems with student PII"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Canvas (Instructure)",
+          "Market Share": "~30%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Schoology (PowerSchool)",
+          "Market Share": "~25%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Google Classroom",
+          "Market Share": "~30%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Blackboard/Anthology",
+          "Market Share": "~10%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Other",
+          "Market Share": "~5%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Course Content Repository",
+          "Description": "Standards-aligned curriculum modules, teacher-created content"
+        },
+        {
+          "L4 Subsystem": "Assessment & Gradebook Engine",
+          "Description": "Formative/summative assessments; grade sync to SIS"
+        },
+        {
+          "L4 Subsystem": "Parent/Student Communication",
+          "Description": "Messaging, progress notifications, announcement feeds"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Interactive flat-panel display (IFPD)",
+          "Market Share": "~60%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Projector + screen",
+          "Market Share": "~25%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Traditional whiteboard only",
+          "Market Share": "~15%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Display Panel / Projector",
+          "Description": "65-86\" touchscreen IFPD or ceiling-mounted projector"
+        },
+        {
+          "L4 Subsystem": "Control Interface",
+          "Description": "Touch, stylus, or gesture input; OPS slot for embedded PC"
+        },
+        {
+          "L4 Subsystem": "Audio Amplification",
+          "Description": "Classroom speaker for PA integration and audio instruction"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Heartland School Solutions",
+          "Market Share": "~25%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Titan School Solutions",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Meal Magic / LINQ",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Nutrislice / other",
+          "Market Share": "~40%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Eligibility & Free/Reduced Meal Module",
+          "Description": "Income verification, application processing, USDA claim generation"
+        },
+        {
+          "L4 Subsystem": "Cafeteria POS Terminal",
+          "Description": "Student ID swipe/biometric reader, cashless transaction"
+        },
+        {
+          "L4 Subsystem": "Menu & Nutrition Planner",
+          "Description": "USDA nutrient compliance, allergen flagging"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "SchoolDude / Dude Solutions",
+          "Market Share": "~20%",
+          "Confidence": "LOW"
+        },
+        {
+          "Alternative": "EHR-linked platforms",
+          "Market Share": "~15%",
+          "Confidence": "LOW"
+        },
+        {
+          "Alternative": "SIS health module (PowerSchool, Infinite Campus)",
+          "Market Share": "~40%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Paper-based / spreadsheet",
+          "Market Share": "~25%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Immunization Record Vault",
+          "Description": "State-required immunization documentation"
+        },
+        {
+          "L4 Subsystem": "Medication Administration Log",
+          "Description": "Daily medication dispensing records, physician orders"
+        },
+        {
+          "L4 Subsystem": "Emergency Contact & Allergy Registry",
+          "Description": "First-responder-accessible student health alerts"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Video intercom + electric strike at main entry",
+          "Market Share": "~40%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Visitor management kiosk (Raptor, Verkada, Envoy)",
+          "Market Share": "~35%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Manual security desk check-in only",
+          "Market Share": "~20%",
+          "Confidence": "LOW"
+        },
+        {
+          "Alternative": "Full card-reader access control at main entry",
+          "Market Share": "~5%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Video Intercom Station",
+          "Description": "Two-way audio/video at main entrance; door release button at front office"
+        },
+        {
+          "L4 Subsystem": "Electric Door Strike / Magnetic Lock",
+          "Description": "Fail-safe electromagnetic lock (releases on power loss for fire egress)"
+        },
+        {
+          "L4 Subsystem": "Visitor Kiosk & Badge Printer",
+          "Description": "ID scan, sex offender registry check, printed visitor badge"
+        },
+        {
+          "L4 Subsystem": "Front Office Release Controller",
+          "Description": "Staff-side buzzer/button or web interface to grant entry"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Wired panic hardware (crash bar) with alarm panel integration",
+          "Market Share": "~55%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Mechanical-only door prop / door contact alarms (no monitoring)",
+          "Market Share": "~30%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Wireless IoT alarmed exit guards (battery-powered, remote monitoring)",
+          "Market Share": "~15%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Door Handle Guard / Panic Bar Interface",
+          "Description": "Mechanical blocking arm or clip that physically prevents handle depression; releases by swing or single motion"
+        },
+        {
+          "L4 Subsystem": "Alarm Horn / Sounder",
+          "Description": "90–95 dB audible alarm triggered on door activation; must function without electrical power (EN 179 / NFPA 101 fail-safe requirement)"
+        },
+        {
+          "L4 Subsystem": "Door Position Sensor",
+          "Description": "Reed switch or magnetic contact detecting open/closed state; feeds monitoring dashboard"
+        },
+        {
+          "L4 Subsystem": "Wireless Radio Transmitter (IoT Module)",
+          "Description": "868 MHz or BLE/LoRaWAN radio broadcasting door-open events and alarm trigger to central receiver"
+        },
+        {
+          "L4 Subsystem": "Battery Pack",
+          "Description": "Primary power for IoT module; mechanical alarm operates independently with zero power requirement"
+        },
+        {
+          "L4 Subsystem": "Wall-Mount Receiver / Gateway",
+          "Description": "Aggregates radio events from multiple door units; relays to building management or security dashboard"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "IP-based cameras + NVR/VMS",
+          "Market Share": "~65%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Analog CCTV + DVR",
+          "Market Share": "~25%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Cloud-managed cameras (Verkada, Avigilon)",
+          "Market Share": "~10%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "IP/Analog Camera",
+          "Description": "Fixed or PTZ dome/bullet camera; outdoor-rated at perimeter"
+        },
+        {
+          "L4 Subsystem": "Network Video Recorder (NVR) / DVR",
+          "Description": "Local video storage; 30–90 day retention typical for evidentiary use"
+        },
+        {
+          "L4 Subsystem": "Video Management Software (VMS)",
+          "Description": "Live view, playback, alert on motion/object detection; integrates with access events"
+        },
+        {
+          "L4 Subsystem": "PoE Network Switch",
+          "Description": "Power + data for IP cameras via Ethernet"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Wearable staff badge alert (CENTEGIX, Motorola)",
+          "Market Share": "~30%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Fixed panic buttons (classroom and corridor)",
+          "Market Share": "~40%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Unified mass notification + lockdown platform (Raptor, Rave)",
+          "Market Share": "~30%",
+          "Confidence": "MEDIUM"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Staff Wearable Badge / Duress Button",
+          "Description": "One-press distress signal; room-level location via BLE beacons"
+        },
+        {
+          "L4 Subsystem": "Fixed Panic Button",
+          "Description": "Wall-mounted button at classroom or front desk; wired or wireless"
+        },
+        {
+          "L4 Subsystem": "Alert Management Server",
+          "Description": "Receives distress signal, triggers lockdown automation (door locks, PA announcement, 911 relay)"
+        },
+        {
+          "L4 Subsystem": "Law Enforcement Integration API",
+          "Description": "Direct feed to dispatch CAD system; reduces average response time"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Addressable fire alarm panel",
+          "Market Share": "~60%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Conventional (zoned) fire alarm panel",
+          "Market Share": "~35%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Wireless addressable (retrofit)",
+          "Market Share": "~5%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Smoke / Heat Detectors",
+          "Description": "Photoelectric, ionization, or combination units per NFPA 72"
+        },
+        {
+          "L4 Subsystem": "Pull Stations (Manual Initiating Devices)",
+          "Description": "Red pull-handle at exits; initiates evacuation alarm"
+        },
+        {
+          "L4 Subsystem": "Notification Appliances (Horns / Strobes)",
+          "Description": "Audible + visible alarm throughout the building"
+        },
+        {
+          "L4 Subsystem": "Fire Alarm Control Panel (FACP)",
+          "Description": "Monitors all initiating devices; reports to central monitoring; integrates with HVAC shutdown"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "IP intercom / IP-based PA (Syn-Apps, Singlewire, Rauland)",
+          "Market Share": "~40%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Analog PA (amplifier + speaker network)",
+          "Market Share": "~40%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Unified mass notification platform (Rave, Omnilert)",
+          "Market Share": "~20%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "IP Speaker / Analog Speaker",
+          "Description": "Classroom ceiling speaker; outdoor-rated at building perimeter"
+        },
+        {
+          "L4 Subsystem": "Amplifier / IP Audio Controller",
+          "Description": "Zone-based or building-wide audio distribution"
+        },
+        {
+          "L4 Subsystem": "Mass Notification Software",
+          "Description": "Push alerts to phones, digital displays, intercom; integrates with lockdown triggers"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "BACnet/IP BMS (Johnson Controls, Honeywell, Siemens)",
+          "Market Share": "~45%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Legacy pneumatic controls",
+          "Market Share": "~30%",
+          "Confidence": "LOW"
+        },
+        {
+          "Alternative": "Standalone unit controllers (no BMS integration)",
+          "Market Share": "~25%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "DDC Controllers",
+          "Description": "Direct digital control of AHUs, VAV boxes, boilers, chillers"
+        },
+        {
+          "L4 Subsystem": "IAQ Sensors (CO₂, PM2.5)",
+          "Description": "EPA guidance (CDC/ASHRAE) on school ventilation compliance"
+        },
+        {
+          "L4 Subsystem": "BMS Workstation & Dashboard",
+          "Description": "Facilities staff monitoring, scheduling, energy reporting"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "SchoolDude / Dude Solutions",
+          "Market Share": "~30%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "eMaint / Fiix (Rockwell)",
+          "Market Share": "~15%",
+          "Confidence": "LOW"
+        },
+        {
+          "Alternative": "ServiceTrade / generic CMMS",
+          "Market Share": "~20%",
+          "Confidence": "LOW"
+        },
+        {
+          "Alternative": "Spreadsheet / paper-based",
+          "Market Share": "~35%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Work Order Engine",
+          "Description": "Staff submit requests; technicians dispatch and close via mobile"
+        },
+        {
+          "L4 Subsystem": "Preventive Maintenance Scheduler",
+          "Description": "Equipment-linked PM triggers by calendar or runtime hours"
+        },
+        {
+          "L4 Subsystem": "Asset Registry",
+          "Description": "Equipment inventory, warranty tracking, inspection log"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Cisco Meraki (cloud-managed)",
+          "Market Share": "~30%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Ubiquiti / unmanaged alternatives",
+          "Market Share": "~25%",
+          "Confidence": "LOW"
+        },
+        {
+          "Alternative": "HPE Aruba",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Legacy wired-only networks",
+          "Market Share": "~25%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Core / Distribution Switching",
+          "Description": "Data center switch stack; VLAN segmentation for safety vs. student traffic"
+        },
+        {
+          "L4 Subsystem": "Wireless Access Points",
+          "Description": "802.11ax (Wi-Fi 6/6E); classroom-density deployment"
+        },
+        {
+          "L4 Subsystem": "Firewall & Content Filter",
+          "Description": "CIPA-compliant internet filtering; threat detection"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Process Step",
+        "Public Elementary (K–5)",
+        "Public Middle (6–8)",
+        "Public High (9–12)",
+        "Private/Parochial",
+        "Charter"
+      ],
+      "rows": [
+        {
+          "Process Step": "L6a Enrollment & Records",
+          "Public Elementary (K–5)": "✓",
+          "Public Middle (6–8)": "✓",
+          "Public High (9–12)": "✓",
+          "Private/Parochial": "✓",
+          "Charter": "✓"
+        },
+        {
+          "Process Step": "L6b Instructional Delivery",
+          "Public Elementary (K–5)": "✓",
+          "Public Middle (6–8)": "✓",
+          "Public High (9–12)": "✓",
+          "Private/Parochial": "✓",
+          "Charter": "✓"
+        },
+        {
+          "Process Step": "L6c Student Support & Welfare",
+          "Public Elementary (K–5)": "✓",
+          "Public Middle (6–8)": "✓",
+          "Public High (9–12)": "✓",
+          "Private/Parochial": "✓",
+          "Charter": "✓"
+        },
+        {
+          "Process Step": "L6d Campus Safety & Security",
+          "Public Elementary (K–5)": "✓",
+          "Public Middle (6–8)": "✓",
+          "Public High (9–12)": "**✓ (highest intensity)**",
+          "Private/Parochial": "✓",
+          "Charter": "✓"
+        },
+        {
+          "Process Step": "L6e Facilities Management",
+          "Public Elementary (K–5)": "✓",
+          "Public Middle (6–8)": "✓",
+          "Public High (9–12)": "✓",
+          "Private/Parochial": "✓",
+          "Charter": "✓"
+        },
+        {
+          "Process Step": "L6-H1 IT & EdTech (H)",
+          "Public Elementary (K–5)": "✓",
+          "Public Middle (6–8)": "✓",
+          "Public High (9–12)": "✓",
+          "Private/Parochial": "varies",
+          "Charter": "✓"
+        },
+        {
+          "Process Step": "L6-H2 Admin & Compliance (H)",
+          "Public Elementary (K–5)": "✓",
+          "Public Middle (6–8)": "✓",
+          "Public High (9–12)": "✓",
+          "Private/Parochial": "✓",
+          "Charter": "✓"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**VN position**",
+          "Value": "L5.d.2 — Emergency Exit Alarm & Monitoring Systems, under L6d (Campus Safety, Security & Emergency Management)"
+        },
+        {
+          "Field": "**Current market share at L5.d.2**",
+          "Value": "Wireless IoT alarmed exit guards: ~15% of L5.d.2 total installed base (LOW confidence)"
+        },
+        {
+          "Field": "**Primary competition at L5.d.2**",
+          "Value": "Wired panic hardware with panel integration (~55%), mechanical-only door props/alarms (~30%)"
+        },
+        {
+          "Field": "**Why L5.d.2 is the entry point**",
+          "Value": "School emergency exits must simultaneously enable instant evacuation (IBC/NFPA 101) AND be monitored for unauthorized opening during school hours. This dual mandate is the exact functional promise of the Türwächter commodity."
+        },
+        {
+          "Field": "**Upgrade trigger**",
+          "Value": "~130,900 K-12 buildings; avg. age 49 years → most lack wired monitoring at secondary/perimeter exits. Wireless retrofit is the only cost-feasible path."
+        },
+        {
+          "Field": "**Constraint relevance**",
+          "Value": "C4 (battery life) matters at high-traffic exits (school corridors); C6 (EasyWave protocol) matters where districts have standardized BACnet/KNX; C8 (GDPR/FERPA) applies to data-logging of door events in EU and US contexts."
+        },
+        {
+          "Field": "**Adjacent opportunity at L5.d.4**",
+          "Value": "Lockdown systems increasingly require door-state data as an input (is exit X propped? is hallway Z door closed?). IoT exit monitors can feed this intelligence layer."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Check",
+        "Status"
+      ],
+      "rows": [
+        {
+          "#": "Q1",
+          "Check": "CFJ is industry-level (zero technology reference)",
+          "Status": "PASS — \"Deliver structured K-12 academic instruction…\" has no product/technology reference"
+        },
+        {
+          "#": "Q2",
+          "Check": "No orphan nodes",
+          "Status": "PASS — every L5 and L4 unit has a named parent"
+        },
+        {
+          "#": "Q3",
+          "Check": "Valid level transitions",
+          "Status": "PASS — L7→L6→L5→L4 throughout; no level skipping"
+        },
+        {
+          "#": "Q4",
+          "Check": "L4 children per L5 ≥ 2",
+          "Status": "PASS — minimum 3 L4 subsystems per L5"
+        },
+        {
+          "#": "Q5",
+          "Check": "No solution-specific L7 or L6 names",
+          "Status": "PASS — L7 is \"K-12 Education Delivery Ecosystem\"; L6 names are process steps, not products"
+        },
+        {
+          "#": "Q6",
+          "Check": "Three-question naming test (spot-check 5)",
+          "Status": "PASS — \"Fire Alarm Control Panel\", \"Video Intercom Station\", \"Alarm Horn / Sounder\", \"DDC Controllers\", \"Work Order Engine\" all pass: industry-standard terms, wrapper removal keeps meaning, expert-recognizable"
+        },
+        {
+          "#": "Q7",
+          "Check": "Unit count in range (15–60 target: 20–40)",
+          "Status": "PASS — ~38 named units across L6 through L4"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market_name": "Elementary and Secondary Schools",
+      "naics_code": "611110",
+      "naics_title": "Elementary and Secondary Schools",
+      "cfj_statement": "Deliver structured K-12 academic instruction to enrolled students within a safe, legally compliant, and supervised facility environment",
+      "top_level": "L7",
+      "units": [
+        {
+          "name": "K-12 Education Delivery Ecosystem",
+          "level": "L7",
+          "description": "The complete ecosystem of LEAs, state education agencies, federal regulators, facility managers, security system suppliers, food service operators, transportation providers, and EdTech vendors that co-produce educational outcomes for K-12 students",
+          "bom_standard": "Moore 1993",
+          "parent_name": "ROOT"
+        },
+        {
+          "name": "Student Enrollment & Records Management",
+          "level": "L6",
+          "description": "Student intake, demographic records, IEP/504 management, attendance tracking, and state enrollment reporting",
+          "bom_standard": "Maier 1998",
+          "parent_name": "K-12 Education Delivery Ecosystem"
+        },
+        {
+          "name": "Instructional Program Delivery",
+          "level": "L6",
+          "description": "Classroom instruction, labs, library/media centers, physical education, extracurriculars, and special education delivery",
+          "bom_standard": "Maier 1998",
+          "parent_name": "K-12 Education Delivery Ecosystem"
+        },
+        {
+          "name": "Student Support & Welfare Services",
+          "level": "L6",
+          "description": "School nursing, counseling, food service (NSLP), psychological services, and student transportation safety during arrival/departure",
+          "bom_standard": "Maier 1998",
+          "parent_name": "K-12 Education Delivery Ecosystem"
+        },
+        {
+          "name": "Campus Safety, Security & Emergency Management",
+          "level": "L6",
+          "description": "Access control, emergency exit monitoring, video surveillance, lockdown systems, fire detection, emergency communication, and compliance documentation. Primary entry domain for the Türwächter.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "K-12 Education Delivery Ecosystem"
+        },
+        {
+          "name": "Facilities Management & Building Operations",
+          "level": "L6",
+          "description": "HVAC, electrical, plumbing, custodial, ADA compliance, and energy management across building stock (avg. age 49 years)",
+          "bom_standard": "Maier 1998",
+          "parent_name": "K-12 Education Delivery Ecosystem"
+        },
+        {
+          "name": "IT & EdTech Infrastructure",
+          "level": "L6",
+          "description": "HORIZONTAL — Campus network, student devices, SIS, LMS, and identity management. Runs in parallel across all core steps.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "K-12 Education Delivery Ecosystem"
+        },
+        {
+          "name": "Visitor Management & Building Entry Control",
+          "level": "L5",
+          "description": "Main entrance access control: video intercom, electric strike, visitor kiosk with ID scan and sex offender check",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Campus Safety, Security & Emergency Management"
+        },
+        {
+          "name": "Emergency Exit Alarm & Monitoring Systems",
+          "level": "L5",
+          "description": "Guards secondary fire exits and perimeter doors against unauthorized opening during school hours while maintaining instant single-motion evacuation capability per IBC / NFPA 101. TÜRWÄCHTER ENTRY POINT.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Campus Safety, Security & Emergency Management"
+        },
+        {
+          "name": "Video Surveillance",
+          "level": "L5",
+          "description": "IP or analog cameras monitoring building perimeter, corridors, and entry/exit points; NVR/VMS storage and review",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Campus Safety, Security & Emergency Management"
+        },
+        {
+          "name": "Lockdown & Duress Alert System",
+          "level": "L5",
+          "description": "Staff wearable badges, fixed panic buttons, or unified platforms for instant all-occupant and law-enforcement notification during active threats",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Campus Safety, Security & Emergency Management"
+        },
+        {
+          "name": "Fire Detection & Alarm System",
+          "level": "L5",
+          "description": "NFPA 72-compliant addressable or conventional fire alarm panel with smoke detectors, pull stations, and notification appliances",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Campus Safety, Security & Emergency Management"
+        },
+        {
+          "name": "Emergency Communication & PA System",
+          "level": "L5",
+          "description": "IP intercom or analog PA for building-wide occupant notification; integrates with lockdown and mass notification platforms",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Campus Safety, Security & Emergency Management"
+        },
+        {
+          "name": "Door Handle Guard / Panic Bar Interface",
+          "level": "L4",
+          "description": "Mechanical arm or clip mounted on door handle; physically prevents handle depression until released by authorized single-motion swing. No power required.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Alarm & Monitoring Systems"
+        },
+        {
+          "name": "Alarm Horn / Sounder",
+          "level": "L4",
+          "description": "90–95 dB piezoelectric or electronic alarm triggered on door activation. Must function without electrical power (NFPA 101 / EN 179 fail-safe requirement).",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Alarm & Monitoring Systems"
+        },
+        {
+          "name": "Door Position Sensor",
+          "level": "L4",
+          "description": "Reed switch or magnetic contact detecting door open/closed state; state change triggers alarm and IoT event broadcast",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Alarm & Monitoring Systems"
+        },
+        {
+          "name": "Wireless Radio Transmitter",
+          "level": "L4",
+          "description": "868 MHz, BLE, or LoRaWAN module broadcasting door-open events, alarm state, and battery status to the central receiver/gateway",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Alarm & Monitoring Systems"
+        },
+        {
+          "name": "Battery Pack",
+          "level": "L4",
+          "description": "Primary power supply (9V block typical) for the wireless IoT module. Mechanical alarm operates independently with zero electrical power requirement.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Alarm & Monitoring Systems"
+        },
+        {
+          "name": "Wall-Mount Receiver / Gateway",
+          "level": "L4",
+          "description": "Aggregates radio events from multiple door units across the building; relays status to the building security dashboard or central monitoring platform",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Alarm & Monitoring Systems"
+        }
+      ],
+      "product_entry_point": {
+        "product": "GfS Türwächter IoT (Exit Control 179/1125)",
+        "vn_level": "L5",
+        "parent_unit": "Campus Safety, Security & Emergency Management",
+        "unit_name": "Emergency Exit Alarm & Monitoring Systems",
+        "alternative_type": "Wireless IoT alarmed exit guards",
+        "current_market_share_pct": 15,
+        "share_confidence": "LOW",
+        "primary_competitors_at_l5": [
+          "Wired panic hardware with alarm panel integration (55%)",
+          "Mechanical-only door props/alarms (30%)"
+        ],
+        "l4_match": {
+          "Door Handle Guard / Panic Bar Interface": "Türwächter mechanical guard housing",
+          "Alarm Horn / Sounder": "95 dB piezo alarm horn (power-independent)",
+          "Door Position Sensor": "Guard-state detection via mechanical switch",
+          "Wireless Radio Transmitter": "868 MHz EasyWave radio module",
+          "Battery Pack": "9V block battery",
+          "Wall-Mount Receiver / Gateway": "GfS EasyWave receiver unit (sold separately)"
+        }
+      }
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

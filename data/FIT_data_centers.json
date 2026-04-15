@@ -1,0 +1,542 @@
+{
+  "id": "FIT_data_centers",
+  "title": "Feature-Market Fit: Data Centers (NAICS 518210)",
+  "type": "feature_market_fit",
+  "market_slug": "data_centers",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Step 09 — Technology-Level Feature-Market Fit",
+      "content": "**Market context:** DCs require power-independent monitoring, SOC 2 CC6.4 / ISO 27001 A.7.2 audit trail, SIEM integration, and RF-hostile metal-dense server hall deployment. Pre-alarm Warning is irrelevant in this security-critical context. Battery-Powered Operation is mission-critical during UPS switchover events.\n\n### Kano + 9-Dimension Scores\n\n| Feature | Kano | Time | Cost | Safety | Reliability | Skill | Stress | Pain | Conf. | Delight | Overall |\n|---|---|---|---|---|---|---|---|---|---|---|---|\n| Mechanical Handle Locking | must_be | 2 | 3 | 9 | 8 | 4 | 6 | 5 | 7 | 2 | **5.11** |\n| Audible Alarm Trigger | must_be | 2 | 2 | 7 | 5 | 3 | 5 | 4 | 5 | 2 | **3.89** |\n| Single-Motion Emergency Release | must_be | 3 | 3 | 9 | 7 | 7 | 5 | 3 | 6 | 1 | **4.89** |\n| Key Override Bypass | must_be | 2 | 3 | 6 | 7 | 5 | 7 | 7 | 5 | 2 | **4.89** |\n| Battery-Powered Operation | must_be | 3 | 6 | 8 | 9 | 7 | 7 | 6 | 8 | 4 | **6.44** |\n| Pre-Alarm Warning | indifferent | 1 | 1 | 2 | 3 | 2 | 2 | 2 | 2 | 1 | **1.78** |\n\n### Rationales\n\n| Feature | Kano rationale | Primary ODI drivers | Market evidence |\n|---|---|---|---|\n| **Mechanical Handle Locking** | Table-stakes — DC physical security zones require physical handle blocking as a baseline deterrent. Every credible alternative in the market provides this. | Safety (9): prevents unauthorized entry into caged server / restricted zones. Reliability (8): no power dependency = no failure mode during UPS events. | E10 (imp=9): all activations incl. authorized overrides must be logged; E8 (imp=10): power event continuity |\n| **Audible Alarm Trigger** | Baseline commodity FP feature. Audible alarm is expected but plays a secondary role in DCs — primary alert path is SIEM. Alarm deters tailgaters but does not generate audit evidence. | Safety (7): on-site deterrent. Reliability (5): mechanical trigger works independently of power, but not the primary alert for compliance. | E8 (imp=10): power event robustness — mechanical alarm fires even if SIEM is transiently unreachable |\n| **Single-Motion Emergency Release** | Regulatory non-negotiable. DIN EN 179 / DIN EN 1125 compliance is mandatory regardless of DC context. Fire marshal mandates override any security configuration. | Safety (9): evacuation compliance is non-discretionary. Skill (7): no prior knowledge required — engineers, contractors, first-time users can all exit. | E8: evacuation capability must never be impeded even during security incidents |\n| **Key Override Bypass** | Expected for authorized maintenance access. Unique to this technology: a mechanical key override with NO automatic SIEM log write. This creates E10 (key override unlogged, opp=13). must_be classification acknowledges the feature exists, but its ABSENCE of digital logging is the gap. | Stress (7) / Pain (7): authorized access without triggering full SOC alert. Reliability (7): mechanical key works during power events. | E10 (imp=9, sat=5): authorized bypass events must produce SIEM entries — satisfaction=5 because IoT variants partially address but mechanical override still creates gap |\n| **Battery-Powered Operation** | Commodity baseline for \"Emergency Exit Door Alarm Guards\" — all products in this group are battery-powered per DIN EN 179/1125 power-independence mandate. Scores highest in DC context because power events (UPS switchover, generator start) are when exit monitoring is most critical. The dominant wired panel-integrated incumbent (50% share) loses this property entirely. | Safety (8): alarm fires during UPS switchover, generator start, mains failure. Reliability (9): no single point of failure on the escape path or monitoring chain. Confidence (8): DC operations teams can assert monitoring continuity across any power event. | E8 (imp=10, sat=6, opp=14): wired systems partially satisfy with UPS circuits; battery-powered wireless uniquely satisfies this with no infrastructure dependency |\n| **Pre-Alarm Warning** | Indifferent in DC context. Designed for building contexts where accidental handle touch is common. In a DC restricted zone, touching the emergency exit handle is itself a security event — pre-alarm warning provides a \"try again\" window that is counterproductive for DC security posture. Scores 1–3 throughout. | Reliability (3): mechanical pre-alarm is reliable, but irrelevant. No other dimension applies. | No JTBD error statement maps to false-alarm reduction in DC context. E22 (false positive reduction) relates to SIEM threshold configuration, not physical pre-alarm mechanism. |\n\n---"
+    },
+    {
+      "title": "Step 10 — Product-Related Needs",
+      "content": "> Litmus test applied: \"Would this need disappear if a fundamentally different technology were chosen?\" All 4 needs pass — they exist because of the 868 MHz EasyWave radio-over-proprietary-BUS architecture and battery-primary power model. An IP-native door contact sensor on a wired PACS would eliminate all 4.\n\n| # | Statement | Source Constraint | Affected Markets | Imp | Sat | Opp |\n|---|---|---|---|---|---|---|\n| PRN-1 | Minimize the likelihood of an integrity break in chain-of-custody between the proprietary 868 MHz EasyWave radio event and the IP gateway's outbound log payload, producing SIEM entries with no verifiable link to the originating door sensor activation | EasyWave Protocol Lock-In (C6) | Data Centers | 9 | 2 | 16 |\n| PRN-2 | Minimize the likelihood of RF channel contention from concurrent 868 MHz guard-state broadcasts across a 50+ door deployment in a single server hall causing delayed or silently dropped alarm events during a high-activity period | Wireless Range Limitation (C3) | Data Centers | 7 | 3 | 11 |\n| PRN-3 | Minimize the time required to replace IoT module batteries across a 50+ door DC deployment without triggering accidental alarm events during the replacement procedure, and without requiring the door to pass through an unmonitored state | IoT Battery Life Floor (C4) | Data Centers, General Warehousing | 6 | 4 | 8 |\n| PRN-4 | Minimize the time to verify firmware version and radio protocol configuration consistency across all deployed door guardian units via the central BUS gateway without physical access to individual door-mounted hardware | EasyWave Protocol Lock-In (C6) | Data Centers | 7 | 2 | 12 |\n\n**Note:** PRN-1 (Opp 16) is the highest-opportunity unaddressed product-related need. It sits at the intersection of C6 (proprietary protocol) and E18 (chain-of-custody gap, Opp 17) — the SIEM audit evidence failure mode identified as the top underserved need in the DC market. The satisfaction_current=2 reflects that no vendor in the 868 MHz wireless door alarm category today provides cryptographic chain-of-custody linking sensor event to SIEM entry.\n\n---"
+    },
+    {
+      "title": "Step 11 — Vendor Feature-Market Fit",
+      "content": "**Vendor:** GfS (Assa Abloy) — Exit Control 179/1125 with IoT\n**Vendor product:** Exit Control 179/1125 Pre-alarm + Radio (Art. 990140 / 994100)\n**Condition:** Vendor-scope features only; also includes technology features where GfS implementation differs meaningfully from generic baseline.\n\n### Comparison Table\n\n| Feature | Kano | Vendor | Incumbent | Best Incumbent Technology | Advantage |\n|---|---|---|---|---|---|\n| 868 MHz EasyWave Radio Transmission | one_dimensional | 5 | 6 | IP-Native Wireless Door Contact Sensors | **parity** |\n| Wireless BUS Interface Integration | must_be | 4 | 8 | IP-Native PACS Platforms (Lenel, C•CURE) | **inferior** |\n| Dual-Standard Variant Range (EN 179 + EN 1125) | attractive | 8 | 5 | Wired Panel-Integrated Alarm Systems | **superior** |\n| IP45 Outdoor Variant | attractive | 7 | 4 | Indoor Wireless Door Alarm Guards | **superior** |\n| Glass-Frame Mounting Plate | indifferent | 6 | 4 | Standard Commercial Door Hardware | superior |\n\n### Rationales\n\n**868 MHz EasyWave Radio Transmission → parity (5 vs. 6):**\nGfS achieves ~30 m range adequate for typical DC corridor lengths but with significant attenuation through dense GPU rack rows (>20 dB loss in high-density aisles). Best IP-native wireless alternative (Allegion AD-Series wireless, Nordic Semi BLE-based door contacts) integrates directly into PACS/SIEM via REST — no protocol translation gateway required, no chain-of-custody break. Parity reflects comparable range, with incumbent edge on protocol interoperability for SIEM chains.\n\n**Wireless BUS Interface Integration → inferior (4 vs. 8):**\nGfS Wireless BUS Interface aggregates EasyWave events but outputs via proprietary contact relay, requiring a custom REST/SNMP adapter before SIEM ingestion — introducing a translation layer with no native audit-chain integrity. Best-in-class PACS platforms (Lenel OnGuard 7.x, Software House C•CURE 9000) provide per-event cryptographic timestamps in native SIEM-ready JSON, no adapter required. DC compliance officers specifically cite the unbroken chain from door sensor to SIEM log as the E18 (Opp 17) requirement — GfS fails this natively; IP-native PACS fulfills it.\n\n**Dual-Standard Variant Range → superior (8 vs. 5):**\nGfS offers matched EN 179 (Art. 990140, lever) and EN 1125 (Art. 994100, panic bar) variants within the same EasyWave ecosystem: one BUS gateway, one dashboard, identical configuration workflow. A 60-door DC with mixed door types (server hall side doors = lever; main egress = panic bar) deploys both types on one system with no additional integration cost. Best-in-class wired panel alternatives (Lenel, Bosch DS) require separate zone programming per door type and do not share a unified wireless commissioning tool.\n\n**IP45 Outdoor Variant → superior (7 vs. 4):**\nGfS explicitly certifies Art. 990000-IP to IP45, enabling installation at external DC exits: loading dock emergency exits, external stairwell doors, roof access hatches, and generator yard egress — all monitoring gaps in typical DC deployments. The best available wireless competitor in this category (generic wireless door alarm guards) carries indoor-only ratings; deploying outdoors voids certification and creates audit findings. Wired panel-integrated systems require sealed conduit enclosures for outdoor runs, adding ~€150-250/door incremental cost.\n\n**Glass-Frame Mounting Plate → superior but indifferent (6 vs. 4):**\nSolves glass-partition door installations in modern colo facilities or edge DC spaces with glass-walled meeting rooms adjacent to the server floor. Genuinely differentiating when encountered, but occurs in <5% of DC emergency exit inventory. Indifferent classification reflects low market-level relevance despite technical superiority.\n\n---"
+    },
+    {
+      "title": "Opportunity Summary",
+      "content": "| Feature | Kano | Overall Fit | Key Need Addressed | Opp Score |\n|---|---|---|---|---|\n| Battery-Powered Operation | must_be | 6.44 | E8 — unlogged activation during power event | 14 |\n| Mechanical Handle Locking | must_be | 5.11 | E10 — authorized bypass unlogged | 13 |\n| Key Override Bypass | must_be | 4.89 | E10 — gap between mechanical key and SIEM log | 13 |\n| Single-Motion Emergency Release | must_be | 4.89 | E8 — evacuation must not be impeded | 14 |\n| Audible Alarm Trigger | must_be | 3.89 | E8 — on-site deterrence during power events | 14 |\n| Pre-Alarm Warning | indifferent | 1.78 | — | — |\n\n**Key insight:** Battery-Powered Operation (overall_fit=6.44) is the single highest-fit technology feature and directly addresses the market's highest-importance need (E8, imp=10). The primary **gap** is not at the technology feature level but at the vendor feature level: Wireless BUS Interface Integration scores inferior (4 vs. 8) because the EasyWave → IP gateway protocol translation breaks the chain-of-custody that DC compliance teams require for SOC 2 CC6.4. This maps directly to PRN-1 (opp ~16) and E18 (opp=17) — the two highest-opportunity unaddressed needs in the market.\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### Step 09 — TechFeatureFitEntry[]\n\n```json\n[\n  {\n    \"feature_name\": \"Mechanical Handle Locking\",\n    \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n    \"naics_code\": \"518210\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 2,\n    \"fit_score_cost\": 3,\n    \"fit_score_safety\": 9,\n    \"fit_score_reliability\": 8,\n    \"fit_score_skill\": 4,\n    \"fit_score_stress\": 6,\n    \"fit_score_pain\": 5,\n    \"fit_score_confidence\": 7,\n    \"fit_score_delight\": 2,\n    \"overall_fit\": 5.11,\n    \"rationale\": \"Table-stakes in DC restricted-zone context. Physical handle blocking is expected on all emergency exit alarm guards. Primary drivers: Safety (9) — prevents unauthorized entry into caged server zones; Reliability (8) — mechanical mechanism has no electrical failure mode during UPS events. Grounded in E10 (imp=9): all activations including authorized must produce a log — mechanical locking is the physical event trigger that makes logging meaningful.\"\n  },\n  {\n    \"feature_name\": \"Audible Alarm Trigger\",\n    \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n    \"naics_code\": \"518210\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 2,\n    \"fit_score_cost\": 2,\n    \"fit_score_safety\": 7,\n    \"fit_score_reliability\": 5,\n    \"fit_score_skill\": 3,\n    \"fit_score_stress\": 5,\n    \"fit_score_pain\": 4,\n    \"fit_score_confidence\": 5,\n    \"fit_score_delight\": 2,\n    \"overall_fit\": 3.89,\n    \"rationale\": \"Commodity baseline per Functional Promise. In DC context, primary alert path is SIEM (electronic), not audible. 95 dB alarm deters tailgating and alerts on-site guard — Safety (7). Low reliability score (5) reflects that the audible alarm alone is insufficient for compliance — it creates no audit record. Grounded in E8 (imp=10): alarm must work during power events (mechanical trigger satisfies), but SIEM logging is the compliance deliverable.\"\n  },\n  {\n    \"feature_name\": \"Single-Motion Emergency Release\",\n    \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n    \"naics_code\": \"518210\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 3,\n    \"fit_score_cost\": 3,\n    \"fit_score_safety\": 9,\n    \"fit_score_reliability\": 7,\n    \"fit_score_skill\": 7,\n    \"fit_score_stress\": 5,\n    \"fit_score_pain\": 3,\n    \"fit_score_confidence\": 6,\n    \"fit_score_delight\": 1,\n    \"overall_fit\": 4.89,\n    \"rationale\": \"Regulatory mandate — DIN EN 179 / DIN EN 1125 compliance is non-discretionary regardless of DC context. Fire code overrides any DC security configuration. Primary drivers: Safety (9) — evacuation cannot be impeded even in high-security zones; Skill (7) — untrained contractors, visitors, first responders can exit without prior knowledge. No delight (1) — purely compliance baseline.\"\n  },\n  {\n    \"feature_name\": \"Key Override Bypass\",\n    \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n    \"naics_code\": \"518210\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 2,\n    \"fit_score_cost\": 3,\n    \"fit_score_safety\": 6,\n    \"fit_score_reliability\": 7,\n    \"fit_score_skill\": 5,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 7,\n    \"fit_score_confidence\": 5,\n    \"fit_score_delight\": 2,\n    \"overall_fit\": 4.89,\n    \"rationale\": \"Expected for authorized maintenance access in restricted DC zones. Primary drivers: Stress (7) / Pain (7) — authorized engineers can access via emergency exit without triggering SOC alert and guard dispatch. Confidence (5, not higher) reflects E10 (imp=9, sat=5): the physical key override produces NO automatic SIEM log entry in mechanical-only configurations, creating an audit gap. The feature is must_be but its logging limitation is the critical gap driving E10.\"\n  },\n  {\n    \"feature_name\": \"Battery-Powered Operation\",\n    \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n    \"naics_code\": \"518210\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 3,\n    \"fit_score_cost\": 6,\n    \"fit_score_safety\": 8,\n    \"fit_score_reliability\": 9,\n    \"fit_score_skill\": 7,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 6,\n    \"fit_score_confidence\": 8,\n    \"fit_score_delight\": 4,\n    \"overall_fit\": 6.44,\n    \"rationale\": \"Must_be for Emergency Exit Door Alarm Guards (commodity FP mandates power independence), but highest-scoring feature in DC context. DC power events — UPS switchover, generator start, mains failure — are the moments when monitoring continuity is most critical. Battery-powered operation uniquely ensures the alarm fires and monitoring continues with no dependency on facility power infrastructure. Primary drivers: Reliability (9) — no single point of failure on monitoring chain; Safety (8) — alarm trigger fires during power events when wired panel-integrated incumbents may reboot; Confidence (8) — DC operations can assert continuous monitoring coverage. Directly addresses E8 (imp=10, sat=6, opp=14): the highest-importance need in the market.\"\n  },\n  {\n    \"feature_name\": \"Pre-Alarm Warning\",\n    \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n    \"naics_code\": \"518210\",\n    \"kano_class\": \"indifferent\",\n    \"fit_score_time\": 1,\n    \"fit_score_cost\": 1,\n    \"fit_score_safety\": 2,\n    \"fit_score_reliability\": 3,\n    \"fit_score_skill\": 2,\n    \"fit_score_stress\": 2,\n    \"fit_score_pain\": 2,\n    \"fit_score_confidence\": 2,\n    \"fit_score_delight\": 1,\n    \"overall_fit\": 1.78,\n    \"rationale\": \"Indifferent in DC security context. Pre-alarm is designed to reduce false alarms from accidental handle contact in building contexts. In a data center restricted zone, any handle contact is itself a security event — the pre-alarm 'grace period' provides an opportunity to abort a security breach before triggering SOC response, which is counterproductive. No DC JTBD error statement maps to false-alarm reduction from accidental touch. E22 (false positives) addresses SIEM threshold configuration, not physical pre-alarm mechanics.\"\n  }\n]\n```\n\n### Step 10 — ProductRelatedNeedEntry[]\n\n```json\n[\n  {\n    \"statement\": \"Minimize the likelihood of an integrity break in chain-of-custody between the proprietary 868 MHz EasyWave radio event and the IP gateway's outbound log payload, producing SIEM entries with no verifiable link to the originating door sensor activation\",\n    \"source_constraint\": \"EasyWave Protocol Lock-In\",\n    \"affected_markets\": [\"Computing Infrastructure Providers / Data Centers\"],\n    \"importance\": 9.0,\n    \"satisfaction_current\": 2.0\n  },\n  {\n    \"statement\": \"Minimize the likelihood of RF channel contention from concurrent 868 MHz guard-state broadcasts across a 50+ door deployment in a single server hall causing delayed or silently dropped alarm events during a high-activity security period\",\n    \"source_constraint\": \"Wireless Range Limitation\",\n    \"affected_markets\": [\"Computing Infrastructure Providers / Data Centers\"],\n    \"importance\": 7.0,\n    \"satisfaction_current\": 3.0\n  },\n  {\n    \"statement\": \"Minimize the time required to replace IoT module batteries across a 50+ door DC deployment without triggering accidental alarm events during the replacement procedure and without passing any door through an unmonitored state\",\n    \"source_constraint\": \"IoT Battery Life Floor\",\n    \"affected_markets\": [\"Computing Infrastructure Providers / Data Centers\", \"General Warehousing and Storage\"],\n    \"importance\": 6.0,\n    \"satisfaction_current\": 4.0\n  },\n  {\n    \"statement\": \"Minimize the time to verify firmware version and radio protocol configuration consistency across all deployed door guardian radio modules via the central BUS gateway without requiring physical access to individual door-mounted hardware\",\n    \"source_constraint\": \"EasyWave Protocol Lock-In\",\n    \"affected_markets\": [\"Computing Infrastructure Providers / Data Centers\"],\n    \"importance\": 7.0,\n    \"satisfaction_current\": 2.0\n  }\n]\n```\n\n### Step 11 — VendorFeatureComparison[]\n\n```json\n[\n  {\n    \"feature_name\": \"868 MHz EasyWave Radio Transmission\",\n    \"feature_description\": \"Transmit guard-state and alarm events wirelessly to central receivers using proprietary 868.3 MHz EasyWave protocol with ~30 m range extendable via repeater stages\",\n    \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n    \"naics_code\": \"518210\",\n    \"vendor_score\": 5,\n    \"best_incumbent_score\": 6,\n    \"best_incumbent_technology\": \"IP-Native Wireless Door Contact Sensors\",\n    \"advantage\": \"parity\",\n    \"kano_class\": \"one_dimensional\",\n    \"rationale\": \"GfS EasyWave achieves adequate ~30 m range for typical DC corridor lengths but sustains >20 dB attenuation through dense GPU rack rows. Best-in-class wireless alternative (Allegion AD-Series wireless, BLE/WiFi-native door contacts) integrates directly into PACS/SIEM via REST — no protocol translation gateway and no chain-of-custody break. Parity verdict: comparable range performance; incumbent edge on native protocol interoperability eliminates the EasyWave→IP adapter translation gap that drives PRN-1 and E18.\"\n  },\n  {\n    \"feature_name\": \"Wireless BUS Interface Integration\",\n    \"feature_description\": \"Aggregate status events from multiple door guardian units into a centralized Master BUS for building management system integration via contact relay output\",\n    \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n    \"naics_code\": \"518210\",\n    \"vendor_score\": 4,\n    \"best_incumbent_score\": 8,\n    \"best_incumbent_technology\": \"IP-Native PACS Integration Platforms (Lenel OnGuard, C•CURE 9000)\",\n    \"advantage\": \"inferior\",\n    \"kano_class\": \"must_be\",\n    \"rationale\": \"GfS Wireless BUS Interface provides event aggregation but outputs via proprietary contact relay, requiring a custom REST/SNMP adapter before SIEM ingestion — creating the chain-of-custody break identified in E18 (opp=17, the market's top underserved need). Best-in-class PACS platforms (Lenel OnGuard 7.x, Software House C•CURE 9000) deliver per-event cryptographic timestamps in SIEM-ready JSON natively, with no translation layer. Gap: vendor 4 vs. incumbent 8 on the dimension that drives SOC 2 CC6.4 certification outcomes.\"\n  },\n  {\n    \"feature_name\": \"Dual-Standard Variant Range\",\n    \"feature_description\": \"Offer matched product variants for DIN EN 179 lever-handle doors and DIN EN 1125 panic-bar doors within the same EasyWave BUS ecosystem\",\n    \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n    \"naics_code\": \"518210\",\n    \"vendor_score\": 8,\n    \"best_incumbent_score\": 5,\n    \"best_incumbent_technology\": \"Wired Panel-Integrated Alarm Systems\",\n    \"advantage\": \"superior\",\n    \"kano_class\": \"attractive\",\n    \"rationale\": \"GfS offers Art. 990140 (EN 179 lever) and Art. 994100 (EN 1125 panic bar) as drop-in variants under one BUS gateway and one management interface — a 60-door DC with mixed door types commissions the full deployment with no cross-system integration. Best-in-class wired panel incumbents (Lenel, Bosch DS series) require separate zone programming per standard and do not provide a unified wireless commissioning tool across door types. DC procurement teams managing mixed-door inventory see a meaningful simplification that wired alternatives do not offer.\"\n  },\n  {\n    \"feature_name\": \"IP45 Outdoor Variant\",\n    \"feature_description\": \"Provide a weather-rated (IP45) door guardian variant for deployment at outdoor and semi-exposed emergency exits without voiding certification\",\n    \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n    \"naics_code\": \"518210\",\n    \"vendor_score\": 7,\n    \"best_incumbent_score\": 4,\n    \"best_incumbent_technology\": \"Indoor Wireless Door Alarm Guards\",\n    \"advantage\": \"superior\",\n    \"kano_class\": \"attractive\",\n    \"rationale\": \"GfS Art. 990000-IP (IP45 certified) enables monitoring of loading dock emergency exits, external stairwell doors, and roof access hatches — monitoring gaps present in virtually all large DC facilities. The dominant wireless alternative category (indoor wireless door alarm guards) carries indoor-only ratings; outdoor deployment voids certification and creates SOC 2 audit findings. Best available wired alternative for outdoor DC exits requires sealed conduit enclosures adding ~€150-250/door incremental hardware cost with no alarm-plus-monitoring integration.\"\n  },\n  {\n    \"feature_name\": \"Glass-Frame Mounting Plate\",\n    \"feature_description\": \"Enable surface-mount installation on glass-framed emergency exit doors using dedicated mounting plate (Art. 991170) without structural modification\",\n    \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n    \"naics_code\": \"518210\",\n    \"vendor_score\": 6,\n    \"best_incumbent_score\": 4,\n    \"best_incumbent_technology\": \"Standard Commercial Door Hardware\",\n    \"advantage\": \"superior\",\n    \"kano_class\": \"indifferent\",\n    \"rationale\": \"Solves glass-frame retrofit scenarios in modern colo facilities or edge DC spaces with glass-partition rooms adjacent to server floors. Technically differentiating (few alternatives offer purpose-built glass-frame mounting for alarm guards) but indifferent at market level — glass-frame emergency exit doors represent <5% of DC emergency exit inventory. Verdict is superior on the feature itself but carries no weight in market-level fit due to indifferent Kano classification.\"\n  }\n]\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Feature",
+        "Kano",
+        "Time",
+        "Cost",
+        "Safety",
+        "Reliability",
+        "Skill",
+        "Stress",
+        "Pain",
+        "Conf.",
+        "Delight",
+        "Overall"
+      ],
+      "rows": [
+        {
+          "Feature": "Mechanical Handle Locking",
+          "Kano": "must_be",
+          "Time": "2",
+          "Cost": "3",
+          "Safety": "9",
+          "Reliability": "8",
+          "Skill": "4",
+          "Stress": "6",
+          "Pain": "5",
+          "Conf.": "7",
+          "Delight": "2",
+          "Overall": "**5.11**"
+        },
+        {
+          "Feature": "Audible Alarm Trigger",
+          "Kano": "must_be",
+          "Time": "2",
+          "Cost": "2",
+          "Safety": "7",
+          "Reliability": "5",
+          "Skill": "3",
+          "Stress": "5",
+          "Pain": "4",
+          "Conf.": "5",
+          "Delight": "2",
+          "Overall": "**3.89**"
+        },
+        {
+          "Feature": "Single-Motion Emergency Release",
+          "Kano": "must_be",
+          "Time": "3",
+          "Cost": "3",
+          "Safety": "9",
+          "Reliability": "7",
+          "Skill": "7",
+          "Stress": "5",
+          "Pain": "3",
+          "Conf.": "6",
+          "Delight": "1",
+          "Overall": "**4.89**"
+        },
+        {
+          "Feature": "Key Override Bypass",
+          "Kano": "must_be",
+          "Time": "2",
+          "Cost": "3",
+          "Safety": "6",
+          "Reliability": "7",
+          "Skill": "5",
+          "Stress": "7",
+          "Pain": "7",
+          "Conf.": "5",
+          "Delight": "2",
+          "Overall": "**4.89**"
+        },
+        {
+          "Feature": "Battery-Powered Operation",
+          "Kano": "must_be",
+          "Time": "3",
+          "Cost": "6",
+          "Safety": "8",
+          "Reliability": "9",
+          "Skill": "7",
+          "Stress": "7",
+          "Pain": "6",
+          "Conf.": "8",
+          "Delight": "4",
+          "Overall": "**6.44**"
+        },
+        {
+          "Feature": "Pre-Alarm Warning",
+          "Kano": "indifferent",
+          "Time": "1",
+          "Cost": "1",
+          "Safety": "2",
+          "Reliability": "3",
+          "Skill": "2",
+          "Stress": "2",
+          "Pain": "2",
+          "Conf.": "2",
+          "Delight": "1",
+          "Overall": "**1.78**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Feature",
+        "Kano rationale",
+        "Primary ODI drivers",
+        "Market evidence"
+      ],
+      "rows": [
+        {
+          "Feature": "**Mechanical Handle Locking**",
+          "Kano rationale": "Table-stakes — DC physical security zones require physical handle blocking as a baseline deterrent. Every credible alternative in the market provides this.",
+          "Primary ODI drivers": "Safety (9): prevents unauthorized entry into caged server / restricted zones. Reliability (8): no power dependency = no failure mode during UPS events.",
+          "Market evidence": "E10 (imp=9): all activations incl. authorized overrides must be logged; E8 (imp=10): power event continuity"
+        },
+        {
+          "Feature": "**Audible Alarm Trigger**",
+          "Kano rationale": "Baseline commodity FP feature. Audible alarm is expected but plays a secondary role in DCs — primary alert path is SIEM. Alarm deters tailgaters but does not generate audit evidence.",
+          "Primary ODI drivers": "Safety (7): on-site deterrent. Reliability (5): mechanical trigger works independently of power, but not the primary alert for compliance.",
+          "Market evidence": "E8 (imp=10): power event robustness — mechanical alarm fires even if SIEM is transiently unreachable"
+        },
+        {
+          "Feature": "**Single-Motion Emergency Release**",
+          "Kano rationale": "Regulatory non-negotiable. DIN EN 179 / DIN EN 1125 compliance is mandatory regardless of DC context. Fire marshal mandates override any security configuration.",
+          "Primary ODI drivers": "Safety (9): evacuation compliance is non-discretionary. Skill (7): no prior knowledge required — engineers, contractors, first-time users can all exit.",
+          "Market evidence": "E8: evacuation capability must never be impeded even during security incidents"
+        },
+        {
+          "Feature": "**Key Override Bypass**",
+          "Kano rationale": "Expected for authorized maintenance access. Unique to this technology: a mechanical key override with NO automatic SIEM log write. This creates E10 (key override unlogged, opp=13). must_be classification acknowledges the feature exists, but its ABSENCE of digital logging is the gap.",
+          "Primary ODI drivers": "Stress (7) / Pain (7): authorized access without triggering full SOC alert. Reliability (7): mechanical key works during power events.",
+          "Market evidence": "E10 (imp=9, sat=5): authorized bypass events must produce SIEM entries — satisfaction=5 because IoT variants partially address but mechanical override still creates gap"
+        },
+        {
+          "Feature": "**Battery-Powered Operation**",
+          "Kano rationale": "Commodity baseline for \"Emergency Exit Door Alarm Guards\" — all products in this group are battery-powered per DIN EN 179/1125 power-independence mandate. Scores highest in DC context because power events (UPS switchover, generator start) are when exit monitoring is most critical. The dominant wired panel-integrated incumbent (50% share) loses this property entirely.",
+          "Primary ODI drivers": "Safety (8): alarm fires during UPS switchover, generator start, mains failure. Reliability (9): no single point of failure on the escape path or monitoring chain. Confidence (8): DC operations teams can assert monitoring continuity across any power event.",
+          "Market evidence": "E8 (imp=10, sat=6, opp=14): wired systems partially satisfy with UPS circuits; battery-powered wireless uniquely satisfies this with no infrastructure dependency"
+        },
+        {
+          "Feature": "**Pre-Alarm Warning**",
+          "Kano rationale": "Indifferent in DC context. Designed for building contexts where accidental handle touch is common. In a DC restricted zone, touching the emergency exit handle is itself a security event — pre-alarm warning provides a \"try again\" window that is counterproductive for DC security posture. Scores 1–3 throughout.",
+          "Primary ODI drivers": "Reliability (3): mechanical pre-alarm is reliable, but irrelevant. No other dimension applies.",
+          "Market evidence": "No JTBD error statement maps to false-alarm reduction in DC context. E22 (false positive reduction) relates to SIEM threshold configuration, not physical pre-alarm mechanism."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Statement",
+        "Source Constraint",
+        "Affected Markets",
+        "Imp",
+        "Sat",
+        "Opp"
+      ],
+      "rows": [
+        {
+          "#": "PRN-1",
+          "Statement": "Minimize the likelihood of an integrity break in chain-of-custody between the proprietary 868 MHz EasyWave radio event and the IP gateway's outbound log payload, producing SIEM entries with no verifiable link to the originating door sensor activation",
+          "Source Constraint": "EasyWave Protocol Lock-In (C6)",
+          "Affected Markets": "Data Centers",
+          "Imp": "9",
+          "Sat": "2",
+          "Opp": "16"
+        },
+        {
+          "#": "PRN-2",
+          "Statement": "Minimize the likelihood of RF channel contention from concurrent 868 MHz guard-state broadcasts across a 50+ door deployment in a single server hall causing delayed or silently dropped alarm events during a high-activity period",
+          "Source Constraint": "Wireless Range Limitation (C3)",
+          "Affected Markets": "Data Centers",
+          "Imp": "7",
+          "Sat": "3",
+          "Opp": "11"
+        },
+        {
+          "#": "PRN-3",
+          "Statement": "Minimize the time required to replace IoT module batteries across a 50+ door DC deployment without triggering accidental alarm events during the replacement procedure, and without requiring the door to pass through an unmonitored state",
+          "Source Constraint": "IoT Battery Life Floor (C4)",
+          "Affected Markets": "Data Centers, General Warehousing",
+          "Imp": "6",
+          "Sat": "4",
+          "Opp": "8"
+        },
+        {
+          "#": "PRN-4",
+          "Statement": "Minimize the time to verify firmware version and radio protocol configuration consistency across all deployed door guardian units via the central BUS gateway without physical access to individual door-mounted hardware",
+          "Source Constraint": "EasyWave Protocol Lock-In (C6)",
+          "Affected Markets": "Data Centers",
+          "Imp": "7",
+          "Sat": "2",
+          "Opp": "12"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Feature",
+        "Kano",
+        "Vendor",
+        "Incumbent",
+        "Best Incumbent Technology",
+        "Advantage"
+      ],
+      "rows": [
+        {
+          "Feature": "868 MHz EasyWave Radio Transmission",
+          "Kano": "one_dimensional",
+          "Vendor": "5",
+          "Incumbent": "6",
+          "Best Incumbent Technology": "IP-Native Wireless Door Contact Sensors",
+          "Advantage": "**parity**"
+        },
+        {
+          "Feature": "Wireless BUS Interface Integration",
+          "Kano": "must_be",
+          "Vendor": "4",
+          "Incumbent": "8",
+          "Best Incumbent Technology": "IP-Native PACS Platforms (Lenel, C•CURE)",
+          "Advantage": "**inferior**"
+        },
+        {
+          "Feature": "Dual-Standard Variant Range (EN 179 + EN 1125)",
+          "Kano": "attractive",
+          "Vendor": "8",
+          "Incumbent": "5",
+          "Best Incumbent Technology": "Wired Panel-Integrated Alarm Systems",
+          "Advantage": "**superior**"
+        },
+        {
+          "Feature": "IP45 Outdoor Variant",
+          "Kano": "attractive",
+          "Vendor": "7",
+          "Incumbent": "4",
+          "Best Incumbent Technology": "Indoor Wireless Door Alarm Guards",
+          "Advantage": "**superior**"
+        },
+        {
+          "Feature": "Glass-Frame Mounting Plate",
+          "Kano": "indifferent",
+          "Vendor": "6",
+          "Incumbent": "4",
+          "Best Incumbent Technology": "Standard Commercial Door Hardware",
+          "Advantage": "superior"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Feature",
+        "Kano",
+        "Overall Fit",
+        "Key Need Addressed",
+        "Opp Score"
+      ],
+      "rows": [
+        {
+          "Feature": "Battery-Powered Operation",
+          "Kano": "must_be",
+          "Overall Fit": "6.44",
+          "Key Need Addressed": "E8 — unlogged activation during power event",
+          "Opp Score": "14"
+        },
+        {
+          "Feature": "Mechanical Handle Locking",
+          "Kano": "must_be",
+          "Overall Fit": "5.11",
+          "Key Need Addressed": "E10 — authorized bypass unlogged",
+          "Opp Score": "13"
+        },
+        {
+          "Feature": "Key Override Bypass",
+          "Kano": "must_be",
+          "Overall Fit": "4.89",
+          "Key Need Addressed": "E10 — gap between mechanical key and SIEM log",
+          "Opp Score": "13"
+        },
+        {
+          "Feature": "Single-Motion Emergency Release",
+          "Kano": "must_be",
+          "Overall Fit": "4.89",
+          "Key Need Addressed": "E8 — evacuation must not be impeded",
+          "Opp Score": "14"
+        },
+        {
+          "Feature": "Audible Alarm Trigger",
+          "Kano": "must_be",
+          "Overall Fit": "3.89",
+          "Key Need Addressed": "E8 — on-site deterrence during power events",
+          "Opp Score": "14"
+        },
+        {
+          "Feature": "Pre-Alarm Warning",
+          "Kano": "indifferent",
+          "Overall Fit": "1.78",
+          "Key Need Addressed": "—",
+          "Opp Score": "—"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    [
+      {
+        "feature_name": "Mechanical Handle Locking",
+        "market_name": "Computing Infrastructure Providers / Data Centers",
+        "naics_code": "518210",
+        "kano_class": "must_be",
+        "fit_score_time": 2,
+        "fit_score_cost": 3,
+        "fit_score_safety": 9,
+        "fit_score_reliability": 8,
+        "fit_score_skill": 4,
+        "fit_score_stress": 6,
+        "fit_score_pain": 5,
+        "fit_score_confidence": 7,
+        "fit_score_delight": 2,
+        "overall_fit": 5.11,
+        "rationale": "Table-stakes in DC restricted-zone context. Physical handle blocking is expected on all emergency exit alarm guards. Primary drivers: Safety (9) — prevents unauthorized entry into caged server zones; Reliability (8) — mechanical mechanism has no electrical failure mode during UPS events. Grounded in E10 (imp=9): all activations including authorized must produce a log — mechanical locking is the physical event trigger that makes logging meaningful."
+      },
+      {
+        "feature_name": "Audible Alarm Trigger",
+        "market_name": "Computing Infrastructure Providers / Data Centers",
+        "naics_code": "518210",
+        "kano_class": "must_be",
+        "fit_score_time": 2,
+        "fit_score_cost": 2,
+        "fit_score_safety": 7,
+        "fit_score_reliability": 5,
+        "fit_score_skill": 3,
+        "fit_score_stress": 5,
+        "fit_score_pain": 4,
+        "fit_score_confidence": 5,
+        "fit_score_delight": 2,
+        "overall_fit": 3.89,
+        "rationale": "Commodity baseline per Functional Promise. In DC context, primary alert path is SIEM (electronic), not audible. 95 dB alarm deters tailgating and alerts on-site guard — Safety (7). Low reliability score (5) reflects that the audible alarm alone is insufficient for compliance — it creates no audit record. Grounded in E8 (imp=10): alarm must work during power events (mechanical trigger satisfies), but SIEM logging is the compliance deliverable."
+      },
+      {
+        "feature_name": "Single-Motion Emergency Release",
+        "market_name": "Computing Infrastructure Providers / Data Centers",
+        "naics_code": "518210",
+        "kano_class": "must_be",
+        "fit_score_time": 3,
+        "fit_score_cost": 3,
+        "fit_score_safety": 9,
+        "fit_score_reliability": 7,
+        "fit_score_skill": 7,
+        "fit_score_stress": 5,
+        "fit_score_pain": 3,
+        "fit_score_confidence": 6,
+        "fit_score_delight": 1,
+        "overall_fit": 4.89,
+        "rationale": "Regulatory mandate — DIN EN 179 / DIN EN 1125 compliance is non-discretionary regardless of DC context. Fire code overrides any DC security configuration. Primary drivers: Safety (9) — evacuation cannot be impeded even in high-security zones; Skill (7) — untrained contractors, visitors, first responders can exit without prior knowledge. No delight (1) — purely compliance baseline."
+      },
+      {
+        "feature_name": "Key Override Bypass",
+        "market_name": "Computing Infrastructure Providers / Data Centers",
+        "naics_code": "518210",
+        "kano_class": "must_be",
+        "fit_score_time": 2,
+        "fit_score_cost": 3,
+        "fit_score_safety": 6,
+        "fit_score_reliability": 7,
+        "fit_score_skill": 5,
+        "fit_score_stress": 7,
+        "fit_score_pain": 7,
+        "fit_score_confidence": 5,
+        "fit_score_delight": 2,
+        "overall_fit": 4.89,
+        "rationale": "Expected for authorized maintenance access in restricted DC zones. Primary drivers: Stress (7) / Pain (7) — authorized engineers can access via emergency exit without triggering SOC alert and guard dispatch. Confidence (5, not higher) reflects E10 (imp=9, sat=5): the physical key override produces NO automatic SIEM log entry in mechanical-only configurations, creating an audit gap. The feature is must_be but its logging limitation is the critical gap driving E10."
+      },
+      {
+        "feature_name": "Battery-Powered Operation",
+        "market_name": "Computing Infrastructure Providers / Data Centers",
+        "naics_code": "518210",
+        "kano_class": "must_be",
+        "fit_score_time": 3,
+        "fit_score_cost": 6,
+        "fit_score_safety": 8,
+        "fit_score_reliability": 9,
+        "fit_score_skill": 7,
+        "fit_score_stress": 7,
+        "fit_score_pain": 6,
+        "fit_score_confidence": 8,
+        "fit_score_delight": 4,
+        "overall_fit": 6.44,
+        "rationale": "Must_be for Emergency Exit Door Alarm Guards (commodity FP mandates power independence), but highest-scoring feature in DC context. DC power events — UPS switchover, generator start, mains failure — are the moments when monitoring continuity is most critical. Battery-powered operation uniquely ensures the alarm fires and monitoring continues with no dependency on facility power infrastructure. Primary drivers: Reliability (9) — no single point of failure on monitoring chain; Safety (8) — alarm trigger fires during power events when wired panel-integrated incumbents may reboot; Confidence (8) — DC operations can assert continuous monitoring coverage. Directly addresses E8 (imp=10, sat=6, opp=14): the highest-importance need in the market."
+      },
+      {
+        "feature_name": "Pre-Alarm Warning",
+        "market_name": "Computing Infrastructure Providers / Data Centers",
+        "naics_code": "518210",
+        "kano_class": "indifferent",
+        "fit_score_time": 1,
+        "fit_score_cost": 1,
+        "fit_score_safety": 2,
+        "fit_score_reliability": 3,
+        "fit_score_skill": 2,
+        "fit_score_stress": 2,
+        "fit_score_pain": 2,
+        "fit_score_confidence": 2,
+        "fit_score_delight": 1,
+        "overall_fit": 1.78,
+        "rationale": "Indifferent in DC security context. Pre-alarm is designed to reduce false alarms from accidental handle contact in building contexts. In a data center restricted zone, any handle contact is itself a security event — the pre-alarm 'grace period' provides an opportunity to abort a security breach before triggering SOC response, which is counterproductive. No DC JTBD error statement maps to false-alarm reduction from accidental touch. E22 (false positives) addresses SIEM threshold configuration, not physical pre-alarm mechanics."
+      }
+    ],
+    [
+      {
+        "statement": "Minimize the likelihood of an integrity break in chain-of-custody between the proprietary 868 MHz EasyWave radio event and the IP gateway's outbound log payload, producing SIEM entries with no verifiable link to the originating door sensor activation",
+        "source_constraint": "EasyWave Protocol Lock-In",
+        "affected_markets": [
+          "Computing Infrastructure Providers / Data Centers"
+        ],
+        "importance": 9.0,
+        "satisfaction_current": 2.0
+      },
+      {
+        "statement": "Minimize the likelihood of RF channel contention from concurrent 868 MHz guard-state broadcasts across a 50+ door deployment in a single server hall causing delayed or silently dropped alarm events during a high-activity security period",
+        "source_constraint": "Wireless Range Limitation",
+        "affected_markets": [
+          "Computing Infrastructure Providers / Data Centers"
+        ],
+        "importance": 7.0,
+        "satisfaction_current": 3.0
+      },
+      {
+        "statement": "Minimize the time required to replace IoT module batteries across a 50+ door DC deployment without triggering accidental alarm events during the replacement procedure and without passing any door through an unmonitored state",
+        "source_constraint": "IoT Battery Life Floor",
+        "affected_markets": [
+          "Computing Infrastructure Providers / Data Centers",
+          "General Warehousing and Storage"
+        ],
+        "importance": 6.0,
+        "satisfaction_current": 4.0
+      },
+      {
+        "statement": "Minimize the time to verify firmware version and radio protocol configuration consistency across all deployed door guardian radio modules via the central BUS gateway without requiring physical access to individual door-mounted hardware",
+        "source_constraint": "EasyWave Protocol Lock-In",
+        "affected_markets": [
+          "Computing Infrastructure Providers / Data Centers"
+        ],
+        "importance": 7.0,
+        "satisfaction_current": 2.0
+      }
+    ],
+    [
+      {
+        "feature_name": "868 MHz EasyWave Radio Transmission",
+        "feature_description": "Transmit guard-state and alarm events wirelessly to central receivers using proprietary 868.3 MHz EasyWave protocol with ~30 m range extendable via repeater stages",
+        "market_name": "Computing Infrastructure Providers / Data Centers",
+        "naics_code": "518210",
+        "vendor_score": 5,
+        "best_incumbent_score": 6,
+        "best_incumbent_technology": "IP-Native Wireless Door Contact Sensors",
+        "advantage": "parity",
+        "kano_class": "one_dimensional",
+        "rationale": "GfS EasyWave achieves adequate ~30 m range for typical DC corridor lengths but sustains >20 dB attenuation through dense GPU rack rows. Best-in-class wireless alternative (Allegion AD-Series wireless, BLE/WiFi-native door contacts) integrates directly into PACS/SIEM via REST — no protocol translation gateway and no chain-of-custody break. Parity verdict: comparable range performance; incumbent edge on native protocol interoperability eliminates the EasyWave→IP adapter translation gap that drives PRN-1 and E18."
+      },
+      {
+        "feature_name": "Wireless BUS Interface Integration",
+        "feature_description": "Aggregate status events from multiple door guardian units into a centralized Master BUS for building management system integration via contact relay output",
+        "market_name": "Computing Infrastructure Providers / Data Centers",
+        "naics_code": "518210",
+        "vendor_score": 4,
+        "best_incumbent_score": 8,
+        "best_incumbent_technology": "IP-Native PACS Integration Platforms (Lenel OnGuard, C•CURE 9000)",
+        "advantage": "inferior",
+        "kano_class": "must_be",
+        "rationale": "GfS Wireless BUS Interface provides event aggregation but outputs via proprietary contact relay, requiring a custom REST/SNMP adapter before SIEM ingestion — creating the chain-of-custody break identified in E18 (opp=17, the market's top underserved need). Best-in-class PACS platforms (Lenel OnGuard 7.x, Software House C•CURE 9000) deliver per-event cryptographic timestamps in SIEM-ready JSON natively, with no translation layer. Gap: vendor 4 vs. incumbent 8 on the dimension that drives SOC 2 CC6.4 certification outcomes."
+      },
+      {
+        "feature_name": "Dual-Standard Variant Range",
+        "feature_description": "Offer matched product variants for DIN EN 179 lever-handle doors and DIN EN 1125 panic-bar doors within the same EasyWave BUS ecosystem",
+        "market_name": "Computing Infrastructure Providers / Data Centers",
+        "naics_code": "518210",
+        "vendor_score": 8,
+        "best_incumbent_score": 5,
+        "best_incumbent_technology": "Wired Panel-Integrated Alarm Systems",
+        "advantage": "superior",
+        "kano_class": "attractive",
+        "rationale": "GfS offers Art. 990140 (EN 179 lever) and Art. 994100 (EN 1125 panic bar) as drop-in variants under one BUS gateway and one management interface — a 60-door DC with mixed door types commissions the full deployment with no cross-system integration. Best-in-class wired panel incumbents (Lenel, Bosch DS series) require separate zone programming per standard and do not provide a unified wireless commissioning tool across door types. DC procurement teams managing mixed-door inventory see a meaningful simplification that wired alternatives do not offer."
+      },
+      {
+        "feature_name": "IP45 Outdoor Variant",
+        "feature_description": "Provide a weather-rated (IP45) door guardian variant for deployment at outdoor and semi-exposed emergency exits without voiding certification",
+        "market_name": "Computing Infrastructure Providers / Data Centers",
+        "naics_code": "518210",
+        "vendor_score": 7,
+        "best_incumbent_score": 4,
+        "best_incumbent_technology": "Indoor Wireless Door Alarm Guards",
+        "advantage": "superior",
+        "kano_class": "attractive",
+        "rationale": "GfS Art. 990000-IP (IP45 certified) enables monitoring of loading dock emergency exits, external stairwell doors, and roof access hatches — monitoring gaps present in virtually all large DC facilities. The dominant wireless alternative category (indoor wireless door alarm guards) carries indoor-only ratings; outdoor deployment voids certification and creates SOC 2 audit findings. Best available wired alternative for outdoor DC exits requires sealed conduit enclosures adding ~€150-250/door incremental hardware cost with no alarm-plus-monitoring integration."
+      },
+      {
+        "feature_name": "Glass-Frame Mounting Plate",
+        "feature_description": "Enable surface-mount installation on glass-framed emergency exit doors using dedicated mounting plate (Art. 991170) without structural modification",
+        "market_name": "Computing Infrastructure Providers / Data Centers",
+        "naics_code": "518210",
+        "vendor_score": 6,
+        "best_incumbent_score": 4,
+        "best_incumbent_technology": "Standard Commercial Door Hardware",
+        "advantage": "superior",
+        "kano_class": "indifferent",
+        "rationale": "Solves glass-frame retrofit scenarios in modern colo facilities or edge DC spaces with glass-partition rooms adjacent to server floors. Technically differentiating (few alternatives offer purpose-built glass-frame mounting for alarm guards) but indifferent at market level — glass-frame emergency exit doors represent <5% of DC emergency exit inventory. Verdict is superior on the feature itself but carries no weight in market-level fit due to indifferent Kano classification."
+      }
+    ]
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

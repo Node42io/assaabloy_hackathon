@@ -1,0 +1,669 @@
+{
+  "id": "BOM_continuing_care_retirement",
+  "title": "Product BOM Decomposition: Türwächter IoT — Continuing Care Retirement Communities",
+  "type": "product_bom",
+  "market_slug": "continuing_care_retirement",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "NAICS 623311 | Output Type: Emergency Exit Door Alarm Guard (IoT Variant)",
+      "content": "*Follows component spec: product-bom-decomposition.html (substeps B.1–B.4). Input: 01_product_decomposition.md, 02_functional_promise.md, 03_constraints.md, 05_market_discovery.md.*\n\n---"
+    },
+    {
+      "title": "Routing Check",
+      "content": "| Field | Value |\n|---|---|\n| **NAICS** | 623311 — Continuing Care Retirement Communities |\n| **Sector** | Healthcare and Social Assistance (62) — service output |\n| **BOM applies?** | **YES** — BOM is of the *product sold into this market* (Türwächter IoT), not of the facility. Physical device with full compositional structure. |\n| **Output type** | Emergency Exit Door Alarm Guard — IoT variant (Art. 990140) |\n| **Applicable variant** | Exit Control 179 Pre-alarm + Radio (battery-operated, surface-mount, 868 MHz EasyWave) |\n\n---"
+    },
+    {
+      "title": "B.1 — L4 Subsystems",
+      "content": "The CCRC use case is **elopement prevention**: cognitively impaired residents (dementia, Alzheimer's, Lewy body disease) may attempt to leave through emergency exits, creating life-threatening situations. This adds nurse-call integration requirements to S3 absent in most other markets, and makes the pre-alarm variant (990140) clinically essential rather than optional.\n\n| ID | Subsystem (L4) | Pattern category | CCRC-context relevance |\n|---|---|---|---|\n| S1 | **Mechanical Guard Subsystem** | Primary functional core | Blocks door handle; 45° single-motion release per EN 179. C2 (power-independent alarm) is non-negotiable. Must accommodate ADA force limits for staff and ambulatory residents. |\n| S2 | **Acoustic Alarm Subsystem** | Primary functional (secondary) | 95 dB alarm triggered mechanically at 0 V. CCRC nuance: the two-stage pre-alarm tone (990140 only) allows staff to intercept a resident *before* the full alarm fires — reducing distress for cognitively impaired residents in adjacent rooms. |\n| S3 | **Wireless Communication Subsystem** | Control / interface | IoT monitoring layer. **Primary constraint in CCRC**: integration with nurse-call systems. C6 (EasyWave lock-in) blocks native integration with all major nurse-call platforms (TekTone, Rauland, Hill-Rom/Baxter, Ascom) and wander-management systems (WanderGuard BLUE, Accutech ResidentGuard). |\n| S4 | **Power Supply Subsystem** | Auxiliary / support | 9V battery. C4 (battery life) is moderate for general CCRC exits; elevated for memory care wings with repeated resident elopement attempts. Zone-differentiated battery specification applies. |\n| S5 | **Enclosure & Mounting Subsystem** | Containment / packaging | Surface-mounted housing. Vandal resistance is not a primary concern (resident population differs from school corridors). UL94 V-0 flame retardance required in fire-rated exit corridors. Colour (RAL 6029 safety green) may inadvertently attract resident attention at exits. |\n\n---"
+    },
+    {
+      "title": "B.2 — Full Decomposition (L4 → L0)",
+      "content": "```\nL5  Türwächter IoT (Exit Control 179/1125 with IoT)  [Art. 990140]\n│\n├── S1  Mechanical Guard Subsystem (L4)\n│   ├── L3  Guard pivot mechanism\n│   │   ├── L2  Spring-return pivot assembly\n│   │   │   ├── L1  Torsion spring  ←— ALTERNATIVES EXIST (see B.3)\n│   │   │   │   └── L0  Spring steel\n│   │   │   ├── L1  Pivot pin\n│   │   │   │   └── L0  Stainless steel (303 or 304)\n│   │   │   └── L1  Guard arm / lever body\n│   │   │       └── L0  ABS or zinc alloy die-cast  ←— ALTERNATIVES EXIST\n│   │   └── L2  Handle-blocking element\n│   │       ├── L1  Guard face plate (blocking surface)\n│   │       └── L1  Stop detent / locking catch\n│   └── L3  Key override mechanism  ←— ALTERNATIVES EXIST\n│       └── L2  Profile half-cylinder lock assembly\n│           ├── L1  Cylinder housing\n│           │   └── L0  Brass / zinc alloy\n│           └── L1  Key pin set (tumbler)\n│               └── L0  Hardened brass\n│\n├── S2  Acoustic Alarm Subsystem (L4)\n│   ├── L3  Sound generation module  ←— ALTERNATIVES EXIST (transducer type)\n│   │   ├── L2  Piezoelectric buzzer assembly  ←— DOMINANT\n│   │   │   ├── L1  Piezo disc element\n│   │   │   │   └── L0  PZT ceramic (lead zirconate titanate) + brass disc\n│   │   │   └── L1  Oscillator / driver PCB\n│   │   │       └── L0  FR4 fibreglass laminate + copper traces\n│   │   └── L2  Acoustic resonance cavity\n│   │       └── L1  Horn/chamber shell\n│   │           └── L0  ABS polymer\n│   └── L3  Pre-alarm detection assembly (variant 990100 / 990140 only)\n│       └── L2  Handle-touch contact\n│           ├── L1  Contact spring\n│           │   └── L0  Phosphor bronze\n│           └── L1  Actuator pad\n│               └── L0  ABS polymer\n│\n├── S3  Wireless Communication Subsystem (L4)\n│   ├── L3  RF transmitter module  ←— ALTERNATIVES EXIST (protocol — critical)\n│   │   └── L2  868 MHz EasyWave RF PCB assembly  [current]\n│   │       ├── L1  RF transceiver IC (868.3 MHz)\n│   │       │   └── L0  Silicon semiconductor\n│   │       ├── L1  Antenna (PCB trace or wire)\n│   │       │   └── L0  Copper\n│   │       └── L1  Passive components (caps, resistors, inductors)\n│   │           └── L0  Ceramic / tantalum\n│   ├── L3  Microcontroller / logic board\n│   │   └── L2  MCU assembly\n│   │       ├── L1  MCU IC\n│   │       │   └── L0  Silicon semiconductor\n│   │       └── L1  Flash memory (firmware)\n│   │           └── L0  Silicon\n│   └── L3  State detection interface\n│       └── L2  Guard-position sensor\n│           └── L1  Reed contact or Hall-effect sensor\n│               └── L0  Magnetic material / silicon\n│\n├── S4  Power Supply Subsystem (L4)\n│   ├── L3  Primary cell battery  ←— ALTERNATIVES EXIST (chemistry; zone-differentiated)\n│   │   └── L1  9V block battery (user-replaceable)\n│   │       └── L0  Electrochemical cell stack  ←— ALTERNATIVES EXIST\n│   └── L3  Battery holder / power interface\n│       └── L2  Battery contact assembly\n│           ├── L1  Spring contacts\n│           │   └── L0  Nickel-plated steel\n│           ├── L1  Battery holder housing\n│           │   └── L0  ABS polymer\n│           └── L1  Voltage regulator / protection circuit\n│               └── L0  Silicon IC + PCB (FR4)\n│\n└── S5  Enclosure & Mounting Subsystem (L4)\n    ├── L3  Main housing module\n    │   └── L2  Guard body assembly  ←— ALTERNATIVES EXIST (polymer type)\n    │       ├── L1  Outer shell (injection-molded)\n    │       │   └── L0  ABS or PC/ABS blend  ←— ALTERNATIVES EXIST\n    │       └── L1  Colour coat (RAL 6029 safety green — see CCRC note)\n    │           └── L0  Powder coat or spray lacquer\n    ├── L3  Mounting hardware module\n    │   └── L2  Rear mounting plate assembly\n    │       ├── L1  Backplate\n    │       │   └── L0  ABS or zinc alloy\n    │       └── L1  Mounting screws (M4/M5)\n    │           └── L0  Stainless steel\n    └── L3  Weatherproof seal module (IP45 variant only)\n        └── L2  Gasket / seal assembly\n            ├── L1  O-ring or foam gasket\n            │   └── L0  EPDM rubber / polyurethane foam\n            └── L1  Sealed cable gland (if applicable)\n                └── L0  Polyamide (PA66)\n```\n\n---"
+    },
+    {
+      "title": "B.3 — Alternatives at Every Level",
+      "content": "### S1 — Mechanical Guard Subsystem\n\n#### L3: Key Override Mechanism\n\n| Alternative | Share | Trend | CCRC relevance |\n|---|---|---|---|\n| Profile half-cylinder (EN 1303) | 55% | Stable | Standard; familiar to nursing staff |\n| Cam lock (tubular) | 25% | Stable | Lower cost; adequate where only staff access the override |\n| Electronic / RFID key override | 15% | Growing | Time-stamped staff log per intervention — directly addresses state licensing requirements for documented interventions at restricted exit points in memory care |\n| No override (manual reset only) | 5% | Declining | Operationally impractical; staff must reset rapidly after a resident elopement attempt |\n\n**Confidence:** LOW | **Source:** Analyst estimate; no published split for door alarm override mechanisms in healthcare\n\n**CCRC note:** RFID key override has disproportionate value here. Several US states (California, Texas) require documentation of every staff intervention at restricted exit points under memory-care facility licensing. An electronic override with a timestamped log fulfils this requirement and differentiates the 990140 variant in CCRC procurement RFPs.\n\n---\n\n#### L1: Guard Arm / Lever Body Material → L0\n\n| Alternative | Share | Trend | Notes |\n|---|---|---|---|\n| ABS (injection-molded) | 40% | Stable | Cost-effective; UL94 V-0 FR grade available; adequate for indoor CCRC use |\n| PC/ABS blend | 35% | Growing | Superior impact + flame retardance; preferred in fire-rated corridors |\n| Zinc alloy die-cast | 15% | Stable | Higher strength; heavier; weather-resistant |\n| Aluminium alloy | 10% | Declining | Premium cost; rarely justified at this product tier |\n\n**Confidence:** MEDIUM | **Source:** Credence Research PC/ABS Market 2024; Business Research Insights 2024\n\n---\n\n### S2 — Acoustic Alarm Subsystem\n\n#### L3: Sound Generation Module — Transducer Type\n\n| Alternative | Share | Trend | Notes |\n|---|---|---|---|\n| Piezoelectric (active piezo element) | ~62% | Stable | Dominant. Lowest power draw; operates at 0 V (mechanical trigger). Only C2-compliant option. |\n| Electromagnetic buzzer | ~28% | Declining | Higher current draw; requires continuous power for full volume — incompatible with C2. |\n| Speaker + class-D amplifier | ~10% | Growing | Configurable tone profiles (lower volume at night, voice alerts); far higher power; not viable for battery-primary mechanical trigger. |\n\n**Confidence:** MEDIUM | **Source:** Straits Research Buzzer Market 2024; Cognitive Market Research Electromagnetic Buzzers 2024\n\n**CCRC note:** The pre-alarm variant (990100/990140) is clinically superior for dementia care. Staff can intercept a resident at the low-volume warning tone stage without triggering the full 95 dB alarm — which can cause significant distress to cognitively impaired residents in adjacent rooms. This two-stage escalation is a concrete clinical differentiator that should be standard specification in memory care wings, not an optional upgrade. Piezo is the only transducer compatible with the mechanical-at-0V (C2) requirement.\n\n---\n\n### S3 — Wireless Communication Subsystem\n\n#### L3: RF Transmitter Module — Wireless Protocol\n\nThis is the most strategically significant design choice for the CCRC market. The dominant integration requirement is **nurse-call systems**, not generic BMS. CCRC facilities are standardized on nurse-call platforms (TekTone, Rauland/Rauland-Borg, Hill-Rom/Baxter, Ascom) that use proprietary healthcare protocols. EasyWave has zero native integration with any of these platforms. WanderGuard BLUE (Securitas Healthcare), deployed in 9,000+ senior living facilities as of 2025, uses BLE-based door controllers.\n\n| Alternative | Share | Trend | CCRC fit |\n|---|---|---|---|\n| Proprietary sub-1GHz (433/868 MHz, e.g. EasyWave) | ~45% | Declining | Dominant in standalone alarm devices. No native nurse-call or wander-management platform integration. GfS BUS gateway required. Adequate for single-unit deployments. |\n| BLE 5.x (Bluetooth Mesh) | ~22% | Growing | Widely supported in modern healthcare IoT. Integrates natively with WanderGuard BLUE (9,000+ CCRC facilities). Strongest fit for enterprise CCRC procurement. |\n| DECT / proprietary 900 MHz (nurse-call native) | ~12% | Stable | Native protocol for Rauland, TekTone nurse-call systems. Limited to healthcare verticals; requires vendor partnership to license. |\n| Zigbee / Thread | ~8% | Stable | Healthcare IoT deployments; mesh topology; BACnet integration path. |\n| LoRaWAN | ~8% | Growing | Long range (multi-building campus CCRCs); requires LoRaWAN gateway. Ideal for large campus operators. European 868 MHz band aligns with existing GfS frequency. |\n| Wi-Fi (802.11 b/g/n) | ~5% | Stable | Easy IT integration; high power draw; C4 battery life concern. |\n\n**Confidence:** LOW | **Source:** Analyst estimate. WanderGuard BLUE BLE prevalence: Securitas Healthcare 2025 (9,000+ facilities); DECT/900 MHz healthcare nurse-call share inferred from Rauland and TekTone deployment data. No published protocol-split for door alarm devices in senior care.\n\n**CCRC note:** BLE 5.x is the highest-priority protocol upgrade for CCRC market penetration. The WanderGuard BLUE architecture — the de facto standard in US/EU senior care — uses BLE-based door controllers. A BLE-capable Türwächter variant would integrate as a native event source within this ecosystem without custom gateway development. LoRaWAN suits large CCRC campuses (multiple buildings across outdoor campus), where the 868 MHz frequency aligns with the existing GfS radio infrastructure. EasyWave + GfS BUS gateway can provide nurse-call integration but requires custom API development per nurse-call vendor — a procurement friction point in enterprise RFPs.\n\n---\n\n### S4 — Power Supply Subsystem\n\n#### L1: 9V Block Battery — Electrochemical Technology (L0)\n\nDoor-event frequency in CCRCs is zone-dependent. Independent living exits: low frequency, standard alkaline adequate. Memory care wing exits: moderate-to-high frequency from repeated resident elopement attempts. A tiered battery specification by care zone is the operationally optimal approach.\n\n| Alternative | Share (IoT door devices) | Trend | Life at moderate use | CCRC fit |\n|---|---|---|---|---|\n| Alkaline (e.g. Duracell MN1604) | ~52% | Stable | 18–24 months | Adequate for independent living and assisted living exits; cost-effective at scale |\n| Lithium primary (e.g. Energizer L522) | ~31% | Growing | 30–48 months | Recommended for memory care wing exits; 2–2.5× alkaline life under repeated attempts |\n| NiMH rechargeable (9V) | ~12% | Stable | 6–12 months (requires recharge) | Operationally intensive; not recommended for distributed CCRC deployment |\n| Proprietary rechargeable pack | ~5% | Emerging | Manufacturer-managed; USB-C | Not available in current GfS product line; future option |\n\n**Confidence:** MEDIUM | **Source:** Mordor Intelligence Primary Battery Market 2025; Straits Research IoT Battery Market 2024; 47% of industrial IoT sensors use lithium primary for extended life.\n\n**CCRC note:** Specify alkaline for general CCRC exits; specify lithium primary for memory care unit exits. At 9–35 mA draw (GfS spec), a 9V alkaline (~550 mAh) exhausts faster under repeated activation. Lithium 9V cells (~1,200 mAh) deliver 2–2.5× the life — keeping memory care exits within the 2-year maintenance target (C4) without additional service visits to locked units.\n\n---\n\n### S5 — Enclosure & Mounting Subsystem\n\n#### L0: Housing Shell Polymer\n\n| Alternative | Share (security device housings) | Trend | Notes |\n|---|---|---|---|\n| ABS (standard / FR grade) | ~40% | Stable | Cost-effective; UL94 V-0 flame-retardant grades available for fire-rated corridors |\n| PC/ABS blend | ~35% | Growing | Best combination of impact strength + flame retardance; preferred in fire-rated exit corridors |\n| Flame-retardant polycarbonate (PC) | ~15% | Stable | Higher temperature resistance; transparent variants for LED indicator windows |\n| Zinc alloy die-cast | ~10% | Declining | Metal alternative; heavier; rarely justified at this price tier |\n\n**Confidence:** MEDIUM | **Source:** Credence Research PC/ABS Market 2024 ($4.67B); Business Research Insights 2024 (>58% of electronic enclosures require UL94 FR grades)\n\n**CCRC note:** IK vandal rating is not a priority — dementia residents do not typically damage door hardware destructively. Fire-rated corridor requirements (UL94 V-0) apply universally; ABS FR grade or PC/ABS blend is the appropriate specification. Safety green (RAL 6029) is the standard colour, but **some memory care facilities may prefer a neutral grey or white RAL** to reduce the visual salience of exit points — drawing less resident attention to the door as an exit opportunity. This is a low-cost configuration option worth offering as a memory-care segment SKU.\n\n---"
+    },
+    {
+      "title": "B.4 — Component Category Map: Wireless Integration Module",
+      "content": "The wireless module occupies one BOM position but faces entirely different integration requirements across CCRC deployment scales.\n\n| Position | BOM path | Function | Safety-critical | Key competitor alternatives |\n|---|---|---|---|---|\n| P1: Single memory-care unit (10–30 doors) | S3 → L3 RF Transmitter → L2 EasyWave PCB | Alarm events to standalone GfS receiver at nurses' station | No | BLE beacon to tablet app, Z-Wave to central controller |\n| P2: Full CCRC campus (50–200 doors, multi-building) | S3 → L3 RF Transmitter → L2 EasyWave PCB | Events aggregated to wander-management platform (WanderGuard BLUE, Accutech ResidentGuard) | No | BLE mesh (WanderGuard BLUE native architecture), LoRaWAN (multi-building range) |\n| P3: Multi-facility CCRC operator (50+ facilities) | S3 → L3 RF Transmitter → L2 EasyWave PCB | Events to cloud-based facility management platform with compliance logs | No | LTE-M/NB-IoT (cellular, no gateway), BLE + Securitas Healthcare cloud ecosystem |\n\n**Insight:** At P1, EasyWave + GfS standalone receiver is entirely sufficient — a single small memory care wing is within the ~30 m range and does not require platform integration. At P2 (full CCRC campus with wander-management deployment), the absence of native integration with WanderGuard BLUE or Accutech ResidentGuard is a procurement barrier — facilities running these platforms will not add a second, non-integrated monitoring layer without a clear API bridge. At P3 (large CCRC operators managing 50+ facilities), the lack of a cloud-SaaS API is a disqualifying gap in competitive RFPs against systems offering consolidated portfolio dashboards.\n\n---"
+    },
+    {
+      "title": "Key Findings for CCRC Market",
+      "content": "| Finding | Implication |\n|---|---|\n| **Nurse-call / wander-management integration is the #1 BOM risk** | WanderGuard BLUE (Securitas Healthcare, 9,000+ facilities), Accutech ResidentGuard, and TekTone are the dominant CCRC monitoring platforms — none support EasyWave natively. A BLE protocol upgrade or documented GfS-gateway-to-nurse-call API is required for enterprise CCRC procurement beyond single-unit deployments. |\n| **Pre-alarm variant (990140) is clinically essential, not optional** | The two-stage alarm (warning tone → 95 dB) enables staff interception before full alarm fires. Prevents distress for cognitively impaired residents in adjacent rooms. Should be standard specification for memory care wings. |\n| **RFID key override adds regulatory documentation value** | State licensing in multiple US jurisdictions requires documented staff interventions at restricted exits in memory care. An electronic override with timestamped log fills this compliance requirement directly. |\n| **Zone-tiered battery specification** | Specify lithium primary (30–48 months) for memory care exits; alkaline (18–24 months) for general CCRC exits. Reduces C4 risk and unplanned maintenance visits to locked units. |\n| **Colour configuration as a care-design option** | Safety green (RAL 6029) may draw resident attention to exit points. A neutral grey/white variant is a low-cost memory-care-specific SKU differentiation with clinical rationale. |\n| **Piezo transducer is the only C2-compliant alarm technology** | Electromagnetic and speaker alternatives require electrical power — incompatible with the mechanical-alarm-at-0V absolute constraint. No substitution is possible without violating fire code. |\n| **CCRC senior care security market ~$400M (US+EU)** | Growing at 8–12% CAGR driven by expanding memory care population (US Alzheimer's prevalence projected at 14M by 2060). Timing is favorable for retrofit-friendly, battery-operated monitoring. |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"market\": {\n    \"naics_code\": \"623311\",\n    \"naics_title\": \"Continuing Care Retirement Communities\",\n    \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n    \"product_l5\": \"GfS Türwächter Exit Control 179/1125 with IoT (Art. 990140)\"\n  },\n  \"bom_units\": [\n    {\n      \"name\": \"Mechanical Guard Subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"Spring-loaded physical guard blocking door handle depression; 45° rotation releases handle and triggers alarm via mechanical linkage. Zero electrical power required. ADA force compliance required for staff operation in CCRC context.\",\n      \"naics_code\": \"623311\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Acoustic Alarm Subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"95 dB audible alarm triggered mechanically on guard rotation. Piezoelectric transducer; operates at 0 V. Pre-alarm warning tone on handle touch (variant 990140) is clinically significant: enables staff interception before full alarm, reducing distress for dementia residents in adjacent rooms.\",\n      \"naics_code\": \"623311\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Wireless Communication Subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"868 MHz EasyWave radio transmitter broadcasting guard-state and alarm events. Critical integration gap: no native compatibility with CCRC nurse-call systems (TekTone, Rauland, Hill-Rom/Baxter, Ascom) or wander-management platforms (WanderGuard BLUE, Accutech ResidentGuard). GfS BUS gateway required for indirect integration.\",\n      \"naics_code\": \"623311\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Power Supply Subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"9V block battery (user-replaceable). Zone-differentiated specification: alkaline adequate for general CCRC exits (18–24 months); lithium primary recommended for memory care wing exits (30–48 months) given higher resident elopement attempt frequency.\",\n      \"naics_code\": \"623311\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Enclosure & Mounting Subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"Surface-mounted housing. UL94 V-0 flame retardance required for fire-rated corridors. IK vandal rating not a primary requirement. RAL 6029 safety green standard; neutral grey/white variant recommended for memory care wings to reduce exit visual salience.\",\n      \"naics_code\": \"623311\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Guard pivot mechanism\",\n      \"level\": \"L3\",\n      \"description\": \"Pivot and spring-return mechanism allowing 45° guard rotation to release door handle and trigger alarm linkage.\",\n      \"naics_code\": \"623311\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Key override mechanism\",\n      \"level\": \"L3\",\n      \"description\": \"Profile half-cylinder lock enabling authorized bypass without alarm. RFID-override variant adds timestamped staff log — directly addresses state licensing requirement for documented interventions at memory care restricted exits.\",\n      \"naics_code\": \"623311\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Sound generation module\",\n      \"level\": \"L3\",\n      \"description\": \"Piezoelectric buzzer assembly generating 95 dB alarm. Mechanically triggered at 0 V. Pre-alarm touch-contact detection circuit (variant 990140) enables two-stage escalation critical for dementia care.\",\n      \"naics_code\": \"623311\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"RF transmitter module\",\n      \"level\": \"L3\",\n      \"description\": \"868 MHz EasyWave PCB. Protocol mismatch with CCRC nurse-call and wander-management ecosystems is the primary commercial barrier for enterprise deployments beyond single-unit installations.\",\n      \"naics_code\": \"623311\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Primary cell battery\",\n      \"level\": \"L3\",\n      \"description\": \"9V block battery. Specify alkaline for general exits; specify lithium primary for memory care wing exits to maintain 2-year maintenance interval under higher door-event frequency.\",\n      \"naics_code\": \"623311\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    }\n  ],\n  \"bom_alternatives\": [\n    {\n      \"name\": \"Profile half-cylinder (EN 1303)\",\n      \"market_share\": 55,\n      \"trend\": \"Stable\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\",\n      \"parent_bom_name\": \"Key override mechanism\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Cam lock (tubular)\",\n      \"market_share\": 25,\n      \"trend\": \"Stable\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\",\n      \"parent_bom_name\": \"Key override mechanism\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Electronic / RFID key override\",\n      \"market_share\": 15,\n      \"trend\": \"Growing\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate — healthcare compliance documentation requirement driving adoption in memory care licensing\",\n      \"parent_bom_name\": \"Key override mechanism\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"No override (manual reset only)\",\n      \"market_share\": 5,\n      \"trend\": \"Declining\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\",\n      \"parent_bom_name\": \"Key override mechanism\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Piezoelectric (active piezo element)\",\n      \"market_share\": 62,\n      \"trend\": \"Stable\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Straits Research Buzzer Market 2024; Cognitive Market Research Electromagnetic Buzzers 2024\",\n      \"parent_bom_name\": \"Sound generation module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Electromagnetic buzzer\",\n      \"market_share\": 28,\n      \"trend\": \"Declining\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Straits Research Buzzer Market 2024\",\n      \"parent_bom_name\": \"Sound generation module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Speaker + class-D amplifier\",\n      \"market_share\": 10,\n      \"trend\": \"Growing\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Cognitive Market Research 2024\",\n      \"parent_bom_name\": \"Sound generation module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Proprietary sub-1GHz (433/868 MHz, e.g. EasyWave)\",\n      \"market_share\": 45,\n      \"trend\": \"Declining\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate — standalone door alarm legacy install base\",\n      \"parent_bom_name\": \"RF transmitter module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"BLE 5.x (Bluetooth Mesh)\",\n      \"market_share\": 22,\n      \"trend\": \"Growing\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate; WanderGuard BLUE BLE architecture — Securitas Healthcare 2025 (9,000+ senior living facilities)\",\n      \"parent_bom_name\": \"RF transmitter module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"DECT / proprietary 900 MHz (nurse-call native)\",\n      \"market_share\": 12,\n      \"trend\": \"Stable\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate — Rauland, TekTone nurse-call market; requires vendor licensing partnership\",\n      \"parent_bom_name\": \"RF transmitter module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Zigbee / Thread\",\n      \"market_share\": 8,\n      \"trend\": \"Stable\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\",\n      \"parent_bom_name\": \"RF transmitter module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"LoRaWAN\",\n      \"market_share\": 8,\n      \"trend\": \"Growing\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Fortune Business Insights 2025 ($7.7B LoRaWAN market); 868 MHz European band aligns with existing GfS frequency; analyst estimate for door device share\",\n      \"parent_bom_name\": \"RF transmitter module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Wi-Fi (802.11 b/g/n)\",\n      \"market_share\": 5,\n      \"trend\": \"Stable\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\",\n      \"parent_bom_name\": \"RF transmitter module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Alkaline (e.g. Duracell MN1604)\",\n      \"market_share\": 52,\n      \"trend\": \"Stable\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Mordor Intelligence Primary Battery Market 2025\",\n      \"parent_bom_name\": \"Primary cell battery\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Lithium primary (e.g. Energizer L522)\",\n      \"market_share\": 31,\n      \"trend\": \"Growing\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Straits Research IoT Battery Market 2024; 47% of industrial IoT sensors use lithium primary for extended deployment life\",\n      \"parent_bom_name\": \"Primary cell battery\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"NiMH rechargeable (9V)\",\n      \"market_share\": 12,\n      \"trend\": \"Stable\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Mordor Intelligence Primary Battery Market 2025\",\n      \"parent_bom_name\": \"Primary cell battery\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Proprietary rechargeable pack\",\n      \"market_share\": 5,\n      \"trend\": \"Emerging\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Analyst estimate — not yet available in GfS product line\",\n      \"parent_bom_name\": \"Primary cell battery\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"ABS (standard / FR grade)\",\n      \"market_share\": 40,\n      \"trend\": \"Stable\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Credence Research PC/ABS Market 2024\",\n      \"parent_bom_name\": \"Guard body assembly\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"PC/ABS blend\",\n      \"market_share\": 35,\n      \"trend\": \"Growing\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Credence Research PC/ABS Market 2024 ($4.67B)\",\n      \"parent_bom_name\": \"Guard body assembly\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Flame-retardant polycarbonate (PC)\",\n      \"market_share\": 15,\n      \"trend\": \"Stable\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Business Research Insights 2024 — >58% of electronic enclosures require UL94 FR grades\",\n      \"parent_bom_name\": \"Guard body assembly\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Zinc alloy die-cast\",\n      \"market_share\": 10,\n      \"trend\": \"Declining\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Credence Research PC/ABS Market 2024\",\n      \"parent_bom_name\": \"Guard body assembly\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    }\n  ]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**NAICS**",
+          "Value": "623311 — Continuing Care Retirement Communities"
+        },
+        {
+          "Field": "**Sector**",
+          "Value": "Healthcare and Social Assistance (62) — service output"
+        },
+        {
+          "Field": "**BOM applies?**",
+          "Value": "**YES** — BOM is of the *product sold into this market* (Türwächter IoT), not of the facility. Physical device with full compositional structure."
+        },
+        {
+          "Field": "**Output type**",
+          "Value": "Emergency Exit Door Alarm Guard — IoT variant (Art. 990140)"
+        },
+        {
+          "Field": "**Applicable variant**",
+          "Value": "Exit Control 179 Pre-alarm + Radio (battery-operated, surface-mount, 868 MHz EasyWave)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Subsystem (L4)",
+        "Pattern category",
+        "CCRC-context relevance"
+      ],
+      "rows": [
+        {
+          "ID": "S1",
+          "Subsystem (L4)": "**Mechanical Guard Subsystem**",
+          "Pattern category": "Primary functional core",
+          "CCRC-context relevance": "Blocks door handle; 45° single-motion release per EN 179. C2 (power-independent alarm) is non-negotiable. Must accommodate ADA force limits for staff and ambulatory residents."
+        },
+        {
+          "ID": "S2",
+          "Subsystem (L4)": "**Acoustic Alarm Subsystem**",
+          "Pattern category": "Primary functional (secondary)",
+          "CCRC-context relevance": "95 dB alarm triggered mechanically at 0 V. CCRC nuance: the two-stage pre-alarm tone (990140 only) allows staff to intercept a resident *before* the full alarm fires — reducing distress for cognitively impaired residents in adjacent rooms."
+        },
+        {
+          "ID": "S3",
+          "Subsystem (L4)": "**Wireless Communication Subsystem**",
+          "Pattern category": "Control / interface",
+          "CCRC-context relevance": "IoT monitoring layer. **Primary constraint in CCRC**: integration with nurse-call systems. C6 (EasyWave lock-in) blocks native integration with all major nurse-call platforms (TekTone, Rauland, Hill-Rom/Baxter, Ascom) and wander-management systems (WanderGuard BLUE, Accutech ResidentGuard)."
+        },
+        {
+          "ID": "S4",
+          "Subsystem (L4)": "**Power Supply Subsystem**",
+          "Pattern category": "Auxiliary / support",
+          "CCRC-context relevance": "9V battery. C4 (battery life) is moderate for general CCRC exits; elevated for memory care wings with repeated resident elopement attempts. Zone-differentiated battery specification applies."
+        },
+        {
+          "ID": "S5",
+          "Subsystem (L4)": "**Enclosure & Mounting Subsystem**",
+          "Pattern category": "Containment / packaging",
+          "CCRC-context relevance": "Surface-mounted housing. Vandal resistance is not a primary concern (resident population differs from school corridors). UL94 V-0 flame retardance required in fire-rated exit corridors. Colour (RAL 6029 safety green) may inadvertently attract resident attention at exits."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "CCRC relevance"
+      ],
+      "rows": [
+        {
+          "Alternative": "Profile half-cylinder (EN 1303)",
+          "Share": "55%",
+          "Trend": "Stable",
+          "CCRC relevance": "Standard; familiar to nursing staff"
+        },
+        {
+          "Alternative": "Cam lock (tubular)",
+          "Share": "25%",
+          "Trend": "Stable",
+          "CCRC relevance": "Lower cost; adequate where only staff access the override"
+        },
+        {
+          "Alternative": "Electronic / RFID key override",
+          "Share": "15%",
+          "Trend": "Growing",
+          "CCRC relevance": "Time-stamped staff log per intervention — directly addresses state licensing requirements for documented interventions at restricted exit points in memory care"
+        },
+        {
+          "Alternative": "No override (manual reset only)",
+          "Share": "5%",
+          "Trend": "Declining",
+          "CCRC relevance": "Operationally impractical; staff must reset rapidly after a resident elopement attempt"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "Alternative": "ABS (injection-molded)",
+          "Share": "40%",
+          "Trend": "Stable",
+          "Notes": "Cost-effective; UL94 V-0 FR grade available; adequate for indoor CCRC use"
+        },
+        {
+          "Alternative": "PC/ABS blend",
+          "Share": "35%",
+          "Trend": "Growing",
+          "Notes": "Superior impact + flame retardance; preferred in fire-rated corridors"
+        },
+        {
+          "Alternative": "Zinc alloy die-cast",
+          "Share": "15%",
+          "Trend": "Stable",
+          "Notes": "Higher strength; heavier; weather-resistant"
+        },
+        {
+          "Alternative": "Aluminium alloy",
+          "Share": "10%",
+          "Trend": "Declining",
+          "Notes": "Premium cost; rarely justified at this product tier"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "Alternative": "Piezoelectric (active piezo element)",
+          "Share": "~62%",
+          "Trend": "Stable",
+          "Notes": "Dominant. Lowest power draw; operates at 0 V (mechanical trigger). Only C2-compliant option."
+        },
+        {
+          "Alternative": "Electromagnetic buzzer",
+          "Share": "~28%",
+          "Trend": "Declining",
+          "Notes": "Higher current draw; requires continuous power for full volume — incompatible with C2."
+        },
+        {
+          "Alternative": "Speaker + class-D amplifier",
+          "Share": "~10%",
+          "Trend": "Growing",
+          "Notes": "Configurable tone profiles (lower volume at night, voice alerts); far higher power; not viable for battery-primary mechanical trigger."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "CCRC fit"
+      ],
+      "rows": [
+        {
+          "Alternative": "Proprietary sub-1GHz (433/868 MHz, e.g. EasyWave)",
+          "Share": "~45%",
+          "Trend": "Declining",
+          "CCRC fit": "Dominant in standalone alarm devices. No native nurse-call or wander-management platform integration. GfS BUS gateway required. Adequate for single-unit deployments."
+        },
+        {
+          "Alternative": "BLE 5.x (Bluetooth Mesh)",
+          "Share": "~22%",
+          "Trend": "Growing",
+          "CCRC fit": "Widely supported in modern healthcare IoT. Integrates natively with WanderGuard BLUE (9,000+ CCRC facilities). Strongest fit for enterprise CCRC procurement."
+        },
+        {
+          "Alternative": "DECT / proprietary 900 MHz (nurse-call native)",
+          "Share": "~12%",
+          "Trend": "Stable",
+          "CCRC fit": "Native protocol for Rauland, TekTone nurse-call systems. Limited to healthcare verticals; requires vendor partnership to license."
+        },
+        {
+          "Alternative": "Zigbee / Thread",
+          "Share": "~8%",
+          "Trend": "Stable",
+          "CCRC fit": "Healthcare IoT deployments; mesh topology; BACnet integration path."
+        },
+        {
+          "Alternative": "LoRaWAN",
+          "Share": "~8%",
+          "Trend": "Growing",
+          "CCRC fit": "Long range (multi-building campus CCRCs); requires LoRaWAN gateway. Ideal for large campus operators. European 868 MHz band aligns with existing GfS frequency."
+        },
+        {
+          "Alternative": "Wi-Fi (802.11 b/g/n)",
+          "Share": "~5%",
+          "Trend": "Stable",
+          "CCRC fit": "Easy IT integration; high power draw; C4 battery life concern."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share (IoT door devices)",
+        "Trend",
+        "Life at moderate use",
+        "CCRC fit"
+      ],
+      "rows": [
+        {
+          "Alternative": "Alkaline (e.g. Duracell MN1604)",
+          "Share (IoT door devices)": "~52%",
+          "Trend": "Stable",
+          "Life at moderate use": "18–24 months",
+          "CCRC fit": "Adequate for independent living and assisted living exits; cost-effective at scale"
+        },
+        {
+          "Alternative": "Lithium primary (e.g. Energizer L522)",
+          "Share (IoT door devices)": "~31%",
+          "Trend": "Growing",
+          "Life at moderate use": "30–48 months",
+          "CCRC fit": "Recommended for memory care wing exits; 2–2.5× alkaline life under repeated attempts"
+        },
+        {
+          "Alternative": "NiMH rechargeable (9V)",
+          "Share (IoT door devices)": "~12%",
+          "Trend": "Stable",
+          "Life at moderate use": "6–12 months (requires recharge)",
+          "CCRC fit": "Operationally intensive; not recommended for distributed CCRC deployment"
+        },
+        {
+          "Alternative": "Proprietary rechargeable pack",
+          "Share (IoT door devices)": "~5%",
+          "Trend": "Emerging",
+          "Life at moderate use": "Manufacturer-managed; USB-C",
+          "CCRC fit": "Not available in current GfS product line; future option"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share (security device housings)",
+        "Trend",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "Alternative": "ABS (standard / FR grade)",
+          "Share (security device housings)": "~40%",
+          "Trend": "Stable",
+          "Notes": "Cost-effective; UL94 V-0 flame-retardant grades available for fire-rated corridors"
+        },
+        {
+          "Alternative": "PC/ABS blend",
+          "Share (security device housings)": "~35%",
+          "Trend": "Growing",
+          "Notes": "Best combination of impact strength + flame retardance; preferred in fire-rated exit corridors"
+        },
+        {
+          "Alternative": "Flame-retardant polycarbonate (PC)",
+          "Share (security device housings)": "~15%",
+          "Trend": "Stable",
+          "Notes": "Higher temperature resistance; transparent variants for LED indicator windows"
+        },
+        {
+          "Alternative": "Zinc alloy die-cast",
+          "Share (security device housings)": "~10%",
+          "Trend": "Declining",
+          "Notes": "Metal alternative; heavier; rarely justified at this price tier"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Position",
+        "BOM path",
+        "Function",
+        "Safety-critical",
+        "Key competitor alternatives"
+      ],
+      "rows": [
+        {
+          "Position": "P1: Single memory-care unit (10–30 doors)",
+          "BOM path": "S3 → L3 RF Transmitter → L2 EasyWave PCB",
+          "Function": "Alarm events to standalone GfS receiver at nurses' station",
+          "Safety-critical": "No",
+          "Key competitor alternatives": "BLE beacon to tablet app, Z-Wave to central controller"
+        },
+        {
+          "Position": "P2: Full CCRC campus (50–200 doors, multi-building)",
+          "BOM path": "S3 → L3 RF Transmitter → L2 EasyWave PCB",
+          "Function": "Events aggregated to wander-management platform (WanderGuard BLUE, Accutech ResidentGuard)",
+          "Safety-critical": "No",
+          "Key competitor alternatives": "BLE mesh (WanderGuard BLUE native architecture), LoRaWAN (multi-building range)"
+        },
+        {
+          "Position": "P3: Multi-facility CCRC operator (50+ facilities)",
+          "BOM path": "S3 → L3 RF Transmitter → L2 EasyWave PCB",
+          "Function": "Events to cloud-based facility management platform with compliance logs",
+          "Safety-critical": "No",
+          "Key competitor alternatives": "LTE-M/NB-IoT (cellular, no gateway), BLE + Securitas Healthcare cloud ecosystem"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Finding",
+        "Implication"
+      ],
+      "rows": [
+        {
+          "Finding": "**Nurse-call / wander-management integration is the #1 BOM risk**",
+          "Implication": "WanderGuard BLUE (Securitas Healthcare, 9,000+ facilities), Accutech ResidentGuard, and TekTone are the dominant CCRC monitoring platforms — none support EasyWave natively. A BLE protocol upgrade or documented GfS-gateway-to-nurse-call API is required for enterprise CCRC procurement beyond single-unit deployments."
+        },
+        {
+          "Finding": "**Pre-alarm variant (990140) is clinically essential, not optional**",
+          "Implication": "The two-stage alarm (warning tone → 95 dB) enables staff interception before full alarm fires. Prevents distress for cognitively impaired residents in adjacent rooms. Should be standard specification for memory care wings."
+        },
+        {
+          "Finding": "**RFID key override adds regulatory documentation value**",
+          "Implication": "State licensing in multiple US jurisdictions requires documented staff interventions at restricted exits in memory care. An electronic override with timestamped log fills this compliance requirement directly."
+        },
+        {
+          "Finding": "**Zone-tiered battery specification**",
+          "Implication": "Specify lithium primary (30–48 months) for memory care exits; alkaline (18–24 months) for general CCRC exits. Reduces C4 risk and unplanned maintenance visits to locked units."
+        },
+        {
+          "Finding": "**Colour configuration as a care-design option**",
+          "Implication": "Safety green (RAL 6029) may draw resident attention to exit points. A neutral grey/white variant is a low-cost memory-care-specific SKU differentiation with clinical rationale."
+        },
+        {
+          "Finding": "**Piezo transducer is the only C2-compliant alarm technology**",
+          "Implication": "Electromagnetic and speaker alternatives require electrical power — incompatible with the mechanical-alarm-at-0V absolute constraint. No substitution is possible without violating fire code."
+        },
+        {
+          "Finding": "**CCRC senior care security market ~$400M (US+EU)**",
+          "Implication": "Growing at 8–12% CAGR driven by expanding memory care population (US Alzheimer's prevalence projected at 14M by 2060). Timing is favorable for retrofit-friendly, battery-operated monitoring."
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market": {
+        "naics_code": "623311",
+        "naics_title": "Continuing Care Retirement Communities",
+        "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+        "product_l5": "GfS Türwächter Exit Control 179/1125 with IoT (Art. 990140)"
+      },
+      "bom_units": [
+        {
+          "name": "Mechanical Guard Subsystem",
+          "level": "L4",
+          "description": "Spring-loaded physical guard blocking door handle depression; 45° rotation releases handle and triggers alarm via mechanical linkage. Zero electrical power required. ADA force compliance required for staff operation in CCRC context.",
+          "naics_code": "623311",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Acoustic Alarm Subsystem",
+          "level": "L4",
+          "description": "95 dB audible alarm triggered mechanically on guard rotation. Piezoelectric transducer; operates at 0 V. Pre-alarm warning tone on handle touch (variant 990140) is clinically significant: enables staff interception before full alarm, reducing distress for dementia residents in adjacent rooms.",
+          "naics_code": "623311",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Wireless Communication Subsystem",
+          "level": "L4",
+          "description": "868 MHz EasyWave radio transmitter broadcasting guard-state and alarm events. Critical integration gap: no native compatibility with CCRC nurse-call systems (TekTone, Rauland, Hill-Rom/Baxter, Ascom) or wander-management platforms (WanderGuard BLUE, Accutech ResidentGuard). GfS BUS gateway required for indirect integration.",
+          "naics_code": "623311",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Power Supply Subsystem",
+          "level": "L4",
+          "description": "9V block battery (user-replaceable). Zone-differentiated specification: alkaline adequate for general CCRC exits (18–24 months); lithium primary recommended for memory care wing exits (30–48 months) given higher resident elopement attempt frequency.",
+          "naics_code": "623311",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Enclosure & Mounting Subsystem",
+          "level": "L4",
+          "description": "Surface-mounted housing. UL94 V-0 flame retardance required for fire-rated corridors. IK vandal rating not a primary requirement. RAL 6029 safety green standard; neutral grey/white variant recommended for memory care wings to reduce exit visual salience.",
+          "naics_code": "623311",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Guard pivot mechanism",
+          "level": "L3",
+          "description": "Pivot and spring-return mechanism allowing 45° guard rotation to release door handle and trigger alarm linkage.",
+          "naics_code": "623311",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Key override mechanism",
+          "level": "L3",
+          "description": "Profile half-cylinder lock enabling authorized bypass without alarm. RFID-override variant adds timestamped staff log — directly addresses state licensing requirement for documented interventions at memory care restricted exits.",
+          "naics_code": "623311",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Sound generation module",
+          "level": "L3",
+          "description": "Piezoelectric buzzer assembly generating 95 dB alarm. Mechanically triggered at 0 V. Pre-alarm touch-contact detection circuit (variant 990140) enables two-stage escalation critical for dementia care.",
+          "naics_code": "623311",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "RF transmitter module",
+          "level": "L3",
+          "description": "868 MHz EasyWave PCB. Protocol mismatch with CCRC nurse-call and wander-management ecosystems is the primary commercial barrier for enterprise deployments beyond single-unit installations.",
+          "naics_code": "623311",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Primary cell battery",
+          "level": "L3",
+          "description": "9V block battery. Specify alkaline for general exits; specify lithium primary for memory care wing exits to maintain 2-year maintenance interval under higher door-event frequency.",
+          "naics_code": "623311",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        }
+      ],
+      "bom_alternatives": [
+        {
+          "name": "Profile half-cylinder (EN 1303)",
+          "market_share": 55,
+          "trend": "Stable",
+          "confidence": "LOW",
+          "source": "Analyst estimate",
+          "parent_bom_name": "Key override mechanism",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Cam lock (tubular)",
+          "market_share": 25,
+          "trend": "Stable",
+          "confidence": "LOW",
+          "source": "Analyst estimate",
+          "parent_bom_name": "Key override mechanism",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Electronic / RFID key override",
+          "market_share": 15,
+          "trend": "Growing",
+          "confidence": "LOW",
+          "source": "Analyst estimate — healthcare compliance documentation requirement driving adoption in memory care licensing",
+          "parent_bom_name": "Key override mechanism",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "No override (manual reset only)",
+          "market_share": 5,
+          "trend": "Declining",
+          "confidence": "LOW",
+          "source": "Analyst estimate",
+          "parent_bom_name": "Key override mechanism",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Piezoelectric (active piezo element)",
+          "market_share": 62,
+          "trend": "Stable",
+          "confidence": "MEDIUM",
+          "source": "Straits Research Buzzer Market 2024; Cognitive Market Research Electromagnetic Buzzers 2024",
+          "parent_bom_name": "Sound generation module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Electromagnetic buzzer",
+          "market_share": 28,
+          "trend": "Declining",
+          "confidence": "MEDIUM",
+          "source": "Straits Research Buzzer Market 2024",
+          "parent_bom_name": "Sound generation module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Speaker + class-D amplifier",
+          "market_share": 10,
+          "trend": "Growing",
+          "confidence": "MEDIUM",
+          "source": "Cognitive Market Research 2024",
+          "parent_bom_name": "Sound generation module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Proprietary sub-1GHz (433/868 MHz, e.g. EasyWave)",
+          "market_share": 45,
+          "trend": "Declining",
+          "confidence": "LOW",
+          "source": "Analyst estimate — standalone door alarm legacy install base",
+          "parent_bom_name": "RF transmitter module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "BLE 5.x (Bluetooth Mesh)",
+          "market_share": 22,
+          "trend": "Growing",
+          "confidence": "LOW",
+          "source": "Analyst estimate; WanderGuard BLUE BLE architecture — Securitas Healthcare 2025 (9,000+ senior living facilities)",
+          "parent_bom_name": "RF transmitter module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "DECT / proprietary 900 MHz (nurse-call native)",
+          "market_share": 12,
+          "trend": "Stable",
+          "confidence": "LOW",
+          "source": "Analyst estimate — Rauland, TekTone nurse-call market; requires vendor licensing partnership",
+          "parent_bom_name": "RF transmitter module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Zigbee / Thread",
+          "market_share": 8,
+          "trend": "Stable",
+          "confidence": "LOW",
+          "source": "Analyst estimate",
+          "parent_bom_name": "RF transmitter module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "LoRaWAN",
+          "market_share": 8,
+          "trend": "Growing",
+          "confidence": "LOW",
+          "source": "Fortune Business Insights 2025 ($7.7B LoRaWAN market); 868 MHz European band aligns with existing GfS frequency; analyst estimate for door device share",
+          "parent_bom_name": "RF transmitter module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Wi-Fi (802.11 b/g/n)",
+          "market_share": 5,
+          "trend": "Stable",
+          "confidence": "LOW",
+          "source": "Analyst estimate",
+          "parent_bom_name": "RF transmitter module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Alkaline (e.g. Duracell MN1604)",
+          "market_share": 52,
+          "trend": "Stable",
+          "confidence": "MEDIUM",
+          "source": "Mordor Intelligence Primary Battery Market 2025",
+          "parent_bom_name": "Primary cell battery",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Lithium primary (e.g. Energizer L522)",
+          "market_share": 31,
+          "trend": "Growing",
+          "confidence": "MEDIUM",
+          "source": "Straits Research IoT Battery Market 2024; 47% of industrial IoT sensors use lithium primary for extended deployment life",
+          "parent_bom_name": "Primary cell battery",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "NiMH rechargeable (9V)",
+          "market_share": 12,
+          "trend": "Stable",
+          "confidence": "MEDIUM",
+          "source": "Mordor Intelligence Primary Battery Market 2025",
+          "parent_bom_name": "Primary cell battery",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Proprietary rechargeable pack",
+          "market_share": 5,
+          "trend": "Emerging",
+          "confidence": "MEDIUM",
+          "source": "Analyst estimate — not yet available in GfS product line",
+          "parent_bom_name": "Primary cell battery",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "ABS (standard / FR grade)",
+          "market_share": 40,
+          "trend": "Stable",
+          "confidence": "MEDIUM",
+          "source": "Credence Research PC/ABS Market 2024",
+          "parent_bom_name": "Guard body assembly",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "PC/ABS blend",
+          "market_share": 35,
+          "trend": "Growing",
+          "confidence": "MEDIUM",
+          "source": "Credence Research PC/ABS Market 2024 ($4.67B)",
+          "parent_bom_name": "Guard body assembly",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Flame-retardant polycarbonate (PC)",
+          "market_share": 15,
+          "trend": "Stable",
+          "confidence": "MEDIUM",
+          "source": "Business Research Insights 2024 — >58% of electronic enclosures require UL94 FR grades",
+          "parent_bom_name": "Guard body assembly",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Zinc alloy die-cast",
+          "market_share": 10,
+          "trend": "Declining",
+          "confidence": "MEDIUM",
+          "source": "Credence Research PC/ABS Market 2024",
+          "parent_bom_name": "Guard body assembly",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        }
+      ]
+    }
+  ],
+  "has_bom": true,
+  "naics_sector_type": "non_manufacturing"
+}

@@ -1,0 +1,1888 @@
+{
+  "id": "VN_museums_historical_sites",
+  "title": "Value Network Construction: Museums, Historical Sites, and Similar Institutions",
+  "type": "value_network",
+  "market_slug": "museums_historical_sites",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "CFJ Statement",
+      "content": "> Acquire, preserve, and present cultural, historical, natural, and scientific heritage to the public through curated exhibitions, conservation, and educational programming.\n\n**L7 Ecosystem name:** Museum & Heritage Ecosystem\n**L7 description:** Economic community of museums, historic sites, conservators, lenders, donors, regulators, and visitors coordinating the long-term safeguarding and public presentation of irreplaceable cultural and scientific heritage.\n\n---"
+    },
+    {
+      "title": "Step A.1 — L6 Core Process Steps",
+      "content": "Sequential operational chain from object intake to public presentation.\n\n| Node | Name | Job family | Notes |\n|---|---|---|---|\n| L6a | Collection Acquisition & Registration | Receive, document, and formally accession incoming objects into the collection | Universal — all institution types accession objects or site records |\n| L6b | Conservation & Collections Care | Stabilize, treat, and store collection objects to prevent deterioration and ensure long-term integrity | Universal — mandatory for all collection types |\n| L6c | Exhibition Development & Installation | Design, plan, fabricate, and install gallery or site presentations for visitor access | Universal — delivering the public-facing output |\n| L6d | Visitor Experience & Public Programming | Deliver admissions, guided tours, education programs, and public events | Universal — generates revenue and public mandate |\n| L6e | Collection Access & Research Services | Manage scholarly access, object loans to partner institutions, and provenance research requests | Variable — scale depends on institution type and collection significance |\n\n---"
+    },
+    {
+      "title": "Step A.2 — L6 Horizontal Process Steps",
+      "content": "Parallel functions that must run continuously across all core steps.\n\n| Node | Name | Job family | Why horizontal |\n|---|---|---|---|\n| L6H-SEC | Building Security & Life Safety | Protect collections, staff, and visitors against theft, unauthorized access, fire, and emergency exit misuse at all times | Fire code + heritage protection mandates 24/7 coverage — never a sequential step |\n| L6H-ENV | Environmental & Climate Control | Maintain conservation-grade temperature, humidity, and light levels continuously across collection and storage areas | Collections degrade irreversibly without stable environment — runs parallel to all core steps |\n| L6H-FM | Facility Management & Maintenance | Maintain building fabric, utilities, and physical infrastructure in operational and compliant condition | Heritage building constraints and listed status create continuous compliance obligations |\n| L6H-IT | Digital & Collections IT | Provide Collections Management System, visitor-facing digital, and network infrastructure for all operational systems | All core steps depend on CMS or digital connectivity |\n\n> Removing L6H-SEC makes the institution legally non-compliant (fire code, insurance, heritage legislation); removing L6H-ENV causes irreversible artifact damage. Both are horizontal — they run across every core step, never replacing any.\n\n---"
+    },
+    {
+      "title": "Step A.3 — L5 Equipment per L6 Node",
+      "content": "### L6a — Collection Acquisition & Registration\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| Collections Management System (CMS) | The Museum System / TMS (Gallery Systems) | 30% | LOW | Analyst estimate; dominant in large art museums |\n| | PastPerfect (Altus Systems) | 25% | | Strong in history/natural history |\n| | MuseumPlus / Qi (Zetcom) | 15% | | European institutions |\n| | KE EMu (Axiell) | 15% | | Natural history / sciences |\n| | Other / custom | 15% | | |\n| Object Photography & Documentation Station | Camera + copy stand + controlled lighting rig | 70% | LOW | Industry standard for 2D/3D documentation |\n| | 3D structured-light scanner (for objects) | 20% | | Growing for sculptures, artifacts |\n| | Photogrammetry rig | 10% | | Archaeological / open-air sites |\n| Condition Reporting Tool | Tablet + CMS-integrated app (Axiell, Mimsy) | 55% | LOW | Replacing paper forms in most institutions |\n| | Paper condition report form | 35% | | Legacy; still common in smaller museums |\n| | Standalone app (MicroMusée, MuseReport) | 10% | | |\n\n### L6b — Conservation & Collections Care\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| Environmental Monitoring System | HOBO data loggers (Onset) | 35% | LOW | [Onset smart monitoring for museums](https://www.onsetcomp.com/blog/modern-monitoring-solutions-for-museum-and-preservation-management) |\n| | Hanwell / ElvaX wireless loggers | 20% | | |\n| | Conserv (cloud-native) | 15% | | Emerging; strong in US art museums |\n| | Eltek Darca / other wired | 15% | | Legacy installations |\n| | Other | 15% | | |\n| Archival Storage Racking | Compact mobile shelving (mechanical compactus) | 50% | LOW | Space-efficient; museum standard |\n| | Static metal shelving | 35% | | Low-cost option |\n| | Archival flat files / map cabinets | 15% | | For oversized works on paper |\n| Integrated Pest Management Equipment | Sticky traps + insect monitoring stations | 60% | LOW | Primary detection layer |\n| | Anoxic treatment chambers | 25% | | Active eradication; heritage collections |\n| | Freeze treatment unit | 15% | | For textile / organic materials |\n\n### L6c — Exhibition Development & Installation\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| Exhibition Design Software | AutoCAD / Revit (Autodesk) | 45% | LOW | Default in large institutions with design teams |\n| | SketchUp (Trimble) | 25% | | Smaller teams; rapid concept |\n| | Vectorworks (Nemetschek) | 15% | | Theatre/events crossover; exhibitions |\n| | Other / hand drafting | 15% | | |\n| Audio-Visual Presentation System | AV projection (Christie, Barco) | 35% | LOW | Immersive galleries; large-format |\n| | Touchscreen interactive kiosk | 30% | | Interpretive / educational content |\n| | LED video panel | 25% | | Permanent installations |\n| | 360° immersive / spatial audio | 10% | | Emerging; flagship exhibitions |\n| Gallery Lighting | LED tunable-white luminaires (Erco, Zumtobel) | 65% | LOW | Conservation-grade (no UV/IR) |\n| | Fibre-optic spotlight (legacy) | 20% | | Sensitive textiles, manuscripts |\n| | Incandescent / halogen (legacy) | 15% | | Declining; retrofit replacement ongoing |\n\n### L6d — Visitor Experience & Public Programming\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| Ticketing & Admissions System | Altru (Blackbaud) | 20% | LOW | Nonprofit museums |\n| | Tessitura Network | 15% | | Performing arts / large institutions |\n| | SIRIUSWARE | 10% | | National parks, science centers |\n| | Other (Spektrix, TicketSolve, Shopify) | 55% | | Fragmented; many local/bespoke |\n| Audio Guide System | App-based (Bloomberg Connects, izi.TRAVEL) | 45% | LOW | [Bloomberg Connects dominates US art museums](https://www.asisonline.org/security-management-magazine/latest-news/today-in-security/2024/september/improving-museum-security/) |\n| | Dedicated handheld audio guide device | 40% | | Common in history and natural history |\n| | Printed guide only | 15% | | Low-budget institutions |\n| Visitor Counting & Flow Analytics | Thermal / infrared people counter | 45% | LOW | Primary entrance counting |\n| | Wi-Fi / BLE anonymized tracking | 30% | | Gallery-level dwell analytics |\n| | Manual clicker count | 25% | | Smaller / historic sites |\n\n### L6e — Collection Access & Research Services\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| Loan & Object Movement Tracking | CMS-integrated loan module (TMS, PastPerfect) | 70% | LOW | Majority use CMS module |\n| | Standalone loan software (Argus Loans) | 20% | | |\n| | Manual / spreadsheet | 10% | | |\n| RFID / Barcode Object Tagging | Barcode label + handheld scanner | 50% | LOW | Cost-effective; most institutions |\n| | RFID tag + fixed / handheld reader | 30% | | Growing for high-value collections |\n| | Manual checklist only | 20% | | Smaller historic sites |\n\n### L6H-SEC — Building Security & Life Safety ← Türwächter anchor\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Emergency Exit Security Devices** | Basic mechanical door alarm (no monitoring) | 45% | LOW | Common in heritage buildings with wiring constraints |\n| | **Alarmed exit hardware with IoT monitoring** ← **Türwächter** | 20% | | Battery-powered wireless; ideal for listed buildings |\n| | Wired panic bar / crash bar alarm | 25% | | New-build or major refurbishment |\n| | No dedicated exit monitoring | 10% | | Small historic house museums |\n| Intruder Detection & Alarm System | PIR / microwave motion detectors | 55% | MEDIUM | [Museum security systems overview](https://www.omnilert.com/blog/museum-security-systems) |\n| | Vibration / seismic sensors (for cases) | 25% | | Jewelry, small valuables |\n| | Glass-break detectors | 20% | | Historic buildings with large windows |\n| Electronic Access Control | IP-based (ASSA ABLOY, Dormakaba, Salto) | 55% | MEDIUM | [Advanced museum security 2025](https://aaaguards.com/blogs/advanced-security-for-art-galleries-museums/) |\n| | Legacy magnetic card reader | 30% | | Older installations |\n| | Mobile credential (ASSA ABLOY Seos) | 15% | | Growing for staff-only zones |\n| Video Surveillance (CCTV) | IP camera / NVR (Axis, Bosch, Hikvision) | 65% | MEDIUM | [NPS Museum Security 2024](https://www.nps.gov/subjects/museums/upload/MHI_Ch14_Museum_Security.pdf) |\n| | Analog / DVR (legacy) | 25% | | Aging institutions upgrading 1990s systems |\n| | Cloud-managed camera (Verkada) | 10% | | Emerging |\n| Fire Detection & Alarm System | Addressable panel (Honeywell, Siemens, Hochiki) | 60% | MEDIUM | [Museum fire safety reference](https://www.wonderfulmuseums.com/museum/fire-at-museum/) |\n| | Conventional zone panel | 30% | | Smaller historic sites |\n| | Wireless fire system | 10% | | Heritage retrofit where wiring is prohibited |\n\n> Heritage buildings (listed / protected) disproportionately use wireless and battery-powered solutions (wireless fire, wireless exit alarms) because routing wired conduit through historic fabric requires planning permission and heritage authority sign-off. The Türwächter's surface-mount, battery-powered profile aligns exactly with these constraints. Source: [WBDG Historic Preservation Life Safety](https://wbdg.org/design-objectives/historic-preservation/accommodate-life-safety-security-needs), [GSA Fire Safety Retrofitting](https://www.gsa.gov/real-estate/historic-preservation/historic-preservation-policy-tools/preservation-tools-resources/technical-procedures/fire-safety-retrofitting-guidelines-for-historic-buildings)\n\n### L6H-ENV — Environmental & Climate Control\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| HVAC Precision Climate System | Chiller plant + dedicated AHU (precision RH ±5%) | 45% | LOW | Major art / natural history museums |\n| | VRF/split with supplemental humidification | 30% | | Mid-size museums; heritage buildings |\n| | Conventional commercial HVAC (no precision RH) | 25% | | Small institutions; lower-value collections |\n| Humidifier / Dehumidifier | Integrated HVAC humidification section | 40% | LOW | Purpose-built galleries |\n| | Standalone ultrasonic / steam humidifiers | 35% | | Retrofit; seasonal correction |\n| | Silica gel passive buffering | 25% | | Historic house museums; low-budget |\n| UV & Light Control | UV-filtering window film / glazing | 40% | LOW | [Heritage fire & light protection](https://www.buildingconservation.com/articles/fire/fire_protection.htm) |\n| | Motorized blackout / solar-control blinds | 35% | | |\n| | Specialized gallery lighting controls (daylight sensor + dimming) | 25% | | |\n\n### L6H-FM — Facility Management & Maintenance\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| Building Management System (BMS) | Honeywell Building Technologies | 30% | LOW | Dominant across institutional buildings |\n| | Siemens Desigo CC | 25% | | |\n| | Johnson Controls Metasys | 25% | | |\n| | Other / no BMS | 20% | | Smaller historic sites |\n| CMMS (Preventive Maintenance) | Archibus | 20% | LOW | Higher-education / large institutions |\n| | IBM Maximo | 15% | | |\n| | Hippo CMMS / other cloud | 15% | | |\n| | Manual / spreadsheet | 35% | | Common in smaller museums |\n| | Other | 15% | | |\n\n### L6H-IT — Digital & Collections IT\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| Network Infrastructure (LAN/WiFi) | Cisco Meraki | 35% | LOW | Common in institutional campus settings |\n| | Aruba / HPE | 30% | | |\n| | Ruckus (CommScope) | 20% | | |\n| | Other | 15% | | |\n| Visitor-Facing Digital Platform | Institution-managed website + app (bespoke) | 40% | LOW | Larger museums with dev capability |\n| | Bloomberg Connects (free platform) | 20% | | Rapidly growing in US/EU art museums |\n| | Google Arts & Culture partnership | 20% | | Secondary channel; not primary |\n| | Other (Cuseum, Smartify) | 20% | | |\n\n---"
+    },
+    {
+      "title": "Step A.4 — Output Type Activation Matrix",
+      "content": "Output types: **ART** = Art museum | **NAT** = Natural history / science museum | **HIST** = History museum | **ARCH** = Archaeological site / open-air museum | **SCI** = Science & technology center\n\n| L6 Node | ART | NAT | HIST | ARCH | SCI | Notes |\n|---|:---:|:---:|:---:|:---:|:---:|---|\n| L6a Acquisition & Registration | x | x | x | x | x | Universal — all collect or record |\n| L6b Conservation & Collections Care | x | x | x | x | x | Universal — all have objects or sites to protect |\n| L6c Exhibition Development & Installation | x | x | x | x | x | Universal — public exhibition is the core output |\n| L6d Visitor Experience & Programming | x | x | x | x | x | Universal |\n| L6e Collection Access & Research | x | x | x | x | — | Science centers often have no permanent loan collection |\n| L6H-SEC Building Security & Life Safety | x | x | x | x | x | Universal — mandatory by fire code and heritage law |\n| L6H-ENV Environmental & Climate Control | x | x | x | — | x | Open-air archaeological sites have no enclosed climate zone |\n| L6H-FM Facility Management | x | x | x | x | x | Universal |\n| L6H-IT Digital & Collections IT | x | x | x | x | x | Universal |\n\n**Insight:** L6H-ENV is the only partially non-universal step — outdoor archaeological sites lack enclosed climate zones. L6H-SEC activates universally: every institution type is subject to fire code and emergency exit regulations regardless of collection type or building status. The Türwächter addresses a universally mandatory requirement.\n\n---"
+    },
+    {
+      "title": "Step 04a — L4 Fill",
+      "content": "Every L5 below has ≥3 L4 children (structural floor = 2, target = 3).\n\n### Collections Management System (CMS) → L4\n\n| L4 | Description |\n|---|---|\n| Object Catalogue Module | Core accession records: title, date, provenance, materials, images |\n| Inventory & Location Module | Storage location, movement history, object condition status |\n| Loan & Exhibition Module | Outgoing/incoming loan workflow, packing/condition reports |\n| Reporting Engine | Accession statistics, collection value summaries, audit outputs |\n| Integration API | Data exchange with image libraries, partner institutions, public portals |\n\n### Environmental Monitoring System → L4\n\n| L4 | Description |\n|---|---|\n| Temperature Sensor | Ambient temperature data logger (±0.1°C resolution) |\n| Relative Humidity Probe | Capacitive RH sensor with dew-point derivation |\n| Light Level / UV Meter | Lux and UV index monitoring (conservation threshold alerting) |\n| Data Logger Controller | Central aggregation hub; local alarm relay |\n| Remote Monitoring Software | Dashboard with threshold alerts, trend visualisation, export |\n\n### Emergency Exit Security Devices → L4\n\n| L4 | Description |\n|---|---|\n| Mechanical Guard Housing | Spring-loaded handle-locking mechanism (power-independent; EN 179/EN 1125 compliant) |\n| Alarm Horn | Piezoelectric acoustic alert transducer (~95 dB; activates on 45° guard swing) |\n| IoT Radio Transmitter | 868 MHz wireless state broadcast module; transmits guard state and alarm events |\n| Battery Pack | 9V portable power supply for alarm + IoT module |\n| Monitoring Software Interface | Dashboard / BMS integration for remote status aggregation across all exit points |\n\n### Intruder Detection & Alarm System → L4\n\n| L4 | Description |\n|---|---|\n| PIR / Dual-Tech Motion Detector | Passive infrared or combined MW/PIR motion sensor |\n| Alarm Control Panel | Zone controller, event log, staff/police communication relay |\n| Audible Sounder / Strobe | Internal/external alarm device on intrusion confirmation |\n| Case Vibration Sensor | Seismic / shock sensor for glass cases and display cabinets |\n| Central Monitoring Interface | Staff/guard monitoring station with map-based zone display |\n\n### Electronic Access Control → L4\n\n| L4 | Description |\n|---|---|\n| Card / Credential Reader | RFID or proximity reader at controlled doors |\n| Access Controller / Door Panel | Zone-level authorization engine and relay driver |\n| Electric Lock / Maglock | Electromagnetic or electromechanical release hardware |\n| Access Management Software | Staff database, permission levels, audit log |\n| Key Override Cylinder | Mechanical fallback for power failure (heritage requirement) |\n\n### Video Surveillance (CCTV) → L4\n\n| L4 | Description |\n|---|---|\n| IP Camera (dome / PTZ) | ≥4MP resolution; wide dynamic range for mixed gallery lighting |\n| NVR / Video Management Software | Video storage, retrieval, multi-site management |\n| Video Analytics Engine | Motion detection, dwell-time analytics, object-removal detection |\n| Display Console | Guard station monitor array for real-time observation |\n| Secure Storage Enclosure | Tamper-resistant NVR housing (data chain of custody for incidents) |\n\n### Fire Detection & Alarm System → L4\n\n| L4 | Description |\n|---|---|\n| Addressable Control Panel | Zone controller + power supply + event log (EN 54 compliant) |\n| Smoke Detector Head | Optical scatter detector (sensitive settings for irreplaceable collections) |\n| Heat Detector Head | Rate-of-rise / fixed-temperature element |\n| Alarm Sounder (Horn / Bell) | Audible alert on zone activation |\n| Manual Call Point | Break-glass or push-button activation |\n\n### HVAC Precision Climate System → L4\n\n| L4 | Description |\n|---|---|\n| Chiller Unit | Refrigerant-based cooling plant serving conservation-grade AHU |\n| Air Handling Unit (AHU) | Air distribution with HEPA/activated-carbon filtration |\n| Humidifier / Dehumidifier Module | Moisture addition/removal within ±5% RH set point |\n| Zone Damper Controller | Variable air volume / zone-level set-point management |\n| Building Automation Controller | Set-point management, alarm interface, remote override |\n\n### Building Management System (BMS) → L4\n\n| L4 | Description |\n|---|---|\n| HVAC Zone Controller | Equipment-level PLC for AHU, chiller, humidifier per zone |\n| Energy Metering Module | kWh monitoring per zone (sustainability reporting, budget control) |\n| Alarm Management Interface | Fault / alert aggregation for facilities team |\n| Remote Access Client | Mobile/web dashboard for off-site building operations |\n\n---"
+    },
+    {
+      "title": "Step 04b — Completeness Check",
+      "content": "| Domain | Status |\n|---|---|\n| Core process chain (L6a–L6e) | Complete — 5 sequential steps from intake to research access |\n| Horizontal safety (L6H-SEC) | Complete — fire, intruder, exit, access control, CCTV |\n| Environmental preservation (L6H-ENV) | Complete — climate, humidity, UV/light |\n| Facility management (L6H-FM) | Complete — BMS, CMMS |\n| Digital infrastructure (L6H-IT) | Complete — CMS, LAN, visitor platform |\n| L4 fill | Complete — all key L5 nodes have ≥3 L4 children |\n\n---"
+    },
+    {
+      "title": "QA Self-Check",
+      "content": "| # | Check | Status |\n|---|---|---|\n| Q1 | CFJ is industry-level | PASS — no technology reference; describes entire NAICS 712110 purpose |\n| Q2 | No orphan nodes | PASS — all units have valid parent references |\n| Q3 | Valid level transitions (L7→L6, L6→L5, L5→L4) | PASS — no level skipping |\n| Q4 | L4 children per L5 ≥2 | PASS — all key L5 nodes have ≥3 L4 children |\n| Q5 | No solution-specific L7 or L6 names | PASS — \"Museum & Heritage Ecosystem\" is industry-level, not technology-specific |\n| Q6 | Three-question naming test | PASS — \"Collections Management System\", \"Conservation\", \"Admissions System\", \"PIR Motion Detector\" pass all three questions |\n| Q7 | Unit count in range (15–60) | PASS — estimated ~45 units across L7–L4 |\n\n---"
+    },
+    {
+      "title": "Türwächter Entry Point Summary",
+      "content": "| Field | Value |\n|---|---|\n| **VN position** | L5 within L6H-SEC (Building Security & Life Safety) |\n| **L5 node** | Emergency Exit Security Devices |\n| **L5 alternative category** | Alarmed exit hardware with IoT monitoring |\n| **Estimated alternative share** | ~20% (battery-powered wireless; growing in heritage buildings) |\n| **Key differentiator in this market** | Surface-mounted, battery-powered, no structural modification required — uniquely suited to heritage-listed buildings where wiring through historic fabric requires planning permission |\n| **Primary constraint in this market** | C5 (Surface Mount acceptable — no flush integration required; heritage buildings actually prefer non-invasive) + C8 (GDPR for EU public buildings) |\n| **Competing alternatives displaced** | Basic mechanical door alarm (no remote monitoring) — 45% share, widely used but provides no centralized visibility |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n  \"naics_code\": \"712110\",\n  \"naics_title\": \"Museums, Historical Sites, and Similar Institutions\",\n  \"cfj_statement\": \"Acquire, preserve, and present cultural, historical, natural, and scientific heritage to the public through curated exhibitions, conservation, and educational programming.\",\n  \"top_level\": \"L7\",\n  \"units\": [\n    {\n      \"name\": \"Museum & Heritage Ecosystem\",\n      \"level\": \"L7\",\n      \"description\": \"Economic community of museums, historic sites, conservators, lenders, donors, regulators, and visitors coordinating the long-term safeguarding and public presentation of irreplaceable cultural and scientific heritage.\",\n      \"bom_standard\": \"Moore 1993\",\n      \"parent_name\": \"ROOT\"\n    },\n    {\n      \"name\": \"Collection Acquisition & Registration\",\n      \"level\": \"L6\",\n      \"description\": \"Receive, document, and formally accession incoming objects into the collection.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Museum & Heritage Ecosystem\"\n    },\n    {\n      \"name\": \"Conservation & Collections Care\",\n      \"level\": \"L6\",\n      \"description\": \"Stabilize, treat, and store collection objects to prevent deterioration and ensure long-term integrity.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Museum & Heritage Ecosystem\"\n    },\n    {\n      \"name\": \"Exhibition Development & Installation\",\n      \"level\": \"L6\",\n      \"description\": \"Design, plan, fabricate, and install gallery or site presentations for visitor access.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Museum & Heritage Ecosystem\"\n    },\n    {\n      \"name\": \"Visitor Experience & Public Programming\",\n      \"level\": \"L6\",\n      \"description\": \"Deliver admissions, guided tours, education programs, and public events.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Museum & Heritage Ecosystem\"\n    },\n    {\n      \"name\": \"Collection Access & Research Services\",\n      \"level\": \"L6\",\n      \"description\": \"Manage scholarly access, object loans to partner institutions, and provenance research requests.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Museum & Heritage Ecosystem\"\n    },\n    {\n      \"name\": \"Building Security & Life Safety\",\n      \"level\": \"L6\",\n      \"description\": \"Horizontal. Protect collections, staff, and visitors against theft, unauthorized access, fire, and emergency exit misuse at all times.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Museum & Heritage Ecosystem\"\n    },\n    {\n      \"name\": \"Environmental & Climate Control\",\n      \"level\": \"L6\",\n      \"description\": \"Horizontal. Maintain conservation-grade temperature, humidity, and light levels continuously across collection and storage areas.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Museum & Heritage Ecosystem\"\n    },\n    {\n      \"name\": \"Facility Management & Maintenance\",\n      \"level\": \"L6\",\n      \"description\": \"Horizontal. Maintain building fabric, utilities, and physical infrastructure in operational and compliant condition.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Museum & Heritage Ecosystem\"\n    },\n    {\n      \"name\": \"Digital & Collections IT\",\n      \"level\": \"L6\",\n      \"description\": \"Horizontal. Provide CMS, visitor-facing digital, and network infrastructure for all operational systems.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Museum & Heritage Ecosystem\"\n    },\n    {\n      \"name\": \"Collections Management System\",\n      \"level\": \"L5\",\n      \"description\": \"Central digital repository for all collection data: accession records, location, condition, loans, and provenance.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Collection Acquisition & Registration\"\n    },\n    {\n      \"name\": \"Object Photography & Documentation Station\",\n      \"level\": \"L5\",\n      \"description\": \"Controlled-environment imaging setup for object documentation at intake.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Collection Acquisition & Registration\"\n    },\n    {\n      \"name\": \"Condition Reporting Tool\",\n      \"level\": \"L5\",\n      \"description\": \"Tablet or paper-based tool for recording object condition at intake and movement.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Collection Acquisition & Registration\"\n    },\n    {\n      \"name\": \"Environmental Monitoring System\",\n      \"level\": \"L5\",\n      \"description\": \"Distributed sensor network measuring temperature, RH, light, and UV across storage and gallery zones.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Conservation & Collections Care\"\n    },\n    {\n      \"name\": \"Archival Storage Racking\",\n      \"level\": \"L5\",\n      \"description\": \"Shelving and racking systems for organized, accessible, and protective object storage.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Conservation & Collections Care\"\n    },\n    {\n      \"name\": \"Integrated Pest Management Equipment\",\n      \"level\": \"L5\",\n      \"description\": \"Trapping, monitoring, and treatment equipment to prevent biological damage to organic collection materials.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Conservation & Collections Care\"\n    },\n    {\n      \"name\": \"Exhibition Design Software\",\n      \"level\": \"L5\",\n      \"description\": \"CAD/BIM tools for planning gallery layouts, circulation routes, and installation specifications.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Exhibition Development & Installation\"\n    },\n    {\n      \"name\": \"Audio-Visual Presentation System\",\n      \"level\": \"L5\",\n      \"description\": \"Projection, LED, kiosk, or immersive AV equipment for content delivery in gallery spaces.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Exhibition Development & Installation\"\n    },\n    {\n      \"name\": \"Gallery Lighting\",\n      \"level\": \"L5\",\n      \"description\": \"Conservation-grade luminaires with UV/IR filtering and tunable colour temperature.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Exhibition Development & Installation\"\n    },\n    {\n      \"name\": \"Ticketing & Admissions System\",\n      \"level\": \"L5\",\n      \"description\": \"Reservation, box office, and entry management platform for visitor admissions.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Visitor Experience & Public Programming\"\n    },\n    {\n      \"name\": \"Audio Guide System\",\n      \"level\": \"L5\",\n      \"description\": \"App-based or dedicated device delivering interpretation and narrative to visitors in galleries.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Visitor Experience & Public Programming\"\n    },\n    {\n      \"name\": \"Visitor Counting & Flow Analytics\",\n      \"level\": \"L5\",\n      \"description\": \"People-counting and dwell-time analytics system for capacity management and gallery planning.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Visitor Experience & Public Programming\"\n    },\n    {\n      \"name\": \"Loan & Object Movement Tracking\",\n      \"level\": \"L5\",\n      \"description\": \"CMS module or standalone system managing outgoing and incoming object loans.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Collection Access & Research Services\"\n    },\n    {\n      \"name\": \"RFID / Barcode Object Tagging\",\n      \"level\": \"L5\",\n      \"description\": \"Physical identification labels and readers for tracking individual objects through storage and exhibition.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Collection Access & Research Services\"\n    },\n    {\n      \"name\": \"Emergency Exit Security Devices\",\n      \"level\": \"L5\",\n      \"description\": \"Door-mounted devices preventing unauthorized emergency exit use while maintaining unimpeded single-motion escape capability.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Building Security & Life Safety\"\n    },\n    {\n      \"name\": \"Intruder Detection & Alarm System\",\n      \"level\": \"L5\",\n      \"description\": \"Motion, vibration, and glass-break sensors with central alarm panel for theft and unauthorized access detection.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Building Security & Life Safety\"\n    },\n    {\n      \"name\": \"Electronic Access Control\",\n      \"level\": \"L5\",\n      \"description\": \"Credential-based door control for staff zones, conservation areas, and storage vaults.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Building Security & Life Safety\"\n    },\n    {\n      \"name\": \"Video Surveillance (CCTV)\",\n      \"level\": \"L5\",\n      \"description\": \"IP camera network with NVR, analytics, and guard monitoring for 24/7 collection and visitor surveillance.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Building Security & Life Safety\"\n    },\n    {\n      \"name\": \"Fire Detection & Alarm System\",\n      \"level\": \"L5\",\n      \"description\": \"Addressable or wireless fire detection network with smoke/heat detectors and manual call points.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Building Security & Life Safety\"\n    },\n    {\n      \"name\": \"HVAC Precision Climate System\",\n      \"level\": \"L5\",\n      \"description\": \"Conservation-grade heating/cooling/ventilation plant maintaining tight RH and temperature tolerances.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Environmental & Climate Control\"\n    },\n    {\n      \"name\": \"Humidifier / Dehumidifier\",\n      \"level\": \"L5\",\n      \"description\": \"Active moisture control equipment for supplemental or standalone RH management.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Environmental & Climate Control\"\n    },\n    {\n      \"name\": \"UV & Light Control\",\n      \"level\": \"L5\",\n      \"description\": \"Window film, motorized blinds, and gallery lighting controls limiting photochemical degradation.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Environmental & Climate Control\"\n    },\n    {\n      \"name\": \"Building Management System\",\n      \"level\": \"L5\",\n      \"description\": \"Centralized BMS integrating HVAC, environmental, and utility control across the building.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility Management & Maintenance\"\n    },\n    {\n      \"name\": \"CMMS\",\n      \"level\": \"L5\",\n      \"description\": \"Computerized maintenance management system for scheduling and recording preventive and corrective maintenance.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility Management & Maintenance\"\n    },\n    {\n      \"name\": \"Network Infrastructure\",\n      \"level\": \"L5\",\n      \"description\": \"LAN/WiFi backbone serving CMS, security systems, visitor-facing digital, and staff operations.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Digital & Collections IT\"\n    },\n    {\n      \"name\": \"Visitor-Facing Digital Platform\",\n      \"level\": \"L5\",\n      \"description\": \"Website, app, and digital engagement platform for pre-visit planning, on-site interpretation, and online collection access.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Digital & Collections IT\"\n    },\n    {\n      \"name\": \"Object Catalogue Module\",\n      \"level\": \"L4\",\n      \"description\": \"Core accession records: title, date, provenance, materials, images.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Collections Management System\"\n    },\n    {\n      \"name\": \"Inventory & Location Module\",\n      \"level\": \"L4\",\n      \"description\": \"Storage location tracking and object movement history.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Collections Management System\"\n    },\n    {\n      \"name\": \"Loan & Exhibition Module\",\n      \"level\": \"L4\",\n      \"description\": \"Outgoing/incoming loan workflow with packing and condition reporting.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Collections Management System\"\n    },\n    {\n      \"name\": \"Reporting Engine\",\n      \"level\": \"L4\",\n      \"description\": \"Accession statistics, collection value summaries, and audit outputs.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Collections Management System\"\n    },\n    {\n      \"name\": \"Integration API\",\n      \"level\": \"L4\",\n      \"description\": \"Data exchange with image libraries, partner institutions, and public portals.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Collections Management System\"\n    },\n    {\n      \"name\": \"Temperature Sensor\",\n      \"level\": \"L4\",\n      \"description\": \"Ambient temperature data logger (±0.1°C resolution).\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Environmental Monitoring System\"\n    },\n    {\n      \"name\": \"Relative Humidity Probe\",\n      \"level\": \"L4\",\n      \"description\": \"Capacitive RH sensor with dew-point derivation.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Environmental Monitoring System\"\n    },\n    {\n      \"name\": \"Light Level / UV Meter\",\n      \"level\": \"L4\",\n      \"description\": \"Lux and UV index monitoring with conservation threshold alerting.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Environmental Monitoring System\"\n    },\n    {\n      \"name\": \"Data Logger Controller\",\n      \"level\": \"L4\",\n      \"description\": \"Central aggregation hub for environmental sensor data; local alarm relay.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Environmental Monitoring System\"\n    },\n    {\n      \"name\": \"Remote Monitoring Software\",\n      \"level\": \"L4\",\n      \"description\": \"Dashboard with threshold alerts, trend visualisation, and export for compliance reporting.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Environmental Monitoring System\"\n    },\n    {\n      \"name\": \"Mechanical Guard Housing\",\n      \"level\": \"L4\",\n      \"description\": \"Spring-loaded handle-locking mechanism (power-independent; EN 179/EN 1125 compliant).\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Devices\"\n    },\n    {\n      \"name\": \"Alarm Horn\",\n      \"level\": \"L4\",\n      \"description\": \"Piezoelectric acoustic alert transducer (~95 dB; activates on 45° guard swing).\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Devices\"\n    },\n    {\n      \"name\": \"IoT Radio Transmitter\",\n      \"level\": \"L4\",\n      \"description\": \"868 MHz wireless state broadcast module transmitting guard state and alarm events to central receiver.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Devices\"\n    },\n    {\n      \"name\": \"Battery Pack\",\n      \"level\": \"L4\",\n      \"description\": \"9V portable power supply for alarm + IoT module.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Devices\"\n    },\n    {\n      \"name\": \"Monitoring Software Interface\",\n      \"level\": \"L4\",\n      \"description\": \"Dashboard / BMS integration for remote status aggregation across all exit points.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Devices\"\n    },\n    {\n      \"name\": \"PIR / Dual-Tech Motion Detector\",\n      \"level\": \"L4\",\n      \"description\": \"Passive infrared or combined MW/PIR motion sensor for gallery and storage zone intrusion detection.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Intruder Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Alarm Control Panel\",\n      \"level\": \"L4\",\n      \"description\": \"Zone controller, event log, staff and police communication relay.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Intruder Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Audible Sounder / Strobe\",\n      \"level\": \"L4\",\n      \"description\": \"Internal/external alarm device on intrusion confirmation.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Intruder Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Case Vibration Sensor\",\n      \"level\": \"L4\",\n      \"description\": \"Seismic / shock sensor for glass display cases and cabinets containing high-value objects.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Intruder Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Card / Credential Reader\",\n      \"level\": \"L4\",\n      \"description\": \"RFID or proximity reader at controlled doors (conservation areas, vaults, staff zones).\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Electronic Access Control\"\n    },\n    {\n      \"name\": \"Access Controller / Door Panel\",\n      \"level\": \"L4\",\n      \"description\": \"Zone-level authorization engine and relay driver.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Electronic Access Control\"\n    },\n    {\n      \"name\": \"Electric Lock / Maglock\",\n      \"level\": \"L4\",\n      \"description\": \"Electromagnetic or electromechanical release hardware at controlled entry points.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Electronic Access Control\"\n    },\n    {\n      \"name\": \"Access Management Software\",\n      \"level\": \"L4\",\n      \"description\": \"Staff database, permission levels, and audit log.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Electronic Access Control\"\n    },\n    {\n      \"name\": \"IP Camera\",\n      \"level\": \"L4\",\n      \"description\": \"≥4MP dome or PTZ camera with wide dynamic range for mixed gallery lighting conditions.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Video Surveillance (CCTV)\"\n    },\n    {\n      \"name\": \"NVR / Video Management Software\",\n      \"level\": \"L4\",\n      \"description\": \"Video storage, retrieval, and multi-site or multi-building management platform.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Video Surveillance (CCTV)\"\n    },\n    {\n      \"name\": \"Video Analytics Engine\",\n      \"level\": \"L4\",\n      \"description\": \"Motion detection, dwell-time analytics, and object-removal detection for collections protection.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Video Surveillance (CCTV)\"\n    },\n    {\n      \"name\": \"Display Console\",\n      \"level\": \"L4\",\n      \"description\": \"Guard station monitor array for real-time observation and incident response.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Video Surveillance (CCTV)\"\n    },\n    {\n      \"name\": \"Addressable Control Panel\",\n      \"level\": \"L4\",\n      \"description\": \"Zone controller, power supply, and event log (EN 54 compliant).\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Smoke Detector Head\",\n      \"level\": \"L4\",\n      \"description\": \"Optical scatter detector (sensitive settings for irreplaceable collections).\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Heat Detector Head\",\n      \"level\": \"L4\",\n      \"description\": \"Rate-of-rise or fixed-temperature element for kitchens, plant rooms.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Alarm Sounder\",\n      \"level\": \"L4\",\n      \"description\": \"Audible alert on zone activation; visual strobe for accessibility compliance.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Manual Call Point\",\n      \"level\": \"L4\",\n      \"description\": \"Break-glass or push-button activation by occupant at emergency points.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Chiller Unit\",\n      \"level\": \"L4\",\n      \"description\": \"Refrigerant-based cooling plant serving conservation-grade AHU.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"HVAC Precision Climate System\"\n    },\n    {\n      \"name\": \"Air Handling Unit\",\n      \"level\": \"L4\",\n      \"description\": \"Air distribution with HEPA/activated-carbon filtration for collection-grade air quality.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"HVAC Precision Climate System\"\n    },\n    {\n      \"name\": \"Humidifier / Dehumidifier Module\",\n      \"level\": \"L4\",\n      \"description\": \"Moisture addition/removal to maintain ±5% RH set point.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"HVAC Precision Climate System\"\n    },\n    {\n      \"name\": \"Zone Damper Controller\",\n      \"level\": \"L4\",\n      \"description\": \"Variable air volume / zone-level set-point management.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"HVAC Precision Climate System\"\n    },\n    {\n      \"name\": \"Building Automation Controller\",\n      \"level\": \"L4\",\n      \"description\": \"Set-point management, alarm interface, and remote override for conservation zones.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"HVAC Precision Climate System\"\n    },\n    {\n      \"name\": \"HVAC Zone Controller\",\n      \"level\": \"L4\",\n      \"description\": \"Equipment-level PLC for AHU, chiller, and humidifier per zone.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Building Management System\"\n    },\n    {\n      \"name\": \"Energy Metering Module\",\n      \"level\": \"L4\",\n      \"description\": \"kWh monitoring per zone for sustainability reporting and budget control.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Building Management System\"\n    },\n    {\n      \"name\": \"Alarm Management Interface\",\n      \"level\": \"L4\",\n      \"description\": \"Fault and alert aggregation dashboard for facilities team.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Building Management System\"\n    },\n    {\n      \"name\": \"Remote Access Client\",\n      \"level\": \"L4\",\n      \"description\": \"Mobile/web dashboard for off-site building operations and emergency response.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Building Management System\"\n    },\n    {\n      \"name\": \"Core Switch\",\n      \"level\": \"L4\",\n      \"description\": \"Layer-3 distribution switch (server room / IDF) connecting all building systems.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Network Infrastructure\"\n    },\n    {\n      \"name\": \"Wireless Access Point\",\n      \"level\": \"L4\",\n      \"description\": \"802.11ax (Wi-Fi 6) AP for staff and visitor connectivity.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Network Infrastructure\"\n    },\n    {\n      \"name\": \"Firewall / Security Gateway\",\n      \"level\": \"L4\",\n      \"description\": \"Perimeter security protecting CMS and collections data from external threats.\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Network Infrastructure\"\n    }\n  ]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Node",
+        "Name",
+        "Job family",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "Node": "L6a",
+          "Name": "Collection Acquisition & Registration",
+          "Job family": "Receive, document, and formally accession incoming objects into the collection",
+          "Notes": "Universal — all institution types accession objects or site records"
+        },
+        {
+          "Node": "L6b",
+          "Name": "Conservation & Collections Care",
+          "Job family": "Stabilize, treat, and store collection objects to prevent deterioration and ensure long-term integrity",
+          "Notes": "Universal — mandatory for all collection types"
+        },
+        {
+          "Node": "L6c",
+          "Name": "Exhibition Development & Installation",
+          "Job family": "Design, plan, fabricate, and install gallery or site presentations for visitor access",
+          "Notes": "Universal — delivering the public-facing output"
+        },
+        {
+          "Node": "L6d",
+          "Name": "Visitor Experience & Public Programming",
+          "Job family": "Deliver admissions, guided tours, education programs, and public events",
+          "Notes": "Universal — generates revenue and public mandate"
+        },
+        {
+          "Node": "L6e",
+          "Name": "Collection Access & Research Services",
+          "Job family": "Manage scholarly access, object loans to partner institutions, and provenance research requests",
+          "Notes": "Variable — scale depends on institution type and collection significance"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Node",
+        "Name",
+        "Job family",
+        "Why horizontal"
+      ],
+      "rows": [
+        {
+          "Node": "L6H-SEC",
+          "Name": "Building Security & Life Safety",
+          "Job family": "Protect collections, staff, and visitors against theft, unauthorized access, fire, and emergency exit misuse at all times",
+          "Why horizontal": "Fire code + heritage protection mandates 24/7 coverage — never a sequential step"
+        },
+        {
+          "Node": "L6H-ENV",
+          "Name": "Environmental & Climate Control",
+          "Job family": "Maintain conservation-grade temperature, humidity, and light levels continuously across collection and storage areas",
+          "Why horizontal": "Collections degrade irreversibly without stable environment — runs parallel to all core steps"
+        },
+        {
+          "Node": "L6H-FM",
+          "Name": "Facility Management & Maintenance",
+          "Job family": "Maintain building fabric, utilities, and physical infrastructure in operational and compliant condition",
+          "Why horizontal": "Heritage building constraints and listed status create continuous compliance obligations"
+        },
+        {
+          "Node": "L6H-IT",
+          "Name": "Digital & Collections IT",
+          "Job family": "Provide Collections Management System, visitor-facing digital, and network infrastructure for all operational systems",
+          "Why horizontal": "All core steps depend on CMS or digital connectivity"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Collections Management System (CMS)",
+          "Alternatives": "The Museum System / TMS (Gallery Systems)",
+          "Share": "30%",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; dominant in large art museums"
+        },
+        {
+          "L5": "PastPerfect (Altus Systems)",
+          "Alternatives": "25%",
+          "Share": "Strong in history/natural history",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "MuseumPlus / Qi (Zetcom)",
+          "Alternatives": "15%",
+          "Share": "European institutions",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "KE EMu (Axiell)",
+          "Alternatives": "15%",
+          "Share": "Natural history / sciences",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Other / custom",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Object Photography & Documentation Station",
+          "Alternatives": "Camera + copy stand + controlled lighting rig",
+          "Share": "70%",
+          "Confidence": "LOW",
+          "Source": "Industry standard for 2D/3D documentation"
+        },
+        {
+          "L5": "3D structured-light scanner (for objects)",
+          "Alternatives": "20%",
+          "Share": "Growing for sculptures, artifacts",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Photogrammetry rig",
+          "Alternatives": "10%",
+          "Share": "Archaeological / open-air sites",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Condition Reporting Tool",
+          "Alternatives": "Tablet + CMS-integrated app (Axiell, Mimsy)",
+          "Share": "55%",
+          "Confidence": "LOW",
+          "Source": "Replacing paper forms in most institutions"
+        },
+        {
+          "L5": "Paper condition report form",
+          "Alternatives": "35%",
+          "Share": "Legacy; still common in smaller museums",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Standalone app (MicroMusée, MuseReport)",
+          "Alternatives": "10%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Environmental Monitoring System",
+          "Alternatives": "HOBO data loggers (Onset)",
+          "Share": "35%",
+          "Confidence": "LOW",
+          "Source": "[Onset smart monitoring for museums](https://www.onsetcomp.com/blog/modern-monitoring-solutions-for-museum-and-preservation-management)"
+        },
+        {
+          "L5": "Hanwell / ElvaX wireless loggers",
+          "Alternatives": "20%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Conserv (cloud-native)",
+          "Alternatives": "15%",
+          "Share": "Emerging; strong in US art museums",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Eltek Darca / other wired",
+          "Alternatives": "15%",
+          "Share": "Legacy installations",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Other",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Archival Storage Racking",
+          "Alternatives": "Compact mobile shelving (mechanical compactus)",
+          "Share": "50%",
+          "Confidence": "LOW",
+          "Source": "Space-efficient; museum standard"
+        },
+        {
+          "L5": "Static metal shelving",
+          "Alternatives": "35%",
+          "Share": "Low-cost option",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Archival flat files / map cabinets",
+          "Alternatives": "15%",
+          "Share": "For oversized works on paper",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Integrated Pest Management Equipment",
+          "Alternatives": "Sticky traps + insect monitoring stations",
+          "Share": "60%",
+          "Confidence": "LOW",
+          "Source": "Primary detection layer"
+        },
+        {
+          "L5": "Anoxic treatment chambers",
+          "Alternatives": "25%",
+          "Share": "Active eradication; heritage collections",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Freeze treatment unit",
+          "Alternatives": "15%",
+          "Share": "For textile / organic materials",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Exhibition Design Software",
+          "Alternatives": "AutoCAD / Revit (Autodesk)",
+          "Share": "45%",
+          "Confidence": "LOW",
+          "Source": "Default in large institutions with design teams"
+        },
+        {
+          "L5": "SketchUp (Trimble)",
+          "Alternatives": "25%",
+          "Share": "Smaller teams; rapid concept",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Vectorworks (Nemetschek)",
+          "Alternatives": "15%",
+          "Share": "Theatre/events crossover; exhibitions",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Other / hand drafting",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Audio-Visual Presentation System",
+          "Alternatives": "AV projection (Christie, Barco)",
+          "Share": "35%",
+          "Confidence": "LOW",
+          "Source": "Immersive galleries; large-format"
+        },
+        {
+          "L5": "Touchscreen interactive kiosk",
+          "Alternatives": "30%",
+          "Share": "Interpretive / educational content",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "LED video panel",
+          "Alternatives": "25%",
+          "Share": "Permanent installations",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "360° immersive / spatial audio",
+          "Alternatives": "10%",
+          "Share": "Emerging; flagship exhibitions",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Gallery Lighting",
+          "Alternatives": "LED tunable-white luminaires (Erco, Zumtobel)",
+          "Share": "65%",
+          "Confidence": "LOW",
+          "Source": "Conservation-grade (no UV/IR)"
+        },
+        {
+          "L5": "Fibre-optic spotlight (legacy)",
+          "Alternatives": "20%",
+          "Share": "Sensitive textiles, manuscripts",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Incandescent / halogen (legacy)",
+          "Alternatives": "15%",
+          "Share": "Declining; retrofit replacement ongoing",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Ticketing & Admissions System",
+          "Alternatives": "Altru (Blackbaud)",
+          "Share": "20%",
+          "Confidence": "LOW",
+          "Source": "Nonprofit museums"
+        },
+        {
+          "L5": "Tessitura Network",
+          "Alternatives": "15%",
+          "Share": "Performing arts / large institutions",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "SIRIUSWARE",
+          "Alternatives": "10%",
+          "Share": "National parks, science centers",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Other (Spektrix, TicketSolve, Shopify)",
+          "Alternatives": "55%",
+          "Share": "Fragmented; many local/bespoke",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Audio Guide System",
+          "Alternatives": "App-based (Bloomberg Connects, izi.TRAVEL)",
+          "Share": "45%",
+          "Confidence": "LOW",
+          "Source": "[Bloomberg Connects dominates US art museums](https://www.asisonline.org/security-management-magazine/latest-news/today-in-security/2024/september/improving-museum-security/)"
+        },
+        {
+          "L5": "Dedicated handheld audio guide device",
+          "Alternatives": "40%",
+          "Share": "Common in history and natural history",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Printed guide only",
+          "Alternatives": "15%",
+          "Share": "Low-budget institutions",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Visitor Counting & Flow Analytics",
+          "Alternatives": "Thermal / infrared people counter",
+          "Share": "45%",
+          "Confidence": "LOW",
+          "Source": "Primary entrance counting"
+        },
+        {
+          "L5": "Wi-Fi / BLE anonymized tracking",
+          "Alternatives": "30%",
+          "Share": "Gallery-level dwell analytics",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Manual clicker count",
+          "Alternatives": "25%",
+          "Share": "Smaller / historic sites",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Loan & Object Movement Tracking",
+          "Alternatives": "CMS-integrated loan module (TMS, PastPerfect)",
+          "Share": "70%",
+          "Confidence": "LOW",
+          "Source": "Majority use CMS module"
+        },
+        {
+          "L5": "Standalone loan software (Argus Loans)",
+          "Alternatives": "20%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Manual / spreadsheet",
+          "Alternatives": "10%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "RFID / Barcode Object Tagging",
+          "Alternatives": "Barcode label + handheld scanner",
+          "Share": "50%",
+          "Confidence": "LOW",
+          "Source": "Cost-effective; most institutions"
+        },
+        {
+          "L5": "RFID tag + fixed / handheld reader",
+          "Alternatives": "30%",
+          "Share": "Growing for high-value collections",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Manual checklist only",
+          "Alternatives": "20%",
+          "Share": "Smaller historic sites",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Emergency Exit Security Devices**",
+          "Alternatives": "Basic mechanical door alarm (no monitoring)",
+          "Share": "45%",
+          "Confidence": "LOW",
+          "Source": "Common in heritage buildings with wiring constraints"
+        },
+        {
+          "L5": "**Alarmed exit hardware with IoT monitoring** ← **Türwächter**",
+          "Alternatives": "20%",
+          "Share": "Battery-powered wireless; ideal for listed buildings",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Wired panic bar / crash bar alarm",
+          "Alternatives": "25%",
+          "Share": "New-build or major refurbishment",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "No dedicated exit monitoring",
+          "Alternatives": "10%",
+          "Share": "Small historic house museums",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Intruder Detection & Alarm System",
+          "Alternatives": "PIR / microwave motion detectors",
+          "Share": "55%",
+          "Confidence": "MEDIUM",
+          "Source": "[Museum security systems overview](https://www.omnilert.com/blog/museum-security-systems)"
+        },
+        {
+          "L5": "Vibration / seismic sensors (for cases)",
+          "Alternatives": "25%",
+          "Share": "Jewelry, small valuables",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Glass-break detectors",
+          "Alternatives": "20%",
+          "Share": "Historic buildings with large windows",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Electronic Access Control",
+          "Alternatives": "IP-based (ASSA ABLOY, Dormakaba, Salto)",
+          "Share": "55%",
+          "Confidence": "MEDIUM",
+          "Source": "[Advanced museum security 2025](https://aaaguards.com/blogs/advanced-security-for-art-galleries-museums/)"
+        },
+        {
+          "L5": "Legacy magnetic card reader",
+          "Alternatives": "30%",
+          "Share": "Older installations",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Mobile credential (ASSA ABLOY Seos)",
+          "Alternatives": "15%",
+          "Share": "Growing for staff-only zones",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Video Surveillance (CCTV)",
+          "Alternatives": "IP camera / NVR (Axis, Bosch, Hikvision)",
+          "Share": "65%",
+          "Confidence": "MEDIUM",
+          "Source": "[NPS Museum Security 2024](https://www.nps.gov/subjects/museums/upload/MHI_Ch14_Museum_Security.pdf)"
+        },
+        {
+          "L5": "Analog / DVR (legacy)",
+          "Alternatives": "25%",
+          "Share": "Aging institutions upgrading 1990s systems",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Cloud-managed camera (Verkada)",
+          "Alternatives": "10%",
+          "Share": "Emerging",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Fire Detection & Alarm System",
+          "Alternatives": "Addressable panel (Honeywell, Siemens, Hochiki)",
+          "Share": "60%",
+          "Confidence": "MEDIUM",
+          "Source": "[Museum fire safety reference](https://www.wonderfulmuseums.com/museum/fire-at-museum/)"
+        },
+        {
+          "L5": "Conventional zone panel",
+          "Alternatives": "30%",
+          "Share": "Smaller historic sites",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Wireless fire system",
+          "Alternatives": "10%",
+          "Share": "Heritage retrofit where wiring is prohibited",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "HVAC Precision Climate System",
+          "Alternatives": "Chiller plant + dedicated AHU (precision RH ±5%)",
+          "Share": "45%",
+          "Confidence": "LOW",
+          "Source": "Major art / natural history museums"
+        },
+        {
+          "L5": "VRF/split with supplemental humidification",
+          "Alternatives": "30%",
+          "Share": "Mid-size museums; heritage buildings",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Conventional commercial HVAC (no precision RH)",
+          "Alternatives": "25%",
+          "Share": "Small institutions; lower-value collections",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Humidifier / Dehumidifier",
+          "Alternatives": "Integrated HVAC humidification section",
+          "Share": "40%",
+          "Confidence": "LOW",
+          "Source": "Purpose-built galleries"
+        },
+        {
+          "L5": "Standalone ultrasonic / steam humidifiers",
+          "Alternatives": "35%",
+          "Share": "Retrofit; seasonal correction",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Silica gel passive buffering",
+          "Alternatives": "25%",
+          "Share": "Historic house museums; low-budget",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "UV & Light Control",
+          "Alternatives": "UV-filtering window film / glazing",
+          "Share": "40%",
+          "Confidence": "LOW",
+          "Source": "[Heritage fire & light protection](https://www.buildingconservation.com/articles/fire/fire_protection.htm)"
+        },
+        {
+          "L5": "Motorized blackout / solar-control blinds",
+          "Alternatives": "35%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Specialized gallery lighting controls (daylight sensor + dimming)",
+          "Alternatives": "25%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Building Management System (BMS)",
+          "Alternatives": "Honeywell Building Technologies",
+          "Share": "30%",
+          "Confidence": "LOW",
+          "Source": "Dominant across institutional buildings"
+        },
+        {
+          "L5": "Siemens Desigo CC",
+          "Alternatives": "25%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Johnson Controls Metasys",
+          "Alternatives": "25%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Other / no BMS",
+          "Alternatives": "20%",
+          "Share": "Smaller historic sites",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "CMMS (Preventive Maintenance)",
+          "Alternatives": "Archibus",
+          "Share": "20%",
+          "Confidence": "LOW",
+          "Source": "Higher-education / large institutions"
+        },
+        {
+          "L5": "IBM Maximo",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Hippo CMMS / other cloud",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Manual / spreadsheet",
+          "Alternatives": "35%",
+          "Share": "Common in smaller museums",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Other",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Network Infrastructure (LAN/WiFi)",
+          "Alternatives": "Cisco Meraki",
+          "Share": "35%",
+          "Confidence": "LOW",
+          "Source": "Common in institutional campus settings"
+        },
+        {
+          "L5": "Aruba / HPE",
+          "Alternatives": "30%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Ruckus (CommScope)",
+          "Alternatives": "20%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Other",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Visitor-Facing Digital Platform",
+          "Alternatives": "Institution-managed website + app (bespoke)",
+          "Share": "40%",
+          "Confidence": "LOW",
+          "Source": "Larger museums with dev capability"
+        },
+        {
+          "L5": "Bloomberg Connects (free platform)",
+          "Alternatives": "20%",
+          "Share": "Rapidly growing in US/EU art museums",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Google Arts & Culture partnership",
+          "Alternatives": "20%",
+          "Share": "Secondary channel; not primary",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Other (Cuseum, Smartify)",
+          "Alternatives": "20%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L6 Node",
+        "ART",
+        "NAT",
+        "HIST",
+        "ARCH",
+        "SCI",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "L6 Node": "L6a Acquisition & Registration",
+          "ART": "x",
+          "NAT": "x",
+          "HIST": "x",
+          "ARCH": "x",
+          "SCI": "x",
+          "Notes": "Universal — all collect or record"
+        },
+        {
+          "L6 Node": "L6b Conservation & Collections Care",
+          "ART": "x",
+          "NAT": "x",
+          "HIST": "x",
+          "ARCH": "x",
+          "SCI": "x",
+          "Notes": "Universal — all have objects or sites to protect"
+        },
+        {
+          "L6 Node": "L6c Exhibition Development & Installation",
+          "ART": "x",
+          "NAT": "x",
+          "HIST": "x",
+          "ARCH": "x",
+          "SCI": "x",
+          "Notes": "Universal — public exhibition is the core output"
+        },
+        {
+          "L6 Node": "L6d Visitor Experience & Programming",
+          "ART": "x",
+          "NAT": "x",
+          "HIST": "x",
+          "ARCH": "x",
+          "SCI": "x",
+          "Notes": "Universal"
+        },
+        {
+          "L6 Node": "L6e Collection Access & Research",
+          "ART": "x",
+          "NAT": "x",
+          "HIST": "x",
+          "ARCH": "x",
+          "SCI": "—",
+          "Notes": "Science centers often have no permanent loan collection"
+        },
+        {
+          "L6 Node": "L6H-SEC Building Security & Life Safety",
+          "ART": "x",
+          "NAT": "x",
+          "HIST": "x",
+          "ARCH": "x",
+          "SCI": "x",
+          "Notes": "Universal — mandatory by fire code and heritage law"
+        },
+        {
+          "L6 Node": "L6H-ENV Environmental & Climate Control",
+          "ART": "x",
+          "NAT": "x",
+          "HIST": "x",
+          "ARCH": "—",
+          "SCI": "x",
+          "Notes": "Open-air archaeological sites have no enclosed climate zone"
+        },
+        {
+          "L6 Node": "L6H-FM Facility Management",
+          "ART": "x",
+          "NAT": "x",
+          "HIST": "x",
+          "ARCH": "x",
+          "SCI": "x",
+          "Notes": "Universal"
+        },
+        {
+          "L6 Node": "L6H-IT Digital & Collections IT",
+          "ART": "x",
+          "NAT": "x",
+          "HIST": "x",
+          "ARCH": "x",
+          "SCI": "x",
+          "Notes": "Universal"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Object Catalogue Module",
+          "Description": "Core accession records: title, date, provenance, materials, images"
+        },
+        {
+          "L4": "Inventory & Location Module",
+          "Description": "Storage location, movement history, object condition status"
+        },
+        {
+          "L4": "Loan & Exhibition Module",
+          "Description": "Outgoing/incoming loan workflow, packing/condition reports"
+        },
+        {
+          "L4": "Reporting Engine",
+          "Description": "Accession statistics, collection value summaries, audit outputs"
+        },
+        {
+          "L4": "Integration API",
+          "Description": "Data exchange with image libraries, partner institutions, public portals"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Temperature Sensor",
+          "Description": "Ambient temperature data logger (±0.1°C resolution)"
+        },
+        {
+          "L4": "Relative Humidity Probe",
+          "Description": "Capacitive RH sensor with dew-point derivation"
+        },
+        {
+          "L4": "Light Level / UV Meter",
+          "Description": "Lux and UV index monitoring (conservation threshold alerting)"
+        },
+        {
+          "L4": "Data Logger Controller",
+          "Description": "Central aggregation hub; local alarm relay"
+        },
+        {
+          "L4": "Remote Monitoring Software",
+          "Description": "Dashboard with threshold alerts, trend visualisation, export"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Mechanical Guard Housing",
+          "Description": "Spring-loaded handle-locking mechanism (power-independent; EN 179/EN 1125 compliant)"
+        },
+        {
+          "L4": "Alarm Horn",
+          "Description": "Piezoelectric acoustic alert transducer (~95 dB; activates on 45° guard swing)"
+        },
+        {
+          "L4": "IoT Radio Transmitter",
+          "Description": "868 MHz wireless state broadcast module; transmits guard state and alarm events"
+        },
+        {
+          "L4": "Battery Pack",
+          "Description": "9V portable power supply for alarm + IoT module"
+        },
+        {
+          "L4": "Monitoring Software Interface",
+          "Description": "Dashboard / BMS integration for remote status aggregation across all exit points"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "PIR / Dual-Tech Motion Detector",
+          "Description": "Passive infrared or combined MW/PIR motion sensor"
+        },
+        {
+          "L4": "Alarm Control Panel",
+          "Description": "Zone controller, event log, staff/police communication relay"
+        },
+        {
+          "L4": "Audible Sounder / Strobe",
+          "Description": "Internal/external alarm device on intrusion confirmation"
+        },
+        {
+          "L4": "Case Vibration Sensor",
+          "Description": "Seismic / shock sensor for glass cases and display cabinets"
+        },
+        {
+          "L4": "Central Monitoring Interface",
+          "Description": "Staff/guard monitoring station with map-based zone display"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Card / Credential Reader",
+          "Description": "RFID or proximity reader at controlled doors"
+        },
+        {
+          "L4": "Access Controller / Door Panel",
+          "Description": "Zone-level authorization engine and relay driver"
+        },
+        {
+          "L4": "Electric Lock / Maglock",
+          "Description": "Electromagnetic or electromechanical release hardware"
+        },
+        {
+          "L4": "Access Management Software",
+          "Description": "Staff database, permission levels, audit log"
+        },
+        {
+          "L4": "Key Override Cylinder",
+          "Description": "Mechanical fallback for power failure (heritage requirement)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "IP Camera (dome / PTZ)",
+          "Description": "≥4MP resolution; wide dynamic range for mixed gallery lighting"
+        },
+        {
+          "L4": "NVR / Video Management Software",
+          "Description": "Video storage, retrieval, multi-site management"
+        },
+        {
+          "L4": "Video Analytics Engine",
+          "Description": "Motion detection, dwell-time analytics, object-removal detection"
+        },
+        {
+          "L4": "Display Console",
+          "Description": "Guard station monitor array for real-time observation"
+        },
+        {
+          "L4": "Secure Storage Enclosure",
+          "Description": "Tamper-resistant NVR housing (data chain of custody for incidents)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Addressable Control Panel",
+          "Description": "Zone controller + power supply + event log (EN 54 compliant)"
+        },
+        {
+          "L4": "Smoke Detector Head",
+          "Description": "Optical scatter detector (sensitive settings for irreplaceable collections)"
+        },
+        {
+          "L4": "Heat Detector Head",
+          "Description": "Rate-of-rise / fixed-temperature element"
+        },
+        {
+          "L4": "Alarm Sounder (Horn / Bell)",
+          "Description": "Audible alert on zone activation"
+        },
+        {
+          "L4": "Manual Call Point",
+          "Description": "Break-glass or push-button activation"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Chiller Unit",
+          "Description": "Refrigerant-based cooling plant serving conservation-grade AHU"
+        },
+        {
+          "L4": "Air Handling Unit (AHU)",
+          "Description": "Air distribution with HEPA/activated-carbon filtration"
+        },
+        {
+          "L4": "Humidifier / Dehumidifier Module",
+          "Description": "Moisture addition/removal within ±5% RH set point"
+        },
+        {
+          "L4": "Zone Damper Controller",
+          "Description": "Variable air volume / zone-level set-point management"
+        },
+        {
+          "L4": "Building Automation Controller",
+          "Description": "Set-point management, alarm interface, remote override"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "HVAC Zone Controller",
+          "Description": "Equipment-level PLC for AHU, chiller, humidifier per zone"
+        },
+        {
+          "L4": "Energy Metering Module",
+          "Description": "kWh monitoring per zone (sustainability reporting, budget control)"
+        },
+        {
+          "L4": "Alarm Management Interface",
+          "Description": "Fault / alert aggregation for facilities team"
+        },
+        {
+          "L4": "Remote Access Client",
+          "Description": "Mobile/web dashboard for off-site building operations"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Domain",
+        "Status"
+      ],
+      "rows": [
+        {
+          "Domain": "Core process chain (L6a–L6e)",
+          "Status": "Complete — 5 sequential steps from intake to research access"
+        },
+        {
+          "Domain": "Horizontal safety (L6H-SEC)",
+          "Status": "Complete — fire, intruder, exit, access control, CCTV"
+        },
+        {
+          "Domain": "Environmental preservation (L6H-ENV)",
+          "Status": "Complete — climate, humidity, UV/light"
+        },
+        {
+          "Domain": "Facility management (L6H-FM)",
+          "Status": "Complete — BMS, CMMS"
+        },
+        {
+          "Domain": "Digital infrastructure (L6H-IT)",
+          "Status": "Complete — CMS, LAN, visitor platform"
+        },
+        {
+          "Domain": "L4 fill",
+          "Status": "Complete — all key L5 nodes have ≥3 L4 children"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Check",
+        "Status"
+      ],
+      "rows": [
+        {
+          "#": "Q1",
+          "Check": "CFJ is industry-level",
+          "Status": "PASS — no technology reference; describes entire NAICS 712110 purpose"
+        },
+        {
+          "#": "Q2",
+          "Check": "No orphan nodes",
+          "Status": "PASS — all units have valid parent references"
+        },
+        {
+          "#": "Q3",
+          "Check": "Valid level transitions (L7→L6, L6→L5, L5→L4)",
+          "Status": "PASS — no level skipping"
+        },
+        {
+          "#": "Q4",
+          "Check": "L4 children per L5 ≥2",
+          "Status": "PASS — all key L5 nodes have ≥3 L4 children"
+        },
+        {
+          "#": "Q5",
+          "Check": "No solution-specific L7 or L6 names",
+          "Status": "PASS — \"Museum & Heritage Ecosystem\" is industry-level, not technology-specific"
+        },
+        {
+          "#": "Q6",
+          "Check": "Three-question naming test",
+          "Status": "PASS — \"Collections Management System\", \"Conservation\", \"Admissions System\", \"PIR Motion Detector\" pass all three questions"
+        },
+        {
+          "#": "Q7",
+          "Check": "Unit count in range (15–60)",
+          "Status": "PASS — estimated ~45 units across L7–L4"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**VN position**",
+          "Value": "L5 within L6H-SEC (Building Security & Life Safety)"
+        },
+        {
+          "Field": "**L5 node**",
+          "Value": "Emergency Exit Security Devices"
+        },
+        {
+          "Field": "**L5 alternative category**",
+          "Value": "Alarmed exit hardware with IoT monitoring"
+        },
+        {
+          "Field": "**Estimated alternative share**",
+          "Value": "~20% (battery-powered wireless; growing in heritage buildings)"
+        },
+        {
+          "Field": "**Key differentiator in this market**",
+          "Value": "Surface-mounted, battery-powered, no structural modification required — uniquely suited to heritage-listed buildings where wiring through historic fabric requires planning permission"
+        },
+        {
+          "Field": "**Primary constraint in this market**",
+          "Value": "C5 (Surface Mount acceptable — no flush integration required; heritage buildings actually prefer non-invasive) + C8 (GDPR for EU public buildings)"
+        },
+        {
+          "Field": "**Competing alternatives displaced**",
+          "Value": "Basic mechanical door alarm (no remote monitoring) — 45% share, widely used but provides no centralized visibility"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market_name": "Museums, Historical Sites, and Similar Institutions",
+      "naics_code": "712110",
+      "naics_title": "Museums, Historical Sites, and Similar Institutions",
+      "cfj_statement": "Acquire, preserve, and present cultural, historical, natural, and scientific heritage to the public through curated exhibitions, conservation, and educational programming.",
+      "top_level": "L7",
+      "units": [
+        {
+          "name": "Museum & Heritage Ecosystem",
+          "level": "L7",
+          "description": "Economic community of museums, historic sites, conservators, lenders, donors, regulators, and visitors coordinating the long-term safeguarding and public presentation of irreplaceable cultural and scientific heritage.",
+          "bom_standard": "Moore 1993",
+          "parent_name": "ROOT"
+        },
+        {
+          "name": "Collection Acquisition & Registration",
+          "level": "L6",
+          "description": "Receive, document, and formally accession incoming objects into the collection.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Museum & Heritage Ecosystem"
+        },
+        {
+          "name": "Conservation & Collections Care",
+          "level": "L6",
+          "description": "Stabilize, treat, and store collection objects to prevent deterioration and ensure long-term integrity.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Museum & Heritage Ecosystem"
+        },
+        {
+          "name": "Exhibition Development & Installation",
+          "level": "L6",
+          "description": "Design, plan, fabricate, and install gallery or site presentations for visitor access.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Museum & Heritage Ecosystem"
+        },
+        {
+          "name": "Visitor Experience & Public Programming",
+          "level": "L6",
+          "description": "Deliver admissions, guided tours, education programs, and public events.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Museum & Heritage Ecosystem"
+        },
+        {
+          "name": "Collection Access & Research Services",
+          "level": "L6",
+          "description": "Manage scholarly access, object loans to partner institutions, and provenance research requests.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Museum & Heritage Ecosystem"
+        },
+        {
+          "name": "Building Security & Life Safety",
+          "level": "L6",
+          "description": "Horizontal. Protect collections, staff, and visitors against theft, unauthorized access, fire, and emergency exit misuse at all times.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Museum & Heritage Ecosystem"
+        },
+        {
+          "name": "Environmental & Climate Control",
+          "level": "L6",
+          "description": "Horizontal. Maintain conservation-grade temperature, humidity, and light levels continuously across collection and storage areas.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Museum & Heritage Ecosystem"
+        },
+        {
+          "name": "Facility Management & Maintenance",
+          "level": "L6",
+          "description": "Horizontal. Maintain building fabric, utilities, and physical infrastructure in operational and compliant condition.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Museum & Heritage Ecosystem"
+        },
+        {
+          "name": "Digital & Collections IT",
+          "level": "L6",
+          "description": "Horizontal. Provide CMS, visitor-facing digital, and network infrastructure for all operational systems.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Museum & Heritage Ecosystem"
+        },
+        {
+          "name": "Collections Management System",
+          "level": "L5",
+          "description": "Central digital repository for all collection data: accession records, location, condition, loans, and provenance.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Collection Acquisition & Registration"
+        },
+        {
+          "name": "Object Photography & Documentation Station",
+          "level": "L5",
+          "description": "Controlled-environment imaging setup for object documentation at intake.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Collection Acquisition & Registration"
+        },
+        {
+          "name": "Condition Reporting Tool",
+          "level": "L5",
+          "description": "Tablet or paper-based tool for recording object condition at intake and movement.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Collection Acquisition & Registration"
+        },
+        {
+          "name": "Environmental Monitoring System",
+          "level": "L5",
+          "description": "Distributed sensor network measuring temperature, RH, light, and UV across storage and gallery zones.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Conservation & Collections Care"
+        },
+        {
+          "name": "Archival Storage Racking",
+          "level": "L5",
+          "description": "Shelving and racking systems for organized, accessible, and protective object storage.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Conservation & Collections Care"
+        },
+        {
+          "name": "Integrated Pest Management Equipment",
+          "level": "L5",
+          "description": "Trapping, monitoring, and treatment equipment to prevent biological damage to organic collection materials.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Conservation & Collections Care"
+        },
+        {
+          "name": "Exhibition Design Software",
+          "level": "L5",
+          "description": "CAD/BIM tools for planning gallery layouts, circulation routes, and installation specifications.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Exhibition Development & Installation"
+        },
+        {
+          "name": "Audio-Visual Presentation System",
+          "level": "L5",
+          "description": "Projection, LED, kiosk, or immersive AV equipment for content delivery in gallery spaces.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Exhibition Development & Installation"
+        },
+        {
+          "name": "Gallery Lighting",
+          "level": "L5",
+          "description": "Conservation-grade luminaires with UV/IR filtering and tunable colour temperature.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Exhibition Development & Installation"
+        },
+        {
+          "name": "Ticketing & Admissions System",
+          "level": "L5",
+          "description": "Reservation, box office, and entry management platform for visitor admissions.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Visitor Experience & Public Programming"
+        },
+        {
+          "name": "Audio Guide System",
+          "level": "L5",
+          "description": "App-based or dedicated device delivering interpretation and narrative to visitors in galleries.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Visitor Experience & Public Programming"
+        },
+        {
+          "name": "Visitor Counting & Flow Analytics",
+          "level": "L5",
+          "description": "People-counting and dwell-time analytics system for capacity management and gallery planning.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Visitor Experience & Public Programming"
+        },
+        {
+          "name": "Loan & Object Movement Tracking",
+          "level": "L5",
+          "description": "CMS module or standalone system managing outgoing and incoming object loans.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Collection Access & Research Services"
+        },
+        {
+          "name": "RFID / Barcode Object Tagging",
+          "level": "L5",
+          "description": "Physical identification labels and readers for tracking individual objects through storage and exhibition.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Collection Access & Research Services"
+        },
+        {
+          "name": "Emergency Exit Security Devices",
+          "level": "L5",
+          "description": "Door-mounted devices preventing unauthorized emergency exit use while maintaining unimpeded single-motion escape capability.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Building Security & Life Safety"
+        },
+        {
+          "name": "Intruder Detection & Alarm System",
+          "level": "L5",
+          "description": "Motion, vibration, and glass-break sensors with central alarm panel for theft and unauthorized access detection.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Building Security & Life Safety"
+        },
+        {
+          "name": "Electronic Access Control",
+          "level": "L5",
+          "description": "Credential-based door control for staff zones, conservation areas, and storage vaults.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Building Security & Life Safety"
+        },
+        {
+          "name": "Video Surveillance (CCTV)",
+          "level": "L5",
+          "description": "IP camera network with NVR, analytics, and guard monitoring for 24/7 collection and visitor surveillance.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Building Security & Life Safety"
+        },
+        {
+          "name": "Fire Detection & Alarm System",
+          "level": "L5",
+          "description": "Addressable or wireless fire detection network with smoke/heat detectors and manual call points.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Building Security & Life Safety"
+        },
+        {
+          "name": "HVAC Precision Climate System",
+          "level": "L5",
+          "description": "Conservation-grade heating/cooling/ventilation plant maintaining tight RH and temperature tolerances.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Environmental & Climate Control"
+        },
+        {
+          "name": "Humidifier / Dehumidifier",
+          "level": "L5",
+          "description": "Active moisture control equipment for supplemental or standalone RH management.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Environmental & Climate Control"
+        },
+        {
+          "name": "UV & Light Control",
+          "level": "L5",
+          "description": "Window film, motorized blinds, and gallery lighting controls limiting photochemical degradation.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Environmental & Climate Control"
+        },
+        {
+          "name": "Building Management System",
+          "level": "L5",
+          "description": "Centralized BMS integrating HVAC, environmental, and utility control across the building.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility Management & Maintenance"
+        },
+        {
+          "name": "CMMS",
+          "level": "L5",
+          "description": "Computerized maintenance management system for scheduling and recording preventive and corrective maintenance.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility Management & Maintenance"
+        },
+        {
+          "name": "Network Infrastructure",
+          "level": "L5",
+          "description": "LAN/WiFi backbone serving CMS, security systems, visitor-facing digital, and staff operations.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Digital & Collections IT"
+        },
+        {
+          "name": "Visitor-Facing Digital Platform",
+          "level": "L5",
+          "description": "Website, app, and digital engagement platform for pre-visit planning, on-site interpretation, and online collection access.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Digital & Collections IT"
+        },
+        {
+          "name": "Object Catalogue Module",
+          "level": "L4",
+          "description": "Core accession records: title, date, provenance, materials, images.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Collections Management System"
+        },
+        {
+          "name": "Inventory & Location Module",
+          "level": "L4",
+          "description": "Storage location tracking and object movement history.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Collections Management System"
+        },
+        {
+          "name": "Loan & Exhibition Module",
+          "level": "L4",
+          "description": "Outgoing/incoming loan workflow with packing and condition reporting.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Collections Management System"
+        },
+        {
+          "name": "Reporting Engine",
+          "level": "L4",
+          "description": "Accession statistics, collection value summaries, and audit outputs.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Collections Management System"
+        },
+        {
+          "name": "Integration API",
+          "level": "L4",
+          "description": "Data exchange with image libraries, partner institutions, and public portals.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Collections Management System"
+        },
+        {
+          "name": "Temperature Sensor",
+          "level": "L4",
+          "description": "Ambient temperature data logger (±0.1°C resolution).",
+          "bom_standard": "INCOSE",
+          "parent_name": "Environmental Monitoring System"
+        },
+        {
+          "name": "Relative Humidity Probe",
+          "level": "L4",
+          "description": "Capacitive RH sensor with dew-point derivation.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Environmental Monitoring System"
+        },
+        {
+          "name": "Light Level / UV Meter",
+          "level": "L4",
+          "description": "Lux and UV index monitoring with conservation threshold alerting.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Environmental Monitoring System"
+        },
+        {
+          "name": "Data Logger Controller",
+          "level": "L4",
+          "description": "Central aggregation hub for environmental sensor data; local alarm relay.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Environmental Monitoring System"
+        },
+        {
+          "name": "Remote Monitoring Software",
+          "level": "L4",
+          "description": "Dashboard with threshold alerts, trend visualisation, and export for compliance reporting.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Environmental Monitoring System"
+        },
+        {
+          "name": "Mechanical Guard Housing",
+          "level": "L4",
+          "description": "Spring-loaded handle-locking mechanism (power-independent; EN 179/EN 1125 compliant).",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Devices"
+        },
+        {
+          "name": "Alarm Horn",
+          "level": "L4",
+          "description": "Piezoelectric acoustic alert transducer (~95 dB; activates on 45° guard swing).",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Devices"
+        },
+        {
+          "name": "IoT Radio Transmitter",
+          "level": "L4",
+          "description": "868 MHz wireless state broadcast module transmitting guard state and alarm events to central receiver.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Devices"
+        },
+        {
+          "name": "Battery Pack",
+          "level": "L4",
+          "description": "9V portable power supply for alarm + IoT module.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Devices"
+        },
+        {
+          "name": "Monitoring Software Interface",
+          "level": "L4",
+          "description": "Dashboard / BMS integration for remote status aggregation across all exit points.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Devices"
+        },
+        {
+          "name": "PIR / Dual-Tech Motion Detector",
+          "level": "L4",
+          "description": "Passive infrared or combined MW/PIR motion sensor for gallery and storage zone intrusion detection.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Intruder Detection & Alarm System"
+        },
+        {
+          "name": "Alarm Control Panel",
+          "level": "L4",
+          "description": "Zone controller, event log, staff and police communication relay.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Intruder Detection & Alarm System"
+        },
+        {
+          "name": "Audible Sounder / Strobe",
+          "level": "L4",
+          "description": "Internal/external alarm device on intrusion confirmation.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Intruder Detection & Alarm System"
+        },
+        {
+          "name": "Case Vibration Sensor",
+          "level": "L4",
+          "description": "Seismic / shock sensor for glass display cases and cabinets containing high-value objects.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Intruder Detection & Alarm System"
+        },
+        {
+          "name": "Card / Credential Reader",
+          "level": "L4",
+          "description": "RFID or proximity reader at controlled doors (conservation areas, vaults, staff zones).",
+          "bom_standard": "INCOSE",
+          "parent_name": "Electronic Access Control"
+        },
+        {
+          "name": "Access Controller / Door Panel",
+          "level": "L4",
+          "description": "Zone-level authorization engine and relay driver.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Electronic Access Control"
+        },
+        {
+          "name": "Electric Lock / Maglock",
+          "level": "L4",
+          "description": "Electromagnetic or electromechanical release hardware at controlled entry points.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Electronic Access Control"
+        },
+        {
+          "name": "Access Management Software",
+          "level": "L4",
+          "description": "Staff database, permission levels, and audit log.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Electronic Access Control"
+        },
+        {
+          "name": "IP Camera",
+          "level": "L4",
+          "description": "≥4MP dome or PTZ camera with wide dynamic range for mixed gallery lighting conditions.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Video Surveillance (CCTV)"
+        },
+        {
+          "name": "NVR / Video Management Software",
+          "level": "L4",
+          "description": "Video storage, retrieval, and multi-site or multi-building management platform.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Video Surveillance (CCTV)"
+        },
+        {
+          "name": "Video Analytics Engine",
+          "level": "L4",
+          "description": "Motion detection, dwell-time analytics, and object-removal detection for collections protection.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Video Surveillance (CCTV)"
+        },
+        {
+          "name": "Display Console",
+          "level": "L4",
+          "description": "Guard station monitor array for real-time observation and incident response.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Video Surveillance (CCTV)"
+        },
+        {
+          "name": "Addressable Control Panel",
+          "level": "L4",
+          "description": "Zone controller, power supply, and event log (EN 54 compliant).",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Smoke Detector Head",
+          "level": "L4",
+          "description": "Optical scatter detector (sensitive settings for irreplaceable collections).",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Heat Detector Head",
+          "level": "L4",
+          "description": "Rate-of-rise or fixed-temperature element for kitchens, plant rooms.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Alarm Sounder",
+          "level": "L4",
+          "description": "Audible alert on zone activation; visual strobe for accessibility compliance.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Manual Call Point",
+          "level": "L4",
+          "description": "Break-glass or push-button activation by occupant at emergency points.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Chiller Unit",
+          "level": "L4",
+          "description": "Refrigerant-based cooling plant serving conservation-grade AHU.",
+          "bom_standard": "INCOSE",
+          "parent_name": "HVAC Precision Climate System"
+        },
+        {
+          "name": "Air Handling Unit",
+          "level": "L4",
+          "description": "Air distribution with HEPA/activated-carbon filtration for collection-grade air quality.",
+          "bom_standard": "INCOSE",
+          "parent_name": "HVAC Precision Climate System"
+        },
+        {
+          "name": "Humidifier / Dehumidifier Module",
+          "level": "L4",
+          "description": "Moisture addition/removal to maintain ±5% RH set point.",
+          "bom_standard": "INCOSE",
+          "parent_name": "HVAC Precision Climate System"
+        },
+        {
+          "name": "Zone Damper Controller",
+          "level": "L4",
+          "description": "Variable air volume / zone-level set-point management.",
+          "bom_standard": "INCOSE",
+          "parent_name": "HVAC Precision Climate System"
+        },
+        {
+          "name": "Building Automation Controller",
+          "level": "L4",
+          "description": "Set-point management, alarm interface, and remote override for conservation zones.",
+          "bom_standard": "INCOSE",
+          "parent_name": "HVAC Precision Climate System"
+        },
+        {
+          "name": "HVAC Zone Controller",
+          "level": "L4",
+          "description": "Equipment-level PLC for AHU, chiller, and humidifier per zone.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Building Management System"
+        },
+        {
+          "name": "Energy Metering Module",
+          "level": "L4",
+          "description": "kWh monitoring per zone for sustainability reporting and budget control.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Building Management System"
+        },
+        {
+          "name": "Alarm Management Interface",
+          "level": "L4",
+          "description": "Fault and alert aggregation dashboard for facilities team.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Building Management System"
+        },
+        {
+          "name": "Remote Access Client",
+          "level": "L4",
+          "description": "Mobile/web dashboard for off-site building operations and emergency response.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Building Management System"
+        },
+        {
+          "name": "Core Switch",
+          "level": "L4",
+          "description": "Layer-3 distribution switch (server room / IDF) connecting all building systems.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Network Infrastructure"
+        },
+        {
+          "name": "Wireless Access Point",
+          "level": "L4",
+          "description": "802.11ax (Wi-Fi 6) AP for staff and visitor connectivity.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Network Infrastructure"
+        },
+        {
+          "name": "Firewall / Security Gateway",
+          "level": "L4",
+          "description": "Perimeter security protecting CMS and collections data from external threats.",
+          "bom_standard": "INCOSE",
+          "parent_name": "Network Infrastructure"
+        }
+      ]
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

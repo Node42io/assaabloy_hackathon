@@ -1,0 +1,1108 @@
+{
+  "id": "ODI_elementary_secondary_schools",
+  "title": "ODI Matrix — Elementary and Secondary Schools (NAICS 611110)",
+  "type": "odi_matrix",
+  "market_slug": "elementary_secondary_schools",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Context",
+      "content": "| Field | Value |\n|---|---|\n| Market | Elementary and Secondary Schools |\n| NAICS | 611110 |\n| Product Job | Help Campus Safety, Security & Emergency Management to monitor and secure all emergency exit doors against unauthorized use during occupied school hours while ensuring instant single-motion evacuation capability per IBC / NFPA 101 and generating auditable compliance documentation |\n| Market-level needs (Step 06) | 24 error statements |\n| Product-related needs injected (Step 10) | 5 (PR1–PR5) |\n| Total needs scored | 29 |\n\n---"
+    },
+    {
+      "title": "Step 2 — Incumbent Data & Satisfaction Recalibration",
+      "content": "### Incumbent Technology Profiles\n\n| Technology | Market Share | Mechanism | Key Strengths | Key Weaknesses |\n|---|---|---|---|---|\n| Wired panic hardware + alarm panel | ~55% | Hard-wired door contacts to fire alarm panel; certified integrator required | Reliable event logging, zone-level panel alerts, no battery dependency | Requires conduit + electrician labor; zone-level not door-level granularity; no mobile push; expensive retrofit in 49-yr-old buildings |\n| Mechanical-only door alarms | ~30% | Local audible alarm only; no remote transmission | No battery management overhead (mechanical), simple, low cost | Zero remote monitoring; zero compliance documentation; zero device health visibility; local alarm heard only near door |\n| Wireless IoT alarmed exit guards | ~15% | Battery-powered wireless transmitter + cloud/gateway | Retrofit-friendly, remote monitoring, push notifications | Battery life uncertainty; 868 MHz range limited in reinforced concrete; proprietary protocol (no native BACnet/KNX) |\n\n### Recalibration Decisions\n\n| ID | Original S | Recalibrated S | Rationale |\n|---|---|---|---|\n| E03 (structural modification) | 5 | **4** | Wired panel (55% dominant) frequently requires conduit routing and drilling in 49-yr-old buildings. Market-average satisfaction for \"no structural modification\" is lower than initially estimated. |\n| All others | — | **Unchanged** | Satisfaction scores already reflect market-weighted average across incumbents. Wired panel's compliance logging partially offsets mechanical-only's zero documentation; battery monitoring absent in 85% of market; retrofit burden driven by dominant wired install base. |\n\n---"
+    },
+    {
+      "title": "Step 3 — Full ODI Scores",
+      "content": "*Formula: `opportunity_score = importance + max(importance − satisfaction, 0)`. All scores recomputed deterministically.*\n*`is_underserved`: importance > 7.0 AND satisfaction < 5.0. `is_overserved`: importance < 3.0 AND satisfaction > 7.0.*\n\n### Market-Level Needs (Step 06)\n\n| ID | Step | Statement | I | S | OS | Under | Over | Prod-rel |\n|---|---|---|---|---|---|---|---|---|\n| E01 | DEFINE | Minimize omitted exit points from monitoring plan due to incomplete site assessment | 8 | 4 | **12** | ✓ | — | — |\n| E02 | PREPARE | Minimize total electrician labor hours to install exit alarm monitoring at secondary doors | 8 | 3 | **13** | ✓ | — | — |\n| E03 | PREPARE | Minimize likelihood installation requires structural modification to existing door frame | 8 | 4 | **12** | ✓ | — | — |\n| E04 | PREPARE | Minimize additional receiver/repeater units needed for full wireless coverage in multi-story building | 7 | 4 | **10** | — | — | ✓ |\n| E05 | CONFIRM | Minimize time to verify all exit alarm units are operational at start of each school day | 8 | 3 | **13** | ✓ | — | — |\n| E06 | CONFIRM | Minimize device failures undetected until an alarm event occurs during occupied school hours | 9 | 3 | **15** | ✓ | — | — |\n| E07 | CONFIRM | Minimize integration complexity connecting exit monitoring events to district access control / BMS | 7 | 3 | **11** | — | — | ✓ |\n| E08 | EXECUTE | Minimize time elapsed between unauthorized exit activation and first staff notification | 10 | 4 | **16** | ✓ | — | — |\n| E09 | EXECUTE | Minimize false alarm frequency from thermal expansion, wind pressure, or incidental handle contact | 8 | 4 | **12** | ✓ | — | — |\n| E10 | EXECUTE | Increase ability to distinguish propped-open, alarm-triggered, and authorized bypass events on dashboard | 8 | 3 | **13** | ✓ | — | — |\n| E11 | EXECUTE | Minimize alarm transmission degradation in areas with reinforced concrete or metallic structure | 7 | 4 | **10** | — | — | ✓ |\n| E12 | EXECUTE | Minimize missed alarm transmissions from RF interference from co-located wireless networks | 7 | 5 | **9** | — | — | ✓ |\n| E13 | MONITOR | Minimize monitoring coverage gaps from undetected battery depletion before alarm operation is affected | 9 | 3 | **15** | ✓ | — | ✓ |\n| E14 | MONITOR | Increase ability to receive advance warning of battery degradation at individual door units | 9 | 3 | **15** | ✓ | — | ✓ |\n| E15 | MONITOR | Minimize time to identify which specific door unit is experiencing monitoring failure across campus | 8 | 3 | **13** | ✓ | — | — |\n| E16 | MODIFY | Minimize effort to re-arm door alarm unit after authorized exit event without specialized tools | 8 | 4 | **12** | ✓ | — | — |\n| E17 | MODIFY | Minimize alarm-silencing actions occurring without generating a corresponding audit log entry | 9 | 3 | **15** | ✓ | — | — |\n| E18 | MODIFY | Minimize effort to register a replacement unit with existing receiver network without installer software | 7 | 4 | **10** | — | — | ✓ |\n| E19 | CONCLUDE | Minimize labor to compile door event logs into format acceptable for state fire safety audits | 8 | 2 | **14** | ✓ | — | — |\n| E20 | CONCLUDE | Minimize compliance audit findings from gaps in exit monitoring documentation | 9 | 3 | **15** | ✓ | — | — |\n| E21 | CONCLUDE | Increase ability to present real-time compliance status without manual record assembly | 7 | 3 | **11** | — | — | — |\n| E22 | P3 Role | Increase ability to present auditable exit compliance records demonstrating post-Uvalde requirements met | 8 | 3 | **13** | ✓ | — | — |\n| E23 | P4 Image | Minimize likelihood an unsecured exit is visible to media/parents/officials before staff notified | 9 | 4 | **14** | ✓ | — | — |\n| E24 | P5 Emotion | Minimize duration of uncertainty about whether all exits are secured during occupied school hours | 8 | 3 | **13** | ✓ | — | — |\n\n### Product-Related Needs Injected (Step 10)\n\n*Injected with `job_step_number = 0`, `job_step_name = \"product_constraint\"`, `impact_category = \"reliability\"`, `product_related = true`.*\n\n| ID | Statement | I | S | OS | Under | Over |\n|---|---|---|---|---|---|---|\n| PR1 | Minimize wireless monitoring coverage gaps at exits in reinforced concrete buildings where EasyWave attenuation requires repeater chain infrastructure | 7.0 | 4.0 | **10.0** | — | — |\n| PR2 | Minimize undetected alarm monitoring failure at high-traffic exits (gym, cafeteria) where 5–15 daily activations exhaust 9V battery before 2-year maintenance target | 8.0 | 3.0 | **13.0** | ✓ | — |\n| PR3 | Minimize time to schedule and execute battery replacement across all wireless units on a multi-building campus before monitoring capability is interrupted | 7.0 | 4.0 | **10.0** | — | — |\n| PR4 | Minimize integration effort to relay EasyWave alarm events into district-standard BACnet/KNX/IP platforms via GfS-proprietary BUS gateway intermediary | 7.0 | 3.0 | **11.0** | — | — |\n| PR5 | Minimize likelihood of deliberate removal or displacement of surface-mounted exit alarm housing by unsupervised student populations in middle/high school corridors | 7.0 | 4.0 | **10.0** | — | — |\n\n---"
+    },
+    {
+      "title": "Step 4 — Market ODI Summary",
+      "content": "| Field | Value |\n|---|---|\n| Market | Elementary and Secondary Schools |\n| NAICS | 611110 |\n| Total needs scored | **29** |\n| Underserved (I > 7 AND S < 5) | **17** |\n| Overserved (I < 3 AND S > 7) | **0** |\n| Average opportunity score | **12.41** |\n\n### Top 5 Opportunities (by OS descending)\n\n| Rank | OS | ID | Statement |\n|---|---|---|---|\n| 1 | 16 | E08 | Minimize the time elapsed between an unauthorized exit door activation and first staff notification during occupied school hours |\n| 2 | 15 | E06 | Minimize the likelihood of device failures that remain undetected until an alarm event occurs during occupied school hours |\n| 3 | 15 | E13 | Minimize the number of monitoring coverage gaps caused by undetected battery depletion before door alarm operation is affected |\n| 4 | 15 | E14 | Increase the ability to receive advance warning of battery status degradation at individual door units before monitoring capability is lost |\n| 5 | 15 | E17 | Minimize the likelihood of an alarm-silencing action occurring without generating a corresponding audit log entry for compliance records |\n\n*Tied at OS=15: E06, E13, E14, E17, E20 (all I=9). Top 5 selected by job step order. E20 is #6.*\n\n### Opportunity Zone Distribution\n\n| Zone | Score Range | Count | % |\n|---|---|---|---|\n| Highly Underserved (flag-based) | I>7 AND S<5 | 17 | 59% |\n| Score ≥ 15 | Highly Underserved | 6 | 21% |\n| 12–14 | Underserved | 11 | 38% |\n| 10–11 | Appropriately Served | 10 | 34% |\n| < 10 | Overserved | 2 | 7% |\n| Overserved (flag-based) | I<3 AND S>7 | 0 | 0% |\n\n*E12 (OS=9) and E04/E11/E18/PR1/PR3/PR5 (OS=10) fall in appropriately served zone by score but lack the underserved flag.*\n\n---"
+    },
+    {
+      "title": "Step 5 — Cross-Check: ODI vs. Feature-Market Fit",
+      "content": "| Metric | Value |\n|---|---|\n| ODI avg opportunity score | **12.41** |\n| Feature-Fit avg overall_fit (from FIT step) | **6.83** (mean of F1–F7: 6.78, 5.22, 6.78, 7.33, 6.89, 8.00, 6.78) |\n\n**Cross-check result: No inconsistency flagged.**\nODI avg = 12.41 (> 12) with Feature-Fit avg = 6.83 (> 4) → HIGH opportunity AND HIGH feature fit. Positive signal: the market has significant unmet needs and the Türwächter's feature set is well-positioned to address them.\n\n**Directional insight:** The top-5 opportunities (detection time, device health visibility, battery monitoring, audit logging) map directly to F1 (Mechanical Alarm), F5 (Predictive Maintenance), F6 (Regulatory Compliance Documentation) — the three features with the highest individual fit scores in this market.\n\n---"
+    },
+    {
+      "title": "QA Self-Check",
+      "content": "| # | Check | Status |\n|---|---|---|\n| Q1 | Formula spot-check (5 entries): E08: 10+max(6,0)=16 ✓; E06: 9+max(6,0)=15 ✓; E03: 8+max(4,0)=12 ✓; E12: 7+max(2,0)=9 ✓; PR2: 8+max(5,0)=13 ✓ | **PASS** |\n| Q2 | Underserved flags: every entry with I>7 AND S<5 flagged true; E03 (I=8, S=4) now correctly flagged after recalibration | **PASS** |\n| Q3 | Overserved flags: no entry has I<3 AND S>7; 0 overserved | **PASS** |\n| Q4 | Total entries (29) ≥ Step 06 need count (24); 5 product-related needs added from Step 10 | **PASS** |\n| Q5 | Top-5 sorted by descending OS: 16, 15, 15, 15, 15 — descending order confirmed | **PASS** |\n| Q6 | ODI vs Feature-Fit cross-check: ran; no inconsistency (ODI=12.41, Fit=6.83 — high/high) | **PASS** |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"odi_matrix_result\": {\n    \"market_name\": \"Elementary and Secondary Schools\",\n    \"naics_code\": \"611110\",\n    \"run_context\": \"GfS Türwächter IoT (Exit Control 179/1125)\",\n    \"market_summary\": {\n      \"market_name\": \"Elementary and Secondary Schools\",\n      \"naics_code\": \"611110\",\n      \"total_needs\": 29,\n      \"underserved_count\": 17,\n      \"overserved_count\": 0,\n      \"avg_opportunity_score\": 12.41,\n      \"top_opportunities\": [\n        \"Minimize the time elapsed between an unauthorized exit door activation and first staff notification during occupied school hours\",\n        \"Minimize the likelihood of device failures that remain undetected until an alarm event occurs during occupied school hours\",\n        \"Minimize the number of monitoring coverage gaps caused by undetected battery depletion before door alarm operation is affected\",\n        \"Increase the ability to receive advance warning of battery status degradation at individual door units before monitoring capability is lost\",\n        \"Minimize the likelihood of an alarm-silencing action occurring without generating a corresponding audit log entry for compliance records\"\n      ]\n    },\n    \"satisfaction_recalibrations\": [\n      {\n        \"need_id\": \"E03\",\n        \"original_satisfaction\": 5,\n        \"recalibrated_satisfaction\": 4,\n        \"rationale\": \"Wired panel (55% dominant technology) frequently requires conduit routing and structural drilling in 49-year-average-age school buildings. Market-average satisfaction for structural-modification avoidance is lower than initially estimated.\"\n      }\n    ],\n    \"entries\": [\n      {\n        \"id\": \"E01\",\n        \"error_statement\": \"Minimize the likelihood of critical emergency exit points being omitted from the monitoring plan due to incomplete site assessment\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 1,\n        \"job_step_name\": \"DEFINE\",\n        \"impact_category\": \"safety\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 12.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false\n      },\n      {\n        \"id\": \"E02\",\n        \"error_statement\": \"Minimize the total electrician labor hours required to install exit alarm monitoring systems at secondary and perimeter doors\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 3,\n        \"job_step_name\": \"PREPARE\",\n        \"impact_category\": \"cost\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 13.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false\n      },\n      {\n        \"id\": \"E03\",\n        \"error_statement\": \"Minimize the likelihood that installation of exit alarm units requires structural modification to existing door frame or door hardware\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 3,\n        \"job_step_name\": \"PREPARE\",\n        \"impact_category\": \"cost\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 12.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false,\n        \"recalibrated\": true,\n        \"recalibration_note\": \"S lowered from 5 to 4 based on wired panel (55%) structural modification burden in aging buildings\"\n      },\n      {\n        \"id\": \"E04\",\n        \"error_statement\": \"Minimize the number of additional receiver and repeater infrastructure units required to achieve full wireless coverage across all exit points in a multi-story school building\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 3,\n        \"job_step_name\": \"PREPARE\",\n        \"impact_category\": \"cost\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 10.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true\n      },\n      {\n        \"id\": \"E05\",\n        \"error_statement\": \"Minimize the time required to verify that all exit alarm units are operational at the start of each school day\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 4,\n        \"job_step_name\": \"CONFIRM\",\n        \"impact_category\": \"time\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 13.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false\n      },\n      {\n        \"id\": \"E06\",\n        \"error_statement\": \"Minimize the likelihood of device failures that remain undetected until an alarm event occurs during occupied school hours\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 4,\n        \"job_step_name\": \"CONFIRM\",\n        \"impact_category\": \"safety\",\n        \"importance\": 9.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 15.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false\n      },\n      {\n        \"id\": \"E07\",\n        \"error_statement\": \"Minimize the integration complexity required to connect exit door monitoring events to the district's existing access control or building management platform\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 4,\n        \"job_step_name\": \"CONFIRM\",\n        \"impact_category\": \"cost\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 11.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true\n      },\n      {\n        \"id\": \"E08\",\n        \"error_statement\": \"Minimize the time elapsed between an unauthorized exit door activation and first staff notification during occupied school hours\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 5,\n        \"job_step_name\": \"EXECUTE\",\n        \"impact_category\": \"safety\",\n        \"importance\": 10.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 16.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false\n      },\n      {\n        \"id\": \"E09\",\n        \"error_statement\": \"Minimize the frequency of false alarm events triggered by thermal door expansion, wind pressure, or incidental handle contact\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 5,\n        \"job_step_name\": \"EXECUTE\",\n        \"impact_category\": \"reliability\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 12.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false\n      },\n      {\n        \"id\": \"E10\",\n        \"error_statement\": \"Increase the ability to distinguish between a propped-open event, an alarm-triggered exit, and an authorized bypass activation on the monitoring dashboard\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 5,\n        \"job_step_name\": \"EXECUTE\",\n        \"impact_category\": \"safety\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 13.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false\n      },\n      {\n        \"id\": \"E11\",\n        \"error_statement\": \"Minimize the degradation of alarm transmission coverage in building areas with reinforced concrete construction or metallic structural elements\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 5,\n        \"job_step_name\": \"EXECUTE\",\n        \"impact_category\": \"reliability\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 10.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true\n      },\n      {\n        \"id\": \"E12\",\n        \"error_statement\": \"Minimize the likelihood of missed alarm transmissions caused by radio frequency interference from co-located wireless networks in the school building\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 5,\n        \"job_step_name\": \"EXECUTE\",\n        \"impact_category\": \"reliability\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 5.0,\n        \"opportunity_score\": 9.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true\n      },\n      {\n        \"id\": \"E13\",\n        \"error_statement\": \"Minimize the number of monitoring coverage gaps caused by undetected battery depletion before door alarm operation is affected\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 6,\n        \"job_step_name\": \"MONITOR\",\n        \"impact_category\": \"reliability\",\n        \"importance\": 9.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 15.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": true\n      },\n      {\n        \"id\": \"E14\",\n        \"error_statement\": \"Increase the ability to receive advance warning of battery status degradation at individual door units before monitoring capability is lost\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 6,\n        \"job_step_name\": \"MONITOR\",\n        \"impact_category\": \"reliability\",\n        \"importance\": 9.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 15.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": true\n      },\n      {\n        \"id\": \"E15\",\n        \"error_statement\": \"Minimize the time required to identify which specific door unit is experiencing a monitoring failure across a multi-building campus\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 6,\n        \"job_step_name\": \"MONITOR\",\n        \"impact_category\": \"time\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 13.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false\n      },\n      {\n        \"id\": \"E16\",\n        \"error_statement\": \"Minimize the effort required to re-arm a door alarm unit after an authorized exit event without specialized tools or access credentials\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 7,\n        \"job_step_name\": \"MODIFY\",\n        \"impact_category\": \"skill\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 12.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false\n      },\n      {\n        \"id\": \"E17\",\n        \"error_statement\": \"Minimize the likelihood of an alarm-silencing action occurring without generating a corresponding audit log entry for compliance records\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 7,\n        \"job_step_name\": \"MODIFY\",\n        \"impact_category\": \"safety\",\n        \"importance\": 9.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 15.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false\n      },\n      {\n        \"id\": \"E18\",\n        \"error_statement\": \"Minimize the effort required to register a replacement door alarm unit with the existing receiver network without installer software access\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 7,\n        \"job_step_name\": \"MODIFY\",\n        \"impact_category\": \"skill\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 10.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true\n      },\n      {\n        \"id\": \"E19\",\n        \"error_statement\": \"Minimize the labor time required to compile door event logs into a format acceptable for state fire safety and school security audits\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 8,\n        \"job_step_name\": \"CONCLUDE\",\n        \"impact_category\": \"cost\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 2.0,\n        \"opportunity_score\": 14.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false\n      },\n      {\n        \"id\": \"E20\",\n        \"error_statement\": \"Minimize the likelihood of compliance audit findings related to gaps in exit monitoring documentation during annual fire marshal inspections\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 8,\n        \"job_step_name\": \"CONCLUDE\",\n        \"impact_category\": \"safety\",\n        \"importance\": 9.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 15.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false\n      },\n      {\n        \"id\": \"E21\",\n        \"error_statement\": \"Increase the ability to present real-time exit monitoring compliance status to district administrators, school board members, or state inspectors without manual record assembly\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 8,\n        \"job_step_name\": \"CONCLUDE\",\n        \"impact_category\": \"cost\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 11.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": false\n      },\n      {\n        \"id\": \"E22\",\n        \"error_statement\": \"Increase the ability to present auditable exit compliance records demonstrating that post-Uvalde legislative requirements were continuously met without incident\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"P3_ROLE\",\n        \"impact_category\": \"safety\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 13.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false\n      },\n      {\n        \"id\": \"E23\",\n        \"error_statement\": \"Minimize the likelihood that an unsecured emergency exit is visible to media, parents, or state officials before campus staff have received notification\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"P4_IMAGE\",\n        \"impact_category\": \"safety\",\n        \"importance\": 9.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 14.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false\n      },\n      {\n        \"id\": \"E24\",\n        \"error_statement\": \"Minimize the duration of uncertainty about whether all emergency exits in the building are currently secured during occupied school hours\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"P5_EMOTION\",\n        \"impact_category\": \"safety\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 13.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false\n      },\n      {\n        \"id\": \"PR1\",\n        \"error_statement\": \"Minimize the likelihood of wireless monitoring coverage gaps at emergency exit doors in reinforced concrete school buildings where 868 MHz EasyWave signal attenuation reduces transmission reliability below the 30 m single-hop threshold — requiring repeater chain infrastructure that increases per-door deployment cost\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"product_constraint\",\n        \"impact_category\": \"reliability\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 10.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true\n      },\n      {\n        \"id\": \"PR2\",\n        \"error_statement\": \"Minimize the likelihood of undetected alarm monitoring failure at high-traffic emergency exit doors — gymnasium exits, cafeteria doors, sports facility perimeter exits — where daily activation frequency (5–15 events/day) exhausts a 9V block battery before the 2-year scheduled maintenance target\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"product_constraint\",\n        \"impact_category\": \"reliability\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 13.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": true\n      },\n      {\n        \"id\": \"PR3\",\n        \"error_statement\": \"Minimize the time required to schedule and execute battery replacement across all wireless exit alarm units distributed across a multi-building school campus before individual unit monitoring capability is interrupted\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"product_constraint\",\n        \"impact_category\": \"reliability\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 10.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true\n      },\n      {\n        \"id\": \"PR4\",\n        \"error_statement\": \"Minimize the integration effort required to relay EasyWave alarm events into district-standard access control or building management platforms standardized on BACnet, KNX, or IP-based protocols — caused by the absence of native open-protocol output on the 868 MHz transmitter, requiring a GfS-proprietary BUS gateway intermediary\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"product_constraint\",\n        \"impact_category\": \"reliability\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 11.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true\n      },\n      {\n        \"id\": \"PR5\",\n        \"error_statement\": \"Minimize the likelihood of deliberate removal or physical displacement of surface-mounted exit alarm housing units by unsupervised student populations in middle and high school corridors where the external mounting profile is accessible at door-handle height without tools\",\n        \"market_name\": \"Elementary and Secondary Schools\",\n        \"naics_code\": \"611110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"product_constraint\",\n        \"impact_category\": \"reliability\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 10.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true\n      }\n    ]\n  }\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "Market",
+          "Value": "Elementary and Secondary Schools"
+        },
+        {
+          "Field": "NAICS",
+          "Value": "611110"
+        },
+        {
+          "Field": "Product Job",
+          "Value": "Help Campus Safety, Security & Emergency Management to monitor and secure all emergency exit doors against unauthorized use during occupied school hours while ensuring instant single-motion evacuation capability per IBC / NFPA 101 and generating auditable compliance documentation"
+        },
+        {
+          "Field": "Market-level needs (Step 06)",
+          "Value": "24 error statements"
+        },
+        {
+          "Field": "Product-related needs injected (Step 10)",
+          "Value": "5 (PR1–PR5)"
+        },
+        {
+          "Field": "Total needs scored",
+          "Value": "29"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Technology",
+        "Market Share",
+        "Mechanism",
+        "Key Strengths",
+        "Key Weaknesses"
+      ],
+      "rows": [
+        {
+          "Technology": "Wired panic hardware + alarm panel",
+          "Market Share": "~55%",
+          "Mechanism": "Hard-wired door contacts to fire alarm panel; certified integrator required",
+          "Key Strengths": "Reliable event logging, zone-level panel alerts, no battery dependency",
+          "Key Weaknesses": "Requires conduit + electrician labor; zone-level not door-level granularity; no mobile push; expensive retrofit in 49-yr-old buildings"
+        },
+        {
+          "Technology": "Mechanical-only door alarms",
+          "Market Share": "~30%",
+          "Mechanism": "Local audible alarm only; no remote transmission",
+          "Key Strengths": "No battery management overhead (mechanical), simple, low cost",
+          "Key Weaknesses": "Zero remote monitoring; zero compliance documentation; zero device health visibility; local alarm heard only near door"
+        },
+        {
+          "Technology": "Wireless IoT alarmed exit guards",
+          "Market Share": "~15%",
+          "Mechanism": "Battery-powered wireless transmitter + cloud/gateway",
+          "Key Strengths": "Retrofit-friendly, remote monitoring, push notifications",
+          "Key Weaknesses": "Battery life uncertainty; 868 MHz range limited in reinforced concrete; proprietary protocol (no native BACnet/KNX)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Original S",
+        "Recalibrated S",
+        "Rationale"
+      ],
+      "rows": [
+        {
+          "ID": "E03 (structural modification)",
+          "Original S": "5",
+          "Recalibrated S": "**4**",
+          "Rationale": "Wired panel (55% dominant) frequently requires conduit routing and drilling in 49-yr-old buildings. Market-average satisfaction for \"no structural modification\" is lower than initially estimated."
+        },
+        {
+          "ID": "All others",
+          "Original S": "—",
+          "Recalibrated S": "**Unchanged**",
+          "Rationale": "Satisfaction scores already reflect market-weighted average across incumbents. Wired panel's compliance logging partially offsets mechanical-only's zero documentation; battery monitoring absent in 85% of market; retrofit burden driven by dominant wired install base."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Step",
+        "Statement",
+        "I",
+        "S",
+        "OS",
+        "Under",
+        "Over",
+        "Prod-rel"
+      ],
+      "rows": [
+        {
+          "ID": "E01",
+          "Step": "DEFINE",
+          "Statement": "Minimize omitted exit points from monitoring plan due to incomplete site assessment",
+          "I": "8",
+          "S": "4",
+          "OS": "**12**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "—"
+        },
+        {
+          "ID": "E02",
+          "Step": "PREPARE",
+          "Statement": "Minimize total electrician labor hours to install exit alarm monitoring at secondary doors",
+          "I": "8",
+          "S": "3",
+          "OS": "**13**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "—"
+        },
+        {
+          "ID": "E03",
+          "Step": "PREPARE",
+          "Statement": "Minimize likelihood installation requires structural modification to existing door frame",
+          "I": "8",
+          "S": "4",
+          "OS": "**12**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "—"
+        },
+        {
+          "ID": "E04",
+          "Step": "PREPARE",
+          "Statement": "Minimize additional receiver/repeater units needed for full wireless coverage in multi-story building",
+          "I": "7",
+          "S": "4",
+          "OS": "**10**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-rel": "✓"
+        },
+        {
+          "ID": "E05",
+          "Step": "CONFIRM",
+          "Statement": "Minimize time to verify all exit alarm units are operational at start of each school day",
+          "I": "8",
+          "S": "3",
+          "OS": "**13**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "—"
+        },
+        {
+          "ID": "E06",
+          "Step": "CONFIRM",
+          "Statement": "Minimize device failures undetected until an alarm event occurs during occupied school hours",
+          "I": "9",
+          "S": "3",
+          "OS": "**15**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "—"
+        },
+        {
+          "ID": "E07",
+          "Step": "CONFIRM",
+          "Statement": "Minimize integration complexity connecting exit monitoring events to district access control / BMS",
+          "I": "7",
+          "S": "3",
+          "OS": "**11**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-rel": "✓"
+        },
+        {
+          "ID": "E08",
+          "Step": "EXECUTE",
+          "Statement": "Minimize time elapsed between unauthorized exit activation and first staff notification",
+          "I": "10",
+          "S": "4",
+          "OS": "**16**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "—"
+        },
+        {
+          "ID": "E09",
+          "Step": "EXECUTE",
+          "Statement": "Minimize false alarm frequency from thermal expansion, wind pressure, or incidental handle contact",
+          "I": "8",
+          "S": "4",
+          "OS": "**12**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "—"
+        },
+        {
+          "ID": "E10",
+          "Step": "EXECUTE",
+          "Statement": "Increase ability to distinguish propped-open, alarm-triggered, and authorized bypass events on dashboard",
+          "I": "8",
+          "S": "3",
+          "OS": "**13**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "—"
+        },
+        {
+          "ID": "E11",
+          "Step": "EXECUTE",
+          "Statement": "Minimize alarm transmission degradation in areas with reinforced concrete or metallic structure",
+          "I": "7",
+          "S": "4",
+          "OS": "**10**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-rel": "✓"
+        },
+        {
+          "ID": "E12",
+          "Step": "EXECUTE",
+          "Statement": "Minimize missed alarm transmissions from RF interference from co-located wireless networks",
+          "I": "7",
+          "S": "5",
+          "OS": "**9**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-rel": "✓"
+        },
+        {
+          "ID": "E13",
+          "Step": "MONITOR",
+          "Statement": "Minimize monitoring coverage gaps from undetected battery depletion before alarm operation is affected",
+          "I": "9",
+          "S": "3",
+          "OS": "**15**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "✓"
+        },
+        {
+          "ID": "E14",
+          "Step": "MONITOR",
+          "Statement": "Increase ability to receive advance warning of battery degradation at individual door units",
+          "I": "9",
+          "S": "3",
+          "OS": "**15**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "✓"
+        },
+        {
+          "ID": "E15",
+          "Step": "MONITOR",
+          "Statement": "Minimize time to identify which specific door unit is experiencing monitoring failure across campus",
+          "I": "8",
+          "S": "3",
+          "OS": "**13**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "—"
+        },
+        {
+          "ID": "E16",
+          "Step": "MODIFY",
+          "Statement": "Minimize effort to re-arm door alarm unit after authorized exit event without specialized tools",
+          "I": "8",
+          "S": "4",
+          "OS": "**12**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "—"
+        },
+        {
+          "ID": "E17",
+          "Step": "MODIFY",
+          "Statement": "Minimize alarm-silencing actions occurring without generating a corresponding audit log entry",
+          "I": "9",
+          "S": "3",
+          "OS": "**15**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "—"
+        },
+        {
+          "ID": "E18",
+          "Step": "MODIFY",
+          "Statement": "Minimize effort to register a replacement unit with existing receiver network without installer software",
+          "I": "7",
+          "S": "4",
+          "OS": "**10**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-rel": "✓"
+        },
+        {
+          "ID": "E19",
+          "Step": "CONCLUDE",
+          "Statement": "Minimize labor to compile door event logs into format acceptable for state fire safety audits",
+          "I": "8",
+          "S": "2",
+          "OS": "**14**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "—"
+        },
+        {
+          "ID": "E20",
+          "Step": "CONCLUDE",
+          "Statement": "Minimize compliance audit findings from gaps in exit monitoring documentation",
+          "I": "9",
+          "S": "3",
+          "OS": "**15**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "—"
+        },
+        {
+          "ID": "E21",
+          "Step": "CONCLUDE",
+          "Statement": "Increase ability to present real-time compliance status without manual record assembly",
+          "I": "7",
+          "S": "3",
+          "OS": "**11**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-rel": "—"
+        },
+        {
+          "ID": "E22",
+          "Step": "P3 Role",
+          "Statement": "Increase ability to present auditable exit compliance records demonstrating post-Uvalde requirements met",
+          "I": "8",
+          "S": "3",
+          "OS": "**13**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "—"
+        },
+        {
+          "ID": "E23",
+          "Step": "P4 Image",
+          "Statement": "Minimize likelihood an unsecured exit is visible to media/parents/officials before staff notified",
+          "I": "9",
+          "S": "4",
+          "OS": "**14**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "—"
+        },
+        {
+          "ID": "E24",
+          "Step": "P5 Emotion",
+          "Statement": "Minimize duration of uncertainty about whether all exits are secured during occupied school hours",
+          "I": "8",
+          "S": "3",
+          "OS": "**13**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-rel": "—"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Statement",
+        "I",
+        "S",
+        "OS",
+        "Under",
+        "Over"
+      ],
+      "rows": [
+        {
+          "ID": "PR1",
+          "Statement": "Minimize wireless monitoring coverage gaps at exits in reinforced concrete buildings where EasyWave attenuation requires repeater chain infrastructure",
+          "I": "7.0",
+          "S": "4.0",
+          "OS": "**10.0**",
+          "Under": "—",
+          "Over": "—"
+        },
+        {
+          "ID": "PR2",
+          "Statement": "Minimize undetected alarm monitoring failure at high-traffic exits (gym, cafeteria) where 5–15 daily activations exhaust 9V battery before 2-year maintenance target",
+          "I": "8.0",
+          "S": "3.0",
+          "OS": "**13.0**",
+          "Under": "✓",
+          "Over": "—"
+        },
+        {
+          "ID": "PR3",
+          "Statement": "Minimize time to schedule and execute battery replacement across all wireless units on a multi-building campus before monitoring capability is interrupted",
+          "I": "7.0",
+          "S": "4.0",
+          "OS": "**10.0**",
+          "Under": "—",
+          "Over": "—"
+        },
+        {
+          "ID": "PR4",
+          "Statement": "Minimize integration effort to relay EasyWave alarm events into district-standard BACnet/KNX/IP platforms via GfS-proprietary BUS gateway intermediary",
+          "I": "7.0",
+          "S": "3.0",
+          "OS": "**11.0**",
+          "Under": "—",
+          "Over": "—"
+        },
+        {
+          "ID": "PR5",
+          "Statement": "Minimize likelihood of deliberate removal or displacement of surface-mounted exit alarm housing by unsupervised student populations in middle/high school corridors",
+          "I": "7.0",
+          "S": "4.0",
+          "OS": "**10.0**",
+          "Under": "—",
+          "Over": "—"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "Market",
+          "Value": "Elementary and Secondary Schools"
+        },
+        {
+          "Field": "NAICS",
+          "Value": "611110"
+        },
+        {
+          "Field": "Total needs scored",
+          "Value": "**29**"
+        },
+        {
+          "Field": "Underserved (I > 7 AND S < 5)",
+          "Value": "**17**"
+        },
+        {
+          "Field": "Overserved (I < 3 AND S > 7)",
+          "Value": "**0**"
+        },
+        {
+          "Field": "Average opportunity score",
+          "Value": "**12.41**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Rank",
+        "OS",
+        "ID",
+        "Statement"
+      ],
+      "rows": [
+        {
+          "Rank": "1",
+          "OS": "16",
+          "ID": "E08",
+          "Statement": "Minimize the time elapsed between an unauthorized exit door activation and first staff notification during occupied school hours"
+        },
+        {
+          "Rank": "2",
+          "OS": "15",
+          "ID": "E06",
+          "Statement": "Minimize the likelihood of device failures that remain undetected until an alarm event occurs during occupied school hours"
+        },
+        {
+          "Rank": "3",
+          "OS": "15",
+          "ID": "E13",
+          "Statement": "Minimize the number of monitoring coverage gaps caused by undetected battery depletion before door alarm operation is affected"
+        },
+        {
+          "Rank": "4",
+          "OS": "15",
+          "ID": "E14",
+          "Statement": "Increase the ability to receive advance warning of battery status degradation at individual door units before monitoring capability is lost"
+        },
+        {
+          "Rank": "5",
+          "OS": "15",
+          "ID": "E17",
+          "Statement": "Minimize the likelihood of an alarm-silencing action occurring without generating a corresponding audit log entry for compliance records"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Zone",
+        "Score Range",
+        "Count",
+        "%"
+      ],
+      "rows": [
+        {
+          "Zone": "Highly Underserved (flag-based)",
+          "Score Range": "I>7 AND S<5",
+          "Count": "17",
+          "%": "59%"
+        },
+        {
+          "Zone": "Score ≥ 15",
+          "Score Range": "Highly Underserved",
+          "Count": "6",
+          "%": "21%"
+        },
+        {
+          "Zone": "12–14",
+          "Score Range": "Underserved",
+          "Count": "11",
+          "%": "38%"
+        },
+        {
+          "Zone": "10–11",
+          "Score Range": "Appropriately Served",
+          "Count": "10",
+          "%": "34%"
+        },
+        {
+          "Zone": "< 10",
+          "Score Range": "Overserved",
+          "Count": "2",
+          "%": "7%"
+        },
+        {
+          "Zone": "Overserved (flag-based)",
+          "Score Range": "I<3 AND S>7",
+          "Count": "0",
+          "%": "0%"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Metric",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Metric": "ODI avg opportunity score",
+          "Value": "**12.41**"
+        },
+        {
+          "Metric": "Feature-Fit avg overall_fit (from FIT step)",
+          "Value": "**6.83** (mean of F1–F7: 6.78, 5.22, 6.78, 7.33, 6.89, 8.00, 6.78)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Check",
+        "Status"
+      ],
+      "rows": [
+        {
+          "#": "Q1",
+          "Check": "Formula spot-check (5 entries): E08: 10+max(6,0)=16 ✓; E06: 9+max(6,0)=15 ✓; E03: 8+max(4,0)=12 ✓; E12: 7+max(2,0)=9 ✓; PR2: 8+max(5,0)=13 ✓",
+          "Status": "**PASS**"
+        },
+        {
+          "#": "Q2",
+          "Check": "Underserved flags: every entry with I>7 AND S<5 flagged true; E03 (I=8, S=4) now correctly flagged after recalibration",
+          "Status": "**PASS**"
+        },
+        {
+          "#": "Q3",
+          "Check": "Overserved flags: no entry has I<3 AND S>7; 0 overserved",
+          "Status": "**PASS**"
+        },
+        {
+          "#": "Q4",
+          "Check": "Total entries (29) ≥ Step 06 need count (24); 5 product-related needs added from Step 10",
+          "Status": "**PASS**"
+        },
+        {
+          "#": "Q5",
+          "Check": "Top-5 sorted by descending OS: 16, 15, 15, 15, 15 — descending order confirmed",
+          "Status": "**PASS**"
+        },
+        {
+          "#": "Q6",
+          "Check": "ODI vs Feature-Fit cross-check: ran; no inconsistency (ODI=12.41, Fit=6.83 — high/high)",
+          "Status": "**PASS**"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "odi_matrix_result": {
+        "market_name": "Elementary and Secondary Schools",
+        "naics_code": "611110",
+        "run_context": "GfS Türwächter IoT (Exit Control 179/1125)",
+        "market_summary": {
+          "market_name": "Elementary and Secondary Schools",
+          "naics_code": "611110",
+          "total_needs": 29,
+          "underserved_count": 17,
+          "overserved_count": 0,
+          "avg_opportunity_score": 12.41,
+          "top_opportunities": [
+            "Minimize the time elapsed between an unauthorized exit door activation and first staff notification during occupied school hours",
+            "Minimize the likelihood of device failures that remain undetected until an alarm event occurs during occupied school hours",
+            "Minimize the number of monitoring coverage gaps caused by undetected battery depletion before door alarm operation is affected",
+            "Increase the ability to receive advance warning of battery status degradation at individual door units before monitoring capability is lost",
+            "Minimize the likelihood of an alarm-silencing action occurring without generating a corresponding audit log entry for compliance records"
+          ]
+        },
+        "satisfaction_recalibrations": [
+          {
+            "need_id": "E03",
+            "original_satisfaction": 5,
+            "recalibrated_satisfaction": 4,
+            "rationale": "Wired panel (55% dominant technology) frequently requires conduit routing and structural drilling in 49-year-average-age school buildings. Market-average satisfaction for structural-modification avoidance is lower than initially estimated."
+          }
+        ],
+        "entries": [
+          {
+            "id": "E01",
+            "error_statement": "Minimize the likelihood of critical emergency exit points being omitted from the monitoring plan due to incomplete site assessment",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 1,
+            "job_step_name": "DEFINE",
+            "impact_category": "safety",
+            "importance": 8.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 12.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "id": "E02",
+            "error_statement": "Minimize the total electrician labor hours required to install exit alarm monitoring systems at secondary and perimeter doors",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 3,
+            "job_step_name": "PREPARE",
+            "impact_category": "cost",
+            "importance": 8.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 13.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "id": "E03",
+            "error_statement": "Minimize the likelihood that installation of exit alarm units requires structural modification to existing door frame or door hardware",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 3,
+            "job_step_name": "PREPARE",
+            "impact_category": "cost",
+            "importance": 8.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 12.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false,
+            "recalibrated": true,
+            "recalibration_note": "S lowered from 5 to 4 based on wired panel (55%) structural modification burden in aging buildings"
+          },
+          {
+            "id": "E04",
+            "error_statement": "Minimize the number of additional receiver and repeater infrastructure units required to achieve full wireless coverage across all exit points in a multi-story school building",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 3,
+            "job_step_name": "PREPARE",
+            "impact_category": "cost",
+            "importance": 7.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 10.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "id": "E05",
+            "error_statement": "Minimize the time required to verify that all exit alarm units are operational at the start of each school day",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 4,
+            "job_step_name": "CONFIRM",
+            "impact_category": "time",
+            "importance": 8.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 13.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "id": "E06",
+            "error_statement": "Minimize the likelihood of device failures that remain undetected until an alarm event occurs during occupied school hours",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 4,
+            "job_step_name": "CONFIRM",
+            "impact_category": "safety",
+            "importance": 9.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 15.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "id": "E07",
+            "error_statement": "Minimize the integration complexity required to connect exit door monitoring events to the district's existing access control or building management platform",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 4,
+            "job_step_name": "CONFIRM",
+            "impact_category": "cost",
+            "importance": 7.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 11.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "id": "E08",
+            "error_statement": "Minimize the time elapsed between an unauthorized exit door activation and first staff notification during occupied school hours",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 5,
+            "job_step_name": "EXECUTE",
+            "impact_category": "safety",
+            "importance": 10.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 16.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "id": "E09",
+            "error_statement": "Minimize the frequency of false alarm events triggered by thermal door expansion, wind pressure, or incidental handle contact",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 5,
+            "job_step_name": "EXECUTE",
+            "impact_category": "reliability",
+            "importance": 8.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 12.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "id": "E10",
+            "error_statement": "Increase the ability to distinguish between a propped-open event, an alarm-triggered exit, and an authorized bypass activation on the monitoring dashboard",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 5,
+            "job_step_name": "EXECUTE",
+            "impact_category": "safety",
+            "importance": 8.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 13.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "id": "E11",
+            "error_statement": "Minimize the degradation of alarm transmission coverage in building areas with reinforced concrete construction or metallic structural elements",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 5,
+            "job_step_name": "EXECUTE",
+            "impact_category": "reliability",
+            "importance": 7.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 10.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "id": "E12",
+            "error_statement": "Minimize the likelihood of missed alarm transmissions caused by radio frequency interference from co-located wireless networks in the school building",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 5,
+            "job_step_name": "EXECUTE",
+            "impact_category": "reliability",
+            "importance": 7.0,
+            "satisfaction_current": 5.0,
+            "opportunity_score": 9.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "id": "E13",
+            "error_statement": "Minimize the number of monitoring coverage gaps caused by undetected battery depletion before door alarm operation is affected",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 6,
+            "job_step_name": "MONITOR",
+            "impact_category": "reliability",
+            "importance": 9.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 15.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "id": "E14",
+            "error_statement": "Increase the ability to receive advance warning of battery status degradation at individual door units before monitoring capability is lost",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 6,
+            "job_step_name": "MONITOR",
+            "impact_category": "reliability",
+            "importance": 9.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 15.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "id": "E15",
+            "error_statement": "Minimize the time required to identify which specific door unit is experiencing a monitoring failure across a multi-building campus",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 6,
+            "job_step_name": "MONITOR",
+            "impact_category": "time",
+            "importance": 8.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 13.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "id": "E16",
+            "error_statement": "Minimize the effort required to re-arm a door alarm unit after an authorized exit event without specialized tools or access credentials",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 7,
+            "job_step_name": "MODIFY",
+            "impact_category": "skill",
+            "importance": 8.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 12.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "id": "E17",
+            "error_statement": "Minimize the likelihood of an alarm-silencing action occurring without generating a corresponding audit log entry for compliance records",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 7,
+            "job_step_name": "MODIFY",
+            "impact_category": "safety",
+            "importance": 9.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 15.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "id": "E18",
+            "error_statement": "Minimize the effort required to register a replacement door alarm unit with the existing receiver network without installer software access",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 7,
+            "job_step_name": "MODIFY",
+            "impact_category": "skill",
+            "importance": 7.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 10.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "id": "E19",
+            "error_statement": "Minimize the labor time required to compile door event logs into a format acceptable for state fire safety and school security audits",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 8,
+            "job_step_name": "CONCLUDE",
+            "impact_category": "cost",
+            "importance": 8.0,
+            "satisfaction_current": 2.0,
+            "opportunity_score": 14.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "id": "E20",
+            "error_statement": "Minimize the likelihood of compliance audit findings related to gaps in exit monitoring documentation during annual fire marshal inspections",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 8,
+            "job_step_name": "CONCLUDE",
+            "impact_category": "safety",
+            "importance": 9.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 15.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "id": "E21",
+            "error_statement": "Increase the ability to present real-time exit monitoring compliance status to district administrators, school board members, or state inspectors without manual record assembly",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 8,
+            "job_step_name": "CONCLUDE",
+            "impact_category": "cost",
+            "importance": 7.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 11.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "id": "E22",
+            "error_statement": "Increase the ability to present auditable exit compliance records demonstrating that post-Uvalde legislative requirements were continuously met without incident",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 0,
+            "job_step_name": "P3_ROLE",
+            "impact_category": "safety",
+            "importance": 8.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 13.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "id": "E23",
+            "error_statement": "Minimize the likelihood that an unsecured emergency exit is visible to media, parents, or state officials before campus staff have received notification",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 0,
+            "job_step_name": "P4_IMAGE",
+            "impact_category": "safety",
+            "importance": 9.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 14.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "id": "E24",
+            "error_statement": "Minimize the duration of uncertainty about whether all emergency exits in the building are currently secured during occupied school hours",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 0,
+            "job_step_name": "P5_EMOTION",
+            "impact_category": "safety",
+            "importance": 8.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 13.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false
+          },
+          {
+            "id": "PR1",
+            "error_statement": "Minimize the likelihood of wireless monitoring coverage gaps at emergency exit doors in reinforced concrete school buildings where 868 MHz EasyWave signal attenuation reduces transmission reliability below the 30 m single-hop threshold — requiring repeater chain infrastructure that increases per-door deployment cost",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "impact_category": "reliability",
+            "importance": 7.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 10.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "id": "PR2",
+            "error_statement": "Minimize the likelihood of undetected alarm monitoring failure at high-traffic emergency exit doors — gymnasium exits, cafeteria doors, sports facility perimeter exits — where daily activation frequency (5–15 events/day) exhausts a 9V block battery before the 2-year scheduled maintenance target",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "impact_category": "reliability",
+            "importance": 8.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 13.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "id": "PR3",
+            "error_statement": "Minimize the time required to schedule and execute battery replacement across all wireless exit alarm units distributed across a multi-building school campus before individual unit monitoring capability is interrupted",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "impact_category": "reliability",
+            "importance": 7.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 10.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "id": "PR4",
+            "error_statement": "Minimize the integration effort required to relay EasyWave alarm events into district-standard access control or building management platforms standardized on BACnet, KNX, or IP-based protocols — caused by the absence of native open-protocol output on the 868 MHz transmitter, requiring a GfS-proprietary BUS gateway intermediary",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "impact_category": "reliability",
+            "importance": 7.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 11.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true
+          },
+          {
+            "id": "PR5",
+            "error_statement": "Minimize the likelihood of deliberate removal or physical displacement of surface-mounted exit alarm housing units by unsupervised student populations in middle and high school corridors where the external mounting profile is accessible at door-handle height without tools",
+            "market_name": "Elementary and Secondary Schools",
+            "naics_code": "611110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "impact_category": "reliability",
+            "importance": 7.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 10.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true
+          }
+        ]
+      }
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

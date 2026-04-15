@@ -1,0 +1,1236 @@
+{
+  "id": "ODI_general_medical_surgical_hospitals",
+  "title": "ODI Matrix: General Medical and Surgical Hospitals",
+  "type": "odi_matrix",
+  "market_slug": "general_medical_surgical_hospitals",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Market Context",
+      "content": "| Field | Value |\n|---|---|\n| **Market name** | General Medical and Surgical Hospitals |\n| **NAICS code** | 622110 |\n| **Market job** | Help Facility & Building Safety to maintain authorized access boundaries at emergency exits while guaranteeing single-motion escape compliance across all clinical zones, and provide real-time alerts on unauthorized activation events across the campus |\n| **Total needs scored** | 28 (21 market + 7 product-related) |\n| **Underserved count** | 16 |\n| **Overserved count** | 0 |\n| **Avg opportunity score** | 12.07 |\n\n---"
+    },
+    {
+      "title": "Step 1 — Error Statements",
+      "content": "### Job Map (Facility & Building Safety)\n\n| Step # | Step Name | Description |\n|---|---|---|\n| 1 | Define | Scope which exits require monitoring across clinical zones |\n| 2 | Configure | Install and commission exit devices without disrupting operations |\n| 3 | Monitor | Maintain ongoing real-time visibility across all exit points |\n| 4 | Detect | Identify unauthorized activation events in real time |\n| 5 | Execute | Dispatch response and perform authorized bypass |\n| 6 | Verify | Confirm compliance status on demand |\n| 7 | Document | Generate audit records and regulatory reports |\n| 8 | Maintain | Replace batteries and service devices with minimal disruption |\n\n### Market Needs (from Step 06)\n\n| N# | Error Statement | Step | Imp | Sat |\n|---|---|---|---|---|\n| N01 | Minimize the likelihood of exit installation disrupting active patient care in adjacent clinical zones | 2 | 7.0 | 4.0 |\n| N02 | Minimize the likelihood of unauthorized personnel accessing restricted clinical zones (pharmacy, NICU, psychiatric) through emergency exits | 3 | 9.0 | 4.0 |\n| N03 | Minimize the time required to commission exit monitoring across all doors in a newly acquired hospital building | 2 | 7.0 | 5.0 |\n| N04 | Minimize the installation time per exit door below 30 minutes without licensed electricians in occupied clinical wards | 2 | 8.0 | 5.0 |\n| N05 | Minimize the likelihood of exit monitoring devices requiring visible cabling that violates infection control surface guidelines | 2 | 6.0 | 5.0 |\n| N06 | Minimize the likelihood of fire safety inspection failures due to inadequate emergency exit security documentation | 7 | 8.0 | 3.0 |\n| N07 | Minimize the time required for authorized personnel to override the exit alarm below 10 seconds during clinical emergencies without triggering a facility-wide alert | 5 | 7.0 | 5.0 |\n| N08 | Minimize the likelihood of an unauthorized emergency exit activation going undetected for more than 5 minutes during overnight or weekend low-staffing periods | 4 | 10.0 | 2.0 |\n| N09 | Minimize the frequency of false alarm activations on high-traffic clinical exit doors exceeding 2 events per week that require security dispatch | 5 | 8.0 | 4.0 |\n| N10 | Minimize the time required to confirm all emergency exits are secured following fire drill exercises | 6 | 7.0 | 3.0 |\n| N11 | Minimize the effort required to check battery status across all 200+ exit devices on a hospital campus from a single monitoring dashboard | 8 | 9.0 | 2.0 |\n| N12 | Minimize the likelihood of wireless alarm transmission failure caused by RF interference from hospital MRI and CT imaging equipment | 3 | 9.0 | 4.0 |\n| N13 | Minimize the time required to correlate an emergency exit activation event with a patient elopement incident record within 30-second timestamp precision | 7 | 8.0 | 3.0 |\n| N14 | Minimize the likelihood of patient elopement going undetected through monitored emergency exits in psychiatric and dementia care wards | 4 | 9.0 | 3.0 |\n| N15 | Minimize the time spent on manual battery inspection rounds for emergency exit devices across the hospital campus | 8 | 8.0 | 3.0 |\n| N16 | Minimize the effort required to generate JCI-compliant 12-month exit event logs without manual data aggregation | 7 | 9.0 | 2.0 |\n| N17 | Minimize the time for security staff to verify that all emergency exits were secured following fire drill exercises | 6 | 7.0 | 3.0 |\n| N18 | Minimize the likelihood of emergency exit device tampering or vandalism going undetected in low-supervision clinical corridors | 3 | 7.0 | 4.0 |\n| N19 | Minimize the time required to produce on-demand real-time exit compliance status documentation for an arriving JCI surveyor | 6 | 8.0 | 3.0 |\n| N20 | Minimize the likelihood of compliance gaps remaining invisible during unannounced JCI Environment of Care survey visits | 6 | 9.0 | 4.0 |\n| N21 | Minimize the time from emergency exit activation alarm to location-specific security dispatch response below 15 seconds | 5 | 7.0 | 2.0 |\n\n### Product-Related Needs (from Step 10 — injected from FIT file)\n\nInjected with `job_step_number=0`, `job_step_name=\"product_constraint\"`, `impact_category=\"reliability\"`, `product_related=true`.\n\n| PR# | Error Statement | Source Constraint | Imp | Sat |\n|---|---|---|---|---|\n| PR01 | Minimize the likelihood of wireless signal attenuation below reliable reporting threshold caused by reinforced-concrete hospital floor construction exceeding 3 barriers between device and receiver | C3 — Wireless Range | 8.0 | 4.0 |\n| PR02 | Minimize the likelihood of wireless coverage gaps discovered post-installation requiring unplanned repeater infrastructure additions to achieve full-campus alarm reporting | C3 — Wireless Range | 8.0 | 4.0 |\n| PR03 | Minimize the likelihood of alarm event transmission failures caused by RF interference generated by hospital MRI and CT imaging equipment in zones adjacent to monitored exits | C3 — Wireless Range | 9.0 | 4.0 |\n| PR04 | Minimize the effort required to replace batteries across all campus exit devices within a planned maintenance window without disrupting clinical operations | C4 — IoT Battery Life | 7.0 | 5.0 |\n| PR05 | Minimize the likelihood of installation failure on non-standard door hardware — glass-frame doors, narrow lever handles, legacy panic bars — in pre-1990 hospital wings | C5 — Surface Mount | 7.0 | 5.0 |\n| PR06 | Minimize the likelihood of door event logs containing data attributable to identifiable individuals without a legally established GDPR processing basis | C8 — GDPR | 8.0 | 4.0 |\n| PR07 | Minimize the integration effort required to relay EasyWave alarm events into hospital BACnet or nurse-call BMS platforms without a custom protocol gateway | C6 — Protocol Lock-In | 7.0 | 3.0 |\n\n---"
+    },
+    {
+      "title": "Step 2 — Satisfaction Recalibration (Incumbent Evidence)",
+      "content": "| Incumbent | Est. Share | Mechanism | Strengths | Weaknesses |\n|---|---|---|---|---|\n| Wired electronic access control (dormakaba, ASSA ABLOY) | ~35% | Electronic locking + wired alarm panel | Reliable, BACnet-native, timestamped logs | 2–4 hrs/door installation, requires electrician, costly for retrofit |\n| Mechanical door alarms (basic, no IoT) | ~40% | Spring or magnetic reed contact, audible alarm only | Low cost, zero maintenance complexity | No remote monitoring, no battery dashboard, no event logs |\n| Nurse-station manual patrol | ~15% | Human observation rounds | Flexible response | Cannot detect real-time; hours-long detection gaps overnight |\n| CCTV-based monitoring | ~10% | Video surveillance at exit points | Provides visual evidence post-incident | No automated alerts; no timestamped compliance logs; high review burden |\n\n**Recalibration impacts applied:**\n- N08/N14 (overnight detection): Mechanical alarms + manual patrol dominate → sat=2 confirmed; wired electronic minority at hospitals → does not lift aggregate satisfaction\n- N11/N15 (battery management): Mechanical-only alternatives have zero remote battery visibility → sat=2/3 confirmed\n- N16/N13 (JCI logs): No incumbent provides automated timestamped event logs → sat=2/3 confirmed\n- N12/PR03 (MRI interference): Specific to wireless; wired systems unaffected but rarely retrofitted → sat=4 (a minority of hospitals use wired and avoid this problem)\n- N04 (installation): Wired systems require electrician; product directly addresses → sat=5 confirmed\n\n---"
+    },
+    {
+      "title": "Step 3 — ODI Scores (Deterministic)",
+      "content": "Formula: `opportunity_score = importance + max(importance − satisfaction, 0)`\nUnderserved: `importance > 7.0 AND satisfaction < 5.0`\nOverserved: `importance < 3.0 AND satisfaction > 7.0`\n\n### Market Needs\n\n| N# | Error Statement (short) | Imp | Sat | Opp | U/S | O/S | PR |\n|---|---|---|---|---|---|---|---|\n| N08 | Undetected unauthorized activation >5 min, overnight/weekend | 10.0 | 2.0 | **18.00** | ✓ | — | — |\n| N11 | Battery status 200+ doors, single dashboard | 9.0 | 2.0 | **16.00** | ✓ | — | — |\n| N16 | JCI 12-month log, no manual aggregation | 9.0 | 2.0 | **16.00** | ✓ | — | — |\n| N14 | Patient elopement detection, psychiatric/dementia wards | 9.0 | 3.0 | **15.00** | ✓ | — | — |\n| N02 | Unauthorized access to restricted clinical zones | 9.0 | 4.0 | **14.00** | ✓ | — | — |\n| N12 | RF transmission failure from MRI/CT equipment | 9.0 | 4.0 | **14.00** | ✓ | — | — |\n| N20 | Compliance gap invisible during unannounced JCI survey | 9.0 | 4.0 | **14.00** | ✓ | — | — |\n| N06 | Fire safety inspection failure from poor documentation | 8.0 | 3.0 | **13.00** | ✓ | — | — |\n| N13 | Correlate exit event with elopement record <30 sec | 8.0 | 3.0 | **13.00** | ✓ | — | — |\n| N15 | Manual battery inspection rounds across campus | 8.0 | 3.0 | **13.00** | ✓ | — | — |\n| N19 | On-demand compliance status for arriving JCI surveyor | 8.0 | 3.0 | **13.00** | ✓ | — | — |\n| N09 | False alarm frequency >2/week on high-traffic exits | 8.0 | 4.0 | **12.00** | ✓ | — | — |\n| N21 | Alert-to-dispatch <15 sec, location-specific | 7.0 | 2.0 | 12.00 | — | — | — |\n| N04 | Installation <30 min/door, no electrician, occupied ward | 8.0 | 5.0 | 11.00 | — | — | — |\n| N17 | Verify exits secured post-fire-drill, no walkthrough | 7.0 | 3.0 | 11.00 | — | — | — |\n| N01 | Installation disrupts patient care in adjacent zones | 7.0 | 4.0 | 10.00 | — | — | — |\n| N18 | Tampering/vandalism undetected in low-supervision corridors | 7.0 | 4.0 | 10.00 | — | — | — |\n| N07 | Authorized bypass <10 sec, no facility-wide alert | 7.0 | 5.0 | 9.00 | — | — | — |\n| N10 | Confirm exits secured after fire drill | 7.0 | 3.0 | 11.00 | — | — | — |\n| N03 | Commission monitoring in newly acquired building | 7.0 | 5.0 | 9.00 | — | — | — |\n| N05 | Visible cabling violates infection control guidelines | 6.0 | 5.0 | 7.00 | — | — | — |\n\n### Product-Related Needs\n\n| PR# | Error Statement (short) | Imp | Sat | Opp | U/S | O/S | PR |\n|---|---|---|---|---|---|---|---|\n| PR03 | Alarm TX failure from MRI/CT RF interference | 9.0 | 4.0 | **14.00** | ✓ | — | ✓ |\n| PR01 | Signal attenuation through reinforced concrete >3 barriers | 8.0 | 4.0 | **12.00** | ✓ | — | ✓ |\n| PR02 | Coverage gaps require unplanned repeater additions post-install | 8.0 | 4.0 | **12.00** | ✓ | — | ✓ |\n| PR06 | GDPR: event logs attributable to identifiable individuals | 8.0 | 4.0 | **12.00** | ✓ | — | ✓ |\n| PR07 | EasyWave → BACnet/nurse-call integration without gateway | 7.0 | 3.0 | 11.00 | — | — | ✓ |\n| PR04 | Battery replacement in planned window, no clinical disruption | 7.0 | 5.0 | 9.00 | — | — | ✓ |\n| PR05 | Installation failure on pre-1990 non-standard door hardware | 7.0 | 5.0 | 9.00 | — | — | ✓ |\n\n---"
+    },
+    {
+      "title": "Step 4 — Market ODI Summary",
+      "content": "| Field | Value |\n|---|---|\n| **Market name** | General Medical and Surgical Hospitals |\n| **NAICS code** | 622110 |\n| **Total needs** | 28 |\n| **Underserved count** | 16 |\n| **Overserved count** | 0 |\n| **Avg opportunity score** | 12.07 |\n\n**Top 5 opportunities (by score):**\n\n| Rank | Score | Statement |\n|---|---|---|\n| 1 | 18.00 | Minimize the likelihood of an unauthorized emergency exit activation going undetected for more than 5 minutes during overnight or weekend low-staffing periods |\n| 2 | 16.00 | Minimize the effort required to check battery status across all 200+ exit devices on a hospital campus from a single monitoring dashboard |\n| 3 | 16.00 | Minimize the effort required to generate JCI-compliant 12-month exit event logs without manual data aggregation |\n| 4 | 15.00 | Minimize the likelihood of patient elopement going undetected through monitored emergency exits in psychiatric and dementia care wards |\n| 5 | 14.00 | Minimize the likelihood of unauthorized personnel accessing restricted clinical zones through emergency exits |\n\n**Score distribution:**\n\n| Zone | Range | Count |\n|---|---|---|\n| Highly Underserved | >15 | 4 |\n| Underserved | 12–15 | 10 |\n| Appropriately Served | 10–12 | 7 |\n| Overserved | <10 | 7 |\n\n---"
+    },
+    {
+      "title": "Step 5 — Cross-Check vs. Feature-Market Fit (Step 09)",
+      "content": "| Metric | Value |\n|---|---|\n| ODI avg opportunity score | 12.07 |\n| Feature-Fit avg score (from FIT file) | 6.72 |\n| Cross-check rule triggered | None |\n\nODI avg > 12 AND Feature-Fit avg > 4 — no inconsistency. This market has **strong opportunity** (12.07) and **strong product-feature alignment** (6.72). The three highest-scoring features (Automated Event Log Generation: 7.67, Remote Battery Status Reporting: 7.33, Retrofit Surface Mount: 7.22) directly address the top-3 underserved needs (N08/OS=18, N11/OS=16, N16/OS=16). Positive signal: product capabilities map onto the most urgent unmet needs.\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### ODIEntry[]\n\n```json\n[\n  {\n    \"error_statement\": \"Minimize the likelihood of an unauthorized emergency exit activation going undetected for more than 5 minutes during overnight or weekend low-staffing periods\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 10.0,\n    \"satisfaction_current\": 2.0,\n    \"opportunity_score\": 18.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 4,\n    \"job_step_name\": \"Detect\",\n    \"impact_category\": \"safety\"\n  },\n  {\n    \"error_statement\": \"Minimize the effort required to check battery status across all 200+ exit devices on a hospital campus from a single monitoring dashboard\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 9.0,\n    \"satisfaction_current\": 2.0,\n    \"opportunity_score\": 16.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 8,\n    \"job_step_name\": \"Maintain\",\n    \"impact_category\": \"reliability\"\n  },\n  {\n    \"error_statement\": \"Minimize the effort required to generate JCI-compliant 12-month exit event logs without manual data aggregation\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 9.0,\n    \"satisfaction_current\": 2.0,\n    \"opportunity_score\": 16.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 7,\n    \"job_step_name\": \"Document\",\n    \"impact_category\": \"compliance\"\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of patient elopement going undetected through monitored emergency exits in psychiatric and dementia care wards\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 9.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 15.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 4,\n    \"job_step_name\": \"Detect\",\n    \"impact_category\": \"safety\"\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of unauthorized personnel accessing restricted clinical zones (pharmacy, NICU, psychiatric) through emergency exits\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 9.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 14.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 3,\n    \"job_step_name\": \"Monitor\",\n    \"impact_category\": \"safety\"\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of wireless alarm transmission failure caused by RF interference from hospital MRI and CT imaging equipment\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 9.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 14.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 3,\n    \"job_step_name\": \"Monitor\",\n    \"impact_category\": \"reliability\"\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of compliance gaps remaining invisible during unannounced JCI Environment of Care survey visits\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 9.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 14.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 6,\n    \"job_step_name\": \"Verify\",\n    \"impact_category\": \"compliance\"\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of fire safety inspection failures due to inadequate emergency exit security documentation\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 13.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 7,\n    \"job_step_name\": \"Document\",\n    \"impact_category\": \"compliance\"\n  },\n  {\n    \"error_statement\": \"Minimize the time required to correlate an emergency exit activation event with a patient elopement incident record within 30-second timestamp precision\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 13.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 7,\n    \"job_step_name\": \"Document\",\n    \"impact_category\": \"safety\"\n  },\n  {\n    \"error_statement\": \"Minimize the time spent on manual battery inspection rounds for emergency exit devices across the hospital campus\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 13.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 8,\n    \"job_step_name\": \"Maintain\",\n    \"impact_category\": \"reliability\"\n  },\n  {\n    \"error_statement\": \"Minimize the time required to produce on-demand real-time exit compliance status documentation for an arriving JCI surveyor\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 13.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 6,\n    \"job_step_name\": \"Verify\",\n    \"impact_category\": \"compliance\"\n  },\n  {\n    \"error_statement\": \"Minimize the frequency of false alarm activations on high-traffic clinical exit doors exceeding 2 events per week that require security dispatch\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 12.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 5,\n    \"job_step_name\": \"Execute\",\n    \"impact_category\": \"reliability\"\n  },\n  {\n    \"error_statement\": \"Minimize the time from emergency exit activation alarm to location-specific security dispatch response below 15 seconds\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 2.0,\n    \"opportunity_score\": 12.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 5,\n    \"job_step_name\": \"Execute\",\n    \"impact_category\": \"safety\"\n  },\n  {\n    \"error_statement\": \"Minimize the installation time per exit door below 30 minutes without licensed electricians in occupied clinical wards\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 5.0,\n    \"opportunity_score\": 11.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 2,\n    \"job_step_name\": \"Configure\",\n    \"impact_category\": \"time\"\n  },\n  {\n    \"error_statement\": \"Minimize the time for security staff to verify that all emergency exits were secured following fire drill exercises\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 11.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 6,\n    \"job_step_name\": \"Verify\",\n    \"impact_category\": \"time\"\n  },\n  {\n    \"error_statement\": \"Minimize the time required to confirm all emergency exits are secured following fire drill exercises without physical walkthrough\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 11.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 6,\n    \"job_step_name\": \"Verify\",\n    \"impact_category\": \"time\"\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of exit installation disrupting active patient care in adjacent clinical zones\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 10.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 2,\n    \"job_step_name\": \"Configure\",\n    \"impact_category\": \"reliability\"\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of emergency exit device tampering or vandalism going undetected in low-supervision clinical corridors\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 10.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 3,\n    \"job_step_name\": \"Monitor\",\n    \"impact_category\": \"safety\"\n  },\n  {\n    \"error_statement\": \"Minimize the time required for authorized hospital personnel to bypass the exit alarm below 10 seconds without triggering a facility-wide alert\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 5.0,\n    \"opportunity_score\": 9.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 5,\n    \"job_step_name\": \"Execute\",\n    \"impact_category\": \"time\"\n  },\n  {\n    \"error_statement\": \"Minimize the time required to commission exit monitoring across all doors in a newly acquired hospital building\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 5.0,\n    \"opportunity_score\": 9.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 2,\n    \"job_step_name\": \"Configure\",\n    \"impact_category\": \"time\"\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of exit monitoring devices requiring visible cabling that violates hospital infection control surface guidelines\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 6.0,\n    \"satisfaction_current\": 5.0,\n    \"opportunity_score\": 7.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false,\n    \"job_step_number\": 2,\n    \"job_step_name\": \"Configure\",\n    \"impact_category\": \"compliance\"\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of alarm event transmission failures caused by RF interference generated by hospital MRI and CT imaging equipment in zones adjacent to monitored exits\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 9.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 14.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": true,\n    \"job_step_number\": 0,\n    \"job_step_name\": \"product_constraint\",\n    \"impact_category\": \"reliability\"\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of wireless signal attenuation below reliable reporting threshold caused by reinforced-concrete hospital floor construction exceeding 3 barriers between device and receiver\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 12.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": true,\n    \"job_step_number\": 0,\n    \"job_step_name\": \"product_constraint\",\n    \"impact_category\": \"reliability\"\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of wireless coverage gaps discovered post-installation requiring unplanned repeater infrastructure additions to achieve full-campus alarm reporting\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 12.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": true,\n    \"job_step_number\": 0,\n    \"job_step_name\": \"product_constraint\",\n    \"impact_category\": \"reliability\"\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of door event logs transmitted via the wireless monitoring system containing data attributable to identifiable individuals without a legally established GDPR processing basis\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 12.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": true,\n    \"job_step_number\": 0,\n    \"job_step_name\": \"product_constraint\",\n    \"impact_category\": \"compliance\"\n  },\n  {\n    \"error_statement\": \"Minimize the integration effort required to relay EasyWave alarm events into hospital BACnet or nurse-call BMS platforms without a custom protocol gateway\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 11.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": true,\n    \"job_step_number\": 0,\n    \"job_step_name\": \"product_constraint\",\n    \"impact_category\": \"reliability\"\n  },\n  {\n    \"error_statement\": \"Minimize the effort required to replace batteries across all campus exit devices within a planned maintenance window without disrupting clinical operations\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 5.0,\n    \"opportunity_score\": 9.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": true,\n    \"job_step_number\": 0,\n    \"job_step_name\": \"product_constraint\",\n    \"impact_category\": \"reliability\"\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of installation failure on non-standard door hardware — glass-frame doors, narrow lever handles, legacy panic bars — in pre-1990 hospital wings\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 5.0,\n    \"opportunity_score\": 9.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": true,\n    \"job_step_number\": 0,\n    \"job_step_name\": \"product_constraint\",\n    \"impact_category\": \"reliability\"\n  }\n]\n```\n\n### MarketODISummary\n\n```json\n{\n  \"market_name\": \"General Medical and Surgical Hospitals\",\n  \"naics_code\": \"622110\",\n  \"total_needs\": 28,\n  \"underserved_count\": 16,\n  \"overserved_count\": 0,\n  \"avg_opportunity_score\": 12.07,\n  \"top_opportunities\": [\n    \"Minimize the likelihood of an unauthorized emergency exit activation going undetected for more than 5 minutes during overnight or weekend low-staffing periods\",\n    \"Minimize the effort required to check battery status across all 200+ exit devices on a hospital campus from a single monitoring dashboard\",\n    \"Minimize the effort required to generate JCI-compliant 12-month exit event logs without manual data aggregation\",\n    \"Minimize the likelihood of patient elopement going undetected through monitored emergency exits in psychiatric and dementia care wards\",\n    \"Minimize the likelihood of unauthorized personnel accessing restricted clinical zones (pharmacy, NICU, psychiatric) through emergency exits\"\n  ]\n}\n```\n\n### ODIMatrixResult\n\n```json\n{\n  \"market_summaries\": [\n    {\n      \"market_name\": \"General Medical and Surgical Hospitals\",\n      \"naics_code\": \"622110\",\n      \"total_needs\": 28,\n      \"underserved_count\": 16,\n      \"overserved_count\": 0,\n      \"avg_opportunity_score\": 12.07,\n      \"top_opportunities\": [\n        \"Minimize the likelihood of an unauthorized emergency exit activation going undetected for more than 5 minutes during overnight or weekend low-staffing periods\",\n        \"Minimize the effort required to check battery status across all 200+ exit devices on a hospital campus from a single monitoring dashboard\",\n        \"Minimize the effort required to generate JCI-compliant 12-month exit event logs without manual data aggregation\",\n        \"Minimize the likelihood of patient elopement going undetected through monitored emergency exits in psychiatric and dementia care wards\",\n        \"Minimize the likelihood of unauthorized personnel accessing restricted clinical zones (pharmacy, NICU, psychiatric) through emergency exits\"\n      ]\n    }\n  ]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Market name**",
+          "Value": "General Medical and Surgical Hospitals"
+        },
+        {
+          "Field": "**NAICS code**",
+          "Value": "622110"
+        },
+        {
+          "Field": "**Market job**",
+          "Value": "Help Facility & Building Safety to maintain authorized access boundaries at emergency exits while guaranteeing single-motion escape compliance across all clinical zones, and provide real-time alerts on unauthorized activation events across the campus"
+        },
+        {
+          "Field": "**Total needs scored**",
+          "Value": "28 (21 market + 7 product-related)"
+        },
+        {
+          "Field": "**Underserved count**",
+          "Value": "16"
+        },
+        {
+          "Field": "**Overserved count**",
+          "Value": "0"
+        },
+        {
+          "Field": "**Avg opportunity score**",
+          "Value": "12.07"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Step #",
+        "Step Name",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Step #": "1",
+          "Step Name": "Define",
+          "Description": "Scope which exits require monitoring across clinical zones"
+        },
+        {
+          "Step #": "2",
+          "Step Name": "Configure",
+          "Description": "Install and commission exit devices without disrupting operations"
+        },
+        {
+          "Step #": "3",
+          "Step Name": "Monitor",
+          "Description": "Maintain ongoing real-time visibility across all exit points"
+        },
+        {
+          "Step #": "4",
+          "Step Name": "Detect",
+          "Description": "Identify unauthorized activation events in real time"
+        },
+        {
+          "Step #": "5",
+          "Step Name": "Execute",
+          "Description": "Dispatch response and perform authorized bypass"
+        },
+        {
+          "Step #": "6",
+          "Step Name": "Verify",
+          "Description": "Confirm compliance status on demand"
+        },
+        {
+          "Step #": "7",
+          "Step Name": "Document",
+          "Description": "Generate audit records and regulatory reports"
+        },
+        {
+          "Step #": "8",
+          "Step Name": "Maintain",
+          "Description": "Replace batteries and service devices with minimal disruption"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "N#",
+        "Error Statement",
+        "Step",
+        "Imp",
+        "Sat"
+      ],
+      "rows": [
+        {
+          "N#": "N01",
+          "Error Statement": "Minimize the likelihood of exit installation disrupting active patient care in adjacent clinical zones",
+          "Step": "2",
+          "Imp": "7.0",
+          "Sat": "4.0"
+        },
+        {
+          "N#": "N02",
+          "Error Statement": "Minimize the likelihood of unauthorized personnel accessing restricted clinical zones (pharmacy, NICU, psychiatric) through emergency exits",
+          "Step": "3",
+          "Imp": "9.0",
+          "Sat": "4.0"
+        },
+        {
+          "N#": "N03",
+          "Error Statement": "Minimize the time required to commission exit monitoring across all doors in a newly acquired hospital building",
+          "Step": "2",
+          "Imp": "7.0",
+          "Sat": "5.0"
+        },
+        {
+          "N#": "N04",
+          "Error Statement": "Minimize the installation time per exit door below 30 minutes without licensed electricians in occupied clinical wards",
+          "Step": "2",
+          "Imp": "8.0",
+          "Sat": "5.0"
+        },
+        {
+          "N#": "N05",
+          "Error Statement": "Minimize the likelihood of exit monitoring devices requiring visible cabling that violates infection control surface guidelines",
+          "Step": "2",
+          "Imp": "6.0",
+          "Sat": "5.0"
+        },
+        {
+          "N#": "N06",
+          "Error Statement": "Minimize the likelihood of fire safety inspection failures due to inadequate emergency exit security documentation",
+          "Step": "7",
+          "Imp": "8.0",
+          "Sat": "3.0"
+        },
+        {
+          "N#": "N07",
+          "Error Statement": "Minimize the time required for authorized personnel to override the exit alarm below 10 seconds during clinical emergencies without triggering a facility-wide alert",
+          "Step": "5",
+          "Imp": "7.0",
+          "Sat": "5.0"
+        },
+        {
+          "N#": "N08",
+          "Error Statement": "Minimize the likelihood of an unauthorized emergency exit activation going undetected for more than 5 minutes during overnight or weekend low-staffing periods",
+          "Step": "4",
+          "Imp": "10.0",
+          "Sat": "2.0"
+        },
+        {
+          "N#": "N09",
+          "Error Statement": "Minimize the frequency of false alarm activations on high-traffic clinical exit doors exceeding 2 events per week that require security dispatch",
+          "Step": "5",
+          "Imp": "8.0",
+          "Sat": "4.0"
+        },
+        {
+          "N#": "N10",
+          "Error Statement": "Minimize the time required to confirm all emergency exits are secured following fire drill exercises",
+          "Step": "6",
+          "Imp": "7.0",
+          "Sat": "3.0"
+        },
+        {
+          "N#": "N11",
+          "Error Statement": "Minimize the effort required to check battery status across all 200+ exit devices on a hospital campus from a single monitoring dashboard",
+          "Step": "8",
+          "Imp": "9.0",
+          "Sat": "2.0"
+        },
+        {
+          "N#": "N12",
+          "Error Statement": "Minimize the likelihood of wireless alarm transmission failure caused by RF interference from hospital MRI and CT imaging equipment",
+          "Step": "3",
+          "Imp": "9.0",
+          "Sat": "4.0"
+        },
+        {
+          "N#": "N13",
+          "Error Statement": "Minimize the time required to correlate an emergency exit activation event with a patient elopement incident record within 30-second timestamp precision",
+          "Step": "7",
+          "Imp": "8.0",
+          "Sat": "3.0"
+        },
+        {
+          "N#": "N14",
+          "Error Statement": "Minimize the likelihood of patient elopement going undetected through monitored emergency exits in psychiatric and dementia care wards",
+          "Step": "4",
+          "Imp": "9.0",
+          "Sat": "3.0"
+        },
+        {
+          "N#": "N15",
+          "Error Statement": "Minimize the time spent on manual battery inspection rounds for emergency exit devices across the hospital campus",
+          "Step": "8",
+          "Imp": "8.0",
+          "Sat": "3.0"
+        },
+        {
+          "N#": "N16",
+          "Error Statement": "Minimize the effort required to generate JCI-compliant 12-month exit event logs without manual data aggregation",
+          "Step": "7",
+          "Imp": "9.0",
+          "Sat": "2.0"
+        },
+        {
+          "N#": "N17",
+          "Error Statement": "Minimize the time for security staff to verify that all emergency exits were secured following fire drill exercises",
+          "Step": "6",
+          "Imp": "7.0",
+          "Sat": "3.0"
+        },
+        {
+          "N#": "N18",
+          "Error Statement": "Minimize the likelihood of emergency exit device tampering or vandalism going undetected in low-supervision clinical corridors",
+          "Step": "3",
+          "Imp": "7.0",
+          "Sat": "4.0"
+        },
+        {
+          "N#": "N19",
+          "Error Statement": "Minimize the time required to produce on-demand real-time exit compliance status documentation for an arriving JCI surveyor",
+          "Step": "6",
+          "Imp": "8.0",
+          "Sat": "3.0"
+        },
+        {
+          "N#": "N20",
+          "Error Statement": "Minimize the likelihood of compliance gaps remaining invisible during unannounced JCI Environment of Care survey visits",
+          "Step": "6",
+          "Imp": "9.0",
+          "Sat": "4.0"
+        },
+        {
+          "N#": "N21",
+          "Error Statement": "Minimize the time from emergency exit activation alarm to location-specific security dispatch response below 15 seconds",
+          "Step": "5",
+          "Imp": "7.0",
+          "Sat": "2.0"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "PR#",
+        "Error Statement",
+        "Source Constraint",
+        "Imp",
+        "Sat"
+      ],
+      "rows": [
+        {
+          "PR#": "PR01",
+          "Error Statement": "Minimize the likelihood of wireless signal attenuation below reliable reporting threshold caused by reinforced-concrete hospital floor construction exceeding 3 barriers between device and receiver",
+          "Source Constraint": "C3 — Wireless Range",
+          "Imp": "8.0",
+          "Sat": "4.0"
+        },
+        {
+          "PR#": "PR02",
+          "Error Statement": "Minimize the likelihood of wireless coverage gaps discovered post-installation requiring unplanned repeater infrastructure additions to achieve full-campus alarm reporting",
+          "Source Constraint": "C3 — Wireless Range",
+          "Imp": "8.0",
+          "Sat": "4.0"
+        },
+        {
+          "PR#": "PR03",
+          "Error Statement": "Minimize the likelihood of alarm event transmission failures caused by RF interference generated by hospital MRI and CT imaging equipment in zones adjacent to monitored exits",
+          "Source Constraint": "C3 — Wireless Range",
+          "Imp": "9.0",
+          "Sat": "4.0"
+        },
+        {
+          "PR#": "PR04",
+          "Error Statement": "Minimize the effort required to replace batteries across all campus exit devices within a planned maintenance window without disrupting clinical operations",
+          "Source Constraint": "C4 — IoT Battery Life",
+          "Imp": "7.0",
+          "Sat": "5.0"
+        },
+        {
+          "PR#": "PR05",
+          "Error Statement": "Minimize the likelihood of installation failure on non-standard door hardware — glass-frame doors, narrow lever handles, legacy panic bars — in pre-1990 hospital wings",
+          "Source Constraint": "C5 — Surface Mount",
+          "Imp": "7.0",
+          "Sat": "5.0"
+        },
+        {
+          "PR#": "PR06",
+          "Error Statement": "Minimize the likelihood of door event logs containing data attributable to identifiable individuals without a legally established GDPR processing basis",
+          "Source Constraint": "C8 — GDPR",
+          "Imp": "8.0",
+          "Sat": "4.0"
+        },
+        {
+          "PR#": "PR07",
+          "Error Statement": "Minimize the integration effort required to relay EasyWave alarm events into hospital BACnet or nurse-call BMS platforms without a custom protocol gateway",
+          "Source Constraint": "C6 — Protocol Lock-In",
+          "Imp": "7.0",
+          "Sat": "3.0"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Incumbent",
+        "Est. Share",
+        "Mechanism",
+        "Strengths",
+        "Weaknesses"
+      ],
+      "rows": [
+        {
+          "Incumbent": "Wired electronic access control (dormakaba, ASSA ABLOY)",
+          "Est. Share": "~35%",
+          "Mechanism": "Electronic locking + wired alarm panel",
+          "Strengths": "Reliable, BACnet-native, timestamped logs",
+          "Weaknesses": "2–4 hrs/door installation, requires electrician, costly for retrofit"
+        },
+        {
+          "Incumbent": "Mechanical door alarms (basic, no IoT)",
+          "Est. Share": "~40%",
+          "Mechanism": "Spring or magnetic reed contact, audible alarm only",
+          "Strengths": "Low cost, zero maintenance complexity",
+          "Weaknesses": "No remote monitoring, no battery dashboard, no event logs"
+        },
+        {
+          "Incumbent": "Nurse-station manual patrol",
+          "Est. Share": "~15%",
+          "Mechanism": "Human observation rounds",
+          "Strengths": "Flexible response",
+          "Weaknesses": "Cannot detect real-time; hours-long detection gaps overnight"
+        },
+        {
+          "Incumbent": "CCTV-based monitoring",
+          "Est. Share": "~10%",
+          "Mechanism": "Video surveillance at exit points",
+          "Strengths": "Provides visual evidence post-incident",
+          "Weaknesses": "No automated alerts; no timestamped compliance logs; high review burden"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "N#",
+        "Error Statement (short)",
+        "Imp",
+        "Sat",
+        "Opp",
+        "U/S",
+        "O/S",
+        "PR"
+      ],
+      "rows": [
+        {
+          "N#": "N08",
+          "Error Statement (short)": "Undetected unauthorized activation >5 min, overnight/weekend",
+          "Imp": "10.0",
+          "Sat": "2.0",
+          "Opp": "**18.00**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N11",
+          "Error Statement (short)": "Battery status 200+ doors, single dashboard",
+          "Imp": "9.0",
+          "Sat": "2.0",
+          "Opp": "**16.00**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N16",
+          "Error Statement (short)": "JCI 12-month log, no manual aggregation",
+          "Imp": "9.0",
+          "Sat": "2.0",
+          "Opp": "**16.00**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N14",
+          "Error Statement (short)": "Patient elopement detection, psychiatric/dementia wards",
+          "Imp": "9.0",
+          "Sat": "3.0",
+          "Opp": "**15.00**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N02",
+          "Error Statement (short)": "Unauthorized access to restricted clinical zones",
+          "Imp": "9.0",
+          "Sat": "4.0",
+          "Opp": "**14.00**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N12",
+          "Error Statement (short)": "RF transmission failure from MRI/CT equipment",
+          "Imp": "9.0",
+          "Sat": "4.0",
+          "Opp": "**14.00**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N20",
+          "Error Statement (short)": "Compliance gap invisible during unannounced JCI survey",
+          "Imp": "9.0",
+          "Sat": "4.0",
+          "Opp": "**14.00**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N06",
+          "Error Statement (short)": "Fire safety inspection failure from poor documentation",
+          "Imp": "8.0",
+          "Sat": "3.0",
+          "Opp": "**13.00**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N13",
+          "Error Statement (short)": "Correlate exit event with elopement record <30 sec",
+          "Imp": "8.0",
+          "Sat": "3.0",
+          "Opp": "**13.00**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N15",
+          "Error Statement (short)": "Manual battery inspection rounds across campus",
+          "Imp": "8.0",
+          "Sat": "3.0",
+          "Opp": "**13.00**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N19",
+          "Error Statement (short)": "On-demand compliance status for arriving JCI surveyor",
+          "Imp": "8.0",
+          "Sat": "3.0",
+          "Opp": "**13.00**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N09",
+          "Error Statement (short)": "False alarm frequency >2/week on high-traffic exits",
+          "Imp": "8.0",
+          "Sat": "4.0",
+          "Opp": "**12.00**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N21",
+          "Error Statement (short)": "Alert-to-dispatch <15 sec, location-specific",
+          "Imp": "7.0",
+          "Sat": "2.0",
+          "Opp": "12.00",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N04",
+          "Error Statement (short)": "Installation <30 min/door, no electrician, occupied ward",
+          "Imp": "8.0",
+          "Sat": "5.0",
+          "Opp": "11.00",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N17",
+          "Error Statement (short)": "Verify exits secured post-fire-drill, no walkthrough",
+          "Imp": "7.0",
+          "Sat": "3.0",
+          "Opp": "11.00",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N01",
+          "Error Statement (short)": "Installation disrupts patient care in adjacent zones",
+          "Imp": "7.0",
+          "Sat": "4.0",
+          "Opp": "10.00",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N18",
+          "Error Statement (short)": "Tampering/vandalism undetected in low-supervision corridors",
+          "Imp": "7.0",
+          "Sat": "4.0",
+          "Opp": "10.00",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N07",
+          "Error Statement (short)": "Authorized bypass <10 sec, no facility-wide alert",
+          "Imp": "7.0",
+          "Sat": "5.0",
+          "Opp": "9.00",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N10",
+          "Error Statement (short)": "Confirm exits secured after fire drill",
+          "Imp": "7.0",
+          "Sat": "3.0",
+          "Opp": "11.00",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N03",
+          "Error Statement (short)": "Commission monitoring in newly acquired building",
+          "Imp": "7.0",
+          "Sat": "5.0",
+          "Opp": "9.00",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "—"
+        },
+        {
+          "N#": "N05",
+          "Error Statement (short)": "Visible cabling violates infection control guidelines",
+          "Imp": "6.0",
+          "Sat": "5.0",
+          "Opp": "7.00",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "—"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "PR#",
+        "Error Statement (short)",
+        "Imp",
+        "Sat",
+        "Opp",
+        "U/S",
+        "O/S",
+        "PR"
+      ],
+      "rows": [
+        {
+          "PR#": "PR03",
+          "Error Statement (short)": "Alarm TX failure from MRI/CT RF interference",
+          "Imp": "9.0",
+          "Sat": "4.0",
+          "Opp": "**14.00**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "✓"
+        },
+        {
+          "PR#": "PR01",
+          "Error Statement (short)": "Signal attenuation through reinforced concrete >3 barriers",
+          "Imp": "8.0",
+          "Sat": "4.0",
+          "Opp": "**12.00**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "✓"
+        },
+        {
+          "PR#": "PR02",
+          "Error Statement (short)": "Coverage gaps require unplanned repeater additions post-install",
+          "Imp": "8.0",
+          "Sat": "4.0",
+          "Opp": "**12.00**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "✓"
+        },
+        {
+          "PR#": "PR06",
+          "Error Statement (short)": "GDPR: event logs attributable to identifiable individuals",
+          "Imp": "8.0",
+          "Sat": "4.0",
+          "Opp": "**12.00**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "✓"
+        },
+        {
+          "PR#": "PR07",
+          "Error Statement (short)": "EasyWave → BACnet/nurse-call integration without gateway",
+          "Imp": "7.0",
+          "Sat": "3.0",
+          "Opp": "11.00",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "✓"
+        },
+        {
+          "PR#": "PR04",
+          "Error Statement (short)": "Battery replacement in planned window, no clinical disruption",
+          "Imp": "7.0",
+          "Sat": "5.0",
+          "Opp": "9.00",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "✓"
+        },
+        {
+          "PR#": "PR05",
+          "Error Statement (short)": "Installation failure on pre-1990 non-standard door hardware",
+          "Imp": "7.0",
+          "Sat": "5.0",
+          "Opp": "9.00",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "✓"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Market name**",
+          "Value": "General Medical and Surgical Hospitals"
+        },
+        {
+          "Field": "**NAICS code**",
+          "Value": "622110"
+        },
+        {
+          "Field": "**Total needs**",
+          "Value": "28"
+        },
+        {
+          "Field": "**Underserved count**",
+          "Value": "16"
+        },
+        {
+          "Field": "**Overserved count**",
+          "Value": "0"
+        },
+        {
+          "Field": "**Avg opportunity score**",
+          "Value": "12.07"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Rank",
+        "Score",
+        "Statement"
+      ],
+      "rows": [
+        {
+          "Rank": "1",
+          "Score": "18.00",
+          "Statement": "Minimize the likelihood of an unauthorized emergency exit activation going undetected for more than 5 minutes during overnight or weekend low-staffing periods"
+        },
+        {
+          "Rank": "2",
+          "Score": "16.00",
+          "Statement": "Minimize the effort required to check battery status across all 200+ exit devices on a hospital campus from a single monitoring dashboard"
+        },
+        {
+          "Rank": "3",
+          "Score": "16.00",
+          "Statement": "Minimize the effort required to generate JCI-compliant 12-month exit event logs without manual data aggregation"
+        },
+        {
+          "Rank": "4",
+          "Score": "15.00",
+          "Statement": "Minimize the likelihood of patient elopement going undetected through monitored emergency exits in psychiatric and dementia care wards"
+        },
+        {
+          "Rank": "5",
+          "Score": "14.00",
+          "Statement": "Minimize the likelihood of unauthorized personnel accessing restricted clinical zones through emergency exits"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Zone",
+        "Range",
+        "Count"
+      ],
+      "rows": [
+        {
+          "Zone": "Highly Underserved",
+          "Range": ">15",
+          "Count": "4"
+        },
+        {
+          "Zone": "Underserved",
+          "Range": "12–15",
+          "Count": "10"
+        },
+        {
+          "Zone": "Appropriately Served",
+          "Range": "10–12",
+          "Count": "7"
+        },
+        {
+          "Zone": "Overserved",
+          "Range": "<10",
+          "Count": "7"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Metric",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Metric": "ODI avg opportunity score",
+          "Value": "12.07"
+        },
+        {
+          "Metric": "Feature-Fit avg score (from FIT file)",
+          "Value": "6.72"
+        },
+        {
+          "Metric": "Cross-check rule triggered",
+          "Value": "None"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    [
+      {
+        "error_statement": "Minimize the likelihood of an unauthorized emergency exit activation going undetected for more than 5 minutes during overnight or weekend low-staffing periods",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 10.0,
+        "satisfaction_current": 2.0,
+        "opportunity_score": 18.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 4,
+        "job_step_name": "Detect",
+        "impact_category": "safety"
+      },
+      {
+        "error_statement": "Minimize the effort required to check battery status across all 200+ exit devices on a hospital campus from a single monitoring dashboard",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 9.0,
+        "satisfaction_current": 2.0,
+        "opportunity_score": 16.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 8,
+        "job_step_name": "Maintain",
+        "impact_category": "reliability"
+      },
+      {
+        "error_statement": "Minimize the effort required to generate JCI-compliant 12-month exit event logs without manual data aggregation",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 9.0,
+        "satisfaction_current": 2.0,
+        "opportunity_score": 16.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 7,
+        "job_step_name": "Document",
+        "impact_category": "compliance"
+      },
+      {
+        "error_statement": "Minimize the likelihood of patient elopement going undetected through monitored emergency exits in psychiatric and dementia care wards",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 9.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 15.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 4,
+        "job_step_name": "Detect",
+        "impact_category": "safety"
+      },
+      {
+        "error_statement": "Minimize the likelihood of unauthorized personnel accessing restricted clinical zones (pharmacy, NICU, psychiatric) through emergency exits",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 9.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 14.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 3,
+        "job_step_name": "Monitor",
+        "impact_category": "safety"
+      },
+      {
+        "error_statement": "Minimize the likelihood of wireless alarm transmission failure caused by RF interference from hospital MRI and CT imaging equipment",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 9.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 14.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 3,
+        "job_step_name": "Monitor",
+        "impact_category": "reliability"
+      },
+      {
+        "error_statement": "Minimize the likelihood of compliance gaps remaining invisible during unannounced JCI Environment of Care survey visits",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 9.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 14.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 6,
+        "job_step_name": "Verify",
+        "impact_category": "compliance"
+      },
+      {
+        "error_statement": "Minimize the likelihood of fire safety inspection failures due to inadequate emergency exit security documentation",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 8.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 13.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 7,
+        "job_step_name": "Document",
+        "impact_category": "compliance"
+      },
+      {
+        "error_statement": "Minimize the time required to correlate an emergency exit activation event with a patient elopement incident record within 30-second timestamp precision",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 8.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 13.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 7,
+        "job_step_name": "Document",
+        "impact_category": "safety"
+      },
+      {
+        "error_statement": "Minimize the time spent on manual battery inspection rounds for emergency exit devices across the hospital campus",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 8.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 13.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 8,
+        "job_step_name": "Maintain",
+        "impact_category": "reliability"
+      },
+      {
+        "error_statement": "Minimize the time required to produce on-demand real-time exit compliance status documentation for an arriving JCI surveyor",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 8.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 13.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 6,
+        "job_step_name": "Verify",
+        "impact_category": "compliance"
+      },
+      {
+        "error_statement": "Minimize the frequency of false alarm activations on high-traffic clinical exit doors exceeding 2 events per week that require security dispatch",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 8.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 12.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 5,
+        "job_step_name": "Execute",
+        "impact_category": "reliability"
+      },
+      {
+        "error_statement": "Minimize the time from emergency exit activation alarm to location-specific security dispatch response below 15 seconds",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 7.0,
+        "satisfaction_current": 2.0,
+        "opportunity_score": 12.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 5,
+        "job_step_name": "Execute",
+        "impact_category": "safety"
+      },
+      {
+        "error_statement": "Minimize the installation time per exit door below 30 minutes without licensed electricians in occupied clinical wards",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 8.0,
+        "satisfaction_current": 5.0,
+        "opportunity_score": 11.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 2,
+        "job_step_name": "Configure",
+        "impact_category": "time"
+      },
+      {
+        "error_statement": "Minimize the time for security staff to verify that all emergency exits were secured following fire drill exercises",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 7.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 11.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 6,
+        "job_step_name": "Verify",
+        "impact_category": "time"
+      },
+      {
+        "error_statement": "Minimize the time required to confirm all emergency exits are secured following fire drill exercises without physical walkthrough",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 7.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 11.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 6,
+        "job_step_name": "Verify",
+        "impact_category": "time"
+      },
+      {
+        "error_statement": "Minimize the likelihood of exit installation disrupting active patient care in adjacent clinical zones",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 7.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 10.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 2,
+        "job_step_name": "Configure",
+        "impact_category": "reliability"
+      },
+      {
+        "error_statement": "Minimize the likelihood of emergency exit device tampering or vandalism going undetected in low-supervision clinical corridors",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 7.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 10.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 3,
+        "job_step_name": "Monitor",
+        "impact_category": "safety"
+      },
+      {
+        "error_statement": "Minimize the time required for authorized hospital personnel to bypass the exit alarm below 10 seconds without triggering a facility-wide alert",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 7.0,
+        "satisfaction_current": 5.0,
+        "opportunity_score": 9.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 5,
+        "job_step_name": "Execute",
+        "impact_category": "time"
+      },
+      {
+        "error_statement": "Minimize the time required to commission exit monitoring across all doors in a newly acquired hospital building",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 7.0,
+        "satisfaction_current": 5.0,
+        "opportunity_score": 9.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 2,
+        "job_step_name": "Configure",
+        "impact_category": "time"
+      },
+      {
+        "error_statement": "Minimize the likelihood of exit monitoring devices requiring visible cabling that violates hospital infection control surface guidelines",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 6.0,
+        "satisfaction_current": 5.0,
+        "opportunity_score": 7.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false,
+        "job_step_number": 2,
+        "job_step_name": "Configure",
+        "impact_category": "compliance"
+      },
+      {
+        "error_statement": "Minimize the likelihood of alarm event transmission failures caused by RF interference generated by hospital MRI and CT imaging equipment in zones adjacent to monitored exits",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 9.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 14.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": true,
+        "job_step_number": 0,
+        "job_step_name": "product_constraint",
+        "impact_category": "reliability"
+      },
+      {
+        "error_statement": "Minimize the likelihood of wireless signal attenuation below reliable reporting threshold caused by reinforced-concrete hospital floor construction exceeding 3 barriers between device and receiver",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 8.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 12.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": true,
+        "job_step_number": 0,
+        "job_step_name": "product_constraint",
+        "impact_category": "reliability"
+      },
+      {
+        "error_statement": "Minimize the likelihood of wireless coverage gaps discovered post-installation requiring unplanned repeater infrastructure additions to achieve full-campus alarm reporting",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 8.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 12.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": true,
+        "job_step_number": 0,
+        "job_step_name": "product_constraint",
+        "impact_category": "reliability"
+      },
+      {
+        "error_statement": "Minimize the likelihood of door event logs transmitted via the wireless monitoring system containing data attributable to identifiable individuals without a legally established GDPR processing basis",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 8.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 12.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": true,
+        "job_step_number": 0,
+        "job_step_name": "product_constraint",
+        "impact_category": "compliance"
+      },
+      {
+        "error_statement": "Minimize the integration effort required to relay EasyWave alarm events into hospital BACnet or nurse-call BMS platforms without a custom protocol gateway",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 7.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 11.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": true,
+        "job_step_number": 0,
+        "job_step_name": "product_constraint",
+        "impact_category": "reliability"
+      },
+      {
+        "error_statement": "Minimize the effort required to replace batteries across all campus exit devices within a planned maintenance window without disrupting clinical operations",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 7.0,
+        "satisfaction_current": 5.0,
+        "opportunity_score": 9.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": true,
+        "job_step_number": 0,
+        "job_step_name": "product_constraint",
+        "impact_category": "reliability"
+      },
+      {
+        "error_statement": "Minimize the likelihood of installation failure on non-standard door hardware — glass-frame doors, narrow lever handles, legacy panic bars — in pre-1990 hospital wings",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "importance": 7.0,
+        "satisfaction_current": 5.0,
+        "opportunity_score": 9.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": true,
+        "job_step_number": 0,
+        "job_step_name": "product_constraint",
+        "impact_category": "reliability"
+      }
+    ],
+    {
+      "market_name": "General Medical and Surgical Hospitals",
+      "naics_code": "622110",
+      "total_needs": 28,
+      "underserved_count": 16,
+      "overserved_count": 0,
+      "avg_opportunity_score": 12.07,
+      "top_opportunities": [
+        "Minimize the likelihood of an unauthorized emergency exit activation going undetected for more than 5 minutes during overnight or weekend low-staffing periods",
+        "Minimize the effort required to check battery status across all 200+ exit devices on a hospital campus from a single monitoring dashboard",
+        "Minimize the effort required to generate JCI-compliant 12-month exit event logs without manual data aggregation",
+        "Minimize the likelihood of patient elopement going undetected through monitored emergency exits in psychiatric and dementia care wards",
+        "Minimize the likelihood of unauthorized personnel accessing restricted clinical zones (pharmacy, NICU, psychiatric) through emergency exits"
+      ]
+    },
+    {
+      "market_summaries": [
+        {
+          "market_name": "General Medical and Surgical Hospitals",
+          "naics_code": "622110",
+          "total_needs": 28,
+          "underserved_count": 16,
+          "overserved_count": 0,
+          "avg_opportunity_score": 12.07,
+          "top_opportunities": [
+            "Minimize the likelihood of an unauthorized emergency exit activation going undetected for more than 5 minutes during overnight or weekend low-staffing periods",
+            "Minimize the effort required to check battery status across all 200+ exit devices on a hospital campus from a single monitoring dashboard",
+            "Minimize the effort required to generate JCI-compliant 12-month exit event logs without manual data aggregation",
+            "Minimize the likelihood of patient elopement going undetected through monitored emergency exits in psychiatric and dementia care wards",
+            "Minimize the likelihood of unauthorized personnel accessing restricted clinical zones (pharmacy, NICU, psychiatric) through emergency exits"
+          ]
+        }
+      ]
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

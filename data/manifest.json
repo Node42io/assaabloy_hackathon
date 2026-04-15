@@ -1,0 +1,314 @@
+{
+  "analysis_pages": [
+    {
+      "id": "01_product_decomposition",
+      "title": "Product Decomposition: GfS Turwachter (Exit Control 179/1125) with IoT",
+      "type": "product_decomposition",
+      "file": "01_product_decomposition.json"
+    },
+    {
+      "id": "02_functional_promise",
+      "title": "Functional Promise: GfS Türwächter (Exit Control 179/1125 with IoT)",
+      "type": "functional_promise",
+      "file": "02_functional_promise.json"
+    },
+    {
+      "id": "03_constraints",
+      "title": "Constraints Analysis: GfS Türwächter IoT (Exit Control 179/1125)",
+      "type": "constraints",
+      "file": "03_constraints.json"
+    },
+    {
+      "id": "04_incumbents_home",
+      "title": "04 — Home Market Competition (Skipped)",
+      "type": "home_market_competition",
+      "file": "04_incumbents_home.json"
+    },
+    {
+      "id": "05_market_discovery",
+      "title": "Market Discovery: GfS Türwächter (Exit Control 179/1125 with IoT)",
+      "type": "market_discovery",
+      "file": "05_market_discovery.json"
+    },
+    {
+      "id": "10_final_ranking",
+      "title": "Step 14 — Final Market Ranking & Prioritization",
+      "type": "final_ranking",
+      "file": "10_final_ranking.json"
+    }
+  ],
+  "markets": [
+    {
+      "slug": "colleges_universities",
+      "title": "Value Network — Colleges, Universities, and Profes",
+      "available_analyses": [
+        "constraint_compatibility",
+        "feature_market_fit",
+        "jtbd_analysis",
+        "odi_matrix",
+        "value_network"
+      ],
+      "has_bom": false,
+      "has_application_engineering": false,
+      "has_business_model": false,
+      "has_market_sizing": false,
+      "has_go_to_market": false,
+      "has_competitive_intel": false,
+      "has_feasibility": false,
+      "has_value_chain": false,
+      "has_working_capital": false
+    },
+    {
+      "slug": "continuing_care_retirement",
+      "title": "Value Network Construction: Continuing Care Retire",
+      "available_analyses": [
+        "constraint_compatibility",
+        "feature_market_fit",
+        "jtbd_analysis",
+        "odi_matrix",
+        "value_network"
+      ],
+      "has_bom": false,
+      "has_application_engineering": false,
+      "has_business_model": false,
+      "has_market_sizing": false,
+      "has_go_to_market": false,
+      "has_competitive_intel": false,
+      "has_feasibility": false,
+      "has_value_chain": false,
+      "has_working_capital": false
+    },
+    {
+      "slug": "data_centers",
+      "title": "Value Network: Computing Infrastructure Providers ",
+      "available_analyses": [
+        "constraint_compatibility",
+        "feature_market_fit",
+        "jtbd_analysis",
+        "odi_matrix",
+        "value_network"
+      ],
+      "has_bom": false,
+      "has_application_engineering": false,
+      "has_business_model": false,
+      "has_market_sizing": false,
+      "has_go_to_market": false,
+      "has_competitive_intel": false,
+      "has_feasibility": false,
+      "has_value_chain": false,
+      "has_working_capital": false
+    },
+    {
+      "slug": "elementary_secondary_schools",
+      "title": "Value Network — Elementary and Secondary Schools (",
+      "available_analyses": [
+        "constraint_compatibility",
+        "feature_market_fit",
+        "jtbd_analysis",
+        "odi_matrix",
+        "value_network"
+      ],
+      "has_bom": false,
+      "has_application_engineering": false,
+      "has_business_model": false,
+      "has_market_sizing": false,
+      "has_go_to_market": false,
+      "has_competitive_intel": false,
+      "has_feasibility": false,
+      "has_value_chain": false,
+      "has_working_capital": false
+    },
+    {
+      "slug": "facilities_support_services",
+      "title": "Value Network: Facilities Support Services (NAICS ",
+      "available_analyses": [
+        "constraint_compatibility",
+        "feature_market_fit",
+        "jtbd_analysis",
+        "odi_matrix",
+        "value_network"
+      ],
+      "has_bom": false,
+      "has_application_engineering": false,
+      "has_business_model": false,
+      "has_market_sizing": false,
+      "has_go_to_market": false,
+      "has_competitive_intel": false,
+      "has_feasibility": false,
+      "has_value_chain": false,
+      "has_working_capital": false
+    },
+    {
+      "slug": "general_medical_surgical_hospitals",
+      "title": "Value Network Construction: NAICS 622110 — General",
+      "available_analyses": [
+        "constraint_compatibility",
+        "feature_market_fit",
+        "jtbd_analysis",
+        "odi_matrix",
+        "value_network"
+      ],
+      "has_bom": false,
+      "has_application_engineering": false,
+      "has_business_model": false,
+      "has_market_sizing": false,
+      "has_go_to_market": false,
+      "has_competitive_intel": false,
+      "has_feasibility": false,
+      "has_value_chain": false,
+      "has_working_capital": false
+    },
+    {
+      "slug": "general_warehousing_storage",
+      "title": "Value Network Construction: NAICS 493110 — General",
+      "available_analyses": [
+        "constraint_compatibility",
+        "feature_market_fit",
+        "jtbd_analysis",
+        "odi_matrix",
+        "value_network"
+      ],
+      "has_bom": false,
+      "has_application_engineering": false,
+      "has_business_model": false,
+      "has_market_sizing": false,
+      "has_go_to_market": false,
+      "has_competitive_intel": false,
+      "has_feasibility": false,
+      "has_value_chain": false,
+      "has_working_capital": false
+    },
+    {
+      "slug": "hotels_motels",
+      "title": "Value Network Construction: Hotels (except Casino ",
+      "available_analyses": [
+        "constraint_compatibility",
+        "feature_market_fit",
+        "jtbd_analysis",
+        "odi_matrix",
+        "value_network"
+      ],
+      "has_bom": false,
+      "has_application_engineering": false,
+      "has_business_model": false,
+      "has_market_sizing": false,
+      "has_go_to_market": false,
+      "has_competitive_intel": false,
+      "has_feasibility": false,
+      "has_value_chain": false,
+      "has_working_capital": false
+    },
+    {
+      "slug": "lessors_nonresidential_buildings",
+      "title": "Value Network: Lessors of Nonresidential Buildings",
+      "available_analyses": [
+        "constraint_compatibility",
+        "feature_market_fit",
+        "jtbd_analysis",
+        "odi_matrix",
+        "value_network"
+      ],
+      "has_bom": false,
+      "has_application_engineering": false,
+      "has_business_model": false,
+      "has_market_sizing": false,
+      "has_go_to_market": false,
+      "has_competitive_intel": false,
+      "has_feasibility": false,
+      "has_value_chain": false,
+      "has_working_capital": false
+    },
+    {
+      "slug": "museums_historical_sites",
+      "title": "Value Network Construction: Museums, Historical Si",
+      "available_analyses": [
+        "constraint_compatibility",
+        "feature_market_fit",
+        "jtbd_analysis",
+        "odi_matrix",
+        "value_network"
+      ],
+      "has_bom": false,
+      "has_application_engineering": false,
+      "has_business_model": false,
+      "has_market_sizing": false,
+      "has_go_to_market": false,
+      "has_competitive_intel": false,
+      "has_feasibility": false,
+      "has_value_chain": false,
+      "has_working_capital": false
+    }
+  ],
+  "market_types": {
+    "colleges_universities": [
+      "constraint_compatibility",
+      "feature_market_fit",
+      "jtbd_analysis",
+      "odi_matrix",
+      "value_network"
+    ],
+    "continuing_care_retirement": [
+      "constraint_compatibility",
+      "feature_market_fit",
+      "jtbd_analysis",
+      "odi_matrix",
+      "value_network"
+    ],
+    "data_centers": [
+      "constraint_compatibility",
+      "feature_market_fit",
+      "jtbd_analysis",
+      "odi_matrix",
+      "value_network"
+    ],
+    "elementary_secondary_schools": [
+      "constraint_compatibility",
+      "feature_market_fit",
+      "jtbd_analysis",
+      "odi_matrix",
+      "value_network"
+    ],
+    "facilities_support_services": [
+      "constraint_compatibility",
+      "feature_market_fit",
+      "jtbd_analysis",
+      "odi_matrix",
+      "value_network"
+    ],
+    "general_medical_surgical_hospitals": [
+      "constraint_compatibility",
+      "feature_market_fit",
+      "jtbd_analysis",
+      "odi_matrix",
+      "value_network"
+    ],
+    "general_warehousing_storage": [
+      "constraint_compatibility",
+      "feature_market_fit",
+      "jtbd_analysis",
+      "odi_matrix",
+      "value_network"
+    ],
+    "hotels_motels": [
+      "constraint_compatibility",
+      "feature_market_fit",
+      "jtbd_analysis",
+      "odi_matrix",
+      "value_network"
+    ],
+    "lessors_nonresidential_buildings": [
+      "constraint_compatibility",
+      "feature_market_fit",
+      "jtbd_analysis",
+      "odi_matrix",
+      "value_network"
+    ],
+    "museums_historical_sites": [
+      "constraint_compatibility",
+      "feature_market_fit",
+      "jtbd_analysis",
+      "odi_matrix",
+      "value_network"
+    ]
+  }
+}

@@ -1,0 +1,1151 @@
+{
+  "id": "JTBD_data_centers",
+  "title": "JTBD Analysis: Data Centers (NAICS 518210)",
+  "type": "jtbd_analysis",
+  "market_slug": "data_centers",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Phase 1 — Industry Landscape (NAICS 518210)",
+      "content": "### 1.1 CFJ, Output Types, Offering Level\n\n| Field | Value |\n|---|---|\n| **NAICS** | 518210 — Computing Infrastructure Providers, Data Processing, Web Hosting, and Related Services |\n| **CFJ** | Deliver continuous, secure, and compliant compute, storage, and network capacity to tenants and end users at contracted uptime and performance levels |\n| **Türwächter offering level** | L4 — component within L5 Emergency Exit Door Monitoring; anchors in PROCESS_VN, not Product BOM |\n\n| Output Type | VN Level |\n|---|---|\n| Colocation (colo-as-a-service) | L5 |\n| Hyperscale Cloud | L5 |\n| Edge / Micro DC | L5 |\n| Managed Hosting | L5 |\n\n### 1.2 Segments (circumstance-based)\n\n| Segment | Circumstance | Why distinct from other DC segments |\n|---|---|---|\n| **Compliance-audit DCs** | Tier III/IV facilities undergoing annual SOC 2 Type II and/or ISO 27001 recertification | Every door event must produce tamper-evident digital evidence — alternatives differ radically vs. non-certified DCs; audit evidence quality drives purchase decision |\n| **Retrofit / legacy DCs** | Existing facilities (pre-2015 build) without conduit to secondary emergency exit doors | Wiring each door is prohibitively expensive or physically impossible; wireless is the only viable approach — creates entirely different alternative set |\n| **High-security / government cloud DCs** | DCs hosting classified, defense, or critical-infrastructure workloads under FedRAMP, FISMA, or NIS2 | Physical security requirements are prescriptive and non-discretionary; any monitoring gap triggers regulatory action, not merely a finding |\n| **Distributed edge DC operators** | Operators managing 5–50 micro-DCs with ≤2 on-site staff per location | Remote monitoring is not optional; no security guard to physically observe exits; silent battery failure = total monitoring loss |\n| **Hyperscale cloud (self-operated)** | Operators with ≥50,000 m² single-campus facilities, owning the entire physical plant | Scale demands standardization; high-density GPU racks create RF-hostile environments; highest-volume deployment scenario, cost-per-unit critical |\n\n### 1.3 Process VN\n\nFull VN in `VN_data_centers.md`. Türwächter anchors at L6d → L5 → L4.\n\n| L6 Core Step | Job Family | Türwächter relevance |\n|---|---|---|\n| L6a Power Supply & Conditioning | Transform utility power to IT-grade uninterruptible supply | Indirect — power events are when emergency exits are most critical |\n| L6b Cooling & Thermal Management | Maintain IT equipment within operating temperature and humidity limits | Indirect — GPU racks alter RF propagation conditions |\n| L6c Physical Infrastructure | Provide secure, structured rack space and cabling | Indirect — rack density constrains RF paths |\n| **L6d Physical Security & Access Control** | Control, monitor, and log physical access to all facility zones — perimeter → cage → rack | **Primary anchor** |\n| L6e Network Connectivity & Cross-Connect | Enable tenant-to-carrier and tenant-to-tenant cross-connects | None |\n| L6f IT Infrastructure Operations | Deploy and operate compute, storage, and network equipment | None |\n\nHorizontals: DCIM & Monitoring (L6H1), Facilities Maintenance (L6H2), Compliance & Auditing (L6H3), Fire Suppression & Life Safety (L6H4) run across all L6 steps.\n\n### 1.4 Product BOM\n\nNot applicable — NAICS 518210 is a service industry. Output is delivered capacity, not a physical product.\n\n### 1.5 Edges\n\nNot applicable — no Product BOM.\n\n---"
+    },
+    {
+      "title": "Phase 2 — Company Enters",
+      "content": "### 2.1 VN Anchor\n\n| Field | Value |\n|---|---|\n| **Anchor type** | PROCESS_VN |\n| **L4 anchor** | Door Guardian Alarm Unit |\n| **L5 parent** | Emergency Exit Door Monitoring |\n| **L6 context** | Physical Security & Access Control (L6d) |\n| **Parent job family** | Detect, log, and alert on physical access events at all facility zones including emergency exits |\n| **Output types activated** | Universal — all 4 DC output types require L6d Physical Security (see VN output type activation matrix) |\n\n**Constraint overlay for data center context:**\n\n| Constraint | Impact in this market | Mitigation path |\n|---|---|---|\n| C6 EasyWave protocol lock-in | **Primary barrier** — DCs mandate IP-native REST/SNMP/BACnet-IP integration with PACS and SIEM platforms | IP Gateway / Protocol Bridge (L4 node in VN); REST adapter layer per GfS wireless BUS gateway |\n| C3 Wireless range | Metal server racks and shielded rooms attenuate 868 MHz; typical DC aisles are <30 m but RF propagation is degraded | RF survey required before deployment; repeaters at aisle ends; antenna placement study |\n| C2 Mechanical alarm independence | **Pre-satisfied and differentiating** — battery-powered mechanical alarm continues during DC power events (UPS switchover, generator start) when exits are most critical | Position as key differentiator vs. mains-powered wired exit controllers |\n| C8 GDPR | Door-event timestamps logged to SIEM may constitute personal data for EU DC tenants and employees | DPA with SIEM provider; data minimization in event log schema (no personnel identity, only door ID + timestamp) |\n| C5 Surface mount | Acceptable — standard commercial server room doors; aesthetic constraint does not apply | No action needed |\n\n### 2.2 Lens Formation\n\n| Field | Value |\n|---|---|\n| **Function verb** (from L5 job family) | detect, log, and alert on |\n| **Beneficiary** | DC Physical Security & Compliance team |\n| **Lens** | \"What detection and logging does a DC Physical Security team need to ensure all emergency exits generate a continuous, power-independent, SIEM-integrated audit trail under any operational condition?\" |\n| **Lens source route** | Operator w/ departments → VN node job_family (Emergency Exit Door Monitoring) |\n\n### 2.3 Product Job Statement\n\n> **\"Help Emergency Exit Door Monitoring to detect, log, and alert on every emergency exit door activation with a tamper-evident, power-independent record — enabling real-time SOC notification and SOC 2 CC6.4 / ISO 27001 A.7.2 audit evidence generation without mains wiring at each door point.\"**\n\n*Abstraction test passed: 5 alternatives from different categories (wired panel-integrated alarms, wireless IoT guards, mechanical-only alarms, IP-native door contact + PACS, manual patrol rounds). Technology-agnostic: holds if mechanism is replaced with LoRaWAN + push bar + BLE sensor.*\n\n### 2.4 Alternatives (5)\n\n| Alternative | UNSPSC est. | Inherent trade-offs |\n|---|---|---|\n| **Wired electronic exit alarm (panel-integrated)** — ~50% share | 46171600 | Requires conduit per door; high retrofit cost in legacy DCs; IP-native via panel but mains-dependent unless on dedicated UPS circuit; single panel failure = coverage loss across entire zone |\n| **Wireless IoT door alarm guard (Türwächter category)** — ~30% | 46171610 | No wiring; battery fail-safe; mechanical alarm independent of power; proprietary radio protocol requires IP gateway for PACS/SIEM; RF attenuation in metal-dense server halls; surface-mount only |\n| **Mechanical-only door prop / handle alarm** — ~20% | 46171500 | Lowest cost; zero installation complexity; zero remote alerting; zero digital audit trail; cannot satisfy SOC 2 CC6.4 digital logging requirement — eliminated by compliance mandate |\n| **Door contact sensor + PACS integration (IP-native)** | 46171600 | IP-native from day one; license-per-door cost; no physical guard/locking function; can be bypassed by physical force without guaranteed alarm; no mechanical fail-safe |\n| **Do nothing / manual inspection rounds** | — | Zero capex; zero audit trail; guard log does not satisfy SOC 2 digital evidence standard; most common competitor because switching cost appears high and compliance risk appears low until audit |\n\n### 2.5 Scenarios\n\n| Scenario | Output types activated | Constraints in play |\n|---|---|---|\n| Facility power event (UPS switchover / generator start) | All 4 | C2 — this is when mechanical alarm independence is mission-critical; monitoring must continue without interruption |\n| SOC 2 Type II or ISO 27001 annual audit cycle | All 4 | C6 (audit log must reach SIEM via IP-native chain without gaps), C8 (chain-of-custody for GDPR-compliant event data) |\n| Maintenance access (engineer entering restricted zone via emergency exit) | All 4 | Key override bypass must still generate timestamped log entry in SIEM |\n| Unauthorized tail-exit attempt | Colocation, Managed Hosting | Alert must reach SOC within ≤30 s latency SLA; event must be logged before guard response |\n| AI/GPU high-density expansion (new rack rows installed, RF environment changes) | Hyperscale, Edge | C3 — changed rack density alters 868 MHz propagation; coverage must be re-verified without full reinstallation |\n\n---"
+    },
+    {
+      "title": "Phase 3 — Needs Derivation",
+      "content": "### Stakeholder Roles\n\n| Role | Who | Need logic |\n|---|---|---|\n| **Job Executor** | Physical Security Engineer / Facilities Manager | Performance: daily monitoring, alert acknowledgement, battery replacement scheduling |\n| **Job Overseer** | DC Operations Director / Chief Compliance Officer | System KPIs: SOC 2 certification status, audit findings count, monitoring uptime percentage |\n| **Lifecycle — Installer** | Low-voltage contractor / site engineer | Stage-specific: preparation — installation speed, pairing ease |\n| **Lifecycle — Validator** | SOC 2 / ISO 27001 auditor | Stage-specific: confirm + conclude — evidence completeness, chain-of-custody |\n| **Purchase Executor** | VP Operations / IT Procurement | TCO per door, ROI vs. wired retrofit, battery replacement labor cost |\n| **Purchase Influencer** | Compliance auditor, insurance underwriter, CISO | Audit evidence quality, certification risk, protocol interoperability |\n\n### Burleson Pyramid — P1 Product Jobs by Alternative\n\n| Alternative | Acquire | Prepare | Use | Maintain | Dispose |\n|---|---|---|---|---|---|\n| Wired panel-integrated (incumbent) | Specify conduit scope; bid low-voltage contractor; design panel zone layout | Pull cable; terminate at panel; program zones; commission alarm thresholds | Acknowledge panel alerts; document activations in log; dispatch guard | Test UPS circuit for panel; inspect cable terminations; update panel firmware | Decommission wiring; update panel zone programming; remove conduit |\n| **Wireless IoT guard (Türwächter)** | Evaluate EasyWave compatibility with PACS/SIEM; specify IP gateway; conduct RF site survey | Surface-mount units on handles; pair with receivers; configure IP gateway; integrate with SIEM; conduct per-door activation test | Monitor IoT dashboard; acknowledge alerts; verify SIEM log writes per event | Replace batteries per schedule; test alarm trigger function; verify RF RSSI per unit | Remove battery; decommission pairing in receiver; update CMMS asset register |\n| Mechanical-only alarm | Specify alarm volume and mounting compatibility | Clip unit to door handle | Listen for audible alarm; dispatch guard on activation | Periodic manual alarm test | Remove unit; dispose per battery regulations |\n| Door contact + PACS | Specify PACS license scope; enroll door contacts in directory | Install contact sensor; enroll in PACS; configure alert rule | Monitor PACS console for door events | Inspect contact adhesion; update PACS firmware; manage license renewals | Decommission contact; remove PACS enrollment and license |\n| Do nothing | None | None | None | None | None |\n\n**P1 burden insight:** \"Do nothing\" wins on P1 burden (zero). Türwächter vs. wired: lower installation P1 (no conduit pull), higher ongoing maintenance P1 (battery replacement at 50–100+ doors). Gateway configuration is the highest-effort P1 task at Preparation stage.\n\n### Job Map (8 Steps — all relevant)\n\n| # | Step | Relevant | Rationale |\n|---|---|---|---|\n| 1 | DEFINE | YES | Define monitoring perimeter (all in-scope emergency exits), alert thresholds, SIEM log retention policy per SOC 2 CC6.4 |\n| 2 | LOCATE | YES | Survey all emergency exit doors; map RF propagation through server hall; identify receiver and IP gateway placement |\n| 3 | PREPARE | YES | Install door guardian units; pair with receivers; configure IP gateway; integrate event stream with PACS and SIEM |\n| 4 | CONFIRM | YES | Verify all units paired and alarm-to-SIEM chain functional; conduct end-to-end activation test per door |\n| 5 | EXECUTE | YES | Detect and log door events in real time; generate SOC alerts; write tamper-evident records to SIEM |\n| 6 | MONITOR | YES | Track battery depletion per unit; verify unit connectivity heartbeat; detect RF coverage drift with rack changes |\n| 7 | MODIFY | YES | Add/remove doors from monitoring scope; change alert thresholds; adapt to facility layout changes |\n| 8 | CONCLUDE | YES | Generate SOC 2 / ISO 27001 A.7.2 audit evidence per door; compile compliance report for auditor |\n\nAll 8 steps relevant — Türwächter is the primary system for this job, not a peripheral component.\n\n### Error Statements — P1 + P2 (ODI-scored)\n\n| # | Statement | Step | Error Type | Imp | Sat | Opp | Impact | product_related |\n|---|---|---|---|---|---|---|---|---|\n| E1 | Minimize the likelihood of emergency exit doors being excluded from the SOC 2 CC6.4 monitoring perimeter due to incomplete door inventory at deployment, resulting in >0 unmonitored exits in audit scope | DEFINE | ACCURACY | 9 | 5 | 13 | safety | false |\n| E22 | Minimize the likelihood of alert threshold misconfiguration at deployment resulting in >5% false positive door alarm events per week, degrading Security Operations Center alert response discipline | DEFINE | ACCURACY | 6 | 5 | 7 | time | false |\n| E2 | Increase the ability to complete RF coverage planning and gateway placement for a 50-door deployment using a standard site survey toolkit in ≤1 day of engineer effort | LOCATE | EFFORT | 6 | 3 | 9 | time | **true** |\n| E3 | Minimize the likelihood of receiver placement errors causing >5% of installed door guardian units to report intermittent connectivity loss in a server hall with dense metal rack infrastructure | LOCATE | ACCURACY | 8 | 3 | 13 | reliability | **true** |\n| E4 | Increase the ability to install and commission a door guardian unit on any standard commercial exit door within ≤15 minutes without specialist low-voltage contractor skills | PREPARE | EFFORT | 7 | 7 | 7 | time | false |\n| E5 | Minimize the likelihood of incorrect pairing between door guardian radio transmitter and IP gateway causing alarm events to be silently dropped during initial deployment verification | PREPARE | ACCURACY | 8 | 4 | 12 | reliability | **true** |\n| E6 | Increase the ability to verify end-to-end alarm event propagation from each door guardian to the SIEM log within ≤30 seconds of a manual test activation across all 50+ installed units simultaneously | CONFIRM | THROUGHPUT | 8 | 4 | 12 | time | false |\n| E7 | Minimize the likelihood of door guardian units appearing as online in the gateway dashboard but failing to transmit alarm events under Faraday cage RF conditions, creating undetected monitoring gaps | CONFIRM | DETECTION | 9 | 3 | **15** | reliability | **true** |\n| E8 | Minimize the likelihood of an emergency exit door activation going unlogged in the SIEM audit trail during a facility power event — including UPS switchover, generator start sequence, and mains failure | EXECUTE | ROBUSTNESS | 10 | 6 | 14 | safety | false |\n| E9 | Increase the ability to deliver door activation alerts to the Security Operations Center console within ≤30 seconds of physical door trigger under standard server hall RF conditions | EXECUTE | THROUGHPUT | 8 | 5 | 11 | time | false |\n| E10 | Minimize the likelihood of an emergency exit door activation — including authorized key override bypass — going unlogged in the SIEM event record, permitting 0 unlogged activations per audit period | EXECUTE | DETECTION | 9 | 5 | 13 | safety | false |\n| E11 | Minimize the variability in SIEM timestamp accuracy between physical door guardian activation and the corresponding log entry to ≤5 seconds across all deployed units | EXECUTE | CONSISTENCY | 7 | 5 | 9 | reliability | false |\n| E12 | Increase the ability to predict door guardian battery replacement needs with ≥14 days advance warning per unit, enabling scheduled maintenance without emergency callouts | MONITOR | DETECTION | 8 | 4 | 12 | reliability | **true** |\n| E13 | Minimize the likelihood of a door guardian unit going offline without automated SOC notification, creating a silent monitoring gap exceeding 15 minutes | MONITOR | DETECTION | 9 | 4 | 14 | reliability | false |\n| E14 | Minimize the variability in wireless signal quality for door guardian units installed in server halls with variable rack density and AI/GPU thermal load shifts that alter electromagnetic propagation | MONITOR | CONSISTENCY | 7 | 3 | 11 | reliability | **true** |\n| E15 | Increase the ability to update door guardian monitoring configuration — add/remove doors, change alert thresholds — without on-site field work per door, completing a 10-door change in ≤1 hour | MODIFY | EFFORT | 7 | 3 | 11 | time | **true** |\n| E16 | Minimize the time to restore full door monitoring coverage to 100% of in-scope exits following a gateway or receiver failure, maintaining SOC 2 audit continuity within ≤4 hours mean recovery time | MODIFY | RECOVERY | 8 | 5 | 11 | reliability | false |\n| E17 | Increase the ability to generate a SOC 2 Type II or ISO 27001 A.7.2 compliance report covering all door activation events across a 12-month audit period with per-door, per-event granularity in ≤30 minutes | CONCLUDE | EFFORT | 9 | 3 | **15** | cost | false |\n| E18 | Minimize the likelihood of audit evidence rejection due to chain-of-custody gaps between the door guardian physical sensor event and the corresponding SIEM log entry under SOC 2 Type II scrutiny | CONCLUDE | ACCURACY | 10 | 3 | **17** | safety | false |\n\n**Yield check:** 19 statements (E1, E22, E2–E18). product_related=true: 7 (37%). product_related=false: 12 (63%). Minimize: 12 (63%). Increase: 7 (37%). All 8 job steps ≥2 needs. ✓\n\n### P3–P5 Bridge Needs\n\n| Level | Role | Retrieval | Bridge | Market Need |\n|---|---|---|---|---|\n| **P3 Role** | Compliance Officer | \"Who do they become?\" → \"The person who never fails a physical access audit\" | Product must produce an unbroken, cryptographically consistent chain from door sensor to SIEM | Increase the ability to demonstrate an unbroken audit chain from physical door sensor event to SIEM log entry with zero evidence gaps across a 12-month SOC 2 audit period `[hypothesis]` |\n| **P4 Image** | DC Operations Director | \"Who is watching?\" → tenants, insurance underwriters, SOC 2 auditors must perceive \"complete automated physical security posture, no manual gaps\" | Product must consolidate all door event evidence into a single API-queryable artifact | Increase the ability to present complete emergency exit monitoring coverage to SOC 2 Type II auditors via a single API-queryable evidence endpoint without manual evidence compilation `[hypothesis]` |\n| **P5 Emotion** | Security Operations team | \"What to avoid feeling?\" → blindsided by discovering an unlogged door event during incident investigation | Product must provide real-time notification before any evidence gap can develop | Minimize the likelihood that security staff discover an unlogged or delayed emergency exit activation during a post-incident investigation that cannot be reconstructed in the audit record `[hypothesis]` |\n\n### Underserved Opportunities (opportunity score ≥ 13)\n\n| # | Statement (abbreviated) | Opp. | Why underserved today |\n|---|---|---|---|\n| **E18** | Chain-of-custody gap → audit evidence rejection | **17** | IP gateway translation introduces break in chain; no native integrity verification |\n| **E17** | SOC 2/ISO 27001 audit report generated in ≤30 min | **15** | Multi-system manual extraction required; no native reporting across wireless door event + SIEM |\n| **E7** | Silent coverage gap under Faraday cage conditions | **15** | No heartbeat-vs-alarm-test distinction in current wireless door alarm systems; appears online but not proven to fire |\n| **E8** | Unlogged activation during power event | **14** | Wired systems on UPS partially mitigate; wireless battery-powered fully mitigates — satisfaction (6) reflects partial address |\n| **E13** | Unit goes offline without SOC notification | **14** | No keepalive / heartbeat standard in current EasyWave / wireless door alarm products |\n| **E1** | Incomplete door inventory → unmonitored exits | **13** | No automated discovery tooling for door scope at deployment; relies on manual building walkthrough |\n| **E3** | RF placement error → >5% connectivity loss | **13** | No published DC-specific RF planning standard or tool for 868 MHz in server hall environments |\n| **E10** | Key override bypass unlogged | **13** | Mechanical-only variants have no log; IoT variants log if paired correctly — satisfaction (5) reflects partial address |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"job_map\": {\n    \"naics_code\": \"518210\",\n    \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n    \"anchor_vn_unit\": \"Door Guardian Alarm Unit\",\n    \"anchor_level\": \"L4\",\n    \"parent_vn_unit\": \"Emergency Exit Door Monitoring\",\n    \"parent_level\": \"L5\",\n    \"product_job_statement\": \"Help Emergency Exit Door Monitoring to detect, log, and alert on every emergency exit door activation with a tamper-evident, power-independent record — enabling real-time SOC notification and SOC 2 CC6.4 / ISO 27001 A.7.2 audit evidence generation without mains wiring at each door point\",\n    \"cfj_statement\": \"Deliver continuous, secure, and compliant compute, storage, and network capacity to tenants and end users at contracted uptime and performance levels\"\n  },\n  \"job_steps\": [\n    { \"step_number\": 1, \"step_name\": \"DEFINE\",   \"statement\": \"Define monitoring perimeter, alert thresholds, and SIEM log retention policy for all in-scope emergency exits per SOC 2 CC6.4 and ISO 27001 A.7.2\",   \"relevant_to_product\": true, \"relevance_rationale\": \"Scope definition directly determines which doors are monitored and what events are logged — foundational to compliance certification\" },\n    { \"step_number\": 2, \"step_name\": \"LOCATE\",   \"statement\": \"Survey all emergency exit doors; map RF propagation conditions through server hall; identify receiver and IP gateway placement positions\",   \"relevant_to_product\": true, \"relevance_rationale\": \"RF planning is a mandatory pre-installation step unique to wireless door monitoring in metal-dense DC environments\" },\n    { \"step_number\": 3, \"step_name\": \"PREPARE\",  \"statement\": \"Install door guardian units; pair with receivers; configure IP gateway; integrate event stream with PACS and SIEM platforms\",   \"relevant_to_product\": true, \"relevance_rationale\": \"Installation and SIEM integration are the primary deployment tasks determining end-to-end chain-of-custody integrity\" },\n    { \"step_number\": 4, \"step_name\": \"CONFIRM\",  \"statement\": \"Verify all units paired and alarm-to-SIEM chain functional; conduct per-door end-to-end activation test before go-live\",   \"relevant_to_product\": true, \"relevance_rationale\": \"End-to-end verification is required before SOC 2 monitoring evidence clock starts; unverified units create silent gaps\" },\n    { \"step_number\": 5, \"step_name\": \"EXECUTE\",  \"statement\": \"Detect and log door events in real time; generate SOC alerts; write tamper-evident timestamped records to SIEM\",   \"relevant_to_product\": true, \"relevance_rationale\": \"Primary value-creation step — the core job the product is hired to perform\" },\n    { \"step_number\": 6, \"step_name\": \"MONITOR\",  \"statement\": \"Track battery depletion per unit; verify unit connectivity heartbeat; detect RF coverage drift caused by rack density changes\",   \"relevant_to_product\": true, \"relevance_rationale\": \"Continuous monitoring of system health is required to prevent undetected coverage gaps — a critical SOC 2 audit concern\" },\n    { \"step_number\": 7, \"step_name\": \"MODIFY\",   \"statement\": \"Add/remove doors from monitoring scope; change alert thresholds; adapt to facility layout changes without full reinstallation\",   \"relevant_to_product\": true, \"relevance_rationale\": \"Data centers continuously expand and reconfigure; monitoring scope must track facility changes without coverage gaps\" },\n    { \"step_number\": 8, \"step_name\": \"CONCLUDE\", \"statement\": \"Generate SOC 2 / ISO 27001 A.7.2 audit evidence per door with per-event granularity; compile compliance report for auditor\",   \"relevant_to_product\": true, \"relevance_rationale\": \"Audit evidence generation is a direct compliance deliverable; quality of evidence determines certification outcome\" }\n  ],\n  \"error_statements\": [\n    {\n      \"id\": \"E1\",\n      \"full_statement\": \"Minimize the likelihood of emergency exit doors being excluded from the SOC 2 CC6.4 monitoring perimeter due to incomplete door inventory at deployment, resulting in >0 unmonitored exits in audit scope\",\n      \"job_step_number\": 1, \"job_step_name\": \"DEFINE\",\n      \"error_type\": \"ACCURACY\",\n      \"importance\": 9, \"satisfaction_current\": 5, \"opportunity_score\": 13,\n      \"impact_category\": \"safety\",\n      \"rationale\": \"SOC 2 CC6.4 requires all controlled physical access points to be documented and monitored. Even one unmonitored exit creates an audit finding. Wired systems require deliberate zone planning; wireless deployments risk gaps if door walkthrough is incomplete.\",\n      \"confidence\": 0.9, \"product_related\": false\n    },\n    {\n      \"id\": \"E22\",\n      \"full_statement\": \"Minimize the likelihood of alert threshold misconfiguration at deployment resulting in >5% false positive door alarm events per week, degrading Security Operations Center alert response discipline\",\n      \"job_step_number\": 1, \"job_step_name\": \"DEFINE\",\n      \"error_type\": \"ACCURACY\",\n      \"importance\": 6, \"satisfaction_current\": 5, \"opportunity_score\": 7,\n      \"impact_category\": \"time\",\n      \"rationale\": \"Alert fatigue from misconfigured thresholds (e.g., pre-alarm sensitivity too high near HVAC vibration) reduces SOC response quality. Common in first-generation IoT deployments without pre-configured DC profiles.\",\n      \"confidence\": 0.7, \"product_related\": false\n    },\n    {\n      \"id\": \"E2\",\n      \"full_statement\": \"Increase the ability to complete RF coverage planning and gateway placement for a 50-door deployment using a standard site survey toolkit in ≤1 day of engineer effort\",\n      \"job_step_number\": 2, \"job_step_name\": \"LOCATE\",\n      \"error_type\": \"EFFORT\",\n      \"importance\": 6, \"satisfaction_current\": 3, \"opportunity_score\": 9,\n      \"impact_category\": \"time\",\n      \"rationale\": \"No published DC-specific RF planning tool or methodology exists for 868 MHz EasyWave in server hall environments. Surveys are ad hoc, time-consuming, and require RF specialist skills not held by typical DC facilities teams.\",\n      \"confidence\": 0.7, \"product_related\": true\n    },\n    {\n      \"id\": \"E3\",\n      \"full_statement\": \"Minimize the likelihood of receiver placement errors causing >5% of installed door guardian units to report intermittent connectivity loss in a server hall with dense metal rack infrastructure\",\n      \"job_step_number\": 2, \"job_step_name\": \"LOCATE\",\n      \"error_type\": \"ACCURACY\",\n      \"importance\": 8, \"satisfaction_current\": 3, \"opportunity_score\": 13,\n      \"impact_category\": \"reliability\",\n      \"rationale\": \"Dense server racks create RF shadow zones. High-density GPU racks (100+ kW/rack) generate additional electromagnetic interference. Connectivity loss = monitoring gap = SOC 2 audit finding. No DC-specific RF placement standard exists for this product category.\",\n      \"confidence\": 0.8, \"product_related\": true\n    },\n    {\n      \"id\": \"E4\",\n      \"full_statement\": \"Increase the ability to install and commission a door guardian unit on any standard commercial exit door within ≤15 minutes without specialist low-voltage contractor skills\",\n      \"job_step_number\": 3, \"job_step_name\": \"PREPARE\",\n      \"error_type\": \"EFFORT\",\n      \"importance\": 7, \"satisfaction_current\": 7, \"opportunity_score\": 7,\n      \"impact_category\": \"time\",\n      \"rationale\": \"Surface-mount installation is genuinely fast for the mechanical unit. The time burden shifts to IP gateway configuration and SIEM integration, which are not solved by the door unit itself. Satisfaction is high for installation; lower for the overall preparation stage.\",\n      \"confidence\": 0.9, \"product_related\": false\n    },\n    {\n      \"id\": \"E5\",\n      \"full_statement\": \"Minimize the likelihood of incorrect pairing between door guardian radio transmitter and IP gateway causing alarm events to be silently dropped during initial deployment verification\",\n      \"job_step_number\": 3, \"job_step_name\": \"PREPARE\",\n      \"error_type\": \"ACCURACY\",\n      \"importance\": 8, \"satisfaction_current\": 4, \"opportunity_score\": 12,\n      \"impact_category\": \"reliability\",\n      \"rationale\": \"Proprietary EasyWave protocol has limited diagnostic tooling for pairing verification. A unit that appears paired but is not transmitting alarm events creates a silent coverage gap that may not surface until the first activation event — which may be a real security breach.\",\n      \"confidence\": 0.75, \"product_related\": true\n    },\n    {\n      \"id\": \"E6\",\n      \"full_statement\": \"Increase the ability to verify end-to-end alarm event propagation from each door guardian to the SIEM log within ≤30 seconds of a manual test activation across all 50+ installed units simultaneously\",\n      \"job_step_number\": 4, \"job_step_name\": \"CONFIRM\",\n      \"error_type\": \"THROUGHPUT\",\n      \"importance\": 8, \"satisfaction_current\": 4, \"opportunity_score\": 12,\n      \"impact_category\": \"time\",\n      \"rationale\": \"No bulk test capability exists. Units must be activated individually with a technician physically present at each door. For a 50-door deployment, sequential testing is prohibitively time-consuming during a scheduled maintenance window. SOC 2 auditors expect evidence of pre-go-live commissioning tests.\",\n      \"confidence\": 0.8, \"product_related\": false\n    },\n    {\n      \"id\": \"E7\",\n      \"full_statement\": \"Minimize the likelihood of door guardian units appearing as online in the gateway dashboard but failing to transmit alarm events under Faraday cage RF conditions, creating undetected monitoring gaps\",\n      \"job_step_number\": 4, \"job_step_name\": \"CONFIRM\",\n      \"error_type\": \"DETECTION\",\n      \"importance\": 9, \"satisfaction_current\": 3, \"opportunity_score\": 15,\n      \"impact_category\": \"reliability\",\n      \"rationale\": \"Current wireless door alarm systems do not distinguish between a unit that is 'reachable for heartbeat' and one 'proven to transmit alarm events.' Server room shielded doors and cage structures can block alarm bursts while allowing low-power status signals through. This is the most dangerous failure mode in DC deployments.\",\n      \"confidence\": 0.85, \"product_related\": true\n    },\n    {\n      \"id\": \"E8\",\n      \"full_statement\": \"Minimize the likelihood of an emergency exit door activation going unlogged in the SIEM audit trail during a facility power event — including UPS switchover, generator start sequence, and mains failure\",\n      \"job_step_number\": 5, \"job_step_name\": \"EXECUTE\",\n      \"error_type\": \"ROBUSTNESS\",\n      \"importance\": 10, \"satisfaction_current\": 6, \"opportunity_score\": 14,\n      \"impact_category\": \"safety\",\n      \"rationale\": \"Power events are the highest-risk moments for unlogged emergency exit use. Wired systems on UPS circuits partially mitigate (satisfaction=6), but wired panels may reboot during switchover. Battery-powered wireless units with store-and-forward capability are uniquely positioned here. SOC 2 CC6.4 requires continuous uninterrupted logging.\",\n      \"confidence\": 0.95, \"product_related\": false\n    },\n    {\n      \"id\": \"E9\",\n      \"full_statement\": \"Increase the ability to deliver door activation alerts to the Security Operations Center console within ≤30 seconds of physical door trigger under standard server hall RF conditions\",\n      \"job_step_number\": 5, \"job_step_name\": \"EXECUTE\",\n      \"error_type\": \"THROUGHPUT\",\n      \"importance\": 8, \"satisfaction_current\": 5, \"opportunity_score\": 11,\n      \"impact_category\": \"time\",\n      \"rationale\": \"Wired panel-integrated systems achieve <10 s alert delivery. Wireless systems add radio propagation delay + gateway processing + SIEM ingestion latency. SOC response SLAs typically require <60 s for physical security alerts; 30 s is a practical DC standard.\",\n      \"confidence\": 0.85, \"product_related\": false\n    },\n    {\n      \"id\": \"E10\",\n      \"full_statement\": \"Minimize the likelihood of an emergency exit door activation — including authorized key override bypass — going unlogged in the SIEM event record, permitting 0 unlogged activations per audit period\",\n      \"job_step_number\": 5, \"job_step_name\": \"EXECUTE\",\n      \"error_type\": \"DETECTION\",\n      \"importance\": 9, \"satisfaction_current\": 5, \"opportunity_score\": 13,\n      \"impact_category\": \"safety\",\n      \"rationale\": \"SOC 2 CC6.4 and ISO 27001 A.7.2 require logging of ALL physical access events including authorized access. Key override bypasses are a common audit gap: mechanical-only systems have no log; IoT systems log if correctly integrated. Satisfaction=5 reflects partial address by IoT variants with proper SIEM integration.\",\n      \"confidence\": 0.9, \"product_related\": false\n    },\n    {\n      \"id\": \"E11\",\n      \"full_statement\": \"Minimize the variability in SIEM timestamp accuracy between physical door guardian activation and the corresponding log entry to ≤5 seconds across all deployed units\",\n      \"job_step_number\": 5, \"job_step_name\": \"EXECUTE\",\n      \"error_type\": \"CONSISTENCY\",\n      \"importance\": 7, \"satisfaction_current\": 5, \"opportunity_score\": 9,\n      \"impact_category\": \"reliability\",\n      \"rationale\": \"Timestamp consistency is required for chain-of-custody integrity in compliance audits and incident investigations. Multi-hop wireless transmission (door unit → receiver → IP gateway → SIEM) introduces variable latency. SOC 2 auditors correlate physical door events with logical access logs; timestamp drift degrades correlation quality.\",\n      \"confidence\": 0.75, \"product_related\": false\n    },\n    {\n      \"id\": \"E12\",\n      \"full_statement\": \"Increase the ability to predict door guardian battery replacement needs with ≥14 days advance warning per unit, enabling scheduled maintenance without emergency callouts\",\n      \"job_step_number\": 6, \"job_step_name\": \"MONITOR\",\n      \"error_type\": \"DETECTION\",\n      \"importance\": 8, \"satisfaction_current\": 4, \"opportunity_score\": 12,\n      \"impact_category\": \"reliability\",\n      \"rationale\": \"Battery life is unpublished for the GfS IoT variant. At 100+ doors, battery depletion without advance warning creates a maintenance emergency and a monitoring gap. DC facilities teams operate on planned maintenance windows; unplanned battery replacements on live equipment create operational risk. Satisfaction=4 reflects basic low-battery alerts in some systems without predictive lead time.\",\n      \"confidence\": 0.8, \"product_related\": true\n    },\n    {\n      \"id\": \"E13\",\n      \"full_statement\": \"Minimize the likelihood of a door guardian unit going offline without automated SOC notification, creating a silent monitoring gap exceeding 15 minutes\",\n      \"job_step_number\": 6, \"job_step_name\": \"MONITOR\",\n      \"error_type\": \"DETECTION\",\n      \"importance\": 9, \"satisfaction_current\": 4, \"opportunity_score\": 14,\n      \"impact_category\": \"reliability\",\n      \"rationale\": \"A unit that goes offline silently is more dangerous than a unit that never existed in scope — it creates an apparent coverage with no actual protection. 15 minutes is the typical SOC patrol interval; a gap longer than this cannot be closed by physical means. No keepalive/heartbeat standard exists in current wireless door alarm product category.\",\n      \"confidence\": 0.85, \"product_related\": false\n    },\n    {\n      \"id\": \"E14\",\n      \"full_statement\": \"Minimize the variability in wireless signal quality for door guardian units installed in server halls with variable rack density and AI/GPU thermal load shifts that alter electromagnetic propagation conditions\",\n      \"job_step_number\": 6, \"job_step_name\": \"MONITOR\",\n      \"error_type\": \"CONSISTENCY\",\n      \"importance\": 7, \"satisfaction_current\": 3, \"opportunity_score\": 11,\n      \"impact_category\": \"reliability\",\n      \"rationale\": \"AI/GPU workload surges generate heat and electromagnetic emissions that alter 868 MHz propagation in ways that are not present at installation time. Coverage that was verified at initial commissioning may degrade as rack density increases. No DC-specific RF monitoring standard addresses this dynamic environment.\",\n      \"confidence\": 0.7, \"product_related\": true\n    },\n    {\n      \"id\": \"E15\",\n      \"full_statement\": \"Increase the ability to update door guardian monitoring configuration — add/remove doors, change alert thresholds — without on-site field work per door, completing a 10-door change in ≤1 hour\",\n      \"job_step_number\": 7, \"job_step_name\": \"MODIFY\",\n      \"error_type\": \"EFFORT\",\n      \"importance\": 7, \"satisfaction_current\": 3, \"opportunity_score\": 11,\n      \"impact_category\": \"time\",\n      \"rationale\": \"EasyWave requires physical reprogramming at the unit or receiver for configuration changes. Data centers reconfigure constantly (new tenants, cage expansions, decommissions). Each configuration change requiring on-site work per door creates scheduling conflicts with live operations and accumulates significant labor cost at scale.\",\n      \"confidence\": 0.8, \"product_related\": true\n    },\n    {\n      \"id\": \"E16\",\n      \"full_statement\": \"Minimize the time to restore full door monitoring coverage to 100% of in-scope exits following a gateway or receiver failure, maintaining SOC 2 audit continuity within ≤4 hours mean recovery time\",\n      \"job_step_number\": 7, \"job_step_name\": \"MODIFY\",\n      \"error_type\": \"RECOVERY\",\n      \"importance\": 8, \"satisfaction_current\": 5, \"opportunity_score\": 11,\n      \"impact_category\": \"reliability\",\n      \"rationale\": \"A failed IP gateway eliminates monitoring for all doors it serves simultaneously. SOC 2 auditors examine log continuity; a 4+ hour gap in the audit trail triggers a finding. Gateway redundancy is achievable but not standard in current wireless door monitoring deployments.\",\n      \"confidence\": 0.8, \"product_related\": false\n    },\n    {\n      \"id\": \"E17\",\n      \"full_statement\": \"Increase the ability to generate a SOC 2 Type II or ISO 27001 A.7.2 compliance report covering all door activation events across a 12-month audit period with per-door, per-event granularity in ≤30 minutes\",\n      \"job_step_number\": 8, \"job_step_name\": \"CONCLUDE\",\n      \"error_type\": \"EFFORT\",\n      \"importance\": 9, \"satisfaction_current\": 3, \"opportunity_score\": 15,\n      \"impact_category\": \"cost\",\n      \"rationale\": \"Currently requires manual extraction from the IP gateway event log, cross-referencing with SIEM ingestion records, and per-door filtering — a multi-hour task per audit cycle. Auditors require per-door granularity per ISO 27001 A.7.2 and SOC 2 CC6.4. No native compliance report output exists in current wireless door alarm systems. Verified from ISO 27001 A.7.2 audit guide (hightable.io) and SOC 2 CC6.4 documentation (fractionalciso.com).\",\n      \"confidence\": 0.9, \"product_related\": false\n    },\n    {\n      \"id\": \"E18\",\n      \"full_statement\": \"Minimize the likelihood of audit evidence rejection due to chain-of-custody gaps between the door guardian physical sensor event and the corresponding SIEM log entry under SOC 2 Type II scrutiny\",\n      \"job_step_number\": 8, \"job_step_name\": \"CONCLUDE\",\n      \"error_type\": \"ACCURACY\",\n      \"importance\": 10, \"satisfaction_current\": 3, \"opportunity_score\": 17,\n      \"impact_category\": \"safety\",\n      \"rationale\": \"The multi-hop chain (door unit → EasyWave → receiver → IP gateway → REST → SIEM) introduces protocol translation points where log entries can lose integrity markers. SOC 2 Type II auditors require a demonstrable unbroken chain-of-custody for physical access logs. A gap = finding = potential certification downgrade. Highest opportunity score in this market.\",\n      \"confidence\": 0.9, \"product_related\": false\n    }\n  ],\n  \"p3_p5_needs\": [\n    {\n      \"pyramid_level\": \"P3\",\n      \"role\": \"Compliance Officer\",\n      \"retrieval\": \"By getting emergency exit monitoring done flawlessly, this person becomes 'the Compliance Officer who never fails a physical access audit'\",\n      \"bridge\": \"Product must produce an unbroken, cryptographically consistent chain from door sensor event to SIEM log entry\",\n      \"market_need\": \"Increase the ability to demonstrate an unbroken audit chain from physical door sensor event to SIEM log entry with zero evidence gaps across a 12-month SOC 2 audit period\",\n      \"hypothesis\": true\n    },\n    {\n      \"pyramid_level\": \"P4\",\n      \"role\": \"DC Operations Director\",\n      \"retrieval\": \"Watchers (tenants, insurance underwriters, SOC 2 auditors) must see 'complete automated physical security posture with no manual evidence compilation gaps'\",\n      \"bridge\": \"Product must consolidate all door event evidence into a single API-queryable artifact auditors can access without operator assembly\",\n      \"market_need\": \"Increase the ability to present complete emergency exit monitoring coverage to SOC 2 Type II auditors via a single API-queryable evidence endpoint without manual evidence compilation\",\n      \"hypothesis\": true\n    },\n    {\n      \"pyramid_level\": \"P5\",\n      \"role\": \"Security Operations team\",\n      \"retrieval\": \"They want to avoid feeling blindsided by discovering an unlogged door event during incident investigation\",\n      \"bridge\": \"Product must provide real-time notification before any evidence gap can develop so staff never face an irrecoverable audit record\",\n      \"market_need\": \"Minimize the likelihood that security staff discover an unlogged or delayed emergency exit activation during a post-incident investigation that cannot be reconstructed in the audit record\",\n      \"hypothesis\": true\n    }\n  ],\n  \"incumbent_anchors\": [\n    {\n      \"technology_name\": \"Wired electronic exit alarm (panel-integrated)\",\n      \"anchor_vn_unit\": \"Emergency Exit Door Monitoring\",\n      \"anchor_level\": \"L5\",\n      \"market_share_est\": 0.50,\n      \"rationale\": \"Legacy standard in Tier III/IV data centers; IP-native panel integration satisfies SOC 2 logging requirements; fails on power-independence and retrofit cost\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\"\n    },\n    {\n      \"technology_name\": \"Mechanical-only door prop / handle alarm\",\n      \"anchor_vn_unit\": \"Emergency Exit Door Monitoring\",\n      \"anchor_level\": \"L5\",\n      \"market_share_est\": 0.20,\n      \"rationale\": \"Lowest cost; zero audit trail; being displaced by compliance mandates requiring digital logging (SOC 2 CC6.4, ISO 27001 A.7.2)\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\"\n    }\n  ]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**NAICS**",
+          "Value": "518210 — Computing Infrastructure Providers, Data Processing, Web Hosting, and Related Services"
+        },
+        {
+          "Field": "**CFJ**",
+          "Value": "Deliver continuous, secure, and compliant compute, storage, and network capacity to tenants and end users at contracted uptime and performance levels"
+        },
+        {
+          "Field": "**Türwächter offering level**",
+          "Value": "L4 — component within L5 Emergency Exit Door Monitoring; anchors in PROCESS_VN, not Product BOM"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Output Type",
+        "VN Level"
+      ],
+      "rows": [
+        {
+          "Output Type": "Colocation (colo-as-a-service)",
+          "VN Level": "L5"
+        },
+        {
+          "Output Type": "Hyperscale Cloud",
+          "VN Level": "L5"
+        },
+        {
+          "Output Type": "Edge / Micro DC",
+          "VN Level": "L5"
+        },
+        {
+          "Output Type": "Managed Hosting",
+          "VN Level": "L5"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Segment",
+        "Circumstance",
+        "Why distinct from other DC segments"
+      ],
+      "rows": [
+        {
+          "Segment": "**Compliance-audit DCs**",
+          "Circumstance": "Tier III/IV facilities undergoing annual SOC 2 Type II and/or ISO 27001 recertification",
+          "Why distinct from other DC segments": "Every door event must produce tamper-evident digital evidence — alternatives differ radically vs. non-certified DCs; audit evidence quality drives purchase decision"
+        },
+        {
+          "Segment": "**Retrofit / legacy DCs**",
+          "Circumstance": "Existing facilities (pre-2015 build) without conduit to secondary emergency exit doors",
+          "Why distinct from other DC segments": "Wiring each door is prohibitively expensive or physically impossible; wireless is the only viable approach — creates entirely different alternative set"
+        },
+        {
+          "Segment": "**High-security / government cloud DCs**",
+          "Circumstance": "DCs hosting classified, defense, or critical-infrastructure workloads under FedRAMP, FISMA, or NIS2",
+          "Why distinct from other DC segments": "Physical security requirements are prescriptive and non-discretionary; any monitoring gap triggers regulatory action, not merely a finding"
+        },
+        {
+          "Segment": "**Distributed edge DC operators**",
+          "Circumstance": "Operators managing 5–50 micro-DCs with ≤2 on-site staff per location",
+          "Why distinct from other DC segments": "Remote monitoring is not optional; no security guard to physically observe exits; silent battery failure = total monitoring loss"
+        },
+        {
+          "Segment": "**Hyperscale cloud (self-operated)**",
+          "Circumstance": "Operators with ≥50,000 m² single-campus facilities, owning the entire physical plant",
+          "Why distinct from other DC segments": "Scale demands standardization; high-density GPU racks create RF-hostile environments; highest-volume deployment scenario, cost-per-unit critical"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L6 Core Step",
+        "Job Family",
+        "Türwächter relevance"
+      ],
+      "rows": [
+        {
+          "L6 Core Step": "L6a Power Supply & Conditioning",
+          "Job Family": "Transform utility power to IT-grade uninterruptible supply",
+          "Türwächter relevance": "Indirect — power events are when emergency exits are most critical"
+        },
+        {
+          "L6 Core Step": "L6b Cooling & Thermal Management",
+          "Job Family": "Maintain IT equipment within operating temperature and humidity limits",
+          "Türwächter relevance": "Indirect — GPU racks alter RF propagation conditions"
+        },
+        {
+          "L6 Core Step": "L6c Physical Infrastructure",
+          "Job Family": "Provide secure, structured rack space and cabling",
+          "Türwächter relevance": "Indirect — rack density constrains RF paths"
+        },
+        {
+          "L6 Core Step": "**L6d Physical Security & Access Control**",
+          "Job Family": "Control, monitor, and log physical access to all facility zones — perimeter → cage → rack",
+          "Türwächter relevance": "**Primary anchor**"
+        },
+        {
+          "L6 Core Step": "L6e Network Connectivity & Cross-Connect",
+          "Job Family": "Enable tenant-to-carrier and tenant-to-tenant cross-connects",
+          "Türwächter relevance": "None"
+        },
+        {
+          "L6 Core Step": "L6f IT Infrastructure Operations",
+          "Job Family": "Deploy and operate compute, storage, and network equipment",
+          "Türwächter relevance": "None"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Anchor type**",
+          "Value": "PROCESS_VN"
+        },
+        {
+          "Field": "**L4 anchor**",
+          "Value": "Door Guardian Alarm Unit"
+        },
+        {
+          "Field": "**L5 parent**",
+          "Value": "Emergency Exit Door Monitoring"
+        },
+        {
+          "Field": "**L6 context**",
+          "Value": "Physical Security & Access Control (L6d)"
+        },
+        {
+          "Field": "**Parent job family**",
+          "Value": "Detect, log, and alert on physical access events at all facility zones including emergency exits"
+        },
+        {
+          "Field": "**Output types activated**",
+          "Value": "Universal — all 4 DC output types require L6d Physical Security (see VN output type activation matrix)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Constraint",
+        "Impact in this market",
+        "Mitigation path"
+      ],
+      "rows": [
+        {
+          "Constraint": "C6 EasyWave protocol lock-in",
+          "Impact in this market": "**Primary barrier** — DCs mandate IP-native REST/SNMP/BACnet-IP integration with PACS and SIEM platforms",
+          "Mitigation path": "IP Gateway / Protocol Bridge (L4 node in VN); REST adapter layer per GfS wireless BUS gateway"
+        },
+        {
+          "Constraint": "C3 Wireless range",
+          "Impact in this market": "Metal server racks and shielded rooms attenuate 868 MHz; typical DC aisles are <30 m but RF propagation is degraded",
+          "Mitigation path": "RF survey required before deployment; repeaters at aisle ends; antenna placement study"
+        },
+        {
+          "Constraint": "C2 Mechanical alarm independence",
+          "Impact in this market": "**Pre-satisfied and differentiating** — battery-powered mechanical alarm continues during DC power events (UPS switchover, generator start) when exits are most critical",
+          "Mitigation path": "Position as key differentiator vs. mains-powered wired exit controllers"
+        },
+        {
+          "Constraint": "C8 GDPR",
+          "Impact in this market": "Door-event timestamps logged to SIEM may constitute personal data for EU DC tenants and employees",
+          "Mitigation path": "DPA with SIEM provider; data minimization in event log schema (no personnel identity, only door ID + timestamp)"
+        },
+        {
+          "Constraint": "C5 Surface mount",
+          "Impact in this market": "Acceptable — standard commercial server room doors; aesthetic constraint does not apply",
+          "Mitigation path": "No action needed"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Function verb** (from L5 job family)",
+          "Value": "detect, log, and alert on"
+        },
+        {
+          "Field": "**Beneficiary**",
+          "Value": "DC Physical Security & Compliance team"
+        },
+        {
+          "Field": "**Lens**",
+          "Value": "\"What detection and logging does a DC Physical Security team need to ensure all emergency exits generate a continuous, power-independent, SIEM-integrated audit trail under any operational condition?\""
+        },
+        {
+          "Field": "**Lens source route**",
+          "Value": "Operator w/ departments → VN node job_family (Emergency Exit Door Monitoring)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "UNSPSC est.",
+        "Inherent trade-offs"
+      ],
+      "rows": [
+        {
+          "Alternative": "**Wired electronic exit alarm (panel-integrated)** — ~50% share",
+          "UNSPSC est.": "46171600",
+          "Inherent trade-offs": "Requires conduit per door; high retrofit cost in legacy DCs; IP-native via panel but mains-dependent unless on dedicated UPS circuit; single panel failure = coverage loss across entire zone"
+        },
+        {
+          "Alternative": "**Wireless IoT door alarm guard (Türwächter category)** — ~30%",
+          "UNSPSC est.": "46171610",
+          "Inherent trade-offs": "No wiring; battery fail-safe; mechanical alarm independent of power; proprietary radio protocol requires IP gateway for PACS/SIEM; RF attenuation in metal-dense server halls; surface-mount only"
+        },
+        {
+          "Alternative": "**Mechanical-only door prop / handle alarm** — ~20%",
+          "UNSPSC est.": "46171500",
+          "Inherent trade-offs": "Lowest cost; zero installation complexity; zero remote alerting; zero digital audit trail; cannot satisfy SOC 2 CC6.4 digital logging requirement — eliminated by compliance mandate"
+        },
+        {
+          "Alternative": "**Door contact sensor + PACS integration (IP-native)**",
+          "UNSPSC est.": "46171600",
+          "Inherent trade-offs": "IP-native from day one; license-per-door cost; no physical guard/locking function; can be bypassed by physical force without guaranteed alarm; no mechanical fail-safe"
+        },
+        {
+          "Alternative": "**Do nothing / manual inspection rounds**",
+          "UNSPSC est.": "—",
+          "Inherent trade-offs": "Zero capex; zero audit trail; guard log does not satisfy SOC 2 digital evidence standard; most common competitor because switching cost appears high and compliance risk appears low until audit"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Scenario",
+        "Output types activated",
+        "Constraints in play"
+      ],
+      "rows": [
+        {
+          "Scenario": "Facility power event (UPS switchover / generator start)",
+          "Output types activated": "All 4",
+          "Constraints in play": "C2 — this is when mechanical alarm independence is mission-critical; monitoring must continue without interruption"
+        },
+        {
+          "Scenario": "SOC 2 Type II or ISO 27001 annual audit cycle",
+          "Output types activated": "All 4",
+          "Constraints in play": "C6 (audit log must reach SIEM via IP-native chain without gaps), C8 (chain-of-custody for GDPR-compliant event data)"
+        },
+        {
+          "Scenario": "Maintenance access (engineer entering restricted zone via emergency exit)",
+          "Output types activated": "All 4",
+          "Constraints in play": "Key override bypass must still generate timestamped log entry in SIEM"
+        },
+        {
+          "Scenario": "Unauthorized tail-exit attempt",
+          "Output types activated": "Colocation, Managed Hosting",
+          "Constraints in play": "Alert must reach SOC within ≤30 s latency SLA; event must be logged before guard response"
+        },
+        {
+          "Scenario": "AI/GPU high-density expansion (new rack rows installed, RF environment changes)",
+          "Output types activated": "Hyperscale, Edge",
+          "Constraints in play": "C3 — changed rack density alters 868 MHz propagation; coverage must be re-verified without full reinstallation"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Role",
+        "Who",
+        "Need logic"
+      ],
+      "rows": [
+        {
+          "Role": "**Job Executor**",
+          "Who": "Physical Security Engineer / Facilities Manager",
+          "Need logic": "Performance: daily monitoring, alert acknowledgement, battery replacement scheduling"
+        },
+        {
+          "Role": "**Job Overseer**",
+          "Who": "DC Operations Director / Chief Compliance Officer",
+          "Need logic": "System KPIs: SOC 2 certification status, audit findings count, monitoring uptime percentage"
+        },
+        {
+          "Role": "**Lifecycle — Installer**",
+          "Who": "Low-voltage contractor / site engineer",
+          "Need logic": "Stage-specific: preparation — installation speed, pairing ease"
+        },
+        {
+          "Role": "**Lifecycle — Validator**",
+          "Who": "SOC 2 / ISO 27001 auditor",
+          "Need logic": "Stage-specific: confirm + conclude — evidence completeness, chain-of-custody"
+        },
+        {
+          "Role": "**Purchase Executor**",
+          "Who": "VP Operations / IT Procurement",
+          "Need logic": "TCO per door, ROI vs. wired retrofit, battery replacement labor cost"
+        },
+        {
+          "Role": "**Purchase Influencer**",
+          "Who": "Compliance auditor, insurance underwriter, CISO",
+          "Need logic": "Audit evidence quality, certification risk, protocol interoperability"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Acquire",
+        "Prepare",
+        "Use",
+        "Maintain",
+        "Dispose"
+      ],
+      "rows": [
+        {
+          "Alternative": "Wired panel-integrated (incumbent)",
+          "Acquire": "Specify conduit scope; bid low-voltage contractor; design panel zone layout",
+          "Prepare": "Pull cable; terminate at panel; program zones; commission alarm thresholds",
+          "Use": "Acknowledge panel alerts; document activations in log; dispatch guard",
+          "Maintain": "Test UPS circuit for panel; inspect cable terminations; update panel firmware",
+          "Dispose": "Decommission wiring; update panel zone programming; remove conduit"
+        },
+        {
+          "Alternative": "**Wireless IoT guard (Türwächter)**",
+          "Acquire": "Evaluate EasyWave compatibility with PACS/SIEM; specify IP gateway; conduct RF site survey",
+          "Prepare": "Surface-mount units on handles; pair with receivers; configure IP gateway; integrate with SIEM; conduct per-door activation test",
+          "Use": "Monitor IoT dashboard; acknowledge alerts; verify SIEM log writes per event",
+          "Maintain": "Replace batteries per schedule; test alarm trigger function; verify RF RSSI per unit",
+          "Dispose": "Remove battery; decommission pairing in receiver; update CMMS asset register"
+        },
+        {
+          "Alternative": "Mechanical-only alarm",
+          "Acquire": "Specify alarm volume and mounting compatibility",
+          "Prepare": "Clip unit to door handle",
+          "Use": "Listen for audible alarm; dispatch guard on activation",
+          "Maintain": "Periodic manual alarm test",
+          "Dispose": "Remove unit; dispose per battery regulations"
+        },
+        {
+          "Alternative": "Door contact + PACS",
+          "Acquire": "Specify PACS license scope; enroll door contacts in directory",
+          "Prepare": "Install contact sensor; enroll in PACS; configure alert rule",
+          "Use": "Monitor PACS console for door events",
+          "Maintain": "Inspect contact adhesion; update PACS firmware; manage license renewals",
+          "Dispose": "Decommission contact; remove PACS enrollment and license"
+        },
+        {
+          "Alternative": "Do nothing",
+          "Acquire": "None",
+          "Prepare": "None",
+          "Use": "None",
+          "Maintain": "None",
+          "Dispose": "None"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Step",
+        "Relevant",
+        "Rationale"
+      ],
+      "rows": [
+        {
+          "#": "1",
+          "Step": "DEFINE",
+          "Relevant": "YES",
+          "Rationale": "Define monitoring perimeter (all in-scope emergency exits), alert thresholds, SIEM log retention policy per SOC 2 CC6.4"
+        },
+        {
+          "#": "2",
+          "Step": "LOCATE",
+          "Relevant": "YES",
+          "Rationale": "Survey all emergency exit doors; map RF propagation through server hall; identify receiver and IP gateway placement"
+        },
+        {
+          "#": "3",
+          "Step": "PREPARE",
+          "Relevant": "YES",
+          "Rationale": "Install door guardian units; pair with receivers; configure IP gateway; integrate event stream with PACS and SIEM"
+        },
+        {
+          "#": "4",
+          "Step": "CONFIRM",
+          "Relevant": "YES",
+          "Rationale": "Verify all units paired and alarm-to-SIEM chain functional; conduct end-to-end activation test per door"
+        },
+        {
+          "#": "5",
+          "Step": "EXECUTE",
+          "Relevant": "YES",
+          "Rationale": "Detect and log door events in real time; generate SOC alerts; write tamper-evident records to SIEM"
+        },
+        {
+          "#": "6",
+          "Step": "MONITOR",
+          "Relevant": "YES",
+          "Rationale": "Track battery depletion per unit; verify unit connectivity heartbeat; detect RF coverage drift with rack changes"
+        },
+        {
+          "#": "7",
+          "Step": "MODIFY",
+          "Relevant": "YES",
+          "Rationale": "Add/remove doors from monitoring scope; change alert thresholds; adapt to facility layout changes"
+        },
+        {
+          "#": "8",
+          "Step": "CONCLUDE",
+          "Relevant": "YES",
+          "Rationale": "Generate SOC 2 / ISO 27001 A.7.2 audit evidence per door; compile compliance report for auditor"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Statement",
+        "Step",
+        "Error Type",
+        "Imp",
+        "Sat",
+        "Opp",
+        "Impact",
+        "product_related"
+      ],
+      "rows": [
+        {
+          "#": "E1",
+          "Statement": "Minimize the likelihood of emergency exit doors being excluded from the SOC 2 CC6.4 monitoring perimeter due to incomplete door inventory at deployment, resulting in >0 unmonitored exits in audit scope",
+          "Step": "DEFINE",
+          "Error Type": "ACCURACY",
+          "Imp": "9",
+          "Sat": "5",
+          "Opp": "13",
+          "Impact": "safety",
+          "product_related": "false"
+        },
+        {
+          "#": "E22",
+          "Statement": "Minimize the likelihood of alert threshold misconfiguration at deployment resulting in >5% false positive door alarm events per week, degrading Security Operations Center alert response discipline",
+          "Step": "DEFINE",
+          "Error Type": "ACCURACY",
+          "Imp": "6",
+          "Sat": "5",
+          "Opp": "7",
+          "Impact": "time",
+          "product_related": "false"
+        },
+        {
+          "#": "E2",
+          "Statement": "Increase the ability to complete RF coverage planning and gateway placement for a 50-door deployment using a standard site survey toolkit in ≤1 day of engineer effort",
+          "Step": "LOCATE",
+          "Error Type": "EFFORT",
+          "Imp": "6",
+          "Sat": "3",
+          "Opp": "9",
+          "Impact": "time",
+          "product_related": "**true**"
+        },
+        {
+          "#": "E3",
+          "Statement": "Minimize the likelihood of receiver placement errors causing >5% of installed door guardian units to report intermittent connectivity loss in a server hall with dense metal rack infrastructure",
+          "Step": "LOCATE",
+          "Error Type": "ACCURACY",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "13",
+          "Impact": "reliability",
+          "product_related": "**true**"
+        },
+        {
+          "#": "E4",
+          "Statement": "Increase the ability to install and commission a door guardian unit on any standard commercial exit door within ≤15 minutes without specialist low-voltage contractor skills",
+          "Step": "PREPARE",
+          "Error Type": "EFFORT",
+          "Imp": "7",
+          "Sat": "7",
+          "Opp": "7",
+          "Impact": "time",
+          "product_related": "false"
+        },
+        {
+          "#": "E5",
+          "Statement": "Minimize the likelihood of incorrect pairing between door guardian radio transmitter and IP gateway causing alarm events to be silently dropped during initial deployment verification",
+          "Step": "PREPARE",
+          "Error Type": "ACCURACY",
+          "Imp": "8",
+          "Sat": "4",
+          "Opp": "12",
+          "Impact": "reliability",
+          "product_related": "**true**"
+        },
+        {
+          "#": "E6",
+          "Statement": "Increase the ability to verify end-to-end alarm event propagation from each door guardian to the SIEM log within ≤30 seconds of a manual test activation across all 50+ installed units simultaneously",
+          "Step": "CONFIRM",
+          "Error Type": "THROUGHPUT",
+          "Imp": "8",
+          "Sat": "4",
+          "Opp": "12",
+          "Impact": "time",
+          "product_related": "false"
+        },
+        {
+          "#": "E7",
+          "Statement": "Minimize the likelihood of door guardian units appearing as online in the gateway dashboard but failing to transmit alarm events under Faraday cage RF conditions, creating undetected monitoring gaps",
+          "Step": "CONFIRM",
+          "Error Type": "DETECTION",
+          "Imp": "9",
+          "Sat": "3",
+          "Opp": "**15**",
+          "Impact": "reliability",
+          "product_related": "**true**"
+        },
+        {
+          "#": "E8",
+          "Statement": "Minimize the likelihood of an emergency exit door activation going unlogged in the SIEM audit trail during a facility power event — including UPS switchover, generator start sequence, and mains failure",
+          "Step": "EXECUTE",
+          "Error Type": "ROBUSTNESS",
+          "Imp": "10",
+          "Sat": "6",
+          "Opp": "14",
+          "Impact": "safety",
+          "product_related": "false"
+        },
+        {
+          "#": "E9",
+          "Statement": "Increase the ability to deliver door activation alerts to the Security Operations Center console within ≤30 seconds of physical door trigger under standard server hall RF conditions",
+          "Step": "EXECUTE",
+          "Error Type": "THROUGHPUT",
+          "Imp": "8",
+          "Sat": "5",
+          "Opp": "11",
+          "Impact": "time",
+          "product_related": "false"
+        },
+        {
+          "#": "E10",
+          "Statement": "Minimize the likelihood of an emergency exit door activation — including authorized key override bypass — going unlogged in the SIEM event record, permitting 0 unlogged activations per audit period",
+          "Step": "EXECUTE",
+          "Error Type": "DETECTION",
+          "Imp": "9",
+          "Sat": "5",
+          "Opp": "13",
+          "Impact": "safety",
+          "product_related": "false"
+        },
+        {
+          "#": "E11",
+          "Statement": "Minimize the variability in SIEM timestamp accuracy between physical door guardian activation and the corresponding log entry to ≤5 seconds across all deployed units",
+          "Step": "EXECUTE",
+          "Error Type": "CONSISTENCY",
+          "Imp": "7",
+          "Sat": "5",
+          "Opp": "9",
+          "Impact": "reliability",
+          "product_related": "false"
+        },
+        {
+          "#": "E12",
+          "Statement": "Increase the ability to predict door guardian battery replacement needs with ≥14 days advance warning per unit, enabling scheduled maintenance without emergency callouts",
+          "Step": "MONITOR",
+          "Error Type": "DETECTION",
+          "Imp": "8",
+          "Sat": "4",
+          "Opp": "12",
+          "Impact": "reliability",
+          "product_related": "**true**"
+        },
+        {
+          "#": "E13",
+          "Statement": "Minimize the likelihood of a door guardian unit going offline without automated SOC notification, creating a silent monitoring gap exceeding 15 minutes",
+          "Step": "MONITOR",
+          "Error Type": "DETECTION",
+          "Imp": "9",
+          "Sat": "4",
+          "Opp": "14",
+          "Impact": "reliability",
+          "product_related": "false"
+        },
+        {
+          "#": "E14",
+          "Statement": "Minimize the variability in wireless signal quality for door guardian units installed in server halls with variable rack density and AI/GPU thermal load shifts that alter electromagnetic propagation",
+          "Step": "MONITOR",
+          "Error Type": "CONSISTENCY",
+          "Imp": "7",
+          "Sat": "3",
+          "Opp": "11",
+          "Impact": "reliability",
+          "product_related": "**true**"
+        },
+        {
+          "#": "E15",
+          "Statement": "Increase the ability to update door guardian monitoring configuration — add/remove doors, change alert thresholds — without on-site field work per door, completing a 10-door change in ≤1 hour",
+          "Step": "MODIFY",
+          "Error Type": "EFFORT",
+          "Imp": "7",
+          "Sat": "3",
+          "Opp": "11",
+          "Impact": "time",
+          "product_related": "**true**"
+        },
+        {
+          "#": "E16",
+          "Statement": "Minimize the time to restore full door monitoring coverage to 100% of in-scope exits following a gateway or receiver failure, maintaining SOC 2 audit continuity within ≤4 hours mean recovery time",
+          "Step": "MODIFY",
+          "Error Type": "RECOVERY",
+          "Imp": "8",
+          "Sat": "5",
+          "Opp": "11",
+          "Impact": "reliability",
+          "product_related": "false"
+        },
+        {
+          "#": "E17",
+          "Statement": "Increase the ability to generate a SOC 2 Type II or ISO 27001 A.7.2 compliance report covering all door activation events across a 12-month audit period with per-door, per-event granularity in ≤30 minutes",
+          "Step": "CONCLUDE",
+          "Error Type": "EFFORT",
+          "Imp": "9",
+          "Sat": "3",
+          "Opp": "**15**",
+          "Impact": "cost",
+          "product_related": "false"
+        },
+        {
+          "#": "E18",
+          "Statement": "Minimize the likelihood of audit evidence rejection due to chain-of-custody gaps between the door guardian physical sensor event and the corresponding SIEM log entry under SOC 2 Type II scrutiny",
+          "Step": "CONCLUDE",
+          "Error Type": "ACCURACY",
+          "Imp": "10",
+          "Sat": "3",
+          "Opp": "**17**",
+          "Impact": "safety",
+          "product_related": "false"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Level",
+        "Role",
+        "Retrieval",
+        "Bridge",
+        "Market Need"
+      ],
+      "rows": [
+        {
+          "Level": "**P3 Role**",
+          "Role": "Compliance Officer",
+          "Retrieval": "\"Who do they become?\" → \"The person who never fails a physical access audit\"",
+          "Bridge": "Product must produce an unbroken, cryptographically consistent chain from door sensor to SIEM",
+          "Market Need": "Increase the ability to demonstrate an unbroken audit chain from physical door sensor event to SIEM log entry with zero evidence gaps across a 12-month SOC 2 audit period `[hypothesis]`"
+        },
+        {
+          "Level": "**P4 Image**",
+          "Role": "DC Operations Director",
+          "Retrieval": "\"Who is watching?\" → tenants, insurance underwriters, SOC 2 auditors must perceive \"complete automated physical security posture, no manual gaps\"",
+          "Bridge": "Product must consolidate all door event evidence into a single API-queryable artifact",
+          "Market Need": "Increase the ability to present complete emergency exit monitoring coverage to SOC 2 Type II auditors via a single API-queryable evidence endpoint without manual evidence compilation `[hypothesis]`"
+        },
+        {
+          "Level": "**P5 Emotion**",
+          "Role": "Security Operations team",
+          "Retrieval": "\"What to avoid feeling?\" → blindsided by discovering an unlogged door event during incident investigation",
+          "Bridge": "Product must provide real-time notification before any evidence gap can develop",
+          "Market Need": "Minimize the likelihood that security staff discover an unlogged or delayed emergency exit activation during a post-incident investigation that cannot be reconstructed in the audit record `[hypothesis]`"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Statement (abbreviated)",
+        "Opp.",
+        "Why underserved today"
+      ],
+      "rows": [
+        {
+          "#": "**E18**",
+          "Statement (abbreviated)": "Chain-of-custody gap → audit evidence rejection",
+          "Opp.": "**17**",
+          "Why underserved today": "IP gateway translation introduces break in chain; no native integrity verification"
+        },
+        {
+          "#": "**E17**",
+          "Statement (abbreviated)": "SOC 2/ISO 27001 audit report generated in ≤30 min",
+          "Opp.": "**15**",
+          "Why underserved today": "Multi-system manual extraction required; no native reporting across wireless door event + SIEM"
+        },
+        {
+          "#": "**E7**",
+          "Statement (abbreviated)": "Silent coverage gap under Faraday cage conditions",
+          "Opp.": "**15**",
+          "Why underserved today": "No heartbeat-vs-alarm-test distinction in current wireless door alarm systems; appears online but not proven to fire"
+        },
+        {
+          "#": "**E8**",
+          "Statement (abbreviated)": "Unlogged activation during power event",
+          "Opp.": "**14**",
+          "Why underserved today": "Wired systems on UPS partially mitigate; wireless battery-powered fully mitigates — satisfaction (6) reflects partial address"
+        },
+        {
+          "#": "**E13**",
+          "Statement (abbreviated)": "Unit goes offline without SOC notification",
+          "Opp.": "**14**",
+          "Why underserved today": "No keepalive / heartbeat standard in current EasyWave / wireless door alarm products"
+        },
+        {
+          "#": "**E1**",
+          "Statement (abbreviated)": "Incomplete door inventory → unmonitored exits",
+          "Opp.": "**13**",
+          "Why underserved today": "No automated discovery tooling for door scope at deployment; relies on manual building walkthrough"
+        },
+        {
+          "#": "**E3**",
+          "Statement (abbreviated)": "RF placement error → >5% connectivity loss",
+          "Opp.": "**13**",
+          "Why underserved today": "No published DC-specific RF planning standard or tool for 868 MHz in server hall environments"
+        },
+        {
+          "#": "**E10**",
+          "Statement (abbreviated)": "Key override bypass unlogged",
+          "Opp.": "**13**",
+          "Why underserved today": "Mechanical-only variants have no log; IoT variants log if paired correctly — satisfaction (5) reflects partial address"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "job_map": {
+        "naics_code": "518210",
+        "market_name": "Computing Infrastructure Providers / Data Centers",
+        "anchor_vn_unit": "Door Guardian Alarm Unit",
+        "anchor_level": "L4",
+        "parent_vn_unit": "Emergency Exit Door Monitoring",
+        "parent_level": "L5",
+        "product_job_statement": "Help Emergency Exit Door Monitoring to detect, log, and alert on every emergency exit door activation with a tamper-evident, power-independent record — enabling real-time SOC notification and SOC 2 CC6.4 / ISO 27001 A.7.2 audit evidence generation without mains wiring at each door point",
+        "cfj_statement": "Deliver continuous, secure, and compliant compute, storage, and network capacity to tenants and end users at contracted uptime and performance levels"
+      },
+      "job_steps": [
+        {
+          "step_number": 1,
+          "step_name": "DEFINE",
+          "statement": "Define monitoring perimeter, alert thresholds, and SIEM log retention policy for all in-scope emergency exits per SOC 2 CC6.4 and ISO 27001 A.7.2",
+          "relevant_to_product": true,
+          "relevance_rationale": "Scope definition directly determines which doors are monitored and what events are logged — foundational to compliance certification"
+        },
+        {
+          "step_number": 2,
+          "step_name": "LOCATE",
+          "statement": "Survey all emergency exit doors; map RF propagation conditions through server hall; identify receiver and IP gateway placement positions",
+          "relevant_to_product": true,
+          "relevance_rationale": "RF planning is a mandatory pre-installation step unique to wireless door monitoring in metal-dense DC environments"
+        },
+        {
+          "step_number": 3,
+          "step_name": "PREPARE",
+          "statement": "Install door guardian units; pair with receivers; configure IP gateway; integrate event stream with PACS and SIEM platforms",
+          "relevant_to_product": true,
+          "relevance_rationale": "Installation and SIEM integration are the primary deployment tasks determining end-to-end chain-of-custody integrity"
+        },
+        {
+          "step_number": 4,
+          "step_name": "CONFIRM",
+          "statement": "Verify all units paired and alarm-to-SIEM chain functional; conduct per-door end-to-end activation test before go-live",
+          "relevant_to_product": true,
+          "relevance_rationale": "End-to-end verification is required before SOC 2 monitoring evidence clock starts; unverified units create silent gaps"
+        },
+        {
+          "step_number": 5,
+          "step_name": "EXECUTE",
+          "statement": "Detect and log door events in real time; generate SOC alerts; write tamper-evident timestamped records to SIEM",
+          "relevant_to_product": true,
+          "relevance_rationale": "Primary value-creation step — the core job the product is hired to perform"
+        },
+        {
+          "step_number": 6,
+          "step_name": "MONITOR",
+          "statement": "Track battery depletion per unit; verify unit connectivity heartbeat; detect RF coverage drift caused by rack density changes",
+          "relevant_to_product": true,
+          "relevance_rationale": "Continuous monitoring of system health is required to prevent undetected coverage gaps — a critical SOC 2 audit concern"
+        },
+        {
+          "step_number": 7,
+          "step_name": "MODIFY",
+          "statement": "Add/remove doors from monitoring scope; change alert thresholds; adapt to facility layout changes without full reinstallation",
+          "relevant_to_product": true,
+          "relevance_rationale": "Data centers continuously expand and reconfigure; monitoring scope must track facility changes without coverage gaps"
+        },
+        {
+          "step_number": 8,
+          "step_name": "CONCLUDE",
+          "statement": "Generate SOC 2 / ISO 27001 A.7.2 audit evidence per door with per-event granularity; compile compliance report for auditor",
+          "relevant_to_product": true,
+          "relevance_rationale": "Audit evidence generation is a direct compliance deliverable; quality of evidence determines certification outcome"
+        }
+      ],
+      "error_statements": [
+        {
+          "id": "E1",
+          "full_statement": "Minimize the likelihood of emergency exit doors being excluded from the SOC 2 CC6.4 monitoring perimeter due to incomplete door inventory at deployment, resulting in >0 unmonitored exits in audit scope",
+          "job_step_number": 1,
+          "job_step_name": "DEFINE",
+          "error_type": "ACCURACY",
+          "importance": 9,
+          "satisfaction_current": 5,
+          "opportunity_score": 13,
+          "impact_category": "safety",
+          "rationale": "SOC 2 CC6.4 requires all controlled physical access points to be documented and monitored. Even one unmonitored exit creates an audit finding. Wired systems require deliberate zone planning; wireless deployments risk gaps if door walkthrough is incomplete.",
+          "confidence": 0.9,
+          "product_related": false
+        },
+        {
+          "id": "E22",
+          "full_statement": "Minimize the likelihood of alert threshold misconfiguration at deployment resulting in >5% false positive door alarm events per week, degrading Security Operations Center alert response discipline",
+          "job_step_number": 1,
+          "job_step_name": "DEFINE",
+          "error_type": "ACCURACY",
+          "importance": 6,
+          "satisfaction_current": 5,
+          "opportunity_score": 7,
+          "impact_category": "time",
+          "rationale": "Alert fatigue from misconfigured thresholds (e.g., pre-alarm sensitivity too high near HVAC vibration) reduces SOC response quality. Common in first-generation IoT deployments without pre-configured DC profiles.",
+          "confidence": 0.7,
+          "product_related": false
+        },
+        {
+          "id": "E2",
+          "full_statement": "Increase the ability to complete RF coverage planning and gateway placement for a 50-door deployment using a standard site survey toolkit in ≤1 day of engineer effort",
+          "job_step_number": 2,
+          "job_step_name": "LOCATE",
+          "error_type": "EFFORT",
+          "importance": 6,
+          "satisfaction_current": 3,
+          "opportunity_score": 9,
+          "impact_category": "time",
+          "rationale": "No published DC-specific RF planning tool or methodology exists for 868 MHz EasyWave in server hall environments. Surveys are ad hoc, time-consuming, and require RF specialist skills not held by typical DC facilities teams.",
+          "confidence": 0.7,
+          "product_related": true
+        },
+        {
+          "id": "E3",
+          "full_statement": "Minimize the likelihood of receiver placement errors causing >5% of installed door guardian units to report intermittent connectivity loss in a server hall with dense metal rack infrastructure",
+          "job_step_number": 2,
+          "job_step_name": "LOCATE",
+          "error_type": "ACCURACY",
+          "importance": 8,
+          "satisfaction_current": 3,
+          "opportunity_score": 13,
+          "impact_category": "reliability",
+          "rationale": "Dense server racks create RF shadow zones. High-density GPU racks (100+ kW/rack) generate additional electromagnetic interference. Connectivity loss = monitoring gap = SOC 2 audit finding. No DC-specific RF placement standard exists for this product category.",
+          "confidence": 0.8,
+          "product_related": true
+        },
+        {
+          "id": "E4",
+          "full_statement": "Increase the ability to install and commission a door guardian unit on any standard commercial exit door within ≤15 minutes without specialist low-voltage contractor skills",
+          "job_step_number": 3,
+          "job_step_name": "PREPARE",
+          "error_type": "EFFORT",
+          "importance": 7,
+          "satisfaction_current": 7,
+          "opportunity_score": 7,
+          "impact_category": "time",
+          "rationale": "Surface-mount installation is genuinely fast for the mechanical unit. The time burden shifts to IP gateway configuration and SIEM integration, which are not solved by the door unit itself. Satisfaction is high for installation; lower for the overall preparation stage.",
+          "confidence": 0.9,
+          "product_related": false
+        },
+        {
+          "id": "E5",
+          "full_statement": "Minimize the likelihood of incorrect pairing between door guardian radio transmitter and IP gateway causing alarm events to be silently dropped during initial deployment verification",
+          "job_step_number": 3,
+          "job_step_name": "PREPARE",
+          "error_type": "ACCURACY",
+          "importance": 8,
+          "satisfaction_current": 4,
+          "opportunity_score": 12,
+          "impact_category": "reliability",
+          "rationale": "Proprietary EasyWave protocol has limited diagnostic tooling for pairing verification. A unit that appears paired but is not transmitting alarm events creates a silent coverage gap that may not surface until the first activation event — which may be a real security breach.",
+          "confidence": 0.75,
+          "product_related": true
+        },
+        {
+          "id": "E6",
+          "full_statement": "Increase the ability to verify end-to-end alarm event propagation from each door guardian to the SIEM log within ≤30 seconds of a manual test activation across all 50+ installed units simultaneously",
+          "job_step_number": 4,
+          "job_step_name": "CONFIRM",
+          "error_type": "THROUGHPUT",
+          "importance": 8,
+          "satisfaction_current": 4,
+          "opportunity_score": 12,
+          "impact_category": "time",
+          "rationale": "No bulk test capability exists. Units must be activated individually with a technician physically present at each door. For a 50-door deployment, sequential testing is prohibitively time-consuming during a scheduled maintenance window. SOC 2 auditors expect evidence of pre-go-live commissioning tests.",
+          "confidence": 0.8,
+          "product_related": false
+        },
+        {
+          "id": "E7",
+          "full_statement": "Minimize the likelihood of door guardian units appearing as online in the gateway dashboard but failing to transmit alarm events under Faraday cage RF conditions, creating undetected monitoring gaps",
+          "job_step_number": 4,
+          "job_step_name": "CONFIRM",
+          "error_type": "DETECTION",
+          "importance": 9,
+          "satisfaction_current": 3,
+          "opportunity_score": 15,
+          "impact_category": "reliability",
+          "rationale": "Current wireless door alarm systems do not distinguish between a unit that is 'reachable for heartbeat' and one 'proven to transmit alarm events.' Server room shielded doors and cage structures can block alarm bursts while allowing low-power status signals through. This is the most dangerous failure mode in DC deployments.",
+          "confidence": 0.85,
+          "product_related": true
+        },
+        {
+          "id": "E8",
+          "full_statement": "Minimize the likelihood of an emergency exit door activation going unlogged in the SIEM audit trail during a facility power event — including UPS switchover, generator start sequence, and mains failure",
+          "job_step_number": 5,
+          "job_step_name": "EXECUTE",
+          "error_type": "ROBUSTNESS",
+          "importance": 10,
+          "satisfaction_current": 6,
+          "opportunity_score": 14,
+          "impact_category": "safety",
+          "rationale": "Power events are the highest-risk moments for unlogged emergency exit use. Wired systems on UPS circuits partially mitigate (satisfaction=6), but wired panels may reboot during switchover. Battery-powered wireless units with store-and-forward capability are uniquely positioned here. SOC 2 CC6.4 requires continuous uninterrupted logging.",
+          "confidence": 0.95,
+          "product_related": false
+        },
+        {
+          "id": "E9",
+          "full_statement": "Increase the ability to deliver door activation alerts to the Security Operations Center console within ≤30 seconds of physical door trigger under standard server hall RF conditions",
+          "job_step_number": 5,
+          "job_step_name": "EXECUTE",
+          "error_type": "THROUGHPUT",
+          "importance": 8,
+          "satisfaction_current": 5,
+          "opportunity_score": 11,
+          "impact_category": "time",
+          "rationale": "Wired panel-integrated systems achieve <10 s alert delivery. Wireless systems add radio propagation delay + gateway processing + SIEM ingestion latency. SOC response SLAs typically require <60 s for physical security alerts; 30 s is a practical DC standard.",
+          "confidence": 0.85,
+          "product_related": false
+        },
+        {
+          "id": "E10",
+          "full_statement": "Minimize the likelihood of an emergency exit door activation — including authorized key override bypass — going unlogged in the SIEM event record, permitting 0 unlogged activations per audit period",
+          "job_step_number": 5,
+          "job_step_name": "EXECUTE",
+          "error_type": "DETECTION",
+          "importance": 9,
+          "satisfaction_current": 5,
+          "opportunity_score": 13,
+          "impact_category": "safety",
+          "rationale": "SOC 2 CC6.4 and ISO 27001 A.7.2 require logging of ALL physical access events including authorized access. Key override bypasses are a common audit gap: mechanical-only systems have no log; IoT systems log if correctly integrated. Satisfaction=5 reflects partial address by IoT variants with proper SIEM integration.",
+          "confidence": 0.9,
+          "product_related": false
+        },
+        {
+          "id": "E11",
+          "full_statement": "Minimize the variability in SIEM timestamp accuracy between physical door guardian activation and the corresponding log entry to ≤5 seconds across all deployed units",
+          "job_step_number": 5,
+          "job_step_name": "EXECUTE",
+          "error_type": "CONSISTENCY",
+          "importance": 7,
+          "satisfaction_current": 5,
+          "opportunity_score": 9,
+          "impact_category": "reliability",
+          "rationale": "Timestamp consistency is required for chain-of-custody integrity in compliance audits and incident investigations. Multi-hop wireless transmission (door unit → receiver → IP gateway → SIEM) introduces variable latency. SOC 2 auditors correlate physical door events with logical access logs; timestamp drift degrades correlation quality.",
+          "confidence": 0.75,
+          "product_related": false
+        },
+        {
+          "id": "E12",
+          "full_statement": "Increase the ability to predict door guardian battery replacement needs with ≥14 days advance warning per unit, enabling scheduled maintenance without emergency callouts",
+          "job_step_number": 6,
+          "job_step_name": "MONITOR",
+          "error_type": "DETECTION",
+          "importance": 8,
+          "satisfaction_current": 4,
+          "opportunity_score": 12,
+          "impact_category": "reliability",
+          "rationale": "Battery life is unpublished for the GfS IoT variant. At 100+ doors, battery depletion without advance warning creates a maintenance emergency and a monitoring gap. DC facilities teams operate on planned maintenance windows; unplanned battery replacements on live equipment create operational risk. Satisfaction=4 reflects basic low-battery alerts in some systems without predictive lead time.",
+          "confidence": 0.8,
+          "product_related": true
+        },
+        {
+          "id": "E13",
+          "full_statement": "Minimize the likelihood of a door guardian unit going offline without automated SOC notification, creating a silent monitoring gap exceeding 15 minutes",
+          "job_step_number": 6,
+          "job_step_name": "MONITOR",
+          "error_type": "DETECTION",
+          "importance": 9,
+          "satisfaction_current": 4,
+          "opportunity_score": 14,
+          "impact_category": "reliability",
+          "rationale": "A unit that goes offline silently is more dangerous than a unit that never existed in scope — it creates an apparent coverage with no actual protection. 15 minutes is the typical SOC patrol interval; a gap longer than this cannot be closed by physical means. No keepalive/heartbeat standard exists in current wireless door alarm product category.",
+          "confidence": 0.85,
+          "product_related": false
+        },
+        {
+          "id": "E14",
+          "full_statement": "Minimize the variability in wireless signal quality for door guardian units installed in server halls with variable rack density and AI/GPU thermal load shifts that alter electromagnetic propagation conditions",
+          "job_step_number": 6,
+          "job_step_name": "MONITOR",
+          "error_type": "CONSISTENCY",
+          "importance": 7,
+          "satisfaction_current": 3,
+          "opportunity_score": 11,
+          "impact_category": "reliability",
+          "rationale": "AI/GPU workload surges generate heat and electromagnetic emissions that alter 868 MHz propagation in ways that are not present at installation time. Coverage that was verified at initial commissioning may degrade as rack density increases. No DC-specific RF monitoring standard addresses this dynamic environment.",
+          "confidence": 0.7,
+          "product_related": true
+        },
+        {
+          "id": "E15",
+          "full_statement": "Increase the ability to update door guardian monitoring configuration — add/remove doors, change alert thresholds — without on-site field work per door, completing a 10-door change in ≤1 hour",
+          "job_step_number": 7,
+          "job_step_name": "MODIFY",
+          "error_type": "EFFORT",
+          "importance": 7,
+          "satisfaction_current": 3,
+          "opportunity_score": 11,
+          "impact_category": "time",
+          "rationale": "EasyWave requires physical reprogramming at the unit or receiver for configuration changes. Data centers reconfigure constantly (new tenants, cage expansions, decommissions). Each configuration change requiring on-site work per door creates scheduling conflicts with live operations and accumulates significant labor cost at scale.",
+          "confidence": 0.8,
+          "product_related": true
+        },
+        {
+          "id": "E16",
+          "full_statement": "Minimize the time to restore full door monitoring coverage to 100% of in-scope exits following a gateway or receiver failure, maintaining SOC 2 audit continuity within ≤4 hours mean recovery time",
+          "job_step_number": 7,
+          "job_step_name": "MODIFY",
+          "error_type": "RECOVERY",
+          "importance": 8,
+          "satisfaction_current": 5,
+          "opportunity_score": 11,
+          "impact_category": "reliability",
+          "rationale": "A failed IP gateway eliminates monitoring for all doors it serves simultaneously. SOC 2 auditors examine log continuity; a 4+ hour gap in the audit trail triggers a finding. Gateway redundancy is achievable but not standard in current wireless door monitoring deployments.",
+          "confidence": 0.8,
+          "product_related": false
+        },
+        {
+          "id": "E17",
+          "full_statement": "Increase the ability to generate a SOC 2 Type II or ISO 27001 A.7.2 compliance report covering all door activation events across a 12-month audit period with per-door, per-event granularity in ≤30 minutes",
+          "job_step_number": 8,
+          "job_step_name": "CONCLUDE",
+          "error_type": "EFFORT",
+          "importance": 9,
+          "satisfaction_current": 3,
+          "opportunity_score": 15,
+          "impact_category": "cost",
+          "rationale": "Currently requires manual extraction from the IP gateway event log, cross-referencing with SIEM ingestion records, and per-door filtering — a multi-hour task per audit cycle. Auditors require per-door granularity per ISO 27001 A.7.2 and SOC 2 CC6.4. No native compliance report output exists in current wireless door alarm systems. Verified from ISO 27001 A.7.2 audit guide (hightable.io) and SOC 2 CC6.4 documentation (fractionalciso.com).",
+          "confidence": 0.9,
+          "product_related": false
+        },
+        {
+          "id": "E18",
+          "full_statement": "Minimize the likelihood of audit evidence rejection due to chain-of-custody gaps between the door guardian physical sensor event and the corresponding SIEM log entry under SOC 2 Type II scrutiny",
+          "job_step_number": 8,
+          "job_step_name": "CONCLUDE",
+          "error_type": "ACCURACY",
+          "importance": 10,
+          "satisfaction_current": 3,
+          "opportunity_score": 17,
+          "impact_category": "safety",
+          "rationale": "The multi-hop chain (door unit → EasyWave → receiver → IP gateway → REST → SIEM) introduces protocol translation points where log entries can lose integrity markers. SOC 2 Type II auditors require a demonstrable unbroken chain-of-custody for physical access logs. A gap = finding = potential certification downgrade. Highest opportunity score in this market.",
+          "confidence": 0.9,
+          "product_related": false
+        }
+      ],
+      "p3_p5_needs": [
+        {
+          "pyramid_level": "P3",
+          "role": "Compliance Officer",
+          "retrieval": "By getting emergency exit monitoring done flawlessly, this person becomes 'the Compliance Officer who never fails a physical access audit'",
+          "bridge": "Product must produce an unbroken, cryptographically consistent chain from door sensor event to SIEM log entry",
+          "market_need": "Increase the ability to demonstrate an unbroken audit chain from physical door sensor event to SIEM log entry with zero evidence gaps across a 12-month SOC 2 audit period",
+          "hypothesis": true
+        },
+        {
+          "pyramid_level": "P4",
+          "role": "DC Operations Director",
+          "retrieval": "Watchers (tenants, insurance underwriters, SOC 2 auditors) must see 'complete automated physical security posture with no manual evidence compilation gaps'",
+          "bridge": "Product must consolidate all door event evidence into a single API-queryable artifact auditors can access without operator assembly",
+          "market_need": "Increase the ability to present complete emergency exit monitoring coverage to SOC 2 Type II auditors via a single API-queryable evidence endpoint without manual evidence compilation",
+          "hypothesis": true
+        },
+        {
+          "pyramid_level": "P5",
+          "role": "Security Operations team",
+          "retrieval": "They want to avoid feeling blindsided by discovering an unlogged door event during incident investigation",
+          "bridge": "Product must provide real-time notification before any evidence gap can develop so staff never face an irrecoverable audit record",
+          "market_need": "Minimize the likelihood that security staff discover an unlogged or delayed emergency exit activation during a post-incident investigation that cannot be reconstructed in the audit record",
+          "hypothesis": true
+        }
+      ],
+      "incumbent_anchors": [
+        {
+          "technology_name": "Wired electronic exit alarm (panel-integrated)",
+          "anchor_vn_unit": "Emergency Exit Door Monitoring",
+          "anchor_level": "L5",
+          "market_share_est": 0.5,
+          "rationale": "Legacy standard in Tier III/IV data centers; IP-native panel integration satisfies SOC 2 logging requirements; fails on power-independence and retrofit cost",
+          "market_name": "Computing Infrastructure Providers / Data Centers"
+        },
+        {
+          "technology_name": "Mechanical-only door prop / handle alarm",
+          "anchor_vn_unit": "Emergency Exit Door Monitoring",
+          "anchor_level": "L5",
+          "market_share_est": 0.2,
+          "rationale": "Lowest cost; zero audit trail; being displaced by compliance mandates requiring digital logging (SOC 2 CC6.4, ISO 27001 A.7.2)",
+          "market_name": "Computing Infrastructure Providers / Data Centers"
+        }
+      ]
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}
