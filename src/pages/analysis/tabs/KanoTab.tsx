@@ -35,8 +35,8 @@ import FeatureDetail from "./kano/FeatureDetail";
 
 /**
  * A "real" feature has a non-numeric name and a known classification.
- * The finfish-farming JSON accidentally includes a validation table
- * as extra array entries (featureName: "#", "1", "2"…) — filter those out.
+ * Some market JSONs may include validation table rows as extra array
+ * entries (featureName: "#", "1", "2"…) — filter those out.
  */
 function isRealFeature(f: KanoFeature): boolean {
   if (!f.featureName || /^\s*#?\d*\s*$/.test(f.featureName)) return false;

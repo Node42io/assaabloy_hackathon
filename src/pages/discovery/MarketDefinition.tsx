@@ -45,13 +45,13 @@ export default function MarketDefinition() {
 
         <p>
           In the discovery phase (Phase 02a), the pipeline cross-classifies
-          the product's UNSPSC commodity code{" "}
-          <ClickableCode kind="unspsc" code="41112501" /> (Flowmeters) against
-          NAICS industry descriptions to find all industries where flow
-          measurement is a recognized need. This surfaces candidate markets
-          beyond the product team's immediate frame of reference — including
-          emergent adjacencies like aquaculture recirculating systems or data
-          center liquid cooling.
+          the product's UNSPSC commodity class{" "}
+          <ClickableCode kind="unspsc" code="46171500" /> (Locks and security
+          hardware) against NAICS industry descriptions to find all industries
+          where emergency exit security is a recognized need. This surfaces
+          candidate markets beyond the product team's immediate frame of
+          reference — including adjacencies like continuing care retirement
+          communities or data center physical security.
         </p>
 
         <p>

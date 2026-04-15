@@ -109,7 +109,7 @@ function StatusBadge({ name }: { name: string }) {
       </span>
     );
   }
-  if (name.includes("Ultrasonic") || name.includes("Türwächter") || name.includes("GfS")) {
+  if (name.includes("Türwächter") || name.includes("GfS") || name.includes("Exit Control")) {
     return (
       <span
         style={{

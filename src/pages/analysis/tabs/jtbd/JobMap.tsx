@@ -1,8 +1,8 @@
 /**
  * JobMap — faithful React port of the HTML job-map visualization.
  *
- * Source: JTBD-finfish_farming_and_fish_.html (lines 839–1414)
- * CSS:    ./jobmap.css (copied verbatim from the HTML's <style> block)
+ * Source: Ported from the Clayton JTBD HTML report template.
+ * CSS:    ./jobmap.css (copied from the HTML template's <style> block)
  *
  * DOM structure mirrors the HTML exactly:
  *   .job-map-container
