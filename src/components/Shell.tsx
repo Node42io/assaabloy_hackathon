@@ -155,7 +155,19 @@ const staticNavItems: NavItem[] = [
       { id: "con-sources",       label: "Sources" },
     ],
   },
-  { to: "/discovery", label: "New Market Discovery", kicker: "04" },
+  {
+    to: "/discovery",
+    label: "New Market Discovery",
+    kicker: "04",
+    sections: [
+      { id: "executive-summary",    label: "Executive Summary" },
+      { id: "discovery-process",    label: "Discovery Process" },
+      { id: "candidate-details",    label: "Candidate Details" },
+      { id: "architecture-distance", label: "Architecture Distance" },
+      { id: "pipeline-summary",     label: "Pipeline Summary" },
+      { id: "market-rationale",     label: "Market Rationale Cards" },
+    ],
+  },
   { to: "/analysis", label: "New Market Analysis", kicker: "05" },
 ];
 
@@ -270,6 +282,11 @@ export default function Shell() {
                         ["app-nav-link", isActive ? "is-active" : ""].filter(Boolean).join(" ")
                       }
                       style={{ flex: 1, minWidth: 0 }}
+                      onClick={() => {
+                        // Scroll main content to top when clicking a chapter link
+                        const main = document.querySelector(".app-main");
+                        if (main) main.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
                     >
                       <span className="app-nav-link__num">{item.kicker}</span>
                       <span>{item.label}</span>

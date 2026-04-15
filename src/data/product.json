@@ -9,8 +9,8 @@
   "technology": {
     "class": "Emergency Exit Security Devices with Remote Monitoring",
     "underlyingMechanism": "Spring-loaded mechanical door-handle guard with piezoelectric alarm horn and 868 MHz wireless state transmitter",
-    "unspscCode": null,
-    "unspscTitle": null,
+    "unspscCode": "46171500",
+    "unspscTitle": "Locks and security hardware",
     "unspscPath": "46171500 — Locks and security hardware (nearest class; no exact 8-digit commodity match)",
     "customProductGroup": "Emergency Exit Door Alarm Guards"
   },
@@ -147,16 +147,16 @@
     { "name": "Certifications", "value": "CE, DIN EN 179, DIN EN 1125", "unit": "", "testCondition": "" }
   ],
   "constraints": [
-    "Emergency Escape Non-Impedance (regulatory)",
-    "Mechanical Alarm Independence (regulatory, absolute)",
-    "Wireless Range Limitation (physical, ~30m)",
-    "IoT Battery Life Floor (operational, >2 years)",
-    "Retrofit-Only Surface Mount (physical)",
-    "EasyWave Protocol Lock-In (operational)",
-    "IoT Price Premium (economic, ~730 EUR)",
-    "GDPR Monitoring Data Compliance (regulatory)",
-    "IP Protection Boundary (environmental, IP45 max)",
-    "EN 13637 / EltVTR Electrical Compliance (regulatory)"
+    { "name": "Emergency Escape Non-Impedance", "constraintType": "regulatory", "severity": "hard", "description": "Must not add any operational step or increase force beyond DIN EN 179 (lever, ≤70N) or DIN EN 1125 (panic bar, single motion). Single-motion release is non-negotiable.", "thresholdValue": "0", "thresholdUnit": "additional steps vs. EN 179/EN 1125" },
+    { "name": "Mechanical Alarm Independence", "constraintType": "regulatory", "severity": "hard", "description": "Alarm horn must function at 0V — no electrical power whatsoever. EltVTR and fire safety codes mandate mechanical trigger as primary system. IoT module is supervisory only.", "thresholdValue": "0", "thresholdUnit": "V (minimum operating voltage)" },
+    { "name": "Wireless Range Limitation", "constraintType": "physical", "severity": "soft", "description": "Integrated 868.3 MHz EasyWave transmitter reaches ~30m line-of-sight. Concrete, steel, and building geometry reduce effective range. Single repeater extends to ~60m.", "thresholdValue": "30", "thresholdUnit": "m (no repeater); 60m with repeater" },
+    { "name": "IoT Battery Life Floor", "constraintType": "operational", "severity": "soft", "description": "Radio module draws 9–35mA during transmission. On a 9V battery (~500mAh), high door-event frequency can exhaust battery below the 2-year maintenance target.", "thresholdValue": "2", "thresholdUnit": "years (minimum replacement interval)" },
+    { "name": "Retrofit-Only Surface Mount", "constraintType": "physical", "severity": "soft", "description": "Surface-mounted device only. Cannot be flush-integrated into door or frame. Creates visible protrusion that may be unacceptable in premium architectural contexts.", "thresholdValue": null, "thresholdUnit": null },
+    { "name": "EasyWave Protocol Lock-In", "constraintType": "operational", "severity": "soft", "description": "868 MHz EasyWave is a proprietary GfS protocol. No native interoperability with BACnet, KNX, Zigbee, Z-Wave, LoRaWAN, or Matter. Requires GfS-specific wireless BUS gateway.", "thresholdValue": "0", "thresholdUnit": "open protocols supported natively" },
+    { "name": "IoT Price Premium", "constraintType": "economic", "severity": "soft", "description": "Pre-alarm + radio variant retails at ~730 EUR. At scale deployments (100+ doors), cost differential requires documented ROI to justify procurement.", "thresholdValue": "2", "thresholdUnit": "x price multiple vs. basic variant" },
+    { "name": "GDPR Monitoring Data Compliance", "constraintType": "regulatory", "severity": "soft", "description": "Door-open timestamps and access event logs may constitute personal data under GDPR if attributable to identifiable individuals. Requires DPA with SaaS provider.", "thresholdValue": null, "thresholdUnit": null },
+    { "name": "IP Protection Boundary", "constraintType": "environmental", "severity": "soft", "description": "Only the IP45 outdoor variant carries a published weather protection rating. Standard indoor variant has no published IP class. IP65/IP69K required for washdown markets.", "thresholdValue": "45", "thresholdUnit": "IP class (minimum published)" },
+    { "name": "EN 13637 / EltVTR Compliance", "constraintType": "regulatory", "severity": "soft", "description": "EN 13637 governs electrically controlled exit systems. Combined configurations (Türwächter + powered locking) must maintain fail-safe escape release.", "thresholdValue": null, "thresholdUnit": null }
   ],
   "billOfMaterials": [
     { "level": "L4", "name": "Mechanical Locking & Release Subsystem", "description": "Guard housing, spring mechanism, handle clamp, panic bar adapter" },

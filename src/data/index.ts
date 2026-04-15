@@ -152,6 +152,23 @@ export const ranking = _ranking as unknown as RankingData;
 export const sources = _sources as unknown as SourcesRegistry;
 export const marketsIndex = _marketsIndex as unknown as MarketIndexEntry[];
 
+// ─── Kano normalizer (JSON uses name/kanoClass/overallFit; type uses featureName/kanoClassification/scores.overall) ─
+function normalizeKano(raw: any): KanoData {
+  if (!raw?.features) return raw as KanoData;
+  return {
+    ...raw,
+    features: raw.features.map((f: any) => ({
+      featureName: f.featureName ?? f.name ?? "",
+      kanoClassification: f.kanoClassification ?? f.kanoClass ?? "indifferent",
+      scores: {
+        ...(f.scores ?? {}),
+        overall: f.scores?.overall ?? f.overallFit ?? 0,
+      },
+      rationale: f.rationale ?? "",
+    })),
+  } as KanoData;
+}
+
 // ─── Per-market data bundles ──────────────────────────────────────────────────
 
 export interface MarketBundle {
@@ -171,7 +188,7 @@ const _marketBundles: Record<string, MarketBundle> = {
     jtbd: _collegesUniversitiesJtbd as unknown as JTBDData,
     odi: _collegesUniversitiesOdi as unknown as ODIData,
     valueNetwork: _collegesUniversitiesVn as unknown as ValueNetworkData,
-    kano: _collegesUniversitiesKano as unknown as KanoData,
+    kano: normalizeKano(_collegesUniversitiesKano),
     compatibility: _collegesUniversitiesCompat as unknown as CompatibilityData,
     alternatives: _collegesUniversitiesAlt as unknown as AlternativesData,
     bom: _collegesUniversitiesBom as unknown as BOMData,
@@ -181,7 +198,7 @@ const _marketBundles: Record<string, MarketBundle> = {
     jtbd: _ccrcJtbd as unknown as JTBDData,
     odi: _ccrcOdi as unknown as ODIData,
     valueNetwork: _ccrcVn as unknown as ValueNetworkData,
-    kano: _ccrcKano as unknown as KanoData,
+    kano: normalizeKano(_ccrcKano),
     compatibility: _ccrcCompat as unknown as CompatibilityData,
     alternatives: _ccrcAlt as unknown as AlternativesData,
     bom: _ccrcBom as unknown as BOMData,
@@ -191,7 +208,7 @@ const _marketBundles: Record<string, MarketBundle> = {
     jtbd: _dataCentersJtbd as unknown as JTBDData,
     odi: _dataCentersOdi as unknown as ODIData,
     valueNetwork: _dataCentersVn as unknown as ValueNetworkData,
-    kano: _dataCentersKano as unknown as KanoData,
+    kano: normalizeKano(_dataCentersKano),
     compatibility: _dataCentersCompat as unknown as CompatibilityData,
     alternatives: _dataCentersAlt as unknown as AlternativesData,
     bom: _dataCentersBom as unknown as BOMData,
@@ -201,7 +218,7 @@ const _marketBundles: Record<string, MarketBundle> = {
     jtbd: _k12Jtbd as unknown as JTBDData,
     odi: _k12Odi as unknown as ODIData,
     valueNetwork: _k12Vn as unknown as ValueNetworkData,
-    kano: _k12Kano as unknown as KanoData,
+    kano: normalizeKano(_k12Kano),
     compatibility: _k12Compat as unknown as CompatibilityData,
     alternatives: _k12Alt as unknown as AlternativesData,
     bom: _k12Bom as unknown as BOMData,
@@ -211,7 +228,7 @@ const _marketBundles: Record<string, MarketBundle> = {
     jtbd: _facilitiesJtbd as unknown as JTBDData,
     odi: _facilitiesOdi as unknown as ODIData,
     valueNetwork: _facilitiesVn as unknown as ValueNetworkData,
-    kano: _facilitiesKano as unknown as KanoData,
+    kano: normalizeKano(_facilitiesKano),
     compatibility: _facilitiesCompat as unknown as CompatibilityData,
     alternatives: _facilitiesAlt as unknown as AlternativesData,
     bom: _facilitiesBom as unknown as BOMData,
@@ -221,7 +238,7 @@ const _marketBundles: Record<string, MarketBundle> = {
     jtbd: _hospitalsJtbd as unknown as JTBDData,
     odi: _hospitalsOdi as unknown as ODIData,
     valueNetwork: _hospitalsVn as unknown as ValueNetworkData,
-    kano: _hospitalsKano as unknown as KanoData,
+    kano: normalizeKano(_hospitalsKano),
     compatibility: _hospitalsCompat as unknown as CompatibilityData,
     alternatives: _hospitalsAlt as unknown as AlternativesData,
     bom: _hospitalsBom as unknown as BOMData,
@@ -231,7 +248,7 @@ const _marketBundles: Record<string, MarketBundle> = {
     jtbd: _warehousingJtbd as unknown as JTBDData,
     odi: _warehousingOdi as unknown as ODIData,
     valueNetwork: _warehousingVn as unknown as ValueNetworkData,
-    kano: _warehousingKano as unknown as KanoData,
+    kano: normalizeKano(_warehousingKano),
     compatibility: _warehousingCompat as unknown as CompatibilityData,
     alternatives: _warehousingAlt as unknown as AlternativesData,
     bom: _warehousingBom as unknown as BOMData,
@@ -241,7 +258,7 @@ const _marketBundles: Record<string, MarketBundle> = {
     jtbd: _hotelsJtbd as unknown as JTBDData,
     odi: _hotelsOdi as unknown as ODIData,
     valueNetwork: _hotelsVn as unknown as ValueNetworkData,
-    kano: _hotelsKano as unknown as KanoData,
+    kano: normalizeKano(_hotelsKano),
     compatibility: _hotelsCompat as unknown as CompatibilityData,
     alternatives: _hotelsAlt as unknown as AlternativesData,
     bom: _hotelsBom as unknown as BOMData,
@@ -251,7 +268,7 @@ const _marketBundles: Record<string, MarketBundle> = {
     jtbd: _lessorsJtbd as unknown as JTBDData,
     odi: _lessorsOdi as unknown as ODIData,
     valueNetwork: _lessorsVn as unknown as ValueNetworkData,
-    kano: _lessorsKano as unknown as KanoData,
+    kano: normalizeKano(_lessorsKano),
     compatibility: _lessorsCompat as unknown as CompatibilityData,
     alternatives: _lessorsAlt as unknown as AlternativesData,
     bom: _lessorsBom as unknown as BOMData,
@@ -261,7 +278,7 @@ const _marketBundles: Record<string, MarketBundle> = {
     jtbd: _museumsJtbd as unknown as JTBDData,
     odi: _museumsOdi as unknown as ODIData,
     valueNetwork: _museumsVn as unknown as ValueNetworkData,
-    kano: _museumsKano as unknown as KanoData,
+    kano: normalizeKano(_museumsKano),
     compatibility: _museumsCompat as unknown as CompatibilityData,
     alternatives: _museumsAlt as unknown as AlternativesData,
     bom: _museumsBom as unknown as BOMData,

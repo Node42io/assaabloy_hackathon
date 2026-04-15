@@ -235,55 +235,6 @@ export default function MarketRationaleCard({ market }: Props) {
         </div>
       )}
 
-      {/* Time & investment */}
-      {!isReference && (
-        <div
-          style={{
-            display: "flex",
-            gap: 16,
-            flexWrap: "wrap",
-            padding: "12px 0",
-            borderTop: "1px solid var(--divider)",
-            marginBottom: 16,
-          }}
-        >
-          <div>
-            <div
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 10,
-                textTransform: "uppercase",
-                letterSpacing: "0.08em",
-                color: "var(--text-gray-dark)",
-                marginBottom: 3,
-              }}
-            >
-              Time to Entry
-            </div>
-            <div style={{ fontSize: 13, color: "var(--text-white)", fontWeight: 500 }}>
-              {market.estimatedTimeToEntry}
-            </div>
-          </div>
-          <div>
-            <div
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 10,
-                textTransform: "uppercase",
-                letterSpacing: "0.08em",
-                color: "var(--text-gray-dark)",
-                marginBottom: 3,
-              }}
-            >
-              Investment Range
-            </div>
-            <div style={{ fontSize: 13, color: "var(--text-white)", fontWeight: 500 }}>
-              {market.estimatedInvestment}
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Link to deep-dive */}
       {!isReference && (
         <div style={{ paddingTop: 12, borderTop: "1px solid var(--divider)" }}>
