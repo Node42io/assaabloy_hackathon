@@ -1,0 +1,21 @@
+{
+  "slug": "general_warehousing_storage",
+  "name": "General Warehousing and Storage",
+  "naicsCode": "493110",
+  "isReference": false,
+  "rank": 6,
+  "scores": {
+    "odi": 5.98,
+    "featureFit": 5.93,
+    "constraintCompatibility": 6.5,
+    "jobCoverage": 5,
+    "vnHierarchy": 6.5,
+    "incumbentVulnerability": 6.9,
+    "composite": 6.14
+  },
+  "recommendation": "investigate",
+  "rationale": "",
+  "entryStrategy": "Target 3PL portfolio operators for blanket pricing; lead with OSHA compliance automation and guard patrol TCO model; require exit-environment survey at spec stage",
+  "estimatedTimeToEntry": "4-8 months",
+  "estimatedInvestment": "€100000-250000"
+}

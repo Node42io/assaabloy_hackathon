@@ -1,0 +1,28 @@
+{
+  "naicsCode": "531120",
+  "marketName": "Lessors of Nonresidential Buildings (except Miniwarehouses)",
+  "slug": "lessors_nonresidential_buildings",
+  "operatingMedium": "",
+  "architectureDistance": 0,
+  "assessments": [
+    { "constraintName": "Emergency Escape Non-Impedance", "constraintType": "", "threshold": "", "verdict": "none", "rationale": "Product is certified to EN 179/EN 1125. Standard commercial office operating conditions. Constraint pre-satisfied by product design.", "mitigation": "", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "Mechanical Alarm Independence", "constraintType": "", "threshold": "", "verdict": "none", "rationale": "The sole absolute constraint is pre-satisfied by the mechanical-primary architecture. Alarm activates at 0V by design.", "mitigation": "", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "Wireless Range Limitation", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "Large-floor-plate office towers and concrete cores can reduce effective RF range below 30m. Standard repeater infrastructure resolves this at low cost.", "mitigation": "Pre-deployment RF survey; Deploy signal repeaters; Use BUS Gateway to aggregate floor-level receivers", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "IoT Battery Life Floor", "constraintType": "", "threshold": "", "verdict": "none", "rationale": "Commercial office emergency exits have very low door-event frequency. 2-year battery target readily achievable.", "mitigation": "", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "Retrofit-Only Surface Mount", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "Applies only to Class A trophy assets with architectural restrictions. Back-of-house exits are unaffected. Configuration choice, not hardware modification.", "mitigation": "Specify IoT variant on back-of-house and stairwell exits only; Use mechanical-only on architecturally sensitive exits; Confirm specification with facilities manager", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "EasyWave Protocol Lock-In", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "Primary sales friction. Commercial lessors run BACnet/IP or KNX BMS. EasyWave has no native interoperability. Gateway translation bridges the gap but adds cost.", "mitigation": "Deploy GfS Wireless BUS Gateway as BACnet/IP bridge; Map door events to BMS BACnet object layer; For standalone deployments, use GfS cloud dashboard independently", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "IoT Price Premium", "constraintType": "", "threshold": "", "verdict": "none", "rationale": "Institutional commercial landlords have budgets calibrated to building safety infrastructure. ~EUR 730/door is within standard range.", "mitigation": "", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "GDPR Monitoring Data Compliance", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "EU commercial buildings contain tenant-employees whose movement data may be attributable under GDPR. Legitimate interest basis is well-established for fire safety monitoring.", "mitigation": "Establish legitimate interest legal basis; Execute DPA with monitoring SaaS provider; Add exit monitoring to building privacy notice", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "IP Protection Boundary", "constraintType": "", "threshold": "", "verdict": "none", "rationale": "Standard indoor commercial office environments require no elevated IP rating. IP45 outdoor variant available for exterior exits.", "mitigation": "", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "EN 13637 / EltVTR Electrical Compliance", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "Office buildings combine emergency exit hardware with electromagnetic door holders and access control. Combined configurations require EN 13637 compliance. Standard design obligation for integrators.", "mitigation": "Specify fail-safe EM holder configurations only; Require EN 13637 compliance review in integrator specification; Keep IoT module supervisory-only", "mitigationCost": "", "mitigationTime": "" }
+  ],
+  "result": {
+    "knockouts": 0,
+    "mitigable": 5,
+    "none": 5,
+    "marketStatus": "SURVIVING",
+    "totalMitigationCost": "",
+    "totalMitigationTime": ""
+  },
+  "sources": []
+}

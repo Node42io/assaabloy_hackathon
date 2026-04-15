@@ -1,0 +1,118 @@
+{
+  "naicsCode": "623311",
+  "marketName": "Continuing Care Retirement Communities",
+  "slug": "continuing_care_retirement",
+  "operatingMedium": "",
+  "architectureDistance": 0,
+  "assessments": [
+    {
+      "constraintName": "Emergency Escape Non-Impedance",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "none",
+      "rationale": "NFPA 101 Life Safety Code imposes the identical single-motion egress principle as EN 179/EN 1125. Product's mechanical design inherently satisfies the underlying requirement; no friction with CCRC regulatory environment.",
+      "mitigation": "",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "Mechanical Alarm Independence",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "none",
+      "rationale": "CMS Conditions of Participation and NFPA Life Safety Code require life-safety systems to operate under power failure. Product's mechanical-primary architecture operates at 0V — this constraint is pre-satisfied and reinforces the product's value proposition.",
+      "mitigation": "",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "Wireless Range Limitation",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "mitigable",
+      "rationale": "Average CCRC campus spans multiple wings with fire-rated construction in memory care units. 30m base range insufficient for long corridor runs; repeater mesh and per-cluster gateways provide full coverage — standard mitigation with no engineering novelty.",
+      "mitigation": "RF site survey to map signal attenuation zones across campus wings; Deploy wireless repeaters every 30m in corridors and at floor transitions; Install dedicated BUS gateway per care-level cluster (MC, AL, SNF)",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "IoT Battery Life Floor",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "mitigable",
+      "rationale": "Dementia residents frequently test exit doors, creating high event frequency that exhausts 9V battery below the 2-year target. Supervised-access requirement in secured MCUs makes unplanned battery replacement operationally difficult. Battery-status alerts and scheduled maintenance cycles fully mitigate.",
+      "mitigation": "Enable wireless battery-status alerts for proactive replacement dispatch; Add quarterly battery checks to facility maintenance calendar; Specify high-capacity or low-power variant for memory care exits",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "Retrofit-Only Surface Mount",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "none",
+      "rationale": "CCRC environments prioritize functional safety over architectural aesthetics. Surface-mounted safety hardware is standard and expected in institutional care settings across all care levels.",
+      "mitigation": "",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "EasyWave Protocol Lock-In",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "mitigable",
+      "rationale": "CCRC nurse-call panels (Stanley Healthcare 40%, hardwired Jeron 35%) are the clinical destination for elopement alerts. EasyWave's proprietary protocol requires a GfS BUS gateway with relay output to bridge into nurse-call — adds hardware and integration effort per cluster but is architecturally straightforward.",
+      "mitigation": "Deploy GfS wireless BUS gateway with potential-free contact output to nurse-call panel auxiliary input; Engage nurse-call vendor (Stanley Healthcare, Jeron) for integration wiring spec and alarm category mapping; Evaluate GfS IP gateway for direct BMS/EHR event logging if required",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "IoT Price Premium",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "none",
+      "rationale": "Elopement liability exposure (wrongful death suits, CMS penalties, increased staffing) far exceeds the EUR 730/door premium. Professional B2B procurement in regulated care is ROI-driven; the liability case is unambiguous. Cost is never a knockout.",
+      "mitigation": "",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "GDPR Monitoring Data Compliance",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "none",
+      "rationale": "CCRCs are US-based institutions (~2,000 in US); GDPR does not apply. Door-event data may implicate HIPAA PHI rules under patient location data interpretation, but falls within existing HIPAA compliance infrastructure — no new regulatory framework required.",
+      "mitigation": "",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "IP Protection Boundary",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "none",
+      "rationale": "CCRC emergency exits are in heated indoor corridors, stairwells, and ground-floor vestibule doors. No washdown, chemical splash, or extreme humidity exposure. Standard IP class is sufficient for all deployment locations.",
+      "mitigation": "",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "EN 13637 / EltVTR Electrical Compliance",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "mitigable",
+      "rationale": "~30% of CCRC exits use electromagnetic delayed-egress locks (CMS permits 30-sec delay in AL/MC). Combined Türwächter + EM lock systems must maintain fail-safe escape release. System-level design compliance is well-understood; commissioning test and AHJ acceptance are standard.",
+      "mitigation": "Design EM lock to release on fire alarm signal and on power failure simultaneously with Türwächter alarm activation; Verify fail-safe release sequencing during commissioning with AHJ inspection; Document combined system compliance with NFPA 101",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    }
+  ],
+  "result": {
+    "knockouts": 0,
+    "mitigable": 4,
+    "none": 6,
+    "marketStatus": "SURVIVING",
+    "totalMitigationCost": "",
+    "totalMitigationTime": ""
+  },
+  "sources": []
+}

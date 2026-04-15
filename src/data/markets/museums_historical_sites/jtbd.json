@@ -1,0 +1,492 @@
+{
+  "naicsCode": "712110",
+  "marketName": "Museums, Historical Sites, and Similar Institutions",
+  "slug": "museums_historical_sites",
+  "coreJobStatement": "Acquire, preserve, and present cultural, historical, natural, and scientific heritage to the public through curated exhibitions, conservation, and educational programming",
+  "productJobStatement": "Help Building Security & Life Safety to detect and deter unauthorized use of emergency exit doors in collection spaces and storage areas while maintaining fire-code-compliant escape capability in heritage buildings where structural modification is prohibited or restricted",
+  "anchorLevel": "L5",
+  "lPath": "L6 Building Security & Life Safety > L5 Emergency Exit Security Devices",
+  "segments": [
+    {
+      "segmentNumber": 1,
+      "name": "Large art / natural history museum",
+      "qualifier": "",
+      "characteristics": ">200K visitors/yr; professional security team; high-value portable collection; BMS likely present",
+      "isTargetable": true,
+      "targetabilityReason": "Primary theft prevention concern; highest consequence per undetected exit event; IoT dashboard replaces costly guard post",
+      "circumstance": ">200K visitors/yr; professional security team; high-value portable collection; BMS likely present",
+      "alternativesDiffer": "IoT dashboard replaces costly guard post; primary theft prevention concern; highest consequence per undetected exit event"
+    },
+    {
+      "segmentNumber": 2,
+      "name": "Historic house / heritage site (listed building)",
+      "qualifier": "",
+      "characteristics": "Protected structure; cannot route wiring without heritage consent; minimal permanent staff",
+      "isTargetable": true,
+      "targetabilityReason": "C5 (surface mount) is an advantage, not a friction; battery-powered wireless is the only viable retrofit option",
+      "circumstance": "Protected structure; cannot route wiring without heritage consent; minimal permanent staff",
+      "alternativesDiffer": "Wired A2 alternative is disqualified without planning consent; battery-powered wireless is the only viable retrofit option"
+    },
+    {
+      "segmentNumber": 3,
+      "name": "Regional / community museum",
+      "qualifier": "",
+      "characteristics": "Small paid staff + volunteers; limited technical capacity; tight budget",
+      "isTargetable": false,
+      "targetabilityReason": "IoT price premium (C7) is a barrier; ROI must be simple and documentable; commissioning complexity is a decision killer",
+      "circumstance": "Small paid staff + volunteers; limited technical capacity; tight budget",
+      "alternativesDiffer": "IoT price premium is a barrier; mechanical-only or do-nothing dominates"
+    },
+    {
+      "segmentNumber": 4,
+      "name": "Archaeological / outdoor site",
+      "qualifier": "",
+      "characteristics": "Dispersed perimeter; intermittent public access seasons; remote or semi-remote locations",
+      "isTargetable": false,
+      "targetabilityReason": "Range constraint (C3) is primary; battery life (C4) critical where maintenance visits are infrequent; no BMS",
+      "circumstance": "Dispersed perimeter; intermittent public access seasons; remote or semi-remote locations",
+      "alternativesDiffer": "Range constraint and battery life are primary risks; product fit is weaker at remote outdoor sites"
+    },
+    {
+      "segmentNumber": 5,
+      "name": "Multi-site museum group / national body",
+      "qualifier": "",
+      "characteristics": "Manages portfolio of buildings under one security governance structure",
+      "isTargetable": true,
+      "targetabilityReason": "Cross-site IoT dashboard is the decisive value proposition; protocol lock-in (C6) relevant if centralized BMS is in scope",
+      "circumstance": "Manages portfolio of buildings under one security governance structure",
+      "alternativesDiffer": "Cross-site IoT dashboard is the decisive value proposition; no single-site solution aggregates"
+    }
+  ],
+  "alternatives": [
+    {
+      "name": "Basic mechanical door alarm (no monitoring) — 45% share",
+      "unspsc": "46171610",
+      "tradeoffs": "No remote visibility; requires physical patrol to detect unreported activation; no audit log; no battery required for alarm"
+    },
+    {
+      "name": "Wired intruder detection + door contacts (alarm panel) — 25% share",
+      "unspsc": "46171601",
+      "tradeoffs": "Wiring through heritage fabric requires planning consent and conservation officer approval — major barrier in listed buildings; high retrofit cost"
+    },
+    {
+      "name": "Alarmed exit hardware with IoT monitoring (Turkwachter) — 20% share",
+      "unspsc": "46171601",
+      "tradeoffs": "Proprietary wireless protocol (C6); battery dependency (C4); ~730 EUR/door (C7); surface-mount profile is accepted in heritage context"
+    },
+    {
+      "name": "Gallery attendant / security guard patrol",
+      "unspsc": "92121500",
+      "tradeoffs": "High recurring labor cost (security = ~22% of museum operating budget); coverage gaps when attendant is elsewhere; no event log; scales linearly with door count"
+    },
+    {
+      "name": "No dedicated exit monitoring (do nothing) — 10% share",
+      "unspsc": "",
+      "tradeoffs": "Zero installation burden; zero P1 burden; compliance risk distributed across insurance, fire marshal, and grant-funding conditions"
+    }
+  ],
+  "jobSteps": [
+    {
+      "stepNumber": 1,
+      "verb": "Define",
+      "description": "Determine which emergency exits require monitoring (storage vaults, conservation labs, galleries, public exits), alert priority by zone, and notification escalation rules",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Zone configuration is critical; vault exits > public gallery exits",
+      "rawStatement": "Determine which emergency exits require monitoring, alert priority by zone, and notification escalation rules",
+      "jobStep": "DEFINE",
+      "relevant": true,
+      "rationale": "Zone configuration by collection risk level; vault exits require higher-priority alert rules than public gallery exits"
+    },
+    {
+      "stepNumber": 2,
+      "verb": "Locate",
+      "description": "Map all emergency exit points across building; assess wireless signal paths through historic masonry; identify gateway placement compatible with heritage constraints",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "RF penetration through thick stone/brick walls is a key variable",
+      "rawStatement": "Map all emergency exit points across building; assess wireless signal paths through historic masonry",
+      "jobStep": "LOCATE",
+      "relevant": true,
+      "rationale": "RF coverage planning through heritage-grade masonry; gateway placement subject to conservation constraints"
+    },
+    {
+      "stepNumber": 3,
+      "verb": "Prepare",
+      "description": "Install monitoring devices on door handles without drilling into historic fabric; pair to gateway; configure zone priorities; test alarm tone audibility",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Surface-mount, no-drill installation is the primary market differentiator",
+      "rawStatement": "Install monitoring devices on door handles without drilling into historic fabric",
+      "jobStep": "PREPARE",
+      "relevant": true,
+      "rationale": "Surface-mount installation without drilling; heritage officer sign-off on reversibility"
+    },
+    {
+      "stepNumber": 4,
+      "verb": "Confirm",
+      "description": "Verify every device transmits through heritage-grade masonry walls, alarm is unobstructed, escape motion is unrestricted, and heritage officer confirms reversibility",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Acceptance testing must include RF validation through actual wall materials",
+      "rawStatement": "Verify every device transmits correctly through actual building materials and alarm operation is unimpeded",
+      "jobStep": "CONFIRM",
+      "relevant": true,
+      "rationale": "Acceptance test of radio transmission through actual wall materials; alarm audibility and escape motion verification"
+    },
+    {
+      "stepNumber": 5,
+      "verb": "Execute",
+      "description": "Maintain all monitored exits in secured state 24/7; trigger alert on unauthorized activation; distinguish high-risk zones (storage) from lower-risk zones (public exits)",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Core function; after-hours monitoring is the primary use case",
+      "rawStatement": "Maintain all monitored exits in secured state; trigger alert on unauthorized activation",
+      "jobStep": "EXECUTE",
+      "relevant": true,
+      "rationale": "24/7 exit security with heightened after-hours theft-prevention priority"
+    },
+    {
+      "stepNumber": 6,
+      "verb": "Monitor",
+      "description": "Track real-time exit status from centralized dashboard; receive alerts prioritized by zone risk level; correlate with CCTV on high-risk events",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Primary IoT value; after-hours dashboard access on mobile is essential for lean security teams",
+      "rawStatement": "Track real-time exit status from centralized dashboard; receive alerts prioritized by zone risk level",
+      "jobStep": "MONITOR",
+      "relevant": true,
+      "rationale": "After-hours dashboard -- primary IoT value for lean or remote security teams"
+    },
+    {
+      "stepNumber": 7,
+      "verb": "Modify",
+      "description": "Respond to and reset triggered devices; adjust zone alert rules; replace failed units with minimal disruption to gallery operations or open days",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Reset must not require tool or key unavailable on night shift",
+      "rawStatement": "Respond to and reset triggered devices; adjust zone alert rules",
+      "jobStep": "MODIFY",
+      "relevant": true,
+      "rationale": "Alert zone rule adjustment; device reset by duty staff without specialist tools"
+    },
+    {
+      "stepNumber": 8,
+      "verb": "Conclude",
+      "description": "Generate compliance audit reports for fire marshal, insurer, and heritage authority; proactively replace batteries before monitoring capability is lost",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Compliance documentation is a grant-funding and insurance requirement for many institutions",
+      "rawStatement": "Generate compliance audit reports for fire marshal, insurer, and heritage authority",
+      "jobStep": "CONCLUDE",
+      "relevant": true,
+      "rationale": "Compliance documentation for fire marshal, insurer, heritage funder; battery health management in conservation environments"
+    }
+  ],
+  "stakeholders": [
+    {
+      "role": "Job Executor",
+      "who": "Security officer / gallery attendant (monitoring duty)",
+      "pyramidLevels": "P1 (all), P2, P3, P4, P5"
+    },
+    {
+      "role": "Job Overseer",
+      "who": "Head of Security / Museum Director",
+      "pyramidLevels": "P1 (own), P2, P4"
+    },
+    {
+      "role": "Job Beneficiary",
+      "who": "Visitors and staff",
+      "pyramidLevels": "P2, P5"
+    },
+    {
+      "role": "Lifecycle Support — Specifier",
+      "who": "Facilities manager / conservation engineer",
+      "pyramidLevels": "P1 Acquisition"
+    },
+    {
+      "role": "Lifecycle Support — Installer",
+      "who": "Security integrator / maintenance technician",
+      "pyramidLevels": "P1 Preparation"
+    },
+    {
+      "role": "Lifecycle Support — Validator",
+      "who": "Fire marshal / heritage conservation officer",
+      "pyramidLevels": "P1 Confirm"
+    },
+    {
+      "role": "Lifecycle Support — Maintainer",
+      "who": "Facilities team / security officer",
+      "pyramidLevels": "P1 Maintenance"
+    },
+    {
+      "role": "Purchase Executor",
+      "who": "Head of Finance / Facilities Director",
+      "pyramidLevels": "P1 Acquisition"
+    },
+    {
+      "role": "Purchase Influencer",
+      "who": "Insurer; heritage funder (Arts Council, Historic England); fire authority",
+      "pyramidLevels": "P2, P4"
+    }
+  ],
+  "needs": [
+    {
+      "id": "E1",
+      "statement": "Minimize the likelihood of high-value collection storage area exits remaining unmonitored due to incomplete upfront coverage planning, leaving >=1 after-hours exit event undetected per quarter",
+      "jobStep": "DEFINE",
+      "errorType": "DETECTION",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "E2",
+      "statement": "Increase the ability to segment emergency exit monitoring alerts by zone risk level (storage vault vs. public gallery vs. service corridor) so that a single after-hours activation of a vault exit triggers immediate escalation",
+      "jobStep": "DEFINE",
+      "errorType": "ACCURACY",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.75
+    },
+    {
+      "id": "E3",
+      "statement": "Increase the ability to pre-validate wireless signal coverage through heritage-grade masonry walls (stone, brick, reinforced concrete) before committing to gateway placement and device purchase",
+      "jobStep": "LOCATE",
+      "errorType": "ACCURACY",
+      "importance": 7,
+      "satisfaction": 4,
+      "opportunity": 10,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.75
+    },
+    {
+      "id": "E4",
+      "statement": "Minimize the likelihood of RF signal loss between exit devices and the gateway caused by thick historic masonry walls, creating silent monitoring gaps exceeding 30 minutes",
+      "jobStep": "LOCATE",
+      "errorType": "ROBUSTNESS",
+      "importance": 8,
+      "satisfaction": 5,
+      "opportunity": 11,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.70
+    },
+    {
+      "id": "E5",
+      "statement": "Minimize the time required to install and commission emergency exit monitoring across a 20-room museum without drilling into historic fabric -- achieving full coverage in <1 day",
+      "jobStep": "PREPARE",
+      "errorType": "EFFORT",
+      "importance": 8,
+      "satisfaction": 5,
+      "opportunity": 11,
+      "impactCategory": "time",
+      "productRelated": true,
+      "confidence": 0.80
+    },
+    {
+      "id": "E6",
+      "statement": "Minimize the likelihood of installation fixing methods leaving permanent marks or penetrations in listed building fabric, causing non-compliance with heritage conservation officer requirements",
+      "jobStep": "PREPARE",
+      "errorType": "ROBUSTNESS",
+      "importance": 9,
+      "satisfaction": 6,
+      "opportunity": 12,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "E7",
+      "statement": "Increase the ability to verify that every installed exit device transmits correctly through actual building materials and that alarm operation is unimpeded -- within a single commissioning walk-through that the heritage officer can witness",
+      "jobStep": "CONFIRM",
+      "errorType": "ACCURACY",
+      "importance": 8,
+      "satisfaction": 5,
+      "opportunity": 11,
+      "impactCategory": "reliability",
+      "productRelated": false,
+      "confidence": 0.75
+    },
+    {
+      "id": "E8",
+      "statement": "Minimize the likelihood of an unauthorized emergency exit activation in a storage vault or conservation area remaining undetected for >2 minutes during closed hours",
+      "jobStep": "EXECUTE",
+      "errorType": "DETECTION",
+      "importance": 10,
+      "satisfaction": 3,
+      "opportunity": 17,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.90
+    },
+    {
+      "id": "E9",
+      "statement": "Minimize the likelihood of an emergency exit monitoring device adding any resistance or additional step to the escape path that could delay evacuation of visitors with reduced mobility",
+      "jobStep": "EXECUTE",
+      "errorType": "ROBUSTNESS",
+      "importance": 10,
+      "satisfaction": 8,
+      "opportunity": 12,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.90
+    },
+    {
+      "id": "E10",
+      "statement": "Minimize the likelihood of legitimate authorized uses (staff exiting at end of shift, conservation team accessing storage) generating false alerts that erode duty manager confidence in the monitoring system",
+      "jobStep": "EXECUTE",
+      "errorType": "ACCURACY",
+      "importance": 7,
+      "satisfaction": 4,
+      "opportunity": 10,
+      "impactCategory": "reliability",
+      "productRelated": false,
+      "confidence": 0.75
+    },
+    {
+      "id": "E11",
+      "statement": "Increase the ability of a single duty security officer or remote monitoring team to track real-time exit status across all monitored doors from one centralized interface without physical patrol -- during closed-hours coverage windows",
+      "jobStep": "MONITOR",
+      "errorType": "THROUGHPUT",
+      "importance": 9,
+      "satisfaction": 3,
+      "opportunity": 15,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "E12",
+      "statement": "Minimize the time from emergency exit activation event to security officer notification to <60 seconds during after-hours monitoring periods",
+      "jobStep": "MONITOR",
+      "errorType": "DETECTION",
+      "importance": 9,
+      "satisfaction": 4,
+      "opportunity": 14,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "E13",
+      "statement": "Minimize the likelihood of wireless connectivity loss to any monitored exit device creating a silent gap exceeding 15 minutes -- particularly during after-hours periods when no staff are on-site",
+      "jobStep": "MONITOR",
+      "errorType": "ROBUSTNESS",
+      "importance": 8,
+      "satisfaction": 5,
+      "opportunity": 11,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.75
+    },
+    {
+      "id": "E14",
+      "statement": "Minimize the time to reset a triggered exit monitoring device and restore it to active monitoring state after an incident investigation -- without requiring specialist tools not available to on-duty museum staff",
+      "jobStep": "MODIFY",
+      "errorType": "EFFORT",
+      "importance": 7,
+      "satisfaction": 6,
+      "opportunity": 8,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.70
+    },
+    {
+      "id": "E15",
+      "statement": "Minimize the likelihood of a high-priority storage area activation being deprioritized due to alert fatigue from higher-frequency low-risk public gallery exit events",
+      "jobStep": "MODIFY",
+      "errorType": "DETECTION",
+      "importance": 8,
+      "satisfaction": 5,
+      "opportunity": 11,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.75
+    },
+    {
+      "id": "E16",
+      "statement": "Increase the ability to produce a complete, timestamped digital log of all emergency exit activations and response actions formatted for submission to the fire authority, insurer, and heritage funder -- without manual compilation",
+      "jobStep": "CONCLUDE",
+      "errorType": "EFFORT",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "E17",
+      "statement": "Minimize the time required to identify and proactively replace batteries approaching depletion threshold across a deployment of >=10 exit monitoring devices before monitoring capability is lost -- accounting for reduced battery performance in climate-controlled conservation environments",
+      "jobStep": "CONCLUDE",
+      "errorType": "DETECTION",
+      "importance": 7,
+      "satisfaction": 4,
+      "opportunity": 10,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.75
+    },
+    {
+      "id": "E18",
+      "statement": "Minimize the variability in emergency exit monitoring coverage status across the building at any time -- ensuring no exits enter an unmonitored state due to technical failure without triggering a staff notification",
+      "jobStep": "P2 Core",
+      "errorType": "CONSISTENCY",
+      "importance": 9,
+      "satisfaction": 4,
+      "opportunity": 14,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "E19",
+      "statement": "Minimize the likelihood of emergency exit compliance deficiencies being cited during fire marshal inspection or heritage authority review -- resulting in temporary closure of gallery spaces or loss of grant-funding eligibility",
+      "jobStep": "P2 Core",
+      "errorType": "ACCURACY",
+      "importance": 9,
+      "satisfaction": 5,
+      "opportunity": 13,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "P3-1",
+      "statement": "Increase the ability to demonstrate evidence-based, timestamped response to after-hours exit activations -- to insurers and collections trustees -- without manual log reconstruction",
+      "jobStep": "P3 ROLE IDENTITY",
+      "errorType": "P3_ROLE_IDENTITY",
+      "importance": 7,
+      "satisfaction": 3,
+      "opportunity": 11,
+      "impactCategory": "confidence",
+      "productRelated": false,
+      "confidence": 0.50
+    },
+    {
+      "id": "P4-1",
+      "statement": "Minimize the likelihood of a preventable exit monitoring failure becoming a documented finding in an insurer audit or heritage authority inspection that affects funding eligibility",
+      "jobStep": "P4 IMAGE IDENTITY",
+      "errorType": "P4_IMAGE_IDENTITY",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "confidence",
+      "productRelated": false,
+      "confidence": 0.50
+    },
+    {
+      "id": "P5-1",
+      "statement": "Minimize the sense of uncertainty about whether high-risk storage and collection exits are truly secured during closed-hours periods when no patrol is possible",
+      "jobStep": "P5 EMOTIONAL",
+      "errorType": "P5_EMOTIONAL",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "confidence",
+      "productRelated": false,
+      "confidence": 0.50
+    }
+  ],
+  "sources": []
+}

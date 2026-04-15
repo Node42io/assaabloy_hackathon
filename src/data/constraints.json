@@ -1,0 +1,190 @@
+{
+  "constraints": [
+    {
+      "name": "Emergency Escape Non-Impedance",
+      "constraintType": "regulatory",
+      "description": "Must not add any operational step or increase force beyond DIN EN 179 (lever, ≤70N) or DIN EN 1125 (panic bar, single motion) requirements. Single-motion release is non-negotiable and product is certified to this standard.",
+      "thresholdValue": "0",
+      "thresholdUnit": "additional operational steps vs. EN 179/EN 1125",
+      "isAbsolute": false,
+      "affectedMarketsHint": [
+        "Commercial Buildings",
+        "Healthcare",
+        "Education",
+        "Industrial Facilities",
+        "Public Assembly",
+        "Transportation Hubs"
+      ]
+    },
+    {
+      "name": "Mechanical Alarm Independence",
+      "constraintType": "regulatory",
+      "description": "Alarm horn must function at 0V — no electrical power whatsoever. EltVTR and fire safety codes mandate mechanical trigger as primary system. IoT module is supervisory only. This is a fundamental physics and regulatory requirement that cannot be waived.",
+      "thresholdValue": "0",
+      "thresholdUnit": "V (minimum operating voltage for alarm trigger)",
+      "isAbsolute": true,
+      "affectedMarketsHint": [
+        "Healthcare",
+        "Education",
+        "Government Buildings",
+        "Public Assembly",
+        "Industrial Safety-Regulated Facilities"
+      ]
+    },
+    {
+      "name": "Wireless Range Limitation",
+      "constraintType": "physical",
+      "description": "Integrated 868.3 MHz EasyWave transmitter reaches ~30m line-of-sight. Concrete, steel, and building geometry reduce effective range. Single repeater extends to ~60m. Multi-stage repeater chains add infrastructure cost and latency.",
+      "thresholdValue": "30",
+      "thresholdUnit": "m (integrated TX, no repeater); 60m with one repeater stage",
+      "isAbsolute": false,
+      "affectedMarketsHint": [
+        "Large Industrial Plants",
+        "Airports",
+        "Convention Centers",
+        "Underground Facilities",
+        "Data Centers with Dense RF Shielding"
+      ]
+    },
+    {
+      "name": "IoT Battery Life Floor",
+      "constraintType": "operational",
+      "description": "Radio module draws 9–35mA during active transmission. On a 9V block battery (~500mAh), high door-event frequency can exhaust battery below the 2-year maintenance target. Battery life not published by GfS for IoT variant.",
+      "thresholdValue": "2",
+      "thresholdUnit": "years (minimum target replacement interval)",
+      "isAbsolute": false,
+      "affectedMarketsHint": [
+        "High-Traffic Healthcare",
+        "School Corridors",
+        "Airport Boarding Gates",
+        "Remote Industrial Sites with Infrequent Maintenance Access"
+      ]
+    },
+    {
+      "name": "Retrofit-Only Surface Mount",
+      "constraintType": "physical",
+      "description": "Surface-mounted device only. Cannot be flush-integrated into door or frame. Creates visible protrusion that may be unacceptable in premium architectural contexts or high-security flush-door applications.",
+      "thresholdValue": null,
+      "thresholdUnit": null,
+      "isAbsolute": false,
+      "affectedMarketsHint": [
+        "Luxury Hotels",
+        "Premium Corporate HQ",
+        "Secure Government Facilities",
+        "High-Security Data Centers"
+      ]
+    },
+    {
+      "name": "EasyWave Protocol Lock-In",
+      "constraintType": "operational",
+      "description": "868 MHz EasyWave is a proprietary GfS protocol. No native interoperability with BACnet, KNX, Zigbee, Z-Wave, LoRaWAN, or Matter. Integration requires GfS-specific wireless BUS gateway, creating vendor dependency.",
+      "thresholdValue": "0",
+      "thresholdUnit": "open standard protocols supported natively",
+      "isAbsolute": false,
+      "affectedMarketsHint": [
+        "KNX/BACnet Smart Office Buildings",
+        "Industrial IoT LoRaWAN Platforms",
+        "Hospitality BMS",
+        "Healthcare Nurse-Call Systems"
+      ]
+    },
+    {
+      "name": "IoT Price Premium",
+      "constraintType": "economic",
+      "description": "Pre-alarm + radio variant retails at ~730 EUR. Target ceiling is <2x basic non-IoT variant. At scale deployments (100+ doors), cost differential requires documented ROI (labor reduction, compliance automation, insurance) to justify procurement.",
+      "thresholdValue": "2",
+      "thresholdUnit": "x price multiple vs. basic mechanical variant",
+      "isAbsolute": false,
+      "affectedMarketsHint": [
+        "SME Offices",
+        "Budget Social Housing",
+        "Small Retail Chains",
+        "Budget Hospitality"
+      ]
+    },
+    {
+      "name": "GDPR Monitoring Data Compliance",
+      "constraintType": "regulatory",
+      "description": "Door-open timestamps and access event logs may constitute personal data under GDPR (EU 2016/679) if attributable to identifiable individuals. Requires legal basis for processing, DPA with SaaS provider, and DPIA for high-risk systematic monitoring.",
+      "thresholdValue": null,
+      "thresholdUnit": null,
+      "isAbsolute": false,
+      "affectedMarketsHint": [
+        "EU Commercial Buildings with Employees",
+        "EU Healthcare",
+        "EU Government",
+        "EU Educational Institutions"
+      ]
+    },
+    {
+      "name": "IP Protection Boundary",
+      "constraintType": "environmental",
+      "description": "Only the IP45 outdoor variant (Art. 990000-IP) carries a published weather protection rating. Standard indoor variant has no published IP class. Wet, dusty, or corrosive environments risk electronic IoT module failure. IP65/IP69K required for washdown markets.",
+      "thresholdValue": "45",
+      "thresholdUnit": "IP class (minimum published; IP65+ required for washdown environments)",
+      "isAbsolute": false,
+      "affectedMarketsHint": [
+        "Food and Beverage Processing",
+        "Breweries",
+        "Pharmaceutical Washdown",
+        "Marine Facilities",
+        "Outdoor Industrial Sites"
+      ]
+    },
+    {
+      "name": "EN 13637 / EltVTR Electrical Compliance",
+      "constraintType": "regulatory",
+      "description": "EN 13637 governs electrically controlled exit systems. Combined configurations (Türwächter + powered locking) must maintain fail-safe escape release. IoT module alone is compliant (supervisory only). System integrators combining with electromagnetic holders or electronic access control must certify the combined system.",
+      "thresholdValue": null,
+      "thresholdUnit": null,
+      "isAbsolute": false,
+      "affectedMarketsHint": [
+        "Controlled-Access Healthcare",
+        "Secure Government Facilities",
+        "Data Centers with Combined Access + Emergency Exit"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "CON-S01",
+      "label": "DIN EN 179 — Building hardware — Lever operated emergency exit devices (HOPPE reference)",
+      "url": "https://www.hoppe.com/in-en/contacts-service/standards/din-en-179/"
+    },
+    {
+      "id": "CON-S02",
+      "label": "EN 1125 — Panic exit devices operated by a horizontal bar (Intertek reference)",
+      "url": "https://www.intertek.com/building/standards/en-1125/"
+    },
+    {
+      "id": "CON-S03",
+      "label": "GfS Exit Control 179/1125 — Technical specifications and wireless specs",
+      "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/"
+    },
+    {
+      "id": "CON-S04",
+      "label": "GfS Exit Control Wireless Signal Transmission — EasyWave protocol and BUS integration",
+      "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/GfS-Exit-Control-179-1125-with-external-signal-devices/"
+    },
+    {
+      "id": "CON-S05",
+      "label": "Amazon DE — GfS EH-Türwächter retail pricing (~730 EUR IoT variant)",
+      "url": "https://www.amazon.de/GFS-Fluchtt%C3%BCrw%C3%A4chter-Batteriebetrieben-T%C3%BCrsicherung-Stangengriff/dp/B089SXGK7C"
+    },
+    {
+      "id": "CON-S06",
+      "label": "GDPR — Regulation (EU) 2016/679 on the protection of natural persons with regard to the processing of personal data",
+      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    },
+    {
+      "id": "CON-S07",
+      "label": "GfS IP45 Outdoor Variant (Art. 990000-IP)",
+      "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control/Variants/"
+    },
+    {
+      "id": "CON-S08",
+      "label": "EN 13637 — Building hardware — Electrically controlled exit systems (referenced for combined configurations)",
+      "url": null
+    }
+  ]
+}

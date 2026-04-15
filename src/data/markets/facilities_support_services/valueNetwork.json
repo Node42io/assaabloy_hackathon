@@ -1,0 +1,501 @@
+{
+  "naicsCode": "561210",
+  "marketName": "Facilities Support Services",
+  "slug": "facilities_support_services",
+  "coreJobStatement": "Operate and maintain a client's built environment to achieve continuous safety compliance, operational readiness, and regulatory conformance while minimising client-side labour",
+  "outputTypes": [
+    "Integrated FM",
+    "Hard Services",
+    "Soft Services",
+    "Compliance FM",
+    "Portfolio FM"
+  ],
+  "hierarchy": "",
+  "architectureDistance": 2,
+  "marketSize": "",
+  "l6Systems": [
+    {
+      "id": "L6a",
+      "name": "Facility Assessment & Contract Scoping",
+      "type": "Core",
+      "jobFamily": "Assess client site conditions and define service scope and SLA obligations",
+      "l5Units": []
+    },
+    {
+      "id": "L6b",
+      "name": "Facility Onboarding & System Setup",
+      "type": "Core",
+      "jobFamily": "Deploy monitoring infrastructure and configure service management platforms at client sites",
+      "l5Units": []
+    },
+    {
+      "id": "L6c",
+      "name": "Planned Preventive Maintenance",
+      "type": "Core",
+      "jobFamily": "Execute scheduled maintenance tasks to preserve equipment integrity and prevent regulatory non-compliance",
+      "l5Units": []
+    },
+    {
+      "id": "L6d",
+      "name": "Corrective Maintenance & Repair",
+      "type": "Core",
+      "jobFamily": "Respond to and remediate unplanned failures, incidents, and work orders",
+      "l5Units": []
+    },
+    {
+      "id": "L6e",
+      "name": "Safety & Regulatory Compliance Management",
+      "type": "Core",
+      "jobFamily": "Inspect, test, document, and certify compliance with fire safety, health, and environmental regulations across client sites",
+      "l5Units": []
+    },
+    {
+      "id": "L6f",
+      "name": "Service Reporting & Client Delivery",
+      "type": "Core",
+      "jobFamily": "Report service performance, close work orders, and deliver compliance documentation and SLA evidence to clients",
+      "l5Units": []
+    }
+  ],
+  "vnUnits": [
+    {
+      "level": "L5",
+      "id": "L6a.1",
+      "name": "Site Survey & Audit Tools",
+      "functionalJob": "Measure, document, and assess client site physical conditions including floor plans, asset inventory, and infrastructure state during contract scoping",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Digital laser measurement + floor-plan software (Bluebeam, AutoCAD)",
+          "sharePct": 55,
+          "confidence": "MEDIUM",
+          "source": "Analyst estimates, IFM provider service descriptions",
+          "isPrimary": false
+        },
+        {
+          "name": "Manual tape measure + paper plans",
+          "sharePct": 30,
+          "confidence": "MEDIUM",
+          "source": "Field observation",
+          "isPrimary": false
+        },
+        {
+          "name": "BIM-based digital twin survey (Matterport, NavVis)",
+          "sharePct": 15,
+          "confidence": "LOW",
+          "source": "Emerging adoption; no published split",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6a.2",
+      "name": "Contract & CAFM Onboarding Platform",
+      "functionalJob": "Configure service-level agreements, import asset registers, and provision client access to the FM management platform at contract start",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Integrated IWMS/CAFM (IBM Tririga, Planon, MRI)",
+          "sharePct": 45,
+          "confidence": "MEDIUM",
+          "source": "Mordor Intelligence FM Software Market 2025",
+          "isPrimary": false
+        },
+        {
+          "name": "Standalone contract management software",
+          "sharePct": 35,
+          "confidence": "MEDIUM",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Spreadsheet-based (Excel)",
+          "sharePct": 20,
+          "confidence": "LOW",
+          "source": "FM industry observation",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.1",
+      "name": "Building Management System (BMS/BAS)",
+      "functionalJob": "Monitor and control HVAC, lighting, and building utilities through a centralized automation platform to maintain operational conditions at client sites",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Wired BAS (BACnet / KNX / Modbus — Siemens, Honeywell, Johnson Controls)",
+          "sharePct": 50,
+          "confidence": "MEDIUM",
+          "source": "MarketsandMarkets FM market report; Mordor Intelligence BMS",
+          "isPrimary": false
+        },
+        {
+          "name": "Cloud-connected smart BMS (IP-based, open API)",
+          "sharePct": 35,
+          "confidence": "MEDIUM",
+          "source": "FM market reports 2025",
+          "isPrimary": false
+        },
+        {
+          "name": "Legacy proprietary BAS (pre-IP, manufacturer-locked)",
+          "sharePct": 15,
+          "confidence": "MEDIUM",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.2",
+      "name": "IoT Sensor Infrastructure",
+      "functionalJob": "Deploy wireless sensors across client buildings to collect real-time data on environmental conditions, equipment status, and occupancy for remote monitoring",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "LoRaWAN sensors (LPWAN, long range, low power)",
+          "sharePct": 35,
+          "confidence": "MEDIUM",
+          "source": "IoT Analytics, building IoT market estimates",
+          "isPrimary": false
+        },
+        {
+          "name": "BLE/Zigbee mesh sensors (short range, dense deployment)",
+          "sharePct": 35,
+          "confidence": "MEDIUM",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "868 MHz / proprietary RF (EasyWave, EnOcean)",
+          "sharePct": 20,
+          "confidence": "LOW",
+          "source": "No published FM-sector split",
+          "isPrimary": false
+        },
+        {
+          "name": "Cellular IoT (NB-IoT, LTE-M)",
+          "sharePct": 10,
+          "confidence": "LOW",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.1",
+      "name": "CMMS (Computerised Maintenance Management System)",
+      "functionalJob": "Schedule, assign, and track preventive maintenance work orders across client sites to ensure equipment uptime and regulatory compliance",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Cloud/SaaS CMMS (IBM Maximo, ServiceMax, MaintainX, Fiix)",
+          "sharePct": 55,
+          "confidence": "MEDIUM",
+          "source": "Grand View Research FM Software Market 2025; CMMS segment 32% share per Mordor",
+          "isPrimary": false
+        },
+        {
+          "name": "On-premise CMMS (Infor EAM, Oracle Maintenance Cloud)",
+          "sharePct": 30,
+          "confidence": "MEDIUM",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Spreadsheet / paper-based work orders",
+          "sharePct": 15,
+          "confidence": "MEDIUM",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.2",
+      "name": "Mechanical Inspection & Test Equipment",
+      "functionalJob": "Measure and diagnose the operating condition of building mechanical and electrical systems during scheduled inspections",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Handheld digital test instruments (multimeter, thermal camera, vibration analyser)",
+          "sharePct": 60,
+          "confidence": "LOW",
+          "source": "Field observation; no published market split",
+          "isPrimary": false
+        },
+        {
+          "name": "Fixed condition monitoring sensors (permanent attachment)",
+          "sharePct": 30,
+          "confidence": "LOW",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Manual gauges and analogue instruments",
+          "sharePct": 10,
+          "confidence": "LOW",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.1",
+      "name": "Mobile Field Service Platform",
+      "functionalJob": "Receive, dispatch, and manage corrective maintenance work orders on mobile devices enabling technicians to document repairs on-site in real time",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "CMMS mobile app (integrated, same vendor as L6c CMMS)",
+          "sharePct": 55,
+          "confidence": "LOW",
+          "source": "Estimated from CMMS market adoption",
+          "isPrimary": false
+        },
+        {
+          "name": "Standalone field service app (ServiceMax, FieldAware)",
+          "sharePct": 30,
+          "confidence": "LOW",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Telephone / paper-based dispatch",
+          "sharePct": 15,
+          "confidence": "LOW",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.2",
+      "name": "Spare Parts & Asset Store",
+      "functionalJob": "Store, track, and replenish spare parts and consumables needed for corrective maintenance across the service portfolio",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Centralised FM depot (van stock + warehouse)",
+          "sharePct": 50,
+          "confidence": "LOW",
+          "source": "No published split",
+          "isPrimary": false
+        },
+        {
+          "name": "Just-in-time procurement (direct from supplier)",
+          "sharePct": 35,
+          "confidence": "LOW",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Client-side stockroom (managed by FM provider)",
+          "sharePct": 15,
+          "confidence": "LOW",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6e.1",
+      "name": "Door & Exit Monitoring System",
+      "functionalJob": "Monitor emergency exit door status, detect unauthorized openings, and report alarm events to ensure fire safety compliance across client buildings",
+      "description": "",
+      "parentL6": "L6e",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Hardwired electronic alarm systems (door contacts wired to fire panel)",
+          "sharePct": 45,
+          "confidence": "LOW",
+          "source": "No published FM-sector split; inferred from fire safety product market",
+          "isPrimary": false
+        },
+        {
+          "name": "Battery-powered wireless alarm devices (EasyWave, LoRaWAN door sensors)",
+          "sharePct": 35,
+          "confidence": "LOW",
+          "source": "Growing segment per FM IoT adoption data",
+          "isPrimary": false
+        },
+        {
+          "name": "Mechanical-only door alarms (no monitoring, no wireless)",
+          "sharePct": 20,
+          "confidence": "LOW",
+          "source": "Declining; legacy installed base",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6e.2",
+      "name": "Fire Safety Inspection Platform",
+      "functionalJob": "Plan, execute, and document fire safety inspections including detector tests, extinguisher checks, and emergency lighting verification across client sites",
+      "description": "",
+      "parentL6": "L6e",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Digital CAFM-integrated inspection platform (Planon, Planninq)",
+          "sharePct": 40,
+          "confidence": "LOW",
+          "source": "No published split",
+          "isPrimary": false
+        },
+        {
+          "name": "Standalone mobile inspection app (iAuditor/SafetyCulture, Protex AI)",
+          "sharePct": 35,
+          "confidence": "LOW",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Paper-based inspection logs",
+          "sharePct": 25,
+          "confidence": "LOW",
+          "source": "Declining; compliance pressure reducing paper use",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6e.3",
+      "name": "Emergency Lighting Test System",
+      "functionalJob": "Automatically or manually test emergency luminaires at regulatory intervals and record pass/fail results for compliance documentation",
+      "description": "",
+      "parentL6": "L6e",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Automated self-test emergency luminaires (BS EN 62034)",
+          "sharePct": 50,
+          "confidence": "MEDIUM",
+          "source": "Industry standard; widely adopted in EU post-2015",
+          "isPrimary": false
+        },
+        {
+          "name": "Manual portable test units (handheld testers)",
+          "sharePct": 35,
+          "confidence": "LOW",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Third-party monitoring services",
+          "sharePct": 15,
+          "confidence": "LOW",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6f.1",
+      "name": "FM Analytics & Reporting Platform",
+      "functionalJob": "Aggregate service performance data into KPI dashboards and SLA compliance reports for client delivery and management review",
+      "description": "",
+      "parentL6": "L6f",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Embedded analytics in IWMS/CAFM",
+          "sharePct": 50,
+          "confidence": "LOW",
+          "source": "CAFM market estimated at $1.26B in 2025 (Future Market Insights)",
+          "isPrimary": false
+        },
+        {
+          "name": "Standalone BI tools (Power BI, Tableau, Looker)",
+          "sharePct": 30,
+          "confidence": "LOW",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Custom client portal / PDF export",
+          "sharePct": 20,
+          "confidence": "LOW",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6f.2",
+      "name": "Compliance Documentation Platform",
+      "functionalJob": "Store, manage, and deliver inspection certificates, audit trails, and regulatory compliance documentation to clients and authorities",
+      "description": "",
+      "parentL6": "L6f",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Integrated CAFM document module",
+          "sharePct": 45,
+          "confidence": "LOW",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Standalone document management (SharePoint, DocuSign)",
+          "sharePct": 40,
+          "confidence": "LOW",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Paper archive",
+          "sharePct": 15,
+          "confidence": "LOW",
+          "source": "Declining under GDPR and audit requirements",
+          "isPrimary": false
+        }
+      ]
+    }
+  ],
+  "marquardtPosition": "",
+  "strategicPosition": null,
+  "sources": []
+}

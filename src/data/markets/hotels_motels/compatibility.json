@@ -1,0 +1,118 @@
+{
+  "naicsCode": "721110",
+  "marketName": "Hotels (except Casino Hotels) and Motels",
+  "slug": "hotels_motels",
+  "operatingMedium": "",
+  "architectureDistance": 0,
+  "assessments": [
+    {
+      "constraintName": "Emergency Escape Non-Impedance",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "none",
+      "rationale": "Hotels must comply with fire escape regulations requiring unimpeded single-motion exit. The product is pre-certified for EN 179 / EN 1125. Constraint is satisfied before market entry.",
+      "mitigation": "",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "Mechanical Alarm Independence",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "none",
+      "rationale": "The sole absolute constraint is satisfied by the product's mechanical-primary architecture. Alarm triggers at 0 V without any power source. No market barrier.",
+      "mitigation": "",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "Wireless Range Limitation",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "mitigable",
+      "rationale": "Multi-story concrete hotels have RF paths of 40-80m with floor-to-floor attenuation. Repeater deployment is standard practice; integrated range of 30m is insufficient standalone for multi-floor properties but fully mitigable.",
+      "mitigation": "Deploy wireless repeaters at stairwell landings (1 per 2-3 floors or wing); Conduct RF site survey during commissioning to map coverage gaps; Install wireless BUS gateway per property zone to aggregate repeater outputs",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "IoT Battery Life Floor",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "none",
+      "rationale": "Hotel emergency exits see very low event frequency — primarily infrequent misuse rather than routine traffic. Battery life comfortably exceeds the 2-year maintenance target.",
+      "mitigation": "",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "Retrofit-Only Surface Mount",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "mitigable",
+      "rationale": "Visible surface protrusion may conflict with premium interior design in upscale/luxury full-service hotels. Non-issue for select-service, budget, and extended-stay sub-types. Manageable via specification and placement strategy.",
+      "mitigation": "Specify RAL-matched enclosure color during design phase for premium properties; Include architectural specification consultation for luxury (FS) segment deployments; Prioritize placement at service-corridor and back-of-house exits in premium properties",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "EasyWave Protocol Lock-In",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "mitigable",
+      "rationale": "55% of full-service hotels run BACnet/IP BMS. EasyWave does not natively interoperate; GfS BUS gateway bridges the gap. Dry-contact relay is a universal fallback requiring no protocol integration.",
+      "mitigation": "Deploy GfS wireless BUS Interface as EasyWave-to-BACnet/IP bridge per property; Use potential-free relay contact from GfS receiver to feed existing BMS alarm input (protocol-agnostic dry-contact); Use GfS-native dashboard for properties without BMS or without integration budget",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "IoT Price Premium",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "none",
+      "rationale": "EUR 730/door is immaterial against hotel capex and renovation costs. Security patrol labor savings, compliance documentation, and guest experience protection yield ROI within 12-18 months. Cost is not a barrier in this segment.",
+      "mitigation": "",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "GDPR Monitoring Data Compliance",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "mitigable",
+      "rationale": "EU hotel door-event logs can be cross-referenced with PMS guest-room assignments, creating GDPR personal data exposure. Established compliance paths (legitimate interest, DPA, DPIA) fully resolve this. Non-EU properties are unaffected.",
+      "mitigation": "Configure zone-level (floor/wing) event logging only — avoid door-to-guest-room mapping to minimize identifiability; Establish legitimate interest legal basis under GDPR Art. 6(1)(f) for fire safety monitoring; Execute Data Processing Agreement with any cloud monitoring provider; Complete DPIA for EU chains with >250 doors under systematic centralized monitoring",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "IP Protection Boundary",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "none",
+      "rationale": "Hotel stairwells and corridors are dry, temperature-controlled indoor environments. IP45 (outdoor variant) or standard indoor variant are both adequate. No washdown, chemical splashing, or marine exposure.",
+      "mitigation": "",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "EN 13637 / EltVTR Electrical Compliance",
+      "constraintType": "",
+      "threshold": "",
+      "verdict": "none",
+      "rationale": "Standard hotel deployment is Türwächter standalone. EN 13637 system-level compliance is only triggered when an integrator combines powered locking on the same door — a system design responsibility outside the product scope. Not a barrier for typical hotel emergency exit applications.",
+      "mitigation": "",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    }
+  ],
+  "result": {
+    "knockouts": 0,
+    "mitigable": 4,
+    "none": 6,
+    "marketStatus": "SURVIVING",
+    "totalMitigationCost": "",
+    "totalMitigationTime": ""
+  },
+  "sources": []
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "colleges_universities",
+  "name": "Colleges, Universities, and Professional Schools",
+  "naicsCode": "611310",
+  "isReference": false,
+  "rank": 4,
+  "scores": {
+    "odi": 5.84,
+    "featureFit": 6.24,
+    "constraintCompatibility": 7.5,
+    "jobCoverage": 6.25,
+    "vnHierarchy": 6.5,
+    "incumbentVulnerability": 7.4,
+    "composite": 6.59
+  },
+  "recommendation": "investigate",
+  "rationale": "",
+  "entryStrategy": "Target campus FM directors; lead with NFPA 101 fire inspection automation; partner with campus security integrators",
+  "estimatedTimeToEntry": "4-8 months",
+  "estimatedInvestment": "€75000-150000"
+}

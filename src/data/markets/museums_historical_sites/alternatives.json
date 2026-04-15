@@ -1,0 +1,32 @@
+{
+  "naicsCode": "712110",
+  "marketName": "Museums, Historical Sites, and Similar Institutions",
+  "slug": "museums_historical_sites",
+  "alternatives": [
+    {
+      "name": "Basic mechanical door alarm (no monitoring) — 45% share",
+      "unspsc": "46171610",
+      "tradeoffs": "No remote visibility; requires physical patrol to detect unreported activation; no audit log; no battery required for alarm"
+    },
+    {
+      "name": "Wired intruder detection + door contacts (alarm panel) — 25% share",
+      "unspsc": "46171601",
+      "tradeoffs": "Wiring through heritage fabric requires planning consent and conservation officer approval — major barrier in listed buildings; high retrofit cost"
+    },
+    {
+      "name": "Alarmed exit hardware with IoT monitoring (Türwächter) — 20% share",
+      "unspsc": "46171601",
+      "tradeoffs": "Proprietary wireless protocol (C6); battery dependency (C4); ~730 EUR/door (C7); surface-mount profile is accepted in heritage context"
+    },
+    {
+      "name": "Gallery attendant / security guard patrol",
+      "unspsc": "92121500",
+      "tradeoffs": "High recurring labor cost (security = ~22% of museum operating budget); coverage gaps when attendant is elsewhere; no event log; scales linearly with door count"
+    },
+    {
+      "name": "No dedicated exit monitoring (do nothing) — 10% share",
+      "unspsc": "—",
+      "tradeoffs": "Zero installation burden; zero P1 burden; compliance risk distributed across insurance, fire marshal, and grant-funding conditions"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "naicsCode": "493110",
+  "marketName": "General Warehousing and Storage",
+  "slug": "general_warehousing_storage",
+  "alternatives": [
+    {
+      "name": "Wired alarmed exit bars (e.g., Von Duprin 98/99)",
+      "unspsc": "46171600",
+      "tradeoffs": "Licensed electrician + conduit per door; high retrofit cost; reliable; centralized panel; no wireless flexibility"
+    },
+    {
+      "name": "Mechanical-only door alarm guard (e.g., GfS Basic, ABUS)",
+      "unspsc": "46171500",
+      "tradeoffs": "No remote monitoring; local alarm only; zero battery dependency for alarm; lowest cost; no event log"
+    },
+    {
+      "name": "Wireless electronic exit control (e.g., dormakaba SafeRoute, GEZE SecuLogic)",
+      "unspsc": "46171600",
+      "tradeoffs": "Higher per-door cost; richer BACnet/KNX protocol integration; battery-dependent for full function; EN 13637 compliant"
+    },
+    {
+      "name": "CCTV + staff patrol",
+      "unspsc": "46181600",
+      "tradeoffs": "High ongoing labor cost; no door-level alarm; GDPR complexity; no automatic compliance log; coverage gaps in non-camera zones"
+    },
+    {
+      "name": "Do nothing / accept risk",
+      "unspsc": "—",
+      "tradeoffs": "Zero cost; full OSHA exposure ($16,550/violation serious, $165,514 willful/repeat); fire marshal citation risk; insurance premium impact"
+    }
+  ]
+}

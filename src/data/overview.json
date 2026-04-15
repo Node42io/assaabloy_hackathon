@@ -1,0 +1,289 @@
+{
+  "company": {
+    "name": "GfS Rettungswegtechnik GmbH",
+    "legalForm": "GmbH (private limited company)",
+    "ownership": "Subsidiary of Assa Abloy Group (via Assa Abloy Europe / Albstadt)",
+    "founded": 1981,
+    "hq": "Hamburg, Germany",
+    "ceo": {
+      "name": "Julian Riester / Florian DuBois",
+      "since": "Assa Abloy Europe/Albstadt",
+      "note": "GfS operates as a brand within the Assa Abloy Group — the world's largest lock and security hardware manufacturer (founded 1994, HQ Stockholm)"
+    },
+    "revenue": {
+      "value": "Part of Assa Abloy Group (SEK 140B / ~€12.5B group revenue, 2024)",
+      "year": 2024,
+      "note": "GfS is a specialized brand within Assa Abloy's EMEIA division; standalone revenue not publicly disclosed"
+    },
+    "employees": {
+      "value": 52000,
+      "year": 2024,
+      "note": "Assa Abloy Group total; GfS Rettungswegtechnik is a small specialized unit within the group"
+    },
+    "sites": 3,
+    "countries": 1,
+    "continents": 1,
+    "rdIntensity": "Not disclosed (GfS level); Assa Abloy Group spends ~3% of revenue on R&D (~€375M)",
+    "patentsTotal": 0,
+    "patentsGranted": 0,
+    "primaryNaics": "332321",
+    "primaryNaicsTitle": "Metal Window and Door Manufacturing"
+  },
+  "globalFootprint": {
+    "regions": [
+      {
+        "region": "Germany (HQ)",
+        "sites": ["Hamburg (GfS Rettungswegtechnik headquarters and production)"]
+      },
+      {
+        "region": "Parent Group (Assa Abloy)",
+        "sites": ["Stockholm (Group HQ)", "Albstadt (Assa Abloy Europe regional office)", "70+ countries worldwide via Assa Abloy distribution"]
+      }
+    ]
+  },
+  "divisions": [
+    {
+      "name": "Emergency Exit Solutions",
+      "type": "Safety Hardware",
+      "description": "Core GfS product line: Exit Control (Türwächter) door guardians, e-Bar push bars, DEXCON monitoring devices, Day Alarm systems. Emergency exit security with optional wireless monitoring.",
+      "isSubjectDivision": true
+    },
+    {
+      "name": "Wireless Signal Transmission",
+      "type": "IoT / Building Integration",
+      "description": "EasyWave 868 MHz wireless receivers, repeaters, and BUS interfaces for centralizing door guardian status into building management systems.",
+      "isSubjectDivision": true
+    },
+    {
+      "name": "Accessories & Mounting",
+      "type": "Hardware Accessories",
+      "description": "Mounting plates for glass-frame doors, profile half-cylinder keys, external signal devices (strobes, sirens), battery monitoring modules.",
+      "isSubjectDivision": false
+    }
+  ],
+  "productGroup": {
+    "name": "Emergency Exit Door Alarm Guards",
+    "scope": "Door-mounted emergency exit security devices with alarm and optional wireless monitoring — lever handle (EN 179) and panic bar (EN 1125) variants",
+    "families": [
+      {
+        "name": "Exit Control 179 (Lever Handle)",
+        "technology": "Mechanical guard + piezo alarm, DIN EN 179 compliant",
+        "status": "Serial product — basic, pre-alarm, and pre-alarm + radio variants"
+      },
+      {
+        "name": "Exit Control 1125 (Panic Bar)",
+        "technology": "Mechanical guard + piezo alarm, DIN EN 1125 compliant",
+        "status": "Serial product — basic and pre-alarm variants"
+      },
+      {
+        "name": "Exit Control 179 IP45 (Outdoor)",
+        "technology": "Weather-protected variant for outdoor/semi-exposed installations",
+        "status": "Serial product"
+      },
+      {
+        "name": "GfS DEXCON",
+        "technology": "Reed-contact-based door/window monitoring, 95 dB alarm",
+        "status": "Complementary product"
+      },
+      {
+        "name": "GfS e-Bar",
+        "technology": "Push bar with integrated alarm mechanism",
+        "status": "Complementary product"
+      }
+    ]
+  },
+  "product": {
+    "name": "GfS Türwächter IoT (Exit Control 179/1125)",
+    "family": "Emergency Exit Door Alarm Guards with Wireless Monitoring",
+    "bomLevel": "L2 (building safety sub-system at door-leaf level)",
+    "homeMarketNaics": "332321",
+    "homeMarketTitle": "Metal Window and Door Manufacturing (manufacturer's NAICS — product serves all building types)",
+    "whitepaper": null,
+    "productPage": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/",
+    "variants": [
+      {
+        "id": "Art. 990000",
+        "status": "Serial product",
+        "innerDiameter": "DIN EN 179",
+        "flowRange": "Lever handle · 95 dB alarm",
+        "dimensions": "Basic — mechanical alarm only",
+        "note": "Entry-level variant, no pre-alarm, no wireless"
+      },
+      {
+        "id": "Art. 990100",
+        "status": "Serial product",
+        "innerDiameter": "DIN EN 179",
+        "flowRange": "Lever handle · 95 dB + pre-alarm",
+        "dimensions": "Pre-alarm on initial contact; ceases on release"
+      },
+      {
+        "id": "Art. 990140",
+        "status": "Serial product",
+        "innerDiameter": "DIN EN 179",
+        "flowRange": "Lever · 95 dB · pre-alarm · 868 MHz",
+        "dimensions": "IoT variant — subject of this report",
+        "isSerial": true,
+        "note": "Pre-alarm + EasyWave 868 MHz radio transmitter"
+      },
+      {
+        "id": "Art. 994000",
+        "status": "Serial product",
+        "innerDiameter": "DIN EN 1125",
+        "flowRange": "Panic bar · 95 dB alarm",
+        "dimensions": "Panic bar basic variant"
+      },
+      {
+        "id": "Art. 994100",
+        "status": "Serial product",
+        "innerDiameter": "DIN EN 1125",
+        "flowRange": "Panic bar · 95 dB + pre-alarm",
+        "dimensions": "Panic bar with pre-alarm"
+      },
+      {
+        "id": "Art. 990000-IP",
+        "status": "Serial product",
+        "innerDiameter": "DIN EN 179",
+        "flowRange": "Lever handle · 95 dB · IP45",
+        "dimensions": "Outdoor variant for semi-exposed installations"
+      }
+    ]
+  },
+  "studyQuestion": {
+    "q1": {
+      "german": "Welche neuen Märkte gibt es für den Türwächter IoT, wie attraktiv sind diese Segmente und welche sollten priorisiert werden?",
+      "english": "What new markets exist for the Türwächter IoT emergency exit guardian, how attractive are these segments, and which should be prioritized?",
+      "answer": "Ten target markets were identified through NAICS discovery anchored to the commodity functional promise ('prevent unauthorized use of emergency exit doors'). All ten land in the 'investigate' band (5.0–7.5 composite score). Hotels & Motels rank #1 (6.95) due to customer-facing VN position, highest incumbent fragmentation, and cleanest constraint profile. Continuing Care Retirement Communities rank #2 (6.80) driven by highest ODI opportunity and elopement liability ROI. Elementary & Secondary Schools rank #3 (6.61) with the strongest feature-market fit. No market reaches 'pursue' (>7.5) without pilot validation, and no market is eliminated (zero knockouts across all constraint screens)."
+    },
+    "q2": {
+      "german": "Wo verursacht eine fehlende oder unzuverlässige Überwachung von Notausgängen die höchsten Kosten und Risiken?",
+      "english": "Where does missing or unreliable emergency exit monitoring cause the highest costs and risks?",
+      "answer": "The highest-leverage markets are Continuing Care Retirement (elopement liability, CMS citations), Hospitals (Joint Commission egress violations, patient safety), and Schools (post-Uvalde legislation, lockdown compliance). In each case, the dominant cost driver is regulatory non-compliance (fines, license risk, litigation) rather than the direct cost of the hardware. Hotels face brand/liability exposure from unauthorized exit use. The IoT overlay's value proposition is strongest where manual patrol is most expensive (large distributed facilities) and where automated compliance documentation reduces audit labor."
+    }
+  },
+  "portfolioPriorities": [
+    {
+      "priority": "1",
+      "market": "Hotels and Motels",
+      "fitScore": 6.34,
+      "fitLabel": "INVESTIGATE",
+      "compositeScore": 6.95,
+      "timeToFirstRevenue": "3–6 months",
+      "hardwareDelta": "Standard product + BUS gateway for multi-property chains",
+      "y5RevenueBaseM": 0,
+      "role": "Beachhead — highest composite, cleanest constraint profile"
+    },
+    {
+      "priority": "2",
+      "market": "Continuing Care Retirement Communities",
+      "fitScore": 6.13,
+      "fitLabel": "INVESTIGATE",
+      "compositeScore": 6.80,
+      "timeToFirstRevenue": "4–8 months",
+      "hardwareDelta": "Standard product + nurse-call integration",
+      "y5RevenueBaseM": 0,
+      "role": "High opportunity — strongest ODI, elopement liability ROI"
+    },
+    {
+      "priority": "3",
+      "market": "Elementary and Secondary Schools",
+      "fitScore": 6.83,
+      "fitLabel": "INVESTIGATE",
+      "compositeScore": 6.61,
+      "timeToFirstRevenue": "4–6 months",
+      "hardwareDelta": "Standard product; align to safety grant cycles",
+      "y5RevenueBaseM": 0,
+      "role": "Volume play — 100K+ schools, best feature-market fit"
+    },
+    {
+      "priority": "4",
+      "market": "Colleges and Universities",
+      "fitScore": 6.24,
+      "fitLabel": "INVESTIGATE",
+      "compositeScore": 6.59,
+      "timeToFirstRevenue": "4–8 months",
+      "hardwareDelta": "Standard product + campus BUS gateway deployment",
+      "y5RevenueBaseM": 0,
+      "role": "Distributed campus — incremental building-by-building"
+    },
+    {
+      "priority": "5",
+      "market": "Museums and Historical Sites",
+      "fitScore": 6.16,
+      "fitLabel": "INVESTIGATE",
+      "compositeScore": 6.54,
+      "timeToFirstRevenue": "3–6 months",
+      "hardwareDelta": "Standard product — surface-mount is the differentiator",
+      "y5RevenueBaseM": 0,
+      "role": "Niche — heritage building constraints favor retrofit design"
+    }
+  ],
+  "financials": {
+    "y5RevenueBase": "Not estimated",
+    "y5RevenueUpside": "—",
+    "y5RevenueDownside": "—",
+    "npvBase": "—",
+    "npvUpside": "—",
+    "npvDownside": "—",
+    "irrBase": "—",
+    "irrUpside": "—",
+    "irrDownside": "—",
+    "breakevenBase": "—",
+    "breakevenUpside": "—",
+    "breakevenDownside": "—",
+    "cumulativeInvestment": "€50K–500K per market",
+    "discountRate": "—",
+    "note": "Financial scenarios are not part of the new_markets workflow scope. Per project instructions, BMC/GTM analysis will be conducted separately. Pilot investment ranges are per-market estimates from the ranking analysis."
+  },
+  "sources": [
+    {
+      "id": "OVW-S01",
+      "label": "GfS Exit Control 179/1125 — Product Page",
+      "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/"
+    },
+    {
+      "id": "OVW-S02",
+      "label": "GfS Exit Control Variants",
+      "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control/Variants/"
+    },
+    {
+      "id": "OVW-S03",
+      "label": "GfS Wireless Signal Transmission",
+      "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/GfS-Exit-Control-179-1125-with-external-signal-devices/"
+    },
+    {
+      "id": "OVW-S04",
+      "label": "Assa Abloy Group — Company Profile",
+      "url": "https://www.assaabloy.com/group/en/about-us"
+    },
+    {
+      "id": "OVW-S05",
+      "label": "Assa Abloy Group — Company Profile",
+      "url": "https://www.assaabloy.com/group/en/about-us"
+    },
+    {
+      "id": "OVW-S06",
+      "label": "GfS Exit Control Accessories",
+      "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control/Accessories/"
+    },
+    {
+      "id": "OVW-S07",
+      "label": "GfS Rettungswegtechnik — Full Product Range",
+      "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/"
+    },
+    {
+      "id": "OVW-S08",
+      "label": "Assa Abloy — Innovation & Patents",
+      "url": "https://www.assaabloy.com/group/en/about-us/innovation"
+    },
+    {
+      "id": "OVW-S09",
+      "label": "DIN EN 179 / EN 1125 — HOPPE Standard Reference",
+      "url": "https://www.hoppe.com/in-en/contacts-service/standards/din-en-179/"
+    },
+    {
+      "id": "OVW-S10",
+      "label": "Amazon DE — GfS EH-Türwächter (retail listing)",
+      "url": "https://www.amazon.de/GFS-Fluchtt%C3%BCrw%C3%A4chter-Batteriebetrieben-T%C3%BCrsicherung-Stangengriff/dp/B089SXGK7C"
+    }
+  ]
+}

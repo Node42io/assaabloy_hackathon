@@ -1,0 +1,21 @@
+{
+  "slug": "facilities_support_services",
+  "name": "Facilities Support Services",
+  "naicsCode": "561210",
+  "isReference": false,
+  "rank": 7,
+  "scores": {
+    "odi": 5.99,
+    "featureFit": 6.53,
+    "constraintCompatibility": 6,
+    "jobCoverage": 6.25,
+    "vnHierarchy": 3,
+    "incumbentVulnerability": 6.9,
+    "composite": 6
+  },
+  "recommendation": "investigate",
+  "rationale": "",
+  "entryStrategy": "Sell to FM firms as managed-service line item; partner with CBRE GWS, JLL Technologies as endorsed spec; position IoT subscription as FM contract recurring revenue add-on",
+  "estimatedTimeToEntry": "4-8 months",
+  "estimatedInvestment": "€50000-100000"
+}

@@ -1,0 +1,299 @@
+{
+  "naicsCode": "531120",
+  "marketName": "Lessors of Nonresidential Buildings (except Miniwarehouses)",
+  "slug": "lessors_nonresidential_buildings",
+  "coreJobStatement": "Provide leasable nonresidential building space to tenant organizations while maintaining regulatory-compliant safety infrastructure and preserving long-term asset value.",
+  "outputTypes": [],
+  "hierarchy": "",
+  "architectureDistance": 0,
+  "marketSize": "",
+  "l6Systems": [
+    {
+      "id": "L6a",
+      "name": "Property Acquisition",
+      "type": "Core",
+      "jobFamily": "Identify and capitalize commercial real estate assets for the portfolio",
+      "l5Units": []
+    },
+    {
+      "id": "L6b",
+      "name": "Asset Preparation",
+      "type": "Core",
+      "jobFamily": "Prepare building systems and access points for occupant use",
+      "l5Units": []
+    },
+    {
+      "id": "L6c",
+      "name": "Tenant Acquisition",
+      "type": "Core",
+      "jobFamily": "Market vacancies, qualify tenants, and execute lease agreements",
+      "l5Units": []
+    },
+    {
+      "id": "L6d",
+      "name": "Building Operations",
+      "type": "Core",
+      "jobFamily": "Operate and maintain physical building systems for continuous safe occupancy",
+      "l5Units": []
+    },
+    {
+      "id": "L6e",
+      "name": "Tenant Services",
+      "type": "Core",
+      "jobFamily": "Service active tenants, manage obligations, handle renewals and exits",
+      "l5Units": []
+    }
+  ],
+  "vnUnits": [
+    {
+      "level": "L5",
+      "id": "L6a.1",
+      "name": "Commercial Valuation Analytics",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Enterprise ARGUS/MSCI (~45%) · 2. CoStar Analytics (~25%) · 3. Custom Excel/DCF model (~30%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Analyst estimates, CRE industry surveys",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6a.2",
+      "name": "Due Diligence Management",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. SaaS VDR platforms (Datasite, Intralinks) (~55%) · 2. Legal matter management software (~25%) · 3. General document management (~20%)",
+          "sharePct": 0,
+          "confidence": "LOW",
+          "source": "Expert inference",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.1",
+      "name": "Building Mechanical Systems",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Integrated HVAC (central chiller/AHU plant) (~50%) · 2. VRF/split systems (~30%) · 3. District cooling/heating (~20%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "ASHRAE market data",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.2",
+      "name": "Electrical Infrastructure",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Standard LV distribution (~70%) · 2. Smart metering w/ sub-tenant allocation (~20%) · 3. Microgrid/on-site generation (~10%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Energy market surveys",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.1",
+      "name": "Lease Management Platform",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Enterprise IWMS (Yardi, MRI, RealPage) (~55%) · 2. Mid-market property management SaaS (~30%) · 3. Spreadsheet/legacy (~15% declining)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "PropTech market reports 2025",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.2",
+      "name": "CRE Listing & Marketing",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. CoStar/LoopNet (~50%) · 2. JLL/CBRE broker portal (~30%) · 3. Own website / direct (~20%)",
+          "sharePct": 0,
+          "confidence": "LOW",
+          "source": "Expert inference",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.1",
+      "name": "Building Management System (BMS)",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Integrated BMS platform (Siemens Desigo, JCI Metasys, Honeywell EBI) (~50%) · 2. Point solutions / standalone HVAC+lighting controls (~30%) · 3. Cloud-native BMS/BAS SaaS (~20% growing)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "PropTech / IBMS market data 2025",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.2",
+      "name": "Fire Detection & Alarm",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Addressable fire alarm systems (~55%) · 2. Conventional fire alarm panels (legacy, ~30%) · 3. Wireless fire detection systems (~15% growing)",
+          "sharePct": 0,
+          "confidence": "HIGH",
+          "source": "Multiple fire protection market reports 2025",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.3",
+      "name": "Emergency Exit Security ← Türwächter L5",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": true,
+      "alternatives": [
+        {
+          "name": "1. Mechanical door alarm guards, no connectivity (~40%) · 2. Wireless IoT exit alarm guards (~20%) ← Türwächter category · 3. Wired electronic exit control, alarm-panel-integrated (~25%) · 4. Integrated alarmed panic hardware (~15%)",
+          "sharePct": 0,
+          "confidence": "LOW",
+          "source": "No published sub-segment data; expert inference from access control market structure",
+          "isPrimary": true
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.4",
+      "name": "Access Control",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Mobile credential / cloud ACaaS (~40% growing) · 2. Smart card / proximity card (~35%) · 3. PIN keypad entry (~15%) · 4. Traditional mechanical key (~10% declining)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "MarketsandMarkets 2025; Grand View Research",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6e.1",
+      "name": "Tenant Experience Platform",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6e",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Dedicated PropTech tenancy apps (Equiem, HqO) (~35%) · 2. BMS-integrated dashboard (~30%) · 3. Email/portal-based self-service (~35%)",
+          "sharePct": 0,
+          "confidence": "LOW",
+          "source": "PropTech adoption surveys; >70% of institutional RE firms use such platforms [[SRC: IMARC/Coherent 2025]]",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H1.1",
+      "name": "Fire Safety Inspection Management",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6H1",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Integrated FM compliance platform (ServiceNow, Corrigo) (~40%) · 2. Standalone inspection software (~25%) · 3. Paper-based / spreadsheet logs (~35% declining)",
+          "sharePct": 0,
+          "confidence": "LOW",
+          "source": "Industry observation; compliance management market trends",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H2.1",
+      "name": "Property Accounting Platform",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6H2",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Yardi Voyager / MRI Financial (~60%) · 2. SAP/Oracle RE modules (~20%) · 3. General-purpose accounting (QuickBooks, Xero) (~20%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "CRE software market reports",
+          "isPrimary": false
+        }
+      ]
+    }
+  ],
+  "marquardtPosition": "",
+  "strategicPosition": null,
+  "sources": []
+}

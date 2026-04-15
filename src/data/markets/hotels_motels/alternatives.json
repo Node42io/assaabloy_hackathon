@@ -1,0 +1,32 @@
+{
+  "naicsCode": "721110",
+  "marketName": "Hotels (except Casino Hotels) and Motels",
+  "slug": "hotels_motels",
+  "alternatives": [
+    {
+      "name": "Basic mechanical door alarm (no monitoring) — 45% share",
+      "unspsc": "46171610",
+      "tradeoffs": "No remote visibility; staff must physically patrol to detect unreported propping; no audit log; battery-free"
+    },
+    {
+      "name": "Wired panic bar / crash bar alarm — 20% share",
+      "unspsc": "46171601",
+      "tradeoffs": "Requires mains wiring conduit to each door; high retrofit cost in existing buildings; no wireless aggregation"
+    },
+    {
+      "name": "Alarmed exit hardware with IoT monitoring (Türwächter) — 25% share",
+      "unspsc": "46171601",
+      "tradeoffs": "Proprietary wireless protocol (C6); surface-mount profile visible (C5); battery dependency (C4); ~730 EUR per door (C7)"
+    },
+    {
+      "name": "Security guard patrols",
+      "unspsc": "92121500",
+      "tradeoffs": "Labor-intensive; coverage gaps at shift changes; no event log; scales linearly with door count; high recurring cost"
+    },
+    {
+      "name": "No dedicated exit monitoring (do nothing) — 10% share",
+      "unspsc": "—",
+      "tradeoffs": "Zero installation burden; zero P1 burden; full compliance and brand audit risk; undetected misuse propagates"
+    }
+  ]
+}

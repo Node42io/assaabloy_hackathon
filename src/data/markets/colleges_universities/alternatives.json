@@ -1,0 +1,37 @@
+{
+  "naicsCode": "611310",
+  "marketName": "Colleges, Universities, and Professional Schools",
+  "slug": "colleges_universities",
+  "alternatives": [
+    {
+      "name": "GfS Türwächter (mechanical + IoT alarm guard) — spring-loaded handle guard with EasyWave radio",
+      "unspsc": "",
+      "tradeoffs": "EasyWave protocol lock-in — not interoperable with campus PSIM natively; 30 m wireless range requires repeaters in large buildings; battery replacement maintenance cycle; surface-mount visible protrusion on door handle"
+    },
+    {
+      "name": "Electronic Exit Control Systems (dormakaba SafeRoute, GEZE SecuLogic) — mains-powered electronic exit control",
+      "unspsc": "",
+      "tradeoffs": "Requires mains power at door — major construction in legacy buildings; high per-door installation cost; licensed contractor required; single point of failure if power-dependent alarm"
+    },
+    {
+      "name": "Basic mechanical door prop alarms (Detex EC-100, Seco-Larm) — contact alarm, no monitoring",
+      "unspsc": "",
+      "tradeoffs": "Local alarm only — no centralized monitoring; no Clery Act-compliant documentation; no battery status visibility; no IoT; security officer must be on-site to hear alarm"
+    },
+    {
+      "name": "Campus access control with alarmed exit hardware (ASSA ABLOY Aperio, Allegion Von Duprin panic hardware) — credential-based control with alarmed release",
+      "unspsc": "",
+      "tradeoffs": "Requires full IT provisioning and credential management; high system complexity; wired infrastructure; designed for access control, not standalone exit alarm monitoring; high integration cost for legacy buildings"
+    },
+    {
+      "name": "Campus police patrol + manual inspection rounds",
+      "unspsc": "",
+      "tradeoffs": "2-4 FTEs for full 24/7 campus coverage; no real-time detection; manual compliance logs — error-prone; patrol frequency gaps at night; does not meet continuous monitoring expectations of fire marshals or insurance underwriters"
+    },
+    {
+      "name": "Do nothing / accept non-compliance",
+      "unspsc": "",
+      "tradeoffs": "Zero cost. Clery Act violation risk; NFPA/state fire marshal fine exposure (>$10K/violation); insurance liability exposure; no monitoring; reputational risk at accreditation review"
+    }
+  ]
+}

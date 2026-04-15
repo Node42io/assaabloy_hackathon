@@ -1,0 +1,21 @@
+{
+  "slug": "hotels_motels",
+  "name": "Hotels (except Casino Hotels) and Motels",
+  "naicsCode": "721110",
+  "isReference": false,
+  "rank": 1,
+  "scores": {
+    "odi": 5.32,
+    "featureFit": 6.34,
+    "constraintCompatibility": 8,
+    "jobCoverage": 5,
+    "vnHierarchy": 10,
+    "incumbentVulnerability": 8.6,
+    "composite": 6.95
+  },
+  "recommendation": "investigate",
+  "rationale": "",
+  "entryStrategy": "Partner with hotel security integrators; target mid-market hotel groups via ASSA ABLOY hotel division channel",
+  "estimatedTimeToEntry": "3-6 months",
+  "estimatedInvestment": "€50000-100000"
+}

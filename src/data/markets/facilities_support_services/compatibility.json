@@ -1,0 +1,149 @@
+{
+  "naicsCode": "561210",
+  "marketName": "Facilities Support Services",
+  "slug": "facilities_support_services",
+  "operatingMedium": "",
+  "architectureDistance": 0,
+  "assessments": [
+    {
+      "constraintName": "Emergency Escape Non-Impedance",
+      "constraintType": "regulatory",
+      "threshold": "",
+      "verdict": "none",
+      "rationale": "FM operators mandate EN 179/EN 1125 compliance across client buildings. Türwächter is certified to both standards — single-motion release is the product's core design premise, not a barrier.",
+      "mitigation": "",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "Mechanical Alarm Independence",
+      "constraintType": "regulatory",
+      "threshold": "",
+      "verdict": "none",
+      "rationale": "Absolute constraint satisfied by the product's mechanical-primary architecture. FM operators require fail-safe compliance — this is a positive differentiator in this market.",
+      "mitigation": "",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "Wireless Range Limitation",
+      "constraintType": "physical",
+      "threshold": "",
+      "verdict": "mitigable",
+      "rationale": "FM portfolios include large-format buildings where distances can exceed 60m. Standard repeaters exist; gateway and repeater planning is routine FM deployment practice during onboarding.",
+      "mitigation": "Include wireless repeater placement in L6a site survey and L6b onboarding plan; Deploy RF gateway per building or per floor for large-footprint buildings; Prioritise standard-size buildings (≤60m span) in initial portfolio roll-out",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "IoT Battery Life Floor",
+      "constraintType": "operational",
+      "threshold": "",
+      "verdict": "mitigable",
+      "rationale": "FM operators run CMMS-based PPM schedules that absorb battery replacement as a scheduled task. High-traffic door batteries are predictable; proactive replacement eliminates alarm gaps and reduces emergency callout cost.",
+      "mitigation": "Integrate battery-level monitoring alerts into CMMS work order engine; Add battery replacement to PPM schedule for high-traffic door zones; Evaluate larger or rechargeable battery modules for high-activity sites",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "Retrofit-Only Surface Mount",
+      "constraintType": "physical",
+      "threshold": "",
+      "verdict": "none",
+      "rationale": "FM companies operate primarily in existing buildings. Surface-mount without drilling is an advantage for deployment speed and structural risk avoidance. Glass-frame mounting plate (Art. 991170) covers the most sensitive architectural variant.",
+      "mitigation": "",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "EasyWave Protocol Lock-In",
+      "constraintType": "operational",
+      "threshold": "",
+      "verdict": "mitigable",
+      "rationale": "FM operators standardise on BACnet/KNX (50% BMS share) or cloud-connected platforms. EasyWave has zero native interoperability. GfS BUS gateway bridges the gap but adds per-building hardware cost and vendor dependency. Most significant constraint for this market.",
+      "mitigation": "Procure GfS wireless BUS gateway per building during L6b onboarding; Configure gateway-to-BACnet/KNX/IP bridge as standard line item in IFM/HS service template; Negotiate bulk gateway pricing with GfS under portfolio framework agreement",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "IoT Price Premium",
+      "constraintType": "economic",
+      "threshold": "",
+      "verdict": "mitigable",
+      "rationale": "FM operators procure at scale (100+ units). Hardware cost is passed through to building owner clients under IFM/PFM contracts. Labour savings from automated compliance documentation and proactive battery alerts justify the premium. Volume pricing is standard in FM framework agreements.",
+      "mitigation": "Develop ROI model: automated compliance logs eliminate 2-4 inspection visits/year per building; Negotiate GfS volume framework agreement for portfolio deployments; Bundle IoT monitoring as a billable service line in IFM contracts",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "GDPR Monitoring Data Compliance",
+      "constraintType": "regulatory",
+      "threshold": "",
+      "verdict": "mitigable",
+      "rationale": "FM operators are data processors under GDPR for EU client buildings. Large FM companies have established compliance teams and standardised DPA templates. Data minimisation (timestamps, not identities) reduces DPIA risk. Standard contractual process.",
+      "mitigation": "Execute DPA with GfS IoT platform provider as part of FM master services agreement; Apply data minimisation: log door events and timestamps only, not occupant identities; Include GDPR compliance annex in standard client FM contract template",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "IP Protection Boundary",
+      "constraintType": "environmental",
+      "threshold": "",
+      "verdict": "mitigable",
+      "rationale": "Standard indoor variant covers the majority of FM client buildings (offices, healthcare, education). IP65 variant already available for wet-environment clients (food processing, breweries, pharma washdown) in portfolio. Procurement decision, not engineering barrier.",
+      "mitigation": "Segment FM client portfolio by environment type during L6a site survey; Specify IP65 variant (Art. 990000-IP) as standard for wet-environment client buildings; Flag food-processing and pharma clients as requiring product variant confirmation before deployment",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    },
+    {
+      "constraintName": "EN 13637 / EltVTR Electrical Compliance",
+      "constraintType": "regulatory",
+      "threshold": "",
+      "verdict": "mitigable",
+      "rationale": "FM companies deploy combined access control + emergency exit configurations in healthcare wards, server rooms, and secure areas. EN 13637 compliance is a system design responsibility at commissioning. FM integrators are trained on this standard; defined certification path exists.",
+      "mitigation": "Include EN 13637 compliance check in L6e safety inspection protocol for combined access + exit configurations; Brief FM system integrator subcontractors on fail-safe wiring requirements for combined systems; Include GfS integration guidance documentation in FM technical library",
+      "mitigationCost": "",
+      "mitigationTime": ""
+    }
+  ],
+  "result": {
+    "knockouts": 0,
+    "mitigable": 7,
+    "none": 3,
+    "marketStatus": "SURVIVING",
+    "totalMitigationCost": "",
+    "totalMitigationTime": ""
+  },
+  "sources": [
+    {
+      "id": "S01",
+      "label": "01_product_decomposition.md — Technology class, underlying mechanism, specifications, UNSPSC classification",
+      "prefixedId": "COMPAT-FACILITIES_SUPPORT_SERVICES-S01"
+    },
+    {
+      "id": "S02",
+      "label": "02_functional_promise.md — Functional promise, complements, BOM position, FP extension",
+      "prefixedId": "COMPAT-FACILITIES_SUPPORT_SERVICES-S02"
+    },
+    {
+      "id": "S03",
+      "label": "03_constraints.md — All 10 product constraints with types, thresholds, absolute classification",
+      "prefixedId": "COMPAT-FACILITIES_SUPPORT_SERVICES-S03"
+    },
+    {
+      "id": "S04",
+      "label": "05_market_discovery.md — Facilities Support Services (NAICS 561210): relevance rationale, JTBD, architecture distance 2, priority HIGH",
+      "prefixedId": "COMPAT-FACILITIES_SUPPORT_SERVICES-S04"
+    },
+    {
+      "id": "S05",
+      "label": "VN_facilities_support_services.md — Value network structure, L6e entry point, BMS alternative shares, Türwächter anchor at L4 Door Guardian Device",
+      "prefixedId": "COMPAT-FACILITIES_SUPPORT_SERVICES-S05"
+    },
+    {
+      "id": "S06",
+      "label": "--",
+      "prefixedId": "COMPAT-FACILITIES_SUPPORT_SERVICES-S06"
+    }
+  ]
+}

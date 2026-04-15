@@ -1,0 +1,978 @@
+{
+  "id": "FIT_continuing_care_retirement",
+  "title": "Feature-Market Fit: Continuing Care Retirement Communities (NAICS 623311)",
+  "type": "feature_market_fit",
+  "market_slug": "continuing_care_retirement",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Step 09 — Technology-Level Feature-Market Fit",
+      "content": "**Technology class:** Emergency Exit Security Devices with Remote Monitoring\n**Commodity FP:** Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm\n**Surviving market:** Continuing Care Retirement Communities (623311) — passes all constraint checks (no knockout)\n\nTop 10 market needs from JTBD (by importance):\n\n| ID | Statement (abbreviated) | Imp | Sat | Opp |\n|---|---|---|---|---|\n| N07 | Alarm reliability during power outage >8 h | 10 | 6 | 14 |\n| N21 | CMS Immediate Jeopardy citation risk from undocumented elopement | 10 | 5 | 15 |\n| N05 | Non-functional guard detection lag <4 h | 9 | 3 | 15 |\n| N18 | Documentation completeness at annual CMS survey | 9 | 3 | 15 |\n| N01 | Uncovered MC exits identified at CMS survey | 9 | 5 | 13 |\n| N10 | Alert latency overnight/weekend | 9 | 4 | 14 |\n| N13 | Undetected battery depletion → monitoring gap | 8 | 3 | 13 |\n| N17 | CMS compliance documentation generation effort | 8 | 3 | 13 |\n| N06 | Dashboard shows \"armed\" while guard physically disabled | 8 | 4 | 12 |\n| N22 | Staff awareness lag >30 s in MC after activation | 8 | 4 | 12 |\n\n---\n\n### 09a — Per-Feature Kano + ODI Scoring\n\n#### Feature 1: Mechanical Handle Locking\n\n| Field | Value |\n|---|---|\n| **Kano** | `must_be` |\n| **Rationale** | Physical barrier securing the door handle is the core commodity FP and the primary protection against resident elopement. Every product in this category provides it. Absence causes immediate regulatory non-compliance and safety failure. No operator in CCRC would consider a device that did not physically secure the handle. |\n\n| Dimension | Score | Driver reasoning |\n|---|---|---|\n| Time | 3 | Does not reduce cycle time; prevents access events rather than speeding up a task |\n| Cost | 5 | Reduces costs of unauthorized egress incidents (legal, remediation) indirectly |\n| Safety | 9 | Primary defense against MC resident elopement — directly prevents life-threatening exits |\n| Reliability | 8 | Mechanical mechanism: no power dependency, minimal failure modes, verifiable state |\n| Skill | 6 | Binary operation; requires no expertise from staff or residents |\n| Stress | 7 | Knowing the door is physically secured reduces constant staff anxiety in MC units |\n| Pain | 5 | Eliminates manual door-watching but does not remove monitoring or response burden |\n| Confidence | 8 | Physical lock provides high-confidence assurance vs. software-only alternatives |\n| Delight | 3 | Expected baseline; no surprise or enthusiasm |\n| **Overall fit** | **6.00** | Primary drivers: Safety (9), Reliability (8), Confidence (8) |\n\n---\n\n#### Feature 2: Audible Alarm Trigger\n\n| Field | Value |\n|---|---|\n| **Kano** | `must_be` |\n| **Rationale** | Audible alarm on activation is explicitly part of the commodity FP. In CCRC, the alarm is the primary immediate notification mechanism for night-shift staff stationed away from the door. Absence causes immediate dissatisfaction; presence is expected and taken for granted by CCRC procurement teams. |\n\n| Dimension | Score | Driver reasoning |\n|---|---|---|\n| Time | 6 | Immediate audible alert to nearest staff vs. delayed discovery during patrol |\n| Cost | 5 | Reduces cost of undetected elopement incidents vs. silent door-opening |\n| Safety | 9 | 95 dB alarm activates on MC resident exit attempt; N07 (power-fail reliability) and N22 (awareness lag) directly addressed |\n| Reliability | 7 | Piezoelectric mechanism; power-independent; no battery required for alarm itself |\n| Skill | 5 | No skill required to respond to an alarm; but managing alarm fatigue adds cognitive complexity |\n| Stress | 6 | Immediate staff awareness reduces dread of undiscovered breach; alarm fatigue is a real countervailing concern |\n| Pain | 7 | Eliminates the pain of discovering a propped-open door or missing resident 45 min later |\n| Confidence | 7 | Staff trust that any unauthorized activation will be immediately audible |\n| Delight | 4 | Valued but expected; no surprise element |\n| **Overall fit** | **6.22** | Primary drivers: Safety (9), Reliability (7), Pain (7), Confidence (7) |\n\n---\n\n#### Feature 3: Single-Motion Emergency Release\n\n| Field | Value |\n|---|---|\n| **Kano** | `must_be` |\n| **Rationale** | EN 179 / EN 1125 and NFPA 101 mandate single-motion escape as a non-negotiable regulatory requirement for emergency exits. In CCRC, staff-assisted evacuation of mobility-limited residents depends entirely on this. Any product that adds friction to the escape motion fails certification. Presence is taken completely for granted. |\n\n| Dimension | Score | Driver reasoning |\n|---|---|---|\n| Time | 4 | Compliance pass/fail — does not speed up evacuation beyond baseline |\n| Cost | 3 | Regulatory compliance cost (certification) rather than operational cost reduction |\n| Safety | 10 | In CCRC fire emergency with mobility-impaired residents, single-motion door release is life-critical; failure is immediately fatal |\n| Reliability | 7 | Mechanically certified; stable once installed and inspected |\n| Skill | 8 | No learning required — operates for panicking staff, visitors, anyone |\n| Stress | 7 | Staff are confident exit routes will work during fire drill and real emergencies |\n| Pain | 4 | Compliance baseline; does not eliminate a discretionary pain point |\n| Confidence | 8 | CMS Life Safety Code compliance directly supported; N18/N21 partially addressed |\n| Delight | 2 | Purely regulatory; zero surprise |\n| **Overall fit** | **5.89** | Primary drivers: Safety (10), Confidence (8), Skill (8) |\n\n---\n\n#### Feature 4: Key Override Bypass\n\n| Field | Value |\n|---|---|\n| **Kano** | `one_dimensional` |\n| **Rationale** | More secure, more convenient key override capability directly reduces false alarm events in CCRC. Without override, every authorized staff door passage in a secured MC wing triggers a full alarm, causing resident distress, staff fatigue, and response burden. The more staff who have access to functioning keys with low mechanical friction, the fewer disruptive alarm events per shift. Scales linearly with quality of key management. |\n\n| Dimension | Score | Driver reasoning |\n|---|---|---|\n| Time | 6 | Eliminates time cost of false alarm responses during routine authorized access |\n| Cost | 4 | Reduces overhead of alarm response labor and CCRC resident disturbance |\n| Safety | 5 | Reduces false-alarm desensitization risk in MC; too many false alarms erode staff response urgency |\n| Reliability | 5 | Keys can be lost or unavailable; reliability depends on provisioning discipline |\n| Skill | 7 | Requires no technical skill; key operation is universal |\n| Stress | 8 | Night-shift CNAs are highly stressed by alarm events; silent key access on authorized routes directly reduces their anxiety burden |\n| Pain | 7 | Eliminates the pain of triggering alarms (and agitating MC residents) during routine care rounds through secured exits |\n| Confidence | 6 | Staff can operate within secured perimeter confidently without triggering emergency response |\n| Delight | 5 | Appreciated practical feature, especially by frequent users (CNAs, housekeeping) |\n| **Overall fit** | **5.89** | Primary drivers: Stress (8), Pain (7), Skill (7) |\n\n---\n\n#### Feature 5: Battery-Powered Operation\n\n| Field | Value |\n|---|---|\n| **Kano** | `attractive` |\n| **Rationale** | Battery-powered operation exceeds the commodity FP (which does not specify power source) and is a genuine differentiator vs. electromagnetic delayed-egress locks, the dominant wired alternative in CCRC. In an occupied care facility, eliminating mains-wired installation is a significant operational advantage — no disruption to resident areas, no licensed electrician, no ceiling/wall penetrations in infection-controlled zones. CCRC operators do not expect this from exit security hardware. |\n\n| Dimension | Score | Driver reasoning |\n|---|---|---|\n| Time | 7 | Installation hours per door vs. days for wired alternatives; N03 directly addressed |\n| Cost | 8 | Zero electrician cost at installation (~$150–250/door avoided); no conduit or panel work in existing buildings |\n| Safety | 5 | Positive (power-independent) but offset by battery depletion risk (N13 is underserved at opp=13) |\n| Reliability | 5 | Battery chemistry and high door-event frequency create depletion risk in busy MC corridors; offset against mechanical reliability advantage |\n| Skill | 8 | Maintenance staff install without electrical certification; battery swap is tool-free |\n| Stress | 6 | Simplifies installation project anxiety; adds ongoing battery management stress |\n| Pain | 7 | Eliminates the major pain of disruptive electrical work in occupied CCRC wings; N03 addressed |\n| Confidence | 5 | Positive at installation; moderate concern around battery life monitoring (N06, N13) |\n| Delight | 7 | Genuinely surprising to operators accustomed to wired-only alternatives; \"retrofit in a weekend\" is a valued differentiator |\n| **Overall fit** | **6.44** | Primary drivers: Cost (8), Skill (8), Pain (7), Delight (7) |\n\n---\n\n#### Feature 6: Pre-Alarm Warning\n\n| Field | Value |\n|---|---|\n| **Kano** | `one_dimensional` |\n| **Rationale** | Pre-alarm reduces false-alarm fatigue in CCRC's IL, AL, and SNF zones where accidental contact with exit handles occurs regularly during care rounds. More sensitive calibration → fewer false positives. However, value is nuanced: in Memory Care units the pre-alarm could delay the full 95 dB activation if a resident makes initial light contact before a committed elopement attempt, meaning the MC context moderates the benefit. Overall the feature adds positive value but at diminishing returns in the highest-urgency segments. |\n\n| Dimension | Score | Driver reasoning |\n|---|---|---|\n| Time | 5 | Reduces time wasted on false alarm responses in IL/AL/SNF zones |\n| Cost | 4 | Marginal reduction in false-alarm response labor costs |\n| Safety | 4 | Neutral to slightly negative in MC (delayed definitive alarm); positive in IL/AL/SNF (alarm fatigue prevention preserves staff response urgency) |\n| Reliability | 5 | Adds a calibration variable (sensitivity threshold) that can drift or be set incorrectly; N04 is underserved at opp=9 |\n| Skill | 4 | Requires calibration expertise to set threshold correctly per zone type; adds commissioning complexity |\n| Stress | 6 | Reduces alarm-fatigue stress in lower-risk zones; adds configuration anxiety for maintenance staff |\n| Pain | 5 | Reduces the pain of responding to false alarms; adds the pain of configuring and maintaining thresholds |\n| Confidence | 5 | Mixed: reduces false-positive noise, but may mask early elopement contact events |\n| Delight | 4 | Appreciated in non-MC contexts; neutral in MC |\n| **Overall fit** | **4.67** | Below-average overall; primary tension: valuable in IL/AL/SNF, counterproductive in MC |\n\n---\n\n### 09b — Cross-Market Validation Notes\n\n| Check | Finding |\n|---|---|\n| Safety ≥7 but Confidence ≤3 | No instances — Safety and Confidence co-move correctly |\n| Skill ≥7 but Stress ≤3 | No instances — Skill and Stress co-move correctly |\n| Overall_fit arithmetic | Verified deterministically in table above |\n| Feature names compliance | All names are spec-visible noun phrases, 2–6 words, no brand or outcome claims |\n| Cross-feature consistency | must_be features (1-3) correctly score low on Delight; attractive feature (5) correctly scores higher on Delight |\n\n---"
+    },
+    {
+      "title": "Step 10 — Product-Related Needs (Burleson Product Jobs)",
+      "content": "Needs that exist **because of this technology's operating principle** — they would disappear if the emergency exit were secured by a fundamentally different mechanism (e.g., LoRaWAN-connected electromagnetic delayed-egress lock, BLE mesh-enabled panic bar).\n\n### Litmus test applied per need\n\n| # | Statement | Source constraint | Litmus | Affected markets | Imp | Sat |\n|---|---|---|---|---|---|---|\n| PRN-01 | Minimize the likelihood of IoT module battery depletion going undetected on an emergency exit door in a low-traffic CCRC wing, creating a wireless monitoring gap during overnight staffing periods | IoT Battery Life Floor (C4) | YES — EM delayed-egress lock with wired power does not have this need | [623311] | 8 | 3 |\n| PRN-02 | Minimize the likelihood of wireless alarm event transmission failure from emergency exit doors in reinforced concrete corridors or basement care wings that exceed the 30 m integrated transmitter range | Wireless Range Limitation (C3) | YES — a wired or IP-connected door sensor does not have a radio range threshold | [623311] | 7 | 4 |\n| PRN-03 | Minimize the time to integrate EasyWave-protocol door guardian event streams into an existing BACnet or KNX building management platform already deployed across a continuing care campus | EasyWave Protocol Lock-In (C6) | YES — an open-protocol wireless sensor (Zigbee, BLE, LoRaWAN) does not require a proprietary gateway to reach BACnet/KNX | [623311] | 6 | 3 |\n| PRN-04 | Minimize the likelihood of unauthorized guard removal or mechanism defeat by a cognitively impaired resident who reaches and manipulates the exposed surface-mounted guard housing on the door handle | Retrofit-Only Surface Mount (C5) | YES — a flush-integrated exit control eliminates exposed tamper surface; a wall-mounted keypad exit control has no door-handle protrusion | [623311] | 7 | 4 |\n| PRN-05 | Minimize the time to discover that a wireless receiver unit serving multiple door guardians on a single care level has lost connectivity, leaving all exits on that level without event transmission while mechanical alarms remain functional | Wireless Range Limitation (C3) + EasyWave Protocol Lock-In (C6) | YES — a direct IP-addressable door sensor reports its own loss of connectivity; the EasyWave hub-and-spoke topology creates this blind spot | [623311] | 8 | 3 |\n\n**Completeness check:** C4, C3, C6, C5 each generate at least one need. C1, C2 (both satisfied by product design), C7, C8, C9, C10 do not manifest distinctively in CCRC beyond the general market context.\n\n---"
+    },
+    {
+      "title": "Step 11 — Vendor Feature-Market Fit (GfS Türwächter)",
+      "content": "Vendor: GfS Rettungswegtechnik (Assa Abloy Group)\nVendor product: Exit Control 179/1125 Pre-alarm + Radio (Art. 990140 / 994100 + radio)\nMarket: Continuing Care Retirement Communities (623311)\n\n### Scoring scale: 0–10 (10 = best known real-world implementation in this market)\n\n| Feature | Kano | Vendor score | Best incumbent | Incumbent score | Advantage | Rationale |\n|---|---|---|---|---|---|---|\n| 868 MHz EasyWave Radio Transmission | `attractive` | 6 | Inovonics 900-series wireless (multi-hop 900 MHz mesh, 300+ ft range) | 8 | **inferior** | GfS achieves ~30 m per hop with fixed star topology and no native BMS protocols. Inovonics 900-series achieves multi-hop mesh coverage, supervised reporting (bi-directional), and open integration via IP bridge. For a multi-wing CCRC campus, mesh topology and supervised check-ins are significantly more capable than one-way event broadcast. |\n| Wireless BUS Interface Integration | `attractive` | 5 | Stanley Healthcare Platform (Emerald platform with nurse-call + EHR integration) | 8 | **inferior** | GfS Wireless BUS Interface operates within GfS ecosystem only. No native interface to CCRC nurse-call systems, electronic health records, or resident safety platforms. Stanley Healthcare integrates exit events directly with nurse-call workflow and incident documentation. The gap is particularly felt against N17 (CMS documentation) and N12 (single-dashboard). |\n| Dual-Standard Variant Range (EN 179 + EN 1125) | `must_be` | 9 | dormakaba SafeRoute (EN 179 + EN 1125, full electronic exit control) | 9 | **parity** | Both GfS and dormakaba offer certified variants for both lever-handle (EN 179) and panic-bar (EN 1125) configurations. GfS advantage: purely mechanical primary alarm. dormakaba advantage: deeper electronic locking integration. Net: parity on the dual-standard dimension itself. |\n| IP45 Outdoor Variant | `indifferent` | 5 | Inovonics EN7440 (IP55 wireless door monitor) | 6 | **parity** | Most CCRC emergency exits are interior or under covered canopy — IP45 is rarely required. The few outdoor/loading-dock exits may benefit, but this is not a purchasing criterion for CCRC. Scoring reflects marginal differentiation on an indifferent feature. |\n| Glass-Frame Mounting Plate | `attractive` | 7 | No comparable accessory — competitors require custom fabrication for glass-frame doors | 4 | **superior** | GfS offers a dedicated mounting plate (Art. 991170) tested and certified with the Exit Control family. Modern CCRC common areas (lobby, dining, therapy rooms) frequently use glass-frame doors. Competitors require either modification of the door frame or custom brackets without certified integration. This is a genuine GfS advantage for retrofit coverage completeness. |\n\n### Advantage distribution: 2 inferior / 1 parity / 1 parity (indifferent, discounted) / 1 superior\n\n**Key finding:** GfS holds a strong advantage on retrofit flexibility (Glass-Frame Mounting Plate, Battery-Powered Operation) and dual-standard coverage. It is meaningfully inferior on wireless range architecture and platform integration depth — the two dimensions most critical to CCRC portfolio operators with multi-wing campuses and nurse-call system requirements.\n\n---"
+    },
+    {
+      "title": "Summary: Feature-Market Fit Profile",
+      "content": "| Dimension | Assessment |\n|---|---|\n| **Strongest fit** | Safety (mechanical guarantee), Retrofit speed, Dual-standard coverage |\n| **Weakest fit** | Wireless range architecture (single-hop), Platform integration (EasyWave silo), Battery monitoring depth |\n| **Primary ODI gap served** | N07 (power-fail alarm — fully addressed), N03 (installation time — strongly addressed) |\n| **Primary ODI gap not served** | N05 (non-functional guard detection — technology gap), N17/N18 (CMS documentation — no native logging) |\n| **Must-be features** | All present and certified (Handle Locking, Alarm Trigger, Single-Motion Release) |\n| **Attractive feature** | Battery-Powered Operation — genuine delight vs. wired alternatives |\n| **Vendor differentiator** | Glass-Frame Mounting Plate (superior vs. incumbents) |\n| **Vendor weakness** | Wireless BUS integration depth (inferior vs. Stanley Healthcare in CCRC workflow) |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"step\": \"09_10_11_feature_market_fit\",\n  \"market_name\": \"Continuing Care Retirement Communities\",\n  \"naics_code\": \"623311\",\n  \"technology_class\": \"Emergency Exit Security Devices with Remote Monitoring\",\n  \"commodity_functional_promise\": \"Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm\",\n  \"vendor_name\": \"GfS Rettungswegtechnik (Assa Abloy Group)\",\n  \"vendor_product\": \"Exit Control 179/1125 Pre-alarm + Radio\",\n\n  \"tech_feature_fit\": [\n    {\n      \"feature_name\": \"Mechanical Handle Locking\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"kano_class\": \"must_be\",\n      \"fit_score_time\": 3,\n      \"fit_score_cost\": 5,\n      \"fit_score_safety\": 9,\n      \"fit_score_reliability\": 8,\n      \"fit_score_skill\": 6,\n      \"fit_score_stress\": 7,\n      \"fit_score_pain\": 5,\n      \"fit_score_confidence\": 8,\n      \"fit_score_delight\": 3,\n      \"overall_fit\": 6.00,\n      \"feature_scope\": \"technology\",\n      \"rationale\": \"Commodity FP baseline (must_be). Primary defense against MC resident elopement. Mechanical operation eliminates power-dependency failure mode. Primary drivers: Safety (9) — direct elopement prevention; Reliability (8) — mechanical mechanism with no failure modes under loss of power; Confidence (8) — physical state is verifiable.\"\n    },\n    {\n      \"feature_name\": \"Audible Alarm Trigger\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"kano_class\": \"must_be\",\n      \"fit_score_time\": 6,\n      \"fit_score_cost\": 5,\n      \"fit_score_safety\": 9,\n      \"fit_score_reliability\": 7,\n      \"fit_score_skill\": 5,\n      \"fit_score_stress\": 6,\n      \"fit_score_pain\": 7,\n      \"fit_score_confidence\": 7,\n      \"fit_score_delight\": 4,\n      \"overall_fit\": 6.22,\n      \"feature_scope\": \"technology\",\n      \"rationale\": \"Commodity FP baseline (must_be). Immediate audible alert is the primary near-field notification mechanism for on-unit staff. Power-independent piezoelectric horn directly addresses N07 (power-fail alarm reliability, opp=14). Primary drivers: Safety (9); Pain (7) — eliminates post-hoc discovery of elopement; Confidence (7) — staff trust any actuation will be immediately audible.\"\n    },\n    {\n      \"feature_name\": \"Single-Motion Emergency Release\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"kano_class\": \"must_be\",\n      \"fit_score_time\": 4,\n      \"fit_score_cost\": 3,\n      \"fit_score_safety\": 10,\n      \"fit_score_reliability\": 7,\n      \"fit_score_skill\": 8,\n      \"fit_score_stress\": 7,\n      \"fit_score_pain\": 4,\n      \"fit_score_confidence\": 8,\n      \"fit_score_delight\": 2,\n      \"overall_fit\": 5.89,\n      \"feature_scope\": \"technology\",\n      \"rationale\": \"EN 179/EN 1125 and NFPA 101 mandate single-motion escape — non-negotiable regulatory baseline. In CCRC with mobility-limited residents, staff-assisted evacuation depends entirely on this. Safety (10): failure is immediately life-threatening; Skill (8): no prior knowledge required from staff, residents, or visitors; Confidence (8): CMS Life Safety Code compliance directly supported.\"\n    },\n    {\n      \"feature_name\": \"Key Override Bypass\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"kano_class\": \"one_dimensional\",\n      \"fit_score_time\": 6,\n      \"fit_score_cost\": 4,\n      \"fit_score_safety\": 5,\n      \"fit_score_reliability\": 5,\n      \"fit_score_skill\": 7,\n      \"fit_score_stress\": 8,\n      \"fit_score_pain\": 7,\n      \"fit_score_confidence\": 6,\n      \"fit_score_delight\": 5,\n      \"overall_fit\": 5.89,\n      \"feature_scope\": \"technology\",\n      \"rationale\": \"Scales linearly: more keys distributed to staff = fewer false alarms during authorized care rounds in secured MC corridors. Primary drivers: Stress (8) — night-shift CNAs are highly anxious about triggering alarms during routine care; Pain (7) — eliminates the pain of agitating MC residents with false 95 dB alarms during authorized door use.\"\n    },\n    {\n      \"feature_name\": \"Battery-Powered Operation\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"kano_class\": \"attractive\",\n      \"fit_score_time\": 7,\n      \"fit_score_cost\": 8,\n      \"fit_score_safety\": 5,\n      \"fit_score_reliability\": 5,\n      \"fit_score_skill\": 8,\n      \"fit_score_stress\": 6,\n      \"fit_score_pain\": 7,\n      \"fit_score_confidence\": 5,\n      \"fit_score_delight\": 7,\n      \"overall_fit\": 6.44,\n      \"feature_scope\": \"technology\",\n      \"rationale\": \"Exceeds commodity FP — genuinely attractive vs. wired alternatives dominant in CCRC (electromagnetic delayed-egress locks require licensed electrician). Retrofit in occupied care wings without electrical work is highly valued. Cost (8): eliminates ~$150–250/door electrician cost; Skill (8): maintenance-level install without electrical certification; Delight (7): operators do not expect mains-free installation from exit security hardware. Offset: battery depletion risk (N13 opp=13) moderates Reliability and Confidence scores.\"\n    },\n    {\n      \"feature_name\": \"Pre-Alarm Warning\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"kano_class\": \"one_dimensional\",\n      \"fit_score_time\": 5,\n      \"fit_score_cost\": 4,\n      \"fit_score_safety\": 4,\n      \"fit_score_reliability\": 5,\n      \"fit_score_skill\": 4,\n      \"fit_score_stress\": 6,\n      \"fit_score_pain\": 5,\n      \"fit_score_confidence\": 5,\n      \"fit_score_delight\": 4,\n      \"overall_fit\": 4.67,\n      \"feature_scope\": \"technology\",\n      \"rationale\": \"Below-average fit. Valuable in IL/AL/SNF zones (reduces alarm fatigue from accidental handle contact during care rounds). Counterproductive in Memory Care: initial light contact from elopement attempt may trigger pre-alarm delay before full 95 dB activation, lengthening staff response window. Safety score (4) reflects this net-neutral to negative effect. Adds calibration complexity (N04 opp=9). Moderate value in lower-urgency segments prevents indifferent classification.\"\n    }\n  ],\n\n  \"product_related_needs\": [\n    {\n      \"statement\": \"Minimize the likelihood of IoT module battery depletion going undetected on an emergency exit door in a low-traffic CCRC wing, creating a wireless monitoring gap during overnight staffing periods\",\n      \"source_constraint\": \"IoT Battery Life Floor\",\n      \"affected_markets\": [\"Continuing Care Retirement Communities\"],\n      \"importance\": 8.0,\n      \"satisfaction_current\": 3.0\n    },\n    {\n      \"statement\": \"Minimize the likelihood of wireless alarm event transmission failure from emergency exit doors in reinforced concrete corridors or basement care wings that exceed the 30 m range of the integrated EasyWave transmitter\",\n      \"source_constraint\": \"Wireless Range Limitation\",\n      \"affected_markets\": [\"Continuing Care Retirement Communities\"],\n      \"importance\": 7.0,\n      \"satisfaction_current\": 4.0\n    },\n    {\n      \"statement\": \"Minimize the time to integrate EasyWave-protocol door guardian event streams into an existing BACnet or KNX building management platform already deployed across a continuing care campus\",\n      \"source_constraint\": \"EasyWave Protocol Lock-In\",\n      \"affected_markets\": [\"Continuing Care Retirement Communities\"],\n      \"importance\": 6.0,\n      \"satisfaction_current\": 3.0\n    },\n    {\n      \"statement\": \"Minimize the likelihood of unauthorized guard removal or mechanism defeat by a cognitively impaired resident who reaches and manipulates the exposed surface-mounted guard housing on the door handle\",\n      \"source_constraint\": \"Retrofit-Only Surface Mount\",\n      \"affected_markets\": [\"Continuing Care Retirement Communities\"],\n      \"importance\": 7.0,\n      \"satisfaction_current\": 4.0\n    },\n    {\n      \"statement\": \"Minimize the time to discover that a wireless receiver unit serving multiple door guardians on a single care level has lost connectivity, leaving all exits on that level without event transmission while mechanical alarms remain functional\",\n      \"source_constraint\": \"Wireless Range Limitation\",\n      \"affected_markets\": [\"Continuing Care Retirement Communities\"],\n      \"importance\": 8.0,\n      \"satisfaction_current\": 3.0\n    }\n  ],\n\n  \"vendor_feature_comparisons\": [\n    {\n      \"feature_name\": \"868 MHz EasyWave Radio Transmission\",\n      \"feature_description\": \"Transmit guard-state and alarm events wirelessly to centralized receivers using proprietary 868.3 MHz single-hop star topology\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"kano_class\": \"attractive\",\n      \"vendor_score\": 6,\n      \"best_incumbent_score\": 8,\n      \"best_incumbent_technology\": \"Inovonics 900-series wireless door monitoring (multi-hop mesh, supervised bidirectional, 900 MHz)\",\n      \"advantage\": \"inferior\",\n      \"rationale\": \"GfS achieves ~30 m per transmitter hop, one-way event broadcast, proprietary EasyWave protocol with no native BMS integration. Inovonics 900-series provides multi-hop mesh coverage, bidirectional supervised check-ins (automatic failure detection), and IP bridge to building systems. For multi-wing CCRC campuses with reinforced concrete construction, mesh topology and supervised reporting directly address N05 (non-functional detection lag opp=15) and N11 (signal reliability across building zones opp=10) where GfS does not.\"\n    },\n    {\n      \"feature_name\": \"Wireless BUS Interface Integration\",\n      \"feature_description\": \"Aggregate door guardian status events from multiple units into a single centralized monitoring point via proprietary GfS Wireless BUS Interface hardware\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"kano_class\": \"attractive\",\n      \"vendor_score\": 5,\n      \"best_incumbent_score\": 8,\n      \"best_incumbent_technology\": \"Stanley Healthcare Emerald platform (nurse-call + exit event + EHR documentation integration)\",\n      \"advantage\": \"inferior\",\n      \"rationale\": \"GfS Wireless BUS Interface provides centralized event collection within GfS ecosystem only — potential-free relay contact outputs, no native CCRC workflow integration. Stanley Healthcare Emerald routes exit events directly to nurse-call workflow, generates CMS-formatted incident logs, and interfaces with electronic health records for documentation. Gap is critical against N17 (CMS documentation generation opp=13), N18 (documentation completeness opp=15), and N12 (single dashboard across care levels opp=9).\"\n    },\n    {\n      \"feature_name\": \"Dual-Standard Variant Range\",\n      \"feature_description\": \"Provide certified product variants covering both DIN EN 179 lever-handle and DIN EN 1125 panic-bar emergency exit configurations from a single product family\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"kano_class\": \"must_be\",\n      \"vendor_score\": 9,\n      \"best_incumbent_score\": 9,\n      \"best_incumbent_technology\": \"dormakaba SafeRoute (EN 179 + EN 1125, electronic exit control)\",\n      \"advantage\": \"parity\",\n      \"rationale\": \"Both GfS and dormakaba offer certified variants for lever-handle and panic-bar configurations, enabling full campus coverage regardless of door type mix. GfS advantage: purely mechanical primary alarm means no battery backup requirement for escape function. dormakaba advantage: deeper electronic integration with access control. Net parity on the dual-standard dimension itself; decision factors lie elsewhere.\"\n    },\n    {\n      \"feature_name\": \"IP45 Outdoor Variant\",\n      \"feature_description\": \"Weatherproofed emergency exit alarm guard (IP45) for outdoor-exposed and semi-exposed door installations\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"kano_class\": \"indifferent\",\n      \"vendor_score\": 5,\n      \"best_incumbent_score\": 6,\n      \"best_incumbent_technology\": \"Inovonics EN7440 wireless door monitor (IP55)\",\n      \"advantage\": \"parity\",\n      \"rationale\": \"Indifferent in CCRC context — the vast majority of emergency exits in continuing care facilities are interior or covered. IP45 is relevant for a small subset of loading-dock or covered-canopy exits. Feature does not appear in top-10 market needs. Parity classification reflects narrow score gap on an irrelevant dimension.\"\n    },\n    {\n      \"feature_name\": \"Glass-Frame Mounting Plate\",\n      \"feature_description\": \"Certified mounting accessory enabling surface installation of alarm guard on glass-framed emergency exit doors without structural modification\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"kano_class\": \"attractive\",\n      \"vendor_score\": 7,\n      \"best_incumbent_score\": 4,\n      \"best_incumbent_technology\": \"Competitor custom fabrication (no certified off-the-shelf equivalent for most alternatives)\",\n      \"advantage\": \"superior\",\n      \"rationale\": \"Modern CCRC common areas — lobby, dining rooms, therapy suites, memory care activity rooms — frequently use glass-frame doors for transparency and aesthetic. GfS provides a purpose-engineered, tested, and certified mounting plate (Art. 991170) that enables coverage on these doors without frame modification. Direct competitors require custom steel brackets or door-frame rework, introducing installation cost, lead time, and no certified performance guarantee. This advantage directly supports N01 (complete MC coverage) by closing a coverage gap that competitors leave open.\"\n    }\n  ]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "ID",
+        "Statement (abbreviated)",
+        "Imp",
+        "Sat",
+        "Opp"
+      ],
+      "rows": [
+        {
+          "ID": "N07",
+          "Statement (abbreviated)": "Alarm reliability during power outage >8 h",
+          "Imp": "10",
+          "Sat": "6",
+          "Opp": "14"
+        },
+        {
+          "ID": "N21",
+          "Statement (abbreviated)": "CMS Immediate Jeopardy citation risk from undocumented elopement",
+          "Imp": "10",
+          "Sat": "5",
+          "Opp": "15"
+        },
+        {
+          "ID": "N05",
+          "Statement (abbreviated)": "Non-functional guard detection lag <4 h",
+          "Imp": "9",
+          "Sat": "3",
+          "Opp": "15"
+        },
+        {
+          "ID": "N18",
+          "Statement (abbreviated)": "Documentation completeness at annual CMS survey",
+          "Imp": "9",
+          "Sat": "3",
+          "Opp": "15"
+        },
+        {
+          "ID": "N01",
+          "Statement (abbreviated)": "Uncovered MC exits identified at CMS survey",
+          "Imp": "9",
+          "Sat": "5",
+          "Opp": "13"
+        },
+        {
+          "ID": "N10",
+          "Statement (abbreviated)": "Alert latency overnight/weekend",
+          "Imp": "9",
+          "Sat": "4",
+          "Opp": "14"
+        },
+        {
+          "ID": "N13",
+          "Statement (abbreviated)": "Undetected battery depletion → monitoring gap",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "13"
+        },
+        {
+          "ID": "N17",
+          "Statement (abbreviated)": "CMS compliance documentation generation effort",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "13"
+        },
+        {
+          "ID": "N06",
+          "Statement (abbreviated)": "Dashboard shows \"armed\" while guard physically disabled",
+          "Imp": "8",
+          "Sat": "4",
+          "Opp": "12"
+        },
+        {
+          "ID": "N22",
+          "Statement (abbreviated)": "Staff awareness lag >30 s in MC after activation",
+          "Imp": "8",
+          "Sat": "4",
+          "Opp": "12"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Kano**",
+          "Value": "`must_be`"
+        },
+        {
+          "Field": "**Rationale**",
+          "Value": "Physical barrier securing the door handle is the core commodity FP and the primary protection against resident elopement. Every product in this category provides it. Absence causes immediate regulatory non-compliance and safety failure. No operator in CCRC would consider a device that did not physically secure the handle."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Dimension",
+        "Score",
+        "Driver reasoning"
+      ],
+      "rows": [
+        {
+          "Dimension": "Time",
+          "Score": "3",
+          "Driver reasoning": "Does not reduce cycle time; prevents access events rather than speeding up a task"
+        },
+        {
+          "Dimension": "Cost",
+          "Score": "5",
+          "Driver reasoning": "Reduces costs of unauthorized egress incidents (legal, remediation) indirectly"
+        },
+        {
+          "Dimension": "Safety",
+          "Score": "9",
+          "Driver reasoning": "Primary defense against MC resident elopement — directly prevents life-threatening exits"
+        },
+        {
+          "Dimension": "Reliability",
+          "Score": "8",
+          "Driver reasoning": "Mechanical mechanism: no power dependency, minimal failure modes, verifiable state"
+        },
+        {
+          "Dimension": "Skill",
+          "Score": "6",
+          "Driver reasoning": "Binary operation; requires no expertise from staff or residents"
+        },
+        {
+          "Dimension": "Stress",
+          "Score": "7",
+          "Driver reasoning": "Knowing the door is physically secured reduces constant staff anxiety in MC units"
+        },
+        {
+          "Dimension": "Pain",
+          "Score": "5",
+          "Driver reasoning": "Eliminates manual door-watching but does not remove monitoring or response burden"
+        },
+        {
+          "Dimension": "Confidence",
+          "Score": "8",
+          "Driver reasoning": "Physical lock provides high-confidence assurance vs. software-only alternatives"
+        },
+        {
+          "Dimension": "Delight",
+          "Score": "3",
+          "Driver reasoning": "Expected baseline; no surprise or enthusiasm"
+        },
+        {
+          "Dimension": "**Overall fit**",
+          "Score": "**6.00**",
+          "Driver reasoning": "Primary drivers: Safety (9), Reliability (8), Confidence (8)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Kano**",
+          "Value": "`must_be`"
+        },
+        {
+          "Field": "**Rationale**",
+          "Value": "Audible alarm on activation is explicitly part of the commodity FP. In CCRC, the alarm is the primary immediate notification mechanism for night-shift staff stationed away from the door. Absence causes immediate dissatisfaction; presence is expected and taken for granted by CCRC procurement teams."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Dimension",
+        "Score",
+        "Driver reasoning"
+      ],
+      "rows": [
+        {
+          "Dimension": "Time",
+          "Score": "6",
+          "Driver reasoning": "Immediate audible alert to nearest staff vs. delayed discovery during patrol"
+        },
+        {
+          "Dimension": "Cost",
+          "Score": "5",
+          "Driver reasoning": "Reduces cost of undetected elopement incidents vs. silent door-opening"
+        },
+        {
+          "Dimension": "Safety",
+          "Score": "9",
+          "Driver reasoning": "95 dB alarm activates on MC resident exit attempt; N07 (power-fail reliability) and N22 (awareness lag) directly addressed"
+        },
+        {
+          "Dimension": "Reliability",
+          "Score": "7",
+          "Driver reasoning": "Piezoelectric mechanism; power-independent; no battery required for alarm itself"
+        },
+        {
+          "Dimension": "Skill",
+          "Score": "5",
+          "Driver reasoning": "No skill required to respond to an alarm; but managing alarm fatigue adds cognitive complexity"
+        },
+        {
+          "Dimension": "Stress",
+          "Score": "6",
+          "Driver reasoning": "Immediate staff awareness reduces dread of undiscovered breach; alarm fatigue is a real countervailing concern"
+        },
+        {
+          "Dimension": "Pain",
+          "Score": "7",
+          "Driver reasoning": "Eliminates the pain of discovering a propped-open door or missing resident 45 min later"
+        },
+        {
+          "Dimension": "Confidence",
+          "Score": "7",
+          "Driver reasoning": "Staff trust that any unauthorized activation will be immediately audible"
+        },
+        {
+          "Dimension": "Delight",
+          "Score": "4",
+          "Driver reasoning": "Valued but expected; no surprise element"
+        },
+        {
+          "Dimension": "**Overall fit**",
+          "Score": "**6.22**",
+          "Driver reasoning": "Primary drivers: Safety (9), Reliability (7), Pain (7), Confidence (7)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Kano**",
+          "Value": "`must_be`"
+        },
+        {
+          "Field": "**Rationale**",
+          "Value": "EN 179 / EN 1125 and NFPA 101 mandate single-motion escape as a non-negotiable regulatory requirement for emergency exits. In CCRC, staff-assisted evacuation of mobility-limited residents depends entirely on this. Any product that adds friction to the escape motion fails certification. Presence is taken completely for granted."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Dimension",
+        "Score",
+        "Driver reasoning"
+      ],
+      "rows": [
+        {
+          "Dimension": "Time",
+          "Score": "4",
+          "Driver reasoning": "Compliance pass/fail — does not speed up evacuation beyond baseline"
+        },
+        {
+          "Dimension": "Cost",
+          "Score": "3",
+          "Driver reasoning": "Regulatory compliance cost (certification) rather than operational cost reduction"
+        },
+        {
+          "Dimension": "Safety",
+          "Score": "10",
+          "Driver reasoning": "In CCRC fire emergency with mobility-impaired residents, single-motion door release is life-critical; failure is immediately fatal"
+        },
+        {
+          "Dimension": "Reliability",
+          "Score": "7",
+          "Driver reasoning": "Mechanically certified; stable once installed and inspected"
+        },
+        {
+          "Dimension": "Skill",
+          "Score": "8",
+          "Driver reasoning": "No learning required — operates for panicking staff, visitors, anyone"
+        },
+        {
+          "Dimension": "Stress",
+          "Score": "7",
+          "Driver reasoning": "Staff are confident exit routes will work during fire drill and real emergencies"
+        },
+        {
+          "Dimension": "Pain",
+          "Score": "4",
+          "Driver reasoning": "Compliance baseline; does not eliminate a discretionary pain point"
+        },
+        {
+          "Dimension": "Confidence",
+          "Score": "8",
+          "Driver reasoning": "CMS Life Safety Code compliance directly supported; N18/N21 partially addressed"
+        },
+        {
+          "Dimension": "Delight",
+          "Score": "2",
+          "Driver reasoning": "Purely regulatory; zero surprise"
+        },
+        {
+          "Dimension": "**Overall fit**",
+          "Score": "**5.89**",
+          "Driver reasoning": "Primary drivers: Safety (10), Confidence (8), Skill (8)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Kano**",
+          "Value": "`one_dimensional`"
+        },
+        {
+          "Field": "**Rationale**",
+          "Value": "More secure, more convenient key override capability directly reduces false alarm events in CCRC. Without override, every authorized staff door passage in a secured MC wing triggers a full alarm, causing resident distress, staff fatigue, and response burden. The more staff who have access to functioning keys with low mechanical friction, the fewer disruptive alarm events per shift. Scales linearly with quality of key management."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Dimension",
+        "Score",
+        "Driver reasoning"
+      ],
+      "rows": [
+        {
+          "Dimension": "Time",
+          "Score": "6",
+          "Driver reasoning": "Eliminates time cost of false alarm responses during routine authorized access"
+        },
+        {
+          "Dimension": "Cost",
+          "Score": "4",
+          "Driver reasoning": "Reduces overhead of alarm response labor and CCRC resident disturbance"
+        },
+        {
+          "Dimension": "Safety",
+          "Score": "5",
+          "Driver reasoning": "Reduces false-alarm desensitization risk in MC; too many false alarms erode staff response urgency"
+        },
+        {
+          "Dimension": "Reliability",
+          "Score": "5",
+          "Driver reasoning": "Keys can be lost or unavailable; reliability depends on provisioning discipline"
+        },
+        {
+          "Dimension": "Skill",
+          "Score": "7",
+          "Driver reasoning": "Requires no technical skill; key operation is universal"
+        },
+        {
+          "Dimension": "Stress",
+          "Score": "8",
+          "Driver reasoning": "Night-shift CNAs are highly stressed by alarm events; silent key access on authorized routes directly reduces their anxiety burden"
+        },
+        {
+          "Dimension": "Pain",
+          "Score": "7",
+          "Driver reasoning": "Eliminates the pain of triggering alarms (and agitating MC residents) during routine care rounds through secured exits"
+        },
+        {
+          "Dimension": "Confidence",
+          "Score": "6",
+          "Driver reasoning": "Staff can operate within secured perimeter confidently without triggering emergency response"
+        },
+        {
+          "Dimension": "Delight",
+          "Score": "5",
+          "Driver reasoning": "Appreciated practical feature, especially by frequent users (CNAs, housekeeping)"
+        },
+        {
+          "Dimension": "**Overall fit**",
+          "Score": "**5.89**",
+          "Driver reasoning": "Primary drivers: Stress (8), Pain (7), Skill (7)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Kano**",
+          "Value": "`attractive`"
+        },
+        {
+          "Field": "**Rationale**",
+          "Value": "Battery-powered operation exceeds the commodity FP (which does not specify power source) and is a genuine differentiator vs. electromagnetic delayed-egress locks, the dominant wired alternative in CCRC. In an occupied care facility, eliminating mains-wired installation is a significant operational advantage — no disruption to resident areas, no licensed electrician, no ceiling/wall penetrations in infection-controlled zones. CCRC operators do not expect this from exit security hardware."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Dimension",
+        "Score",
+        "Driver reasoning"
+      ],
+      "rows": [
+        {
+          "Dimension": "Time",
+          "Score": "7",
+          "Driver reasoning": "Installation hours per door vs. days for wired alternatives; N03 directly addressed"
+        },
+        {
+          "Dimension": "Cost",
+          "Score": "8",
+          "Driver reasoning": "Zero electrician cost at installation (~$150–250/door avoided); no conduit or panel work in existing buildings"
+        },
+        {
+          "Dimension": "Safety",
+          "Score": "5",
+          "Driver reasoning": "Positive (power-independent) but offset by battery depletion risk (N13 is underserved at opp=13)"
+        },
+        {
+          "Dimension": "Reliability",
+          "Score": "5",
+          "Driver reasoning": "Battery chemistry and high door-event frequency create depletion risk in busy MC corridors; offset against mechanical reliability advantage"
+        },
+        {
+          "Dimension": "Skill",
+          "Score": "8",
+          "Driver reasoning": "Maintenance staff install without electrical certification; battery swap is tool-free"
+        },
+        {
+          "Dimension": "Stress",
+          "Score": "6",
+          "Driver reasoning": "Simplifies installation project anxiety; adds ongoing battery management stress"
+        },
+        {
+          "Dimension": "Pain",
+          "Score": "7",
+          "Driver reasoning": "Eliminates the major pain of disruptive electrical work in occupied CCRC wings; N03 addressed"
+        },
+        {
+          "Dimension": "Confidence",
+          "Score": "5",
+          "Driver reasoning": "Positive at installation; moderate concern around battery life monitoring (N06, N13)"
+        },
+        {
+          "Dimension": "Delight",
+          "Score": "7",
+          "Driver reasoning": "Genuinely surprising to operators accustomed to wired-only alternatives; \"retrofit in a weekend\" is a valued differentiator"
+        },
+        {
+          "Dimension": "**Overall fit**",
+          "Score": "**6.44**",
+          "Driver reasoning": "Primary drivers: Cost (8), Skill (8), Pain (7), Delight (7)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Kano**",
+          "Value": "`one_dimensional`"
+        },
+        {
+          "Field": "**Rationale**",
+          "Value": "Pre-alarm reduces false-alarm fatigue in CCRC's IL, AL, and SNF zones where accidental contact with exit handles occurs regularly during care rounds. More sensitive calibration → fewer false positives. However, value is nuanced: in Memory Care units the pre-alarm could delay the full 95 dB activation if a resident makes initial light contact before a committed elopement attempt, meaning the MC context moderates the benefit. Overall the feature adds positive value but at diminishing returns in the highest-urgency segments."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Dimension",
+        "Score",
+        "Driver reasoning"
+      ],
+      "rows": [
+        {
+          "Dimension": "Time",
+          "Score": "5",
+          "Driver reasoning": "Reduces time wasted on false alarm responses in IL/AL/SNF zones"
+        },
+        {
+          "Dimension": "Cost",
+          "Score": "4",
+          "Driver reasoning": "Marginal reduction in false-alarm response labor costs"
+        },
+        {
+          "Dimension": "Safety",
+          "Score": "4",
+          "Driver reasoning": "Neutral to slightly negative in MC (delayed definitive alarm); positive in IL/AL/SNF (alarm fatigue prevention preserves staff response urgency)"
+        },
+        {
+          "Dimension": "Reliability",
+          "Score": "5",
+          "Driver reasoning": "Adds a calibration variable (sensitivity threshold) that can drift or be set incorrectly; N04 is underserved at opp=9"
+        },
+        {
+          "Dimension": "Skill",
+          "Score": "4",
+          "Driver reasoning": "Requires calibration expertise to set threshold correctly per zone type; adds commissioning complexity"
+        },
+        {
+          "Dimension": "Stress",
+          "Score": "6",
+          "Driver reasoning": "Reduces alarm-fatigue stress in lower-risk zones; adds configuration anxiety for maintenance staff"
+        },
+        {
+          "Dimension": "Pain",
+          "Score": "5",
+          "Driver reasoning": "Reduces the pain of responding to false alarms; adds the pain of configuring and maintaining thresholds"
+        },
+        {
+          "Dimension": "Confidence",
+          "Score": "5",
+          "Driver reasoning": "Mixed: reduces false-positive noise, but may mask early elopement contact events"
+        },
+        {
+          "Dimension": "Delight",
+          "Score": "4",
+          "Driver reasoning": "Appreciated in non-MC contexts; neutral in MC"
+        },
+        {
+          "Dimension": "**Overall fit**",
+          "Score": "**4.67**",
+          "Driver reasoning": "Below-average overall; primary tension: valuable in IL/AL/SNF, counterproductive in MC"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Check",
+        "Finding"
+      ],
+      "rows": [
+        {
+          "Check": "Safety ≥7 but Confidence ≤3",
+          "Finding": "No instances — Safety and Confidence co-move correctly"
+        },
+        {
+          "Check": "Skill ≥7 but Stress ≤3",
+          "Finding": "No instances — Skill and Stress co-move correctly"
+        },
+        {
+          "Check": "Overall_fit arithmetic",
+          "Finding": "Verified deterministically in table above"
+        },
+        {
+          "Check": "Feature names compliance",
+          "Finding": "All names are spec-visible noun phrases, 2–6 words, no brand or outcome claims"
+        },
+        {
+          "Check": "Cross-feature consistency",
+          "Finding": "must_be features (1-3) correctly score low on Delight; attractive feature (5) correctly scores higher on Delight"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Statement",
+        "Source constraint",
+        "Litmus",
+        "Affected markets",
+        "Imp",
+        "Sat"
+      ],
+      "rows": [
+        {
+          "#": "PRN-01",
+          "Statement": "Minimize the likelihood of IoT module battery depletion going undetected on an emergency exit door in a low-traffic CCRC wing, creating a wireless monitoring gap during overnight staffing periods",
+          "Source constraint": "IoT Battery Life Floor (C4)",
+          "Litmus": "YES — EM delayed-egress lock with wired power does not have this need",
+          "Affected markets": "[623311]",
+          "Imp": "8",
+          "Sat": "3"
+        },
+        {
+          "#": "PRN-02",
+          "Statement": "Minimize the likelihood of wireless alarm event transmission failure from emergency exit doors in reinforced concrete corridors or basement care wings that exceed the 30 m integrated transmitter range",
+          "Source constraint": "Wireless Range Limitation (C3)",
+          "Litmus": "YES — a wired or IP-connected door sensor does not have a radio range threshold",
+          "Affected markets": "[623311]",
+          "Imp": "7",
+          "Sat": "4"
+        },
+        {
+          "#": "PRN-03",
+          "Statement": "Minimize the time to integrate EasyWave-protocol door guardian event streams into an existing BACnet or KNX building management platform already deployed across a continuing care campus",
+          "Source constraint": "EasyWave Protocol Lock-In (C6)",
+          "Litmus": "YES — an open-protocol wireless sensor (Zigbee, BLE, LoRaWAN) does not require a proprietary gateway to reach BACnet/KNX",
+          "Affected markets": "[623311]",
+          "Imp": "6",
+          "Sat": "3"
+        },
+        {
+          "#": "PRN-04",
+          "Statement": "Minimize the likelihood of unauthorized guard removal or mechanism defeat by a cognitively impaired resident who reaches and manipulates the exposed surface-mounted guard housing on the door handle",
+          "Source constraint": "Retrofit-Only Surface Mount (C5)",
+          "Litmus": "YES — a flush-integrated exit control eliminates exposed tamper surface; a wall-mounted keypad exit control has no door-handle protrusion",
+          "Affected markets": "[623311]",
+          "Imp": "7",
+          "Sat": "4"
+        },
+        {
+          "#": "PRN-05",
+          "Statement": "Minimize the time to discover that a wireless receiver unit serving multiple door guardians on a single care level has lost connectivity, leaving all exits on that level without event transmission while mechanical alarms remain functional",
+          "Source constraint": "Wireless Range Limitation (C3) + EasyWave Protocol Lock-In (C6)",
+          "Litmus": "YES — a direct IP-addressable door sensor reports its own loss of connectivity; the EasyWave hub-and-spoke topology creates this blind spot",
+          "Affected markets": "[623311]",
+          "Imp": "8",
+          "Sat": "3"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Feature",
+        "Kano",
+        "Vendor score",
+        "Best incumbent",
+        "Incumbent score",
+        "Advantage",
+        "Rationale"
+      ],
+      "rows": [
+        {
+          "Feature": "868 MHz EasyWave Radio Transmission",
+          "Kano": "`attractive`",
+          "Vendor score": "6",
+          "Best incumbent": "Inovonics 900-series wireless (multi-hop 900 MHz mesh, 300+ ft range)",
+          "Incumbent score": "8",
+          "Advantage": "**inferior**",
+          "Rationale": "GfS achieves ~30 m per hop with fixed star topology and no native BMS protocols. Inovonics 900-series achieves multi-hop mesh coverage, supervised reporting (bi-directional), and open integration via IP bridge. For a multi-wing CCRC campus, mesh topology and supervised check-ins are significantly more capable than one-way event broadcast."
+        },
+        {
+          "Feature": "Wireless BUS Interface Integration",
+          "Kano": "`attractive`",
+          "Vendor score": "5",
+          "Best incumbent": "Stanley Healthcare Platform (Emerald platform with nurse-call + EHR integration)",
+          "Incumbent score": "8",
+          "Advantage": "**inferior**",
+          "Rationale": "GfS Wireless BUS Interface operates within GfS ecosystem only. No native interface to CCRC nurse-call systems, electronic health records, or resident safety platforms. Stanley Healthcare integrates exit events directly with nurse-call workflow and incident documentation. The gap is particularly felt against N17 (CMS documentation) and N12 (single-dashboard)."
+        },
+        {
+          "Feature": "Dual-Standard Variant Range (EN 179 + EN 1125)",
+          "Kano": "`must_be`",
+          "Vendor score": "9",
+          "Best incumbent": "dormakaba SafeRoute (EN 179 + EN 1125, full electronic exit control)",
+          "Incumbent score": "9",
+          "Advantage": "**parity**",
+          "Rationale": "Both GfS and dormakaba offer certified variants for both lever-handle (EN 179) and panic-bar (EN 1125) configurations. GfS advantage: purely mechanical primary alarm. dormakaba advantage: deeper electronic locking integration. Net: parity on the dual-standard dimension itself."
+        },
+        {
+          "Feature": "IP45 Outdoor Variant",
+          "Kano": "`indifferent`",
+          "Vendor score": "5",
+          "Best incumbent": "Inovonics EN7440 (IP55 wireless door monitor)",
+          "Incumbent score": "6",
+          "Advantage": "**parity**",
+          "Rationale": "Most CCRC emergency exits are interior or under covered canopy — IP45 is rarely required. The few outdoor/loading-dock exits may benefit, but this is not a purchasing criterion for CCRC. Scoring reflects marginal differentiation on an indifferent feature."
+        },
+        {
+          "Feature": "Glass-Frame Mounting Plate",
+          "Kano": "`attractive`",
+          "Vendor score": "7",
+          "Best incumbent": "No comparable accessory — competitors require custom fabrication for glass-frame doors",
+          "Incumbent score": "4",
+          "Advantage": "**superior**",
+          "Rationale": "GfS offers a dedicated mounting plate (Art. 991170) tested and certified with the Exit Control family. Modern CCRC common areas (lobby, dining, therapy rooms) frequently use glass-frame doors. Competitors require either modification of the door frame or custom brackets without certified integration. This is a genuine GfS advantage for retrofit coverage completeness."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Dimension",
+        "Assessment"
+      ],
+      "rows": [
+        {
+          "Dimension": "**Strongest fit**",
+          "Assessment": "Safety (mechanical guarantee), Retrofit speed, Dual-standard coverage"
+        },
+        {
+          "Dimension": "**Weakest fit**",
+          "Assessment": "Wireless range architecture (single-hop), Platform integration (EasyWave silo), Battery monitoring depth"
+        },
+        {
+          "Dimension": "**Primary ODI gap served**",
+          "Assessment": "N07 (power-fail alarm — fully addressed), N03 (installation time — strongly addressed)"
+        },
+        {
+          "Dimension": "**Primary ODI gap not served**",
+          "Assessment": "N05 (non-functional guard detection — technology gap), N17/N18 (CMS documentation — no native logging)"
+        },
+        {
+          "Dimension": "**Must-be features**",
+          "Assessment": "All present and certified (Handle Locking, Alarm Trigger, Single-Motion Release)"
+        },
+        {
+          "Dimension": "**Attractive feature**",
+          "Assessment": "Battery-Powered Operation — genuine delight vs. wired alternatives"
+        },
+        {
+          "Dimension": "**Vendor differentiator**",
+          "Assessment": "Glass-Frame Mounting Plate (superior vs. incumbents)"
+        },
+        {
+          "Dimension": "**Vendor weakness**",
+          "Assessment": "Wireless BUS integration depth (inferior vs. Stanley Healthcare in CCRC workflow)"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "step": "09_10_11_feature_market_fit",
+      "market_name": "Continuing Care Retirement Communities",
+      "naics_code": "623311",
+      "technology_class": "Emergency Exit Security Devices with Remote Monitoring",
+      "commodity_functional_promise": "Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm",
+      "vendor_name": "GfS Rettungswegtechnik (Assa Abloy Group)",
+      "vendor_product": "Exit Control 179/1125 Pre-alarm + Radio",
+      "tech_feature_fit": [
+        {
+          "feature_name": "Mechanical Handle Locking",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "kano_class": "must_be",
+          "fit_score_time": 3,
+          "fit_score_cost": 5,
+          "fit_score_safety": 9,
+          "fit_score_reliability": 8,
+          "fit_score_skill": 6,
+          "fit_score_stress": 7,
+          "fit_score_pain": 5,
+          "fit_score_confidence": 8,
+          "fit_score_delight": 3,
+          "overall_fit": 6.0,
+          "feature_scope": "technology",
+          "rationale": "Commodity FP baseline (must_be). Primary defense against MC resident elopement. Mechanical operation eliminates power-dependency failure mode. Primary drivers: Safety (9) — direct elopement prevention; Reliability (8) — mechanical mechanism with no failure modes under loss of power; Confidence (8) — physical state is verifiable."
+        },
+        {
+          "feature_name": "Audible Alarm Trigger",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "kano_class": "must_be",
+          "fit_score_time": 6,
+          "fit_score_cost": 5,
+          "fit_score_safety": 9,
+          "fit_score_reliability": 7,
+          "fit_score_skill": 5,
+          "fit_score_stress": 6,
+          "fit_score_pain": 7,
+          "fit_score_confidence": 7,
+          "fit_score_delight": 4,
+          "overall_fit": 6.22,
+          "feature_scope": "technology",
+          "rationale": "Commodity FP baseline (must_be). Immediate audible alert is the primary near-field notification mechanism for on-unit staff. Power-independent piezoelectric horn directly addresses N07 (power-fail alarm reliability, opp=14). Primary drivers: Safety (9); Pain (7) — eliminates post-hoc discovery of elopement; Confidence (7) — staff trust any actuation will be immediately audible."
+        },
+        {
+          "feature_name": "Single-Motion Emergency Release",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "kano_class": "must_be",
+          "fit_score_time": 4,
+          "fit_score_cost": 3,
+          "fit_score_safety": 10,
+          "fit_score_reliability": 7,
+          "fit_score_skill": 8,
+          "fit_score_stress": 7,
+          "fit_score_pain": 4,
+          "fit_score_confidence": 8,
+          "fit_score_delight": 2,
+          "overall_fit": 5.89,
+          "feature_scope": "technology",
+          "rationale": "EN 179/EN 1125 and NFPA 101 mandate single-motion escape — non-negotiable regulatory baseline. In CCRC with mobility-limited residents, staff-assisted evacuation depends entirely on this. Safety (10): failure is immediately life-threatening; Skill (8): no prior knowledge required from staff, residents, or visitors; Confidence (8): CMS Life Safety Code compliance directly supported."
+        },
+        {
+          "feature_name": "Key Override Bypass",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "kano_class": "one_dimensional",
+          "fit_score_time": 6,
+          "fit_score_cost": 4,
+          "fit_score_safety": 5,
+          "fit_score_reliability": 5,
+          "fit_score_skill": 7,
+          "fit_score_stress": 8,
+          "fit_score_pain": 7,
+          "fit_score_confidence": 6,
+          "fit_score_delight": 5,
+          "overall_fit": 5.89,
+          "feature_scope": "technology",
+          "rationale": "Scales linearly: more keys distributed to staff = fewer false alarms during authorized care rounds in secured MC corridors. Primary drivers: Stress (8) — night-shift CNAs are highly anxious about triggering alarms during routine care; Pain (7) — eliminates the pain of agitating MC residents with false 95 dB alarms during authorized door use."
+        },
+        {
+          "feature_name": "Battery-Powered Operation",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "kano_class": "attractive",
+          "fit_score_time": 7,
+          "fit_score_cost": 8,
+          "fit_score_safety": 5,
+          "fit_score_reliability": 5,
+          "fit_score_skill": 8,
+          "fit_score_stress": 6,
+          "fit_score_pain": 7,
+          "fit_score_confidence": 5,
+          "fit_score_delight": 7,
+          "overall_fit": 6.44,
+          "feature_scope": "technology",
+          "rationale": "Exceeds commodity FP — genuinely attractive vs. wired alternatives dominant in CCRC (electromagnetic delayed-egress locks require licensed electrician). Retrofit in occupied care wings without electrical work is highly valued. Cost (8): eliminates ~$150–250/door electrician cost; Skill (8): maintenance-level install without electrical certification; Delight (7): operators do not expect mains-free installation from exit security hardware. Offset: battery depletion risk (N13 opp=13) moderates Reliability and Confidence scores."
+        },
+        {
+          "feature_name": "Pre-Alarm Warning",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "kano_class": "one_dimensional",
+          "fit_score_time": 5,
+          "fit_score_cost": 4,
+          "fit_score_safety": 4,
+          "fit_score_reliability": 5,
+          "fit_score_skill": 4,
+          "fit_score_stress": 6,
+          "fit_score_pain": 5,
+          "fit_score_confidence": 5,
+          "fit_score_delight": 4,
+          "overall_fit": 4.67,
+          "feature_scope": "technology",
+          "rationale": "Below-average fit. Valuable in IL/AL/SNF zones (reduces alarm fatigue from accidental handle contact during care rounds). Counterproductive in Memory Care: initial light contact from elopement attempt may trigger pre-alarm delay before full 95 dB activation, lengthening staff response window. Safety score (4) reflects this net-neutral to negative effect. Adds calibration complexity (N04 opp=9). Moderate value in lower-urgency segments prevents indifferent classification."
+        }
+      ],
+      "product_related_needs": [
+        {
+          "statement": "Minimize the likelihood of IoT module battery depletion going undetected on an emergency exit door in a low-traffic CCRC wing, creating a wireless monitoring gap during overnight staffing periods",
+          "source_constraint": "IoT Battery Life Floor",
+          "affected_markets": [
+            "Continuing Care Retirement Communities"
+          ],
+          "importance": 8.0,
+          "satisfaction_current": 3.0
+        },
+        {
+          "statement": "Minimize the likelihood of wireless alarm event transmission failure from emergency exit doors in reinforced concrete corridors or basement care wings that exceed the 30 m range of the integrated EasyWave transmitter",
+          "source_constraint": "Wireless Range Limitation",
+          "affected_markets": [
+            "Continuing Care Retirement Communities"
+          ],
+          "importance": 7.0,
+          "satisfaction_current": 4.0
+        },
+        {
+          "statement": "Minimize the time to integrate EasyWave-protocol door guardian event streams into an existing BACnet or KNX building management platform already deployed across a continuing care campus",
+          "source_constraint": "EasyWave Protocol Lock-In",
+          "affected_markets": [
+            "Continuing Care Retirement Communities"
+          ],
+          "importance": 6.0,
+          "satisfaction_current": 3.0
+        },
+        {
+          "statement": "Minimize the likelihood of unauthorized guard removal or mechanism defeat by a cognitively impaired resident who reaches and manipulates the exposed surface-mounted guard housing on the door handle",
+          "source_constraint": "Retrofit-Only Surface Mount",
+          "affected_markets": [
+            "Continuing Care Retirement Communities"
+          ],
+          "importance": 7.0,
+          "satisfaction_current": 4.0
+        },
+        {
+          "statement": "Minimize the time to discover that a wireless receiver unit serving multiple door guardians on a single care level has lost connectivity, leaving all exits on that level without event transmission while mechanical alarms remain functional",
+          "source_constraint": "Wireless Range Limitation",
+          "affected_markets": [
+            "Continuing Care Retirement Communities"
+          ],
+          "importance": 8.0,
+          "satisfaction_current": 3.0
+        }
+      ],
+      "vendor_feature_comparisons": [
+        {
+          "feature_name": "868 MHz EasyWave Radio Transmission",
+          "feature_description": "Transmit guard-state and alarm events wirelessly to centralized receivers using proprietary 868.3 MHz single-hop star topology",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "kano_class": "attractive",
+          "vendor_score": 6,
+          "best_incumbent_score": 8,
+          "best_incumbent_technology": "Inovonics 900-series wireless door monitoring (multi-hop mesh, supervised bidirectional, 900 MHz)",
+          "advantage": "inferior",
+          "rationale": "GfS achieves ~30 m per transmitter hop, one-way event broadcast, proprietary EasyWave protocol with no native BMS integration. Inovonics 900-series provides multi-hop mesh coverage, bidirectional supervised check-ins (automatic failure detection), and IP bridge to building systems. For multi-wing CCRC campuses with reinforced concrete construction, mesh topology and supervised reporting directly address N05 (non-functional detection lag opp=15) and N11 (signal reliability across building zones opp=10) where GfS does not."
+        },
+        {
+          "feature_name": "Wireless BUS Interface Integration",
+          "feature_description": "Aggregate door guardian status events from multiple units into a single centralized monitoring point via proprietary GfS Wireless BUS Interface hardware",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "kano_class": "attractive",
+          "vendor_score": 5,
+          "best_incumbent_score": 8,
+          "best_incumbent_technology": "Stanley Healthcare Emerald platform (nurse-call + exit event + EHR documentation integration)",
+          "advantage": "inferior",
+          "rationale": "GfS Wireless BUS Interface provides centralized event collection within GfS ecosystem only — potential-free relay contact outputs, no native CCRC workflow integration. Stanley Healthcare Emerald routes exit events directly to nurse-call workflow, generates CMS-formatted incident logs, and interfaces with electronic health records for documentation. Gap is critical against N17 (CMS documentation generation opp=13), N18 (documentation completeness opp=15), and N12 (single dashboard across care levels opp=9)."
+        },
+        {
+          "feature_name": "Dual-Standard Variant Range",
+          "feature_description": "Provide certified product variants covering both DIN EN 179 lever-handle and DIN EN 1125 panic-bar emergency exit configurations from a single product family",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "kano_class": "must_be",
+          "vendor_score": 9,
+          "best_incumbent_score": 9,
+          "best_incumbent_technology": "dormakaba SafeRoute (EN 179 + EN 1125, electronic exit control)",
+          "advantage": "parity",
+          "rationale": "Both GfS and dormakaba offer certified variants for lever-handle and panic-bar configurations, enabling full campus coverage regardless of door type mix. GfS advantage: purely mechanical primary alarm means no battery backup requirement for escape function. dormakaba advantage: deeper electronic integration with access control. Net parity on the dual-standard dimension itself; decision factors lie elsewhere."
+        },
+        {
+          "feature_name": "IP45 Outdoor Variant",
+          "feature_description": "Weatherproofed emergency exit alarm guard (IP45) for outdoor-exposed and semi-exposed door installations",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "kano_class": "indifferent",
+          "vendor_score": 5,
+          "best_incumbent_score": 6,
+          "best_incumbent_technology": "Inovonics EN7440 wireless door monitor (IP55)",
+          "advantage": "parity",
+          "rationale": "Indifferent in CCRC context — the vast majority of emergency exits in continuing care facilities are interior or covered. IP45 is relevant for a small subset of loading-dock or covered-canopy exits. Feature does not appear in top-10 market needs. Parity classification reflects narrow score gap on an irrelevant dimension."
+        },
+        {
+          "feature_name": "Glass-Frame Mounting Plate",
+          "feature_description": "Certified mounting accessory enabling surface installation of alarm guard on glass-framed emergency exit doors without structural modification",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "kano_class": "attractive",
+          "vendor_score": 7,
+          "best_incumbent_score": 4,
+          "best_incumbent_technology": "Competitor custom fabrication (no certified off-the-shelf equivalent for most alternatives)",
+          "advantage": "superior",
+          "rationale": "Modern CCRC common areas — lobby, dining rooms, therapy suites, memory care activity rooms — frequently use glass-frame doors for transparency and aesthetic. GfS provides a purpose-engineered, tested, and certified mounting plate (Art. 991170) that enables coverage on these doors without frame modification. Direct competitors require custom steel brackets or door-frame rework, introducing installation cost, lead time, and no certified performance guarantee. This advantage directly supports N01 (complete MC coverage) by closing a coverage gap that competitors leave open."
+        }
+      ]
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

@@ -1,0 +1,448 @@
+{
+  "id": "COMPAT_lessors_nonresidential_buildings",
+  "title": "Constraint-Market Compatibility: Lessors of Nonresidential Buildings (NAICS 531120)",
+  "type": "constraint_compatibility",
+  "market_slug": "lessors_nonresidential_buildings",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Market Context",
+      "content": "| Field | Value |\n|---|---|\n| **NAICS code** | 531120 |\n| **NAICS title** | Lessors of Nonresidential Buildings (except Miniwarehouses) |\n| **Market discovery confidence** | 0.91 |\n| **VN anchor** | L4 — Door Guardian Alarm Unit → L5 Emergency Exit Security → L6d Building Operations |\n| **Primary use case** | Multi-tenant commercial office portfolios requiring fire-code compliance across 100s of emergency exits |\n| **Typical BMS environment** | Siemens Desigo, JCI Metasys, Honeywell EBI (BACnet/IP or KNX) |\n| **Key constraint flags from VN** | C3 (range), C6 (EasyWave lock-in) — \"protocol integration with BMS is the primary sales friction\" |\n\n---"
+    },
+    {
+      "title": "Step 08 — Constraint Assessments",
+      "content": "| # | Constraint | Type | is_absolute | Verdict | Primary friction |\n|---|---|---|---|---|---|\n| C1 | Emergency Escape Non-Impedance | regulatory | false | **none** | — |\n| C2 | Mechanical Alarm Independence | regulatory | **true** | **none** | — |\n| C3 | Wireless Range Limitation | physical | false | **mitigable** | Large floor plates, concrete cores |\n| C4 | IoT Battery Life Floor | operational | false | **none** | — |\n| C5 | Retrofit-Only Surface Mount | physical | false | **mitigable** | Class A premium interiors only |\n| C6 | EasyWave Protocol Lock-In | operational | false | **mitigable** | BMS integration; primary sales friction |\n| C7 | IoT Price Premium | economic | false | **none** | — |\n| C8 | GDPR Monitoring Data Compliance | regulatory | false | **mitigable** | EU tenant-employee data processing |\n| C9 | IP Protection Boundary | environmental | false | **none** | — |\n| C10 | EN 13637 / EltVTR Electrical Compliance | regulatory | false | **mitigable** | Combined access control + exit configurations |\n\n**Knockout count: 0 — market survives all constraints.**\n\n---"
+    },
+    {
+      "title": "Assessment Detail",
+      "content": "### C1 — Emergency Escape Non-Impedance → none\n\nProduct is certified to EN 179 / EN 1125. Commercial office buildings operate at standard ambient conditions. No issue.\n\n---\n\n### C2 — Mechanical Alarm Independence → none\n\nProduct's mechanical-primary architecture pre-satisfies this constraint — alarm activates at 0 V by design. The sole absolute constraint is irrelevant: the product was built for this requirement.\n\n---\n\n### C3 — Wireless Range Limitation → mitigable\n\n| Field | Value |\n|---|---|\n| **Why it activates** | Class A office towers have large floor plates (10,000–50,000 m²/floor), concrete cores, and steel-frame structures. RF attenuation can reduce the 30 m integrated range below practical coverage. Multi-floor and multi-wing deployments need a receiver coverage plan. |\n| **Mitigation actions** | (1) Pre-deployment RF survey to map coverage zones; (2) deploy signal repeaters (+30 m/stage) on each floor segment; (3) use BUS Gateway to aggregate floor-level receivers into a single building-management feed |\n| **Cost estimate** | low (<$10K per typical mid-size office building) |\n| **Time estimate** | 2–4 weeks |\n\n---\n\n### C4 — IoT Battery Life Floor → none\n\nCommercial office building emergency exit doors have very low event frequency — monthly fire drills and rare unauthorized activations. Battery life target (2 years) is readily achievable at low duty cycle. Non-issue for standard office, retail, and industrial flex sub-types under 531120.\n\n---\n\n### C5 — Retrofit-Only Surface Mount → mitigable (Class A only)\n\n| Field | Value |\n|---|---|\n| **Why it activates** | Applies only to Class A trophy assets where visible surface-mount protrusions on door hardware conflict with architectural specification. Back-of-house exits (service corridors, stairwells, loading) are unaffected. |\n| **Mitigation actions** | (1) Specify IoT variant only on back-of-house / stairwell exits; (2) use mechanical-only variant on architecturally sensitive front-of-house exits; (3) review with facilities manager at specification stage |\n| **Cost estimate** | low (no hardware modification — configuration choice only) |\n| **Time estimate** | 1–2 weeks (specification review) |\n\n---\n\n### C6 — EasyWave Protocol Lock-In → mitigable\n\n| Field | Value |\n|---|---|\n| **Why it activates** | Commercial lessors run BACnet/IP or KNX BMS platforms (Siemens Desigo, JCI Metasys, Honeywell EBI per VN L5). EasyWave has zero native interoperability with these protocols. Multi-building portfolios cannot integrate emergency exit status into their existing BMS or centralized dashboards without a translation layer. VN anchor analysis flags this as the **primary sales friction** in this market. |\n| **Mitigation actions** | (1) Deploy GfS Wireless BUS Gateway (potential-free relay output) as the BMS integration bridge; (2) map alarm/door-state events to BACnet object layer via gateway dry-contact wiring; (3) for standalone deployments, use GfS cloud monitoring dashboard without BMS integration |\n| **Cost estimate** | medium ($10K–$100K across a multi-building portfolio; single-building installations are low) |\n| **Time estimate** | 3–6 months (gateway procurement, BMS configuration, acceptance testing) |\n\n---\n\n### C7 — IoT Price Premium → none\n\nCommercial building lessors (REITs, pension funds, institutional owners) have budgets calibrated to building safety infrastructure. ~€730/door is within standard range for fire safety hardware. ROI case is straightforward: automated compliance logs reduce manual inspection labor, support insurance underwriting, and streamline fire marshal audit preparation — all high-value outcomes in multi-building portfolio management.\n\n---\n\n### C8 — GDPR Monitoring Data Compliance → mitigable\n\n| Field | Value |\n|---|---|\n| **Why it activates** | EU commercial buildings house tenant-employees whose movement patterns (door-open timestamps, alarm events) may constitute personal data under GDPR if attributable to identifiable individuals. The building lessor acts as data controller (or joint controller) for shared building infrastructure data. |\n| **Mitigation actions** | (1) Establish legitimate interest legal basis (fire safety / regulatory compliance obligation); (2) execute DPA with any cloud monitoring SaaS provider used; (3) add emergency exit monitoring to building privacy notice for tenants |\n| **Cost estimate** | low (<$10K; typically handled within existing GDPR compliance infrastructure) |\n| **Time estimate** | 1–3 months (legal review, DPA execution) |\n\n---\n\n### C9 — IP Protection Boundary → none\n\nCommercial office buildings are standard indoor environments (Class A/B/C office, retail, industrial flex). No washdown conditions. Standard variant (unrated) is appropriate for all interior emergency exit doors. IP45 outdoor variant available where needed (loading dock exits, exposed stairwell doors).\n\n---\n\n### C10 — EN 13637 / EltVTR Electrical Compliance → mitigable\n\n| Field | Value |\n|---|---|\n| **Why it activates** | Commercial office buildings routinely combine emergency exit hardware with access control systems (Credential Reader + Door Controller per VN L5). Where Türwächter is installed alongside electromagnetic door holders (common for hold-open-during-occupancy configurations), the combined system must satisfy EN 13637 fail-safe release requirements. System integrators working in this market must design combined configurations to the standard. |\n| **Mitigation actions** | (1) Specify fail-safe (NC) electromagnetic holder configurations only; (2) require EN 13637 compliance review in system integrator specification; (3) keep IoT module purely supervisory — do not integrate with powered locking logic |\n| **Cost estimate** | low ($3K–$8K for compliance engineering review per installation design) |\n| **Time estimate** | 1–2 months (system design review + documentation) |\n\n---"
+    },
+    {
+      "title": "Summary",
+      "content": "| Verdict | Constraints | Count |\n|---|---|---|\n| **knockout** | — | 0 |\n| **mitigable** | C3, C5, C6, C8, C10 | 5 |\n| **none** | C1, C2, C4, C7, C9 | 5 |\n\n**Market status: SURVIVING — no knockouts.**\n\n**Dominant friction:** C6 (EasyWave Protocol Lock-In) is the primary commercial barrier in this market. BMS integration is a procurement requirement for institutional landlords managing multi-building portfolios. The GfS BUS Gateway solves it but adds cost and timeline. Sales motions must lead with the gateway-to-BMS integration story, not the standalone alarm device.\n\n**Secondary friction cluster:** C8 (GDPR) + C10 (EN 13637) are compliance overhead costs borne by system integrators and legal teams, not the product itself. Both are standard in the building safety market and do not differentiate the Türwächter negatively.\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"market_name\": \"Lessors of Nonresidential Buildings\",\n  \"naics_code\": \"531120\",\n  \"verdict\": \"surviving\",\n  \"assessments\": [\n    {\n      \"constraint_name\": \"Emergency Escape Non-Impedance\",\n      \"market_name\": \"Lessors of Nonresidential Buildings\",\n      \"naics_code\": \"531120\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Product is certified to EN 179/EN 1125. Standard commercial office operating conditions. Constraint pre-satisfied by product design.\"\n    },\n    {\n      \"constraint_name\": \"Mechanical Alarm Independence\",\n      \"market_name\": \"Lessors of Nonresidential Buildings\",\n      \"naics_code\": \"531120\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"The sole absolute constraint is pre-satisfied by the mechanical-primary architecture. Alarm activates at 0V by design. No electrical dependency on the alarm trigger path.\"\n    },\n    {\n      \"constraint_name\": \"Wireless Range Limitation\",\n      \"market_name\": \"Lessors of Nonresidential Buildings\",\n      \"naics_code\": \"531120\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Pre-deployment RF survey to map coverage zones per floor\",\n        \"Deploy signal repeaters (+30m per stage) in attenuating building segments\",\n        \"Use BUS Gateway to aggregate floor-level receivers into central building feed\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"2-4 weeks\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Large-floor-plate office towers and concrete cores can reduce effective RF range below 30m. Standard repeater infrastructure resolves this at low cost.\"\n    },\n    {\n      \"constraint_name\": \"IoT Battery Life Floor\",\n      \"market_name\": \"Lessors of Nonresidential Buildings\",\n      \"naics_code\": \"531120\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Commercial office emergency exits have very low door-event frequency. 2-year battery target is readily achievable at low duty cycle. Non-issue for standard office, retail, and industrial flex sub-types.\"\n    },\n    {\n      \"constraint_name\": \"Retrofit-Only Surface Mount\",\n      \"market_name\": \"Lessors of Nonresidential Buildings\",\n      \"naics_code\": \"531120\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Specify IoT variant on back-of-house and stairwell exits only\",\n        \"Use mechanical-only variant on architecturally sensitive front-of-house exits\",\n        \"Confirm specification with facilities manager during surveying\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1-2 weeks\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Applies only to Class A trophy assets with architectural restrictions on door hardware. Back-of-house exits (stairwells, service corridors, loading) are unaffected. Configuration choice, not hardware modification.\"\n    },\n    {\n      \"constraint_name\": \"EasyWave Protocol Lock-In\",\n      \"market_name\": \"Lessors of Nonresidential Buildings\",\n      \"naics_code\": \"531120\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Deploy GfS Wireless BUS Gateway as BACnet/IP integration bridge via potential-free relay output\",\n        \"Map door-state and alarm events to BMS BACnet object layer via gateway dry-contact wiring\",\n        \"For standalone deployments without BMS integration, use GfS cloud monitoring dashboard independently\"\n      ],\n      \"mitigation_cost_estimate\": \"medium\",\n      \"mitigation_time_estimate\": \"3-6 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Primary sales friction in this market. Commercial lessors run BACnet/IP or KNX BMS (Siemens Desigo, JCI Metasys, Honeywell EBI). EasyWave has no native interoperability. Gateway translation hardware bridges the gap but adds cost and timeline, especially across multi-building portfolios.\"\n    },\n    {\n      \"constraint_name\": \"IoT Price Premium\",\n      \"market_name\": \"Lessors of Nonresidential Buildings\",\n      \"naics_code\": \"531120\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Institutional commercial landlords have budgets calibrated to building safety infrastructure. ~€730/door is within standard range. ROI case is clear: automated compliance logs, reduced inspection labor, insurance and audit benefits.\"\n    },\n    {\n      \"constraint_name\": \"GDPR Monitoring Data Compliance\",\n      \"market_name\": \"Lessors of Nonresidential Buildings\",\n      \"naics_code\": \"531120\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Establish legitimate interest legal basis (fire safety / regulatory compliance obligation)\",\n        \"Execute DPA with cloud monitoring SaaS provider\",\n        \"Add emergency exit monitoring to building privacy notice for tenants\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1-3 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"EU commercial buildings contain tenant-employees whose movement data may be attributable under GDPR. Legitimate interest basis is well-established for fire safety monitoring. Standard compliance path via DPA and privacy notice.\"\n    },\n    {\n      \"constraint_name\": \"IP Protection Boundary\",\n      \"market_name\": \"Lessors of Nonresidential Buildings\",\n      \"naics_code\": \"531120\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Standard indoor commercial office environments require no elevated IP rating. IP45 outdoor variant is available for exposed exterior exit doors (loading docks, exterior stairwells) where needed.\"\n    },\n    {\n      \"constraint_name\": \"EN 13637 / EltVTR Electrical Compliance\",\n      \"market_name\": \"Lessors of Nonresidential Buildings\",\n      \"naics_code\": \"531120\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Specify fail-safe (NC) electromagnetic holder configurations only in combined designs\",\n        \"Require EN 13637 compliance review in system integrator specification\",\n        \"Keep IoT module supervisory-only — do not integrate with powered locking control logic\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1-2 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Office buildings routinely combine emergency exit hardware with electromagnetic door holders and access control. Combined configurations must satisfy EN 13637 fail-safe requirements. System-level compliance, not a product deficiency — standard design obligation for integrators.\"\n    }\n  ],\n  \"markets_eliminated\": [],\n  \"markets_surviving\": [\"531120\"]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**NAICS code**",
+          "Value": "531120"
+        },
+        {
+          "Field": "**NAICS title**",
+          "Value": "Lessors of Nonresidential Buildings (except Miniwarehouses)"
+        },
+        {
+          "Field": "**Market discovery confidence**",
+          "Value": "0.91"
+        },
+        {
+          "Field": "**VN anchor**",
+          "Value": "L4 — Door Guardian Alarm Unit → L5 Emergency Exit Security → L6d Building Operations"
+        },
+        {
+          "Field": "**Primary use case**",
+          "Value": "Multi-tenant commercial office portfolios requiring fire-code compliance across 100s of emergency exits"
+        },
+        {
+          "Field": "**Typical BMS environment**",
+          "Value": "Siemens Desigo, JCI Metasys, Honeywell EBI (BACnet/IP or KNX)"
+        },
+        {
+          "Field": "**Key constraint flags from VN**",
+          "Value": "C3 (range), C6 (EasyWave lock-in) — \"protocol integration with BMS is the primary sales friction\""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Constraint",
+        "Type",
+        "is_absolute",
+        "Verdict",
+        "Primary friction"
+      ],
+      "rows": [
+        {
+          "#": "C1",
+          "Constraint": "Emergency Escape Non-Impedance",
+          "Type": "regulatory",
+          "is_absolute": "false",
+          "Verdict": "**none**",
+          "Primary friction": "—"
+        },
+        {
+          "#": "C2",
+          "Constraint": "Mechanical Alarm Independence",
+          "Type": "regulatory",
+          "is_absolute": "**true**",
+          "Verdict": "**none**",
+          "Primary friction": "—"
+        },
+        {
+          "#": "C3",
+          "Constraint": "Wireless Range Limitation",
+          "Type": "physical",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Primary friction": "Large floor plates, concrete cores"
+        },
+        {
+          "#": "C4",
+          "Constraint": "IoT Battery Life Floor",
+          "Type": "operational",
+          "is_absolute": "false",
+          "Verdict": "**none**",
+          "Primary friction": "—"
+        },
+        {
+          "#": "C5",
+          "Constraint": "Retrofit-Only Surface Mount",
+          "Type": "physical",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Primary friction": "Class A premium interiors only"
+        },
+        {
+          "#": "C6",
+          "Constraint": "EasyWave Protocol Lock-In",
+          "Type": "operational",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Primary friction": "BMS integration; primary sales friction"
+        },
+        {
+          "#": "C7",
+          "Constraint": "IoT Price Premium",
+          "Type": "economic",
+          "is_absolute": "false",
+          "Verdict": "**none**",
+          "Primary friction": "—"
+        },
+        {
+          "#": "C8",
+          "Constraint": "GDPR Monitoring Data Compliance",
+          "Type": "regulatory",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Primary friction": "EU tenant-employee data processing"
+        },
+        {
+          "#": "C9",
+          "Constraint": "IP Protection Boundary",
+          "Type": "environmental",
+          "is_absolute": "false",
+          "Verdict": "**none**",
+          "Primary friction": "—"
+        },
+        {
+          "#": "C10",
+          "Constraint": "EN 13637 / EltVTR Electrical Compliance",
+          "Type": "regulatory",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Primary friction": "Combined access control + exit configurations"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Why it activates**",
+          "Value": "Class A office towers have large floor plates (10,000–50,000 m²/floor), concrete cores, and steel-frame structures. RF attenuation can reduce the 30 m integrated range below practical coverage. Multi-floor and multi-wing deployments need a receiver coverage plan."
+        },
+        {
+          "Field": "**Mitigation actions**",
+          "Value": "(1) Pre-deployment RF survey to map coverage zones; (2) deploy signal repeaters (+30 m/stage) on each floor segment; (3) use BUS Gateway to aggregate floor-level receivers into a single building-management feed"
+        },
+        {
+          "Field": "**Cost estimate**",
+          "Value": "low (<$10K per typical mid-size office building)"
+        },
+        {
+          "Field": "**Time estimate**",
+          "Value": "2–4 weeks"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Why it activates**",
+          "Value": "Applies only to Class A trophy assets where visible surface-mount protrusions on door hardware conflict with architectural specification. Back-of-house exits (service corridors, stairwells, loading) are unaffected."
+        },
+        {
+          "Field": "**Mitigation actions**",
+          "Value": "(1) Specify IoT variant only on back-of-house / stairwell exits; (2) use mechanical-only variant on architecturally sensitive front-of-house exits; (3) review with facilities manager at specification stage"
+        },
+        {
+          "Field": "**Cost estimate**",
+          "Value": "low (no hardware modification — configuration choice only)"
+        },
+        {
+          "Field": "**Time estimate**",
+          "Value": "1–2 weeks (specification review)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Why it activates**",
+          "Value": "Commercial lessors run BACnet/IP or KNX BMS platforms (Siemens Desigo, JCI Metasys, Honeywell EBI per VN L5). EasyWave has zero native interoperability with these protocols. Multi-building portfolios cannot integrate emergency exit status into their existing BMS or centralized dashboards without a translation layer. VN anchor analysis flags this as the **primary sales friction** in this market."
+        },
+        {
+          "Field": "**Mitigation actions**",
+          "Value": "(1) Deploy GfS Wireless BUS Gateway (potential-free relay output) as the BMS integration bridge; (2) map alarm/door-state events to BACnet object layer via gateway dry-contact wiring; (3) for standalone deployments, use GfS cloud monitoring dashboard without BMS integration"
+        },
+        {
+          "Field": "**Cost estimate**",
+          "Value": "medium ($10K–$100K across a multi-building portfolio; single-building installations are low)"
+        },
+        {
+          "Field": "**Time estimate**",
+          "Value": "3–6 months (gateway procurement, BMS configuration, acceptance testing)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Why it activates**",
+          "Value": "EU commercial buildings house tenant-employees whose movement patterns (door-open timestamps, alarm events) may constitute personal data under GDPR if attributable to identifiable individuals. The building lessor acts as data controller (or joint controller) for shared building infrastructure data."
+        },
+        {
+          "Field": "**Mitigation actions**",
+          "Value": "(1) Establish legitimate interest legal basis (fire safety / regulatory compliance obligation); (2) execute DPA with any cloud monitoring SaaS provider used; (3) add emergency exit monitoring to building privacy notice for tenants"
+        },
+        {
+          "Field": "**Cost estimate**",
+          "Value": "low (<$10K; typically handled within existing GDPR compliance infrastructure)"
+        },
+        {
+          "Field": "**Time estimate**",
+          "Value": "1–3 months (legal review, DPA execution)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Why it activates**",
+          "Value": "Commercial office buildings routinely combine emergency exit hardware with access control systems (Credential Reader + Door Controller per VN L5). Where Türwächter is installed alongside electromagnetic door holders (common for hold-open-during-occupancy configurations), the combined system must satisfy EN 13637 fail-safe release requirements. System integrators working in this market must design combined configurations to the standard."
+        },
+        {
+          "Field": "**Mitigation actions**",
+          "Value": "(1) Specify fail-safe (NC) electromagnetic holder configurations only; (2) require EN 13637 compliance review in system integrator specification; (3) keep IoT module purely supervisory — do not integrate with powered locking logic"
+        },
+        {
+          "Field": "**Cost estimate**",
+          "Value": "low ($3K–$8K for compliance engineering review per installation design)"
+        },
+        {
+          "Field": "**Time estimate**",
+          "Value": "1–2 months (system design review + documentation)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Verdict",
+        "Constraints",
+        "Count"
+      ],
+      "rows": [
+        {
+          "Verdict": "**knockout**",
+          "Constraints": "—",
+          "Count": "0"
+        },
+        {
+          "Verdict": "**mitigable**",
+          "Constraints": "C3, C5, C6, C8, C10",
+          "Count": "5"
+        },
+        {
+          "Verdict": "**none**",
+          "Constraints": "C1, C2, C4, C7, C9",
+          "Count": "5"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market_name": "Lessors of Nonresidential Buildings",
+      "naics_code": "531120",
+      "verdict": "surviving",
+      "assessments": [
+        {
+          "constraint_name": "Emergency Escape Non-Impedance",
+          "market_name": "Lessors of Nonresidential Buildings",
+          "naics_code": "531120",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Product is certified to EN 179/EN 1125. Standard commercial office operating conditions. Constraint pre-satisfied by product design."
+        },
+        {
+          "constraint_name": "Mechanical Alarm Independence",
+          "market_name": "Lessors of Nonresidential Buildings",
+          "naics_code": "531120",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "The sole absolute constraint is pre-satisfied by the mechanical-primary architecture. Alarm activates at 0V by design. No electrical dependency on the alarm trigger path."
+        },
+        {
+          "constraint_name": "Wireless Range Limitation",
+          "market_name": "Lessors of Nonresidential Buildings",
+          "naics_code": "531120",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Pre-deployment RF survey to map coverage zones per floor",
+            "Deploy signal repeaters (+30m per stage) in attenuating building segments",
+            "Use BUS Gateway to aggregate floor-level receivers into central building feed"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "2-4 weeks",
+          "knockout_reason": null,
+          "rationale": "Large-floor-plate office towers and concrete cores can reduce effective RF range below 30m. Standard repeater infrastructure resolves this at low cost."
+        },
+        {
+          "constraint_name": "IoT Battery Life Floor",
+          "market_name": "Lessors of Nonresidential Buildings",
+          "naics_code": "531120",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Commercial office emergency exits have very low door-event frequency. 2-year battery target is readily achievable at low duty cycle. Non-issue for standard office, retail, and industrial flex sub-types."
+        },
+        {
+          "constraint_name": "Retrofit-Only Surface Mount",
+          "market_name": "Lessors of Nonresidential Buildings",
+          "naics_code": "531120",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Specify IoT variant on back-of-house and stairwell exits only",
+            "Use mechanical-only variant on architecturally sensitive front-of-house exits",
+            "Confirm specification with facilities manager during surveying"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1-2 weeks",
+          "knockout_reason": null,
+          "rationale": "Applies only to Class A trophy assets with architectural restrictions on door hardware. Back-of-house exits (stairwells, service corridors, loading) are unaffected. Configuration choice, not hardware modification."
+        },
+        {
+          "constraint_name": "EasyWave Protocol Lock-In",
+          "market_name": "Lessors of Nonresidential Buildings",
+          "naics_code": "531120",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Deploy GfS Wireless BUS Gateway as BACnet/IP integration bridge via potential-free relay output",
+            "Map door-state and alarm events to BMS BACnet object layer via gateway dry-contact wiring",
+            "For standalone deployments without BMS integration, use GfS cloud monitoring dashboard independently"
+          ],
+          "mitigation_cost_estimate": "medium",
+          "mitigation_time_estimate": "3-6 months",
+          "knockout_reason": null,
+          "rationale": "Primary sales friction in this market. Commercial lessors run BACnet/IP or KNX BMS (Siemens Desigo, JCI Metasys, Honeywell EBI). EasyWave has no native interoperability. Gateway translation hardware bridges the gap but adds cost and timeline, especially across multi-building portfolios."
+        },
+        {
+          "constraint_name": "IoT Price Premium",
+          "market_name": "Lessors of Nonresidential Buildings",
+          "naics_code": "531120",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Institutional commercial landlords have budgets calibrated to building safety infrastructure. ~€730/door is within standard range. ROI case is clear: automated compliance logs, reduced inspection labor, insurance and audit benefits."
+        },
+        {
+          "constraint_name": "GDPR Monitoring Data Compliance",
+          "market_name": "Lessors of Nonresidential Buildings",
+          "naics_code": "531120",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Establish legitimate interest legal basis (fire safety / regulatory compliance obligation)",
+            "Execute DPA with cloud monitoring SaaS provider",
+            "Add emergency exit monitoring to building privacy notice for tenants"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1-3 months",
+          "knockout_reason": null,
+          "rationale": "EU commercial buildings contain tenant-employees whose movement data may be attributable under GDPR. Legitimate interest basis is well-established for fire safety monitoring. Standard compliance path via DPA and privacy notice."
+        },
+        {
+          "constraint_name": "IP Protection Boundary",
+          "market_name": "Lessors of Nonresidential Buildings",
+          "naics_code": "531120",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Standard indoor commercial office environments require no elevated IP rating. IP45 outdoor variant is available for exposed exterior exit doors (loading docks, exterior stairwells) where needed."
+        },
+        {
+          "constraint_name": "EN 13637 / EltVTR Electrical Compliance",
+          "market_name": "Lessors of Nonresidential Buildings",
+          "naics_code": "531120",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Specify fail-safe (NC) electromagnetic holder configurations only in combined designs",
+            "Require EN 13637 compliance review in system integrator specification",
+            "Keep IoT module supervisory-only — do not integrate with powered locking control logic"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1-2 months",
+          "knockout_reason": null,
+          "rationale": "Office buildings routinely combine emergency exit hardware with electromagnetic door holders and access control. Combined configurations must satisfy EN 13637 fail-safe requirements. System-level compliance, not a product deficiency — standard design obligation for integrators."
+        }
+      ],
+      "markets_eliminated": [],
+      "markets_surviving": [
+        "531120"
+      ]
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

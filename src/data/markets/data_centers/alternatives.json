@@ -1,0 +1,32 @@
+{
+  "naicsCode": "518210",
+  "marketName": "Data Processing, Hosting, and Related Services",
+  "slug": "data_centers",
+  "alternatives": [
+    {
+      "name": "Wired electronic exit alarm (panel-integrated) — ~50% share",
+      "unspsc": "",
+      "tradeoffs": "Requires conduit per door; high retrofit cost in legacy DCs; IP-native via panel but mains-dependent unless on dedicated UPS circuit; single panel failure = coverage loss across entire zone"
+    },
+    {
+      "name": "Wireless IoT door alarm guard (Türwächter category) — ~30%",
+      "unspsc": "",
+      "tradeoffs": "No wiring; battery fail-safe; mechanical alarm independent of power; proprietary radio protocol requires IP gateway for PACS/SIEM; RF attenuation in metal-dense server halls; surface-mount only"
+    },
+    {
+      "name": "Mechanical-only door prop / handle alarm — ~20%",
+      "unspsc": "",
+      "tradeoffs": "Lowest cost; zero installation complexity; zero remote alerting; zero digital audit trail; cannot satisfy SOC 2 CC6.4 digital logging requirement -- eliminated by compliance mandate"
+    },
+    {
+      "name": "Door contact sensor + PACS integration (IP-native)",
+      "unspsc": "",
+      "tradeoffs": "IP-native from day one; license-per-door cost; no physical guard/locking function; can be bypassed by physical force without guaranteed alarm; no mechanical fail-safe"
+    },
+    {
+      "name": "Do nothing / manual inspection rounds",
+      "unspsc": "",
+      "tradeoffs": "Zero capex; zero audit trail; guard log does not satisfy SOC 2 digital evidence standard; most common competitor because switching cost appears high and compliance risk appears low until audit"
+    }
+  ]
+}

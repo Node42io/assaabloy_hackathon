@@ -1,0 +1,32 @@
+{
+  "naicsCode": "622110",
+  "marketName": "General Medical and Surgical Hospitals",
+  "slug": "general_medical_surgical_hospitals",
+  "alternatives": [
+    {
+      "name": "Wired alarmed exit bars (Von Duprin, Corbin Russwin, Sargent)",
+      "unspsc": "46171600",
+      "tradeoffs": "Requires conduit and cable at every door; licensed electrician; disruptive retrofit in occupied wards; no wireless campus dashboard"
+    },
+    {
+      "name": "Mechanical alarm guards, no IoT (GfS Basic, ABUS)",
+      "unspsc": "46171600",
+      "tradeoffs": "Zero remote monitoring; alarm event discoverable only on-site; no automated compliance documentation; maintenance requires physical inspection rounds"
+    },
+    {
+      "name": "Wireless electronic exit control (dormakaba SafeRoute, GEZE SecuLogic)",
+      "unspsc": "46171600",
+      "tradeoffs": "Higher unit cost; typically BACnet-integrated; more complex configuration and commissioning; heavier BMS dependency"
+    },
+    {
+      "name": "RTLS wander management (Securitas Healthcare, CenTrak, RF Technologies)",
+      "unspsc": "46191700",
+      "tradeoffs": "Patient-worn tag required; no physical door barrier; covers elopement but does not satisfy exit compliance documentation; ~3–5x higher system cost"
+    },
+    {
+      "name": "Manual patrol + paper inspection logs [Status Quo]",
+      "unspsc": "—",
+      "tradeoffs": "Zero device cost; 100% labor-dependent; no real-time detection; patrol gaps expose liability; documented compliance gaps risk JCI non-conformance findings"
+    }
+  ]
+}

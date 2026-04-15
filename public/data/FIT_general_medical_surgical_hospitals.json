@@ -1,0 +1,541 @@
+{
+  "id": "FIT_general_medical_surgical_hospitals",
+  "title": "Feature-Market Fit: General Medical and Surgical Hospitals",
+  "type": "feature_market_fit",
+  "market_slug": "general_medical_surgical_hospitals",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Step 09 — Technology-Level Feature-Market Fit",
+      "content": "**Technology class:** Emergency Exit Security Devices with Remote Monitoring  \n**Commodity FP:** Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm  \n**Market job:** Help Facility & Building Safety to maintain authorized access boundaries at emergency exits while guaranteeing single-motion escape compliance across all clinical zones, and provide real-time alerts on unauthorized activation events across the campus\n\n### Top 10 Market Needs (grounding basis)\n\n| # | Statement (short) | Imp | Sat | OS |\n|---|---|---|---|---|\n| N08 | Undetected unauthorized activation >5 min, overnight/weekend | 10 | 2 | **18** |\n| N11 | Battery status monitoring for 200+ door campus, single dashboard | 9 | 2 | **16** |\n| N16 | JCI-compliant 12-month log generation without manual aggregation | 9 | 2 | **16** |\n| N12 | RF transmission failures from MRI/CT interference | 9 | 4 | **14** |\n| N20 | Compliance gap visibility during unannounced JCI survey | 9 | 4 | **14** |\n| N13 | Correlate exit events with elopement incidents <30 sec timestamp | 8 | 3 | 13 |\n| N19 | On-demand real-time compliance status for surveyors | 8 | 3 | 13 |\n| N04 | Installation time <30 min/door, no electrician, in occupied wards | 8 | 5 | 11 |\n| N09 | False alarm frequency >2 events/week on high-traffic exits | 8 | 4 | 12 |\n| N21 | Alert-to-dispatch <15 sec, location-specific | 7 | 2 | 12 |\n\n### Feature Kano Classification & ODI Scores\n\n| Feature | Kano | Time | Cost | Safety | Reli | Skill | Stress | Pain | Conf | Del | **Overall** |\n|---|---|---|---|---|---|---|---|---|---|---|---|\n| Mechanical Alarm Trigger | must_be | 3 | 4 | 9 | 9 | 7 | 7 | 6 | 8 | 2 | **6.11** |\n| Key Override Mechanism | must_be | 7 | 4 | 8 | 8 | 6 | 8 | 7 | 7 | 3 | **6.44** |\n| Pre-Alarm Warning Tone | attractive | 5 | 6 | 5 | 4 | 7 | 8 | 8 | 6 | 6 | **6.11** |\n| Wireless State Transmitter | one_dimensional | 7 | 6 | 8 | 6 | 5 | 8 | 7 | 7 | 6 | **6.67** |\n| Battery Power Supply (no mains) | must_be | 3 | 7 | 8 | 8 | 7 | 5 | 7 | 8 | 3 | **6.22** |\n| Remote Battery Status Reporting | attractive | 6 | 7 | 8 | 7 | 6 | 8 | 8 | 8 | 8 | **7.33** |\n| Retrofit Surface Mount Installation | one_dimensional | 8 | 9 | 5 | 5 | 9 | 7 | 9 | 6 | 7 | **7.22** |\n| Automated Event Log Generation | attractive | 7 | 8 | 6 | 7 | 7 | 9 | 9 | 9 | 7 | **7.67** |\n\n### Rationale by Feature\n\n**Mechanical Alarm Trigger** (`must_be`, 6.11)  \nAny emergency exit product in a hospital must provide an audible alarm — NFPA 101 §18 and DIN EN 179/1125 make this non-negotiable. Presence is taken for granted; no delight. Primary drivers: Safety (9) — fail-safe at 0V is critical for elopement detection during power events; Reliability (9) — mechanical linkage eliminates electrical single-point-of-failure. N08 (undetected activation, OS=18) is directly addressed by this feature.\n\n**Key Override Mechanism** (`must_be`, 6.44)  \nHospitals generate legitimate clinical emergencies requiring rapid authorized exit — code blue, fire evacuation drills, psychiatric handoffs. A key bypass that suppresses the alarm is expected infrastructure. Primary drivers: Stress (8) — eliminates nurse/security anxiety during authorized clinical access; Safety (8) — prevents inappropriate escalation during acute events. N10 (authorized bypass <10 sec, no facility-wide alarm) is directly addressed.\n\n**Pre-Alarm Warning Tone** (`attractive`, 6.11)  \nNot present on all competing alternatives. Clinical settings have high incidental door-contact rates (staff rushing through). A warning tone that aborts false alarms before full activation is genuinely surprising in this category. Primary drivers: Pain (8) — eliminates false alarm call-outs in busy wards (N09, false alarm rate); Stress (8) — reduces staff desensitization to alarms, which is a documented patient-safety risk.\n\n**Wireless State Transmitter** (`one_dimensional`, 6.67)  \nMore reliable, wider coverage = more value. Directly addresses the #1 underserved need (N08, OS=18: undetected activation during overnight). Primary drivers: Safety (8) — real-time transmission closes the detection gap that manual patrol cannot; Stress (8) — overnight staff confidence in remote visibility. Constraint C3 (30m range limit in reinforced hospital construction) and C6 (EasyWave not native to BACnet nurse-call systems) cap the Reliability score at 6. Linear: more range, better scores.\n\n**Battery Power Supply (no mains)** (`must_be`, 6.22)  \nRetrofit in occupied hospital wards without electrician access is a practical necessity. No mains at door is expected for this product class. Primary drivers: Reliability (8) — alarm uptime during power failure events (C2 satisfied); Cost (7) — zero electrician spend across 200+ door retrofit (N04); Confidence (8) — power-independent operation is certifiable. Delight is low (3) — buyers expect battery power, they do not celebrate it.\n\n**Remote Battery Status Reporting** (`attractive`, 7.33)  \nBest score in the market. Manual battery checking across 200+ doors is a documented operational burden (N11, OS=16). Competing mechanical alternatives have zero remote battery visibility. Primary drivers: Pain (8) — eliminates manual maintenance rounds (N15); Stress (8) — eliminates the anxiety of discovering dead batteries after an elopement incident; Confidence (8) — proactive replacement before failure achievable; Delight (8) — facilities directors genuinely surprised by this capability in a door alarm product.\n\n**Retrofit Surface Mount Installation** (`one_dimensional`, 7.22)  \nMore retrofit simplicity = more value. Wired alternatives require 2–4 hrs/door with licensed electricians in occupied wards; this product takes 15–30 min with no construction work. Directly addresses N04 (installation <30 min, no electrician). Primary drivers: Skill (9) — facility tech replaces specialized trades; Pain (9) — eliminates the dominant retrofit barrier in occupied hospitals; Cost (9) — no electrician, no conduit, no permit, no disruption to clinical operations. Reliability lower (5) because surface mount creates tamper exposure in high-traffic clinical corridors.\n\n**Automated Event Log Generation** (`attractive`, 7.67)  \nHighest scoring feature. JCI compliance documentation is a critical and chronically underserved need (N16, OS=16; N20, OS=14). No competing mechanical alternative provides timestamped event logs. Primary drivers: Confidence (9) — 12-month audit trail available on demand for surveyors (N19); Stress (9) — eliminates pre-survey documentation scramble (N20); Pain (9) — replaces manual log compilation for JCI Environment of Care reports (N16). Attractive because it adds a genuinely unexpected capability relative to the commodity FP of \"audible alarm.\"\n\n---"
+    },
+    {
+      "title": "Step 10 — Product-Related Needs (Burleson Product Jobs)",
+      "content": "Needs that arise **because** of the spring-loaded mechanical guard + 868 MHz EasyWave architecture. Would disappear if replaced by wired alarmed exit bars, electronic access control, or any non-wireless alternative.\n\n| # | Statement | Source Constraint | Affected Markets | Imp | Sat |\n|---|---|---|---|---|---|\n| PR01 | Minimize the likelihood of wireless signal attenuation below reliable reporting threshold caused by reinforced-concrete hospital floor construction exceeding 3 barriers between device and receiver | Wireless Range Limitation (C3) | General Medical and Surgical Hospitals | 8 | 4 |\n| PR02 | Minimize the likelihood of wireless coverage gaps discovered post-installation in hospital buildings requiring unplanned repeater infrastructure additions to achieve full-campus alarm reporting | Wireless Range Limitation (C3) | General Medical and Surgical Hospitals | 8 | 4 |\n| PR03 | Minimize the likelihood of alarm event transmission failures caused by RF interference generated by hospital MRI and CT imaging equipment operating in zones adjacent to monitored exits | Wireless Range Limitation (C3) | General Medical and Surgical Hospitals | 9 | 4 |\n| PR04 | Minimize the effort required to replace batteries across all campus exit devices within a planned maintenance window without disrupting clinical operations or patient care in adjacent rooms | IoT Battery Life Floor (C4) | General Medical and Surgical Hospitals | 7 | 5 |\n| PR05 | Minimize the likelihood of installation failure on non-standard door hardware configurations — glass-frame doors, narrow lever handles, or legacy panic bars — present in pre-1990 hospital wings | Retrofit-Only Surface Mount (C5) | General Medical and Surgical Hospitals | 7 | 5 |\n| PR06 | Minimize the likelihood of door event logs transmitted via the wireless monitoring system containing data attributable to identifiable individuals without a legally established processing basis under GDPR EU 2016/679 | GDPR Monitoring Data Compliance (C8) | General Medical and Surgical Hospitals | 8 | 4 |\n| PR07 | Minimize the integration effort required to relay wireless alarm events from the EasyWave protocol into hospital BACnet or nurse-call BMS platforms without a custom protocol gateway | EasyWave Protocol Lock-In (C6) | General Medical and Surgical Hospitals | 7 | 3 |\n\n**Litmus-test verification:**  \n- PR01–03 disappear with wired alarmed exit bars → pass  \n- PR04 disappears with wired or mains-powered alternatives → pass  \n- PR05 disappears with flush-integrated electronic systems → pass  \n- PR06 disappears if event data is not transmitted digitally (mechanical-only alarm) → pass  \n- PR07 disappears with native BACnet/KNX exit control systems → pass\n\n---"
+    },
+    {
+      "title": "Fit Summary",
+      "content": "| Dimension | Assessment |\n|---|---|\n| **Strongest fit** | Automated Event Log Generation (7.67), Remote Battery Status Reporting (7.33), Retrofit Surface Mount (7.22) — all address top-3 underserved needs directly |\n| **Market must-have** | Mechanical Alarm Trigger, Key Override, Battery Power — must_be baseline; absence = market rejection |\n| **Competitive gap** | Remote Battery Status Reporting and Automated Event Log Generation are `attractive` features absent from all mechanical-only competitors; these are primary switching arguments |\n| **Constraint-driven risk** | C3 (range in hospital concrete) and C6 (EasyWave/BACnet incompatibility) are primary deployment friction points for this market (PR01–03, PR07) |\n| **Overall market fit** | **Strong.** Five of eight features score ≥6.22. The three attractive features directly address the top underserved ODI needs (OS=16–18). Hospital-specific liabilities (RF interference, GDPR, BACnet integration) are known and mitigable. |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### TechFeatureFitEntry[]\n\n```json\n[\n  {\n    \"feature_name\": \"Mechanical Alarm Trigger\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 3,\n    \"fit_score_cost\": 4,\n    \"fit_score_safety\": 9,\n    \"fit_score_reliability\": 9,\n    \"fit_score_skill\": 7,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 6,\n    \"fit_score_confidence\": 8,\n    \"fit_score_delight\": 2,\n    \"overall_fit\": 6.11,\n    \"rationale\": \"Table-stakes for any hospital exit product. NFPA 101 §18 and DIN EN 179/1125 make audible alarm mandatory. Primary drivers: Safety (9) — fail-safe at 0V closes the elopement detection gap (N08, OS=18); Reliability (9) — mechanical linkage eliminates electrical single-point-of-failure during power events. No delight: buyers assume it is present.\"\n  },\n  {\n    \"feature_name\": \"Key Override Mechanism\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 7,\n    \"fit_score_cost\": 4,\n    \"fit_score_safety\": 8,\n    \"fit_score_reliability\": 8,\n    \"fit_score_skill\": 6,\n    \"fit_score_stress\": 8,\n    \"fit_score_pain\": 7,\n    \"fit_score_confidence\": 7,\n    \"fit_score_delight\": 3,\n    \"overall_fit\": 6.44,\n    \"rationale\": \"Hospitals require authorized bypass during code blue, psychiatric handoffs, and fire drills without triggering facility-wide alarm. Expected capability in clinical settings. Primary drivers: Stress (8) — nurses and security staff need confidence in authorized access; Safety (8) — prevents inappropriate escalation. Directly addresses N10 (authorized bypass <10 sec, no facility alarm).\"\n  },\n  {\n    \"feature_name\": \"Pre-Alarm Warning Tone\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"kano_class\": \"attractive\",\n    \"fit_score_time\": 5,\n    \"fit_score_cost\": 6,\n    \"fit_score_safety\": 5,\n    \"fit_score_reliability\": 4,\n    \"fit_score_skill\": 7,\n    \"fit_score_stress\": 8,\n    \"fit_score_pain\": 8,\n    \"fit_score_confidence\": 6,\n    \"fit_score_delight\": 6,\n    \"overall_fit\": 6.11,\n    \"rationale\": \"Absent from mechanical-only competitors. Clinical exits have high incidental contact rates. Warning tone aborts false alarms before full activation, directly addressing N09 (false alarm frequency >2/week). Primary drivers: Pain (8) — eliminates false alarm call-out burden in busy wards; Stress (8) — reduces staff alarm fatigue (documented patient safety risk). Attractive because it genuinely surprises buyers expecting binary alarm-only behavior.\"\n  },\n  {\n    \"feature_name\": \"Wireless State Transmitter\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"kano_class\": \"one_dimensional\",\n    \"fit_score_time\": 7,\n    \"fit_score_cost\": 6,\n    \"fit_score_safety\": 8,\n    \"fit_score_reliability\": 6,\n    \"fit_score_skill\": 5,\n    \"fit_score_stress\": 8,\n    \"fit_score_pain\": 7,\n    \"fit_score_confidence\": 7,\n    \"fit_score_delight\": 6,\n    \"overall_fit\": 6.67,\n    \"rationale\": \"More reliable/wider coverage = more value (one_dimensional). Directly addresses N08 (OS=18): closes the undetected activation gap during overnight reduced-staffing. Primary drivers: Safety (8) — real-time transmission replaces hours-later discovery; Stress (8) — overnight staff confidence in remote visibility. Reliability capped at 6 due to C3 (30m range in hospital concrete) and C6 (EasyWave not native to BACnet/nurse-call systems). Linear: every 10m of additional coverage adds value.\"\n  },\n  {\n    \"feature_name\": \"Battery Power Supply\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 3,\n    \"fit_score_cost\": 7,\n    \"fit_score_safety\": 8,\n    \"fit_score_reliability\": 8,\n    \"fit_score_skill\": 7,\n    \"fit_score_stress\": 5,\n    \"fit_score_pain\": 7,\n    \"fit_score_confidence\": 8,\n    \"fit_score_delight\": 3,\n    \"overall_fit\": 6.22,\n    \"rationale\": \"No-mains-wiring retrofit is a practical necessity for occupied hospital wards. Expected for this product class. Primary drivers: Cost (7) — zero electrician spend for 200+ door retrofit (N04); Safety (8) + Reliability (8) — alarm uptime during power failures, certifiable under C2 absolute constraint. Buyers do not delight in battery power; they require it.\"\n  },\n  {\n    \"feature_name\": \"Remote Battery Status Reporting\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"kano_class\": \"attractive\",\n    \"fit_score_time\": 6,\n    \"fit_score_cost\": 7,\n    \"fit_score_safety\": 8,\n    \"fit_score_reliability\": 7,\n    \"fit_score_skill\": 6,\n    \"fit_score_stress\": 8,\n    \"fit_score_pain\": 8,\n    \"fit_score_confidence\": 8,\n    \"fit_score_delight\": 8,\n    \"overall_fit\": 7.33,\n    \"rationale\": \"Absent from all mechanical-only competitors. Manual battery checks across 200+ hospital doors is a documented operational burden. Directly addresses N11 (OS=16) and N15. Primary drivers: Pain (8) — eliminates manual inspection rounds; Stress (8) — eliminates anxiety about discovering dead batteries after an elopement incident; Delight (8) — facilities directors genuinely surprised by remote battery visibility in a door alarm product. This is a primary switching argument vs. mechanical alternatives.\"\n  },\n  {\n    \"feature_name\": \"Retrofit Surface Mount Installation\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"kano_class\": \"one_dimensional\",\n    \"fit_score_time\": 8,\n    \"fit_score_cost\": 9,\n    \"fit_score_safety\": 5,\n    \"fit_score_reliability\": 5,\n    \"fit_score_skill\": 9,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 9,\n    \"fit_score_confidence\": 6,\n    \"fit_score_delight\": 7,\n    \"overall_fit\": 7.22,\n    \"rationale\": \"Faster/simpler installation = more value (one_dimensional). Wired alternatives require 2–4 hrs/door with licensed electricians in occupied wards; this product takes 15–30 min with no construction. Directly addresses N04. Primary drivers: Skill (9) — facility tech replaces specialized trades; Pain (9) — eliminates the dominant retrofit barrier in occupied hospitals; Cost (9) — no electrician, conduit, or permit. Reliability lower (5): surface mount creates tamper exposure in high-traffic clinical corridors.\"\n  },\n  {\n    \"feature_name\": \"Automated Event Log Generation\",\n    \"market_name\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"kano_class\": \"attractive\",\n    \"fit_score_time\": 7,\n    \"fit_score_cost\": 8,\n    \"fit_score_safety\": 6,\n    \"fit_score_reliability\": 7,\n    \"fit_score_skill\": 7,\n    \"fit_score_stress\": 9,\n    \"fit_score_pain\": 9,\n    \"fit_score_confidence\": 9,\n    \"fit_score_delight\": 7,\n    \"overall_fit\": 7.67,\n    \"rationale\": \"Highest scoring feature. JCI Environment of Care documentation is chronically underserved (N16, OS=16; N20, OS=14). No competing mechanical alternative provides timestamped event logs. Primary drivers: Stress (9) — eliminates pre-survey documentation scramble (N20); Pain (9) — replaces manual log compilation for JCI audits (N16); Confidence (9) — 12-month audit trail available on demand for unannounced surveys (N19). Attractive because it adds capability genuinely unexpected in a door alarm product.\"\n  }\n]\n```\n\n### ProductRelatedNeedEntry[]\n\n```json\n[\n  {\n    \"statement\": \"Minimize the likelihood of wireless signal attenuation below reliable reporting threshold caused by reinforced-concrete hospital floor construction exceeding 3 barriers between device and receiver\",\n    \"source_constraint\": \"Wireless Range Limitation\",\n    \"affected_markets\": [\"General Medical and Surgical Hospitals\"],\n    \"importance\": 8,\n    \"satisfaction_current\": 4\n  },\n  {\n    \"statement\": \"Minimize the likelihood of wireless coverage gaps discovered post-installation in hospital buildings requiring unplanned repeater infrastructure additions to achieve full-campus alarm reporting\",\n    \"source_constraint\": \"Wireless Range Limitation\",\n    \"affected_markets\": [\"General Medical and Surgical Hospitals\"],\n    \"importance\": 8,\n    \"satisfaction_current\": 4\n  },\n  {\n    \"statement\": \"Minimize the likelihood of alarm event transmission failures caused by RF interference generated by hospital MRI and CT imaging equipment operating in zones adjacent to monitored exits\",\n    \"source_constraint\": \"Wireless Range Limitation\",\n    \"affected_markets\": [\"General Medical and Surgical Hospitals\"],\n    \"importance\": 9,\n    \"satisfaction_current\": 4\n  },\n  {\n    \"statement\": \"Minimize the effort required to replace batteries across all campus exit devices within a planned maintenance window without disrupting clinical operations or patient care in adjacent rooms\",\n    \"source_constraint\": \"IoT Battery Life Floor\",\n    \"affected_markets\": [\"General Medical and Surgical Hospitals\"],\n    \"importance\": 7,\n    \"satisfaction_current\": 5\n  },\n  {\n    \"statement\": \"Minimize the likelihood of installation failure on non-standard door hardware configurations — glass-frame doors, narrow lever handles, or legacy panic bars — present in pre-1990 hospital wings\",\n    \"source_constraint\": \"Retrofit-Only Surface Mount\",\n    \"affected_markets\": [\"General Medical and Surgical Hospitals\"],\n    \"importance\": 7,\n    \"satisfaction_current\": 5\n  },\n  {\n    \"statement\": \"Minimize the likelihood of door event logs transmitted via the wireless monitoring system containing data attributable to identifiable individuals without a legally established processing basis under GDPR EU 2016/679\",\n    \"source_constraint\": \"GDPR Monitoring Data Compliance\",\n    \"affected_markets\": [\"General Medical and Surgical Hospitals\"],\n    \"importance\": 8,\n    \"satisfaction_current\": 4\n  },\n  {\n    \"statement\": \"Minimize the integration effort required to relay wireless alarm events from the EasyWave protocol into hospital BACnet or nurse-call BMS platforms without a custom protocol gateway\",\n    \"source_constraint\": \"EasyWave Protocol Lock-In\",\n    \"affected_markets\": [\"General Medical and Surgical Hospitals\"],\n    \"importance\": 7,\n    \"satisfaction_current\": 3\n  }\n]\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "#",
+        "Statement (short)",
+        "Imp",
+        "Sat",
+        "OS"
+      ],
+      "rows": [
+        {
+          "#": "N08",
+          "Statement (short)": "Undetected unauthorized activation >5 min, overnight/weekend",
+          "Imp": "10",
+          "Sat": "2",
+          "OS": "**18**"
+        },
+        {
+          "#": "N11",
+          "Statement (short)": "Battery status monitoring for 200+ door campus, single dashboard",
+          "Imp": "9",
+          "Sat": "2",
+          "OS": "**16**"
+        },
+        {
+          "#": "N16",
+          "Statement (short)": "JCI-compliant 12-month log generation without manual aggregation",
+          "Imp": "9",
+          "Sat": "2",
+          "OS": "**16**"
+        },
+        {
+          "#": "N12",
+          "Statement (short)": "RF transmission failures from MRI/CT interference",
+          "Imp": "9",
+          "Sat": "4",
+          "OS": "**14**"
+        },
+        {
+          "#": "N20",
+          "Statement (short)": "Compliance gap visibility during unannounced JCI survey",
+          "Imp": "9",
+          "Sat": "4",
+          "OS": "**14**"
+        },
+        {
+          "#": "N13",
+          "Statement (short)": "Correlate exit events with elopement incidents <30 sec timestamp",
+          "Imp": "8",
+          "Sat": "3",
+          "OS": "13"
+        },
+        {
+          "#": "N19",
+          "Statement (short)": "On-demand real-time compliance status for surveyors",
+          "Imp": "8",
+          "Sat": "3",
+          "OS": "13"
+        },
+        {
+          "#": "N04",
+          "Statement (short)": "Installation time <30 min/door, no electrician, in occupied wards",
+          "Imp": "8",
+          "Sat": "5",
+          "OS": "11"
+        },
+        {
+          "#": "N09",
+          "Statement (short)": "False alarm frequency >2 events/week on high-traffic exits",
+          "Imp": "8",
+          "Sat": "4",
+          "OS": "12"
+        },
+        {
+          "#": "N21",
+          "Statement (short)": "Alert-to-dispatch <15 sec, location-specific",
+          "Imp": "7",
+          "Sat": "2",
+          "OS": "12"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Feature",
+        "Kano",
+        "Time",
+        "Cost",
+        "Safety",
+        "Reli",
+        "Skill",
+        "Stress",
+        "Pain",
+        "Conf",
+        "Del",
+        "**Overall**"
+      ],
+      "rows": [
+        {
+          "Feature": "Mechanical Alarm Trigger",
+          "Kano": "must_be",
+          "Time": "3",
+          "Cost": "4",
+          "Safety": "9",
+          "Reli": "9",
+          "Skill": "7",
+          "Stress": "7",
+          "Pain": "6",
+          "Conf": "8",
+          "Del": "2",
+          "**Overall**": "**6.11**"
+        },
+        {
+          "Feature": "Key Override Mechanism",
+          "Kano": "must_be",
+          "Time": "7",
+          "Cost": "4",
+          "Safety": "8",
+          "Reli": "8",
+          "Skill": "6",
+          "Stress": "8",
+          "Pain": "7",
+          "Conf": "7",
+          "Del": "3",
+          "**Overall**": "**6.44**"
+        },
+        {
+          "Feature": "Pre-Alarm Warning Tone",
+          "Kano": "attractive",
+          "Time": "5",
+          "Cost": "6",
+          "Safety": "5",
+          "Reli": "4",
+          "Skill": "7",
+          "Stress": "8",
+          "Pain": "8",
+          "Conf": "6",
+          "Del": "6",
+          "**Overall**": "**6.11**"
+        },
+        {
+          "Feature": "Wireless State Transmitter",
+          "Kano": "one_dimensional",
+          "Time": "7",
+          "Cost": "6",
+          "Safety": "8",
+          "Reli": "6",
+          "Skill": "5",
+          "Stress": "8",
+          "Pain": "7",
+          "Conf": "7",
+          "Del": "6",
+          "**Overall**": "**6.67**"
+        },
+        {
+          "Feature": "Battery Power Supply (no mains)",
+          "Kano": "must_be",
+          "Time": "3",
+          "Cost": "7",
+          "Safety": "8",
+          "Reli": "8",
+          "Skill": "7",
+          "Stress": "5",
+          "Pain": "7",
+          "Conf": "8",
+          "Del": "3",
+          "**Overall**": "**6.22**"
+        },
+        {
+          "Feature": "Remote Battery Status Reporting",
+          "Kano": "attractive",
+          "Time": "6",
+          "Cost": "7",
+          "Safety": "8",
+          "Reli": "7",
+          "Skill": "6",
+          "Stress": "8",
+          "Pain": "8",
+          "Conf": "8",
+          "Del": "8",
+          "**Overall**": "**7.33**"
+        },
+        {
+          "Feature": "Retrofit Surface Mount Installation",
+          "Kano": "one_dimensional",
+          "Time": "8",
+          "Cost": "9",
+          "Safety": "5",
+          "Reli": "5",
+          "Skill": "9",
+          "Stress": "7",
+          "Pain": "9",
+          "Conf": "6",
+          "Del": "7",
+          "**Overall**": "**7.22**"
+        },
+        {
+          "Feature": "Automated Event Log Generation",
+          "Kano": "attractive",
+          "Time": "7",
+          "Cost": "8",
+          "Safety": "6",
+          "Reli": "7",
+          "Skill": "7",
+          "Stress": "9",
+          "Pain": "9",
+          "Conf": "9",
+          "Del": "7",
+          "**Overall**": "**7.67**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Statement",
+        "Source Constraint",
+        "Affected Markets",
+        "Imp",
+        "Sat"
+      ],
+      "rows": [
+        {
+          "#": "PR01",
+          "Statement": "Minimize the likelihood of wireless signal attenuation below reliable reporting threshold caused by reinforced-concrete hospital floor construction exceeding 3 barriers between device and receiver",
+          "Source Constraint": "Wireless Range Limitation (C3)",
+          "Affected Markets": "General Medical and Surgical Hospitals",
+          "Imp": "8",
+          "Sat": "4"
+        },
+        {
+          "#": "PR02",
+          "Statement": "Minimize the likelihood of wireless coverage gaps discovered post-installation in hospital buildings requiring unplanned repeater infrastructure additions to achieve full-campus alarm reporting",
+          "Source Constraint": "Wireless Range Limitation (C3)",
+          "Affected Markets": "General Medical and Surgical Hospitals",
+          "Imp": "8",
+          "Sat": "4"
+        },
+        {
+          "#": "PR03",
+          "Statement": "Minimize the likelihood of alarm event transmission failures caused by RF interference generated by hospital MRI and CT imaging equipment operating in zones adjacent to monitored exits",
+          "Source Constraint": "Wireless Range Limitation (C3)",
+          "Affected Markets": "General Medical and Surgical Hospitals",
+          "Imp": "9",
+          "Sat": "4"
+        },
+        {
+          "#": "PR04",
+          "Statement": "Minimize the effort required to replace batteries across all campus exit devices within a planned maintenance window without disrupting clinical operations or patient care in adjacent rooms",
+          "Source Constraint": "IoT Battery Life Floor (C4)",
+          "Affected Markets": "General Medical and Surgical Hospitals",
+          "Imp": "7",
+          "Sat": "5"
+        },
+        {
+          "#": "PR05",
+          "Statement": "Minimize the likelihood of installation failure on non-standard door hardware configurations — glass-frame doors, narrow lever handles, or legacy panic bars — present in pre-1990 hospital wings",
+          "Source Constraint": "Retrofit-Only Surface Mount (C5)",
+          "Affected Markets": "General Medical and Surgical Hospitals",
+          "Imp": "7",
+          "Sat": "5"
+        },
+        {
+          "#": "PR06",
+          "Statement": "Minimize the likelihood of door event logs transmitted via the wireless monitoring system containing data attributable to identifiable individuals without a legally established processing basis under GDPR EU 2016/679",
+          "Source Constraint": "GDPR Monitoring Data Compliance (C8)",
+          "Affected Markets": "General Medical and Surgical Hospitals",
+          "Imp": "8",
+          "Sat": "4"
+        },
+        {
+          "#": "PR07",
+          "Statement": "Minimize the integration effort required to relay wireless alarm events from the EasyWave protocol into hospital BACnet or nurse-call BMS platforms without a custom protocol gateway",
+          "Source Constraint": "EasyWave Protocol Lock-In (C6)",
+          "Affected Markets": "General Medical and Surgical Hospitals",
+          "Imp": "7",
+          "Sat": "3"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Dimension",
+        "Assessment"
+      ],
+      "rows": [
+        {
+          "Dimension": "**Strongest fit**",
+          "Assessment": "Automated Event Log Generation (7.67), Remote Battery Status Reporting (7.33), Retrofit Surface Mount (7.22) — all address top-3 underserved needs directly"
+        },
+        {
+          "Dimension": "**Market must-have**",
+          "Assessment": "Mechanical Alarm Trigger, Key Override, Battery Power — must_be baseline; absence = market rejection"
+        },
+        {
+          "Dimension": "**Competitive gap**",
+          "Assessment": "Remote Battery Status Reporting and Automated Event Log Generation are `attractive` features absent from all mechanical-only competitors; these are primary switching arguments"
+        },
+        {
+          "Dimension": "**Constraint-driven risk**",
+          "Assessment": "C3 (range in hospital concrete) and C6 (EasyWave/BACnet incompatibility) are primary deployment friction points for this market (PR01–03, PR07)"
+        },
+        {
+          "Dimension": "**Overall market fit**",
+          "Assessment": "**Strong.** Five of eight features score ≥6.22. The three attractive features directly address the top underserved ODI needs (OS=16–18). Hospital-specific liabilities (RF interference, GDPR, BACnet integration) are known and mitigable."
+        }
+      ]
+    }
+  ],
+  "entities": [
+    [
+      {
+        "feature_name": "Mechanical Alarm Trigger",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "kano_class": "must_be",
+        "fit_score_time": 3,
+        "fit_score_cost": 4,
+        "fit_score_safety": 9,
+        "fit_score_reliability": 9,
+        "fit_score_skill": 7,
+        "fit_score_stress": 7,
+        "fit_score_pain": 6,
+        "fit_score_confidence": 8,
+        "fit_score_delight": 2,
+        "overall_fit": 6.11,
+        "rationale": "Table-stakes for any hospital exit product. NFPA 101 §18 and DIN EN 179/1125 make audible alarm mandatory. Primary drivers: Safety (9) — fail-safe at 0V closes the elopement detection gap (N08, OS=18); Reliability (9) — mechanical linkage eliminates electrical single-point-of-failure during power events. No delight: buyers assume it is present."
+      },
+      {
+        "feature_name": "Key Override Mechanism",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "kano_class": "must_be",
+        "fit_score_time": 7,
+        "fit_score_cost": 4,
+        "fit_score_safety": 8,
+        "fit_score_reliability": 8,
+        "fit_score_skill": 6,
+        "fit_score_stress": 8,
+        "fit_score_pain": 7,
+        "fit_score_confidence": 7,
+        "fit_score_delight": 3,
+        "overall_fit": 6.44,
+        "rationale": "Hospitals require authorized bypass during code blue, psychiatric handoffs, and fire drills without triggering facility-wide alarm. Expected capability in clinical settings. Primary drivers: Stress (8) — nurses and security staff need confidence in authorized access; Safety (8) — prevents inappropriate escalation. Directly addresses N10 (authorized bypass <10 sec, no facility alarm)."
+      },
+      {
+        "feature_name": "Pre-Alarm Warning Tone",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "kano_class": "attractive",
+        "fit_score_time": 5,
+        "fit_score_cost": 6,
+        "fit_score_safety": 5,
+        "fit_score_reliability": 4,
+        "fit_score_skill": 7,
+        "fit_score_stress": 8,
+        "fit_score_pain": 8,
+        "fit_score_confidence": 6,
+        "fit_score_delight": 6,
+        "overall_fit": 6.11,
+        "rationale": "Absent from mechanical-only competitors. Clinical exits have high incidental contact rates. Warning tone aborts false alarms before full activation, directly addressing N09 (false alarm frequency >2/week). Primary drivers: Pain (8) — eliminates false alarm call-out burden in busy wards; Stress (8) — reduces staff alarm fatigue (documented patient safety risk). Attractive because it genuinely surprises buyers expecting binary alarm-only behavior."
+      },
+      {
+        "feature_name": "Wireless State Transmitter",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "kano_class": "one_dimensional",
+        "fit_score_time": 7,
+        "fit_score_cost": 6,
+        "fit_score_safety": 8,
+        "fit_score_reliability": 6,
+        "fit_score_skill": 5,
+        "fit_score_stress": 8,
+        "fit_score_pain": 7,
+        "fit_score_confidence": 7,
+        "fit_score_delight": 6,
+        "overall_fit": 6.67,
+        "rationale": "More reliable/wider coverage = more value (one_dimensional). Directly addresses N08 (OS=18): closes the undetected activation gap during overnight reduced-staffing. Primary drivers: Safety (8) — real-time transmission replaces hours-later discovery; Stress (8) — overnight staff confidence in remote visibility. Reliability capped at 6 due to C3 (30m range in hospital concrete) and C6 (EasyWave not native to BACnet/nurse-call systems). Linear: every 10m of additional coverage adds value."
+      },
+      {
+        "feature_name": "Battery Power Supply",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "kano_class": "must_be",
+        "fit_score_time": 3,
+        "fit_score_cost": 7,
+        "fit_score_safety": 8,
+        "fit_score_reliability": 8,
+        "fit_score_skill": 7,
+        "fit_score_stress": 5,
+        "fit_score_pain": 7,
+        "fit_score_confidence": 8,
+        "fit_score_delight": 3,
+        "overall_fit": 6.22,
+        "rationale": "No-mains-wiring retrofit is a practical necessity for occupied hospital wards. Expected for this product class. Primary drivers: Cost (7) — zero electrician spend for 200+ door retrofit (N04); Safety (8) + Reliability (8) — alarm uptime during power failures, certifiable under C2 absolute constraint. Buyers do not delight in battery power; they require it."
+      },
+      {
+        "feature_name": "Remote Battery Status Reporting",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "kano_class": "attractive",
+        "fit_score_time": 6,
+        "fit_score_cost": 7,
+        "fit_score_safety": 8,
+        "fit_score_reliability": 7,
+        "fit_score_skill": 6,
+        "fit_score_stress": 8,
+        "fit_score_pain": 8,
+        "fit_score_confidence": 8,
+        "fit_score_delight": 8,
+        "overall_fit": 7.33,
+        "rationale": "Absent from all mechanical-only competitors. Manual battery checks across 200+ hospital doors is a documented operational burden. Directly addresses N11 (OS=16) and N15. Primary drivers: Pain (8) — eliminates manual inspection rounds; Stress (8) — eliminates anxiety about discovering dead batteries after an elopement incident; Delight (8) — facilities directors genuinely surprised by remote battery visibility in a door alarm product. This is a primary switching argument vs. mechanical alternatives."
+      },
+      {
+        "feature_name": "Retrofit Surface Mount Installation",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "kano_class": "one_dimensional",
+        "fit_score_time": 8,
+        "fit_score_cost": 9,
+        "fit_score_safety": 5,
+        "fit_score_reliability": 5,
+        "fit_score_skill": 9,
+        "fit_score_stress": 7,
+        "fit_score_pain": 9,
+        "fit_score_confidence": 6,
+        "fit_score_delight": 7,
+        "overall_fit": 7.22,
+        "rationale": "Faster/simpler installation = more value (one_dimensional). Wired alternatives require 2–4 hrs/door with licensed electricians in occupied wards; this product takes 15–30 min with no construction. Directly addresses N04. Primary drivers: Skill (9) — facility tech replaces specialized trades; Pain (9) — eliminates the dominant retrofit barrier in occupied hospitals; Cost (9) — no electrician, conduit, or permit. Reliability lower (5): surface mount creates tamper exposure in high-traffic clinical corridors."
+      },
+      {
+        "feature_name": "Automated Event Log Generation",
+        "market_name": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "kano_class": "attractive",
+        "fit_score_time": 7,
+        "fit_score_cost": 8,
+        "fit_score_safety": 6,
+        "fit_score_reliability": 7,
+        "fit_score_skill": 7,
+        "fit_score_stress": 9,
+        "fit_score_pain": 9,
+        "fit_score_confidence": 9,
+        "fit_score_delight": 7,
+        "overall_fit": 7.67,
+        "rationale": "Highest scoring feature. JCI Environment of Care documentation is chronically underserved (N16, OS=16; N20, OS=14). No competing mechanical alternative provides timestamped event logs. Primary drivers: Stress (9) — eliminates pre-survey documentation scramble (N20); Pain (9) — replaces manual log compilation for JCI audits (N16); Confidence (9) — 12-month audit trail available on demand for unannounced surveys (N19). Attractive because it adds capability genuinely unexpected in a door alarm product."
+      }
+    ],
+    [
+      {
+        "statement": "Minimize the likelihood of wireless signal attenuation below reliable reporting threshold caused by reinforced-concrete hospital floor construction exceeding 3 barriers between device and receiver",
+        "source_constraint": "Wireless Range Limitation",
+        "affected_markets": [
+          "General Medical and Surgical Hospitals"
+        ],
+        "importance": 8,
+        "satisfaction_current": 4
+      },
+      {
+        "statement": "Minimize the likelihood of wireless coverage gaps discovered post-installation in hospital buildings requiring unplanned repeater infrastructure additions to achieve full-campus alarm reporting",
+        "source_constraint": "Wireless Range Limitation",
+        "affected_markets": [
+          "General Medical and Surgical Hospitals"
+        ],
+        "importance": 8,
+        "satisfaction_current": 4
+      },
+      {
+        "statement": "Minimize the likelihood of alarm event transmission failures caused by RF interference generated by hospital MRI and CT imaging equipment operating in zones adjacent to monitored exits",
+        "source_constraint": "Wireless Range Limitation",
+        "affected_markets": [
+          "General Medical and Surgical Hospitals"
+        ],
+        "importance": 9,
+        "satisfaction_current": 4
+      },
+      {
+        "statement": "Minimize the effort required to replace batteries across all campus exit devices within a planned maintenance window without disrupting clinical operations or patient care in adjacent rooms",
+        "source_constraint": "IoT Battery Life Floor",
+        "affected_markets": [
+          "General Medical and Surgical Hospitals"
+        ],
+        "importance": 7,
+        "satisfaction_current": 5
+      },
+      {
+        "statement": "Minimize the likelihood of installation failure on non-standard door hardware configurations — glass-frame doors, narrow lever handles, or legacy panic bars — present in pre-1990 hospital wings",
+        "source_constraint": "Retrofit-Only Surface Mount",
+        "affected_markets": [
+          "General Medical and Surgical Hospitals"
+        ],
+        "importance": 7,
+        "satisfaction_current": 5
+      },
+      {
+        "statement": "Minimize the likelihood of door event logs transmitted via the wireless monitoring system containing data attributable to identifiable individuals without a legally established processing basis under GDPR EU 2016/679",
+        "source_constraint": "GDPR Monitoring Data Compliance",
+        "affected_markets": [
+          "General Medical and Surgical Hospitals"
+        ],
+        "importance": 8,
+        "satisfaction_current": 4
+      },
+      {
+        "statement": "Minimize the integration effort required to relay wireless alarm events from the EasyWave protocol into hospital BACnet or nurse-call BMS platforms without a custom protocol gateway",
+        "source_constraint": "EasyWave Protocol Lock-In",
+        "affected_markets": [
+          "General Medical and Surgical Hospitals"
+        ],
+        "importance": 7,
+        "satisfaction_current": 3
+      }
+    ]
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

@@ -1,0 +1,28 @@
+{
+  "naicsCode": "712110",
+  "marketName": "Museums, Historical Sites, and Similar Institutions",
+  "slug": "museums_historical_sites",
+  "operatingMedium": "",
+  "architectureDistance": 0,
+  "assessments": [
+    { "constraintName": "Emergency Escape Non-Impedance", "constraintType": "", "threshold": "", "verdict": "none", "rationale": "Product is pre-certified to EN 179/EN 1125. Museums are subject to the same fire code escape requirements. No additional compliance burden.", "mitigation": "", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "Mechanical Alarm Independence", "constraintType": "", "threshold": "", "verdict": "none", "rationale": "Absolute constraint satisfied by product's mechanical-primary architecture. Museum environments present no unique power-failure scenario that would challenge this.", "mitigation": "", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "Wireless Range Limitation", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "Historic museum buildings (stone, brick, reinforced vaults) attenuate 868 MHz signals beyond 30 m effective range. Large museum complexes may need 3-5 repeater stages. Established mitigation path.", "mitigation": "Pre-installation RF coverage survey for stone/masonry/vault structures; Deploy wireless repeaters at 20-25 m intervals; Install GfS Wireless BUS Interface per wing for centralized aggregation", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "IoT Battery Life Floor", "constraintType": "", "threshold": "", "verdict": "none", "rationale": "Museum emergency exits have very low door-event frequency. Battery current draw is minimal; 2-year target comfortably exceeded. IoT battery monitoring enables predictive replacement.", "mitigation": "", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "Retrofit-Only Surface Mount", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "Surface-mount no-drill installation is a positive differentiator for heritage buildings — satisfies reversible modification requirement. Residual barrier is aesthetic approval for RAL 6029 green on historic door fabric.", "mitigation": "Request custom RAL color to match historic door finish; Apply for Listed Building Consent or equivalent heritage authority approval where required; Prioritize back-of-house installations for initial deployment", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "EasyWave Protocol Lock-In", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "Museum BMS platforms use BACnet/IP or Modbus. GfS BUS gateway provides dry-contact bridge. A significant share of smaller museums have no BMS, making the proprietary protocol irrelevant.", "mitigation": "Deploy GfS Wireless BUS Interface as EasyWave-to-contact bridge; Wire relay outputs to BMS I/O module; For institutions without BMS, deploy standalone GfS dashboard", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "IoT Price Premium", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "Public institution and nonprofit budgets are constrained. ~EUR 730/door IoT vs. ~EUR 300-400 mechanical creates meaningful gap. Heritage security grant programs and guard patrol savings establish viable ROI case.", "mitigation": "Build guard patrol hour reduction ROI model; Identify applicable heritage security grant funding; Offer volume deployment pricing for multi-wing or multi-site rollout", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "GDPR Monitoring Data Compliance", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "EU museums in scope for GDPR where door event logs are attributable to identifiable staff. Legitimate interest basis well-established for fire safety and heritage protection.", "mitigation": "Document legitimate interest legal basis; Execute DPA with monitoring platform provider; Complete DPIA for institutions conducting systematic staff monitoring", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "IP Protection Boundary", "constraintType": "", "threshold": "", "verdict": "none", "rationale": "Museum gallery and collection environments are climate-controlled, dry indoor spaces (45-55% RH, 18-21C conservation grade). IP45 outdoor variant covers exterior archaeological site access points.", "mitigation": "", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "EN 13637 / EltVTR Electrical Compliance", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "Applies only when combined with powered locking in high-security zones (conservation vaults, restricted collection storage). Standalone alarm-only deployment — the dominant museum scenario — has zero exposure.", "mitigation": "For standalone deployment: no action required; For combined configurations in conservation vaults: verify fail-safe release design against EN 13637; Obtain combined-system certification before commissioning", "mitigationCost": "", "mitigationTime": "" }
+  ],
+  "result": {
+    "knockouts": 0,
+    "mitigable": 6,
+    "none": 4,
+    "marketStatus": "SURVIVING",
+    "totalMitigationCost": "",
+    "totalMitigationTime": ""
+  },
+  "sources": []
+}

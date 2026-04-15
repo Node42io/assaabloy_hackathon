@@ -1,0 +1,32 @@
+{
+  "naicsCode": "561210",
+  "marketName": "Facilities Support Services",
+  "slug": "facilities_support_services",
+  "alternatives": [
+    {
+      "name": "Hardwired electronic alarm systems (door contacts wired to fire panel)",
+      "unspsc": "46171600",
+      "tradeoffs": "Requires mains cabling and conduit in retrofit buildings; electrician sign-off; EUR 150-300 labour/door on top of hardware; single cable-fault can drop a circuit; asbestos risk in pre-1980 buildings"
+    },
+    {
+      "name": "Battery-powered wireless alarm devices (Türwächter class, LoRaWAN door sensors)",
+      "unspsc": "46171600",
+      "tradeoffs": "Battery replacement cycles (1-3 yr); wireless range limits (~30-60 m); proprietary protocol friction (EasyWave != BACnet/KNX); higher unit cost than mechanical"
+    },
+    {
+      "name": "Mechanical-only door alarms (no monitoring, no wireless)",
+      "unspsc": "46171501",
+      "tradeoffs": "No event logging; no remote alerting; compliance evidence requires manual inspection; declining installed base; no portfolio visibility"
+    },
+    {
+      "name": "CCTV / video monitoring at exit points",
+      "unspsc": "46171610",
+      "tradeoffs": "No alarm-on-open; requires active human review; high infrastructure cost; GDPR data-retention complexity; no audit-grade timestamped event log"
+    },
+    {
+      "name": "Do nothing / manual inspection rounds [Status Quo]",
+      "unspsc": "—",
+      "tradeoffs": "Zero P1 burden; FM inspection labor cost only (est. EUR 6-12/door/visit quarterly); compliance gap risk accepted"
+    }
+  ]
+}

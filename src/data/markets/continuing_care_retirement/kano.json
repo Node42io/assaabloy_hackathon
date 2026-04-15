@@ -1,0 +1,58 @@
+{
+  "naicsCode": "623311",
+  "marketName": "Continuing Care Retirement Communities",
+  "slug": "continuing_care_retirement",
+  "features": [
+    {
+      "name": "Mechanical Handle Locking",
+      "kanoClass": "must_be",
+      "scores": { "time": 3, "cost": 5, "safety": 9, "reliability": 8, "skill": 6, "stress": 7, "pain": 5, "confidence": 8, "delight": 3 },
+      "overallFit": 6.00,
+      "rationale": "Commodity FP baseline. Primary defense against MC resident elopement. Mechanical operation eliminates power-dependency failure mode. Safety (9), Reliability (8), Confidence (8)."
+    },
+    {
+      "name": "Audible Alarm Trigger",
+      "kanoClass": "must_be",
+      "scores": { "time": 6, "cost": 5, "safety": 9, "reliability": 7, "skill": 5, "stress": 6, "pain": 7, "confidence": 7, "delight": 4 },
+      "overallFit": 6.22,
+      "rationale": "Commodity FP baseline. Immediate audible alert is primary near-field notification for on-unit staff. Power-independent piezoelectric horn directly addresses N07 (power-fail alarm reliability). Safety (9), Pain (7), Confidence (7)."
+    },
+    {
+      "name": "Single-Motion Emergency Release",
+      "kanoClass": "must_be",
+      "scores": { "time": 4, "cost": 3, "safety": 10, "reliability": 7, "skill": 8, "stress": 7, "pain": 4, "confidence": 8, "delight": 2 },
+      "overallFit": 5.89,
+      "rationale": "EN 179/EN 1125 and NFPA 101 mandate single-motion escape. In CCRC with mobility-limited residents, staff-assisted evacuation depends entirely on this. Safety (10), Skill (8), Confidence (8)."
+    },
+    {
+      "name": "Key Override Bypass",
+      "kanoClass": "one_dimensional",
+      "scores": { "time": 6, "cost": 4, "safety": 5, "reliability": 5, "skill": 7, "stress": 8, "pain": 7, "confidence": 6, "delight": 5 },
+      "overallFit": 5.89,
+      "rationale": "One_dimensional: more keys distributed to staff = fewer false alarms during authorized care rounds in secured MC corridors. Stress (8): night-shift CNAs highly stressed by alarm events; silent key access directly reduces anxiety."
+    },
+    {
+      "name": "Battery-Powered Operation",
+      "kanoClass": "attractive",
+      "scores": { "time": 7, "cost": 8, "safety": 5, "reliability": 5, "skill": 8, "stress": 6, "pain": 7, "confidence": 5, "delight": 7 },
+      "overallFit": 6.44,
+      "rationale": "Attractive — genuine differentiator vs. wired alternatives dominant in CCRC. Eliminates electrician work in occupied care wings. Cost (8), Skill (8), Pain (7), Delight (7). Battery depletion risk moderates Reliability and Confidence."
+    },
+    {
+      "name": "Pre-Alarm Warning",
+      "kanoClass": "one_dimensional",
+      "scores": { "time": 5, "cost": 4, "safety": 4, "reliability": 5, "skill": 4, "stress": 6, "pain": 5, "confidence": 5, "delight": 4 },
+      "overallFit": 4.67,
+      "rationale": "Below-average fit. Valuable in IL/AL/SNF zones (reduces alarm fatigue). Counterproductive in Memory Care: initial light contact delays full 95 dB activation during elopement attempt. Safety (4) reflects net-neutral to negative effect."
+    }
+  ],
+  "avgOverallFit": 5.85,
+  "productRelatedNeeds": [
+    "Minimize the likelihood of IoT module battery depletion going undetected on an emergency exit door in a low-traffic CCRC wing during overnight staffing periods",
+    "Minimize the likelihood of wireless alarm event transmission failure from emergency exit doors in reinforced concrete corridors exceeding the 30 m integrated transmitter range",
+    "Minimize the time to integrate EasyWave-protocol door guardian event streams into an existing BACnet or KNX building management platform",
+    "Minimize the likelihood of unauthorized guard removal or mechanism defeat by a cognitively impaired resident who manipulates the exposed surface-mounted housing",
+    "Minimize the time to discover that a wireless receiver unit serving multiple door guardians on a single care level has lost connectivity"
+  ],
+  "sources": []
+}

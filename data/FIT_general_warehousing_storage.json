@@ -1,0 +1,560 @@
+{
+  "id": "FIT_general_warehousing_storage",
+  "title": "Feature-Market Fit: GfS Türwächter IoT — General Warehousing and Storage (NAICS 493110)",
+  "type": "feature_market_fit",
+  "market_slug": "general_warehousing_storage",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Context",
+      "content": "| Field | Value |\n|---|---|\n| **Market** | General Warehousing and Storage |\n| **NAICS** | 493110 |\n| **Technology class** | Emergency Exit Security Devices with Remote Monitoring |\n| **Underlying mechanism** | Spring-loaded mechanical door-handle guard + piezoelectric 95 dB alarm horn + 868 MHz EasyWave radio transmitter |\n| **Commodity FP** | Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm |\n| **Product FP** | Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring — without mains power at the door |\n| **Surviving from constraints?** | Yes — no knockout; C3 (range) and C4 (battery) are the primary mitigable concerns in DC environments |\n| **Top 3 underserved needs** | N09 Battery depletion → undetected open door (Opp=15), N18 Manual log gaps at audit (Opp=15), N01 Missing compliance coverage (Opp=15) |\n\n---"
+    },
+    {
+      "title": "Step 09 — Technology-Level Feature-Market Fit",
+      "content": "### Scoring: 9-dimension ODI, scale 1–10. `overall_fit` = arithmetic mean (recomputed below).\n\n| Feature | Kano | Time | Cost | Safety | Reliability | Skill | Stress | Pain | Confidence | Delight | **Overall** |\n|---|---|---|---|---|---|---|---|---|---|---|---|\n| Mechanical Handle Locking | must_be | 3 | 4 | 8 | 7 | 5 | 5 | 4 | 7 | 2 | **5.00** |\n| Audible Alarm Trigger | must_be | 4 | 5 | 9 | 6 | 4 | 6 | 5 | 6 | 2 | **5.22** |\n| Single-Motion Emergency Release | must_be | 6 | 3 | 9 | 6 | 8 | 7 | 3 | 8 | 2 | **5.78** |\n| Key Override Bypass | must_be | 5 | 3 | 6 | 5 | 4 | 6 | 6 | 5 | 2 | **4.67** |\n| Battery-Powered Operation | one_dimensional | 6 | 8 | 5 | 5 | 8 | 5 | 8 | 5 | 5 | **6.11** |\n| Pre-Alarm Warning | attractive | 3 | 6 | 3 | 4 | 3 | 7 | 7 | 5 | 5 | **4.78** |\n\n### Rationale\n\n**Mechanical Handle Locking — must_be (5.00)**\nPhysical handle guard is the delivery mechanism for the Commodity FP itself — every product in this group must provide it. No market buys an exit guard without the lock. Primary ODI drivers: Safety (8) — direct deterrence of unauthorized dock exit use; Reliability (7) — fully passive, no power dependency removes single-point failure. Score limited because it contributes nothing to audit automation (N17/N18/N19) or alert delivery (N12), which are the highest-opportunity gaps.\n\n**Audible Alarm Trigger — must_be (5.22)**\nUniversal in all competing products. Commodity FP requires audible alert. Key caveat: N07 (Opp=14) specifically flags that 95 dB alarm may be masked by 85–95 dB DC ambient noise (diesel forklifts, backup alarms at 97–112 dB). Reliability score (6) reflects this — alarm is reliable in principle but not under worst-case dock conditions. Confidence (6) similarly discounted by audibility risk. Safety (9) because the alarm is the primary incident-response trigger.\n\n**Single-Motion Emergency Release — must_be (5.78)**\nDIN EN 179 / EN 1125 compliance is non-negotiable — no warehouse market entry without it. Highest overall score among must_be features. Skill (8) because it requires zero training or prior knowledge from evacuees, which matters in high-turnover DC workforces. Confidence (8) because regulatory certification provides a hard assurance signal. Safety (9) for evacuation criticality.\n\n**Key Override Bypass — must_be (4.67)**\nExpected by all security managers. Relevant for shift supervisors, fire wardens, and maintenance staff needing authorized dock-door access. Lower scores because this feature contributes nothing to the top-5 opportunity needs (N01, N09, N12, N17, N18). Pain (6) — eliminates the operational nuisance of alarm-triggering authorized access. Delight (2) — a keyed cylinder is entirely unremarkable.\n\n**Battery-Powered Operation — one_dimensional (6.11)**\nHighest-scoring technology-scope feature. Warehouse emergency exits are typically far from electrical infrastructure — DC layouts prioritize racking and logistics flow over cable routing. Battery power enables no-electrician retrofit (Skill=8, Pain=8, Cost=8). However, constraint C4 directly creates N09 (Opp=15 — battery depletion → undetected event), which suppresses Safety (5) and Reliability (5). More battery life is linearly better; less is linearly worse — clear one_dimensional classification. Satisfaction against N09 remains at 3 because battery life for the IoT variant is unpublished.\n\n**Pre-Alarm Warning — attractive (4.78)**\nNot present in mechanical-only incumbents (30% share) or wired exit bars (45% share). Directly addresses N10 (false alarm from inadvertent handle contact by dock workers in narrow corridors — Opp=10). Dock workers brushing handles during high-throughput operations is a genuine operational pain. Stress (7) and Pain (7) reflect that pre-alarm breaks the false-alarm cycle. Not classifiable as must_be because incumbents deliver without it and customers do not cite its absence as a source of dissatisfaction. Safety (3) deliberately low — the pre-alarm could lull a genuine intruder into believing they can abort, but this is an edge case.\n\n---"
+    },
+    {
+      "title": "Step 10 — Product-Related Needs (Burleson Product Jobs)",
+      "content": "> Litmus test: \"Would this need disappear if a fundamentally different technology were chosen?\" Technology = spring-loaded mechanical guard + 868 MHz EasyWave radio. Different technology = wired alarmed exit bar OR open-protocol wireless exit control.\n\n| # | Statement | Source Constraint | Affected Markets | Imp | Sat | Opp |\n|---|---|---|---|---|---|---|\n| PR1 | Minimize the likelihood of monitoring blind spots caused by 868 MHz signal attenuation through steel racking structures, corrugated metal cladding, and reinforced concrete dock walls when positioning wireless receivers in DC facilities exceeding 5,000 m² | Wireless Range Limitation (C3) | General Warehousing, E-commerce DC, Cross-docking | 8 | 3 | 13 |\n| PR2 | Minimize the effort required to plan battery replacement schedules when actual IoT module power consumption under high DC door-activation frequency is not published and must be estimated per deployment | IoT Battery Life Floor (C4) | General Warehousing, E-commerce DC | 7 | 2 | 12 |\n| PR3 | Minimize the likelihood of guard misalignment from surface-mounting on non-standard or worn EN 179 lever handle geometries across a mixed DC door hardware estate, resulting in degraded alarm trigger reliability | Retrofit-Only Surface Mount (C5) | General Warehousing, Healthcare, Schools | 7 | 4 | 10 |\n| PR4 | Minimize the integration effort required to translate EasyWave 868 MHz event messages into standard building automation formats (BACnet, Modbus, OPC-UA) for DCs with existing third-party BMS infrastructure | EasyWave Protocol Lock-In (C6) | General Warehousing (3PL multi-site), Smart Office, Facilities Support | 6 | 3 | 9 |\n| PR5 | Minimize the likelihood of repeated receiver-to-gateway communication failures caused by RF interference from mobile warehouse equipment (MHE, automated conveyors, 865 MHz barcode scanners) operating on adjacent frequency bands | Wireless Range Limitation (C3) + IoT Battery Life Floor (C4) | General Warehousing, E-commerce DC | 7 | 3 | 11 |\n\n**Litmus test verification:**\n- PR1: wired exit bar → no RF propagation need. Passes.\n- PR2: wired exit bar → no battery management need. Passes.\n- PR3: flush-integrated or panic-bar-native alternative → no surface-mount alignment concern. Passes.\n- PR4: open-protocol wireless device (dormakaba SafeRoute with BACnet) → BMS integration is native. Passes.\n- PR5: wired → zero RF interference concern. Passes.\n\n---"
+    },
+    {
+      "title": "Step 11 — Vendor Feature-Market Fit (GfS Türwächter vs. Best Incumbent)",
+      "content": "> Vendor: GfS Türwächter IoT (Exit Control 179/1125 with Radio). Vendor-scope features only (technology-scope handled in Step 09).\n> Best incumbent per feature selected from alternatives identified in JTBD §2.4: wired alarmed exit bars (45% share), wireless electronic exit control (15% share — dormakaba SafeRoute, GEZE SecuLogic).\n\n| Feature | Kano | GfS Score | Best Incumbent | Incumbent ID | Advantage | Notes |\n|---|---|---|---|---|---|---|\n| 868 MHz EasyWave Radio Transmission | attractive | 5 | 7 | dormakaba SafeRoute (multi-protocol: BACnet/KNX, longer range options) | **inferior** | GfS is proprietary single-protocol; SafeRoute integrates natively with BMS platforms already deployed in modern DCs |\n| Wireless BUS Interface Integration | attractive | 5 | 7 | Siemens Desigo / Honeywell EBI (via wired panel integration) | **inferior** | GfS BUS is closed-ecosystem; established BMS platforms offer richer dashboards, historical trending, and open APIs for 3PL portfolio monitoring |\n| Dual-Standard Variant Range (EN 179 + EN 1125) | must_be | 9 | 8 | ASSA ABLOY / Von Duprin (separate product lines per standard) | **superior** | GfS offers matched variants from a single product family with identical commissioning and hardware. Competitors require separate sourcing and training across EN 179 and EN 1125 configurations |\n| IP45 Outdoor Variant | one_dimensional | 6 | 7 | Von Duprin 98/99 weatherized (wider weather-rated range) | **parity** | GfS IP45 covers loading dock rain/dust exposure. Competitors offer broader weather ratings (IP54+). For standard warehouse dock doors, IP45 is sufficient; washdown environments (cold-chain) need IP65+ |\n| Glass-Frame Mounting Plate | attractive | 8 | 4 | Generic competitors (no dedicated solution; require field fabrication) | **superior** | GfS Art. 991170 is a purpose-built, certified mounting solution for glass-framed emergency doors — common in DC office/break room wings. Competitors lack equivalent off-the-shelf accessory |\n\n**Score scale:** 10 = best known real-world implementation in this market. 0 = feature absent.\n\n**Advantage classification:** superior = score gap > 1. parity = gap ≤ 1. inferior = GfS score < incumbent by > 1.\n\n**Summary for warehousing:**\n- GfS is **superior** in standardization across door hardware variants (dual-standard family) and glass-frame retrofit capability — genuine niches the market under-serves.\n- GfS is **inferior** in wireless protocol breadth and BMS integration depth — the primary reason larger 3PL operators with established building automation prefer dormakaba or GEZE.\n- The protocol lock-in gap (C6) is the most significant competitive liability for the high-throughput e-commerce DC segment, where BMS-integrated monitoring is becoming standard.\n\n---"
+    },
+    {
+      "title": "Fit Summary (NAICS 493110)",
+      "content": "| Dimension | Assessment |\n|---|---|\n| **Overall technology fit** | Strong. Battery-powered wireless monitoring directly addresses the market's highest unmet need cluster (compliance automation + monitoring visibility). Technology-scope features score 4.67–6.11 overall. |\n| **Primary value driver** | Battery-Powered Operation (6.11) enabling no-electrician retrofit into large DC footprints with exits far from electrical infrastructure |\n| **Critical gap** | Alarm audibility at dock ambient noise (N07, Opp=14) — 95 dB alarm may be marginally effective in peak dock noise conditions |\n| **Vendor competitive strength** | Dual-standard variant coverage and glass-frame accessory — genuine differentiation vs. fragmented competition |\n| **Vendor competitive weakness** | EasyWave proprietary protocol vs. incumbents with BACnet/KNX — significant liability for BMS-integrated 3PL operators |\n| **Product-related need pressure** | Moderate-high. RF planning burden (PR1), unpublished battery life (PR2), and MHE RF interference (PR5) create recurring pre-sales and deployment friction specific to this technology |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"market\": {\n    \"name\": \"General Warehousing and Storage\",\n    \"naics_code\": \"493110\"\n  },\n  \"technology_class\": \"Emergency Exit Security Devices with Remote Monitoring\",\n  \"step_09_tech_feature_fit\": [\n    {\n      \"feature_name\": \"Mechanical Handle Locking\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"kano_class\": \"must_be\",\n      \"fit_score_time\": 3,\n      \"fit_score_cost\": 4,\n      \"fit_score_safety\": 8,\n      \"fit_score_reliability\": 7,\n      \"fit_score_skill\": 5,\n      \"fit_score_stress\": 5,\n      \"fit_score_pain\": 4,\n      \"fit_score_confidence\": 7,\n      \"fit_score_delight\": 2,\n      \"overall_fit\": 5.00,\n      \"rationale\": \"Directly delivers Commodity FP — every competing product must provide physical handle prevention. must_be because absence causes dissatisfaction but presence is taken for granted. Primary drivers: Safety (8) deters unauthorized dock exit; Reliability (7) fully passive, zero power dependency. Score ceiling capped because feature contributes nothing to audit automation or alert delivery needs (highest market opportunity cluster).\"\n    },\n    {\n      \"feature_name\": \"Audible Alarm Trigger\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"kano_class\": \"must_be\",\n      \"fit_score_time\": 4,\n      \"fit_score_cost\": 5,\n      \"fit_score_safety\": 9,\n      \"fit_score_reliability\": 6,\n      \"fit_score_skill\": 4,\n      \"fit_score_stress\": 6,\n      \"fit_score_pain\": 5,\n      \"fit_score_confidence\": 6,\n      \"fit_score_delight\": 2,\n      \"overall_fit\": 5.22,\n      \"rationale\": \"Universal Commodity FP requirement. Safety (9) as primary incident response trigger. Reliability (6) and Confidence (6) discounted by N07: DC ambient noise from IC forklifts (85–95 dB) and backup alarms (97–112 dB) can mask a 95 dB alarm — documented underserved need (Opp=14). Alarm is reliable in controlled conditions but not validated under worst-case dock environments.\"\n    },\n    {\n      \"feature_name\": \"Single-Motion Emergency Release\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"kano_class\": \"must_be\",\n      \"fit_score_time\": 6,\n      \"fit_score_cost\": 3,\n      \"fit_score_safety\": 9,\n      \"fit_score_reliability\": 6,\n      \"fit_score_skill\": 8,\n      \"fit_score_stress\": 7,\n      \"fit_score_pain\": 3,\n      \"fit_score_confidence\": 8,\n      \"fit_score_delight\": 2,\n      \"overall_fit\": 5.78,\n      \"rationale\": \"DIN EN 179/EN 1125 compliance is non-negotiable market entry requirement. Highest overall among must_be features. Skill (8): zero training required from warehouse workforce with high turnover. Confidence (8): regulatory certification provides hard assurance. Safety (9): evacuation path for hundreds of workers in large DCs. Cost (3) low — feature does not reduce operating costs directly.\"\n    },\n    {\n      \"feature_name\": \"Key Override Bypass\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"kano_class\": \"must_be\",\n      \"fit_score_time\": 5,\n      \"fit_score_cost\": 3,\n      \"fit_score_safety\": 6,\n      \"fit_score_reliability\": 5,\n      \"fit_score_skill\": 4,\n      \"fit_score_stress\": 6,\n      \"fit_score_pain\": 6,\n      \"fit_score_confidence\": 5,\n      \"fit_score_delight\": 2,\n      \"overall_fit\": 4.67,\n      \"rationale\": \"Expected by all security managers for authorized dock supervisor and maintenance access. Lowest overall score — contributes nothing to top-opportunity needs (audit automation, monitoring gaps). Pain (6) and Stress (6): eliminates operational nuisance of alarm-triggering authorized access during shift handovers. Safety (6): reduces false-alarm desensitization.\"\n    },\n    {\n      \"feature_name\": \"Battery-Powered Operation\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"kano_class\": \"one_dimensional\",\n      \"fit_score_time\": 6,\n      \"fit_score_cost\": 8,\n      \"fit_score_safety\": 5,\n      \"fit_score_reliability\": 5,\n      \"fit_score_skill\": 8,\n      \"fit_score_stress\": 5,\n      \"fit_score_pain\": 8,\n      \"fit_score_confidence\": 5,\n      \"fit_score_delight\": 5,\n      \"overall_fit\": 6.11,\n      \"rationale\": \"Highest-scoring technology feature. DC emergency exits are far from electrical infrastructure — battery operation enables no-electrician retrofit (Cost=8, Skill=8, Pain=8). one_dimensional: more battery life = linearly better outcomes; depletion = monitoring gap. Safety (5) and Reliability (5) suppressed by C4/N09 (Opp=15): battery depletion causes undetected unauthorized door events — the most critical market safety gap. IoT variant battery life is unpublished by GfS, which prevents confidence-building.\"\n    },\n    {\n      \"feature_name\": \"Pre-Alarm Warning\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"kano_class\": \"attractive\",\n      \"fit_score_time\": 3,\n      \"fit_score_cost\": 6,\n      \"fit_score_safety\": 3,\n      \"fit_score_reliability\": 4,\n      \"fit_score_skill\": 3,\n      \"fit_score_stress\": 7,\n      \"fit_score_pain\": 7,\n      \"fit_score_confidence\": 5,\n      \"fit_score_delight\": 5,\n      \"overall_fit\": 4.78,\n      \"rationale\": \"Absent in mechanical-only (30% share) and wired exit bar (45% share) incumbents. Directly addresses N10 (false alarms from inadvertent handle contact by dock workers in narrow corridors). Stress (7) and Pain (7): breaks the false-alarm response cycle that fatigues shift supervisors. attractive because customers do not expect it and absence does not cause dissatisfaction. Safety (3) deliberately low — pre-alarm could allow a genuine intruder to abort without triggering full response.\"\n    }\n  ],\n  \"step_10_product_related_needs\": [\n    {\n      \"statement\": \"Minimize the likelihood of monitoring blind spots caused by 868 MHz signal attenuation through steel racking structures, corrugated metal cladding, and reinforced concrete dock walls when positioning wireless receivers in DC facilities exceeding 5,000 m²\",\n      \"source_constraint\": \"Wireless Range Limitation\",\n      \"affected_markets\": [\"General Warehousing and Storage\", \"Refrigerated Warehousing and Storage\"],\n      \"importance\": 8,\n      \"satisfaction_current\": 3,\n      \"opportunity_score\": 13\n    },\n    {\n      \"statement\": \"Minimize the effort required to predict battery replacement intervals when IoT module power consumption under high door-activation frequency is not published and must be field-estimated per DC deployment\",\n      \"source_constraint\": \"IoT Battery Life Floor\",\n      \"affected_markets\": [\"General Warehousing and Storage\", \"Other Airport Operations\"],\n      \"importance\": 7,\n      \"satisfaction_current\": 2,\n      \"opportunity_score\": 12\n    },\n    {\n      \"statement\": \"Minimize the likelihood of guard misalignment from surface-mounting on non-standard or worn EN 179 lever handle geometries in a mixed DC door hardware estate, resulting in degraded alarm trigger reliability or impaired single-motion escape force compliance\",\n      \"source_constraint\": \"Retrofit-Only Surface Mount\",\n      \"affected_markets\": [\"General Warehousing and Storage\", \"Elementary and Secondary Schools\", \"General Medical and Surgical Hospitals\"],\n      \"importance\": 7,\n      \"satisfaction_current\": 4,\n      \"opportunity_score\": 10\n    },\n    {\n      \"statement\": \"Minimize the integration effort required to translate EasyWave 868 MHz event messages into standard building automation formats (BACnet, Modbus, OPC-UA) for DCs with existing third-party BMS infrastructure\",\n      \"source_constraint\": \"EasyWave Protocol Lock-In\",\n      \"affected_markets\": [\"General Warehousing and Storage\", \"Facilities Support Services\", \"Lessors of Nonresidential Buildings\"],\n      \"importance\": 6,\n      \"satisfaction_current\": 3,\n      \"opportunity_score\": 9\n    },\n    {\n      \"statement\": \"Minimize the likelihood of repeated receiver-to-gateway communication failures caused by RF interference from mobile warehouse equipment (MHE, automated conveyors, 865 MHz barcode scanners) operating on frequency bands adjacent to 868 MHz EasyWave\",\n      \"source_constraint\": \"Wireless Range Limitation\",\n      \"affected_markets\": [\"General Warehousing and Storage\"],\n      \"importance\": 7,\n      \"satisfaction_current\": 3,\n      \"opportunity_score\": 11\n    }\n  ],\n  \"step_11_vendor_feature_fit\": [\n    {\n      \"feature_name\": \"868 MHz EasyWave Radio Transmission\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"feature_scope\": \"vendor\",\n      \"kano_class\": \"attractive\",\n      \"vendor_score\": 5,\n      \"best_incumbent_score\": 7,\n      \"best_incumbent_id\": \"dormakaba SafeRoute (multi-protocol BACnet/KNX, longer range options, ~15% warehouse wireless share)\",\n      \"advantage\": \"inferior\",\n      \"rationale\": \"GfS EasyWave is single-protocol, proprietary. dormakaba SafeRoute supports BACnet/KNX natively — the protocols already deployed in modern DC BMS infrastructure. For standalone deployments, GfS is adequate (5). For BMS-integrated 3PL operators, the integration gap is a procurement barrier.\"\n    },\n    {\n      \"feature_name\": \"Wireless BUS Interface Integration\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"feature_scope\": \"vendor\",\n      \"kano_class\": \"attractive\",\n      \"vendor_score\": 5,\n      \"best_incumbent_score\": 7,\n      \"best_incumbent_id\": \"Siemens Desigo / Honeywell EBI (via wired panel integration with open APIs)\",\n      \"advantage\": \"inferior\",\n      \"rationale\": \"GfS BUS is a closed-ecosystem aggregator. Established BMS platforms offer richer dashboards, historical trending, open REST APIs, and multi-site 3PL portfolio monitoring. For a regional 3PL with 5–20 DCs, the GfS BUS requires separate gateway management per site with no unified cross-site view.\"\n    },\n    {\n      \"feature_name\": \"Dual-Standard Variant Range (EN 179 + EN 1125)\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"feature_scope\": \"vendor\",\n      \"kano_class\": \"must_be\",\n      \"vendor_score\": 9,\n      \"best_incumbent_score\": 8,\n      \"best_incumbent_id\": \"ASSA ABLOY / Von Duprin (EN 179 and EN 1125 covered via separate product lines)\",\n      \"advantage\": \"superior\",\n      \"rationale\": \"GfS offers matched EN 179 and EN 1125 variants from a single product family with identical installation, commissioning, and gateway protocol. Competitors require different product lines, different installation procedures, and sometimes different commissioning tools for lever-handle vs. panic-bar doors. DC facilities routinely mix both standards (main evacuation exits = EN 1125 panic bar; utility doors = EN 179 lever). Standardized sourcing and training is a genuine operational advantage.\"\n    },\n    {\n      \"feature_name\": \"IP45 Outdoor Variant\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"feature_scope\": \"vendor\",\n      \"kano_class\": \"one_dimensional\",\n      \"vendor_score\": 6,\n      \"best_incumbent_score\": 7,\n      \"best_incumbent_id\": \"Von Duprin 98/99 weatherized hardware (broader weather-rating range)\",\n      \"advantage\": \"parity\",\n      \"rationale\": \"GfS IP45 covers rain and dust exposure at loading dock emergency exits — adequate for standard warehouse dock door environments. Competitors offer IP54+ options for more demanding conditions. For ambient warehousing (NAICS 493110), IP45 is sufficient. Cold-chain or food processing adjacencies would require IP65+. Scores close enough to call parity in the primary market.\"\n    },\n    {\n      \"feature_name\": \"Glass-Frame Mounting Plate\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"feature_scope\": \"vendor\",\n      \"kano_class\": \"attractive\",\n      \"vendor_score\": 8,\n      \"best_incumbent_score\": 4,\n      \"best_incumbent_id\": \"Generic competitors (no dedicated solution; field fabrication or custom brackets required)\",\n      \"advantage\": \"superior\",\n      \"rationale\": \"Modern DC facilities often have glass-framed emergency doors in office wings, break rooms, and mezzanine areas. GfS Art. 991170 is a purpose-built, certified mounting solution. Competitors lack an equivalent off-the-shelf accessory and require field-fabricated adapters that may affect certification compliance. Genuine differentiation point for the mixed-construction DC portfolio segment.\"\n    }\n  ]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Market**",
+          "Value": "General Warehousing and Storage"
+        },
+        {
+          "Field": "**NAICS**",
+          "Value": "493110"
+        },
+        {
+          "Field": "**Technology class**",
+          "Value": "Emergency Exit Security Devices with Remote Monitoring"
+        },
+        {
+          "Field": "**Underlying mechanism**",
+          "Value": "Spring-loaded mechanical door-handle guard + piezoelectric 95 dB alarm horn + 868 MHz EasyWave radio transmitter"
+        },
+        {
+          "Field": "**Commodity FP**",
+          "Value": "Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm"
+        },
+        {
+          "Field": "**Product FP**",
+          "Value": "Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring — without mains power at the door"
+        },
+        {
+          "Field": "**Surviving from constraints?**",
+          "Value": "Yes — no knockout; C3 (range) and C4 (battery) are the primary mitigable concerns in DC environments"
+        },
+        {
+          "Field": "**Top 3 underserved needs**",
+          "Value": "N09 Battery depletion → undetected open door (Opp=15), N18 Manual log gaps at audit (Opp=15), N01 Missing compliance coverage (Opp=15)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Feature",
+        "Kano",
+        "Time",
+        "Cost",
+        "Safety",
+        "Reliability",
+        "Skill",
+        "Stress",
+        "Pain",
+        "Confidence",
+        "Delight",
+        "**Overall**"
+      ],
+      "rows": [
+        {
+          "Feature": "Mechanical Handle Locking",
+          "Kano": "must_be",
+          "Time": "3",
+          "Cost": "4",
+          "Safety": "8",
+          "Reliability": "7",
+          "Skill": "5",
+          "Stress": "5",
+          "Pain": "4",
+          "Confidence": "7",
+          "Delight": "2",
+          "**Overall**": "**5.00**"
+        },
+        {
+          "Feature": "Audible Alarm Trigger",
+          "Kano": "must_be",
+          "Time": "4",
+          "Cost": "5",
+          "Safety": "9",
+          "Reliability": "6",
+          "Skill": "4",
+          "Stress": "6",
+          "Pain": "5",
+          "Confidence": "6",
+          "Delight": "2",
+          "**Overall**": "**5.22**"
+        },
+        {
+          "Feature": "Single-Motion Emergency Release",
+          "Kano": "must_be",
+          "Time": "6",
+          "Cost": "3",
+          "Safety": "9",
+          "Reliability": "6",
+          "Skill": "8",
+          "Stress": "7",
+          "Pain": "3",
+          "Confidence": "8",
+          "Delight": "2",
+          "**Overall**": "**5.78**"
+        },
+        {
+          "Feature": "Key Override Bypass",
+          "Kano": "must_be",
+          "Time": "5",
+          "Cost": "3",
+          "Safety": "6",
+          "Reliability": "5",
+          "Skill": "4",
+          "Stress": "6",
+          "Pain": "6",
+          "Confidence": "5",
+          "Delight": "2",
+          "**Overall**": "**4.67**"
+        },
+        {
+          "Feature": "Battery-Powered Operation",
+          "Kano": "one_dimensional",
+          "Time": "6",
+          "Cost": "8",
+          "Safety": "5",
+          "Reliability": "5",
+          "Skill": "8",
+          "Stress": "5",
+          "Pain": "8",
+          "Confidence": "5",
+          "Delight": "5",
+          "**Overall**": "**6.11**"
+        },
+        {
+          "Feature": "Pre-Alarm Warning",
+          "Kano": "attractive",
+          "Time": "3",
+          "Cost": "6",
+          "Safety": "3",
+          "Reliability": "4",
+          "Skill": "3",
+          "Stress": "7",
+          "Pain": "7",
+          "Confidence": "5",
+          "Delight": "5",
+          "**Overall**": "**4.78**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Statement",
+        "Source Constraint",
+        "Affected Markets",
+        "Imp",
+        "Sat",
+        "Opp"
+      ],
+      "rows": [
+        {
+          "#": "PR1",
+          "Statement": "Minimize the likelihood of monitoring blind spots caused by 868 MHz signal attenuation through steel racking structures, corrugated metal cladding, and reinforced concrete dock walls when positioning wireless receivers in DC facilities exceeding 5,000 m²",
+          "Source Constraint": "Wireless Range Limitation (C3)",
+          "Affected Markets": "General Warehousing, E-commerce DC, Cross-docking",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "13"
+        },
+        {
+          "#": "PR2",
+          "Statement": "Minimize the effort required to plan battery replacement schedules when actual IoT module power consumption under high DC door-activation frequency is not published and must be estimated per deployment",
+          "Source Constraint": "IoT Battery Life Floor (C4)",
+          "Affected Markets": "General Warehousing, E-commerce DC",
+          "Imp": "7",
+          "Sat": "2",
+          "Opp": "12"
+        },
+        {
+          "#": "PR3",
+          "Statement": "Minimize the likelihood of guard misalignment from surface-mounting on non-standard or worn EN 179 lever handle geometries across a mixed DC door hardware estate, resulting in degraded alarm trigger reliability",
+          "Source Constraint": "Retrofit-Only Surface Mount (C5)",
+          "Affected Markets": "General Warehousing, Healthcare, Schools",
+          "Imp": "7",
+          "Sat": "4",
+          "Opp": "10"
+        },
+        {
+          "#": "PR4",
+          "Statement": "Minimize the integration effort required to translate EasyWave 868 MHz event messages into standard building automation formats (BACnet, Modbus, OPC-UA) for DCs with existing third-party BMS infrastructure",
+          "Source Constraint": "EasyWave Protocol Lock-In (C6)",
+          "Affected Markets": "General Warehousing (3PL multi-site), Smart Office, Facilities Support",
+          "Imp": "6",
+          "Sat": "3",
+          "Opp": "9"
+        },
+        {
+          "#": "PR5",
+          "Statement": "Minimize the likelihood of repeated receiver-to-gateway communication failures caused by RF interference from mobile warehouse equipment (MHE, automated conveyors, 865 MHz barcode scanners) operating on adjacent frequency bands",
+          "Source Constraint": "Wireless Range Limitation (C3) + IoT Battery Life Floor (C4)",
+          "Affected Markets": "General Warehousing, E-commerce DC",
+          "Imp": "7",
+          "Sat": "3",
+          "Opp": "11"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Feature",
+        "Kano",
+        "GfS Score",
+        "Best Incumbent",
+        "Incumbent ID",
+        "Advantage",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "Feature": "868 MHz EasyWave Radio Transmission",
+          "Kano": "attractive",
+          "GfS Score": "5",
+          "Best Incumbent": "7",
+          "Incumbent ID": "dormakaba SafeRoute (multi-protocol: BACnet/KNX, longer range options)",
+          "Advantage": "**inferior**",
+          "Notes": "GfS is proprietary single-protocol; SafeRoute integrates natively with BMS platforms already deployed in modern DCs"
+        },
+        {
+          "Feature": "Wireless BUS Interface Integration",
+          "Kano": "attractive",
+          "GfS Score": "5",
+          "Best Incumbent": "7",
+          "Incumbent ID": "Siemens Desigo / Honeywell EBI (via wired panel integration)",
+          "Advantage": "**inferior**",
+          "Notes": "GfS BUS is closed-ecosystem; established BMS platforms offer richer dashboards, historical trending, and open APIs for 3PL portfolio monitoring"
+        },
+        {
+          "Feature": "Dual-Standard Variant Range (EN 179 + EN 1125)",
+          "Kano": "must_be",
+          "GfS Score": "9",
+          "Best Incumbent": "8",
+          "Incumbent ID": "ASSA ABLOY / Von Duprin (separate product lines per standard)",
+          "Advantage": "**superior**",
+          "Notes": "GfS offers matched variants from a single product family with identical commissioning and hardware. Competitors require separate sourcing and training across EN 179 and EN 1125 configurations"
+        },
+        {
+          "Feature": "IP45 Outdoor Variant",
+          "Kano": "one_dimensional",
+          "GfS Score": "6",
+          "Best Incumbent": "7",
+          "Incumbent ID": "Von Duprin 98/99 weatherized (wider weather-rated range)",
+          "Advantage": "**parity**",
+          "Notes": "GfS IP45 covers loading dock rain/dust exposure. Competitors offer broader weather ratings (IP54+). For standard warehouse dock doors, IP45 is sufficient; washdown environments (cold-chain) need IP65+"
+        },
+        {
+          "Feature": "Glass-Frame Mounting Plate",
+          "Kano": "attractive",
+          "GfS Score": "8",
+          "Best Incumbent": "4",
+          "Incumbent ID": "Generic competitors (no dedicated solution; require field fabrication)",
+          "Advantage": "**superior**",
+          "Notes": "GfS Art. 991170 is a purpose-built, certified mounting solution for glass-framed emergency doors — common in DC office/break room wings. Competitors lack equivalent off-the-shelf accessory"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Dimension",
+        "Assessment"
+      ],
+      "rows": [
+        {
+          "Dimension": "**Overall technology fit**",
+          "Assessment": "Strong. Battery-powered wireless monitoring directly addresses the market's highest unmet need cluster (compliance automation + monitoring visibility). Technology-scope features score 4.67–6.11 overall."
+        },
+        {
+          "Dimension": "**Primary value driver**",
+          "Assessment": "Battery-Powered Operation (6.11) enabling no-electrician retrofit into large DC footprints with exits far from electrical infrastructure"
+        },
+        {
+          "Dimension": "**Critical gap**",
+          "Assessment": "Alarm audibility at dock ambient noise (N07, Opp=14) — 95 dB alarm may be marginally effective in peak dock noise conditions"
+        },
+        {
+          "Dimension": "**Vendor competitive strength**",
+          "Assessment": "Dual-standard variant coverage and glass-frame accessory — genuine differentiation vs. fragmented competition"
+        },
+        {
+          "Dimension": "**Vendor competitive weakness**",
+          "Assessment": "EasyWave proprietary protocol vs. incumbents with BACnet/KNX — significant liability for BMS-integrated 3PL operators"
+        },
+        {
+          "Dimension": "**Product-related need pressure**",
+          "Assessment": "Moderate-high. RF planning burden (PR1), unpublished battery life (PR2), and MHE RF interference (PR5) create recurring pre-sales and deployment friction specific to this technology"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market": {
+        "name": "General Warehousing and Storage",
+        "naics_code": "493110"
+      },
+      "technology_class": "Emergency Exit Security Devices with Remote Monitoring",
+      "step_09_tech_feature_fit": [
+        {
+          "feature_name": "Mechanical Handle Locking",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "kano_class": "must_be",
+          "fit_score_time": 3,
+          "fit_score_cost": 4,
+          "fit_score_safety": 8,
+          "fit_score_reliability": 7,
+          "fit_score_skill": 5,
+          "fit_score_stress": 5,
+          "fit_score_pain": 4,
+          "fit_score_confidence": 7,
+          "fit_score_delight": 2,
+          "overall_fit": 5.0,
+          "rationale": "Directly delivers Commodity FP — every competing product must provide physical handle prevention. must_be because absence causes dissatisfaction but presence is taken for granted. Primary drivers: Safety (8) deters unauthorized dock exit; Reliability (7) fully passive, zero power dependency. Score ceiling capped because feature contributes nothing to audit automation or alert delivery needs (highest market opportunity cluster)."
+        },
+        {
+          "feature_name": "Audible Alarm Trigger",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "kano_class": "must_be",
+          "fit_score_time": 4,
+          "fit_score_cost": 5,
+          "fit_score_safety": 9,
+          "fit_score_reliability": 6,
+          "fit_score_skill": 4,
+          "fit_score_stress": 6,
+          "fit_score_pain": 5,
+          "fit_score_confidence": 6,
+          "fit_score_delight": 2,
+          "overall_fit": 5.22,
+          "rationale": "Universal Commodity FP requirement. Safety (9) as primary incident response trigger. Reliability (6) and Confidence (6) discounted by N07: DC ambient noise from IC forklifts (85–95 dB) and backup alarms (97–112 dB) can mask a 95 dB alarm — documented underserved need (Opp=14). Alarm is reliable in controlled conditions but not validated under worst-case dock environments."
+        },
+        {
+          "feature_name": "Single-Motion Emergency Release",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "kano_class": "must_be",
+          "fit_score_time": 6,
+          "fit_score_cost": 3,
+          "fit_score_safety": 9,
+          "fit_score_reliability": 6,
+          "fit_score_skill": 8,
+          "fit_score_stress": 7,
+          "fit_score_pain": 3,
+          "fit_score_confidence": 8,
+          "fit_score_delight": 2,
+          "overall_fit": 5.78,
+          "rationale": "DIN EN 179/EN 1125 compliance is non-negotiable market entry requirement. Highest overall among must_be features. Skill (8): zero training required from warehouse workforce with high turnover. Confidence (8): regulatory certification provides hard assurance. Safety (9): evacuation path for hundreds of workers in large DCs. Cost (3) low — feature does not reduce operating costs directly."
+        },
+        {
+          "feature_name": "Key Override Bypass",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "kano_class": "must_be",
+          "fit_score_time": 5,
+          "fit_score_cost": 3,
+          "fit_score_safety": 6,
+          "fit_score_reliability": 5,
+          "fit_score_skill": 4,
+          "fit_score_stress": 6,
+          "fit_score_pain": 6,
+          "fit_score_confidence": 5,
+          "fit_score_delight": 2,
+          "overall_fit": 4.67,
+          "rationale": "Expected by all security managers for authorized dock supervisor and maintenance access. Lowest overall score — contributes nothing to top-opportunity needs (audit automation, monitoring gaps). Pain (6) and Stress (6): eliminates operational nuisance of alarm-triggering authorized access during shift handovers. Safety (6): reduces false-alarm desensitization."
+        },
+        {
+          "feature_name": "Battery-Powered Operation",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "kano_class": "one_dimensional",
+          "fit_score_time": 6,
+          "fit_score_cost": 8,
+          "fit_score_safety": 5,
+          "fit_score_reliability": 5,
+          "fit_score_skill": 8,
+          "fit_score_stress": 5,
+          "fit_score_pain": 8,
+          "fit_score_confidence": 5,
+          "fit_score_delight": 5,
+          "overall_fit": 6.11,
+          "rationale": "Highest-scoring technology feature. DC emergency exits are far from electrical infrastructure — battery operation enables no-electrician retrofit (Cost=8, Skill=8, Pain=8). one_dimensional: more battery life = linearly better outcomes; depletion = monitoring gap. Safety (5) and Reliability (5) suppressed by C4/N09 (Opp=15): battery depletion causes undetected unauthorized door events — the most critical market safety gap. IoT variant battery life is unpublished by GfS, which prevents confidence-building."
+        },
+        {
+          "feature_name": "Pre-Alarm Warning",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "kano_class": "attractive",
+          "fit_score_time": 3,
+          "fit_score_cost": 6,
+          "fit_score_safety": 3,
+          "fit_score_reliability": 4,
+          "fit_score_skill": 3,
+          "fit_score_stress": 7,
+          "fit_score_pain": 7,
+          "fit_score_confidence": 5,
+          "fit_score_delight": 5,
+          "overall_fit": 4.78,
+          "rationale": "Absent in mechanical-only (30% share) and wired exit bar (45% share) incumbents. Directly addresses N10 (false alarms from inadvertent handle contact by dock workers in narrow corridors). Stress (7) and Pain (7): breaks the false-alarm response cycle that fatigues shift supervisors. attractive because customers do not expect it and absence does not cause dissatisfaction. Safety (3) deliberately low — pre-alarm could allow a genuine intruder to abort without triggering full response."
+        }
+      ],
+      "step_10_product_related_needs": [
+        {
+          "statement": "Minimize the likelihood of monitoring blind spots caused by 868 MHz signal attenuation through steel racking structures, corrugated metal cladding, and reinforced concrete dock walls when positioning wireless receivers in DC facilities exceeding 5,000 m²",
+          "source_constraint": "Wireless Range Limitation",
+          "affected_markets": [
+            "General Warehousing and Storage",
+            "Refrigerated Warehousing and Storage"
+          ],
+          "importance": 8,
+          "satisfaction_current": 3,
+          "opportunity_score": 13
+        },
+        {
+          "statement": "Minimize the effort required to predict battery replacement intervals when IoT module power consumption under high door-activation frequency is not published and must be field-estimated per DC deployment",
+          "source_constraint": "IoT Battery Life Floor",
+          "affected_markets": [
+            "General Warehousing and Storage",
+            "Other Airport Operations"
+          ],
+          "importance": 7,
+          "satisfaction_current": 2,
+          "opportunity_score": 12
+        },
+        {
+          "statement": "Minimize the likelihood of guard misalignment from surface-mounting on non-standard or worn EN 179 lever handle geometries in a mixed DC door hardware estate, resulting in degraded alarm trigger reliability or impaired single-motion escape force compliance",
+          "source_constraint": "Retrofit-Only Surface Mount",
+          "affected_markets": [
+            "General Warehousing and Storage",
+            "Elementary and Secondary Schools",
+            "General Medical and Surgical Hospitals"
+          ],
+          "importance": 7,
+          "satisfaction_current": 4,
+          "opportunity_score": 10
+        },
+        {
+          "statement": "Minimize the integration effort required to translate EasyWave 868 MHz event messages into standard building automation formats (BACnet, Modbus, OPC-UA) for DCs with existing third-party BMS infrastructure",
+          "source_constraint": "EasyWave Protocol Lock-In",
+          "affected_markets": [
+            "General Warehousing and Storage",
+            "Facilities Support Services",
+            "Lessors of Nonresidential Buildings"
+          ],
+          "importance": 6,
+          "satisfaction_current": 3,
+          "opportunity_score": 9
+        },
+        {
+          "statement": "Minimize the likelihood of repeated receiver-to-gateway communication failures caused by RF interference from mobile warehouse equipment (MHE, automated conveyors, 865 MHz barcode scanners) operating on frequency bands adjacent to 868 MHz EasyWave",
+          "source_constraint": "Wireless Range Limitation",
+          "affected_markets": [
+            "General Warehousing and Storage"
+          ],
+          "importance": 7,
+          "satisfaction_current": 3,
+          "opportunity_score": 11
+        }
+      ],
+      "step_11_vendor_feature_fit": [
+        {
+          "feature_name": "868 MHz EasyWave Radio Transmission",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "feature_scope": "vendor",
+          "kano_class": "attractive",
+          "vendor_score": 5,
+          "best_incumbent_score": 7,
+          "best_incumbent_id": "dormakaba SafeRoute (multi-protocol BACnet/KNX, longer range options, ~15% warehouse wireless share)",
+          "advantage": "inferior",
+          "rationale": "GfS EasyWave is single-protocol, proprietary. dormakaba SafeRoute supports BACnet/KNX natively — the protocols already deployed in modern DC BMS infrastructure. For standalone deployments, GfS is adequate (5). For BMS-integrated 3PL operators, the integration gap is a procurement barrier."
+        },
+        {
+          "feature_name": "Wireless BUS Interface Integration",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "feature_scope": "vendor",
+          "kano_class": "attractive",
+          "vendor_score": 5,
+          "best_incumbent_score": 7,
+          "best_incumbent_id": "Siemens Desigo / Honeywell EBI (via wired panel integration with open APIs)",
+          "advantage": "inferior",
+          "rationale": "GfS BUS is a closed-ecosystem aggregator. Established BMS platforms offer richer dashboards, historical trending, open REST APIs, and multi-site 3PL portfolio monitoring. For a regional 3PL with 5–20 DCs, the GfS BUS requires separate gateway management per site with no unified cross-site view."
+        },
+        {
+          "feature_name": "Dual-Standard Variant Range (EN 179 + EN 1125)",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "feature_scope": "vendor",
+          "kano_class": "must_be",
+          "vendor_score": 9,
+          "best_incumbent_score": 8,
+          "best_incumbent_id": "ASSA ABLOY / Von Duprin (EN 179 and EN 1125 covered via separate product lines)",
+          "advantage": "superior",
+          "rationale": "GfS offers matched EN 179 and EN 1125 variants from a single product family with identical installation, commissioning, and gateway protocol. Competitors require different product lines, different installation procedures, and sometimes different commissioning tools for lever-handle vs. panic-bar doors. DC facilities routinely mix both standards (main evacuation exits = EN 1125 panic bar; utility doors = EN 179 lever). Standardized sourcing and training is a genuine operational advantage."
+        },
+        {
+          "feature_name": "IP45 Outdoor Variant",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "feature_scope": "vendor",
+          "kano_class": "one_dimensional",
+          "vendor_score": 6,
+          "best_incumbent_score": 7,
+          "best_incumbent_id": "Von Duprin 98/99 weatherized hardware (broader weather-rating range)",
+          "advantage": "parity",
+          "rationale": "GfS IP45 covers rain and dust exposure at loading dock emergency exits — adequate for standard warehouse dock door environments. Competitors offer IP54+ options for more demanding conditions. For ambient warehousing (NAICS 493110), IP45 is sufficient. Cold-chain or food processing adjacencies would require IP65+. Scores close enough to call parity in the primary market."
+        },
+        {
+          "feature_name": "Glass-Frame Mounting Plate",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "feature_scope": "vendor",
+          "kano_class": "attractive",
+          "vendor_score": 8,
+          "best_incumbent_score": 4,
+          "best_incumbent_id": "Generic competitors (no dedicated solution; field fabrication or custom brackets required)",
+          "advantage": "superior",
+          "rationale": "Modern DC facilities often have glass-framed emergency doors in office wings, break rooms, and mezzanine areas. GfS Art. 991170 is a purpose-built, certified mounting solution. Competitors lack an equivalent off-the-shelf accessory and require field-fabricated adapters that may affect certification compliance. Genuine differentiation point for the mixed-construction DC portfolio segment."
+        }
+      ]
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

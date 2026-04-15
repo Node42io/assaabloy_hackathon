@@ -1,0 +1,1084 @@
+{
+  "id": "VN_general_warehousing_storage",
+  "title": "Value Network Construction: NAICS 493110 — General Warehousing and Storage",
+  "type": "value_network",
+  "market_slug": "general_warehousing_storage",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Input Context",
+      "content": "| Field | Value |\n|---|---|\n| **NAICS code** | 493110 |\n| **NAICS title** | General Warehousing and Storage |\n| **Market priority** | MEDIUM-HIGH — confidence 0.87, Rank 6 in 02b |\n| **Product FP** | Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring — without mains power at the door |\n| **Architecture distance** | 2 — adjacent industry; same functional use case (building safety, emergency exit compliance). Product works as-is; primary adaptation is range extension (C3) for large-footprint buildings. EN 179/1125 certs transfer directly. |\n| **Key constraints active** | C3 (wireless range — major; DCs routinely 20,000–100,000+ m²), C4 (battery life at high-use dock exits), C7 (IoT price premium at 100+ door scale), C8 (GDPR for employee door-event logs) |\n| **Market job to be done** | Prevent unauthorized propping or misuse of emergency exit doors in warehouse facilities while maintaining fire evacuation compliance for large-footprint buildings |\n\n---"
+    },
+    {
+      "title": "Phase 1 — Initial VN Construction (Step 02c)",
+      "content": "### Step A.1 — L7 Ecosystem & CFJ\n\n**Core Functional Job (L7):** Receive, store, and dispatch client goods with full inventory integrity — from inbound receiving through storage and pick-and-pack to outbound dispatch and carrier hand-off.\n\n| Unit | Level | Job family / description |\n|---|---|---|\n| **Warehousing and Storage Ecosystem** | L7 | Moore 1993. Economic community of 3PL operators, contract warehouses, WMS vendors, MHE OEMs, carriers, shippers, and regulators coordinated around goods custody and distribution. |\n\n---\n\n### Step A.2 — L6 Core Process Steps (sequential)\n\nSequential transformation: goods enter the facility at L6a and exit at L6f. Each step is necessary for the output (dispatched goods) to be delivered.\n\n| # | Name | Level | Job family | Notes |\n|---|---|---|---|---|\n| L6a | Inbound Receiving | L6 | Receive, verify, and register arriving shipments into inventory | Truck unloading, count/condition check, barcode/RFID scan, WMS record creation |\n| L6b | Put-Away & Slotting | L6 | Move verified goods to designated storage locations | Forklift directed put-away, slot optimization, overflow management |\n| L6c | Storage & Inventory Control | L6 | Maintain goods in condition-appropriate zones; preserve inventory accuracy | Cycle counting, location audits, FIFO/FEFO rotation, replenishment triggers |\n| L6d | Order Picking & Consolidation | L6 | Retrieve and consolidate SKUs per outbound orders | Discrete, batch, wave, zone, or robotic picking; order consolidation |\n| L6e | Packing, Labeling & Staging | L6 | Pack shipments to carrier spec, apply labels, stage at outbound dock | Void fill, carton sealing, carrier label printing, pallet wrap, dock staging |\n| L6f | Outbound Dispatch | L6 | Load vehicles, confirm shipment, hand off to carrier | Load verification scan, BOL generation, TMS update, carrier hand-off |\n\n---\n\n### Step A.3 — L6 Horizontal Process Steps\n\nHorizontal processes run in parallel across ALL core steps. Removing any one means no core step can run safely, legally, or with inventory accuracy.\n\n| # | Name | Level | Job family | Regulatory anchor |\n|---|---|---|---|---|\n| L6h1 | Facility Safety & Security (H) | L6 | Maintain fire safety, emergency exit compliance, physical access control, and surveillance across all warehouse zones and dock areas | OSHA 29 CFR 1910, NFPA 13, NFPA 72, NFPA 101, IFC, EN 179/1125, local fire codes |\n| L6h2 | Inventory & WMS Operations (H) | L6 | Provide real-time inventory tracking, location management, task direction, and labor management supporting every core process step | SOX (inventory accuracy for public companies), food safety FSMA where applicable |\n| L6h3 | Maintenance & Equipment Reliability (H) | L6 | Maintain material handling equipment, racking, dock equipment, and building infrastructure to prevent downtime and safety incidents | OSHA 29 CFR 1910.178 (forklift safety), ANSI MH16.1 (rack inspection) |\n\n> **Warehousing-specific note:** Emergency exit doors in warehouses face two distinct misuse modes: (1) **propping open** — workers ventilate loading dock areas or take smoke breaks; creates security and fire liability risk. (2) **unauthorized use as informal access** — side doors used to bypass access control. Both modes are addressable by the Türwächter mechanism without requiring mains wiring, which is critical because emergency exits in large DCs are often far from any electrical infrastructure.\n\n---\n\n### Step A.4 — L5 Equipment per L6 Node\n\n#### L6a — Inbound Receiving\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Dock Leveler & Loading Dock Equipment** | Mechanical dock levelers (Assa Abloy Loading Systems, Serco) / Hydraulic dock levelers (Kelley, McGuire, Pentalift) / Air-bag levelers (Assa Abloy, Niverplast) | 40% / 45% / 15% | MEDIUM | Industry supplier surveys [WEB] |\n| **Inbound Scanning & Labeling Station** | Mobile handheld scanner (Zebra, Honeywell) / Fixed RFID portal scanner (Zebra Impinj, Alien Technology) / Combined handheld+RFID (Zebra FX7500) | 55% / 20% / 25% | MEDIUM | Analyst estimates |\n\n#### L6b — Put-Away & Slotting\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Industrial Forklift Fleet** | Electric counterbalance/reach truck (Toyota, Crown, Jungheinrich, Kion) / IC counterbalance (Toyota, Hyster-Yale, Mitsubishi) / Automated guided vehicle — AGV (Dematic, Swisslog, Linde) | 58% / 32% / 10% | MEDIUM | Grand View Research 2025 — electric forklifts ~58% total [WEB] |\n| **Induct Conveyor System** | No conveyor — manual pallet jack routing / Roller/belt conveyor (Hytrol, Dematic, Intralox) / Tow/tugger conveyor (Jervis B. Webb) | 40% / 45% / 15% | LOW | Analyst estimates |\n\n#### L6c — Storage & Inventory Control\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Pallet Storage System** | Selective pallet rack (Mecalux, SSI Schäfer, Constructor, AR Racking) / Drive-in or push-back rack (Mecalux, Dematic) / Wide-aisle floor stacking (no rack) | 60% / 20% / 20% | MEDIUM | Industry estimates |\n| **Automated Storage & Retrieval System (AS/RS)** | Unit-load AS/RS crane (Dematic, SSI Schäfer, Daifuku) / Shuttle-based (Kardex, Dematic) / Goods-to-person cube storage (AutoStore, Geek+, Symbotic) | 40% / 35% / 25% | MEDIUM | Precedence Research 2025 — Daifuku, SSI Schäfer, Dematic, Symbotic, AutoStore combined >55% share [WEB] |\n\n#### L6d — Order Picking & Consolidation\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Order Picking Technology** | Paper/RF-directed manual picking (legacy) / Guided picking (pick-to-light, voice picking — SSI Schäfer, Knapp, Honeywell Vocollect, Lucas Systems) / Autonomous mobile robot (Locus Robotics, 6RS/Ocado, Geek+, Fetch/Zebra) | 35% / 40% / 25% | LOW | Analyst estimates; AMR share growing rapidly 2023–2025 |\n\n#### L6e — Packing, Labeling & Staging\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Packing & Labeling Workstation** | Manual packing bench + label printer (Zebra ZT series) / Semi-automated void fill + sealer (Sealed Air, FP International) / Fully automated packing machine (Neopost, Quadient, Sparck Technologies) | 55% / 30% / 15% | MEDIUM | Industry estimates |\n\n#### L6f — Outbound Dispatch\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Transport Management System (TMS)** | ERP-integrated TMS (SAP TM, Oracle TM) / Best-of-breed TMS (MercuryGate, Transplace/Uber Freight, Descartes) / Carrier-provided portal (no dedicated TMS) | 30% / 40% / 30% | MEDIUM | MarketsandMarkets 2024 |\n\n#### L6h1 — Facility Safety & Security (H)  ← **Product entry point**\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Fire Detection & Alarm System** | Johnson Controls (Simplex/Tyco) / Siemens (Cerberus) / Honeywell (Notifier) | 26% / 22% / 20% + others | MEDIUM | Johnson Controls, Siemens, Honeywell collectively >62% fire alarm market [WEB — IntelMarketResearch 2025] |\n| **Emergency Exit Security Device** | Wired alarmed exit bars (Von Duprin/Allegion, Corbin Russwin) / Mechanical door-handle alarm guards (GfS Exit Control, ABUS) / Wireless electronic exit control (dormakaba SafeRoute, GEZE SecuLogic) / Integrated delayed egress (Allegion, dormakaba) | 45% / 30% / 15% / 10% | LOW | No published warehouse-specific split; estimated from install base patterns [WEB] |\n| **Perimeter Access Control System** | Wired enterprise ACS (Lenel-S2, Software House, Honeywell Pro-Watch) / Cloud ACS (Brivo, Genetec, Verkada) / Wireless RF ACS (ASSA ABLOY Aperio, dormakaba MATRIX) | 50% / 30% / 20% | MEDIUM | MarketsandMarkets 2025 — ASSA ABLOY, dormakaba, Johnson Controls, Allegion, Honeywell hold ~70–80% ACS market [WEB] |\n| **Video Surveillance System** | IP network cameras (Axis, Hanwha, Avigilon) / AI-analytics camera platforms (Verkada, Arlo, Milestone) / Legacy analog CCTV (Hikvision, Dahua, Bosch) | 45% / 25% / 30% | MEDIUM | Analyst estimates — IP share growing year on year |\n| **Building Management System (BMS)** | Siemens (Desigo CC) / Honeywell (EBI, Forge) / Schneider Electric (EcoStruxure) | 28% / 27% / 22% + others | MEDIUM | Commercial security market data [WEB — Precedence Research 2025] |\n\n> **Market context:** Global commercial security system market valued at USD 540.44 Bn projected by 2034 [WEB — Precedence Research 2025]. Warehouse security hardware (emergency exit + access control + CCTV) estimated at ~$250M US+EU addressable market for the Türwächter product category [SRC — 05_market_discovery.md]. Door security bar market (broad category) projected to reach USD 114.30 Bn by 2032 at 7.62% CAGR [WEB — Globe Newswire 2024].\n\n#### L6h2 — Inventory & WMS Operations (H)\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Warehouse Management System Platform** | SAP Extended Warehouse Management (SAP EWM) / Manhattan Active WMS / Blue Yonder WMS / Oracle WMS Cloud | ~9% / ~12% / ~11% / ~9% | MEDIUM | MarketsandMarkets 2025 — top 5 players (Oracle, Blue Yonder, SAP, Manhattan, Tecsys) ~33% combined; global WMS market $4.57B in 2025 [WEB] |\n\n#### L6h3 — Maintenance & Equipment Reliability (H)\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Forklift Fleet Telematics** | OEM telematics (Toyota I_Site, Crown InfoLink, Jungheinrich ISM Online) / Third-party fleet mgmt (Hyster Tracker, Linde Connect) / Manual logbook | 45% / 25% / 30% | LOW | Analyst estimates |\n| **Racking Inspection System** | Periodic manual inspection (ANSI MH16.1 schedule) / Digital audit software (RackEye, IntelliRack) / Load monitoring sensors | 70% / 20% / 10% | LOW | Industry practice survey |\n\n---\n\n### Step A.5 — Output Type Activation Matrix\n\nOutput types (service lines) for NAICS 493110:\n\n| L6 Node | Ambient Pallet Storage & Distribution | High-Bay Racked Storage | E-commerce Fulfillment (unit pick) | Cross-docking | Value-Added Warehousing (kitting/labeling) |\n|---|:---:|:---:|:---:|:---:|:---:|\n| L6a Inbound Receiving | ✓ | ✓ | ✓ | ✓ | ✓ |\n| L6b Put-Away & Slotting | ✓ | ✓ | ✓ | — | ✓ |\n| L6c Storage & Inventory Control | ✓ | ✓ | ✓ | — | ✓ |\n| L6d Order Picking & Consolidation | ✓ | ✓ | ✓ | — | ✓ |\n| L6e Packing, Labeling & Staging | — | — | ✓ | ✓ | ✓ |\n| L6f Outbound Dispatch | ✓ | ✓ | ✓ | ✓ | ✓ |\n| L6h1 Facility Safety & Security (H) | ✓ | ✓ | ✓ | ✓ | ✓ |\n| L6h2 Inventory & WMS Operations (H) | ✓ | ✓ | ✓ | ✓ | ✓ |\n| L6h3 Maintenance & Equipment Reliability (H) | ✓ | ✓ | ✓ | ✓ | ✓ |\n\n**Observations:**\n- L6b–L6d do not activate for Cross-docking — goods are transferred directly from inbound dock to outbound staging without entering storage.\n- L6e (Packing/Labeling) is a core step only for e-commerce fulfillment, cross-docking, and value-added services. Ambient pallet and racked storage typically move case or pallet units without repacking.\n- L6h1 (Facility Safety & Security) activates for ALL output types — infrastructure is universal across the building regardless of the operational model. **This is the Emergency Exit Security Device's entry point.**\n\n---"
+    },
+    {
+      "title": "Phase 2 — VN Enrichment (Step 04)",
+      "content": "### Step 04a — L4 Fill\n\nL4 decomposition for the five highest-relevance L5 nodes (product entry point first):\n\n#### Emergency Exit Security Device (L5) — **Türwächter entry point**\n\n| L4 Subsystem | Description | Standard |\n|---|---|---|\n| **Alarm Horn Assembly** | Piezoelectric horn producing ≥ 95 dB at 1 m on activation; must function without mains power (EltVTR / NFPA 101 fail-safe requirement); in warehouse contexts, must compete with ambient noise levels of 70–85 dB from MHE operations | INCOSE |\n| **Guard / Handle Latch Mechanism** | Spring-loaded guard that physically blocks the door handle (EN 179) or panic bar (EN 1125); 45° swing release, single-motion, ≤ 70 N force; must withstand repeated inadvertent contact in high-traffic dock corridors | INCOSE |\n| **Wireless State Transmitter** | Sub-GHz radio module (868 MHz EasyWave, or LoRaWAN / BLE in next-gen products) broadcasting guard-state and alarm events to gateway or receiver; must propagate through steel racking, reinforced concrete, and corrugated metal cladding typical of DCs | INCOSE |\n| **Battery Power Supply** | Replaceable 9V block battery providing power to IoT radio module; mechanical alarm trigger operates independently of battery state; in dock-adjacent exits with high activation frequency, replacement interval monitoring is critical | INCOSE |\n\n#### Fire Detection & Alarm System (L5)\n\n| L4 Subsystem | Description | Standard |\n|---|---|---|\n| **Addressable Detector Network** | Addressable smoke/heat/beam detectors across racked storage, dock areas, and office zones; high-ceiling beam detectors required for warehouse spaces >6 m clear height per NFPA 72 | INCOSE |\n| **Fire Alarm Control Panel (FACP)** | Central supervisor of detector inputs, alarm logic, and interface to sprinkler, smoke exhaust, and BMS; typically located in facility manager's office or main entrance | INCOSE |\n| **Notification Appliance Circuit (NAC)** | Horn/strobe circuits covering all warehouse zones; high ambient noise (70–85 dB from forklifts) requires horns rated ≥ 100 dB; strobes for hearing-protection zones per NFPA 72 | INCOSE |\n\n#### Perimeter Access Control System (L5)\n\n| L4 Subsystem | Description | Standard |\n|---|---|---|\n| **Credential Reader** | Proximity card, PIN pad, or mobile NFC reader at dock doors, personnel doors, and cross-dock zone boundaries; vandal-resistant IP65 housings for dock environments | INCOSE |\n| **Electronic Lock / Strike** | Fail-secure electric strike or mag-lock on access-controlled personnel doors; fail-safe configuration required on fire-designated emergency exit paths | INCOSE |\n| **Access Control Panel** | Decision controller managing door schedules (shift-based access), logging events, and generating audit reports for insurance inspections and fire marshal audits | INCOSE |\n\n#### Industrial Forklift Fleet (L5)\n\n| L4 Subsystem | Description | Standard |\n|---|---|---|\n| **Mast & Lift Assembly** | Telescoping mast with hydraulic lift chain/cylinder; defines max stacking height; duplex/triplex/quad configurations per racking tier requirements | INCOSE |\n| **Drive Motor & Traction Control** | Electric 3-phase AC induction or brushless DC drive motor with regenerative braking controller; IC variant uses diesel/LPG engine with torque converter | INCOSE |\n| **Traction Battery Pack** | Lead-acid or Li-ion traction battery (48V–80V); Li-ion share growing due to opportunity charging compatibility with multi-shift DC operations | INCOSE |\n| **Onboard Computer & Telematics** | Fleet management controller logging shift utilization, shock events, and service intervals; feeds forklift telematics platform (Toyota I_Site, Crown InfoLink) | INCOSE |\n\n#### Pallet Storage System (L5)\n\n| L4 Subsystem | Description | Standard |\n|---|---|---|\n| **Upright Frame & Beam** | Structural steel column frames and load-bearing horizontal beams; rated load capacity per ANSI MH16.1; bay spacing dimensioned to pallet footprint and forklift turning radius | INCOSE |\n| **Load Pallet Beam** | Horizontal step beam supporting pallet loads; beam safety clips required; rated for specific pallet weight per column frame gauge | INCOSE |\n| **Base Plate & Floor Anchor** | Anchor fixing uprights to concrete slab; seismic zone requirements drive anchor spec; floor flatness tolerance (F-number) constrains very narrow aisle (VNA) installations | INCOSE |\n\n> **04a Note:** Remaining L5 nodes not fully decomposed (AS/RS, Video Surveillance System, BMS, WMS Platform, TMS, Racking Inspection System, Forklift Fleet Telematics, Dock Leveler) require L4 fill in production run. Each has well-established 3+ subsystem decompositions.\n\n---\n\n### Step 04b — Completeness Check\n\n| Gap identified | Proposed addition | Level | Parent |\n|---|---|---|---|\n| Sprinkler suppression system absent from L6h1 | Fire Sprinkler Suppression System (ESFR / in-rack / CMSA per NFPA 13) | L5 | Facility Safety & Security |\n| Emergency lighting not represented | Emergency Egress Lighting System (battery-backed exit signs + path lighting per IFC / NFPA 101) | L5 | Facility Safety & Security |\n| Returns processing step missing | Returns Processing (receive, inspect, sort, disposition returned goods; key for e-commerce and 3PL) | L6 | Warehousing and Storage Ecosystem |\n| Yard management not represented | Yard Management System (truck check-in, dock door assignment, trailer tracking) | L5 | Inbound Receiving |\n\n**Completeness score:** 0.84 (gaps are horizontal infrastructure and one missing core step for e-commerce/3PL variants; main pick-pack-dispatch chain is complete)\n\n---\n\n### Step 04c — Naming Review\n\n| Current name | Proposed rename | Reason |\n|---|---|---|\n| Inventory & WMS Operations | WMS Operations | \"Inventory\" is implied by WMS; industry calls the function \"WMS\" not \"inventory and WMS\" |\n| Induct Conveyor System | Conveyor Induct | Industry standard: \"conveyor induct\" describes the receiving-end entry point to a conveyor system |\n| Inbound Scanning & Labeling Station | Inbound Scanning Station | Labeling is a sub-function of scanning station; redundant |\n\nNo other renames required. All unit names pass the three-question test (industry-standard, domain-recognizable, minimal form).\n\n---\n\n### Step 04d — Structural Validation (Deterministic)\n\n| Check | Result |\n|---|---|\n| All levels in valid set (L7, L6, L6a-c, L5, L4) | PASS |\n| All parent references resolve to existing units | PASS |\n| Valid parent → child transitions (L7→L6, L6→L5, L5→L4) | PASS — no level skipping |\n| Every L5 with explicit L4 decomp has ≥ 3 L4 children | PASS — all 5 decomposed L5 nodes have 3–4 children |\n| Level skipping | NONE |\n\nNo structural issues flagged.\n\n---"
+    },
+    {
+      "title": "QA Self-Check",
+      "content": "| # | Check | Status |\n|---|---|---|\n| 1 | L7 ecosystem node present with Moore 1993 reference | PASS |\n| 2 | CFJ stated at L7 level — industry-level, not product-level | PASS — \"Receive, store, and dispatch client goods…\" |\n| 3 | Core L6 nodes follow physical transformation sequence (L6a → L6f) | PASS — 6 sequential steps |\n| 4 | Horizontal L6 nodes labeled (H) and separated from core | PASS — 3 horizontal nodes |\n| 5 | L5 nodes represent equipment categories, not brands | PASS — all categories; brands named in Alternatives only |\n| 6 | Alternatives are mutually exclusive technology choices (not brand variants) | PASS — wired vs. mechanical vs. wireless exit security; IC vs. electric vs. AGV forklifts |\n| 7 | Market shares cited with confidence rating and source | PASS — LOW/MEDIUM with source or [WEB] tag throughout |\n| 8 | Output type activation matrix present | PASS — 5 output types, 9 L6 nodes |\n| 9 | L4 fill: key L5 nodes have ≥ 3 L4 children | PASS — 5 nodes fully decomposed (Emergency Exit Security Device: 4 children) |\n| 10 | Product entry point explicitly identified in L5 | PASS — Emergency Exit Security Device (L5) under L6h1 Facility Safety & Security |\n| 11 | Warehouse-specific constraints noted (range, ambient noise, high-ceiling detection) | PASS — C3 range note in input context; noise note in L4 Alarm Horn description |\n| 12 | Web search used for market share claims | PASS — [WEB] tags on fire alarm vendor share, AS/RS market, forklift fleet, ACS, BMS |\n| 13 | No company names in unit name fields | PASS — brands appear in Alternatives column only |\n| 14 | VN is company-agnostic (describes industry, not Assa Abloy's portfolio) | PASS |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### MarketValueNetwork\n\n```json\n{\n  \"market_name\": \"General Warehousing and Storage\",\n  \"naics_code\": \"493110\",\n  \"naics_title\": \"General Warehousing and Storage\",\n  \"cfj_statement\": \"Receive, store, and dispatch client goods with full inventory integrity — from inbound receiving through storage and order picking to outbound dispatch and carrier hand-off\",\n  \"top_level\": \"L7\",\n  \"units\": [\n    {\n      \"name\": \"Warehousing and Storage Ecosystem\",\n      \"level\": \"L7\",\n      \"description\": \"Economic community of 3PL operators, contract warehouses, WMS vendors, MHE OEMs, carriers, shippers, and regulators coordinated around goods custody and distribution (Moore 1993)\",\n      \"bom_standard\": \"Moore 1993\",\n      \"parent_name\": \"ROOT\"\n    },\n    {\n      \"name\": \"Inbound Receiving\",\n      \"level\": \"L6\",\n      \"description\": \"Receives, verifies, and registers arriving shipments — truck unloading, count/condition check, barcode/RFID scan, WMS record creation\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Warehousing and Storage Ecosystem\"\n    },\n    {\n      \"name\": \"Put-Away & Slotting\",\n      \"level\": \"L6\",\n      \"description\": \"Moves verified goods to designated storage locations using WMS-directed put-away, slot optimization, and overflow management\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Warehousing and Storage Ecosystem\"\n    },\n    {\n      \"name\": \"Storage & Inventory Control\",\n      \"level\": \"L6\",\n      \"description\": \"Maintains goods in condition-appropriate zones; executes cycle counting, location audits, FIFO/FEFO rotation, and replenishment triggers\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Warehousing and Storage Ecosystem\"\n    },\n    {\n      \"name\": \"Order Picking & Consolidation\",\n      \"level\": \"L6\",\n      \"description\": \"Retrieves and consolidates SKUs per outbound orders via discrete, batch, wave, zone, or robotic picking methods\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Warehousing and Storage Ecosystem\"\n    },\n    {\n      \"name\": \"Packing, Labeling & Staging\",\n      \"level\": \"L6\",\n      \"description\": \"Packs shipments to carrier spec, applies carrier labels, stages packed units at outbound dock for loading\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Warehousing and Storage Ecosystem\"\n    },\n    {\n      \"name\": \"Outbound Dispatch\",\n      \"level\": \"L6\",\n      \"description\": \"Loads vehicles, confirms shipment scan, generates BOL, updates TMS and WMS, and hands off to carrier\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Warehousing and Storage Ecosystem\"\n    },\n    {\n      \"name\": \"Facility Safety & Security\",\n      \"level\": \"L6\",\n      \"description\": \"HORIZONTAL (H). Maintains fire safety, emergency exit compliance, physical access control, and video surveillance across all warehouse zones and dock areas. OSHA 29 CFR 1910, NFPA 13/72/101, IFC, EN 179/1125.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Warehousing and Storage Ecosystem\"\n    },\n    {\n      \"name\": \"WMS Operations\",\n      \"level\": \"L6\",\n      \"description\": \"HORIZONTAL (H). Provides real-time inventory tracking, location management, task direction, and labor management supporting every core process step.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Warehousing and Storage Ecosystem\"\n    },\n    {\n      \"name\": \"Maintenance & Equipment Reliability\",\n      \"level\": \"L6\",\n      \"description\": \"HORIZONTAL (H). Maintains material handling equipment, racking, dock equipment, and building infrastructure. OSHA 29 CFR 1910.178, ANSI MH16.1.\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Warehousing and Storage Ecosystem\"\n    },\n    {\n      \"name\": \"Dock Leveler & Loading Dock Equipment\",\n      \"level\": \"L5\",\n      \"description\": \"Equipment bridging the truck bed to the warehouse floor: mechanical, hydraulic, or air-bag dock levelers; dock seals and shelters\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Inbound Receiving\"\n    },\n    {\n      \"name\": \"Inbound Scanning Station\",\n      \"level\": \"L5\",\n      \"description\": \"Barcode and RFID scanning equipment for receiving verification, ASN confirmation, and WMS record creation at inbound dock\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Inbound Receiving\"\n    },\n    {\n      \"name\": \"Industrial Forklift Fleet\",\n      \"level\": \"L5\",\n      \"description\": \"Powered industrial trucks for pallet transport and high-bay stacking: counterbalance forklifts, reach trucks, AGVs\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Put-Away & Slotting\"\n    },\n    {\n      \"name\": \"Conveyor Induct\",\n      \"level\": \"L5\",\n      \"description\": \"Belt, roller, or tow conveyor system moving cases and totes from receiving into storage or picking areas\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Put-Away & Slotting\"\n    },\n    {\n      \"name\": \"Pallet Storage System\",\n      \"level\": \"L5\",\n      \"description\": \"Structural steel racking or floor-stacking system for palletized goods: selective rack, drive-in/push-back, or AS/RS\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Storage & Inventory Control\"\n    },\n    {\n      \"name\": \"Automated Storage & Retrieval System\",\n      \"level\": \"L5\",\n      \"description\": \"Automated handling systems for unit-load or miniload retrieval: stacker cranes, shuttle systems, or goods-to-person cube storage\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Storage & Inventory Control\"\n    },\n    {\n      \"name\": \"Order Picking Technology\",\n      \"level\": \"L5\",\n      \"description\": \"Technology directing order picking: manual RF/paper, pick-to-light/voice guided, or autonomous mobile robot (AMR/goods-to-person)\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Order Picking & Consolidation\"\n    },\n    {\n      \"name\": \"Packing & Labeling Workstation\",\n      \"level\": \"L5\",\n      \"description\": \"Packing benches, void-fill equipment, carton sealers, and carrier label printers for outbound shipment preparation\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Packing, Labeling & Staging\"\n    },\n    {\n      \"name\": \"Transport Management System\",\n      \"level\": \"L5\",\n      \"description\": \"Software platform for carrier selection, BOL generation, shipment tendering, and freight cost management\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Outbound Dispatch\"\n    },\n    {\n      \"name\": \"Fire Detection & Alarm System\",\n      \"level\": \"L5\",\n      \"description\": \"Addressable fire detection network with FACP, smoke/heat/beam detectors calibrated for high-ceiling warehouse geometry, and horn/strobe notification per NFPA 72\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility Safety & Security\"\n    },\n    {\n      \"name\": \"Emergency Exit Security Device\",\n      \"level\": \"L5\",\n      \"description\": \"Door-mounted device securing emergency exits against unauthorized use while preserving single-motion fire evacuation compliance; audible alarm on activation; wireless IoT variant reports status to central BMS\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility Safety & Security\"\n    },\n    {\n      \"name\": \"Perimeter Access Control System\",\n      \"level\": \"L5\",\n      \"description\": \"Credential-based access control at dock doors, personnel entrances, and zone boundaries; logs events for insurance and fire marshal audits\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility Safety & Security\"\n    },\n    {\n      \"name\": \"Video Surveillance System\",\n      \"level\": \"L5\",\n      \"description\": \"IP or AI-analytics camera network covering dock areas, storage zones, and perimeter; deters theft and provides incident evidence\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility Safety & Security\"\n    },\n    {\n      \"name\": \"Building Management System\",\n      \"level\": \"L5\",\n      \"description\": \"Integrated platform aggregating HVAC, lighting, fire safety alarms, and security events; enables centralized monitoring for facility managers\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility Safety & Security\"\n    },\n    {\n      \"name\": \"Warehouse Management System Platform\",\n      \"level\": \"L5\",\n      \"description\": \"Enterprise WMS for inventory tracking, location management, directed put-away/pick, labor management, and cycle counting\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"WMS Operations\"\n    },\n    {\n      \"name\": \"Forklift Fleet Telematics\",\n      \"level\": \"L5\",\n      \"description\": \"OEM or third-party telematics platform logging forklift utilization, shock events, operator certification, and service intervals\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Maintenance & Equipment Reliability\"\n    },\n    {\n      \"name\": \"Racking Inspection System\",\n      \"level\": \"L5\",\n      \"description\": \"Process and tooling for periodic ANSI MH16.1-compliant racking inspection: manual assessment, digital audit software, or load monitoring sensors\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Maintenance & Equipment Reliability\"\n    },\n    {\n      \"name\": \"Alarm Horn Assembly\",\n      \"level\": \"L4\",\n      \"description\": \"Piezoelectric horn producing ≥ 95 dB at 1 m on activation; operates without mains power; in warehouse contexts must exceed ambient MHE noise floor of 70–85 dB\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Device\"\n    },\n    {\n      \"name\": \"Guard / Handle Latch Mechanism\",\n      \"level\": \"L4\",\n      \"description\": \"Spring-loaded mechanical guard blocking door handle (EN 179) or panic bar (EN 1125); 45° swing release, single-motion, ≤ 70 N; must withstand high-traffic dock corridor contact\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Device\"\n    },\n    {\n      \"name\": \"Wireless State Transmitter\",\n      \"level\": \"L4\",\n      \"description\": \"Sub-GHz radio module (868 MHz EasyWave or next-gen LoRaWAN/BLE) broadcasting guard-state and alarm events; must propagate through steel racking, concrete, and corrugated metal cladding\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Device\"\n    },\n    {\n      \"name\": \"Battery Power Supply\",\n      \"level\": \"L4\",\n      \"description\": \"Replaceable 9V block battery powering the IoT radio module; mechanical alarm operates independently of battery state; replacement monitoring critical at high-activation dock exits\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Device\"\n    },\n    {\n      \"name\": \"Addressable Detector Network\",\n      \"level\": \"L4\",\n      \"description\": \"Distributed addressable smoke/heat/beam detectors across warehouse storage bays, dock areas, and offices; high-ceiling beam detectors required for spaces >6 m clear height per NFPA 72\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Fire Alarm Control Panel\",\n      \"level\": \"L4\",\n      \"description\": \"Central supervisor of detector inputs, alarm logic, and interface to sprinkler system, smoke exhaust dampers, and BMS\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Notification Appliance Circuit\",\n      \"level\": \"L4\",\n      \"description\": \"Horn/strobe circuits covering all warehouse zones; high-dB horns required to exceed forklift ambient noise; strobes for hearing-protection zones per NFPA 72\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Credential Reader\",\n      \"level\": \"L4\",\n      \"description\": \"Proximity card, PIN pad, or mobile NFC reader at dock doors and personnel entrances; IP65 vandal-resistant housing for dock environments\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Perimeter Access Control System\"\n    },\n    {\n      \"name\": \"Electronic Lock / Strike\",\n      \"level\": \"L4\",\n      \"description\": \"Fail-secure electric strike or mag-lock on access-controlled personnel doors; fail-safe on fire-designated emergency exit paths\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Perimeter Access Control System\"\n    },\n    {\n      \"name\": \"Access Control Panel\",\n      \"level\": \"L4\",\n      \"description\": \"Decision controller managing shift-based door schedules, logging access events, and generating audit reports for insurance and fire marshal visits\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Perimeter Access Control System\"\n    },\n    {\n      \"name\": \"Mast & Lift Assembly\",\n      \"level\": \"L4\",\n      \"description\": \"Telescoping mast with hydraulic lift chain/cylinder; duplex/triplex/quad configurations per racking tier requirements\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Industrial Forklift Fleet\"\n    },\n    {\n      \"name\": \"Drive Motor & Traction Control\",\n      \"level\": \"L4\",\n      \"description\": \"Electric 3-phase AC induction or brushless DC drive motor with regenerative braking controller; IC variant uses diesel/LPG engine with torque converter\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Industrial Forklift Fleet\"\n    },\n    {\n      \"name\": \"Traction Battery Pack\",\n      \"level\": \"L4\",\n      \"description\": \"Lead-acid or Li-ion traction battery (48V–80V); Li-ion share growing due to opportunity charging compatibility with multi-shift DC operations\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Industrial Forklift Fleet\"\n    },\n    {\n      \"name\": \"Onboard Computer & Telematics\",\n      \"level\": \"L4\",\n      \"description\": \"Fleet management controller logging shift utilization, shock events, operator credentials, and service intervals; feeds fleet telematics platform\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Industrial Forklift Fleet\"\n    },\n    {\n      \"name\": \"Upright Frame & Beam\",\n      \"level\": \"L4\",\n      \"description\": \"Structural steel column frames and horizontal beams rated per ANSI MH16.1; bay spacing dimensioned to pallet footprint and forklift turning radius\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Pallet Storage System\"\n    },\n    {\n      \"name\": \"Load Pallet Beam\",\n      \"level\": \"L4\",\n      \"description\": \"Step beam supporting pallet loads; beam safety clips mandatory; rated for specific pallet weight per column frame gauge\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Pallet Storage System\"\n    },\n    {\n      \"name\": \"Base Plate & Floor Anchor\",\n      \"level\": \"L4\",\n      \"description\": \"Floor anchor fixing uprights to concrete slab; seismic zone requirements drive anchor spec; floor flatness tolerance (F-number) constrains VNA installations\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Pallet Storage System\"\n    }\n  ]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**NAICS code**",
+          "Value": "493110"
+        },
+        {
+          "Field": "**NAICS title**",
+          "Value": "General Warehousing and Storage"
+        },
+        {
+          "Field": "**Market priority**",
+          "Value": "MEDIUM-HIGH — confidence 0.87, Rank 6 in 02b"
+        },
+        {
+          "Field": "**Product FP**",
+          "Value": "Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring — without mains power at the door"
+        },
+        {
+          "Field": "**Architecture distance**",
+          "Value": "2 — adjacent industry; same functional use case (building safety, emergency exit compliance). Product works as-is; primary adaptation is range extension (C3) for large-footprint buildings. EN 179/1125 certs transfer directly."
+        },
+        {
+          "Field": "**Key constraints active**",
+          "Value": "C3 (wireless range — major; DCs routinely 20,000–100,000+ m²), C4 (battery life at high-use dock exits), C7 (IoT price premium at 100+ door scale), C8 (GDPR for employee door-event logs)"
+        },
+        {
+          "Field": "**Market job to be done**",
+          "Value": "Prevent unauthorized propping or misuse of emergency exit doors in warehouse facilities while maintaining fire evacuation compliance for large-footprint buildings"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Unit",
+        "Level",
+        "Job family / description"
+      ],
+      "rows": [
+        {
+          "Unit": "**Warehousing and Storage Ecosystem**",
+          "Level": "L7",
+          "Job family / description": "Moore 1993. Economic community of 3PL operators, contract warehouses, WMS vendors, MHE OEMs, carriers, shippers, and regulators coordinated around goods custody and distribution."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Name",
+        "Level",
+        "Job family",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "#": "L6a",
+          "Name": "Inbound Receiving",
+          "Level": "L6",
+          "Job family": "Receive, verify, and register arriving shipments into inventory",
+          "Notes": "Truck unloading, count/condition check, barcode/RFID scan, WMS record creation"
+        },
+        {
+          "#": "L6b",
+          "Name": "Put-Away & Slotting",
+          "Level": "L6",
+          "Job family": "Move verified goods to designated storage locations",
+          "Notes": "Forklift directed put-away, slot optimization, overflow management"
+        },
+        {
+          "#": "L6c",
+          "Name": "Storage & Inventory Control",
+          "Level": "L6",
+          "Job family": "Maintain goods in condition-appropriate zones; preserve inventory accuracy",
+          "Notes": "Cycle counting, location audits, FIFO/FEFO rotation, replenishment triggers"
+        },
+        {
+          "#": "L6d",
+          "Name": "Order Picking & Consolidation",
+          "Level": "L6",
+          "Job family": "Retrieve and consolidate SKUs per outbound orders",
+          "Notes": "Discrete, batch, wave, zone, or robotic picking; order consolidation"
+        },
+        {
+          "#": "L6e",
+          "Name": "Packing, Labeling & Staging",
+          "Level": "L6",
+          "Job family": "Pack shipments to carrier spec, apply labels, stage at outbound dock",
+          "Notes": "Void fill, carton sealing, carrier label printing, pallet wrap, dock staging"
+        },
+        {
+          "#": "L6f",
+          "Name": "Outbound Dispatch",
+          "Level": "L6",
+          "Job family": "Load vehicles, confirm shipment, hand off to carrier",
+          "Notes": "Load verification scan, BOL generation, TMS update, carrier hand-off"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Name",
+        "Level",
+        "Job family",
+        "Regulatory anchor"
+      ],
+      "rows": [
+        {
+          "#": "L6h1",
+          "Name": "Facility Safety & Security (H)",
+          "Level": "L6",
+          "Job family": "Maintain fire safety, emergency exit compliance, physical access control, and surveillance across all warehouse zones and dock areas",
+          "Regulatory anchor": "OSHA 29 CFR 1910, NFPA 13, NFPA 72, NFPA 101, IFC, EN 179/1125, local fire codes"
+        },
+        {
+          "#": "L6h2",
+          "Name": "Inventory & WMS Operations (H)",
+          "Level": "L6",
+          "Job family": "Provide real-time inventory tracking, location management, task direction, and labor management supporting every core process step",
+          "Regulatory anchor": "SOX (inventory accuracy for public companies), food safety FSMA where applicable"
+        },
+        {
+          "#": "L6h3",
+          "Name": "Maintenance & Equipment Reliability (H)",
+          "Level": "L6",
+          "Job family": "Maintain material handling equipment, racking, dock equipment, and building infrastructure to prevent downtime and safety incidents",
+          "Regulatory anchor": "OSHA 29 CFR 1910.178 (forklift safety), ANSI MH16.1 (rack inspection)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Dock Leveler & Loading Dock Equipment**",
+          "Alternatives": "Mechanical dock levelers (Assa Abloy Loading Systems, Serco) / Hydraulic dock levelers (Kelley, McGuire, Pentalift) / Air-bag levelers (Assa Abloy, Niverplast)",
+          "Share": "40% / 45% / 15%",
+          "Confidence": "MEDIUM",
+          "Source": "Industry supplier surveys [WEB]"
+        },
+        {
+          "L5": "**Inbound Scanning & Labeling Station**",
+          "Alternatives": "Mobile handheld scanner (Zebra, Honeywell) / Fixed RFID portal scanner (Zebra Impinj, Alien Technology) / Combined handheld+RFID (Zebra FX7500)",
+          "Share": "55% / 20% / 25%",
+          "Confidence": "MEDIUM",
+          "Source": "Analyst estimates"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Industrial Forklift Fleet**",
+          "Alternatives": "Electric counterbalance/reach truck (Toyota, Crown, Jungheinrich, Kion) / IC counterbalance (Toyota, Hyster-Yale, Mitsubishi) / Automated guided vehicle — AGV (Dematic, Swisslog, Linde)",
+          "Share": "58% / 32% / 10%",
+          "Confidence": "MEDIUM",
+          "Source": "Grand View Research 2025 — electric forklifts ~58% total [WEB]"
+        },
+        {
+          "L5": "**Induct Conveyor System**",
+          "Alternatives": "No conveyor — manual pallet jack routing / Roller/belt conveyor (Hytrol, Dematic, Intralox) / Tow/tugger conveyor (Jervis B. Webb)",
+          "Share": "40% / 45% / 15%",
+          "Confidence": "LOW",
+          "Source": "Analyst estimates"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Pallet Storage System**",
+          "Alternatives": "Selective pallet rack (Mecalux, SSI Schäfer, Constructor, AR Racking) / Drive-in or push-back rack (Mecalux, Dematic) / Wide-aisle floor stacking (no rack)",
+          "Share": "60% / 20% / 20%",
+          "Confidence": "MEDIUM",
+          "Source": "Industry estimates"
+        },
+        {
+          "L5": "**Automated Storage & Retrieval System (AS/RS)**",
+          "Alternatives": "Unit-load AS/RS crane (Dematic, SSI Schäfer, Daifuku) / Shuttle-based (Kardex, Dematic) / Goods-to-person cube storage (AutoStore, Geek+, Symbotic)",
+          "Share": "40% / 35% / 25%",
+          "Confidence": "MEDIUM",
+          "Source": "Precedence Research 2025 — Daifuku, SSI Schäfer, Dematic, Symbotic, AutoStore combined >55% share [WEB]"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Order Picking Technology**",
+          "Alternatives": "Paper/RF-directed manual picking (legacy) / Guided picking (pick-to-light, voice picking — SSI Schäfer, Knapp, Honeywell Vocollect, Lucas Systems) / Autonomous mobile robot (Locus Robotics, 6RS/Ocado, Geek+, Fetch/Zebra)",
+          "Share": "35% / 40% / 25%",
+          "Confidence": "LOW",
+          "Source": "Analyst estimates; AMR share growing rapidly 2023–2025"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Packing & Labeling Workstation**",
+          "Alternatives": "Manual packing bench + label printer (Zebra ZT series) / Semi-automated void fill + sealer (Sealed Air, FP International) / Fully automated packing machine (Neopost, Quadient, Sparck Technologies)",
+          "Share": "55% / 30% / 15%",
+          "Confidence": "MEDIUM",
+          "Source": "Industry estimates"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Transport Management System (TMS)**",
+          "Alternatives": "ERP-integrated TMS (SAP TM, Oracle TM) / Best-of-breed TMS (MercuryGate, Transplace/Uber Freight, Descartes) / Carrier-provided portal (no dedicated TMS)",
+          "Share": "30% / 40% / 30%",
+          "Confidence": "MEDIUM",
+          "Source": "MarketsandMarkets 2024"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Fire Detection & Alarm System**",
+          "Alternatives": "Johnson Controls (Simplex/Tyco) / Siemens (Cerberus) / Honeywell (Notifier)",
+          "Share": "26% / 22% / 20% + others",
+          "Confidence": "MEDIUM",
+          "Source": "Johnson Controls, Siemens, Honeywell collectively >62% fire alarm market [WEB — IntelMarketResearch 2025]"
+        },
+        {
+          "L5": "**Emergency Exit Security Device**",
+          "Alternatives": "Wired alarmed exit bars (Von Duprin/Allegion, Corbin Russwin) / Mechanical door-handle alarm guards (GfS Exit Control, ABUS) / Wireless electronic exit control (dormakaba SafeRoute, GEZE SecuLogic) / Integrated delayed egress (Allegion, dormakaba)",
+          "Share": "45% / 30% / 15% / 10%",
+          "Confidence": "LOW",
+          "Source": "No published warehouse-specific split; estimated from install base patterns [WEB]"
+        },
+        {
+          "L5": "**Perimeter Access Control System**",
+          "Alternatives": "Wired enterprise ACS (Lenel-S2, Software House, Honeywell Pro-Watch) / Cloud ACS (Brivo, Genetec, Verkada) / Wireless RF ACS (ASSA ABLOY Aperio, dormakaba MATRIX)",
+          "Share": "50% / 30% / 20%",
+          "Confidence": "MEDIUM",
+          "Source": "MarketsandMarkets 2025 — ASSA ABLOY, dormakaba, Johnson Controls, Allegion, Honeywell hold ~70–80% ACS market [WEB]"
+        },
+        {
+          "L5": "**Video Surveillance System**",
+          "Alternatives": "IP network cameras (Axis, Hanwha, Avigilon) / AI-analytics camera platforms (Verkada, Arlo, Milestone) / Legacy analog CCTV (Hikvision, Dahua, Bosch)",
+          "Share": "45% / 25% / 30%",
+          "Confidence": "MEDIUM",
+          "Source": "Analyst estimates — IP share growing year on year"
+        },
+        {
+          "L5": "**Building Management System (BMS)**",
+          "Alternatives": "Siemens (Desigo CC) / Honeywell (EBI, Forge) / Schneider Electric (EcoStruxure)",
+          "Share": "28% / 27% / 22% + others",
+          "Confidence": "MEDIUM",
+          "Source": "Commercial security market data [WEB — Precedence Research 2025]"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Warehouse Management System Platform**",
+          "Alternatives": "SAP Extended Warehouse Management (SAP EWM) / Manhattan Active WMS / Blue Yonder WMS / Oracle WMS Cloud",
+          "Share": "~9% / ~12% / ~11% / ~9%",
+          "Confidence": "MEDIUM",
+          "Source": "MarketsandMarkets 2025 — top 5 players (Oracle, Blue Yonder, SAP, Manhattan, Tecsys) ~33% combined; global WMS market $4.57B in 2025 [WEB]"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Forklift Fleet Telematics**",
+          "Alternatives": "OEM telematics (Toyota I_Site, Crown InfoLink, Jungheinrich ISM Online) / Third-party fleet mgmt (Hyster Tracker, Linde Connect) / Manual logbook",
+          "Share": "45% / 25% / 30%",
+          "Confidence": "LOW",
+          "Source": "Analyst estimates"
+        },
+        {
+          "L5": "**Racking Inspection System**",
+          "Alternatives": "Periodic manual inspection (ANSI MH16.1 schedule) / Digital audit software (RackEye, IntelliRack) / Load monitoring sensors",
+          "Share": "70% / 20% / 10%",
+          "Confidence": "LOW",
+          "Source": "Industry practice survey"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L6 Node",
+        "Ambient Pallet Storage & Distribution",
+        "High-Bay Racked Storage",
+        "E-commerce Fulfillment (unit pick)",
+        "Cross-docking",
+        "Value-Added Warehousing (kitting/labeling)"
+      ],
+      "rows": [
+        {
+          "L6 Node": "L6a Inbound Receiving",
+          "Ambient Pallet Storage & Distribution": "✓",
+          "High-Bay Racked Storage": "✓",
+          "E-commerce Fulfillment (unit pick)": "✓",
+          "Cross-docking": "✓",
+          "Value-Added Warehousing (kitting/labeling)": "✓"
+        },
+        {
+          "L6 Node": "L6b Put-Away & Slotting",
+          "Ambient Pallet Storage & Distribution": "✓",
+          "High-Bay Racked Storage": "✓",
+          "E-commerce Fulfillment (unit pick)": "✓",
+          "Cross-docking": "—",
+          "Value-Added Warehousing (kitting/labeling)": "✓"
+        },
+        {
+          "L6 Node": "L6c Storage & Inventory Control",
+          "Ambient Pallet Storage & Distribution": "✓",
+          "High-Bay Racked Storage": "✓",
+          "E-commerce Fulfillment (unit pick)": "✓",
+          "Cross-docking": "—",
+          "Value-Added Warehousing (kitting/labeling)": "✓"
+        },
+        {
+          "L6 Node": "L6d Order Picking & Consolidation",
+          "Ambient Pallet Storage & Distribution": "✓",
+          "High-Bay Racked Storage": "✓",
+          "E-commerce Fulfillment (unit pick)": "✓",
+          "Cross-docking": "—",
+          "Value-Added Warehousing (kitting/labeling)": "✓"
+        },
+        {
+          "L6 Node": "L6e Packing, Labeling & Staging",
+          "Ambient Pallet Storage & Distribution": "—",
+          "High-Bay Racked Storage": "—",
+          "E-commerce Fulfillment (unit pick)": "✓",
+          "Cross-docking": "✓",
+          "Value-Added Warehousing (kitting/labeling)": "✓"
+        },
+        {
+          "L6 Node": "L6f Outbound Dispatch",
+          "Ambient Pallet Storage & Distribution": "✓",
+          "High-Bay Racked Storage": "✓",
+          "E-commerce Fulfillment (unit pick)": "✓",
+          "Cross-docking": "✓",
+          "Value-Added Warehousing (kitting/labeling)": "✓"
+        },
+        {
+          "L6 Node": "L6h1 Facility Safety & Security (H)",
+          "Ambient Pallet Storage & Distribution": "✓",
+          "High-Bay Racked Storage": "✓",
+          "E-commerce Fulfillment (unit pick)": "✓",
+          "Cross-docking": "✓",
+          "Value-Added Warehousing (kitting/labeling)": "✓"
+        },
+        {
+          "L6 Node": "L6h2 Inventory & WMS Operations (H)",
+          "Ambient Pallet Storage & Distribution": "✓",
+          "High-Bay Racked Storage": "✓",
+          "E-commerce Fulfillment (unit pick)": "✓",
+          "Cross-docking": "✓",
+          "Value-Added Warehousing (kitting/labeling)": "✓"
+        },
+        {
+          "L6 Node": "L6h3 Maintenance & Equipment Reliability (H)",
+          "Ambient Pallet Storage & Distribution": "✓",
+          "High-Bay Racked Storage": "✓",
+          "E-commerce Fulfillment (unit pick)": "✓",
+          "Cross-docking": "✓",
+          "Value-Added Warehousing (kitting/labeling)": "✓"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description",
+        "Standard"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "**Alarm Horn Assembly**",
+          "Description": "Piezoelectric horn producing ≥ 95 dB at 1 m on activation; must function without mains power (EltVTR / NFPA 101 fail-safe requirement); in warehouse contexts, must compete with ambient noise levels of 70–85 dB from MHE operations",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Guard / Handle Latch Mechanism**",
+          "Description": "Spring-loaded guard that physically blocks the door handle (EN 179) or panic bar (EN 1125); 45° swing release, single-motion, ≤ 70 N force; must withstand repeated inadvertent contact in high-traffic dock corridors",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Wireless State Transmitter**",
+          "Description": "Sub-GHz radio module (868 MHz EasyWave, or LoRaWAN / BLE in next-gen products) broadcasting guard-state and alarm events to gateway or receiver; must propagate through steel racking, reinforced concrete, and corrugated metal cladding typical of DCs",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Battery Power Supply**",
+          "Description": "Replaceable 9V block battery providing power to IoT radio module; mechanical alarm trigger operates independently of battery state; in dock-adjacent exits with high activation frequency, replacement interval monitoring is critical",
+          "Standard": "INCOSE"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description",
+        "Standard"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "**Addressable Detector Network**",
+          "Description": "Addressable smoke/heat/beam detectors across racked storage, dock areas, and office zones; high-ceiling beam detectors required for warehouse spaces >6 m clear height per NFPA 72",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Fire Alarm Control Panel (FACP)**",
+          "Description": "Central supervisor of detector inputs, alarm logic, and interface to sprinkler, smoke exhaust, and BMS; typically located in facility manager's office or main entrance",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Notification Appliance Circuit (NAC)**",
+          "Description": "Horn/strobe circuits covering all warehouse zones; high ambient noise (70–85 dB from forklifts) requires horns rated ≥ 100 dB; strobes for hearing-protection zones per NFPA 72",
+          "Standard": "INCOSE"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description",
+        "Standard"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "**Credential Reader**",
+          "Description": "Proximity card, PIN pad, or mobile NFC reader at dock doors, personnel doors, and cross-dock zone boundaries; vandal-resistant IP65 housings for dock environments",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Electronic Lock / Strike**",
+          "Description": "Fail-secure electric strike or mag-lock on access-controlled personnel doors; fail-safe configuration required on fire-designated emergency exit paths",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Access Control Panel**",
+          "Description": "Decision controller managing door schedules (shift-based access), logging events, and generating audit reports for insurance inspections and fire marshal audits",
+          "Standard": "INCOSE"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description",
+        "Standard"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "**Mast & Lift Assembly**",
+          "Description": "Telescoping mast with hydraulic lift chain/cylinder; defines max stacking height; duplex/triplex/quad configurations per racking tier requirements",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Drive Motor & Traction Control**",
+          "Description": "Electric 3-phase AC induction or brushless DC drive motor with regenerative braking controller; IC variant uses diesel/LPG engine with torque converter",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Traction Battery Pack**",
+          "Description": "Lead-acid or Li-ion traction battery (48V–80V); Li-ion share growing due to opportunity charging compatibility with multi-shift DC operations",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Onboard Computer & Telematics**",
+          "Description": "Fleet management controller logging shift utilization, shock events, and service intervals; feeds forklift telematics platform (Toyota I_Site, Crown InfoLink)",
+          "Standard": "INCOSE"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description",
+        "Standard"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "**Upright Frame & Beam**",
+          "Description": "Structural steel column frames and load-bearing horizontal beams; rated load capacity per ANSI MH16.1; bay spacing dimensioned to pallet footprint and forklift turning radius",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Load Pallet Beam**",
+          "Description": "Horizontal step beam supporting pallet loads; beam safety clips required; rated for specific pallet weight per column frame gauge",
+          "Standard": "INCOSE"
+        },
+        {
+          "L4 Subsystem": "**Base Plate & Floor Anchor**",
+          "Description": "Anchor fixing uprights to concrete slab; seismic zone requirements drive anchor spec; floor flatness tolerance (F-number) constrains very narrow aisle (VNA) installations",
+          "Standard": "INCOSE"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Gap identified",
+        "Proposed addition",
+        "Level",
+        "Parent"
+      ],
+      "rows": [
+        {
+          "Gap identified": "Sprinkler suppression system absent from L6h1",
+          "Proposed addition": "Fire Sprinkler Suppression System (ESFR / in-rack / CMSA per NFPA 13)",
+          "Level": "L5",
+          "Parent": "Facility Safety & Security"
+        },
+        {
+          "Gap identified": "Emergency lighting not represented",
+          "Proposed addition": "Emergency Egress Lighting System (battery-backed exit signs + path lighting per IFC / NFPA 101)",
+          "Level": "L5",
+          "Parent": "Facility Safety & Security"
+        },
+        {
+          "Gap identified": "Returns processing step missing",
+          "Proposed addition": "Returns Processing (receive, inspect, sort, disposition returned goods; key for e-commerce and 3PL)",
+          "Level": "L6",
+          "Parent": "Warehousing and Storage Ecosystem"
+        },
+        {
+          "Gap identified": "Yard management not represented",
+          "Proposed addition": "Yard Management System (truck check-in, dock door assignment, trailer tracking)",
+          "Level": "L5",
+          "Parent": "Inbound Receiving"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Current name",
+        "Proposed rename",
+        "Reason"
+      ],
+      "rows": [
+        {
+          "Current name": "Inventory & WMS Operations",
+          "Proposed rename": "WMS Operations",
+          "Reason": "\"Inventory\" is implied by WMS; industry calls the function \"WMS\" not \"inventory and WMS\""
+        },
+        {
+          "Current name": "Induct Conveyor System",
+          "Proposed rename": "Conveyor Induct",
+          "Reason": "Industry standard: \"conveyor induct\" describes the receiving-end entry point to a conveyor system"
+        },
+        {
+          "Current name": "Inbound Scanning & Labeling Station",
+          "Proposed rename": "Inbound Scanning Station",
+          "Reason": "Labeling is a sub-function of scanning station; redundant"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Check",
+        "Result"
+      ],
+      "rows": [
+        {
+          "Check": "All levels in valid set (L7, L6, L6a-c, L5, L4)",
+          "Result": "PASS"
+        },
+        {
+          "Check": "All parent references resolve to existing units",
+          "Result": "PASS"
+        },
+        {
+          "Check": "Valid parent → child transitions (L7→L6, L6→L5, L5→L4)",
+          "Result": "PASS — no level skipping"
+        },
+        {
+          "Check": "Every L5 with explicit L4 decomp has ≥ 3 L4 children",
+          "Result": "PASS — all 5 decomposed L5 nodes have 3–4 children"
+        },
+        {
+          "Check": "Level skipping",
+          "Result": "NONE"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Check",
+        "Status"
+      ],
+      "rows": [
+        {
+          "#": "1",
+          "Check": "L7 ecosystem node present with Moore 1993 reference",
+          "Status": "PASS"
+        },
+        {
+          "#": "2",
+          "Check": "CFJ stated at L7 level — industry-level, not product-level",
+          "Status": "PASS — \"Receive, store, and dispatch client goods…\""
+        },
+        {
+          "#": "3",
+          "Check": "Core L6 nodes follow physical transformation sequence (L6a → L6f)",
+          "Status": "PASS — 6 sequential steps"
+        },
+        {
+          "#": "4",
+          "Check": "Horizontal L6 nodes labeled (H) and separated from core",
+          "Status": "PASS — 3 horizontal nodes"
+        },
+        {
+          "#": "5",
+          "Check": "L5 nodes represent equipment categories, not brands",
+          "Status": "PASS — all categories; brands named in Alternatives only"
+        },
+        {
+          "#": "6",
+          "Check": "Alternatives are mutually exclusive technology choices (not brand variants)",
+          "Status": "PASS — wired vs. mechanical vs. wireless exit security; IC vs. electric vs. AGV forklifts"
+        },
+        {
+          "#": "7",
+          "Check": "Market shares cited with confidence rating and source",
+          "Status": "PASS — LOW/MEDIUM with source or [WEB] tag throughout"
+        },
+        {
+          "#": "8",
+          "Check": "Output type activation matrix present",
+          "Status": "PASS — 5 output types, 9 L6 nodes"
+        },
+        {
+          "#": "9",
+          "Check": "L4 fill: key L5 nodes have ≥ 3 L4 children",
+          "Status": "PASS — 5 nodes fully decomposed (Emergency Exit Security Device: 4 children)"
+        },
+        {
+          "#": "10",
+          "Check": "Product entry point explicitly identified in L5",
+          "Status": "PASS — Emergency Exit Security Device (L5) under L6h1 Facility Safety & Security"
+        },
+        {
+          "#": "11",
+          "Check": "Warehouse-specific constraints noted (range, ambient noise, high-ceiling detection)",
+          "Status": "PASS — C3 range note in input context; noise note in L4 Alarm Horn description"
+        },
+        {
+          "#": "12",
+          "Check": "Web search used for market share claims",
+          "Status": "PASS — [WEB] tags on fire alarm vendor share, AS/RS market, forklift fleet, ACS, BMS"
+        },
+        {
+          "#": "13",
+          "Check": "No company names in unit name fields",
+          "Status": "PASS — brands appear in Alternatives column only"
+        },
+        {
+          "#": "14",
+          "Check": "VN is company-agnostic (describes industry, not Assa Abloy's portfolio)",
+          "Status": "PASS"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market_name": "General Warehousing and Storage",
+      "naics_code": "493110",
+      "naics_title": "General Warehousing and Storage",
+      "cfj_statement": "Receive, store, and dispatch client goods with full inventory integrity — from inbound receiving through storage and order picking to outbound dispatch and carrier hand-off",
+      "top_level": "L7",
+      "units": [
+        {
+          "name": "Warehousing and Storage Ecosystem",
+          "level": "L7",
+          "description": "Economic community of 3PL operators, contract warehouses, WMS vendors, MHE OEMs, carriers, shippers, and regulators coordinated around goods custody and distribution (Moore 1993)",
+          "bom_standard": "Moore 1993",
+          "parent_name": "ROOT"
+        },
+        {
+          "name": "Inbound Receiving",
+          "level": "L6",
+          "description": "Receives, verifies, and registers arriving shipments — truck unloading, count/condition check, barcode/RFID scan, WMS record creation",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Warehousing and Storage Ecosystem"
+        },
+        {
+          "name": "Put-Away & Slotting",
+          "level": "L6",
+          "description": "Moves verified goods to designated storage locations using WMS-directed put-away, slot optimization, and overflow management",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Warehousing and Storage Ecosystem"
+        },
+        {
+          "name": "Storage & Inventory Control",
+          "level": "L6",
+          "description": "Maintains goods in condition-appropriate zones; executes cycle counting, location audits, FIFO/FEFO rotation, and replenishment triggers",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Warehousing and Storage Ecosystem"
+        },
+        {
+          "name": "Order Picking & Consolidation",
+          "level": "L6",
+          "description": "Retrieves and consolidates SKUs per outbound orders via discrete, batch, wave, zone, or robotic picking methods",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Warehousing and Storage Ecosystem"
+        },
+        {
+          "name": "Packing, Labeling & Staging",
+          "level": "L6",
+          "description": "Packs shipments to carrier spec, applies carrier labels, stages packed units at outbound dock for loading",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Warehousing and Storage Ecosystem"
+        },
+        {
+          "name": "Outbound Dispatch",
+          "level": "L6",
+          "description": "Loads vehicles, confirms shipment scan, generates BOL, updates TMS and WMS, and hands off to carrier",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Warehousing and Storage Ecosystem"
+        },
+        {
+          "name": "Facility Safety & Security",
+          "level": "L6",
+          "description": "HORIZONTAL (H). Maintains fire safety, emergency exit compliance, physical access control, and video surveillance across all warehouse zones and dock areas. OSHA 29 CFR 1910, NFPA 13/72/101, IFC, EN 179/1125.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Warehousing and Storage Ecosystem"
+        },
+        {
+          "name": "WMS Operations",
+          "level": "L6",
+          "description": "HORIZONTAL (H). Provides real-time inventory tracking, location management, task direction, and labor management supporting every core process step.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Warehousing and Storage Ecosystem"
+        },
+        {
+          "name": "Maintenance & Equipment Reliability",
+          "level": "L6",
+          "description": "HORIZONTAL (H). Maintains material handling equipment, racking, dock equipment, and building infrastructure. OSHA 29 CFR 1910.178, ANSI MH16.1.",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Warehousing and Storage Ecosystem"
+        },
+        {
+          "name": "Dock Leveler & Loading Dock Equipment",
+          "level": "L5",
+          "description": "Equipment bridging the truck bed to the warehouse floor: mechanical, hydraulic, or air-bag dock levelers; dock seals and shelters",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Inbound Receiving"
+        },
+        {
+          "name": "Inbound Scanning Station",
+          "level": "L5",
+          "description": "Barcode and RFID scanning equipment for receiving verification, ASN confirmation, and WMS record creation at inbound dock",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Inbound Receiving"
+        },
+        {
+          "name": "Industrial Forklift Fleet",
+          "level": "L5",
+          "description": "Powered industrial trucks for pallet transport and high-bay stacking: counterbalance forklifts, reach trucks, AGVs",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Put-Away & Slotting"
+        },
+        {
+          "name": "Conveyor Induct",
+          "level": "L5",
+          "description": "Belt, roller, or tow conveyor system moving cases and totes from receiving into storage or picking areas",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Put-Away & Slotting"
+        },
+        {
+          "name": "Pallet Storage System",
+          "level": "L5",
+          "description": "Structural steel racking or floor-stacking system for palletized goods: selective rack, drive-in/push-back, or AS/RS",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Storage & Inventory Control"
+        },
+        {
+          "name": "Automated Storage & Retrieval System",
+          "level": "L5",
+          "description": "Automated handling systems for unit-load or miniload retrieval: stacker cranes, shuttle systems, or goods-to-person cube storage",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Storage & Inventory Control"
+        },
+        {
+          "name": "Order Picking Technology",
+          "level": "L5",
+          "description": "Technology directing order picking: manual RF/paper, pick-to-light/voice guided, or autonomous mobile robot (AMR/goods-to-person)",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Order Picking & Consolidation"
+        },
+        {
+          "name": "Packing & Labeling Workstation",
+          "level": "L5",
+          "description": "Packing benches, void-fill equipment, carton sealers, and carrier label printers for outbound shipment preparation",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Packing, Labeling & Staging"
+        },
+        {
+          "name": "Transport Management System",
+          "level": "L5",
+          "description": "Software platform for carrier selection, BOL generation, shipment tendering, and freight cost management",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Outbound Dispatch"
+        },
+        {
+          "name": "Fire Detection & Alarm System",
+          "level": "L5",
+          "description": "Addressable fire detection network with FACP, smoke/heat/beam detectors calibrated for high-ceiling warehouse geometry, and horn/strobe notification per NFPA 72",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility Safety & Security"
+        },
+        {
+          "name": "Emergency Exit Security Device",
+          "level": "L5",
+          "description": "Door-mounted device securing emergency exits against unauthorized use while preserving single-motion fire evacuation compliance; audible alarm on activation; wireless IoT variant reports status to central BMS",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility Safety & Security"
+        },
+        {
+          "name": "Perimeter Access Control System",
+          "level": "L5",
+          "description": "Credential-based access control at dock doors, personnel entrances, and zone boundaries; logs events for insurance and fire marshal audits",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility Safety & Security"
+        },
+        {
+          "name": "Video Surveillance System",
+          "level": "L5",
+          "description": "IP or AI-analytics camera network covering dock areas, storage zones, and perimeter; deters theft and provides incident evidence",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility Safety & Security"
+        },
+        {
+          "name": "Building Management System",
+          "level": "L5",
+          "description": "Integrated platform aggregating HVAC, lighting, fire safety alarms, and security events; enables centralized monitoring for facility managers",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility Safety & Security"
+        },
+        {
+          "name": "Warehouse Management System Platform",
+          "level": "L5",
+          "description": "Enterprise WMS for inventory tracking, location management, directed put-away/pick, labor management, and cycle counting",
+          "bom_standard": "ISO 15288",
+          "parent_name": "WMS Operations"
+        },
+        {
+          "name": "Forklift Fleet Telematics",
+          "level": "L5",
+          "description": "OEM or third-party telematics platform logging forklift utilization, shock events, operator certification, and service intervals",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Maintenance & Equipment Reliability"
+        },
+        {
+          "name": "Racking Inspection System",
+          "level": "L5",
+          "description": "Process and tooling for periodic ANSI MH16.1-compliant racking inspection: manual assessment, digital audit software, or load monitoring sensors",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Maintenance & Equipment Reliability"
+        },
+        {
+          "name": "Alarm Horn Assembly",
+          "level": "L4",
+          "description": "Piezoelectric horn producing ≥ 95 dB at 1 m on activation; operates without mains power; in warehouse contexts must exceed ambient MHE noise floor of 70–85 dB",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Device"
+        },
+        {
+          "name": "Guard / Handle Latch Mechanism",
+          "level": "L4",
+          "description": "Spring-loaded mechanical guard blocking door handle (EN 179) or panic bar (EN 1125); 45° swing release, single-motion, ≤ 70 N; must withstand high-traffic dock corridor contact",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Device"
+        },
+        {
+          "name": "Wireless State Transmitter",
+          "level": "L4",
+          "description": "Sub-GHz radio module (868 MHz EasyWave or next-gen LoRaWAN/BLE) broadcasting guard-state and alarm events; must propagate through steel racking, concrete, and corrugated metal cladding",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Device"
+        },
+        {
+          "name": "Battery Power Supply",
+          "level": "L4",
+          "description": "Replaceable 9V block battery powering the IoT radio module; mechanical alarm operates independently of battery state; replacement monitoring critical at high-activation dock exits",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Device"
+        },
+        {
+          "name": "Addressable Detector Network",
+          "level": "L4",
+          "description": "Distributed addressable smoke/heat/beam detectors across warehouse storage bays, dock areas, and offices; high-ceiling beam detectors required for spaces >6 m clear height per NFPA 72",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Fire Alarm Control Panel",
+          "level": "L4",
+          "description": "Central supervisor of detector inputs, alarm logic, and interface to sprinkler system, smoke exhaust dampers, and BMS",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Notification Appliance Circuit",
+          "level": "L4",
+          "description": "Horn/strobe circuits covering all warehouse zones; high-dB horns required to exceed forklift ambient noise; strobes for hearing-protection zones per NFPA 72",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Credential Reader",
+          "level": "L4",
+          "description": "Proximity card, PIN pad, or mobile NFC reader at dock doors and personnel entrances; IP65 vandal-resistant housing for dock environments",
+          "bom_standard": "INCOSE",
+          "parent_name": "Perimeter Access Control System"
+        },
+        {
+          "name": "Electronic Lock / Strike",
+          "level": "L4",
+          "description": "Fail-secure electric strike or mag-lock on access-controlled personnel doors; fail-safe on fire-designated emergency exit paths",
+          "bom_standard": "INCOSE",
+          "parent_name": "Perimeter Access Control System"
+        },
+        {
+          "name": "Access Control Panel",
+          "level": "L4",
+          "description": "Decision controller managing shift-based door schedules, logging access events, and generating audit reports for insurance and fire marshal visits",
+          "bom_standard": "INCOSE",
+          "parent_name": "Perimeter Access Control System"
+        },
+        {
+          "name": "Mast & Lift Assembly",
+          "level": "L4",
+          "description": "Telescoping mast with hydraulic lift chain/cylinder; duplex/triplex/quad configurations per racking tier requirements",
+          "bom_standard": "INCOSE",
+          "parent_name": "Industrial Forklift Fleet"
+        },
+        {
+          "name": "Drive Motor & Traction Control",
+          "level": "L4",
+          "description": "Electric 3-phase AC induction or brushless DC drive motor with regenerative braking controller; IC variant uses diesel/LPG engine with torque converter",
+          "bom_standard": "INCOSE",
+          "parent_name": "Industrial Forklift Fleet"
+        },
+        {
+          "name": "Traction Battery Pack",
+          "level": "L4",
+          "description": "Lead-acid or Li-ion traction battery (48V–80V); Li-ion share growing due to opportunity charging compatibility with multi-shift DC operations",
+          "bom_standard": "INCOSE",
+          "parent_name": "Industrial Forklift Fleet"
+        },
+        {
+          "name": "Onboard Computer & Telematics",
+          "level": "L4",
+          "description": "Fleet management controller logging shift utilization, shock events, operator credentials, and service intervals; feeds fleet telematics platform",
+          "bom_standard": "INCOSE",
+          "parent_name": "Industrial Forklift Fleet"
+        },
+        {
+          "name": "Upright Frame & Beam",
+          "level": "L4",
+          "description": "Structural steel column frames and horizontal beams rated per ANSI MH16.1; bay spacing dimensioned to pallet footprint and forklift turning radius",
+          "bom_standard": "INCOSE",
+          "parent_name": "Pallet Storage System"
+        },
+        {
+          "name": "Load Pallet Beam",
+          "level": "L4",
+          "description": "Step beam supporting pallet loads; beam safety clips mandatory; rated for specific pallet weight per column frame gauge",
+          "bom_standard": "INCOSE",
+          "parent_name": "Pallet Storage System"
+        },
+        {
+          "name": "Base Plate & Floor Anchor",
+          "level": "L4",
+          "description": "Floor anchor fixing uprights to concrete slab; seismic zone requirements drive anchor spec; floor flatness tolerance (F-number) constrains VNA installations",
+          "bom_standard": "INCOSE",
+          "parent_name": "Pallet Storage System"
+        }
+      ]
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

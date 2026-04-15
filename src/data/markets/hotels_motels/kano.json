@@ -1,0 +1,61 @@
+{
+  "naicsCode": "721110",
+  "marketName": "Hotels (except Casino Hotels) and Motels",
+  "slug": "hotels_motels",
+  "features": [
+    {
+      "name": "Mechanical Handle Locking",
+      "kanoClass": "must_be",
+      "scores": { "time": 2, "cost": 3, "safety": 9, "reliability": 8, "skill": 6, "stress": 7, "pain": 5, "confidence": 8, "delight": 2 },
+      "overallFit": 5.56,
+      "rationale": "Must_be — every certified product delivers physical handle blocking. Primary drivers: Safety (9) blocks unauthorized egress; Reliability (8) zero-power operation survives hotel power events. Stress (7): security officers know exits are mechanically secured."
+    },
+    {
+      "name": "Audible Alarm Trigger",
+      "kanoClass": "must_be",
+      "scores": { "time": 4, "cost": 3, "safety": 9, "reliability": 7, "skill": 5, "stress": 5, "pain": 6, "confidence": 7, "delight": 2 },
+      "overallFit": 5.33,
+      "rationale": "Must_be — commodity baseline; no product variant ships without it. Safety (9): immediate deterrence; Reliability (7): C2-compliant mechanical trigger at 0V. Stress deliberately suppressed to 5: 95 dB alarm disturbs guests on upper floors."
+    },
+    {
+      "name": "Single-Motion Emergency Release",
+      "kanoClass": "must_be",
+      "scores": { "time": 5, "cost": 2, "safety": 10, "reliability": 8, "skill": 8, "stress": 8, "pain": 3, "confidence": 9, "delight": 3 },
+      "overallFit": 6.22,
+      "rationale": "Must_be — DIN EN 179/1125 regulatory mandate. Safety (10): direct fire evacuation compliance. Skill (8) + Stress (8): unfamiliar hotel guests escape without prior knowledge per EN 1125 mandate."
+    },
+    {
+      "name": "Key Override Bypass",
+      "kanoClass": "must_be",
+      "scores": { "time": 6, "cost": 5, "safety": 5, "reliability": 6, "skill": 5, "stress": 7, "pain": 6, "confidence": 7, "delight": 3 },
+      "overallFit": 5.56,
+      "rationale": "Must_be — hotel operators expect silent authorized access capability. Stress (7): housekeeping and night audit staff can access without triggering guest-disturbing alarm. Directly addresses E7 false alert fatigue."
+    },
+    {
+      "name": "Battery-Powered Operation",
+      "kanoClass": "attractive",
+      "scores": { "time": 7, "cost": 8, "safety": 4, "reliability": 6, "skill": 7, "stress": 6, "pain": 8, "confidence": 5, "delight": 7 },
+      "overallFit": 6.44,
+      "rationale": "Attractive — exceeds commodity FP; operators do not expect IoT monitoring without mains wiring. Cost (8): eliminates conduit installation as dominant retrofit cost driver. Pain (8): removes electrical permits and structural disruption. Delight (7): genuine surprise that IoT monitoring works battery-only."
+    },
+    {
+      "name": "Pre-Alarm Warning",
+      "kanoClass": "attractive",
+      "scores": { "time": 3, "cost": 4, "safety": 3, "reliability": 5, "skill": 5, "stress": 7, "pain": 6, "confidence": 5, "delight": 6 },
+      "overallFit": 4.89,
+      "rationale": "Attractive — absent from commodity FP and basic variants. Stress (7): reduces guest disturbance from accidental alarm triggers. Pain (6): eliminates investigation burden from handle-touch incidents. Delight (6): unexpected feature that addresses hotel guest experience sensitivity."
+    }
+  ],
+  "avgOverallFit": 5.67,
+  "productRelatedNeeds": [
+    "Minimize the likelihood of incomplete wireless coverage from 30 m transmitter range leaving emergency exits on floors above level 3 without active IoT monitoring",
+    "Minimize the time required to design and validate wireless receiver placement to achieve >95% floor coverage before hardware procurement",
+    "Minimize the likelihood of 9V battery depletion in high-traffic hotel emergency exits exhausting monitoring capability between scheduled maintenance cycles",
+    "Minimize the time required to identify and replace batteries approaching depletion threshold across a 30+ device hotel deployment",
+    "Minimize the likelihood of surface-mounted door guardian housing conflicting with hotel brand interior finish specifications",
+    "Minimize the effort required to bridge EasyWave event data to hotel BMS platforms running BACnet, KNX, or IP-based protocols",
+    "Minimize the likelihood of proprietary wireless protocol dependency preventing multi-brand emergency exit monitoring consolidation",
+    "Minimize the likelihood of door-event timestamp and access log data triggering a GDPR DPIA that delays IoT system deployment"
+  ],
+  "sources": []
+}

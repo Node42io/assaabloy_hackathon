@@ -1,0 +1,1381 @@
+{
+  "id": "JTBD_lessors_nonresidential_buildings",
+  "title": "JTBD Analysis: Lessors of Nonresidential Buildings (NAICS 531120)",
+  "type": "jtbd_analysis",
+  "market_slug": "lessors_nonresidential_buildings",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Phase 1 — Industry Landscape",
+      "content": "### 1.1 CFJ, Output Types, Offering Level\n\n| NAICS | CFJ (extracted from description) | Output Types | Offering Level |\n|---|---|---|---|\n| 531120 | Provide leasable nonresidential building space to tenant organizations while maintaining regulatory-compliant safety infrastructure and preserving long-term asset value | Class A Office, Class B/C Office, Retail Commercial, Industrial Flex, Medical Office | L7 (Ecosystem) — lessor coordinates owners, tenants, FM providers, regulators; does not produce a physical product |\n\nRouting: B2B operator with departments → proceed through all Phase 1 substeps. Skip 1.4–1.5 (service NAICS, no Product BOM).\n\n---\n\n### 1.2 Segments\n\nDefined by circumstance (operational context + FM model), not portfolio size or geography.\n\n| # | Segment | Defining Circumstance | Türwächter Relevance |\n|---|---|---|---|\n| S1 | Institutional / REIT multi-building portfolio | Dozens–hundreds of properties; centralized FM team; compliance tracked at portfolio level | HIGH — portfolio dashboard and centralized compliance reporting are the primary value lever |\n| S2 | Single-asset / small-portfolio private lessor | 1–5 buildings; FM outsourced; decisions made per-building | MEDIUM — value argument more price-driven; IoT premium harder to justify |\n| S3 | Medical office park lessor | Patient-access corridors; HIPAA overlay; fire marshal audits more frequent | HIGH — regulatory pressure intensity is highest; battery-powered wireless is preferred over mains for retrofit |\n| S4 | Mixed-use retail / commercial lessor | High pedestrian throughput; guest-facing stairwell exits; frequent misuse | HIGH — frequent alarm events; detection lag most painful |\n| S5 | Class A smart-office campus lessor | BMS-native tenants; KNX/BACnet infrastructure; tenants demand IoT-integrated systems | HIGH (with friction) — IoT value clear but EasyWave protocol lock-in (C6) creates BMS integration barrier |\n| S6 | Industrial flex / logistics park lessor | High daily exit-door traffic; infrequent maintenance visits; steel-frame buildings | MEDIUM — battery life (C4) and RF attenuation (C3) elevate constraint exposure |\n\n---\n\n### 1.3 Process VN\n\nReference: `VN_lessors_nonresidential_buildings.md` (completed). Key structure:\n\n```\nL7  Commercial Property Leasing Ecosystem\n├── L6a  Property Acquisition\n├── L6b  Asset Preparation\n├── L6c  Tenant Acquisition\n├── L6d  Building Operations   ← Emergency Exit Security sits here\n│        └── L5  Emergency Exit Security\n│                 ├── L4  Door Guardian Alarm Unit   ← Türwächter anchors here\n│                 ├── L4  Wireless Monitoring Receiver\n│                 ├── L4  BUS Gateway & Aggregator\n│                 └── L4  Signal Repeater\n├── L6e  Tenant Services\n├── L6H1 Regulatory & Compliance (H)\n└── L6H2 Financial Management (H)\n```\n\nSteps 1.4 (Product BOM) and 1.5 (Edges): **SKIPPED** — service NAICS (531120 outputs are occupancy outcomes, not physical products).\n\n---"
+    },
+    {
+      "title": "Phase 2 — Company Enters",
+      "content": "### 2.1 VN Anchor\n\n| Field | Value |\n|---|---|\n| **Route** | PROCESS_VN (product serves Building Operations; never becomes part of the tenant's space) |\n| **Anchor level** | L4 |\n| **Anchor node** | Door Guardian Alarm Unit |\n| **Parent L5** | Emergency Exit Security |\n| **Parent L6** | Building Operations (L6d) |\n| **Anchor rationale** | Türwächter is a component (L4) within the Emergency Exit Security system (L5). It requires Wireless Monitoring Receiver + BUS Gateway to form the complete L5 solution. Does not anchor at L5 — it is not the full system. |\n| **Job context** | Parent unit (Emergency Exit Security, L5) defines the job: everything the product must do derives from what Emergency Exit Security needs within L6d Building Operations. |\n\n---\n\n### 2.2 Lens Formation\n\n| Field | Value |\n|---|---|\n| **Function verb** | Secure (from Emergency Exit Security L5 job_family: \"secure emergency exits against unauthorized use while maintaining unimpeded evacuation capability\") |\n| **Beneficiary** | Building Operations team — specifically the Facility Manager |\n| **Lens** | \"What securing does a Building Operations team need to achieve for emergency exits across a multi-tenant commercial property portfolio?\" |\n| **Segment filter — Level A** | Building Operations (L6d) activates for ALL output types — every building type has mandated emergency exits |\n| **Segment filter — Level B** | Wireless IoT variant best fits: S1 (portfolio), S3 (medical office), S5 (smart-office with BMS integration budget). Less suited: S2 (price-sensitive), S6 (RF constraints). |\n\n---\n\n### 2.3 Core Job + Product Job\n\n**Product Job** (anchored at L4, parent = Emergency Exit Security L5):\n\n> *\"Help Emergency Exit Security to prevent unauthorized use of emergency exit doors across a multi-tenant commercial property while maintaining unimpeded evacuation compliance, providing portfolio-level status visibility, and generating audit-ready compliance records — without requiring mains wiring at each door point\"*\n\n**Abstraction test (passes):** 5 alternatives from different categories identified below. If only one category of alternative existed, it would be a scenario, not a Core Job.\n\n---\n\n### 2.4 Alternatives (5 per Core Job)\n\n| # | Alternative | Product Group | Inherent Trade-offs |\n|---|---|---|---|\n| A1 | Mechanical door alarm guards, no connectivity (~40% share) | Emergency Exit Door Alarm Guards | No remote monitoring; compliance issues discovered during physical inspection (hours–days lag); no battery monitoring; lowest per-door cost |\n| A2 | **Wireless IoT exit alarm guards ← Türwächter** (~20% share) | Emergency Exit Door Alarm Guards | Battery dependency; EasyWave protocol not natively interoperable with BACnet/KNX (C6); 30 m RF range limit (C3); higher per-door cost (~730 EUR, C7) |\n| A3 | Wired electronic exit control, alarm-panel-integrated (~25% share) | Emergency Exit Door Alarm Guards | Requires mains wiring + conduit to each door; electrician for install and maintenance; not retrofit-friendly in occupied buildings; full FACP integration possible |\n| A4 | Integrated alarmed panic hardware (e-Bar type) (~15% share) | Emergency Exit Door Alarm Guards | Replaces entire panic bar assembly; highest per-door cost; no retrofit onto existing hardware; heavy installation footprint |\n| A5 | Do nothing / manual patrol + paper inspection logs [Status Quo] | — | Zero hardware cost; highest ongoing labor cost; detection lag measured in hours–shifts; compliance documentation gap at audits; zero P1 burden |\n\n*\"Do nothing\" is the most common competitor in this market — most lessors delay until forced by audit findings or insurance requirements.*\n\n---\n\n### 2.5 Scenarios + Output Type Activation\n\n| Scenario | Context | Active Output Types | Constraint overlay |\n|---|---|---|---|\n| SC1 — Portfolio-wide retrofit | REIT lessor deploying across 20+ buildings; mixed door ages and handle types | All | C3 (range in mixed construction), C6 (BMS protocol integration), C4 (battery at scale) |\n| SC2 — Pre-occupancy fit-out | New tenant in Class B/C office; lessor installs exit monitoring before handover | Class B/C Office | C7 (price sensitivity of smaller asset) |\n| SC3 — Medical office compliance | Fire marshal audit approaching; exits in patient-access areas need documentation | Medical Office | C8 (GDPR on patient-zone monitoring), C4 (battery in high-traffic ward exits) |\n| SC4 — Smart-office BMS integration | Class A campus; tenant lease covenants include IoT monitoring requirements | Class A Office | C6 (BACnet/KNX interop required — primary friction point for Türwächter) |\n| SC5 — Industrial flex retrofit | High daily exit use; steel frame attenuates RF; maintenance access infrequent | Industrial Flex | C4 (battery life under high activation frequency), C3 (RF range in steel), C9 (IP class for dusty environments) |\n\n*Sparsity check: SC3 activates Medical Office only; SC4 activates Class A Office only; SC5 activates Industrial Flex only → Core Job passes sparsity test.*\n\n---"
+    },
+    {
+      "title": "Phase 3 — Needs Derivation",
+      "content": "### 3.1 Burleson Pyramid — Stakeholder Roles\n\n| Role | Who | Active Pyramid Levels |\n|---|---|---|\n| **Job Executor** | Facility Manager (FM) | P1-all, P2, P3, P4, P5 |\n| **Job Overseer** | Asset Manager / Property Manager | P1-own, P2, P4 |\n| **Job Beneficiary** | Building tenants (employees, visitors) | P2, P5 |\n| **Lifecycle — Installer** | FM technician / FM contractor | P1-Preparation only |\n| **Lifecycle — Maintainer** | FM technician (batteries, firmware, config) | P1-Maintenance only |\n| **Purchase Executor** | CRE Director / CFO / Head of FM | P1-Acquisition only |\n| **Purchase Influencer** | Fire safety inspector, insurance auditor, fire marshal | P2-own, P4 |\n\n### P1 Lifecycle by Alternative (for Executor)\n\n| Stage | A1 (Mechanical) | A2 (IoT — Türwächter) | A3 (Wired) | A5 (Do nothing) |\n|---|---|---|---|---|\n| **Acquire** | Specify per door type, procure, no qualification | Specify per door type + coverage topology, procure wireless receiver/gateway | Specify per door type, engage electrician, get installation quote | None |\n| **Prepare** | Surface-mount on handle, battery in | Surface-mount, configure wireless channel, install receiver + gateway, test connectivity | Conduit + wire run per door, mount hardware, connect to FACP, commission | None |\n| **Use** | Passive; alarm triggers on activation | Monitor dashboard; receive push alerts for events | Monitor via FACP panel; receive alarm panel notifications | Manual door patrol per shift |\n| **Maintain** | Replace battery when unit fails (reactive); manual per-door check on inspection cycle | Monitor battery life dashboard; replace proactively; check signal status | Annual wired inspection; FACP firmware updates; no battery | Log paper inspection forms manually |\n| **Dispose** | Remove unit from handle; no specialized disposal | Remove unit + receiver; no data erasure requirement (local device) | Decommission wired circuit; remove conduit if refurbishing | None |\n\n*Key insight: A5 (Do nothing) has zero P1 burden but the highest ongoing labor cost and compliance risk — it is the dominant competitor because switching costs to any hardware solution are real.*\n\n---\n\n### 3.2 Job Map\n\n| # | Step | Statement | Relevant? | Rationale |\n|---|---|---|---|---|\n| 1 | DEFINE | Define which doors require emergency exit security, applicable standards (EN 179 / EN 1125), and portfolio integration requirements | No | Standard assessment activity; low error opportunity |\n| 2 | LOCATE | Map all emergency exit door positions, wireless coverage topology, BMS infrastructure type | No | One-time survey; standard FM activity |\n| 3 | PREPARE | Install door guardian units, configure wireless receivers and BUS gateways, program key overrides, integrate with monitoring platform | **YES** | Complex multi-door installation; high effort differential between A2 (wireless) and A3 (wired) |\n| 4 | CONFIRM | Verify alarm triggering, wireless connectivity, battery status, compliance with EN 179 / EN 1125 | **YES** | High-stakes — false negatives have regulatory and safety consequences |\n| 5 | EXECUTE | Continuously prevent unauthorized use while allowing single-motion evacuation; report events wirelessly | **YES** | Core value delivery; robustness and false-alarm rate are critical |\n| 6 | MONITOR | Monitor door status, alarm events, battery health, and signal integrity across all units | **YES** | Primary IoT differentiation over A1; detection lag is the dominant pain point |\n| 7 | MODIFY | Respond to alarms, replace batteries, reconfigure coverage, manage key-override access | **YES** | Recurring operational cost driver; battery management burden at portfolio scale |\n| 8 | CONCLUDE | Generate compliance documentation, audit logs, inspection reports for fire marshal and insurance reviews | **YES** | Direct value driver for commercial building lessor segment — compliance documentation gap is acute |\n\n---\n\n### 3.3 Market Needs (P1 + P2 Error Types)\n\n**22 ErrorStatements** across 6 relevant job steps and 3 stakeholder roles.\n\n#### Step 3 — PREPARE\n\n| ID | Statement | Error Type | Role | Step | Imp | Sat | Opp | Impact | Prod-Related | Conf |\n|---|---|---|---|---|---|---|---|---|---|---|\n| N01 | Minimize the likelihood of emergency exit security installation requiring permanent electrical infrastructure modifications to building fabric, measured as percentage of door deployments triggering conduit or wiring work | EFFORT | Executor / Lifecycle-Installer | PREPARE | 8 | 3 | 13 | cost | false | 0.85 |\n| N02 | Minimize the likelihood of wireless emergency exit monitoring commissioning requiring specialist RF survey support, measured as percentage of installations requiring dedicated RF coverage validation beyond standard FM technician scope | EFFORT | Lifecycle-Installer | PREPARE | 7 | 5 | 9 | time | **true** | 0.70 |\n| N03 | Increase the ability to retrofit emergency exit security devices to existing commercial doors without structural modification, measured as percentage of existing EN 179 and EN 1125 door variants addressable without frame alteration | ROBUSTNESS | Executor | PREPARE | 8 | 5 | 11 | cost | false | 0.80 |\n\n#### Step 4 — CONFIRM\n\n| ID | Statement | Error Type | Role | Step | Imp | Sat | Opp | Impact | Prod-Related | Conf |\n|---|---|---|---|---|---|---|---|---|---|---|\n| N04 | Minimize the likelihood of an emergency exit security device failing to trigger an alarm upon unauthorized door activation, measured as false-negative alarm rate per 1,000 activations | ACCURACY | Executor | CONFIRM | 10 | 6 | 14 | safety | false | 0.90 |\n| N05 | Increase the ability to verify that all emergency exit security devices across a portfolio are in functional alarm-ready state before a scheduled fire safety inspection, measured as confirmed-active device rate achievable without manual per-door physical testing | DETECTION | Executor / Overseer | CONFIRM | 9 | 3 | 15 | safety | false | 0.85 |\n| N06 | Minimize the likelihood of incorrect wireless address assignment causing two door guardian units on adjacent doors to share a transmission channel, measured as address-collision incidents per 50-door deployment | ACCURACY | Lifecycle-Installer | CONFIRM | 7 | 5 | 9 | reliability | **true** | 0.65 |\n\n#### Step 5 — EXECUTE\n\n| ID | Statement | Error Type | Role | Step | Imp | Sat | Opp | Impact | Prod-Related | Conf |\n|---|---|---|---|---|---|---|---|---|---|---|\n| N07 | Minimize the likelihood of an emergency exit security device becoming non-functional during a building power interruption, measured as alarm activation availability rate under complete grid power loss | ROBUSTNESS | Executor | EXECUTE | 10 | 8 | 12 | safety | false | 0.95 |\n| N08 | Minimize the likelihood of emergency exit alarm devices triggering false positives from authorized key-override access by facility personnel, measured as false-alarm incidents per 100 authorized key activations per month | ACCURACY | Executor | EXECUTE | 8 | 5 | 11 | reliability | false | 0.80 |\n| N09 | Minimize the likelihood of inconsistent alarm activation thresholds causing premature or late alarm triggers across door types with different handle configurations, measured as alarm force variance across lever-handle and panic-bar variants within the same building | CONSISTENCY | Executor / Beneficiary | EXECUTE | 7 | 6 | 8 | safety | false | 0.70 |\n\n#### Step 6 — MONITOR\n\n| ID | Statement | Error Type | Role | Step | Imp | Sat | Opp | Impact | Prod-Related | Conf |\n|---|---|---|---|---|---|---|---|---|---|---|\n| N10 | Increase the ability to detect an emergency exit door being propped open or activated within 60 seconds of the event, measured as mean detection lag from door-open event to operator notification | DETECTION | Executor / Overseer | MONITOR | 9 | 2 | 16 | safety | false | 0.90 |\n| N11 | Increase the ability to monitor real-time emergency exit door status across an entire commercial property portfolio from a single operator dashboard, measured as number of buildings and doors simultaneously visible per interface | THROUGHPUT | Overseer | MONITOR | 8 | 2 | 14 | time | false | 0.85 |\n| N12 | Increase the ability to detect emergency exit monitoring device wireless connectivity failures before the next scheduled inspection cycle, measured as mean time from connectivity loss to operator notification | DETECTION | Executor | MONITOR | 8 | 3 | 13 | reliability | **true** | 0.75 |\n| N13 | Increase the ability to detect approaching battery depletion in emergency exit monitoring devices before failure, measured as percentage of battery replacements performed before the device becomes non-functional | ROBUSTNESS | Lifecycle-Maintainer | MONITOR | 9 | 3 | 15 | reliability | **true** | 0.80 |\n\n#### Step 7 — MODIFY\n\n| ID | Statement | Error Type | Role | Step | Imp | Sat | Opp | Impact | Prod-Related | Conf |\n|---|---|---|---|---|---|---|---|---|---|---|\n| N14 | Minimize the likelihood of battery replacement in emergency exit monitoring devices requiring specialist skills or triggering false alarm events, measured as percentage of battery replacements completable by standard building staff without alarm activation | EFFORT | Lifecycle-Maintainer | MODIFY | 7 | 5 | 9 | cost | **true** | 0.70 |\n| N15 | Minimize the likelihood of on-site dispatch responses being required for non-emergency door activations that could be resolved remotely, measured as percentage of alarm events requiring physical visit vs. remotely resolvable via monitoring platform | EFFORT | Executor | MODIFY | 7 | 4 | 10 | cost | false | 0.75 |\n| N16 | Minimize the likelihood of emergency exit monitoring losing BMS communication following network infrastructure updates, measured as connectivity restoration time after BMS or gateway firmware changes | ROBUSTNESS | Executor | MODIFY | 8 | 4 | 12 | reliability | **true** | 0.70 |\n\n#### Step 8 — CONCLUDE\n\n| ID | Statement | Error Type | Role | Step | Imp | Sat | Opp | Impact | Prod-Related | Conf |\n|---|---|---|---|---|---|---|---|---|---|---|\n| N17 | Increase the ability to generate complete emergency exit compliance documentation meeting fire marshal requirements at any time without manual data entry, measured as documentation completeness score achievable at an unannounced inspection | DETECTION | Overseer / Influencer | CONCLUDE | 9 | 3 | 15 | safety | false | 0.85 |\n| N18 | Minimize the likelihood of annual fire safety audit preparation requiring manual compilation of exit inspection records across multiple properties, measured as person-hours per property required to produce a complete compliance evidence package | EFFORT | Overseer | CONCLUDE | 8 | 3 | 13 | time | false | 0.85 |\n| N19 | Minimize the likelihood of compliance documentation quality varying significantly between properties within a portfolio, measured as inter-property variance in documentation completeness scores at audit point | CONSISTENCY | Overseer | CONCLUDE | 7 | 3 | 11 | cost | false | 0.75 |\n\n---\n\n### 3.4 P3–P5 Needs (Bridge Questions)\n\n| ID | Pyramid | Role | Retrieval | Bridge | Statement | Imp | Sat | Opp | Impact | Prod-Related |\n|---|---|---|---|---|---|---|---|---|---|---|\n| N20 | P3 Role Identity | Executor (FM) | \"By getting emergency exit compliance done well, the FM becomes a proactive safety professional who enables the asset manager without compliance surprises\" | \"What must the product do so they CAN maintain that professional standing?\" | Increase the ability to provide asset managers with proactive emergency exit compliance status updates without manual report generation, measured as automated compliance status communications per property per week | 7 | 2 | 12 | time | false |\n| N21 | P4 Image Identity | Overseer (Asset Mgr) watched by fire marshal, insurer, institutional investors | \"Fire marshals and insurers must see a disciplined, documented compliance operator; investors must see low regulatory risk in the asset\" | \"What must the product do so those stakeholders SEE that impression?\" | Increase the ability to produce portfolio-level emergency exit compliance evidence on demand during fire marshal inspections or insurance renewals, measured as time-to-produce a complete compliance evidence package from request to delivery | 8 | 3 | 13 | cost | false |\n| N22 | P5 Emotional | Executor (FM) | \"Avoid: the anxiety of discovering a non-compliant door for the first time during a fire marshal inspection\" | \"What must the product do so they DON'T feel that?\" | Minimize the likelihood of a building operator discovering an emergency exit compliance failure for the first time during a scheduled fire marshal inspection rather than through proactive monitoring, measured as ratio of compliance failures detected pre-inspection vs. at inspection [hypothesis] | 8 | 2 | 14 | safety | false |\n\n---\n\n### 3.5 ODI Summary — Top Opportunities\n\n| Rank | ID | Statement (abbreviated) | Opp | Classification |\n|---|---|---|---|---|\n| 1 | N10 | Detect door propped open within 60 seconds | **16** | Underserved |\n| 2 | N05 | Verify all devices functional pre-inspection without physical testing | **15** | Underserved |\n| 2 | N13 | Detect battery depletion before device failure | **15** | Underserved |\n| 2 | N17 | Generate complete compliance docs without manual data entry | **15** | Underserved |\n| 5 | N04 | Minimize false-negative alarm rate | **14** | Underserved |\n| 5 | N11 | Monitor portfolio-wide exit status from single dashboard | **14** | Underserved |\n| 5 | N22 | Avoid discovering compliance failure at inspection [hypothesis] | **14** | Underserved |\n| 8 | N12 | Detect wireless connectivity failure before inspection | **13** | Underserved |\n| 8 | N18 | Minimize manual compilation effort for audit | **13** | Underserved |\n| 8 | N21 | Produce compliance evidence on demand | **13** | Underserved |\n\n**Interpretation:** Top 4 underserved needs (N10, N05, N13, N17) are directly addressed by the Türwächter IoT variant and are UNMET by the dominant A1 alternative (mechanical-only). This is the primary wedge. The A3 alternative (wired electronic) addresses N10/N11/N17 but fails on N01/N03 (no-wiring retrofit constraint).\n\n---"
+    },
+    {
+      "title": "Validation (QA Pass)",
+      "content": "| # | Check | Status | Notes |\n|---|---|---|---|\n| V1 | Format compliance | PASS | All 22 statements start with \"Minimize the likelihood of...\" or \"Increase the ability to...\" with one measurable KPI each |\n| V2 | product_related classification | PASS | N02, N06, N12, N13, N14, N16 are technology-caused (disappear for A3 wired or A1 mechanical); all others are market-inherent |\n| V3 | Importance/satisfaction sanity | PASS | Safety/regulatory needs (N04, N07) scored 10; no uniform clustering; A5 satisfaction scores 1–2 where appropriate |\n| V4 | Impact category accuracy | PASS | safety for alarm reliability; cost for labor/install; time for detection/monitoring lag; reliability for connectivity |\n| V5 | Coverage | PASS | 6 relevant steps × ≥3 needs each + 3 P3–P5; 73% market-inherent / 27% technology-specific; 22 total needs |\n| V6 | Solution-agnostic | PASS | Zero references to \"Türwächter\", \"GfS\", \"EasyWave\", \"868 MHz\", \"piezo\", or specific mechanism in need statements |\n| V7 | Anchor correctness | PASS | L4 anchor (Door Guardian Alarm Unit) — component-level, matches product abstraction |\n| V8 | Product job references parent | PASS | \"Help Emergency Exit Security to prevent unauthorized use...\" — parent L5 unit named explicitly |\n\n---"
+    },
+    {
+      "title": "Cross-Component Notes",
+      "content": "**Constraint overlay:** C3 (RF range) surfaces in N02 and N12. C4 (battery life) drives N13 and N14. C6 (EasyWave lock-in) drives N16. C8 (GDPR) not surfaced in needs (addressed in Constraints section); applicable to SC3 deployment context.\n\n**Highest differentiation gap vs. A1 (dominant incumbent):** N10, N11, N13, N17, N18 — the entire IoT monitoring and compliance documentation cluster. This is where the Türwächter IoT variant wins.\n\n**Segment priority:**\n- S1 (REIT/portfolio): Needs N11, N18, N19, N21 are highest-value for this segment.\n- S3 (Medical office): Needs N04, N05, N17, N22 are highest-value (regulatory stakes are highest).\n- S5 (Smart-office): Needs N16 (BMS integration robustness) is the primary barrier; C6 constraint must be mitigated.\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### JobMap\n\n```json\n{\n  \"market_name\": \"Lessors of Nonresidential Buildings\",\n  \"naics_code\": \"531120\",\n  \"run_id\": \"assa_abloy_v1\",\n  \"anchor_vn_unit\": \"Door Guardian Alarm Unit\",\n  \"anchor_level\": \"L4\",\n  \"parent_vn_unit\": \"Emergency Exit Security\",\n  \"parent_level\": \"L5\",\n  \"product_job_statement\": \"Help Emergency Exit Security to prevent unauthorized use of emergency exit doors across a multi-tenant commercial property while maintaining unimpeded evacuation compliance, providing portfolio-level status visibility, and generating audit-ready compliance records — without requiring mains wiring at each door point\",\n  \"cfj_statement\": \"Provide leasable nonresidential building space to tenant organizations while maintaining regulatory-compliant safety infrastructure and preserving long-term asset value\"\n}\n```\n\n### JobStep[]\n\n```json\n[\n  { \"step_number\": 1, \"step_name\": \"DEFINE\", \"statement\": \"Define which doors require emergency exit security, applicable standards (EN 179 / EN 1125), and portfolio integration requirements\", \"relevant_to_product\": false, \"relevance_rationale\": \"Standard assessment activity; low error differentiation opportunity\" },\n  { \"step_number\": 2, \"step_name\": \"LOCATE\", \"statement\": \"Map all emergency exit door positions, wireless coverage topology, and existing BMS infrastructure type\", \"relevant_to_product\": false, \"relevance_rationale\": \"One-time survey; standard FM activity\" },\n  { \"step_number\": 3, \"step_name\": \"PREPARE\", \"statement\": \"Install door guardian units, configure wireless receivers and BUS gateways, program key overrides, and integrate with monitoring platform\", \"relevant_to_product\": true, \"relevance_rationale\": \"Complex multi-door installation; high effort differential between wireless and wired alternatives; retrofit constraint most active here\" },\n  { \"step_number\": 4, \"step_name\": \"CONFIRM\", \"statement\": \"Verify alarm triggering, wireless connectivity, battery status, and compliance with EN 179 / EN 1125 across all installed units\", \"relevant_to_product\": true, \"relevance_rationale\": \"High-stakes verification; false negatives have direct regulatory and safety consequences\" },\n  { \"step_number\": 5, \"step_name\": \"EXECUTE\", \"statement\": \"Continuously prevent unauthorized door use while allowing single-motion evacuation and reporting events wirelessly to the monitoring platform\", \"relevant_to_product\": true, \"relevance_rationale\": \"Core value delivery; alarm reliability and false-positive rate are critical quality dimensions\" },\n  { \"step_number\": 6, \"step_name\": \"MONITOR\", \"statement\": \"Monitor door status, alarm events, battery health, and signal integrity across all units in real time\", \"relevant_to_product\": true, \"relevance_rationale\": \"Primary IoT differentiation point over mechanical alternatives; detection lag is the dominant pain point\" },\n  { \"step_number\": 7, \"step_name\": \"MODIFY\", \"statement\": \"Respond to alarm events, replace batteries, reconfigure coverage, and manage authorized key-override access\", \"relevant_to_product\": true, \"relevance_rationale\": \"Recurring operational cost driver; battery management burden at portfolio scale\" },\n  { \"step_number\": 8, \"step_name\": \"CONCLUDE\", \"statement\": \"Generate compliance documentation, audit logs, and inspection reports for fire marshal and insurance reviews\", \"relevant_to_product\": true, \"relevance_rationale\": \"Direct compliance value driver; documentation gap is the most acute pain in this market segment\" }\n]\n```\n\n### ErrorStatement[]\n\n```json\n[\n  {\n    \"id\": \"N01\",\n    \"full_statement\": \"Minimize the likelihood of emergency exit security installation requiring permanent electrical infrastructure modifications to building fabric, measured as percentage of door deployments triggering conduit or wiring work\",\n    \"job_step_number\": 3, \"job_step_name\": \"PREPARE\",\n    \"error_type\": \"EFFORT\", \"role\": \"Executor / Lifecycle-Installer\",\n    \"importance\": 8, \"satisfaction_current\": 3, \"opportunity_score\": 13,\n    \"impact_category\": \"cost\", \"product_related\": false, \"confidence\": 0.85,\n    \"rationale\": \"40% incumbent (mechanical, A1) requires no wiring; 25% wired (A3) requires electrician and conduit per door — averaged satisfaction 3-4 across alternatives\"\n  },\n  {\n    \"id\": \"N02\",\n    \"full_statement\": \"Minimize the likelihood of wireless emergency exit monitoring commissioning requiring specialist RF survey support, measured as percentage of installations requiring dedicated RF coverage validation beyond standard FM technician scope\",\n    \"job_step_number\": 3, \"job_step_name\": \"PREPARE\",\n    \"error_type\": \"EFFORT\", \"role\": \"Lifecycle-Installer\",\n    \"importance\": 7, \"satisfaction_current\": 5, \"opportunity_score\": 9,\n    \"impact_category\": \"time\", \"product_related\": true, \"confidence\": 0.70,\n    \"rationale\": \"Wireless IoT category only; wired and mechanical alternatives do not have this commissioning step\"\n  },\n  {\n    \"id\": \"N03\",\n    \"full_statement\": \"Increase the ability to retrofit emergency exit security devices to existing commercial doors without structural modification, measured as percentage of existing EN 179 and EN 1125 door variants addressable without frame alteration\",\n    \"job_step_number\": 3, \"job_step_name\": \"PREPARE\",\n    \"error_type\": \"ROBUSTNESS\", \"role\": \"Executor\",\n    \"importance\": 8, \"satisfaction_current\": 5, \"opportunity_score\": 11,\n    \"impact_category\": \"cost\", \"product_related\": false, \"confidence\": 0.80,\n    \"rationale\": \"Most commercial buildings are existing stock; retrofit capability is a baseline market requirement regardless of technology choice\"\n  },\n  {\n    \"id\": \"N04\",\n    \"full_statement\": \"Minimize the likelihood of an emergency exit security device failing to trigger an alarm upon unauthorized door activation, measured as false-negative alarm rate per 1,000 activations\",\n    \"job_step_number\": 4, \"job_step_name\": \"CONFIRM\",\n    \"error_type\": \"ACCURACY\", \"role\": \"Executor\",\n    \"importance\": 10, \"satisfaction_current\": 6, \"opportunity_score\": 14,\n    \"impact_category\": \"safety\", \"product_related\": false, \"confidence\": 0.90,\n    \"rationale\": \"Regulatory and life-safety imperative; all alternatives must address; mechanical springs rated well but can wear; wired electronic well-addressed; mechanical-no-connectivity partially addressed\"\n  },\n  {\n    \"id\": \"N05\",\n    \"full_statement\": \"Increase the ability to verify that all emergency exit security devices across a portfolio are in functional alarm-ready state before a scheduled fire safety inspection, measured as confirmed-active device rate achievable without manual per-door physical testing\",\n    \"job_step_number\": 4, \"job_step_name\": \"CONFIRM\",\n    \"error_type\": \"DETECTION\", \"role\": \"Executor / Overseer\",\n    \"importance\": 9, \"satisfaction_current\": 3, \"opportunity_score\": 15,\n    \"impact_category\": \"safety\", \"product_related\": false, \"confidence\": 0.85,\n    \"rationale\": \"Dominant incumbent (A1 mechanical) requires physical per-door testing; IoT variants (A2) enable remote status check; manual verification for 50+ doors is prohibitively time-intensive\"\n  },\n  {\n    \"id\": \"N06\",\n    \"full_statement\": \"Minimize the likelihood of incorrect wireless address assignment causing two door guardian units on adjacent doors to share a transmission channel, measured as address-collision incidents per 50-door deployment\",\n    \"job_step_number\": 4, \"job_step_name\": \"CONFIRM\",\n    \"error_type\": \"ACCURACY\", \"role\": \"Lifecycle-Installer\",\n    \"importance\": 7, \"satisfaction_current\": 5, \"opportunity_score\": 9,\n    \"impact_category\": \"reliability\", \"product_related\": true, \"confidence\": 0.65,\n    \"rationale\": \"Wireless IoT category only; address collision is a commissioning risk unique to multi-unit wireless deployments\"\n  },\n  {\n    \"id\": \"N07\",\n    \"full_statement\": \"Minimize the likelihood of an emergency exit security device becoming non-functional during a building power interruption, measured as alarm activation availability rate under complete grid power loss\",\n    \"job_step_number\": 5, \"job_step_name\": \"EXECUTE\",\n    \"error_type\": \"ROBUSTNESS\", \"role\": \"Executor\",\n    \"importance\": 10, \"satisfaction_current\": 8, \"opportunity_score\": 12,\n    \"impact_category\": \"safety\", \"product_related\": false, \"confidence\": 0.95,\n    \"rationale\": \"Regulatory requirement per EN 179/1125 and EltVTR; mechanical-primary design satisfies this for A1, A2, A4; wired electronic (A3) must use UPS — well addressed across market\"\n  },\n  {\n    \"id\": \"N08\",\n    \"full_statement\": \"Minimize the likelihood of emergency exit alarm devices triggering false positives from authorized key-override access by facility personnel, measured as false-alarm incidents per 100 authorized key activations per month\",\n    \"job_step_number\": 5, \"job_step_name\": \"EXECUTE\",\n    \"error_type\": \"ACCURACY\", \"role\": \"Executor\",\n    \"importance\": 8, \"satisfaction_current\": 5, \"opportunity_score\": 11,\n    \"impact_category\": \"reliability\", \"product_related\": false, \"confidence\": 0.80,\n    \"rationale\": \"High-frequency pain in multi-tenant buildings; authorized maintenance access and delivery routines create frequent false alarms; key override partially addresses this but requires training\"\n  },\n  {\n    \"id\": \"N09\",\n    \"full_statement\": \"Minimize the likelihood of inconsistent alarm activation thresholds causing premature or late alarm triggers across door types with different handle configurations, measured as alarm force variance across lever-handle and panic-bar variants within the same building\",\n    \"job_step_number\": 5, \"job_step_name\": \"EXECUTE\",\n    \"error_type\": \"CONSISTENCY\", \"role\": \"Executor / Beneficiary\",\n    \"importance\": 7, \"satisfaction_current\": 6, \"opportunity_score\": 8,\n    \"impact_category\": \"safety\", \"product_related\": false, \"confidence\": 0.70,\n    \"rationale\": \"Mixed handle configurations (EN 179 lever + EN 1125 panic bar) common in large commercial buildings; force calibration during installation determines consistency\"\n  },\n  {\n    \"id\": \"N10\",\n    \"full_statement\": \"Increase the ability to detect an emergency exit door being propped open or activated within 60 seconds of the event, measured as mean detection lag from door-open event to operator notification\",\n    \"job_step_number\": 6, \"job_step_name\": \"MONITOR\",\n    \"error_type\": \"DETECTION\", \"role\": \"Executor / Overseer\",\n    \"importance\": 9, \"satisfaction_current\": 2, \"opportunity_score\": 16,\n    \"impact_category\": \"safety\", \"product_related\": false, \"confidence\": 0.90,\n    \"rationale\": \"A1 (mechanical-only): detection lag = hours to days (next patrol or inspection). A2 (IoT): near-real-time detection. A5 (do nothing): detection lag = shift or longer. Dominant competitor A1 scores satisfaction 1–2 on this need.\"\n  },\n  {\n    \"id\": \"N11\",\n    \"full_statement\": \"Increase the ability to monitor real-time emergency exit door status across an entire commercial property portfolio from a single operator dashboard, measured as number of buildings and doors simultaneously visible per interface\",\n    \"job_step_number\": 6, \"job_step_name\": \"MONITOR\",\n    \"error_type\": \"THROUGHPUT\", \"role\": \"Overseer\",\n    \"importance\": 8, \"satisfaction_current\": 2, \"opportunity_score\": 14,\n    \"impact_category\": \"time\", \"product_related\": false, \"confidence\": 0.85,\n    \"rationale\": \"No existing solution addresses portfolio-level exit monitoring for commercial lessors at scale; A1/A5 have zero dashboard capability; A3 limited to per-building FACP\"\n  },\n  {\n    \"id\": \"N12\",\n    \"full_statement\": \"Increase the ability to detect emergency exit monitoring device wireless connectivity failures before the next scheduled inspection cycle, measured as mean time from connectivity loss to operator notification\",\n    \"job_step_number\": 6, \"job_step_name\": \"MONITOR\",\n    \"error_type\": \"DETECTION\", \"role\": \"Executor\",\n    \"importance\": 8, \"satisfaction_current\": 3, \"opportunity_score\": 13,\n    \"impact_category\": \"reliability\", \"product_related\": true, \"confidence\": 0.75,\n    \"rationale\": \"Wireless IoT category only; wired electronic (A3) and mechanical (A1) do not have wireless connectivity to lose. A silent disconnection creates an unmonitored door — regulatory gap equivalent to a failed unit.\"\n  },\n  {\n    \"id\": \"N13\",\n    \"full_statement\": \"Increase the ability to detect approaching battery depletion in emergency exit monitoring devices before failure, measured as percentage of battery replacements performed before the device becomes non-functional\",\n    \"job_step_number\": 6, \"job_step_name\": \"MONITOR\",\n    \"error_type\": \"ROBUSTNESS\", \"role\": \"Lifecycle-Maintainer\",\n    \"importance\": 9, \"satisfaction_current\": 3, \"opportunity_score\": 15,\n    \"impact_category\": \"reliability\", \"product_related\": true, \"confidence\": 0.80,\n    \"rationale\": \"Battery-powered category only; mechanical (A1) and wired (A3) do not have this risk. A portfolio of 100+ battery units creates a significant unplanned maintenance burden without proactive battery monitoring.\"\n  },\n  {\n    \"id\": \"N14\",\n    \"full_statement\": \"Minimize the likelihood of battery replacement in emergency exit monitoring devices requiring specialist skills or triggering false alarm events, measured as percentage of battery replacements completable by standard building staff without alarm activation\",\n    \"job_step_number\": 7, \"job_step_name\": \"MODIFY\",\n    \"error_type\": \"EFFORT\", \"role\": \"Lifecycle-Maintainer\",\n    \"importance\": 7, \"satisfaction_current\": 5, \"opportunity_score\": 9,\n    \"impact_category\": \"cost\", \"product_related\": true, \"confidence\": 0.70,\n    \"rationale\": \"Battery replacement procedure specific to battery-powered IoT category; design of the battery access mechanism determines whether a false alarm is triggered during servicing\"\n  },\n  {\n    \"id\": \"N15\",\n    \"full_statement\": \"Minimize the likelihood of on-site dispatch responses being required for non-emergency door activations that could be resolved remotely, measured as percentage of alarm events requiring physical site visit vs. remotely resolvable via monitoring platform\",\n    \"job_step_number\": 7, \"job_step_name\": \"MODIFY\",\n    \"error_type\": \"EFFORT\", \"role\": \"Executor\",\n    \"importance\": 7, \"satisfaction_current\": 4, \"opportunity_score\": 10,\n    \"impact_category\": \"cost\", \"product_related\": false, \"confidence\": 0.75,\n    \"rationale\": \"Relevant across all alternatives; IoT monitoring enables remote triage to distinguish genuine incidents from authorized access without dispatch\"\n  },\n  {\n    \"id\": \"N16\",\n    \"full_statement\": \"Minimize the likelihood of emergency exit monitoring losing BMS communication following network infrastructure updates, measured as connectivity restoration time after BMS or gateway firmware changes\",\n    \"job_step_number\": 7, \"job_step_name\": \"MODIFY\",\n    \"error_type\": \"ROBUSTNESS\", \"role\": \"Executor\",\n    \"importance\": 8, \"satisfaction_current\": 4, \"opportunity_score\": 12,\n    \"impact_category\": \"reliability\", \"product_related\": true, \"confidence\": 0.70,\n    \"rationale\": \"Wireless IoT integration category; EasyWave protocol lock-in (C6) makes BMS re-integration after updates non-trivial; wired systems on open protocols (BACnet) handle this more gracefully\"\n  },\n  {\n    \"id\": \"N17\",\n    \"full_statement\": \"Increase the ability to generate complete emergency exit compliance documentation meeting fire marshal requirements at any time without manual data entry, measured as documentation completeness score achievable at an unannounced inspection\",\n    \"job_step_number\": 8, \"job_step_name\": \"CONCLUDE\",\n    \"error_type\": \"DETECTION\", \"role\": \"Overseer / Influencer\",\n    \"importance\": 9, \"satisfaction_current\": 3, \"opportunity_score\": 15,\n    \"impact_category\": \"safety\", \"product_related\": false, \"confidence\": 0.85,\n    \"rationale\": \"Annual fire safety inspection required in most EU/US jurisdictions (NFPA 80: annual; Germany: ASR A2.3 / Bundesland-specific). Dominant A1 incumbent generates no logs; A5 requires manual spreadsheet; IoT enables automated timestamped records.\"\n  },\n  {\n    \"id\": \"N18\",\n    \"full_statement\": \"Minimize the likelihood of annual fire safety audit preparation requiring manual compilation of exit inspection records across multiple properties, measured as person-hours per property required to produce a complete compliance evidence package\",\n    \"job_step_number\": 8, \"job_step_name\": \"CONCLUDE\",\n    \"error_type\": \"EFFORT\", \"role\": \"Overseer\",\n    \"importance\": 8, \"satisfaction_current\": 3, \"opportunity_score\": 13,\n    \"impact_category\": \"time\", \"product_related\": false, \"confidence\": 0.85,\n    \"rationale\": \"Portfolio-scale compliance preparation is a significant annual cost center for institutional lessors; estimated 4–8 person-hours per property per audit cycle with manual methods (certification + inspection costs $200–800 per door per US data)\"\n  },\n  {\n    \"id\": \"N19\",\n    \"full_statement\": \"Minimize the likelihood of compliance documentation quality varying significantly between properties within a portfolio, measured as inter-property variance in documentation completeness scores at audit point\",\n    \"job_step_number\": 8, \"job_step_name\": \"CONCLUDE\",\n    \"error_type\": \"CONSISTENCY\", \"role\": \"Overseer\",\n    \"importance\": 7, \"satisfaction_current\": 3, \"opportunity_score\": 11,\n    \"impact_category\": \"cost\", \"product_related\": false, \"confidence\": 0.75,\n    \"rationale\": \"Multi-property lessors rely on mixed-quality FM contractors across the portfolio; inconsistent documentation creates audit exposure in the weakest properties\"\n  },\n  {\n    \"id\": \"N20\",\n    \"full_statement\": \"Increase the ability to provide asset managers with proactive emergency exit compliance status updates without manual report generation, measured as automated compliance status communications per property per week\",\n    \"job_step_number\": null, \"job_step_name\": \"P3 Role Identity\",\n    \"error_type\": \"P3\", \"role\": \"Executor (FM)\",\n    \"importance\": 7, \"satisfaction_current\": 2, \"opportunity_score\": 12,\n    \"impact_category\": \"time\", \"product_related\": false, \"confidence\": 0.70,\n    \"rationale\": \"FM's professional identity requires demonstrating proactive safety management upward to asset managers; today this requires manual reporting and personal follow-up\"\n  },\n  {\n    \"id\": \"N21\",\n    \"full_statement\": \"Increase the ability to produce portfolio-level emergency exit compliance evidence on demand during fire marshal inspections or insurance renewals, measured as time-to-produce a complete compliance evidence package from request to delivery\",\n    \"job_step_number\": null, \"job_step_name\": \"P4 Image Identity\",\n    \"error_type\": \"P4\", \"role\": \"Overseer (Asset Manager)\",\n    \"importance\": 8, \"satisfaction_current\": 3, \"opportunity_score\": 13,\n    \"impact_category\": \"cost\", \"product_related\": false, \"confidence\": 0.75,\n    \"rationale\": \"Insurance underwriters and institutional investors (REITs) scrutinize fire safety compliance records; on-demand audit packages are a tangible signal of operational discipline\"\n  },\n  {\n    \"id\": \"N22\",\n    \"full_statement\": \"Minimize the likelihood of a building operator discovering an emergency exit compliance failure for the first time during a scheduled fire marshal inspection rather than through proactive monitoring, measured as ratio of compliance failures detected pre-inspection vs. at inspection point [hypothesis]\",\n    \"job_step_number\": null, \"job_step_name\": \"P5 Emotional\",\n    \"error_type\": \"P5\", \"role\": \"Executor (FM)\",\n    \"importance\": 8, \"satisfaction_current\": 2, \"opportunity_score\": 14,\n    \"impact_category\": \"safety\", \"product_related\": false, \"confidence\": 0.65,\n    \"rationale\": \"[hypothesis — requires validation through FM interviews] The anxiety of being caught off-guard at an inspection is a strong latent motivator; currently a1/A5 operators have no mechanism for pre-inspection discovery\"\n  }\n]\n```\n\n### IncumbentAnchor[]\n\n```json\n[\n  {\n    \"technology_name\": \"Mechanical door alarm guards (no connectivity)\",\n    \"anchor_vn_unit\": \"Door Guardian Alarm Unit\",\n    \"anchor_level\": \"L4\",\n    \"market_share_pct\": 40,\n    \"rationale\": \"Dominant incumbent; lowest cost; zero monitoring capability; all compliance documentation manual\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\"\n  },\n  {\n    \"technology_name\": \"Wireless IoT exit alarm guards\",\n    \"anchor_vn_unit\": \"Door Guardian Alarm Unit\",\n    \"anchor_level\": \"L4\",\n    \"market_share_pct\": 20,\n    \"rationale\": \"Türwächter's category; growing but constrained by price premium and BMS integration friction\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\"\n  },\n  {\n    \"technology_name\": \"Wired electronic exit control, alarm-panel-integrated\",\n    \"anchor_vn_unit\": \"Door Guardian Alarm Unit\",\n    \"anchor_level\": \"L4\",\n    \"market_share_pct\": 25,\n    \"rationale\": \"Best monitoring capability but highest install cost and retrofit barrier; preferred in new construction and high-security contexts\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\"\n  },\n  {\n    \"technology_name\": \"Integrated alarmed panic hardware\",\n    \"anchor_vn_unit\": \"Door Guardian Alarm Unit\",\n    \"anchor_level\": \"L4\",\n    \"market_share_pct\": 15,\n    \"rationale\": \"Replaces panic bar assembly; highest cost; no retrofit capability; used primarily in new-build high-traffic public buildings\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\"\n  }\n]\n```\n\n---\n\n*Sources for factual claims:*\n- *Annual fire door inspection requirement: [NFPA 80 — Inspect Point](https://www.inspectpoint.com/nfpa-emergency-exit-door-requirements/) | Germany: ASR A2.3 / Bundesland building codes*\n- *Fire door certification cost $200–800/door: [Commercial Door Compliance — Advance Door](https://www.advance-door.com/2025/05/19/ensuring-your-commercial-doors-are-code-compliant/)*\n- *IoT monitoring operational cost reduction 15–30%: [IoT Property Monitoring — Aeologic](https://www.aeologic.com/blog/how-iot-cloud-are-redefining-property-monitoring-automation/)*\n- *EN 179 / EN 1125 standards: [GEZE Emergency Exit Protection](https://www.geze.com/en/discover/topics/emergency-exit-protection) | [Intertek EN 179](https://www.intertek.com/building/standards/en-179/)*\n- *Multi-site compliance solutions: [Everon Commercial Buildings](https://www.everonsolutions.com/industries/commercial-buildings)*"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "NAICS",
+        "CFJ (extracted from description)",
+        "Output Types",
+        "Offering Level"
+      ],
+      "rows": [
+        {
+          "NAICS": "531120",
+          "CFJ (extracted from description)": "Provide leasable nonresidential building space to tenant organizations while maintaining regulatory-compliant safety infrastructure and preserving long-term asset value",
+          "Output Types": "Class A Office, Class B/C Office, Retail Commercial, Industrial Flex, Medical Office",
+          "Offering Level": "L7 (Ecosystem) — lessor coordinates owners, tenants, FM providers, regulators; does not produce a physical product"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Segment",
+        "Defining Circumstance",
+        "Türwächter Relevance"
+      ],
+      "rows": [
+        {
+          "#": "S1",
+          "Segment": "Institutional / REIT multi-building portfolio",
+          "Defining Circumstance": "Dozens–hundreds of properties; centralized FM team; compliance tracked at portfolio level",
+          "Türwächter Relevance": "HIGH — portfolio dashboard and centralized compliance reporting are the primary value lever"
+        },
+        {
+          "#": "S2",
+          "Segment": "Single-asset / small-portfolio private lessor",
+          "Defining Circumstance": "1–5 buildings; FM outsourced; decisions made per-building",
+          "Türwächter Relevance": "MEDIUM — value argument more price-driven; IoT premium harder to justify"
+        },
+        {
+          "#": "S3",
+          "Segment": "Medical office park lessor",
+          "Defining Circumstance": "Patient-access corridors; HIPAA overlay; fire marshal audits more frequent",
+          "Türwächter Relevance": "HIGH — regulatory pressure intensity is highest; battery-powered wireless is preferred over mains for retrofit"
+        },
+        {
+          "#": "S4",
+          "Segment": "Mixed-use retail / commercial lessor",
+          "Defining Circumstance": "High pedestrian throughput; guest-facing stairwell exits; frequent misuse",
+          "Türwächter Relevance": "HIGH — frequent alarm events; detection lag most painful"
+        },
+        {
+          "#": "S5",
+          "Segment": "Class A smart-office campus lessor",
+          "Defining Circumstance": "BMS-native tenants; KNX/BACnet infrastructure; tenants demand IoT-integrated systems",
+          "Türwächter Relevance": "HIGH (with friction) — IoT value clear but EasyWave protocol lock-in (C6) creates BMS integration barrier"
+        },
+        {
+          "#": "S6",
+          "Segment": "Industrial flex / logistics park lessor",
+          "Defining Circumstance": "High daily exit-door traffic; infrequent maintenance visits; steel-frame buildings",
+          "Türwächter Relevance": "MEDIUM — battery life (C4) and RF attenuation (C3) elevate constraint exposure"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Route**",
+          "Value": "PROCESS_VN (product serves Building Operations; never becomes part of the tenant's space)"
+        },
+        {
+          "Field": "**Anchor level**",
+          "Value": "L4"
+        },
+        {
+          "Field": "**Anchor node**",
+          "Value": "Door Guardian Alarm Unit"
+        },
+        {
+          "Field": "**Parent L5**",
+          "Value": "Emergency Exit Security"
+        },
+        {
+          "Field": "**Parent L6**",
+          "Value": "Building Operations (L6d)"
+        },
+        {
+          "Field": "**Anchor rationale**",
+          "Value": "Türwächter is a component (L4) within the Emergency Exit Security system (L5). It requires Wireless Monitoring Receiver + BUS Gateway to form the complete L5 solution. Does not anchor at L5 — it is not the full system."
+        },
+        {
+          "Field": "**Job context**",
+          "Value": "Parent unit (Emergency Exit Security, L5) defines the job: everything the product must do derives from what Emergency Exit Security needs within L6d Building Operations."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Function verb**",
+          "Value": "Secure (from Emergency Exit Security L5 job_family: \"secure emergency exits against unauthorized use while maintaining unimpeded evacuation capability\")"
+        },
+        {
+          "Field": "**Beneficiary**",
+          "Value": "Building Operations team — specifically the Facility Manager"
+        },
+        {
+          "Field": "**Lens**",
+          "Value": "\"What securing does a Building Operations team need to achieve for emergency exits across a multi-tenant commercial property portfolio?\""
+        },
+        {
+          "Field": "**Segment filter — Level A**",
+          "Value": "Building Operations (L6d) activates for ALL output types — every building type has mandated emergency exits"
+        },
+        {
+          "Field": "**Segment filter — Level B**",
+          "Value": "Wireless IoT variant best fits: S1 (portfolio), S3 (medical office), S5 (smart-office with BMS integration budget). Less suited: S2 (price-sensitive), S6 (RF constraints)."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Alternative",
+        "Product Group",
+        "Inherent Trade-offs"
+      ],
+      "rows": [
+        {
+          "#": "A1",
+          "Alternative": "Mechanical door alarm guards, no connectivity (~40% share)",
+          "Product Group": "Emergency Exit Door Alarm Guards",
+          "Inherent Trade-offs": "No remote monitoring; compliance issues discovered during physical inspection (hours–days lag); no battery monitoring; lowest per-door cost"
+        },
+        {
+          "#": "A2",
+          "Alternative": "**Wireless IoT exit alarm guards ← Türwächter** (~20% share)",
+          "Product Group": "Emergency Exit Door Alarm Guards",
+          "Inherent Trade-offs": "Battery dependency; EasyWave protocol not natively interoperable with BACnet/KNX (C6); 30 m RF range limit (C3); higher per-door cost (~730 EUR, C7)"
+        },
+        {
+          "#": "A3",
+          "Alternative": "Wired electronic exit control, alarm-panel-integrated (~25% share)",
+          "Product Group": "Emergency Exit Door Alarm Guards",
+          "Inherent Trade-offs": "Requires mains wiring + conduit to each door; electrician for install and maintenance; not retrofit-friendly in occupied buildings; full FACP integration possible"
+        },
+        {
+          "#": "A4",
+          "Alternative": "Integrated alarmed panic hardware (e-Bar type) (~15% share)",
+          "Product Group": "Emergency Exit Door Alarm Guards",
+          "Inherent Trade-offs": "Replaces entire panic bar assembly; highest per-door cost; no retrofit onto existing hardware; heavy installation footprint"
+        },
+        {
+          "#": "A5",
+          "Alternative": "Do nothing / manual patrol + paper inspection logs [Status Quo]",
+          "Product Group": "—",
+          "Inherent Trade-offs": "Zero hardware cost; highest ongoing labor cost; detection lag measured in hours–shifts; compliance documentation gap at audits; zero P1 burden"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Scenario",
+        "Context",
+        "Active Output Types",
+        "Constraint overlay"
+      ],
+      "rows": [
+        {
+          "Scenario": "SC1 — Portfolio-wide retrofit",
+          "Context": "REIT lessor deploying across 20+ buildings; mixed door ages and handle types",
+          "Active Output Types": "All",
+          "Constraint overlay": "C3 (range in mixed construction), C6 (BMS protocol integration), C4 (battery at scale)"
+        },
+        {
+          "Scenario": "SC2 — Pre-occupancy fit-out",
+          "Context": "New tenant in Class B/C office; lessor installs exit monitoring before handover",
+          "Active Output Types": "Class B/C Office",
+          "Constraint overlay": "C7 (price sensitivity of smaller asset)"
+        },
+        {
+          "Scenario": "SC3 — Medical office compliance",
+          "Context": "Fire marshal audit approaching; exits in patient-access areas need documentation",
+          "Active Output Types": "Medical Office",
+          "Constraint overlay": "C8 (GDPR on patient-zone monitoring), C4 (battery in high-traffic ward exits)"
+        },
+        {
+          "Scenario": "SC4 — Smart-office BMS integration",
+          "Context": "Class A campus; tenant lease covenants include IoT monitoring requirements",
+          "Active Output Types": "Class A Office",
+          "Constraint overlay": "C6 (BACnet/KNX interop required — primary friction point for Türwächter)"
+        },
+        {
+          "Scenario": "SC5 — Industrial flex retrofit",
+          "Context": "High daily exit use; steel frame attenuates RF; maintenance access infrequent",
+          "Active Output Types": "Industrial Flex",
+          "Constraint overlay": "C4 (battery life under high activation frequency), C3 (RF range in steel), C9 (IP class for dusty environments)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Role",
+        "Who",
+        "Active Pyramid Levels"
+      ],
+      "rows": [
+        {
+          "Role": "**Job Executor**",
+          "Who": "Facility Manager (FM)",
+          "Active Pyramid Levels": "P1-all, P2, P3, P4, P5"
+        },
+        {
+          "Role": "**Job Overseer**",
+          "Who": "Asset Manager / Property Manager",
+          "Active Pyramid Levels": "P1-own, P2, P4"
+        },
+        {
+          "Role": "**Job Beneficiary**",
+          "Who": "Building tenants (employees, visitors)",
+          "Active Pyramid Levels": "P2, P5"
+        },
+        {
+          "Role": "**Lifecycle — Installer**",
+          "Who": "FM technician / FM contractor",
+          "Active Pyramid Levels": "P1-Preparation only"
+        },
+        {
+          "Role": "**Lifecycle — Maintainer**",
+          "Who": "FM technician (batteries, firmware, config)",
+          "Active Pyramid Levels": "P1-Maintenance only"
+        },
+        {
+          "Role": "**Purchase Executor**",
+          "Who": "CRE Director / CFO / Head of FM",
+          "Active Pyramid Levels": "P1-Acquisition only"
+        },
+        {
+          "Role": "**Purchase Influencer**",
+          "Who": "Fire safety inspector, insurance auditor, fire marshal",
+          "Active Pyramid Levels": "P2-own, P4"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Stage",
+        "A1 (Mechanical)",
+        "A2 (IoT — Türwächter)",
+        "A3 (Wired)",
+        "A5 (Do nothing)"
+      ],
+      "rows": [
+        {
+          "Stage": "**Acquire**",
+          "A1 (Mechanical)": "Specify per door type, procure, no qualification",
+          "A2 (IoT — Türwächter)": "Specify per door type + coverage topology, procure wireless receiver/gateway",
+          "A3 (Wired)": "Specify per door type, engage electrician, get installation quote",
+          "A5 (Do nothing)": "None"
+        },
+        {
+          "Stage": "**Prepare**",
+          "A1 (Mechanical)": "Surface-mount on handle, battery in",
+          "A2 (IoT — Türwächter)": "Surface-mount, configure wireless channel, install receiver + gateway, test connectivity",
+          "A3 (Wired)": "Conduit + wire run per door, mount hardware, connect to FACP, commission",
+          "A5 (Do nothing)": "None"
+        },
+        {
+          "Stage": "**Use**",
+          "A1 (Mechanical)": "Passive; alarm triggers on activation",
+          "A2 (IoT — Türwächter)": "Monitor dashboard; receive push alerts for events",
+          "A3 (Wired)": "Monitor via FACP panel; receive alarm panel notifications",
+          "A5 (Do nothing)": "Manual door patrol per shift"
+        },
+        {
+          "Stage": "**Maintain**",
+          "A1 (Mechanical)": "Replace battery when unit fails (reactive); manual per-door check on inspection cycle",
+          "A2 (IoT — Türwächter)": "Monitor battery life dashboard; replace proactively; check signal status",
+          "A3 (Wired)": "Annual wired inspection; FACP firmware updates; no battery",
+          "A5 (Do nothing)": "Log paper inspection forms manually"
+        },
+        {
+          "Stage": "**Dispose**",
+          "A1 (Mechanical)": "Remove unit from handle; no specialized disposal",
+          "A2 (IoT — Türwächter)": "Remove unit + receiver; no data erasure requirement (local device)",
+          "A3 (Wired)": "Decommission wired circuit; remove conduit if refurbishing",
+          "A5 (Do nothing)": "None"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Step",
+        "Statement",
+        "Relevant?",
+        "Rationale"
+      ],
+      "rows": [
+        {
+          "#": "1",
+          "Step": "DEFINE",
+          "Statement": "Define which doors require emergency exit security, applicable standards (EN 179 / EN 1125), and portfolio integration requirements",
+          "Relevant?": "No",
+          "Rationale": "Standard assessment activity; low error opportunity"
+        },
+        {
+          "#": "2",
+          "Step": "LOCATE",
+          "Statement": "Map all emergency exit door positions, wireless coverage topology, BMS infrastructure type",
+          "Relevant?": "No",
+          "Rationale": "One-time survey; standard FM activity"
+        },
+        {
+          "#": "3",
+          "Step": "PREPARE",
+          "Statement": "Install door guardian units, configure wireless receivers and BUS gateways, program key overrides, integrate with monitoring platform",
+          "Relevant?": "**YES**",
+          "Rationale": "Complex multi-door installation; high effort differential between A2 (wireless) and A3 (wired)"
+        },
+        {
+          "#": "4",
+          "Step": "CONFIRM",
+          "Statement": "Verify alarm triggering, wireless connectivity, battery status, compliance with EN 179 / EN 1125",
+          "Relevant?": "**YES**",
+          "Rationale": "High-stakes — false negatives have regulatory and safety consequences"
+        },
+        {
+          "#": "5",
+          "Step": "EXECUTE",
+          "Statement": "Continuously prevent unauthorized use while allowing single-motion evacuation; report events wirelessly",
+          "Relevant?": "**YES**",
+          "Rationale": "Core value delivery; robustness and false-alarm rate are critical"
+        },
+        {
+          "#": "6",
+          "Step": "MONITOR",
+          "Statement": "Monitor door status, alarm events, battery health, and signal integrity across all units",
+          "Relevant?": "**YES**",
+          "Rationale": "Primary IoT differentiation over A1; detection lag is the dominant pain point"
+        },
+        {
+          "#": "7",
+          "Step": "MODIFY",
+          "Statement": "Respond to alarms, replace batteries, reconfigure coverage, manage key-override access",
+          "Relevant?": "**YES**",
+          "Rationale": "Recurring operational cost driver; battery management burden at portfolio scale"
+        },
+        {
+          "#": "8",
+          "Step": "CONCLUDE",
+          "Statement": "Generate compliance documentation, audit logs, inspection reports for fire marshal and insurance reviews",
+          "Relevant?": "**YES**",
+          "Rationale": "Direct value driver for commercial building lessor segment — compliance documentation gap is acute"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Statement",
+        "Error Type",
+        "Role",
+        "Step",
+        "Imp",
+        "Sat",
+        "Opp",
+        "Impact",
+        "Prod-Related",
+        "Conf"
+      ],
+      "rows": [
+        {
+          "ID": "N01",
+          "Statement": "Minimize the likelihood of emergency exit security installation requiring permanent electrical infrastructure modifications to building fabric, measured as percentage of door deployments triggering conduit or wiring work",
+          "Error Type": "EFFORT",
+          "Role": "Executor / Lifecycle-Installer",
+          "Step": "PREPARE",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "13",
+          "Impact": "cost",
+          "Prod-Related": "false",
+          "Conf": "0.85"
+        },
+        {
+          "ID": "N02",
+          "Statement": "Minimize the likelihood of wireless emergency exit monitoring commissioning requiring specialist RF survey support, measured as percentage of installations requiring dedicated RF coverage validation beyond standard FM technician scope",
+          "Error Type": "EFFORT",
+          "Role": "Lifecycle-Installer",
+          "Step": "PREPARE",
+          "Imp": "7",
+          "Sat": "5",
+          "Opp": "9",
+          "Impact": "time",
+          "Prod-Related": "**true**",
+          "Conf": "0.70"
+        },
+        {
+          "ID": "N03",
+          "Statement": "Increase the ability to retrofit emergency exit security devices to existing commercial doors without structural modification, measured as percentage of existing EN 179 and EN 1125 door variants addressable without frame alteration",
+          "Error Type": "ROBUSTNESS",
+          "Role": "Executor",
+          "Step": "PREPARE",
+          "Imp": "8",
+          "Sat": "5",
+          "Opp": "11",
+          "Impact": "cost",
+          "Prod-Related": "false",
+          "Conf": "0.80"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Statement",
+        "Error Type",
+        "Role",
+        "Step",
+        "Imp",
+        "Sat",
+        "Opp",
+        "Impact",
+        "Prod-Related",
+        "Conf"
+      ],
+      "rows": [
+        {
+          "ID": "N04",
+          "Statement": "Minimize the likelihood of an emergency exit security device failing to trigger an alarm upon unauthorized door activation, measured as false-negative alarm rate per 1,000 activations",
+          "Error Type": "ACCURACY",
+          "Role": "Executor",
+          "Step": "CONFIRM",
+          "Imp": "10",
+          "Sat": "6",
+          "Opp": "14",
+          "Impact": "safety",
+          "Prod-Related": "false",
+          "Conf": "0.90"
+        },
+        {
+          "ID": "N05",
+          "Statement": "Increase the ability to verify that all emergency exit security devices across a portfolio are in functional alarm-ready state before a scheduled fire safety inspection, measured as confirmed-active device rate achievable without manual per-door physical testing",
+          "Error Type": "DETECTION",
+          "Role": "Executor / Overseer",
+          "Step": "CONFIRM",
+          "Imp": "9",
+          "Sat": "3",
+          "Opp": "15",
+          "Impact": "safety",
+          "Prod-Related": "false",
+          "Conf": "0.85"
+        },
+        {
+          "ID": "N06",
+          "Statement": "Minimize the likelihood of incorrect wireless address assignment causing two door guardian units on adjacent doors to share a transmission channel, measured as address-collision incidents per 50-door deployment",
+          "Error Type": "ACCURACY",
+          "Role": "Lifecycle-Installer",
+          "Step": "CONFIRM",
+          "Imp": "7",
+          "Sat": "5",
+          "Opp": "9",
+          "Impact": "reliability",
+          "Prod-Related": "**true**",
+          "Conf": "0.65"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Statement",
+        "Error Type",
+        "Role",
+        "Step",
+        "Imp",
+        "Sat",
+        "Opp",
+        "Impact",
+        "Prod-Related",
+        "Conf"
+      ],
+      "rows": [
+        {
+          "ID": "N07",
+          "Statement": "Minimize the likelihood of an emergency exit security device becoming non-functional during a building power interruption, measured as alarm activation availability rate under complete grid power loss",
+          "Error Type": "ROBUSTNESS",
+          "Role": "Executor",
+          "Step": "EXECUTE",
+          "Imp": "10",
+          "Sat": "8",
+          "Opp": "12",
+          "Impact": "safety",
+          "Prod-Related": "false",
+          "Conf": "0.95"
+        },
+        {
+          "ID": "N08",
+          "Statement": "Minimize the likelihood of emergency exit alarm devices triggering false positives from authorized key-override access by facility personnel, measured as false-alarm incidents per 100 authorized key activations per month",
+          "Error Type": "ACCURACY",
+          "Role": "Executor",
+          "Step": "EXECUTE",
+          "Imp": "8",
+          "Sat": "5",
+          "Opp": "11",
+          "Impact": "reliability",
+          "Prod-Related": "false",
+          "Conf": "0.80"
+        },
+        {
+          "ID": "N09",
+          "Statement": "Minimize the likelihood of inconsistent alarm activation thresholds causing premature or late alarm triggers across door types with different handle configurations, measured as alarm force variance across lever-handle and panic-bar variants within the same building",
+          "Error Type": "CONSISTENCY",
+          "Role": "Executor / Beneficiary",
+          "Step": "EXECUTE",
+          "Imp": "7",
+          "Sat": "6",
+          "Opp": "8",
+          "Impact": "safety",
+          "Prod-Related": "false",
+          "Conf": "0.70"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Statement",
+        "Error Type",
+        "Role",
+        "Step",
+        "Imp",
+        "Sat",
+        "Opp",
+        "Impact",
+        "Prod-Related",
+        "Conf"
+      ],
+      "rows": [
+        {
+          "ID": "N10",
+          "Statement": "Increase the ability to detect an emergency exit door being propped open or activated within 60 seconds of the event, measured as mean detection lag from door-open event to operator notification",
+          "Error Type": "DETECTION",
+          "Role": "Executor / Overseer",
+          "Step": "MONITOR",
+          "Imp": "9",
+          "Sat": "2",
+          "Opp": "16",
+          "Impact": "safety",
+          "Prod-Related": "false",
+          "Conf": "0.90"
+        },
+        {
+          "ID": "N11",
+          "Statement": "Increase the ability to monitor real-time emergency exit door status across an entire commercial property portfolio from a single operator dashboard, measured as number of buildings and doors simultaneously visible per interface",
+          "Error Type": "THROUGHPUT",
+          "Role": "Overseer",
+          "Step": "MONITOR",
+          "Imp": "8",
+          "Sat": "2",
+          "Opp": "14",
+          "Impact": "time",
+          "Prod-Related": "false",
+          "Conf": "0.85"
+        },
+        {
+          "ID": "N12",
+          "Statement": "Increase the ability to detect emergency exit monitoring device wireless connectivity failures before the next scheduled inspection cycle, measured as mean time from connectivity loss to operator notification",
+          "Error Type": "DETECTION",
+          "Role": "Executor",
+          "Step": "MONITOR",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "13",
+          "Impact": "reliability",
+          "Prod-Related": "**true**",
+          "Conf": "0.75"
+        },
+        {
+          "ID": "N13",
+          "Statement": "Increase the ability to detect approaching battery depletion in emergency exit monitoring devices before failure, measured as percentage of battery replacements performed before the device becomes non-functional",
+          "Error Type": "ROBUSTNESS",
+          "Role": "Lifecycle-Maintainer",
+          "Step": "MONITOR",
+          "Imp": "9",
+          "Sat": "3",
+          "Opp": "15",
+          "Impact": "reliability",
+          "Prod-Related": "**true**",
+          "Conf": "0.80"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Statement",
+        "Error Type",
+        "Role",
+        "Step",
+        "Imp",
+        "Sat",
+        "Opp",
+        "Impact",
+        "Prod-Related",
+        "Conf"
+      ],
+      "rows": [
+        {
+          "ID": "N14",
+          "Statement": "Minimize the likelihood of battery replacement in emergency exit monitoring devices requiring specialist skills or triggering false alarm events, measured as percentage of battery replacements completable by standard building staff without alarm activation",
+          "Error Type": "EFFORT",
+          "Role": "Lifecycle-Maintainer",
+          "Step": "MODIFY",
+          "Imp": "7",
+          "Sat": "5",
+          "Opp": "9",
+          "Impact": "cost",
+          "Prod-Related": "**true**",
+          "Conf": "0.70"
+        },
+        {
+          "ID": "N15",
+          "Statement": "Minimize the likelihood of on-site dispatch responses being required for non-emergency door activations that could be resolved remotely, measured as percentage of alarm events requiring physical visit vs. remotely resolvable via monitoring platform",
+          "Error Type": "EFFORT",
+          "Role": "Executor",
+          "Step": "MODIFY",
+          "Imp": "7",
+          "Sat": "4",
+          "Opp": "10",
+          "Impact": "cost",
+          "Prod-Related": "false",
+          "Conf": "0.75"
+        },
+        {
+          "ID": "N16",
+          "Statement": "Minimize the likelihood of emergency exit monitoring losing BMS communication following network infrastructure updates, measured as connectivity restoration time after BMS or gateway firmware changes",
+          "Error Type": "ROBUSTNESS",
+          "Role": "Executor",
+          "Step": "MODIFY",
+          "Imp": "8",
+          "Sat": "4",
+          "Opp": "12",
+          "Impact": "reliability",
+          "Prod-Related": "**true**",
+          "Conf": "0.70"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Statement",
+        "Error Type",
+        "Role",
+        "Step",
+        "Imp",
+        "Sat",
+        "Opp",
+        "Impact",
+        "Prod-Related",
+        "Conf"
+      ],
+      "rows": [
+        {
+          "ID": "N17",
+          "Statement": "Increase the ability to generate complete emergency exit compliance documentation meeting fire marshal requirements at any time without manual data entry, measured as documentation completeness score achievable at an unannounced inspection",
+          "Error Type": "DETECTION",
+          "Role": "Overseer / Influencer",
+          "Step": "CONCLUDE",
+          "Imp": "9",
+          "Sat": "3",
+          "Opp": "15",
+          "Impact": "safety",
+          "Prod-Related": "false",
+          "Conf": "0.85"
+        },
+        {
+          "ID": "N18",
+          "Statement": "Minimize the likelihood of annual fire safety audit preparation requiring manual compilation of exit inspection records across multiple properties, measured as person-hours per property required to produce a complete compliance evidence package",
+          "Error Type": "EFFORT",
+          "Role": "Overseer",
+          "Step": "CONCLUDE",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "13",
+          "Impact": "time",
+          "Prod-Related": "false",
+          "Conf": "0.85"
+        },
+        {
+          "ID": "N19",
+          "Statement": "Minimize the likelihood of compliance documentation quality varying significantly between properties within a portfolio, measured as inter-property variance in documentation completeness scores at audit point",
+          "Error Type": "CONSISTENCY",
+          "Role": "Overseer",
+          "Step": "CONCLUDE",
+          "Imp": "7",
+          "Sat": "3",
+          "Opp": "11",
+          "Impact": "cost",
+          "Prod-Related": "false",
+          "Conf": "0.75"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Pyramid",
+        "Role",
+        "Retrieval",
+        "Bridge",
+        "Statement",
+        "Imp",
+        "Sat",
+        "Opp",
+        "Impact",
+        "Prod-Related"
+      ],
+      "rows": [
+        {
+          "ID": "N20",
+          "Pyramid": "P3 Role Identity",
+          "Role": "Executor (FM)",
+          "Retrieval": "\"By getting emergency exit compliance done well, the FM becomes a proactive safety professional who enables the asset manager without compliance surprises\"",
+          "Bridge": "\"What must the product do so they CAN maintain that professional standing?\"",
+          "Statement": "Increase the ability to provide asset managers with proactive emergency exit compliance status updates without manual report generation, measured as automated compliance status communications per property per week",
+          "Imp": "7",
+          "Sat": "2",
+          "Opp": "12",
+          "Impact": "time",
+          "Prod-Related": "false"
+        },
+        {
+          "ID": "N21",
+          "Pyramid": "P4 Image Identity",
+          "Role": "Overseer (Asset Mgr) watched by fire marshal, insurer, institutional investors",
+          "Retrieval": "\"Fire marshals and insurers must see a disciplined, documented compliance operator; investors must see low regulatory risk in the asset\"",
+          "Bridge": "\"What must the product do so those stakeholders SEE that impression?\"",
+          "Statement": "Increase the ability to produce portfolio-level emergency exit compliance evidence on demand during fire marshal inspections or insurance renewals, measured as time-to-produce a complete compliance evidence package from request to delivery",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "13",
+          "Impact": "cost",
+          "Prod-Related": "false"
+        },
+        {
+          "ID": "N22",
+          "Pyramid": "P5 Emotional",
+          "Role": "Executor (FM)",
+          "Retrieval": "\"Avoid: the anxiety of discovering a non-compliant door for the first time during a fire marshal inspection\"",
+          "Bridge": "\"What must the product do so they DON'T feel that?\"",
+          "Statement": "Minimize the likelihood of a building operator discovering an emergency exit compliance failure for the first time during a scheduled fire marshal inspection rather than through proactive monitoring, measured as ratio of compliance failures detected pre-inspection vs. at inspection [hypothesis]",
+          "Imp": "8",
+          "Sat": "2",
+          "Opp": "14",
+          "Impact": "safety",
+          "Prod-Related": "false"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Rank",
+        "ID",
+        "Statement (abbreviated)",
+        "Opp",
+        "Classification"
+      ],
+      "rows": [
+        {
+          "Rank": "1",
+          "ID": "N10",
+          "Statement (abbreviated)": "Detect door propped open within 60 seconds",
+          "Opp": "**16**",
+          "Classification": "Underserved"
+        },
+        {
+          "Rank": "2",
+          "ID": "N05",
+          "Statement (abbreviated)": "Verify all devices functional pre-inspection without physical testing",
+          "Opp": "**15**",
+          "Classification": "Underserved"
+        },
+        {
+          "Rank": "2",
+          "ID": "N13",
+          "Statement (abbreviated)": "Detect battery depletion before device failure",
+          "Opp": "**15**",
+          "Classification": "Underserved"
+        },
+        {
+          "Rank": "2",
+          "ID": "N17",
+          "Statement (abbreviated)": "Generate complete compliance docs without manual data entry",
+          "Opp": "**15**",
+          "Classification": "Underserved"
+        },
+        {
+          "Rank": "5",
+          "ID": "N04",
+          "Statement (abbreviated)": "Minimize false-negative alarm rate",
+          "Opp": "**14**",
+          "Classification": "Underserved"
+        },
+        {
+          "Rank": "5",
+          "ID": "N11",
+          "Statement (abbreviated)": "Monitor portfolio-wide exit status from single dashboard",
+          "Opp": "**14**",
+          "Classification": "Underserved"
+        },
+        {
+          "Rank": "5",
+          "ID": "N22",
+          "Statement (abbreviated)": "Avoid discovering compliance failure at inspection [hypothesis]",
+          "Opp": "**14**",
+          "Classification": "Underserved"
+        },
+        {
+          "Rank": "8",
+          "ID": "N12",
+          "Statement (abbreviated)": "Detect wireless connectivity failure before inspection",
+          "Opp": "**13**",
+          "Classification": "Underserved"
+        },
+        {
+          "Rank": "8",
+          "ID": "N18",
+          "Statement (abbreviated)": "Minimize manual compilation effort for audit",
+          "Opp": "**13**",
+          "Classification": "Underserved"
+        },
+        {
+          "Rank": "8",
+          "ID": "N21",
+          "Statement (abbreviated)": "Produce compliance evidence on demand",
+          "Opp": "**13**",
+          "Classification": "Underserved"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Check",
+        "Status",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "#": "V1",
+          "Check": "Format compliance",
+          "Status": "PASS",
+          "Notes": "All 22 statements start with \"Minimize the likelihood of...\" or \"Increase the ability to...\" with one measurable KPI each"
+        },
+        {
+          "#": "V2",
+          "Check": "product_related classification",
+          "Status": "PASS",
+          "Notes": "N02, N06, N12, N13, N14, N16 are technology-caused (disappear for A3 wired or A1 mechanical); all others are market-inherent"
+        },
+        {
+          "#": "V3",
+          "Check": "Importance/satisfaction sanity",
+          "Status": "PASS",
+          "Notes": "Safety/regulatory needs (N04, N07) scored 10; no uniform clustering; A5 satisfaction scores 1–2 where appropriate"
+        },
+        {
+          "#": "V4",
+          "Check": "Impact category accuracy",
+          "Status": "PASS",
+          "Notes": "safety for alarm reliability; cost for labor/install; time for detection/monitoring lag; reliability for connectivity"
+        },
+        {
+          "#": "V5",
+          "Check": "Coverage",
+          "Status": "PASS",
+          "Notes": "6 relevant steps × ≥3 needs each + 3 P3–P5; 73% market-inherent / 27% technology-specific; 22 total needs"
+        },
+        {
+          "#": "V6",
+          "Check": "Solution-agnostic",
+          "Status": "PASS",
+          "Notes": "Zero references to \"Türwächter\", \"GfS\", \"EasyWave\", \"868 MHz\", \"piezo\", or specific mechanism in need statements"
+        },
+        {
+          "#": "V7",
+          "Check": "Anchor correctness",
+          "Status": "PASS",
+          "Notes": "L4 anchor (Door Guardian Alarm Unit) — component-level, matches product abstraction"
+        },
+        {
+          "#": "V8",
+          "Check": "Product job references parent",
+          "Status": "PASS",
+          "Notes": "\"Help Emergency Exit Security to prevent unauthorized use...\" — parent L5 unit named explicitly"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market_name": "Lessors of Nonresidential Buildings",
+      "naics_code": "531120",
+      "run_id": "assa_abloy_v1",
+      "anchor_vn_unit": "Door Guardian Alarm Unit",
+      "anchor_level": "L4",
+      "parent_vn_unit": "Emergency Exit Security",
+      "parent_level": "L5",
+      "product_job_statement": "Help Emergency Exit Security to prevent unauthorized use of emergency exit doors across a multi-tenant commercial property while maintaining unimpeded evacuation compliance, providing portfolio-level status visibility, and generating audit-ready compliance records — without requiring mains wiring at each door point",
+      "cfj_statement": "Provide leasable nonresidential building space to tenant organizations while maintaining regulatory-compliant safety infrastructure and preserving long-term asset value"
+    },
+    [
+      {
+        "step_number": 1,
+        "step_name": "DEFINE",
+        "statement": "Define which doors require emergency exit security, applicable standards (EN 179 / EN 1125), and portfolio integration requirements",
+        "relevant_to_product": false,
+        "relevance_rationale": "Standard assessment activity; low error differentiation opportunity"
+      },
+      {
+        "step_number": 2,
+        "step_name": "LOCATE",
+        "statement": "Map all emergency exit door positions, wireless coverage topology, and existing BMS infrastructure type",
+        "relevant_to_product": false,
+        "relevance_rationale": "One-time survey; standard FM activity"
+      },
+      {
+        "step_number": 3,
+        "step_name": "PREPARE",
+        "statement": "Install door guardian units, configure wireless receivers and BUS gateways, program key overrides, and integrate with monitoring platform",
+        "relevant_to_product": true,
+        "relevance_rationale": "Complex multi-door installation; high effort differential between wireless and wired alternatives; retrofit constraint most active here"
+      },
+      {
+        "step_number": 4,
+        "step_name": "CONFIRM",
+        "statement": "Verify alarm triggering, wireless connectivity, battery status, and compliance with EN 179 / EN 1125 across all installed units",
+        "relevant_to_product": true,
+        "relevance_rationale": "High-stakes verification; false negatives have direct regulatory and safety consequences"
+      },
+      {
+        "step_number": 5,
+        "step_name": "EXECUTE",
+        "statement": "Continuously prevent unauthorized door use while allowing single-motion evacuation and reporting events wirelessly to the monitoring platform",
+        "relevant_to_product": true,
+        "relevance_rationale": "Core value delivery; alarm reliability and false-positive rate are critical quality dimensions"
+      },
+      {
+        "step_number": 6,
+        "step_name": "MONITOR",
+        "statement": "Monitor door status, alarm events, battery health, and signal integrity across all units in real time",
+        "relevant_to_product": true,
+        "relevance_rationale": "Primary IoT differentiation point over mechanical alternatives; detection lag is the dominant pain point"
+      },
+      {
+        "step_number": 7,
+        "step_name": "MODIFY",
+        "statement": "Respond to alarm events, replace batteries, reconfigure coverage, and manage authorized key-override access",
+        "relevant_to_product": true,
+        "relevance_rationale": "Recurring operational cost driver; battery management burden at portfolio scale"
+      },
+      {
+        "step_number": 8,
+        "step_name": "CONCLUDE",
+        "statement": "Generate compliance documentation, audit logs, and inspection reports for fire marshal and insurance reviews",
+        "relevant_to_product": true,
+        "relevance_rationale": "Direct compliance value driver; documentation gap is the most acute pain in this market segment"
+      }
+    ],
+    [
+      {
+        "id": "N01",
+        "full_statement": "Minimize the likelihood of emergency exit security installation requiring permanent electrical infrastructure modifications to building fabric, measured as percentage of door deployments triggering conduit or wiring work",
+        "job_step_number": 3,
+        "job_step_name": "PREPARE",
+        "error_type": "EFFORT",
+        "role": "Executor / Lifecycle-Installer",
+        "importance": 8,
+        "satisfaction_current": 3,
+        "opportunity_score": 13,
+        "impact_category": "cost",
+        "product_related": false,
+        "confidence": 0.85,
+        "rationale": "40% incumbent (mechanical, A1) requires no wiring; 25% wired (A3) requires electrician and conduit per door — averaged satisfaction 3-4 across alternatives"
+      },
+      {
+        "id": "N02",
+        "full_statement": "Minimize the likelihood of wireless emergency exit monitoring commissioning requiring specialist RF survey support, measured as percentage of installations requiring dedicated RF coverage validation beyond standard FM technician scope",
+        "job_step_number": 3,
+        "job_step_name": "PREPARE",
+        "error_type": "EFFORT",
+        "role": "Lifecycle-Installer",
+        "importance": 7,
+        "satisfaction_current": 5,
+        "opportunity_score": 9,
+        "impact_category": "time",
+        "product_related": true,
+        "confidence": 0.7,
+        "rationale": "Wireless IoT category only; wired and mechanical alternatives do not have this commissioning step"
+      },
+      {
+        "id": "N03",
+        "full_statement": "Increase the ability to retrofit emergency exit security devices to existing commercial doors without structural modification, measured as percentage of existing EN 179 and EN 1125 door variants addressable without frame alteration",
+        "job_step_number": 3,
+        "job_step_name": "PREPARE",
+        "error_type": "ROBUSTNESS",
+        "role": "Executor",
+        "importance": 8,
+        "satisfaction_current": 5,
+        "opportunity_score": 11,
+        "impact_category": "cost",
+        "product_related": false,
+        "confidence": 0.8,
+        "rationale": "Most commercial buildings are existing stock; retrofit capability is a baseline market requirement regardless of technology choice"
+      },
+      {
+        "id": "N04",
+        "full_statement": "Minimize the likelihood of an emergency exit security device failing to trigger an alarm upon unauthorized door activation, measured as false-negative alarm rate per 1,000 activations",
+        "job_step_number": 4,
+        "job_step_name": "CONFIRM",
+        "error_type": "ACCURACY",
+        "role": "Executor",
+        "importance": 10,
+        "satisfaction_current": 6,
+        "opportunity_score": 14,
+        "impact_category": "safety",
+        "product_related": false,
+        "confidence": 0.9,
+        "rationale": "Regulatory and life-safety imperative; all alternatives must address; mechanical springs rated well but can wear; wired electronic well-addressed; mechanical-no-connectivity partially addressed"
+      },
+      {
+        "id": "N05",
+        "full_statement": "Increase the ability to verify that all emergency exit security devices across a portfolio are in functional alarm-ready state before a scheduled fire safety inspection, measured as confirmed-active device rate achievable without manual per-door physical testing",
+        "job_step_number": 4,
+        "job_step_name": "CONFIRM",
+        "error_type": "DETECTION",
+        "role": "Executor / Overseer",
+        "importance": 9,
+        "satisfaction_current": 3,
+        "opportunity_score": 15,
+        "impact_category": "safety",
+        "product_related": false,
+        "confidence": 0.85,
+        "rationale": "Dominant incumbent (A1 mechanical) requires physical per-door testing; IoT variants (A2) enable remote status check; manual verification for 50+ doors is prohibitively time-intensive"
+      },
+      {
+        "id": "N06",
+        "full_statement": "Minimize the likelihood of incorrect wireless address assignment causing two door guardian units on adjacent doors to share a transmission channel, measured as address-collision incidents per 50-door deployment",
+        "job_step_number": 4,
+        "job_step_name": "CONFIRM",
+        "error_type": "ACCURACY",
+        "role": "Lifecycle-Installer",
+        "importance": 7,
+        "satisfaction_current": 5,
+        "opportunity_score": 9,
+        "impact_category": "reliability",
+        "product_related": true,
+        "confidence": 0.65,
+        "rationale": "Wireless IoT category only; address collision is a commissioning risk unique to multi-unit wireless deployments"
+      },
+      {
+        "id": "N07",
+        "full_statement": "Minimize the likelihood of an emergency exit security device becoming non-functional during a building power interruption, measured as alarm activation availability rate under complete grid power loss",
+        "job_step_number": 5,
+        "job_step_name": "EXECUTE",
+        "error_type": "ROBUSTNESS",
+        "role": "Executor",
+        "importance": 10,
+        "satisfaction_current": 8,
+        "opportunity_score": 12,
+        "impact_category": "safety",
+        "product_related": false,
+        "confidence": 0.95,
+        "rationale": "Regulatory requirement per EN 179/1125 and EltVTR; mechanical-primary design satisfies this for A1, A2, A4; wired electronic (A3) must use UPS — well addressed across market"
+      },
+      {
+        "id": "N08",
+        "full_statement": "Minimize the likelihood of emergency exit alarm devices triggering false positives from authorized key-override access by facility personnel, measured as false-alarm incidents per 100 authorized key activations per month",
+        "job_step_number": 5,
+        "job_step_name": "EXECUTE",
+        "error_type": "ACCURACY",
+        "role": "Executor",
+        "importance": 8,
+        "satisfaction_current": 5,
+        "opportunity_score": 11,
+        "impact_category": "reliability",
+        "product_related": false,
+        "confidence": 0.8,
+        "rationale": "High-frequency pain in multi-tenant buildings; authorized maintenance access and delivery routines create frequent false alarms; key override partially addresses this but requires training"
+      },
+      {
+        "id": "N09",
+        "full_statement": "Minimize the likelihood of inconsistent alarm activation thresholds causing premature or late alarm triggers across door types with different handle configurations, measured as alarm force variance across lever-handle and panic-bar variants within the same building",
+        "job_step_number": 5,
+        "job_step_name": "EXECUTE",
+        "error_type": "CONSISTENCY",
+        "role": "Executor / Beneficiary",
+        "importance": 7,
+        "satisfaction_current": 6,
+        "opportunity_score": 8,
+        "impact_category": "safety",
+        "product_related": false,
+        "confidence": 0.7,
+        "rationale": "Mixed handle configurations (EN 179 lever + EN 1125 panic bar) common in large commercial buildings; force calibration during installation determines consistency"
+      },
+      {
+        "id": "N10",
+        "full_statement": "Increase the ability to detect an emergency exit door being propped open or activated within 60 seconds of the event, measured as mean detection lag from door-open event to operator notification",
+        "job_step_number": 6,
+        "job_step_name": "MONITOR",
+        "error_type": "DETECTION",
+        "role": "Executor / Overseer",
+        "importance": 9,
+        "satisfaction_current": 2,
+        "opportunity_score": 16,
+        "impact_category": "safety",
+        "product_related": false,
+        "confidence": 0.9,
+        "rationale": "A1 (mechanical-only): detection lag = hours to days (next patrol or inspection). A2 (IoT): near-real-time detection. A5 (do nothing): detection lag = shift or longer. Dominant competitor A1 scores satisfaction 1–2 on this need."
+      },
+      {
+        "id": "N11",
+        "full_statement": "Increase the ability to monitor real-time emergency exit door status across an entire commercial property portfolio from a single operator dashboard, measured as number of buildings and doors simultaneously visible per interface",
+        "job_step_number": 6,
+        "job_step_name": "MONITOR",
+        "error_type": "THROUGHPUT",
+        "role": "Overseer",
+        "importance": 8,
+        "satisfaction_current": 2,
+        "opportunity_score": 14,
+        "impact_category": "time",
+        "product_related": false,
+        "confidence": 0.85,
+        "rationale": "No existing solution addresses portfolio-level exit monitoring for commercial lessors at scale; A1/A5 have zero dashboard capability; A3 limited to per-building FACP"
+      },
+      {
+        "id": "N12",
+        "full_statement": "Increase the ability to detect emergency exit monitoring device wireless connectivity failures before the next scheduled inspection cycle, measured as mean time from connectivity loss to operator notification",
+        "job_step_number": 6,
+        "job_step_name": "MONITOR",
+        "error_type": "DETECTION",
+        "role": "Executor",
+        "importance": 8,
+        "satisfaction_current": 3,
+        "opportunity_score": 13,
+        "impact_category": "reliability",
+        "product_related": true,
+        "confidence": 0.75,
+        "rationale": "Wireless IoT category only; wired electronic (A3) and mechanical (A1) do not have wireless connectivity to lose. A silent disconnection creates an unmonitored door — regulatory gap equivalent to a failed unit."
+      },
+      {
+        "id": "N13",
+        "full_statement": "Increase the ability to detect approaching battery depletion in emergency exit monitoring devices before failure, measured as percentage of battery replacements performed before the device becomes non-functional",
+        "job_step_number": 6,
+        "job_step_name": "MONITOR",
+        "error_type": "ROBUSTNESS",
+        "role": "Lifecycle-Maintainer",
+        "importance": 9,
+        "satisfaction_current": 3,
+        "opportunity_score": 15,
+        "impact_category": "reliability",
+        "product_related": true,
+        "confidence": 0.8,
+        "rationale": "Battery-powered category only; mechanical (A1) and wired (A3) do not have this risk. A portfolio of 100+ battery units creates a significant unplanned maintenance burden without proactive battery monitoring."
+      },
+      {
+        "id": "N14",
+        "full_statement": "Minimize the likelihood of battery replacement in emergency exit monitoring devices requiring specialist skills or triggering false alarm events, measured as percentage of battery replacements completable by standard building staff without alarm activation",
+        "job_step_number": 7,
+        "job_step_name": "MODIFY",
+        "error_type": "EFFORT",
+        "role": "Lifecycle-Maintainer",
+        "importance": 7,
+        "satisfaction_current": 5,
+        "opportunity_score": 9,
+        "impact_category": "cost",
+        "product_related": true,
+        "confidence": 0.7,
+        "rationale": "Battery replacement procedure specific to battery-powered IoT category; design of the battery access mechanism determines whether a false alarm is triggered during servicing"
+      },
+      {
+        "id": "N15",
+        "full_statement": "Minimize the likelihood of on-site dispatch responses being required for non-emergency door activations that could be resolved remotely, measured as percentage of alarm events requiring physical site visit vs. remotely resolvable via monitoring platform",
+        "job_step_number": 7,
+        "job_step_name": "MODIFY",
+        "error_type": "EFFORT",
+        "role": "Executor",
+        "importance": 7,
+        "satisfaction_current": 4,
+        "opportunity_score": 10,
+        "impact_category": "cost",
+        "product_related": false,
+        "confidence": 0.75,
+        "rationale": "Relevant across all alternatives; IoT monitoring enables remote triage to distinguish genuine incidents from authorized access without dispatch"
+      },
+      {
+        "id": "N16",
+        "full_statement": "Minimize the likelihood of emergency exit monitoring losing BMS communication following network infrastructure updates, measured as connectivity restoration time after BMS or gateway firmware changes",
+        "job_step_number": 7,
+        "job_step_name": "MODIFY",
+        "error_type": "ROBUSTNESS",
+        "role": "Executor",
+        "importance": 8,
+        "satisfaction_current": 4,
+        "opportunity_score": 12,
+        "impact_category": "reliability",
+        "product_related": true,
+        "confidence": 0.7,
+        "rationale": "Wireless IoT integration category; EasyWave protocol lock-in (C6) makes BMS re-integration after updates non-trivial; wired systems on open protocols (BACnet) handle this more gracefully"
+      },
+      {
+        "id": "N17",
+        "full_statement": "Increase the ability to generate complete emergency exit compliance documentation meeting fire marshal requirements at any time without manual data entry, measured as documentation completeness score achievable at an unannounced inspection",
+        "job_step_number": 8,
+        "job_step_name": "CONCLUDE",
+        "error_type": "DETECTION",
+        "role": "Overseer / Influencer",
+        "importance": 9,
+        "satisfaction_current": 3,
+        "opportunity_score": 15,
+        "impact_category": "safety",
+        "product_related": false,
+        "confidence": 0.85,
+        "rationale": "Annual fire safety inspection required in most EU/US jurisdictions (NFPA 80: annual; Germany: ASR A2.3 / Bundesland-specific). Dominant A1 incumbent generates no logs; A5 requires manual spreadsheet; IoT enables automated timestamped records."
+      },
+      {
+        "id": "N18",
+        "full_statement": "Minimize the likelihood of annual fire safety audit preparation requiring manual compilation of exit inspection records across multiple properties, measured as person-hours per property required to produce a complete compliance evidence package",
+        "job_step_number": 8,
+        "job_step_name": "CONCLUDE",
+        "error_type": "EFFORT",
+        "role": "Overseer",
+        "importance": 8,
+        "satisfaction_current": 3,
+        "opportunity_score": 13,
+        "impact_category": "time",
+        "product_related": false,
+        "confidence": 0.85,
+        "rationale": "Portfolio-scale compliance preparation is a significant annual cost center for institutional lessors; estimated 4–8 person-hours per property per audit cycle with manual methods (certification + inspection costs $200–800 per door per US data)"
+      },
+      {
+        "id": "N19",
+        "full_statement": "Minimize the likelihood of compliance documentation quality varying significantly between properties within a portfolio, measured as inter-property variance in documentation completeness scores at audit point",
+        "job_step_number": 8,
+        "job_step_name": "CONCLUDE",
+        "error_type": "CONSISTENCY",
+        "role": "Overseer",
+        "importance": 7,
+        "satisfaction_current": 3,
+        "opportunity_score": 11,
+        "impact_category": "cost",
+        "product_related": false,
+        "confidence": 0.75,
+        "rationale": "Multi-property lessors rely on mixed-quality FM contractors across the portfolio; inconsistent documentation creates audit exposure in the weakest properties"
+      },
+      {
+        "id": "N20",
+        "full_statement": "Increase the ability to provide asset managers with proactive emergency exit compliance status updates without manual report generation, measured as automated compliance status communications per property per week",
+        "job_step_number": null,
+        "job_step_name": "P3 Role Identity",
+        "error_type": "P3",
+        "role": "Executor (FM)",
+        "importance": 7,
+        "satisfaction_current": 2,
+        "opportunity_score": 12,
+        "impact_category": "time",
+        "product_related": false,
+        "confidence": 0.7,
+        "rationale": "FM's professional identity requires demonstrating proactive safety management upward to asset managers; today this requires manual reporting and personal follow-up"
+      },
+      {
+        "id": "N21",
+        "full_statement": "Increase the ability to produce portfolio-level emergency exit compliance evidence on demand during fire marshal inspections or insurance renewals, measured as time-to-produce a complete compliance evidence package from request to delivery",
+        "job_step_number": null,
+        "job_step_name": "P4 Image Identity",
+        "error_type": "P4",
+        "role": "Overseer (Asset Manager)",
+        "importance": 8,
+        "satisfaction_current": 3,
+        "opportunity_score": 13,
+        "impact_category": "cost",
+        "product_related": false,
+        "confidence": 0.75,
+        "rationale": "Insurance underwriters and institutional investors (REITs) scrutinize fire safety compliance records; on-demand audit packages are a tangible signal of operational discipline"
+      },
+      {
+        "id": "N22",
+        "full_statement": "Minimize the likelihood of a building operator discovering an emergency exit compliance failure for the first time during a scheduled fire marshal inspection rather than through proactive monitoring, measured as ratio of compliance failures detected pre-inspection vs. at inspection point [hypothesis]",
+        "job_step_number": null,
+        "job_step_name": "P5 Emotional",
+        "error_type": "P5",
+        "role": "Executor (FM)",
+        "importance": 8,
+        "satisfaction_current": 2,
+        "opportunity_score": 14,
+        "impact_category": "safety",
+        "product_related": false,
+        "confidence": 0.65,
+        "rationale": "[hypothesis — requires validation through FM interviews] The anxiety of being caught off-guard at an inspection is a strong latent motivator; currently a1/A5 operators have no mechanism for pre-inspection discovery"
+      }
+    ],
+    [
+      {
+        "technology_name": "Mechanical door alarm guards (no connectivity)",
+        "anchor_vn_unit": "Door Guardian Alarm Unit",
+        "anchor_level": "L4",
+        "market_share_pct": 40,
+        "rationale": "Dominant incumbent; lowest cost; zero monitoring capability; all compliance documentation manual",
+        "market_name": "Lessors of Nonresidential Buildings"
+      },
+      {
+        "technology_name": "Wireless IoT exit alarm guards",
+        "anchor_vn_unit": "Door Guardian Alarm Unit",
+        "anchor_level": "L4",
+        "market_share_pct": 20,
+        "rationale": "Türwächter's category; growing but constrained by price premium and BMS integration friction",
+        "market_name": "Lessors of Nonresidential Buildings"
+      },
+      {
+        "technology_name": "Wired electronic exit control, alarm-panel-integrated",
+        "anchor_vn_unit": "Door Guardian Alarm Unit",
+        "anchor_level": "L4",
+        "market_share_pct": 25,
+        "rationale": "Best monitoring capability but highest install cost and retrofit barrier; preferred in new construction and high-security contexts",
+        "market_name": "Lessors of Nonresidential Buildings"
+      },
+      {
+        "technology_name": "Integrated alarmed panic hardware",
+        "anchor_vn_unit": "Door Guardian Alarm Unit",
+        "anchor_level": "L4",
+        "market_share_pct": 15,
+        "rationale": "Replaces panic bar assembly; highest cost; no retrofit capability; used primarily in new-build high-traffic public buildings",
+        "market_name": "Lessors of Nonresidential Buildings"
+      }
+    ]
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

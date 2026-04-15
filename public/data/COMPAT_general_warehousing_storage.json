@@ -1,0 +1,481 @@
+{
+  "id": "COMPAT_general_warehousing_storage",
+  "title": "Constraint-Market Compatibility: NAICS 493110 — General Warehousing and Storage",
+  "type": "constraint_compatibility",
+  "market_slug": "general_warehousing_storage",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Market Context",
+      "content": "| Field | Value |\n|---|---|\n| **NAICS** | 493110 — General Warehousing and Storage |\n| **Architecture distance** | 2 — same functional use case; product works as-is |\n| **Key job to be done** | Prevent unauthorized propping/misuse of emergency exits across large-footprint facilities while maintaining fire evacuation compliance across all shifts |\n| **Active constraint pressure** | C3 (range), C4 (battery at high-use dock exits), C7 (scale economics), C8 (GDPR for EU operators) |\n\n---"
+    },
+    {
+      "title": "Step 08 — Constraint-Market Assessment",
+      "content": "| # | Constraint | Type | is_absolute | Verdict | Cost | Time |\n|---|---|---|---|---|---|---|\n| C1 | Emergency Escape Non-Impedance | regulatory | false | **none** | — | — |\n| C2 | Mechanical Alarm Independence | regulatory | **true** | **none** | — | — |\n| C3 | Wireless Range Limitation | physical | false | **mitigable** | medium | 2–4 months |\n| C4 | IoT Battery Life Floor | operational | false | **mitigable** | low | 1–2 months |\n| C5 | Retrofit-Only Surface Mount | physical | false | **none** | — | — |\n| C6 | EasyWave Protocol Lock-In | operational | false | **mitigable** | low | 1–3 months |\n| C7 | IoT Price Premium | economic | false | **mitigable** | low | 1–2 months |\n| C8 | GDPR Monitoring Data Compliance | regulatory | false | **mitigable** | low | 1–3 months |\n| C9 | IP Protection Boundary | environmental | false | **mitigable** | low | 1–2 months |\n| C10 | EN 13637 / EltVTR Electrical Compliance | regulatory | false | **none** | — | — |\n\n**Result: 0 knockouts. Market 493110 survives all constraints.**\n\n---"
+    },
+    {
+      "title": "Assessment Details",
+      "content": "### C1 — Emergency Escape Non-Impedance → **none**\n\nEN 179/EN 1125 certifications already embedded in product design. OSHA 29 CFR 1910 and NFPA 101 govern US warehouses; EN 179/1125 governs EU. Türwächter is certified to both standards. No barrier.\n\n---\n\n### C2 — Mechanical Alarm Independence → **none**\n\nProduct's mechanical-primary architecture pre-satisfies this absolute constraint. Power outages during loading/unloading operations are a real warehouse scenario; the fail-safe design is a feature here, not a gap.\n\n---\n\n### C3 — Wireless Range Limitation → **mitigable**\n\nLarge distribution centers routinely span 20,000–100,000+ m². Emergency exits at loading docks, receiving bays, and far corners of high-bay storage may be 100–500 m from the nearest gateway. Steel racking, reinforced concrete tilt-up walls, and corrugated metal cladding all attenuate 868 MHz signals significantly beyond the 30 m integrated TX range.\n\n| Mitigation action | Detail |\n|---|---|\n| Pre-deployment RF survey | Map signal attenuation across facility floor plan; identify repeater placement zones |\n| Deploy repeater chain | Each stage adds ~30 m; 5–6 repeater hops can cover ~180 m in favorable geometry; parallel paths for dense racking zones |\n| Gateway placement optimization | Ceiling-mount gateways above racking at key distribution nodes |\n\n**Cost:** medium — infrastructure purchase and installation labor for large DCs (multiple repeaters + gateways per 50,000 m²). **Time:** 2–4 months (survey, procurement, installation, RF commissioning).\n\n---\n\n### C4 — IoT Battery Life Floor → **mitigable**\n\nDock doors and receiving bay exits are activated frequently — shift changes, truck arrivals, smoke breaks, forklift passage through propped doors. Sub-2 year battery life on a 9V block at 35 mA peak draw is a realistic risk at high-activation exits. Maintenance scheduling for exits in locked utility corridors or high-bay mezzanines adds operational friction.\n\n| Mitigation action | Detail |\n|---|---|\n| Enable battery monitoring variant | Deploy battery status indicator variant (Art. with battery monitoring); integrate low-battery alert into existing WMS/CMMS maintenance work orders |\n| Classify exits by activation frequency | Reserve IoT variant for strategic monitoring exits; use basic mechanical variant for seldom-used emergency egress paths in low-traffic zones |\n| Planned quarterly maintenance sweep | Treat battery replacement as a scheduled PM task rather than reactive callout |\n\n**Cost:** low — process change and WMS integration config; no additional hardware investment required. **Time:** 1–2 months (process design + alert integration).\n\n---\n\n### C5 — Retrofit-Only Surface Mount → **none**\n\nWarehouses are industrial environments. Surface-mounted safety hardware is standard practice throughout (fire extinguisher brackets, hose reels, AED cabinets, exit signs). No aesthetic or tamper-resistance requirements conflict with the surface-mount design. Glass-frame mounting plate addresses specific door variants.\n\n---\n\n### C6 — EasyWave Protocol Lock-In → **mitigable**\n\nModern large DCs increasingly use BACnet/IP building management systems (Siemens Desigo CC, Honeywell EBI, Schneider EcoStruxure). WMS platforms may trigger automated alerting workflows on door events. EasyWave does not natively speak BACnet, KNX, or IP protocols.\n\n| Mitigation action | Detail |\n|---|---|\n| Install GfS Wireless BUS Interface | Aggregates status from all door guardians; outputs potential-free dry contacts that interface with any BMS/FACP regardless of protocol |\n| Map dry contact outputs to BMS input points | Standard BMS integration; no custom firmware required |\n| Scope integration at specification stage | Include BMS interface requirements in project spec; prevents post-install rework |\n\n**Cost:** low — GfS wireless BUS gateway is a catalog item; BMS input mapping is standard integration work ($5K–15K per facility). **Time:** 1–3 months.\n\n---\n\n### C7 — IoT Price Premium → **mitigable**\n\nAt €730/unit, a 100-exit DC deployment costs ~€73,000 in hardware alone vs. ~€30,000–40,000 for mechanical-only. 3PLs and large operators run structured procurement and capital budgeting processes; the cost is justifiable but requires a documented ROI case.\n\n| Mitigation action | Detail |\n|---|---|\n| Build TCO model | Quantify avoided manual patrol labor (inspector wages × patrol frequency × number of exits), compliance audit labor reduction, and insurance premium impact |\n| Volume pricing negotiation | Portfolio 3PLs with 10+ facilities have leverage for blanket pricing agreements |\n| Phased rollout | Deploy IoT variant at highest-risk exits (dock doors, side exits near parking) first; expand based on incident history |\n\n**Cost:** low — commercial and sales process; no engineering spend. **Time:** 1–2 months (sales cycle + procurement approval).\n\n---\n\n### C8 — GDPR Monitoring Data Compliance → **mitigable**\n\nEU warehouse operators (Germany, Netherlands, Poland, France — major 3PL hubs) employ large hourly workforces. Door-open timestamps are potentially attributable to individual employees via shift logs or badge correlations. This is genuine GDPR exposure under systematic employee monitoring provisions.\n\nUS, UK (post-Brexit), and APAC installations are unaffected by GDPR — constraint is **none** for those geographies.\n\n| Mitigation action | Detail |\n|---|---|\n| Data minimization | Configure alerts as zone-level events (\"Exit 12 — Loading Bay B opened at 14:32\") rather than employee-attributed events; decouple door log from HR/badge data |\n| Legal basis documentation | Legitimate interest assessment for safety-critical monitoring; document and retain |\n| DPA with monitoring SaaS provider | If events are processed by a third-party dashboard; standard DPA template for EU sub-processor |\n\n**Cost:** low — legal/compliance advisory time; no engineering investment. **Time:** 1–3 months (legal review and documentation).\n\n---\n\n### C9 — IP Protection Boundary → **mitigable**\n\nStandard ambient warehouse aisles are dry — no IP issue. However, warehousing covers several sub-environments where moisture exposure is material:\n\n| Sub-environment | Risk | Verdict |\n|---|---|---|\n| Ambient dry storage (interior) | None — standard operating conditions | none |\n| Loading dock exits (rain ingress, pressure washing) | IP45 outdoor variant required | mitigable (low) |\n| Cold storage / freezer DCs (−25°C, condensation) | IP45 variant; electronics may need condensation management at extreme cold | mitigable (low) |\n| Refrigerated produce / high-humidity storage | IP45 variant sufficient; no washdown required | mitigable (low) |\n\n| Mitigation action | Detail |\n|---|---|\n| Specify IP45 variant (Art. 990000-IP) for dock and cold-chain exits | Catalog item; nominal unit cost premium over standard variant |\n| Conduct exit-environment survey at commissioning | Categorize each exit (dry / dock / cold) to drive variant selection |\n| For freezer DCs at −25°C | Confirm electronics operating range and add insulated mounting plate if needed |\n\n**Cost:** low — IP45 variant available in standard catalog; no custom engineering. **Time:** 1–2 months (survey + procurement).\n\n---\n\n### C10 — EN 13637 / EltVTR Electrical Compliance → **none**\n\nPrimary warehouse use case is standalone Türwächter with IoT monitoring overlay — no powered locking component. EN 13637 only activates for configurations combining the Türwächter with electromagnetic holders or electronic access control on the same door. Standard warehouse deployments do not trigger this constraint. (Note: if integrated with a powered dock door lock, system designer must verify combined compliance — but this is an integration design issue, not a Türwächter product constraint in typical deployment.)\n\n---"
+    },
+    {
+      "title": "Summary",
+      "content": "| Outcome | Count | Markets |\n|---|---|---|\n| Knockout | 0 | — |\n| Mitigable | 5 | C3, C4, C6, C7, C8, C9 (6 constraints) |\n| None | 4 | C1, C2, C5, C10 |\n\n**Market 493110 survives. No eliminators found.**\n\nThe most material constraint cluster for warehousing is **C3 × C9** (range + IP environment) — both are pre-addressed by the product's existing repeater architecture and IP45 variant. C4 (battery) and C7 (scale economics) are operational/commercial mitigations, not engineering investments. The constraint profile is favorable: highest-friction markets in the full candidate set (airports, large industrial) carry more severe C3 exposure.\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"market_name\": \"General Warehousing and Storage\",\n  \"naics_code\": \"493110\",\n  \"product_name\": \"GfS Türwächter IoT (Exit Control 179/1125)\",\n  \"technology_class\": \"Emergency Exit Security Devices with Remote Monitoring\",\n  \"assessments\": [\n    {\n      \"constraint_name\": \"Emergency Escape Non-Impedance\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Product is certified to EN 179 and EN 1125; OSHA 29 CFR 1910 and NFPA 101 govern US warehouses; EN 179/1125 governs EU warehouses. Compliance is a product feature, not a barrier.\"\n    },\n    {\n      \"constraint_name\": \"Mechanical Alarm Independence\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Mechanical-primary architecture pre-satisfies the absolute constraint. Power outages during warehouse operations are a known scenario; fail-safe design is a selling feature.\"\n    },\n    {\n      \"constraint_name\": \"Wireless Range Limitation\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Pre-deployment RF propagation survey to map attenuation through steel racking and metal cladding\",\n        \"Deploy wireless repeater chain (one stage per ~30 m); ceiling-mount above racking for best line-of-sight\",\n        \"Optimize gateway placement at racking-aisle intersections to minimize hop count\"\n      ],\n      \"mitigation_cost_estimate\": \"medium\",\n      \"mitigation_time_estimate\": \"2-4 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Large DCs (20,000–100,000+ m²) routinely place emergency exits 100–500 m from the nearest gateway. Steel racking and tilt-up concrete walls significantly attenuate 868 MHz. Repeater infrastructure resolves this at medium cost for large facilities.\"\n    },\n    {\n      \"constraint_name\": \"IoT Battery Life Floor\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Deploy battery monitoring variant; integrate low-battery alert into WMS/CMMS as scheduled PM work order\",\n        \"Classify exits by activation frequency; apply IoT variant only to strategic monitoring exits\",\n        \"Establish quarterly PM sweep for battery replacement at high-activation dock exits\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1-2 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Dock exits see frequent activation during shift changes and truck arrivals. Risk of sub-2 year battery life is real but manageable with proactive PM scheduling and activation-frequency-based variant selection.\"\n    },\n    {\n      \"constraint_name\": \"Retrofit-Only Surface Mount\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Industrial warehouse environment has no aesthetic or tamper-resistance requirements that conflict with surface-mount design. Surface-mounted safety hardware is standard throughout warehouse facilities.\"\n    },\n    {\n      \"constraint_name\": \"EasyWave Protocol Lock-In\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Install GfS Wireless BUS Interface to aggregate all door guardian events into dry contact outputs\",\n        \"Map dry contact outputs to BMS input points (BACnet/IP, Modbus) — standard integration, no custom firmware\",\n        \"Include BMS integration scope in project specification to prevent post-install rework\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1-3 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Large DCs use BACnet/IP BMS (Siemens Desigo, Honeywell EBI). EasyWave does not natively interoperate, but the GfS Wireless BUS gateway provides potential-free dry contact outputs compatible with any BMS input regardless of protocol.\"\n    },\n    {\n      \"constraint_name\": \"IoT Price Premium\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Build TCO model quantifying avoided patrol labor, compliance audit labor, and insurance impact\",\n        \"Negotiate volume pricing for 3PL portfolio deployments (10+ facilities)\",\n        \"Phase deployment starting with highest-risk dock exits to demonstrate ROI before full rollout\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1-2 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"At 100 exits, hardware cost is ~€73K vs. ~€35K for mechanical-only — a gap requiring ROI justification. 3PLs have structured procurement; labor savings and compliance automation provide a credible ROI case.\"\n    },\n    {\n      \"constraint_name\": \"GDPR Monitoring Data Compliance\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Configure zone-level event logging rather than employee-attributed events to minimize personal data scope\",\n        \"Conduct legitimate interest assessment for safety-critical door monitoring; document legal basis\",\n        \"Execute DPA with any third-party monitoring SaaS provider used for dashboard aggregation\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1-3 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"EU warehouse operators (DE, NL, PL, FR) employ large hourly workforces; door timestamps may be attributable to individuals via shift correlation. GDPR mitigable via data minimization and legal basis documentation. Non-EU installations unaffected.\"\n    },\n    {\n      \"constraint_name\": \"IP Protection Boundary\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Specify IP45 outdoor variant (Art. 990000-IP) for all dock doors and cold-chain/freezer exits\",\n        \"Conduct exit-environment survey at commissioning to categorize each exit (dry / dock / cold) for variant selection\",\n        \"For freezer DC exits at −25°C: verify electronics operating range and add insulated mounting plate if condensation risk is present\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1-2 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Standard dry-storage aisles pose no IP risk. Loading dock exits and cold-storage/freezer exits require IP45 variant (catalog item). No IP65/IP69K washdown requirement in typical warehouse contexts.\"\n    },\n    {\n      \"constraint_name\": \"EN 13637 / EltVTR Electrical Compliance\",\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Standard warehouse deployment is standalone Türwächter with IoT overlay — no powered locking component. EN 13637 only applies to combined configurations with electromagnetic holders or electronic access control. Typical warehouse use case does not trigger this constraint.\"\n    }\n  ],\n  \"markets_eliminated\": [],\n  \"markets_surviving\": [\"493110\"]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**NAICS**",
+          "Value": "493110 — General Warehousing and Storage"
+        },
+        {
+          "Field": "**Architecture distance**",
+          "Value": "2 — same functional use case; product works as-is"
+        },
+        {
+          "Field": "**Key job to be done**",
+          "Value": "Prevent unauthorized propping/misuse of emergency exits across large-footprint facilities while maintaining fire evacuation compliance across all shifts"
+        },
+        {
+          "Field": "**Active constraint pressure**",
+          "Value": "C3 (range), C4 (battery at high-use dock exits), C7 (scale economics), C8 (GDPR for EU operators)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Constraint",
+        "Type",
+        "is_absolute",
+        "Verdict",
+        "Cost",
+        "Time"
+      ],
+      "rows": [
+        {
+          "#": "C1",
+          "Constraint": "Emergency Escape Non-Impedance",
+          "Type": "regulatory",
+          "is_absolute": "false",
+          "Verdict": "**none**",
+          "Cost": "—",
+          "Time": "—"
+        },
+        {
+          "#": "C2",
+          "Constraint": "Mechanical Alarm Independence",
+          "Type": "regulatory",
+          "is_absolute": "**true**",
+          "Verdict": "**none**",
+          "Cost": "—",
+          "Time": "—"
+        },
+        {
+          "#": "C3",
+          "Constraint": "Wireless Range Limitation",
+          "Type": "physical",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Cost": "medium",
+          "Time": "2–4 months"
+        },
+        {
+          "#": "C4",
+          "Constraint": "IoT Battery Life Floor",
+          "Type": "operational",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Cost": "low",
+          "Time": "1–2 months"
+        },
+        {
+          "#": "C5",
+          "Constraint": "Retrofit-Only Surface Mount",
+          "Type": "physical",
+          "is_absolute": "false",
+          "Verdict": "**none**",
+          "Cost": "—",
+          "Time": "—"
+        },
+        {
+          "#": "C6",
+          "Constraint": "EasyWave Protocol Lock-In",
+          "Type": "operational",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Cost": "low",
+          "Time": "1–3 months"
+        },
+        {
+          "#": "C7",
+          "Constraint": "IoT Price Premium",
+          "Type": "economic",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Cost": "low",
+          "Time": "1–2 months"
+        },
+        {
+          "#": "C8",
+          "Constraint": "GDPR Monitoring Data Compliance",
+          "Type": "regulatory",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Cost": "low",
+          "Time": "1–3 months"
+        },
+        {
+          "#": "C9",
+          "Constraint": "IP Protection Boundary",
+          "Type": "environmental",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Cost": "low",
+          "Time": "1–2 months"
+        },
+        {
+          "#": "C10",
+          "Constraint": "EN 13637 / EltVTR Electrical Compliance",
+          "Type": "regulatory",
+          "is_absolute": "false",
+          "Verdict": "**none**",
+          "Cost": "—",
+          "Time": "—"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Mitigation action",
+        "Detail"
+      ],
+      "rows": [
+        {
+          "Mitigation action": "Pre-deployment RF survey",
+          "Detail": "Map signal attenuation across facility floor plan; identify repeater placement zones"
+        },
+        {
+          "Mitigation action": "Deploy repeater chain",
+          "Detail": "Each stage adds ~30 m; 5–6 repeater hops can cover ~180 m in favorable geometry; parallel paths for dense racking zones"
+        },
+        {
+          "Mitigation action": "Gateway placement optimization",
+          "Detail": "Ceiling-mount gateways above racking at key distribution nodes"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Mitigation action",
+        "Detail"
+      ],
+      "rows": [
+        {
+          "Mitigation action": "Enable battery monitoring variant",
+          "Detail": "Deploy battery status indicator variant (Art. with battery monitoring); integrate low-battery alert into existing WMS/CMMS maintenance work orders"
+        },
+        {
+          "Mitigation action": "Classify exits by activation frequency",
+          "Detail": "Reserve IoT variant for strategic monitoring exits; use basic mechanical variant for seldom-used emergency egress paths in low-traffic zones"
+        },
+        {
+          "Mitigation action": "Planned quarterly maintenance sweep",
+          "Detail": "Treat battery replacement as a scheduled PM task rather than reactive callout"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Mitigation action",
+        "Detail"
+      ],
+      "rows": [
+        {
+          "Mitigation action": "Install GfS Wireless BUS Interface",
+          "Detail": "Aggregates status from all door guardians; outputs potential-free dry contacts that interface with any BMS/FACP regardless of protocol"
+        },
+        {
+          "Mitigation action": "Map dry contact outputs to BMS input points",
+          "Detail": "Standard BMS integration; no custom firmware required"
+        },
+        {
+          "Mitigation action": "Scope integration at specification stage",
+          "Detail": "Include BMS interface requirements in project spec; prevents post-install rework"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Mitigation action",
+        "Detail"
+      ],
+      "rows": [
+        {
+          "Mitigation action": "Build TCO model",
+          "Detail": "Quantify avoided manual patrol labor (inspector wages × patrol frequency × number of exits), compliance audit labor reduction, and insurance premium impact"
+        },
+        {
+          "Mitigation action": "Volume pricing negotiation",
+          "Detail": "Portfolio 3PLs with 10+ facilities have leverage for blanket pricing agreements"
+        },
+        {
+          "Mitigation action": "Phased rollout",
+          "Detail": "Deploy IoT variant at highest-risk exits (dock doors, side exits near parking) first; expand based on incident history"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Mitigation action",
+        "Detail"
+      ],
+      "rows": [
+        {
+          "Mitigation action": "Data minimization",
+          "Detail": "Configure alerts as zone-level events (\"Exit 12 — Loading Bay B opened at 14:32\") rather than employee-attributed events; decouple door log from HR/badge data"
+        },
+        {
+          "Mitigation action": "Legal basis documentation",
+          "Detail": "Legitimate interest assessment for safety-critical monitoring; document and retain"
+        },
+        {
+          "Mitigation action": "DPA with monitoring SaaS provider",
+          "Detail": "If events are processed by a third-party dashboard; standard DPA template for EU sub-processor"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Sub-environment",
+        "Risk",
+        "Verdict"
+      ],
+      "rows": [
+        {
+          "Sub-environment": "Ambient dry storage (interior)",
+          "Risk": "None — standard operating conditions",
+          "Verdict": "none"
+        },
+        {
+          "Sub-environment": "Loading dock exits (rain ingress, pressure washing)",
+          "Risk": "IP45 outdoor variant required",
+          "Verdict": "mitigable (low)"
+        },
+        {
+          "Sub-environment": "Cold storage / freezer DCs (−25°C, condensation)",
+          "Risk": "IP45 variant; electronics may need condensation management at extreme cold",
+          "Verdict": "mitigable (low)"
+        },
+        {
+          "Sub-environment": "Refrigerated produce / high-humidity storage",
+          "Risk": "IP45 variant sufficient; no washdown required",
+          "Verdict": "mitigable (low)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Mitigation action",
+        "Detail"
+      ],
+      "rows": [
+        {
+          "Mitigation action": "Specify IP45 variant (Art. 990000-IP) for dock and cold-chain exits",
+          "Detail": "Catalog item; nominal unit cost premium over standard variant"
+        },
+        {
+          "Mitigation action": "Conduct exit-environment survey at commissioning",
+          "Detail": "Categorize each exit (dry / dock / cold) to drive variant selection"
+        },
+        {
+          "Mitigation action": "For freezer DCs at −25°C",
+          "Detail": "Confirm electronics operating range and add insulated mounting plate if needed"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Outcome",
+        "Count",
+        "Markets"
+      ],
+      "rows": [
+        {
+          "Outcome": "Knockout",
+          "Count": "0",
+          "Markets": "—"
+        },
+        {
+          "Outcome": "Mitigable",
+          "Count": "5",
+          "Markets": "C3, C4, C6, C7, C8, C9 (6 constraints)"
+        },
+        {
+          "Outcome": "None",
+          "Count": "4",
+          "Markets": "C1, C2, C5, C10"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market_name": "General Warehousing and Storage",
+      "naics_code": "493110",
+      "product_name": "GfS Türwächter IoT (Exit Control 179/1125)",
+      "technology_class": "Emergency Exit Security Devices with Remote Monitoring",
+      "assessments": [
+        {
+          "constraint_name": "Emergency Escape Non-Impedance",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Product is certified to EN 179 and EN 1125; OSHA 29 CFR 1910 and NFPA 101 govern US warehouses; EN 179/1125 governs EU warehouses. Compliance is a product feature, not a barrier."
+        },
+        {
+          "constraint_name": "Mechanical Alarm Independence",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Mechanical-primary architecture pre-satisfies the absolute constraint. Power outages during warehouse operations are a known scenario; fail-safe design is a selling feature."
+        },
+        {
+          "constraint_name": "Wireless Range Limitation",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Pre-deployment RF propagation survey to map attenuation through steel racking and metal cladding",
+            "Deploy wireless repeater chain (one stage per ~30 m); ceiling-mount above racking for best line-of-sight",
+            "Optimize gateway placement at racking-aisle intersections to minimize hop count"
+          ],
+          "mitigation_cost_estimate": "medium",
+          "mitigation_time_estimate": "2-4 months",
+          "knockout_reason": null,
+          "rationale": "Large DCs (20,000–100,000+ m²) routinely place emergency exits 100–500 m from the nearest gateway. Steel racking and tilt-up concrete walls significantly attenuate 868 MHz. Repeater infrastructure resolves this at medium cost for large facilities."
+        },
+        {
+          "constraint_name": "IoT Battery Life Floor",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Deploy battery monitoring variant; integrate low-battery alert into WMS/CMMS as scheduled PM work order",
+            "Classify exits by activation frequency; apply IoT variant only to strategic monitoring exits",
+            "Establish quarterly PM sweep for battery replacement at high-activation dock exits"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1-2 months",
+          "knockout_reason": null,
+          "rationale": "Dock exits see frequent activation during shift changes and truck arrivals. Risk of sub-2 year battery life is real but manageable with proactive PM scheduling and activation-frequency-based variant selection."
+        },
+        {
+          "constraint_name": "Retrofit-Only Surface Mount",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Industrial warehouse environment has no aesthetic or tamper-resistance requirements that conflict with surface-mount design. Surface-mounted safety hardware is standard throughout warehouse facilities."
+        },
+        {
+          "constraint_name": "EasyWave Protocol Lock-In",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Install GfS Wireless BUS Interface to aggregate all door guardian events into dry contact outputs",
+            "Map dry contact outputs to BMS input points (BACnet/IP, Modbus) — standard integration, no custom firmware",
+            "Include BMS integration scope in project specification to prevent post-install rework"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1-3 months",
+          "knockout_reason": null,
+          "rationale": "Large DCs use BACnet/IP BMS (Siemens Desigo, Honeywell EBI). EasyWave does not natively interoperate, but the GfS Wireless BUS gateway provides potential-free dry contact outputs compatible with any BMS input regardless of protocol."
+        },
+        {
+          "constraint_name": "IoT Price Premium",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Build TCO model quantifying avoided patrol labor, compliance audit labor, and insurance impact",
+            "Negotiate volume pricing for 3PL portfolio deployments (10+ facilities)",
+            "Phase deployment starting with highest-risk dock exits to demonstrate ROI before full rollout"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1-2 months",
+          "knockout_reason": null,
+          "rationale": "At 100 exits, hardware cost is ~€73K vs. ~€35K for mechanical-only — a gap requiring ROI justification. 3PLs have structured procurement; labor savings and compliance automation provide a credible ROI case."
+        },
+        {
+          "constraint_name": "GDPR Monitoring Data Compliance",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Configure zone-level event logging rather than employee-attributed events to minimize personal data scope",
+            "Conduct legitimate interest assessment for safety-critical door monitoring; document legal basis",
+            "Execute DPA with any third-party monitoring SaaS provider used for dashboard aggregation"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1-3 months",
+          "knockout_reason": null,
+          "rationale": "EU warehouse operators (DE, NL, PL, FR) employ large hourly workforces; door timestamps may be attributable to individuals via shift correlation. GDPR mitigable via data minimization and legal basis documentation. Non-EU installations unaffected."
+        },
+        {
+          "constraint_name": "IP Protection Boundary",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Specify IP45 outdoor variant (Art. 990000-IP) for all dock doors and cold-chain/freezer exits",
+            "Conduct exit-environment survey at commissioning to categorize each exit (dry / dock / cold) for variant selection",
+            "For freezer DC exits at −25°C: verify electronics operating range and add insulated mounting plate if condensation risk is present"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1-2 months",
+          "knockout_reason": null,
+          "rationale": "Standard dry-storage aisles pose no IP risk. Loading dock exits and cold-storage/freezer exits require IP45 variant (catalog item). No IP65/IP69K washdown requirement in typical warehouse contexts."
+        },
+        {
+          "constraint_name": "EN 13637 / EltVTR Electrical Compliance",
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Standard warehouse deployment is standalone Türwächter with IoT overlay — no powered locking component. EN 13637 only applies to combined configurations with electromagnetic holders or electronic access control. Typical warehouse use case does not trigger this constraint."
+        }
+      ],
+      "markets_eliminated": [],
+      "markets_surviving": [
+        "493110"
+      ]
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

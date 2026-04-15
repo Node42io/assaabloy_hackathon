@@ -1,0 +1,822 @@
+{
+  "id": "ODI_data_centers",
+  "title": "ODI Matrix: Data Centers (NAICS 518210)",
+  "type": "odi_matrix",
+  "market_slug": "data_centers",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Incumbent Technology Profiles (used for satisfaction recalibration)",
+      "content": "| Technology | Market Share | Mechanism | Strengths | Weaknesses |\n|---|---|---|---|---|\n| Wired panel-integrated alarm | ~50% | Alarm zone wired to central panel; panel feeds SIEM | IP-native integration, PACS audit trail, low per-event latency, no battery maintenance | Mains-dependent (UPS required for power events), high retrofit cost, zone-failure risk, requires explicit door enrollment |\n| Wireless IoT door alarm guard (Türwächter category) | ~30% | Battery-powered radio alarm guard; proprietary 868 MHz protocol to IP gateway | No conduit, battery fail-safe, mechanical alarm independent of power | EasyWave→IP gateway translation breaks audit chain, RF attenuation in metal-dense halls, surface-mount only |\n| Mechanical-only alarm | ~20% | Handle-mounted piezo alarm, no radio | Zero installation complexity, zero power dependency | Zero remote monitoring, zero digital audit trail — cannot satisfy SOC 2 CC6.4 |\n\n---"
+    },
+    {
+      "title": "Satisfaction Recalibration",
+      "content": "One score recalibrated from Step 06 initial estimate based on incumbent evidence:\n\n| Need | Original Sat | Recalibrated Sat | Reason |\n|---|---|---|---|\n| E1 — Monitoring perimeter completeness at deployment | 5 | **4** | Wired panel (50% share) requires explicit door enrollment in zone programming. In retrofit legacy DCs — the dominant deployment scenario — secondary exits not pre-wired are routinely absent from panel zone maps. Incumbent weakness on retrofit completeness lowers market satisfaction below initial estimate. |\n\nAll other scores confirmed by incumbent evidence (FIT analysis key confirmations: E8 sat=6 ✓ via UPS partial coverage; E18 sat=3 ✓ via EasyWave→IP chain-of-custody gap; E7 sat=3 ✓ via no heartbeat-vs-alarm-test distinction; PRN-1 sat=2 ✓ via no cryptographic audit chain in wireless category).\n\n---"
+    },
+    {
+      "title": "Full ODI Matrix",
+      "content": "*All 23 entries: 19 from JTBD (Step 06) + 4 product-related needs injected from Step 10 (job_step_number=0, job_step_name=\"product_constraint\", impact_category=\"reliability\").*\n\n| # | Statement (abbreviated) | Step | Imp | Sat | **Opp** | Under | Over | Prod |\n|---|---|---|---|---|---|---|---|---|\n| E1 | Emergency exit doors excluded from SOC 2 CC6.4 monitoring perimeter due to incomplete door inventory at deployment | DEFINE | 9 | 4 | **14** | ✓ | — | — |\n| E22 | Alert threshold misconfiguration → >5% false positive door alarm events/week, degrading SOC alert discipline | DEFINE | 6 | 5 | **7** | — | — | — |\n| E2 | RF coverage planning and gateway placement for 50-door deployment in ≤1 day of engineer effort | LOCATE | 6 | 3 | **9** | — | — | ✓ |\n| E3 | Receiver placement errors causing >5% of units to report intermittent connectivity loss in metal-rack server hall | LOCATE | 8 | 3 | **13** | ✓ | — | ✓ |\n| E4 | Install and commission a door guardian unit on any standard exit door in ≤15 min without specialist skills | PREPARE | 7 | 7 | **7** | — | — | — |\n| E5 | Incorrect pairing between radio transmitter and IP gateway causing alarm events to be silently dropped during initial deployment | PREPARE | 8 | 4 | **12** | ✓ | — | ✓ |\n| E6 | Verify end-to-end alarm propagation from each door guardian to SIEM log within ≤30 s across all 50+ units simultaneously | CONFIRM | 8 | 4 | **12** | ✓ | — | — |\n| E7 | Door guardian units appearing online in gateway dashboard but failing to transmit alarm events under Faraday cage RF conditions | CONFIRM | 9 | 3 | **15** | ✓ | — | ✓ |\n| E8 | Emergency exit activation goes unlogged in SIEM during facility power event (UPS switchover, generator start, mains failure) | EXECUTE | 10 | 6 | **14** | — | — | — |\n| E9 | Door activation alerts delivered to SOC console within ≤30 s under standard server hall RF conditions | EXECUTE | 8 | 5 | **11** | — | — | — |\n| E10 | Emergency exit activation (incl. authorized key override bypass) goes unlogged in SIEM, permitting 0 unlogged activations per audit period | EXECUTE | 9 | 5 | **13** | — | — | — |\n| E11 | SIEM timestamp accuracy variability between physical activation and log entry exceeds ≤5 s across deployed units | EXECUTE | 7 | 5 | **9** | — | — | — |\n| E12 | Predict door guardian battery replacement with ≥14 days advance warning per unit, enabling scheduled maintenance | MONITOR | 8 | 4 | **12** | ✓ | — | ✓ |\n| E13 | Door guardian unit goes offline without automated SOC notification, creating silent monitoring gap >15 min | MONITOR | 9 | 4 | **14** | ✓ | — | — |\n| E14 | Wireless signal quality variability in server halls with variable rack density and AI/GPU thermal load shifts | MONITOR | 7 | 3 | **11** | — | — | ✓ |\n| E15 | Update door monitoring configuration (add/remove doors, change thresholds) without on-site field work per door, 10-door change in ≤1 h | MODIFY | 7 | 3 | **11** | — | — | ✓ |\n| E16 | Restore full monitoring coverage following gateway/receiver failure to 100% in-scope exits within ≤4 h mean recovery time | MODIFY | 8 | 5 | **11** | — | — | — |\n| E17 | Generate SOC 2 Type II / ISO 27001 A.7.2 compliance report covering 12-month audit period with per-door granularity in ≤30 min | CONCLUDE | 9 | 3 | **15** | ✓ | — | — |\n| E18 | Audit evidence rejected due to chain-of-custody gaps between door guardian sensor event and SIEM log entry under SOC 2 Type II scrutiny | CONCLUDE | 10 | 3 | **17** | ✓ | — | — |\n| PRN-1 | Integrity break in chain-of-custody between proprietary EasyWave radio event and IP gateway SIEM payload, producing unverifiable log entries | product_constraint | 9 | 2 | **16** | ✓ | — | ✓ |\n| PRN-2 | RF channel contention from concurrent 868 MHz broadcasts across 50+ door deployment causing delayed/dropped alarm events during high-activity period | product_constraint | 7 | 3 | **11** | — | — | ✓ |\n| PRN-3 | Battery replacement across 50+ door DC deployment without triggering accidental alarms or passing any door through unmonitored state | product_constraint | 6 | 4 | **8** | — | — | ✓ |\n| PRN-4 | Firmware version and radio protocol configuration verification across all deployed units via central BUS gateway without physical door access | product_constraint | 7 | 2 | **12** | — | — | ✓ |\n\n---"
+    },
+    {
+      "title": "Market ODI Summary",
+      "content": "| Metric | Value |\n|---|---|\n| **Market** | Computing Infrastructure Providers / Data Centers |\n| **NAICS** | 518210 |\n| **Total needs** | 23 |\n| **Underserved** (imp > 7 AND sat < 5) | **10** |\n| **Overserved** (imp < 3 AND sat > 7) | 0 |\n| **Avg opportunity score** | **11.91** |\n\n### Top-5 Opportunities (by opportunity score)\n\n| Rank | # | Statement (abbreviated) | Opp | Zone | Prod |\n|---|---|---|---|---|---|\n| 1 | E18 | Chain-of-custody gap → SOC 2 audit evidence rejection | **17** | Highly Underserved | — |\n| 2 | PRN-1 | EasyWave→IP gateway chain-of-custody break producing unverifiable SIEM entries | **16** | Highly Underserved | ✓ |\n| 3 | E7 | Silent monitoring gap under Faraday cage — unit appears online but cannot fire alarm | **15** | Highly Underserved | ✓ |\n| 4 | E17 | SOC 2/ISO 27001 audit report with per-door granularity generated in ≤30 min | **15** | Highly Underserved | — |\n| 5 | E8 | Unlogged door activation during facility power event (UPS switchover / mains failure) | **14** | Underserved | — |\n\n---"
+    },
+    {
+      "title": "Cross-Check vs. Feature-Market Fit (Step 09)",
+      "content": "| Metric | Value |\n|---|---|\n| ODI avg opportunity score | 11.91 |\n| Feature-Fit avg (Step 09) | 4.50 (across 6 technology features) |\n\n**Threshold check:**\n- ODI avg > 12 AND Feature-Fit avg < 4 → **No flag** (ODI = 11.91, FMF = 4.50)\n- ODI avg < 8 AND Feature-Fit avg > 7 → **No flag**\n\n**Interpretation:** No inconsistency threshold triggered. However, the pattern is meaningful: moderate technology fit (4.50) against high unmet need (10 of 23 entries underserved). The Türwächter addresses the market's physical safety requirements (Battery-Powered Operation = 6.44, highest feature fit) but the compliance audit chain — the market's #1 and #2 opportunities — sits below the product-level scope and requires the EasyWave→IP gateway layer, which is where fit degrades (Wireless BUS Interface = 4 vs. incumbent 8). This is not an inconsistency; it is a coherent signal: the product fits the fire-safety job but is under-equipped for the audit-evidence job.\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n  \"naics_code\": \"518210\",\n  \"entries\": [\n    {\n      \"error_statement\": \"Minimize the likelihood of emergency exit doors being excluded from the SOC 2 CC6.4 monitoring perimeter due to incomplete door inventory at deployment, resulting in >0 unmonitored exits in audit scope\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 1,\n      \"job_step_name\": \"DEFINE\",\n      \"impact_category\": \"safety\",\n      \"importance\": 9.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 14.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"recalibrated\": true,\n      \"recalibration_note\": \"Lowered from sat=5: wired panel (50% share) requires explicit door enrollment; legacy DC secondary exits routinely absent from zone maps\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of alert threshold misconfiguration at deployment resulting in >5% false positive door alarm events per week, degrading Security Operations Center alert response discipline\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 1,\n      \"job_step_name\": \"DEFINE\",\n      \"impact_category\": \"time\",\n      \"importance\": 6.0,\n      \"satisfaction_current\": 5.0,\n      \"opportunity_score\": 7.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Increase the ability to complete RF coverage planning and gateway placement for a 50-door deployment using a standard site survey toolkit in ≤1 day of engineer effort\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 2,\n      \"job_step_name\": \"LOCATE\",\n      \"impact_category\": \"time\",\n      \"importance\": 6.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 9.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of receiver placement errors causing >5% of installed door guardian units to report intermittent connectivity loss in a server hall with dense metal rack infrastructure\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 2,\n      \"job_step_name\": \"LOCATE\",\n      \"impact_category\": \"reliability\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 13.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Increase the ability to install and commission a door guardian unit on any standard commercial exit door within ≤15 minutes without specialist low-voltage contractor skills\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 3,\n      \"job_step_name\": \"PREPARE\",\n      \"impact_category\": \"time\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 7.0,\n      \"opportunity_score\": 7.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of incorrect pairing between door guardian radio transmitter and IP gateway causing alarm events to be silently dropped during initial deployment verification\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 3,\n      \"job_step_name\": \"PREPARE\",\n      \"impact_category\": \"reliability\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 12.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Increase the ability to verify end-to-end alarm event propagation from each door guardian to the SIEM log within ≤30 seconds of a manual test activation across all 50+ installed units simultaneously\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 4,\n      \"job_step_name\": \"CONFIRM\",\n      \"impact_category\": \"time\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 12.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of door guardian units appearing as online in the gateway dashboard but failing to transmit alarm events under Faraday cage RF conditions, creating undetected monitoring gaps\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 4,\n      \"job_step_name\": \"CONFIRM\",\n      \"impact_category\": \"reliability\",\n      \"importance\": 9.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 15.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of an emergency exit door activation going unlogged in the SIEM audit trail during a facility power event — including UPS switchover, generator start sequence, and mains failure\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 5,\n      \"job_step_name\": \"EXECUTE\",\n      \"impact_category\": \"safety\",\n      \"importance\": 10.0,\n      \"satisfaction_current\": 6.0,\n      \"opportunity_score\": 14.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Increase the ability to deliver door activation alerts to the Security Operations Center console within ≤30 seconds of physical door trigger under standard server hall RF conditions\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 5,\n      \"job_step_name\": \"EXECUTE\",\n      \"impact_category\": \"time\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 5.0,\n      \"opportunity_score\": 11.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of an emergency exit door activation — including authorized key override bypass — going unlogged in the SIEM event record, permitting 0 unlogged activations per audit period\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 5,\n      \"job_step_name\": \"EXECUTE\",\n      \"impact_category\": \"safety\",\n      \"importance\": 9.0,\n      \"satisfaction_current\": 5.0,\n      \"opportunity_score\": 13.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Minimize the variability in SIEM timestamp accuracy between physical door guardian activation and the corresponding log entry to ≤5 seconds across all deployed units\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 5,\n      \"job_step_name\": \"EXECUTE\",\n      \"impact_category\": \"reliability\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 5.0,\n      \"opportunity_score\": 9.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Increase the ability to predict door guardian battery replacement needs with ≥14 days advance warning per unit, enabling scheduled maintenance without emergency callouts\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 6,\n      \"job_step_name\": \"MONITOR\",\n      \"impact_category\": \"reliability\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 12.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of a door guardian unit going offline without automated SOC notification, creating a silent monitoring gap exceeding 15 minutes\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 6,\n      \"job_step_name\": \"MONITOR\",\n      \"impact_category\": \"reliability\",\n      \"importance\": 9.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 14.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Minimize the variability in wireless signal quality for door guardian units installed in server halls with variable rack density and AI/GPU thermal load shifts that alter electromagnetic propagation\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 6,\n      \"job_step_name\": \"MONITOR\",\n      \"impact_category\": \"reliability\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 11.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Increase the ability to update door guardian monitoring configuration — add/remove doors, change alert thresholds — without on-site field work per door, completing a 10-door change in ≤1 hour\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 7,\n      \"job_step_name\": \"MODIFY\",\n      \"impact_category\": \"time\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 11.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Minimize the time to restore full door monitoring coverage to 100% of in-scope exits following a gateway or receiver failure, maintaining SOC 2 audit continuity within ≤4 hours mean recovery time\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 7,\n      \"job_step_name\": \"MODIFY\",\n      \"impact_category\": \"reliability\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 5.0,\n      \"opportunity_score\": 11.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Increase the ability to generate a SOC 2 Type II or ISO 27001 A.7.2 compliance report covering all door activation events across a 12-month audit period with per-door, per-event granularity in ≤30 minutes\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 8,\n      \"job_step_name\": \"CONCLUDE\",\n      \"impact_category\": \"cost\",\n      \"importance\": 9.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 15.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of audit evidence rejection due to chain-of-custody gaps between the door guardian physical sensor event and the corresponding SIEM log entry under SOC 2 Type II scrutiny\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 8,\n      \"job_step_name\": \"CONCLUDE\",\n      \"impact_category\": \"safety\",\n      \"importance\": 10.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 17.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of an integrity break in chain-of-custody between the proprietary 868 MHz EasyWave radio event and the IP gateway's outbound log payload, producing SIEM entries with no verifiable link to the originating door sensor activation\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 0,\n      \"job_step_name\": \"product_constraint\",\n      \"impact_category\": \"reliability\",\n      \"importance\": 9.0,\n      \"satisfaction_current\": 2.0,\n      \"opportunity_score\": 16.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of RF channel contention from concurrent 868 MHz guard-state broadcasts across a 50+ door deployment in a single server hall causing delayed or silently dropped alarm events during a high-activity security period\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 0,\n      \"job_step_name\": \"product_constraint\",\n      \"impact_category\": \"reliability\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 11.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Minimize the time required to replace IoT module batteries across a 50+ door DC deployment without triggering accidental alarm events during the replacement procedure and without passing any door through an unmonitored state\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 0,\n      \"job_step_name\": \"product_constraint\",\n      \"impact_category\": \"reliability\",\n      \"importance\": 6.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 8.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"recalibrated\": false\n    },\n    {\n      \"error_statement\": \"Minimize the time to verify firmware version and radio protocol configuration consistency across all deployed door guardian units via the central BUS gateway without requiring physical access to individual door-mounted hardware\",\n      \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n      \"naics_code\": \"518210\",\n      \"job_step_number\": 0,\n      \"job_step_name\": \"product_constraint\",\n      \"impact_category\": \"reliability\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 2.0,\n      \"opportunity_score\": 12.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"recalibrated\": false\n    }\n  ],\n  \"market_summary\": {\n    \"market_name\": \"Computing Infrastructure Providers / Data Centers\",\n    \"naics_code\": \"518210\",\n    \"total_needs\": 23,\n    \"underserved_count\": 10,\n    \"overserved_count\": 0,\n    \"avg_opportunity_score\": 11.91,\n    \"top_opportunities\": [\n      \"Minimize the likelihood of audit evidence rejection due to chain-of-custody gaps between the door guardian physical sensor event and the corresponding SIEM log entry under SOC 2 Type II scrutiny\",\n      \"Minimize the likelihood of an integrity break in chain-of-custody between the proprietary 868 MHz EasyWave radio event and the IP gateway's outbound log payload, producing SIEM entries with no verifiable link to the originating door sensor activation\",\n      \"Minimize the likelihood of door guardian units appearing as online in the gateway dashboard but failing to transmit alarm events under Faraday cage RF conditions, creating undetected monitoring gaps\",\n      \"Increase the ability to generate a SOC 2 Type II or ISO 27001 A.7.2 compliance report covering all door activation events across a 12-month audit period with per-door, per-event granularity in ≤30 minutes\",\n      \"Minimize the likelihood of an emergency exit door activation going unlogged in the SIEM audit trail during a facility power event — including UPS switchover, generator start sequence, and mains failure\"\n    ]\n  }\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Technology",
+        "Market Share",
+        "Mechanism",
+        "Strengths",
+        "Weaknesses"
+      ],
+      "rows": [
+        {
+          "Technology": "Wired panel-integrated alarm",
+          "Market Share": "~50%",
+          "Mechanism": "Alarm zone wired to central panel; panel feeds SIEM",
+          "Strengths": "IP-native integration, PACS audit trail, low per-event latency, no battery maintenance",
+          "Weaknesses": "Mains-dependent (UPS required for power events), high retrofit cost, zone-failure risk, requires explicit door enrollment"
+        },
+        {
+          "Technology": "Wireless IoT door alarm guard (Türwächter category)",
+          "Market Share": "~30%",
+          "Mechanism": "Battery-powered radio alarm guard; proprietary 868 MHz protocol to IP gateway",
+          "Strengths": "No conduit, battery fail-safe, mechanical alarm independent of power",
+          "Weaknesses": "EasyWave→IP gateway translation breaks audit chain, RF attenuation in metal-dense halls, surface-mount only"
+        },
+        {
+          "Technology": "Mechanical-only alarm",
+          "Market Share": "~20%",
+          "Mechanism": "Handle-mounted piezo alarm, no radio",
+          "Strengths": "Zero installation complexity, zero power dependency",
+          "Weaknesses": "Zero remote monitoring, zero digital audit trail — cannot satisfy SOC 2 CC6.4"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Need",
+        "Original Sat",
+        "Recalibrated Sat",
+        "Reason"
+      ],
+      "rows": [
+        {
+          "Need": "E1 — Monitoring perimeter completeness at deployment",
+          "Original Sat": "5",
+          "Recalibrated Sat": "**4**",
+          "Reason": "Wired panel (50% share) requires explicit door enrollment in zone programming. In retrofit legacy DCs — the dominant deployment scenario — secondary exits not pre-wired are routinely absent from panel zone maps. Incumbent weakness on retrofit completeness lowers market satisfaction below initial estimate."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Statement (abbreviated)",
+        "Step",
+        "Imp",
+        "Sat",
+        "**Opp**",
+        "Under",
+        "Over",
+        "Prod"
+      ],
+      "rows": [
+        {
+          "#": "E1",
+          "Statement (abbreviated)": "Emergency exit doors excluded from SOC 2 CC6.4 monitoring perimeter due to incomplete door inventory at deployment",
+          "Step": "DEFINE",
+          "Imp": "9",
+          "Sat": "4",
+          "**Opp**": "**14**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod": "—"
+        },
+        {
+          "#": "E22",
+          "Statement (abbreviated)": "Alert threshold misconfiguration → >5% false positive door alarm events/week, degrading SOC alert discipline",
+          "Step": "DEFINE",
+          "Imp": "6",
+          "Sat": "5",
+          "**Opp**": "**7**",
+          "Under": "—",
+          "Over": "—",
+          "Prod": "—"
+        },
+        {
+          "#": "E2",
+          "Statement (abbreviated)": "RF coverage planning and gateway placement for 50-door deployment in ≤1 day of engineer effort",
+          "Step": "LOCATE",
+          "Imp": "6",
+          "Sat": "3",
+          "**Opp**": "**9**",
+          "Under": "—",
+          "Over": "—",
+          "Prod": "✓"
+        },
+        {
+          "#": "E3",
+          "Statement (abbreviated)": "Receiver placement errors causing >5% of units to report intermittent connectivity loss in metal-rack server hall",
+          "Step": "LOCATE",
+          "Imp": "8",
+          "Sat": "3",
+          "**Opp**": "**13**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod": "✓"
+        },
+        {
+          "#": "E4",
+          "Statement (abbreviated)": "Install and commission a door guardian unit on any standard exit door in ≤15 min without specialist skills",
+          "Step": "PREPARE",
+          "Imp": "7",
+          "Sat": "7",
+          "**Opp**": "**7**",
+          "Under": "—",
+          "Over": "—",
+          "Prod": "—"
+        },
+        {
+          "#": "E5",
+          "Statement (abbreviated)": "Incorrect pairing between radio transmitter and IP gateway causing alarm events to be silently dropped during initial deployment",
+          "Step": "PREPARE",
+          "Imp": "8",
+          "Sat": "4",
+          "**Opp**": "**12**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod": "✓"
+        },
+        {
+          "#": "E6",
+          "Statement (abbreviated)": "Verify end-to-end alarm propagation from each door guardian to SIEM log within ≤30 s across all 50+ units simultaneously",
+          "Step": "CONFIRM",
+          "Imp": "8",
+          "Sat": "4",
+          "**Opp**": "**12**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod": "—"
+        },
+        {
+          "#": "E7",
+          "Statement (abbreviated)": "Door guardian units appearing online in gateway dashboard but failing to transmit alarm events under Faraday cage RF conditions",
+          "Step": "CONFIRM",
+          "Imp": "9",
+          "Sat": "3",
+          "**Opp**": "**15**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod": "✓"
+        },
+        {
+          "#": "E8",
+          "Statement (abbreviated)": "Emergency exit activation goes unlogged in SIEM during facility power event (UPS switchover, generator start, mains failure)",
+          "Step": "EXECUTE",
+          "Imp": "10",
+          "Sat": "6",
+          "**Opp**": "**14**",
+          "Under": "—",
+          "Over": "—",
+          "Prod": "—"
+        },
+        {
+          "#": "E9",
+          "Statement (abbreviated)": "Door activation alerts delivered to SOC console within ≤30 s under standard server hall RF conditions",
+          "Step": "EXECUTE",
+          "Imp": "8",
+          "Sat": "5",
+          "**Opp**": "**11**",
+          "Under": "—",
+          "Over": "—",
+          "Prod": "—"
+        },
+        {
+          "#": "E10",
+          "Statement (abbreviated)": "Emergency exit activation (incl. authorized key override bypass) goes unlogged in SIEM, permitting 0 unlogged activations per audit period",
+          "Step": "EXECUTE",
+          "Imp": "9",
+          "Sat": "5",
+          "**Opp**": "**13**",
+          "Under": "—",
+          "Over": "—",
+          "Prod": "—"
+        },
+        {
+          "#": "E11",
+          "Statement (abbreviated)": "SIEM timestamp accuracy variability between physical activation and log entry exceeds ≤5 s across deployed units",
+          "Step": "EXECUTE",
+          "Imp": "7",
+          "Sat": "5",
+          "**Opp**": "**9**",
+          "Under": "—",
+          "Over": "—",
+          "Prod": "—"
+        },
+        {
+          "#": "E12",
+          "Statement (abbreviated)": "Predict door guardian battery replacement with ≥14 days advance warning per unit, enabling scheduled maintenance",
+          "Step": "MONITOR",
+          "Imp": "8",
+          "Sat": "4",
+          "**Opp**": "**12**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod": "✓"
+        },
+        {
+          "#": "E13",
+          "Statement (abbreviated)": "Door guardian unit goes offline without automated SOC notification, creating silent monitoring gap >15 min",
+          "Step": "MONITOR",
+          "Imp": "9",
+          "Sat": "4",
+          "**Opp**": "**14**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod": "—"
+        },
+        {
+          "#": "E14",
+          "Statement (abbreviated)": "Wireless signal quality variability in server halls with variable rack density and AI/GPU thermal load shifts",
+          "Step": "MONITOR",
+          "Imp": "7",
+          "Sat": "3",
+          "**Opp**": "**11**",
+          "Under": "—",
+          "Over": "—",
+          "Prod": "✓"
+        },
+        {
+          "#": "E15",
+          "Statement (abbreviated)": "Update door monitoring configuration (add/remove doors, change thresholds) without on-site field work per door, 10-door change in ≤1 h",
+          "Step": "MODIFY",
+          "Imp": "7",
+          "Sat": "3",
+          "**Opp**": "**11**",
+          "Under": "—",
+          "Over": "—",
+          "Prod": "✓"
+        },
+        {
+          "#": "E16",
+          "Statement (abbreviated)": "Restore full monitoring coverage following gateway/receiver failure to 100% in-scope exits within ≤4 h mean recovery time",
+          "Step": "MODIFY",
+          "Imp": "8",
+          "Sat": "5",
+          "**Opp**": "**11**",
+          "Under": "—",
+          "Over": "—",
+          "Prod": "—"
+        },
+        {
+          "#": "E17",
+          "Statement (abbreviated)": "Generate SOC 2 Type II / ISO 27001 A.7.2 compliance report covering 12-month audit period with per-door granularity in ≤30 min",
+          "Step": "CONCLUDE",
+          "Imp": "9",
+          "Sat": "3",
+          "**Opp**": "**15**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod": "—"
+        },
+        {
+          "#": "E18",
+          "Statement (abbreviated)": "Audit evidence rejected due to chain-of-custody gaps between door guardian sensor event and SIEM log entry under SOC 2 Type II scrutiny",
+          "Step": "CONCLUDE",
+          "Imp": "10",
+          "Sat": "3",
+          "**Opp**": "**17**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod": "—"
+        },
+        {
+          "#": "PRN-1",
+          "Statement (abbreviated)": "Integrity break in chain-of-custody between proprietary EasyWave radio event and IP gateway SIEM payload, producing unverifiable log entries",
+          "Step": "product_constraint",
+          "Imp": "9",
+          "Sat": "2",
+          "**Opp**": "**16**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod": "✓"
+        },
+        {
+          "#": "PRN-2",
+          "Statement (abbreviated)": "RF channel contention from concurrent 868 MHz broadcasts across 50+ door deployment causing delayed/dropped alarm events during high-activity period",
+          "Step": "product_constraint",
+          "Imp": "7",
+          "Sat": "3",
+          "**Opp**": "**11**",
+          "Under": "—",
+          "Over": "—",
+          "Prod": "✓"
+        },
+        {
+          "#": "PRN-3",
+          "Statement (abbreviated)": "Battery replacement across 50+ door DC deployment without triggering accidental alarms or passing any door through unmonitored state",
+          "Step": "product_constraint",
+          "Imp": "6",
+          "Sat": "4",
+          "**Opp**": "**8**",
+          "Under": "—",
+          "Over": "—",
+          "Prod": "✓"
+        },
+        {
+          "#": "PRN-4",
+          "Statement (abbreviated)": "Firmware version and radio protocol configuration verification across all deployed units via central BUS gateway without physical door access",
+          "Step": "product_constraint",
+          "Imp": "7",
+          "Sat": "2",
+          "**Opp**": "**12**",
+          "Under": "—",
+          "Over": "—",
+          "Prod": "✓"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Metric",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Metric": "**Market**",
+          "Value": "Computing Infrastructure Providers / Data Centers"
+        },
+        {
+          "Metric": "**NAICS**",
+          "Value": "518210"
+        },
+        {
+          "Metric": "**Total needs**",
+          "Value": "23"
+        },
+        {
+          "Metric": "**Underserved** (imp > 7 AND sat < 5)",
+          "Value": "**10**"
+        },
+        {
+          "Metric": "**Overserved** (imp < 3 AND sat > 7)",
+          "Value": "0"
+        },
+        {
+          "Metric": "**Avg opportunity score**",
+          "Value": "**11.91**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Rank",
+        "#",
+        "Statement (abbreviated)",
+        "Opp",
+        "Zone",
+        "Prod"
+      ],
+      "rows": [
+        {
+          "Rank": "1",
+          "#": "E18",
+          "Statement (abbreviated)": "Chain-of-custody gap → SOC 2 audit evidence rejection",
+          "Opp": "**17**",
+          "Zone": "Highly Underserved",
+          "Prod": "—"
+        },
+        {
+          "Rank": "2",
+          "#": "PRN-1",
+          "Statement (abbreviated)": "EasyWave→IP gateway chain-of-custody break producing unverifiable SIEM entries",
+          "Opp": "**16**",
+          "Zone": "Highly Underserved",
+          "Prod": "✓"
+        },
+        {
+          "Rank": "3",
+          "#": "E7",
+          "Statement (abbreviated)": "Silent monitoring gap under Faraday cage — unit appears online but cannot fire alarm",
+          "Opp": "**15**",
+          "Zone": "Highly Underserved",
+          "Prod": "✓"
+        },
+        {
+          "Rank": "4",
+          "#": "E17",
+          "Statement (abbreviated)": "SOC 2/ISO 27001 audit report with per-door granularity generated in ≤30 min",
+          "Opp": "**15**",
+          "Zone": "Highly Underserved",
+          "Prod": "—"
+        },
+        {
+          "Rank": "5",
+          "#": "E8",
+          "Statement (abbreviated)": "Unlogged door activation during facility power event (UPS switchover / mains failure)",
+          "Opp": "**14**",
+          "Zone": "Underserved",
+          "Prod": "—"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Metric",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Metric": "ODI avg opportunity score",
+          "Value": "11.91"
+        },
+        {
+          "Metric": "Feature-Fit avg (Step 09)",
+          "Value": "4.50 (across 6 technology features)"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market_name": "Computing Infrastructure Providers / Data Centers",
+      "naics_code": "518210",
+      "entries": [
+        {
+          "error_statement": "Minimize the likelihood of emergency exit doors being excluded from the SOC 2 CC6.4 monitoring perimeter due to incomplete door inventory at deployment, resulting in >0 unmonitored exits in audit scope",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 1,
+          "job_step_name": "DEFINE",
+          "impact_category": "safety",
+          "importance": 9.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 14.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "recalibrated": true,
+          "recalibration_note": "Lowered from sat=5: wired panel (50% share) requires explicit door enrollment; legacy DC secondary exits routinely absent from zone maps"
+        },
+        {
+          "error_statement": "Minimize the likelihood of alert threshold misconfiguration at deployment resulting in >5% false positive door alarm events per week, degrading Security Operations Center alert response discipline",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 1,
+          "job_step_name": "DEFINE",
+          "impact_category": "time",
+          "importance": 6.0,
+          "satisfaction_current": 5.0,
+          "opportunity_score": 7.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": false,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Increase the ability to complete RF coverage planning and gateway placement for a 50-door deployment using a standard site survey toolkit in ≤1 day of engineer effort",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 2,
+          "job_step_name": "LOCATE",
+          "impact_category": "time",
+          "importance": 6.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 9.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Minimize the likelihood of receiver placement errors causing >5% of installed door guardian units to report intermittent connectivity loss in a server hall with dense metal rack infrastructure",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 2,
+          "job_step_name": "LOCATE",
+          "impact_category": "reliability",
+          "importance": 8.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 13.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": true,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Increase the ability to install and commission a door guardian unit on any standard commercial exit door within ≤15 minutes without specialist low-voltage contractor skills",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 3,
+          "job_step_name": "PREPARE",
+          "impact_category": "time",
+          "importance": 7.0,
+          "satisfaction_current": 7.0,
+          "opportunity_score": 7.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": false,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Minimize the likelihood of incorrect pairing between door guardian radio transmitter and IP gateway causing alarm events to be silently dropped during initial deployment verification",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 3,
+          "job_step_name": "PREPARE",
+          "impact_category": "reliability",
+          "importance": 8.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 12.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": true,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Increase the ability to verify end-to-end alarm event propagation from each door guardian to the SIEM log within ≤30 seconds of a manual test activation across all 50+ installed units simultaneously",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 4,
+          "job_step_name": "CONFIRM",
+          "impact_category": "time",
+          "importance": 8.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 12.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Minimize the likelihood of door guardian units appearing as online in the gateway dashboard but failing to transmit alarm events under Faraday cage RF conditions, creating undetected monitoring gaps",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 4,
+          "job_step_name": "CONFIRM",
+          "impact_category": "reliability",
+          "importance": 9.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 15.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": true,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Minimize the likelihood of an emergency exit door activation going unlogged in the SIEM audit trail during a facility power event — including UPS switchover, generator start sequence, and mains failure",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 5,
+          "job_step_name": "EXECUTE",
+          "impact_category": "safety",
+          "importance": 10.0,
+          "satisfaction_current": 6.0,
+          "opportunity_score": 14.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": false,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Increase the ability to deliver door activation alerts to the Security Operations Center console within ≤30 seconds of physical door trigger under standard server hall RF conditions",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 5,
+          "job_step_name": "EXECUTE",
+          "impact_category": "time",
+          "importance": 8.0,
+          "satisfaction_current": 5.0,
+          "opportunity_score": 11.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": false,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Minimize the likelihood of an emergency exit door activation — including authorized key override bypass — going unlogged in the SIEM event record, permitting 0 unlogged activations per audit period",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 5,
+          "job_step_name": "EXECUTE",
+          "impact_category": "safety",
+          "importance": 9.0,
+          "satisfaction_current": 5.0,
+          "opportunity_score": 13.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": false,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Minimize the variability in SIEM timestamp accuracy between physical door guardian activation and the corresponding log entry to ≤5 seconds across all deployed units",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 5,
+          "job_step_name": "EXECUTE",
+          "impact_category": "reliability",
+          "importance": 7.0,
+          "satisfaction_current": 5.0,
+          "opportunity_score": 9.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": false,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Increase the ability to predict door guardian battery replacement needs with ≥14 days advance warning per unit, enabling scheduled maintenance without emergency callouts",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 6,
+          "job_step_name": "MONITOR",
+          "impact_category": "reliability",
+          "importance": 8.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 12.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": true,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Minimize the likelihood of a door guardian unit going offline without automated SOC notification, creating a silent monitoring gap exceeding 15 minutes",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 6,
+          "job_step_name": "MONITOR",
+          "impact_category": "reliability",
+          "importance": 9.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 14.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Minimize the variability in wireless signal quality for door guardian units installed in server halls with variable rack density and AI/GPU thermal load shifts that alter electromagnetic propagation",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 6,
+          "job_step_name": "MONITOR",
+          "impact_category": "reliability",
+          "importance": 7.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 11.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Increase the ability to update door guardian monitoring configuration — add/remove doors, change alert thresholds — without on-site field work per door, completing a 10-door change in ≤1 hour",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 7,
+          "job_step_name": "MODIFY",
+          "impact_category": "time",
+          "importance": 7.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 11.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Minimize the time to restore full door monitoring coverage to 100% of in-scope exits following a gateway or receiver failure, maintaining SOC 2 audit continuity within ≤4 hours mean recovery time",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 7,
+          "job_step_name": "MODIFY",
+          "impact_category": "reliability",
+          "importance": 8.0,
+          "satisfaction_current": 5.0,
+          "opportunity_score": 11.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": false,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Increase the ability to generate a SOC 2 Type II or ISO 27001 A.7.2 compliance report covering all door activation events across a 12-month audit period with per-door, per-event granularity in ≤30 minutes",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 8,
+          "job_step_name": "CONCLUDE",
+          "impact_category": "cost",
+          "importance": 9.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 15.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Minimize the likelihood of audit evidence rejection due to chain-of-custody gaps between the door guardian physical sensor event and the corresponding SIEM log entry under SOC 2 Type II scrutiny",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 8,
+          "job_step_name": "CONCLUDE",
+          "impact_category": "safety",
+          "importance": 10.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 17.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Minimize the likelihood of an integrity break in chain-of-custody between the proprietary 868 MHz EasyWave radio event and the IP gateway's outbound log payload, producing SIEM entries with no verifiable link to the originating door sensor activation",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 0,
+          "job_step_name": "product_constraint",
+          "impact_category": "reliability",
+          "importance": 9.0,
+          "satisfaction_current": 2.0,
+          "opportunity_score": 16.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": true,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Minimize the likelihood of RF channel contention from concurrent 868 MHz guard-state broadcasts across a 50+ door deployment in a single server hall causing delayed or silently dropped alarm events during a high-activity security period",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 0,
+          "job_step_name": "product_constraint",
+          "impact_category": "reliability",
+          "importance": 7.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 11.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Minimize the time required to replace IoT module batteries across a 50+ door DC deployment without triggering accidental alarm events during the replacement procedure and without passing any door through an unmonitored state",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 0,
+          "job_step_name": "product_constraint",
+          "impact_category": "reliability",
+          "importance": 6.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 8.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "recalibrated": false
+        },
+        {
+          "error_statement": "Minimize the time to verify firmware version and radio protocol configuration consistency across all deployed door guardian units via the central BUS gateway without requiring physical access to individual door-mounted hardware",
+          "market_name": "Computing Infrastructure Providers / Data Centers",
+          "naics_code": "518210",
+          "job_step_number": 0,
+          "job_step_name": "product_constraint",
+          "impact_category": "reliability",
+          "importance": 7.0,
+          "satisfaction_current": 2.0,
+          "opportunity_score": 12.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "recalibrated": false
+        }
+      ],
+      "market_summary": {
+        "market_name": "Computing Infrastructure Providers / Data Centers",
+        "naics_code": "518210",
+        "total_needs": 23,
+        "underserved_count": 10,
+        "overserved_count": 0,
+        "avg_opportunity_score": 11.91,
+        "top_opportunities": [
+          "Minimize the likelihood of audit evidence rejection due to chain-of-custody gaps between the door guardian physical sensor event and the corresponding SIEM log entry under SOC 2 Type II scrutiny",
+          "Minimize the likelihood of an integrity break in chain-of-custody between the proprietary 868 MHz EasyWave radio event and the IP gateway's outbound log payload, producing SIEM entries with no verifiable link to the originating door sensor activation",
+          "Minimize the likelihood of door guardian units appearing as online in the gateway dashboard but failing to transmit alarm events under Faraday cage RF conditions, creating undetected monitoring gaps",
+          "Increase the ability to generate a SOC 2 Type II or ISO 27001 A.7.2 compliance report covering all door activation events across a 12-month audit period with per-door, per-event granularity in ≤30 minutes",
+          "Minimize the likelihood of an emergency exit door activation going unlogged in the SIEM audit trail during a facility power event — including UPS switchover, generator start sequence, and mains failure"
+        ]
+      }
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

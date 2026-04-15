@@ -1,0 +1,368 @@
+{
+  "naicsCode": "622110",
+  "marketName": "General Medical and Surgical Hospitals",
+  "slug": "general_medical_surgical_hospitals",
+  "coreJobStatement": "Diagnose, treat, and stabilize patients presenting with acute medical and surgical conditions — from initial triage through inpatient care to discharge or transfer to post-acute services.",
+  "outputTypes": [],
+  "hierarchy": "",
+  "architectureDistance": 2,
+  "marketSize": "",
+  "l6Systems": [
+    {
+      "id": "L6a",
+      "name": "Patient Access & Intake",
+      "type": "Core",
+      "jobFamily": "Receive, identify, and route patients into the care pathway",
+      "l5Units": []
+    },
+    {
+      "id": "L6b",
+      "name": "Diagnostics & Assessment",
+      "type": "Core",
+      "jobFamily": "Produce diagnostic findings that determine treatment pathway",
+      "l5Units": []
+    },
+    {
+      "id": "L6c",
+      "name": "Surgical & Procedural Intervention",
+      "type": "Core",
+      "jobFamily": "Execute invasive procedures in sterile environments",
+      "l5Units": []
+    },
+    {
+      "id": "L6d",
+      "name": "Inpatient Clinical Care",
+      "type": "Core",
+      "jobFamily": "Monitor, treat, and stabilize hospitalized patients",
+      "l5Units": []
+    },
+    {
+      "id": "L6e",
+      "name": "Pharmacy & Medication Delivery",
+      "type": "Core",
+      "jobFamily": "Prepare, verify, and dispense medications to point of care",
+      "l5Units": []
+    },
+    {
+      "id": "L6f",
+      "name": "Discharge & Care Transition",
+      "type": "Core",
+      "jobFamily": "Coordinate safe patient discharge and hand-off to follow-on care",
+      "l5Units": []
+    },
+    {
+      "id": "L6h1",
+      "name": "Facility & Building Safety (H)",
+      "type": "Horizontal",
+      "jobFamily": "Maintain building infrastructure, fire safety, emergency exit security, and physical access control across all clinical and support areas",
+      "isHorizontal": true,
+      "l5Units": []
+    },
+    {
+      "id": "L6h2",
+      "name": "Infection Prevention & Sterilization (H)",
+      "type": "Horizontal",
+      "jobFamily": "Sterilize instruments, maintain clean environments, control HAI rates across all patient-contact zones",
+      "isHorizontal": true,
+      "l5Units": []
+    },
+    {
+      "id": "L6h3",
+      "name": "Clinical Information Systems (H)",
+      "type": "Horizontal",
+      "jobFamily": "Provide EMR, CDSS, PACS, lab information, and interoperability infrastructure supporting every care delivery step",
+      "isHorizontal": true,
+      "l5Units": []
+    }
+  ],
+  "vnUnits": [
+    {
+      "level": "L5",
+      "id": "L6a.1",
+      "name": "Patient Registration & EMR System",
+      "functionalJob": "Register patient identity, insurance, and demographics and create or retrieve the electronic medical record for the care episode",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Epic, Oracle Health (Cerner), MEDITECH",
+          "sharePct": 35,
+          "confidence": "MEDIUM",
+          "source": "KLAS Research 2024",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6a.2",
+      "name": "ED Management Platform",
+      "functionalJob": "Manage emergency department patient flow from triage through treatment to disposition, tracking acuity, wait times, and bed availability",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "T-System, Medhost, Meditech EDM",
+          "sharePct": 40,
+          "confidence": "LOW",
+          "source": "Analyst estimates",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.1",
+      "name": "Medical Imaging Systems",
+      "functionalJob": "Acquire diagnostic images of patient anatomy using X-ray, CT, MRI, ultrasound, or nuclear medicine modalities to inform clinical decision-making",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Siemens Healthineers, GE HealthCare, Philips",
+          "sharePct": 32,
+          "confidence": "MEDIUM",
+          "source": "GlobalData 2024",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.2",
+      "name": "Laboratory Analyzer Platform",
+      "functionalJob": "Process blood, tissue, and fluid specimens to produce quantitative diagnostic results for clinical chemistry, hematology, and microbiology",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Roche Diagnostics, Abbott, Siemens DX",
+          "sharePct": 30,
+          "confidence": "MEDIUM",
+          "source": "IQVIA 2024",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.1",
+      "name": "Anesthesia Delivery System",
+      "functionalJob": "Deliver and monitor inhaled anesthetic agents and ventilation to maintain patient unconsciousness and physiological stability during surgical procedures",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Dräger, GE HealthCare, Philips",
+          "sharePct": 35,
+          "confidence": "MEDIUM",
+          "source": "Frost & Sullivan 2023",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.2",
+      "name": "Surgical Table & Positioning",
+      "functionalJob": "Support and precisely position the patient during surgical procedures with adjustable height, tilt, and articulation for optimal surgical access",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Steris Skytron, Stryker, Trumpf Medical",
+          "sharePct": 30,
+          "confidence": "LOW",
+          "source": "Analyst estimates",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.1",
+      "name": "Patient Monitoring System",
+      "functionalJob": "Continuously measure and display patient vital signs including heart rate, blood pressure, oxygen saturation, and respiratory rate at the bedside and central station",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Philips, GE HealthCare, Masimo",
+          "sharePct": 35,
+          "confidence": "MEDIUM",
+          "source": "GlobalData 2024",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.2",
+      "name": "Nurse Call System",
+      "functionalJob": "Enable patients to request assistance and route calls to the nearest available caregiver based on priority, location, and staff availability",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Rauland, Hill-Rom/Baxter, Ascom",
+          "sharePct": 30,
+          "confidence": "MEDIUM",
+          "source": "KLAS 2024",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6e.1",
+      "name": "Automated Dispensing Cabinet",
+      "functionalJob": "Securely store and dispense unit-dose medications at the point of care with automated tracking to reduce medication errors and ensure chain-of-custody",
+      "description": "",
+      "parentL6": "L6e",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Omnicell, BD Pyxis, Swisslog",
+          "sharePct": 40,
+          "confidence": "MEDIUM",
+          "source": "KLAS 2024",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6h1.1",
+      "name": "Fire Detection & Alarm System",
+      "functionalJob": "Detect fire conditions across all hospital zones and coordinate defend-in-place notification to enable horizontal patient relocation to adjacent smoke compartments",
+      "description": "",
+      "parentL6": "L6h1",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Siemens Cerberus / Johnson Controls Simplex / Honeywell Notifier",
+          "sharePct": 28,
+          "confidence": "MEDIUM",
+          "source": "IHS Markit / Omdia 2024",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6h1.2",
+      "name": "Emergency Exit Security Device",
+      "functionalJob": "Secure emergency exit doors against unauthorized use and patient elopement while preserving single-motion escape and reporting door events to building management",
+      "description": "",
+      "parentL6": "L6h1",
+      "dependencies": [],
+      "isPrimaryPosition": true,
+      "alternatives": [
+        {
+          "name": "Wired alarmed exit bars (Von Duprin, Corbin Russwin) / Mechanical door-handle alarm guards (GfS Exit Control, ABUS) / Wireless electronic exit control systems (dormakaba SafeRoute, GEZE SecuLogic) / Electromechanical delayed egress (Allegion)",
+          "sharePct": 40,
+          "confidence": "LOW",
+          "source": "No published split; estimated from install base surveys [WEB]",
+          "isPrimary": true
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6h1.3",
+      "name": "Physical Access Control System",
+      "functionalJob": "Restrict and log physical access to clinical areas, pharmacies, restricted wards, and server rooms through credential-based door authorization",
+      "description": "",
+      "parentL6": "L6h1",
+      "dependencies": [],
+      "isPrimaryPosition": true,
+      "alternatives": [
+        {
+          "name": "Wired enterprise ACS (Lenel-S2, Software House, Honeywell Pro-Watch) / Cloud ACS (Brivo, Genetec, Verkada) / Wireless RF ACS (ASSA ABLOY Aperio, dormakaba MATRIX)",
+          "sharePct": 55,
+          "confidence": "MEDIUM",
+          "source": "MarketsandMarkets 2025 — top 5 players (ASSA ABLOY, dormakaba, Johnson Controls, Allegion, Honeywell) hold ~70–80% access control market [WEB]",
+          "isPrimary": true
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6h1.4",
+      "name": "Wander Management System",
+      "functionalJob": "Detect and prevent unauthorized departure of at-risk patients from designated care areas using wearable tags and door-mounted sensors",
+      "description": "",
+      "parentL6": "L6h1",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Securitas Healthcare / CenTrak / RF Technologies / Accutech Security",
+          "sharePct": 30,
+          "confidence": "LOW",
+          "source": "Analyst estimates; dedicated wander mgmt market size not published separately [WEB]",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6h2.1",
+      "name": "Sterile Processing System",
+      "functionalJob": "Clean, sterilize, and track reusable surgical instruments and devices to prevent healthcare-associated infections and ensure instrument availability for procedures",
+      "description": "",
+      "parentL6": "L6h2",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "STERIS, Getinge, Belimed",
+          "sharePct": 35,
+          "confidence": "MEDIUM",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6h3.1",
+      "name": "Enterprise BMS / Building Automation",
+      "functionalJob": "Centrally monitor and control HVAC, medical gas, lighting, and building utilities to maintain clinical environment standards including ASHRAE 170 ventilation requirements",
+      "description": "",
+      "parentL6": "L6h3",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Siemens Desigo, Honeywell EBI, Schneider EcoStruxure",
+          "sharePct": 30,
+          "confidence": "MEDIUM",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    }
+  ],
+  "marquardtPosition": "",
+  "strategicPosition": null,
+  "sources": []
+}

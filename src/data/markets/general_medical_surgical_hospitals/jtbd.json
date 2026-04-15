@@ -1,0 +1,500 @@
+{
+  "naicsCode": "622110",
+  "marketName": "General Medical and Surgical Hospitals",
+  "slug": "general_medical_surgical_hospitals",
+  "coreJobStatement": "Diagnose, treat, and stabilize patients presenting with acute medical and surgical conditions",
+  "productJobStatement": "Help Facility & Building Safety to maintain authorized access boundaries at emergency exits while guaranteeing single-motion escape compliance across all clinical zones, and provide real-time alerts on unauthorized activation events across the campus",
+  "anchorLevel": "L5",
+  "lPath": "L7 Ecosystem > L6h1 Facility & Building Safety > L5 Emergency Exit Security Device",
+  "segments": [
+    {
+      "segmentNumber": 1,
+      "name": "Psychiatric / behavioral health inpatient",
+      "qualifier": "",
+      "characteristics": "Patient on involuntary hold, suicide watch, or acute behavioral episode; exit = life-safety failure",
+      "isTargetable": true,
+      "targetabilityReason": "RTLS wander tags vs. door alarm guard vs. wired ACS are non-interchangeable",
+      "circumstance": "Patient on involuntary hold, suicide watch, or acute behavioral episode; exit = life-safety failure",
+      "alternativesDiffer": "Yes — RTLS wander tags vs. door alarm guard vs. wired ACS are non-interchangeable"
+    },
+    {
+      "segmentNumber": 2,
+      "name": "Cognitively impaired inpatient",
+      "qualifier": "",
+      "characteristics": "Dementia, delirium, TBI — wanders without understanding consequences",
+      "isTargetable": true,
+      "targetabilityReason": "Physical door barrier vs. wearable geofence serve different needs",
+      "circumstance": "Dementia, delirium, TBI — wanders without understanding consequences",
+      "alternativesDiffer": "Yes — physical door barrier vs. wearable geofence serve different needs"
+    },
+    {
+      "segmentNumber": 3,
+      "name": "Pediatric / NICU patient",
+      "qualifier": "",
+      "characteristics": "Infant or minor requiring protection against unauthorized removal",
+      "isTargetable": true,
+      "targetabilityReason": "Infant RF protection systems vs. exit alarm guards are distinct categories",
+      "circumstance": "Infant or minor requiring protection against unauthorized removal",
+      "alternativesDiffer": "Yes — infant RF protection systems vs. exit alarm guards are distinct categories"
+    },
+    {
+      "segmentNumber": 4,
+      "name": "Controlled-access zone occupant",
+      "qualifier": "Secondary — primary alternatives are full ACS systems",
+      "characteristics": "Staff moving through OR, pharmacy, blood bank, sterile supply — identity verification required",
+      "isTargetable": false,
+      "targetabilityReason": "Full ACS (credential + lock) vs. exit alarm-only are distinct jobs",
+      "circumstance": "Staff moving through OR, pharmacy, blood bank, sterile supply — identity verification required",
+      "alternativesDiffer": "Yes — full ACS (credential + lock) vs. exit alarm-only are distinct jobs"
+    },
+    {
+      "segmentNumber": 5,
+      "name": "General inpatient",
+      "qualifier": "",
+      "characteristics": "Medical-surgical ward — compliance-driven, not clinical containment",
+      "isTargetable": false,
+      "targetabilityReason": "Basic mechanical alarm vs. IoT-monitored exit differ on documentation value",
+      "circumstance": "Medical-surgical ward — compliance-driven, not clinical containment",
+      "alternativesDiffer": "Yes — basic mechanical alarm vs. IoT-monitored exit differ on documentation value"
+    },
+    {
+      "segmentNumber": 6,
+      "name": "Facility & building safety manager",
+      "qualifier": "",
+      "characteristics": "Manages exit compliance, JCI audits, maintenance across multi-wing campus",
+      "isTargetable": true,
+      "targetabilityReason": "Manual patrol vs. centralized IoT dashboard are operationally distinct",
+      "circumstance": "Manages exit compliance, JCI audits, maintenance across multi-wing campus",
+      "alternativesDiffer": "Yes — manual patrol vs. centralized IoT dashboard are operationally distinct"
+    }
+  ],
+  "alternatives": [
+    {
+      "name": "Wired alarmed exit bars (Von Duprin, Corbin Russwin, Sargent)",
+      "unspsc": "46171600",
+      "tradeoffs": "Requires conduit and cable at every door; licensed electrician; disruptive retrofit in occupied wards; no wireless campus dashboard"
+    },
+    {
+      "name": "Mechanical alarm guards, no IoT (GfS Basic, ABUS)",
+      "unspsc": "46171600",
+      "tradeoffs": "Zero remote monitoring; alarm event discoverable only on-site; no automated compliance documentation; maintenance requires physical inspection rounds"
+    },
+    {
+      "name": "Wireless electronic exit control (dormakaba SafeRoute, GEZE SecuLogic)",
+      "unspsc": "46171600",
+      "tradeoffs": "Higher unit cost; typically BACnet-integrated; more complex configuration and commissioning; heavier BMS dependency"
+    },
+    {
+      "name": "RTLS wander management (Securitas Healthcare, CenTrak, RF Technologies)",
+      "unspsc": "46191700",
+      "tradeoffs": "Patient-worn tag required; no physical door barrier; covers elopement but does not satisfy exit compliance documentation; ~3–5x higher system cost"
+    },
+    {
+      "name": "Manual patrol + paper inspection logs [Status Quo]",
+      "unspsc": "",
+      "tradeoffs": "Zero device cost; 100% labor-dependent; no real-time detection; patrol gaps expose liability; documented compliance gaps risk JCI non-conformance findings"
+    }
+  ],
+  "jobSteps": [
+    {
+      "stepNumber": 1,
+      "verb": "Define",
+      "description": "Specify compliance requirements, door count, zone classifications, and wireless topology per NFPA 101 / JCI / EN 179/1125 standards",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Variant selection (EN 179 vs. EN 1125, IoT vs. basic) is determined at spec stage",
+      "rawStatement": "",
+      "jobStep": "DEFINE",
+      "relevant": true,
+      "rationale": "Specifying compliance requirements, door count, zone classifications, wireless topology per NFPA 101/JCI standards"
+    },
+    {
+      "stepNumber": 2,
+      "verb": "Locate",
+      "description": "Map all fire-code-designated emergency exit doors across wards, wings, and floors — often 50–500+ doors in legacy multi-wing hospitals",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Wireless topology design requires door inventory and RF coverage assessment",
+      "rawStatement": "",
+      "jobStep": "LOCATE",
+      "relevant": true,
+      "rationale": "Mapping 50–500+ exit doors across wards, wings, and floors — often incomplete in legacy buildings"
+    },
+    {
+      "stepNumber": 3,
+      "verb": "Prepare",
+      "description": "Install devices on door hardware and commission wireless receiver/gateway network without disrupting occupied clinical zones",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Retrofit installation without conduit is the product's key advantage; installation quality determines coverage",
+      "rawStatement": "",
+      "jobStep": "PREPARE",
+      "relevant": true,
+      "rationale": "Retrofit installation in occupied clinical zones without disrupting patient care"
+    },
+    {
+      "stepNumber": 4,
+      "verb": "Confirm",
+      "description": "Verify alarm function, wireless coverage, key-override operation, and establish compliance documentation baseline before go-live",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Coverage gaps and compliance baseline must be confirmed before clinical handover",
+      "rawStatement": "",
+      "jobStep": "CONFIRM",
+      "relevant": true,
+      "rationale": "Testing alarm function, wireless coverage gaps, documentation baseline before go-live"
+    },
+    {
+      "stepNumber": 5,
+      "verb": "Execute",
+      "description": "Operate continuously: secure exits, trigger alarms on unauthorized activation, process authorized key overrides, maintain fail-safe mechanical alarm independence",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Core operating function; elopement detection and false alarm rate are primary performance KPIs",
+      "rawStatement": "",
+      "jobStep": "EXECUTE",
+      "relevant": true,
+      "rationale": "Core function: securing exits, triggering alarms, processing key overrides"
+    },
+    {
+      "stepNumber": 6,
+      "verb": "Monitor",
+      "description": "Centrally observe real-time door status, alarm events, and battery levels across campus from dashboard; detect anomalies before they become incidents",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "IoT monitoring is the primary value differentiator over mechanical-only alternatives",
+      "rawStatement": "",
+      "jobStep": "MONITOR",
+      "relevant": true,
+      "rationale": "Centralized real-time status visibility across campus — the primary IoT value"
+    },
+    {
+      "stepNumber": 7,
+      "verb": "Modify",
+      "description": "Respond to alarm events with location-specific dispatch; reconfigure devices when ward functions change; replace batteries on maintenance schedule",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Ward reorganizations and battery management are ongoing operational burdens in hospital settings",
+      "rawStatement": "",
+      "jobStep": "MODIFY",
+      "relevant": true,
+      "rationale": "Responding to alarm events, ward reconfigurations, battery replacements"
+    },
+    {
+      "stepNumber": 8,
+      "verb": "Conclude",
+      "description": "Generate JCI Environment of Care documentation, validate 12-month operational logs, schedule preventive maintenance cycles, and close compliance audit cycles",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Automated compliance documentation is the core ROI justification for IoT variant over manual inspection",
+      "rawStatement": "",
+      "jobStep": "CONCLUDE",
+      "relevant": true,
+      "rationale": "JCI survey documentation, compliance log generation, preventive maintenance scheduling"
+    }
+  ],
+  "stakeholders": [
+    {
+      "role": "Job Executor",
+      "who": "Facilities / engineering technician operating and maintaining devices",
+      "pyramidLevels": "P1 (all), P2, P3, P4, P5"
+    },
+    {
+      "role": "Job Overseer",
+      "who": "Facilities Director, Safety Officer, Chief Compliance Officer",
+      "pyramidLevels": "P1 (own), P2, P4"
+    },
+    {
+      "role": "Job Beneficiary",
+      "who": "Hospital patients (psychiatric, dementia, pediatric) — protected from harm",
+      "pyramidLevels": "P2, P5"
+    },
+    {
+      "role": "Lifecycle Support",
+      "who": "Security integrator (install), facilities tech (maintain), fire safety inspector (validate)",
+      "pyramidLevels": "P1 (own)"
+    },
+    {
+      "role": "Purchase Executor",
+      "who": "VP Facilities, CFO",
+      "pyramidLevels": "P1 (Acq)"
+    },
+    {
+      "role": "Purchase Influencer",
+      "who": "Joint Commission surveyor, risk manager, infection preventionist",
+      "pyramidLevels": "P2, P4"
+    }
+  ],
+  "needs": [
+    {
+      "id": "N01",
+      "statement": "Minimize the likelihood of incorrect product variant specification (EN 179 vs. EN 1125) causing non-conforming door installation identified at first JCI fire-safety survey",
+      "jobStep": "DEFINE",
+      "errorType": "ACCURACY",
+      "importance": 8,
+      "satisfaction": 5,
+      "opportunity": 11,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "N02",
+      "statement": "Increase the ability to document a complete hospital door inventory (type, standard, zone classification) across a 300-bed campus within 2 working days",
+      "jobStep": "DEFINE",
+      "errorType": "EFFORT",
+      "importance": 7,
+      "satisfaction": 4,
+      "opportunity": 10,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.75
+    },
+    {
+      "id": "N03",
+      "statement": "Minimize variability in wireless signal strength across reinforced-concrete hospital floors that causes >5% of installed devices to fall below reliable reporting threshold",
+      "jobStep": "LOCATE",
+      "errorType": "CONSISTENCY",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.80
+    },
+    {
+      "id": "N04",
+      "statement": "Minimize installation time per door in occupied inpatient wards to <30 minutes without requiring conduit, cables, or a licensed electrician",
+      "jobStep": "PREPARE",
+      "errorType": "EFFORT",
+      "importance": 8,
+      "satisfaction": 5,
+      "opportunity": 11,
+      "impactCategory": "cost",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "N05",
+      "statement": "Minimize the likelihood of installation failure on non-standard door hardware configurations (glass-frame doors, narrow lever handles, legacy panic bars) in pre-1990 hospital wings",
+      "jobStep": "PREPARE",
+      "errorType": "ROBUSTNESS",
+      "importance": 7,
+      "satisfaction": 5,
+      "opportunity": 9,
+      "impactCategory": "cost",
+      "productRelated": true,
+      "confidence": 0.70
+    },
+    {
+      "id": "N06",
+      "statement": "Minimize the likelihood of wireless coverage gaps discovered post-installation requiring costly repeater additions to achieve full-campus alarm reporting coverage",
+      "jobStep": "CONFIRM",
+      "errorType": "DETECTION",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "cost",
+      "productRelated": true,
+      "confidence": 0.80
+    },
+    {
+      "id": "N07",
+      "statement": "Increase the ability to verify single-motion door release compliance per EN 179 / EN 1125 for 100 installed devices within a 5-working-day JCI preparation window",
+      "jobStep": "CONFIRM",
+      "errorType": "THROUGHPUT",
+      "importance": 8,
+      "satisfaction": 5,
+      "opportunity": 11,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "N08",
+      "statement": "Minimize the likelihood of unauthorized emergency exit activation going undetected for >5 minutes during overnight or weekend reduced-staffing periods",
+      "jobStep": "EXECUTE",
+      "errorType": "DETECTION",
+      "importance": 10,
+      "satisfaction": 2,
+      "opportunity": 18,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.95
+    },
+    {
+      "id": "N09",
+      "statement": "Minimize the frequency of false alarms on high-traffic emergency exits exceeding 2 events per week due to incidental door contact by clinical staff",
+      "jobStep": "EXECUTE",
+      "errorType": "ACCURACY",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "N10",
+      "statement": "Increase the ability to provide authorized clinical staff with immediate key-bypass access on emergency exits during acute clinical emergencies in <10 seconds without triggering a facility-wide alarm response",
+      "jobStep": "EXECUTE",
+      "errorType": "EFFORT",
+      "importance": 8,
+      "satisfaction": 6,
+      "opportunity": 10,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.75
+    },
+    {
+      "id": "N11",
+      "statement": "Increase the ability to monitor battery status for all exit devices across a 200+ door hospital campus from a single dashboard with >95% real-time accuracy",
+      "jobStep": "MONITOR",
+      "errorType": "DETECTION",
+      "importance": 9,
+      "satisfaction": 2,
+      "opportunity": 16,
+      "impactCategory": "reliability",
+      "productRelated": false,
+      "confidence": 0.90
+    },
+    {
+      "id": "N12",
+      "statement": "Minimize the likelihood of alarm event transmission failures exceeding 1% due to RF interference from hospital imaging equipment (MRI suites, CT rooms) in adjacent zones",
+      "jobStep": "MONITOR",
+      "errorType": "ROBUSTNESS",
+      "importance": 9,
+      "satisfaction": 4,
+      "opportunity": 14,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.75
+    },
+    {
+      "id": "N13",
+      "statement": "Increase the ability to correlate emergency exit alarm events with concurrent patient elopement incidents in the incident reporting system with <30 seconds of timestamp resolution",
+      "jobStep": "MONITOR",
+      "errorType": "ACCURACY",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.75
+    },
+    {
+      "id": "N14",
+      "statement": "Minimize the time required to reconfigure exit device zone assignments when hospital wards are repurposed or patient population mix changes, to <2 hours per ward",
+      "jobStep": "MODIFY",
+      "errorType": "EFFORT",
+      "importance": 7,
+      "satisfaction": 4,
+      "opportunity": 10,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.70
+    },
+    {
+      "id": "N15",
+      "statement": "Minimize the effort required to replace batteries across all campus exit devices within a planned maintenance window without disrupting clinical operations in adjacent rooms",
+      "jobStep": "MODIFY",
+      "errorType": "EFFORT",
+      "importance": 7,
+      "satisfaction": 5,
+      "opportunity": 9,
+      "impactCategory": "cost",
+      "productRelated": true,
+      "confidence": 0.70
+    },
+    {
+      "id": "N16",
+      "statement": "Increase the ability to generate Joint Commission-compliant Environment of Care documentation for all emergency exit security devices covering 12 months of operational logs without manual data aggregation",
+      "jobStep": "CONCLUDE",
+      "errorType": "THROUGHPUT",
+      "importance": 9,
+      "satisfaction": 2,
+      "opportunity": 16,
+      "impactCategory": "cost",
+      "productRelated": false,
+      "confidence": 0.90
+    },
+    {
+      "id": "N17",
+      "statement": "Minimize the likelihood of GDPR-regulated door event logs containing data attributable to identifiable individuals without a legally established processing basis under EU 2016/679",
+      "jobStep": "CONCLUDE",
+      "errorType": "ACCURACY",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "safety",
+      "productRelated": true,
+      "confidence": 0.80
+    },
+    {
+      "id": "N18",
+      "statement": "Minimize variability in alarm trigger response time across door types (EN 179 lever-handle vs. EN 1125 panic-bar configurations) to within ±0.2 seconds under equivalent activation force",
+      "jobStep": "EXECUTE",
+      "errorType": "CONSISTENCY",
+      "importance": 7,
+      "satisfaction": 6,
+      "opportunity": 8,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.65
+    },
+    {
+      "id": "N19",
+      "statement": "Increase the ability to demonstrate real-time emergency exit compliance status to hospital leadership and external surveyors on demand, without manual inspection rounds",
+      "jobStep": "CONCLUDE",
+      "errorType": "P3_ROLE_IDENTITY",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "cost",
+      "productRelated": false,
+      "confidence": 0.75
+    },
+    {
+      "id": "N20",
+      "statement": "Minimize the likelihood of visible emergency exit compliance gaps during an unannounced Joint Commission Environment of Care survey",
+      "jobStep": "CONCLUDE",
+      "errorType": "P4_IMAGE_IDENTITY",
+      "importance": 9,
+      "satisfaction": 4,
+      "opportunity": 14,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "N21",
+      "statement": "Minimize the delay between an emergency exit activation event and receipt of an actionable location-specific alert on the security officer's device to <15 seconds",
+      "jobStep": "MONITOR",
+      "errorType": "P5_EMOTIONAL",
+      "importance": 7,
+      "satisfaction": 2,
+      "opportunity": 12,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.60
+    }
+  ],
+  "sources": [
+    {
+      "id": "S01",
+      "label": "NFPA 101 Life Safety Code — Hospital Occupancy Chapter 18",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-101-standard-development/101",
+      "prefixedId": "JTBD-GENERAL_MEDICAL_SURGICAL_HOSPITALS-S01"
+    },
+    {
+      "id": "S02",
+      "label": "Joint Commission Environment of Care Standard EC.02.06.01",
+      "url": "https://www.jointcommission.org/standards/",
+      "prefixedId": "JTBD-GENERAL_MEDICAL_SURGICAL_HOSPITALS-S02"
+    },
+    {
+      "id": "S03",
+      "label": "PSNet AHRQ — Patient Elopement Safety Data",
+      "url": "https://psnet.ahrq.gov/",
+      "prefixedId": "JTBD-GENERAL_MEDICAL_SURGICAL_HOSPITALS-S03"
+    },
+    {
+      "id": "S04",
+      "label": "Coffman Engineers — NFPA 101 §18 Defend-in-Place Analysis (2024)",
+      "url": "https://www.coffman.com/",
+      "prefixedId": "JTBD-GENERAL_MEDICAL_SURGICAL_HOSPITALS-S04"
+    }
+  ]
+}

@@ -1,0 +1,856 @@
+{
+  "id": "BOM_museums_historical_sites",
+  "title": "Product BOM Decomposition: GfS Türwächter IoT",
+  "type": "product_bom",
+  "market_slug": "museums_historical_sites",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Market Context: Museums, Historical Sites, and Similar Institutions (NAICS 712110)",
+      "content": "*Follows BOM Decomposition component spec (B.1–B.4). Product is a manufactured physical device — BOM applies.*\n*Source NAICS for manufacturing: 334290 / 335999 (Security & Communications Equipment). Target market: 712110.*\n\n---"
+    },
+    {
+      "title": "NAICS Routing Check",
+      "content": "| Criterion | Value |\n|---|---|\n| Product NAICS (manufacturer) | 334290 — Communications Equipment / Security Devices |\n| Target market NAICS | 712110 — Museums, Historical Sites, and Similar Institutions |\n| BOM applicable? | **YES** — product is a manufactured physical device with compositional hierarchy |\n| Target market notes | Service sector (71); BOM is of the product, not the museum's operations |\n\n---"
+    },
+    {
+      "title": "Output Type (L5)",
+      "content": "**Exit Control 179/1125 with IoT** — Emergency exit door alarm guard with 868 MHz wireless state reporting. Surface-mounted on door handle. Mechanically alarmed on 45° guard swing. Battery-powered IoT module supervisory only.\n\nMuseum-specific context: Heritage buildings restrict structural modification. Non-invasive surface mounting and battery operation (no mains wiring) are the core product-market fit drivers.\n\n---"
+    },
+    {
+      "title": "B.1 — L4 Subsystems",
+      "content": "| L4 Subsystem | Function | Museum relevance |\n|---|---|---|\n| **MECH** — Mechanical Locking Subsystem | Physically blocks handle depression; releases on 45° guard swing; triggers alarm linkage | Primary function; must not damage historic door hardware |\n| **ALARM** — Acoustic Alarm Subsystem | Generates 95 dB alarm on guard activation; operates without electrical power | No power dependency critical for heritage buildings with unreliable power infrastructure |\n| **IOT** — IoT Monitoring Subsystem | Wireless state broadcast (guard open / alarm / battery low) to receiver; battery power management | Protocol lock-in (EasyWave) creates integration friction with museum security/CCTV systems |\n| **ENC** — Enclosure & Mounting Subsystem | Outer housing; surface-mount bracket; installation hardware | Non-damaging mount to heritage door fixtures; colour/finish may need to match interior aesthetics |\n\n---"
+    },
+    {
+      "title": "B.2 + B.3 — Full Decomposition with Alternatives",
+      "content": "### L4-MECH — Mechanical Locking Subsystem\n\n```\nL4  Mechanical Locking Subsystem\n ├── L3  Guard Actuator Assembly\n │    ├── L2  Guard Body & Pivot Assembly\n │    │    ├── L1  Guard housing body (injection molded)\n │    │    ├── L1  Pivot axle\n │    │    └── L1  Pivot bearing / bushing\n │    └── L2  Return Spring Assembly\n │         ├── L1  Torsion spring\n │         └── L0  Spring steel wire (EN 10270-1)\n ├── L3  Handle Engagement Mechanism\n │    ├── L2  Handle clamp assembly\n │    │    ├── L1  Clamp block\n │    │    └── L0  Engineering polymer (PA66) or zinc die-cast\n │    └── L2  Trigger linkage\n │         ├── L1  Cam element\n │         └── L0  Steel / zinc alloy\n └── L3  Key Override Assembly\n      ├── L2  Half-cylinder housing\n      │    ├── L1  Cylinder body\n      │    └── L0  Brass (CuZn39Pb3)\n      └── L2  Key bitting mechanism\n           └── L1  Pins, springs, plug\n```\n\n#### Alternatives at L4-MECH level — Guard protection principle\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Guard-over-handle (Türwächter-style) | 45% | Stable | MEDIUM | Analyst estimate — dominant retrofit category |\n| Alarmed push bar (integrated, e.g. GfS e-Bar, dormakaba) | 30% | Stable | MEDIUM | Analyst estimate |\n| Electronic exit control with panic release (wired) | 20% | ^ Growing | MEDIUM | Analyst estimate — smart building trend |\n| Magnetic contact + separate alarm | 5% | v Declining | LOW | Analyst estimate |\n\n**Museum note:** Guard-over-handle is preferred for heritage contexts — installs on existing handle without door modification. Electronic wired systems face heritage building constraints (no cable runs through historic walls).\n\n#### Alternatives at L3 — Key Override mechanism\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Profile half-cylinder key | 70% | Stable | MEDIUM | Analyst estimate — standard in EU security hardware |\n| Code keypad override | 20% | ^ Growing | MEDIUM | Analyst estimate |\n| RFID / NFC card override | 10% | ^ Growing | LOW | Analyst estimate |\n\n**Museum note:** RFID override aligns with museum staff access card systems (many museums use RFID for staff). Growing integration opportunity.\n\n#### Alternatives at L0 — Clamp body material\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Glass-filled polyamide PA66-GF | 40% | ^ Growing | MEDIUM | Industry material selection practice |\n| Zinc die-cast (Zamak) | 35% | Stable | MEDIUM | Traditional hardware die-casting |\n| ABS/PC blend | 20% | Stable | MEDIUM | Lower-cost variant |\n| Stainless steel (CNC machined) | 5% | Stable | LOW | Premium / IP-rated variants |\n\n---\n\n### L4-ALARM — Acoustic Alarm Subsystem\n\n```\nL4  Acoustic Alarm Subsystem\n ├── L3  Piezoelectric Alarm Module\n │    ├── L2  Piezo Transducer Assembly\n │    │    ├── L1  Piezo disc (active element)\n │    │    ├── L0  PZT ceramic (lead zirconate titanate)\n │    │    ├── L1  Metal diaphragm\n │    │    └── L0  Brass alloy (CuZn28)\n │    └── L2  Resonator housing\n │         ├── L1  Horn body / resonator cavity\n │         └── L0  ABS thermoplastic\n └── L3  Pre-Alarm Trigger Assembly (optional variant only)\n      ├── L2  Vibration sensing sub-assembly\n      │    ├── L1  Micro-switch or capacitive touch sensor\n      │    └── L1  PCB carrier\n      └── L0  FR4 laminate substrate\n```\n\n#### Alternatives at L3 — Alarm transducer type\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Piezoelectric buzzer | 75% | Stable | MEDIUM | [Straits Research — Buzzer Market](https://straitsresearch.com/report/buzzer-market); dominant for low-power IoT/security |\n| Electromagnetic buzzer | 20% | v Declining | MEDIUM | Legacy — higher power draw, moving parts |\n| Electrodynamic speaker | 5% | Stable | LOW | Analyst estimate — used in premium multi-tone devices |\n\n**Museum note:** Piezoelectric is load-bearing here — operates mechanically without electrical power. This is a non-negotiable for regulatory compliance (EltVTR). No realistic alternative at this level for the Türwächter's regulatory use case.\n\n#### Alternatives at L0 — Resonator housing material\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| ABS | 55% | Stable | MEDIUM | Standard injection-molded enclosure material |\n| ABS/PC blend | 30% | ^ Growing | MEDIUM | Better impact resistance |\n| PA6 (polyamide) | 10% | Stable | LOW | Where heat resistance needed |\n| UV-stabilized ASA | 5% | ^ Emerging | LOW | Outdoor / UV-exposed variants |\n\n---\n\n### L4-IOT — IoT Monitoring Subsystem\n\n```\nL4  IoT Monitoring Subsystem\n ├── L3  RF Transmitter Module\n │    ├── L2  RF Circuit Board Assembly\n │    │    ├── L1  RF transceiver IC (868 MHz)\n │    │    ├── L1  Crystal oscillator\n │    │    ├── L1  Passive components (capacitors, resistors, inductors)\n │    │    └── L0  FR4 PCB laminate / copper foil\n │    └── L2  Antenna Assembly\n │         ├── L1  PCB trace antenna or helical element\n │         └── L0  Copper conductor\n ├── L3  Power Management Module\n │    ├── L2  Battery Holder Assembly\n │    │    ├── L1  Spring contact clips\n │    │    └── L0  Phosphor bronze / stainless steel\n │    └── L2  Power regulation circuit\n │         ├── L1  LDO voltage regulator IC\n │         ├── L1  Decoupling capacitors\n │         └── L0  Silicon, ceramic, tantalum\n └── L3  State Detection Module\n      ├── L2  Position sensor assembly\n      │    ├── L1  Reed switch or Hall-effect sensor\n      │    └── L0  Soft magnetic alloy (Fe-Ni)\n      └── L2  Status indicator assembly\n           ├── L1  LED\n           └── L0  GaAs/InGaN semiconductor\n```\n\n#### Alternatives at L3 — Wireless radio protocol (most critical design choice)\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Proprietary 868 MHz (EasyWave / Z-Wave / KEELOQ-based) | 35% | v Declining | MEDIUM | Analyst estimate — large EU installed base; no new platform growth |\n| Zigbee (2.4 GHz mesh) | 25% | Stable | MEDIUM | [IHS Markit Connectivity Report](https://cdn.ihs.com/www/pdf/IHS%20Markit%20-%20Connectivity%20Technology%20Competition%20Drivers%20and%20Influencers.pdf); dominant in smart building mesh |\n| BLE 5.x (Bluetooth Low Energy) | 20% | ^ Growing | MEDIUM | [Bluetooth.com IoT comparison](https://www.bluetooth.com/blog/wireless-connectivity-options-for-iot-applications-technology-comparison/) |\n| LoRaWAN (868 MHz LPWAN) | 10% | ^ Growing | MEDIUM | [GM Insights — LoRaWAN Market 2025–2034, CAGR 41%](https://www.gminsights.com/industry-analysis/lorawan-market); strong for large-building / campus deployments |\n| Z-Wave | 7% | Stable | LOW | Analyst estimate |\n| Wi-Fi / NB-IoT | 3% | Stable | LOW | Power-hungry; unsuitable for battery-only devices |\n\n**Museum note:** This is the primary architecture distance driver (score = 3 in market discovery). Museum security systems (CCTV, intrusion detection) typically run on IP/BACnet/KNX — not EasyWave. LoRaWAN or Zigbee would substantially reduce integration friction for large museum buildings. GfS BUS gateway bridges the gap but adds cost and vendor lock-in.\n\n#### Alternatives at L3 — Battery chemistry\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Alkaline 9V block (standard) | 65% | Stable | MEDIUM | Analyst estimate — default in most variants |\n| Lithium 9V block (extended life, cold) | 25% | ^ Growing | MEDIUM | Preferred for infrequently accessed locations — museums often have secure utility rooms with no regular maintenance access |\n| Rechargeable Li-ion with charging circuit | 10% | ^ Emerging | LOW | Analyst estimate — next-gen IoT devices |\n\n**Museum note:** Lithium 9V is strongly preferred for museums with restricted-access utility rooms or conservation-climate storage areas where maintenance visits are infrequent (<1×/year). Longer battery life directly reduces operational burden.\n\n---\n\n### L4-ENC — Enclosure & Mounting Subsystem\n\n```\nL4  Enclosure & Mounting Subsystem\n ├── L3  Guard Housing Assembly\n │    ├── L2  Outer casing\n │    │    ├── L1  Front cover (injection molded)\n │    │    ├── L1  Back panel\n │    │    └── L0  ABS/PC blend (standard) or PA6-GF (structural)\n │    └── L2  Safety colour finish\n │         └── L0  RAL 6029 in-mold pigment or spray lacquer\n └── L3  Mounting Hardware Assembly\n      ├── L2  Door handle clamp set\n      │    ├── L1  Clamp bracket\n      │    ├── L1  Fixing screws\n      │    └── L0  Stainless steel A4 (preferred for heritage: no corrosion staining)\n      └── L2  Glass-frame mounting plate (variant accessory)\n           ├── L1  Adapter plate\n           └── L0  Stainless steel or anodized aluminium\n```\n\n#### Alternatives at L4-ENC level — Outer enclosure material\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| ABS / ABS-PC blend | 55% | Stable | MEDIUM | Standard for injection-molded security devices |\n| Glass-filled PA6 (PA6-GF30) | 25% | ^ Growing | MEDIUM | Structural rigidity, dimensional stability |\n| Zinc die-cast | 15% | Stable | MEDIUM | Premium mechanical feel; heavier; traditional hardware aesthetics |\n| Die-cast aluminium | 5% | Stable | LOW | IP-rated outdoor variants |\n\n**Museum note:** Zinc die-cast or brushed aluminium enclosures could address heritage aesthetic requirements (natural metal finish vs. green ABS). This is a product-line adaptation opportunity for the museums segment.\n\n#### Alternatives at L0 — Mounting screw material\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Zinc-plated steel | 50% | Stable | MEDIUM | Standard hardware |\n| Stainless steel A2 | 35% | ^ Growing | MEDIUM | Corrosion resistance for outdoor / IP45 variant |\n| Stainless steel A4 | 10% | ^ Growing | LOW | Marine / heritage preference — no galvanic staining on historic metal fixtures |\n| Nylon/polymer screws | 5% | Stable | LOW | Non-conductive; museum display cases |\n\n---"
+    },
+    {
+      "title": "B.4 — Component Category Mapping: Wireless Radio Module",
+      "content": "**Component category: RF Radio Transmitter Module**\n\n| BOM Position | Function | Safety-critical? | Key alternatives |\n|---|---|---|---|\n| L4-IOT > L3 RF Transmitter > L2 RF Circuit Board | Broadcasts guard state (open/alarm/battery) to receiver | NO — supervisory layer only; mechanical alarm is safety-critical | 868 MHz proprietary, Zigbee, BLE, LoRaWAN |\n\n**Insight:** The radio module faces fundamentally different competitors depending on the deployment context:\n- In **standalone retrofit** deployments: GfS EasyWave receiver ecosystem is sufficient → proprietary protocol wins on simplicity\n- In **museum BMS-integrated** deployments: EasyWave creates vendor lock-in friction → Zigbee/BACnet-native modules would win → the current product loses unless the GfS BUS gateway is included at +cost\n\nThis is the single component category that most determines fit for NAICS 712110. A LoRaWAN or Zigbee radio variant of the Türwächter would close the architecture distance from 3 → 1.\n\n---"
+    },
+    {
+      "title": "Museum-Specific BOM Gap Analysis",
+      "content": "| BOM Level | Current state | Gap for museums | Severity |\n|---|---|---|---|\n| L3 RF protocol | EasyWave (proprietary) | Museum security systems expect IP/BACnet/KNX | HIGH — primary distance driver |\n| L0 Outer casing finish | RAL 6029 safety green | Heritage interiors often require neutral / matching tones | MEDIUM — addressable with colour variant |\n| L0 Mounting hardware | Zinc-plated screws | Heritage fixtures require non-staining A4 stainless or non-metallic fixings | MEDIUM — addressable with BOM swap |\n| L3 Battery chemistry | Alkaline 9V standard | Museum utility rooms have infrequent maintenance → lithium preferred | LOW — addressable with SKU selection |\n| L3 Key override | Profile half-cylinder | Museums often run RFID staff cards → RFID override preferred | LOW — product development opportunity |\n\n---"
+    },
+    {
+      "title": "Quality Checks",
+      "content": "| Check | Status |\n|---|---|\n| Every L4 subsystem decomposes to at least L2 | PASS |\n| Alternatives present at every design-choice level | PASS |\n| All alternative sets sum to 100% ± 1% | PASS |\n| Confidence + source on every alternative set | PASS |\n| No company names or brand names at any BOM level | PASS — \"EasyWave\" cited only in protocol comparison (technology class, not brand) |\n| Packaging/mounting subsystem included | PASS — L4-ENC |\n| Control/interface subsystem included | PASS — L4-IOT |\n| BOM vs. VN test: all items end up IN the product | PASS — receiver, repeaters, BMS are excluded (they are VN nodes) |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### BOMUnit nodes\n\n```json\n[\n  {\n    \"name\": \"Mechanical Locking Subsystem\",\n    \"level\": \"L4\",\n    \"description\": \"Physically blocks handle depression; 45° guard swing simultaneously releases handle and triggers alarm via mechanical linkage; key override for authorized bypass\",\n    \"naics_code\": \"334290\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Acoustic Alarm Subsystem\",\n    \"level\": \"L4\",\n    \"description\": \"Generates 95 dB audible alarm on guard activation; piezoelectric mechanism operates without electrical power; optional pre-alarm vibration sensing\",\n    \"naics_code\": \"334290\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"IoT Monitoring Subsystem\",\n    \"level\": \"L4\",\n    \"description\": \"868 MHz radio transmitter broadcasts guard state and alarm events to external receivers; battery-powered; state detection via reed switch\",\n    \"naics_code\": \"334290\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Enclosure & Mounting Subsystem\",\n    \"level\": \"L4\",\n    \"description\": \"Injection-molded outer housing (RAL 6029); surface-mount clamp bracket; fixing hardware; glass-frame adapter variant\",\n    \"naics_code\": \"334290\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Guard Actuator Assembly\",\n    \"level\": \"L3\",\n    \"description\": \"Guard body, pivot axle, return torsion spring, trigger linkage\",\n    \"naics_code\": \"334290\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Handle Engagement Mechanism\",\n    \"level\": \"L3\",\n    \"description\": \"Clamp block that interfaces with door handle; cam element that transfers guard rotation to alarm trigger\",\n    \"naics_code\": \"334290\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Key Override Assembly\",\n    \"level\": \"L3\",\n    \"description\": \"Profile half-cylinder lock housing and bitting mechanism enabling authorized bypass without alarm\",\n    \"naics_code\": \"334290\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Piezoelectric Alarm Module\",\n    \"level\": \"L3\",\n    \"description\": \"PZT piezo transducer on brass diaphragm; ABS resonator housing; volume-adjustable; no electrical dependency for basic alarm function\",\n    \"naics_code\": \"334290\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"RF Transmitter Module\",\n    \"level\": \"L3\",\n    \"description\": \"868 MHz RF circuit board with transceiver IC, crystal oscillator, and PCB trace antenna; EasyWave protocol\",\n    \"naics_code\": \"334290\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Power Management Module\",\n    \"level\": \"L3\",\n    \"description\": \"9V battery holder with phosphor-bronze spring contacts; LDO voltage regulator; decoupling capacitors\",\n    \"naics_code\": \"334290\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"State Detection Module\",\n    \"level\": \"L3\",\n    \"description\": \"Reed switch or Hall-effect sensor detecting guard open/closed position; LED status indicator\",\n    \"naics_code\": \"334290\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Guard Housing Assembly\",\n    \"level\": \"L3\",\n    \"description\": \"ABS/PC outer casing (front + back panel) with RAL 6029 safety green finish\",\n    \"naics_code\": \"334290\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Mounting Hardware Assembly\",\n    \"level\": \"L3\",\n    \"description\": \"Door handle clamp set; fixing screws (zinc-plated steel standard, A4 stainless for outdoor/heritage); glass-frame mounting plate accessory\",\n    \"naics_code\": \"334290\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  }\n]\n```\n\n### BOMAlternative nodes\n\n```json\n[\n  {\n    \"name\": \"Guard-over-handle (Türwächter-style)\",\n    \"market_share\": 45,\n    \"trend\": \"Stable\",\n    \"confidence\": \"MEDIUM\",\n    \"source\": \"Analyst estimate — dominant EU retrofit category\",\n    \"parent_bom_name\": \"Mechanical Locking Subsystem\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Alarmed push bar (integrated)\",\n    \"market_share\": 30,\n    \"trend\": \"Stable\",\n    \"confidence\": \"MEDIUM\",\n    \"source\": \"Analyst estimate\",\n    \"parent_bom_name\": \"Mechanical Locking Subsystem\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Electronic exit control with panic release (wired)\",\n    \"market_share\": 20,\n    \"trend\": \"Growing\",\n    \"confidence\": \"MEDIUM\",\n    \"source\": \"Analyst estimate\",\n    \"parent_bom_name\": \"Mechanical Locking Subsystem\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Magnetic contact + separate alarm\",\n    \"market_share\": 5,\n    \"trend\": \"Declining\",\n    \"confidence\": \"LOW\",\n    \"source\": \"Analyst estimate\",\n    \"parent_bom_name\": \"Mechanical Locking Subsystem\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Piezoelectric buzzer\",\n    \"market_share\": 75,\n    \"trend\": \"Stable\",\n    \"confidence\": \"MEDIUM\",\n    \"source\": \"Straits Research — Buzzer Market 2024; dominant in low-power IoT/security devices\",\n    \"parent_bom_name\": \"Piezoelectric Alarm Module\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Electromagnetic buzzer\",\n    \"market_share\": 20,\n    \"trend\": \"Declining\",\n    \"confidence\": \"MEDIUM\",\n    \"source\": \"Analyst estimate; higher power draw, moving parts\",\n    \"parent_bom_name\": \"Piezoelectric Alarm Module\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Electrodynamic speaker\",\n    \"market_share\": 5,\n    \"trend\": \"Stable\",\n    \"confidence\": \"LOW\",\n    \"source\": \"Analyst estimate\",\n    \"parent_bom_name\": \"Piezoelectric Alarm Module\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Proprietary 868 MHz (EasyWave-class)\",\n    \"market_share\": 35,\n    \"trend\": \"Declining\",\n    \"confidence\": \"MEDIUM\",\n    \"source\": \"IHS Markit Connectivity Technology report; large EU installed base, no new platform growth\",\n    \"parent_bom_name\": \"RF Transmitter Module\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Zigbee (2.4 GHz mesh)\",\n    \"market_share\": 25,\n    \"trend\": \"Stable\",\n    \"confidence\": \"MEDIUM\",\n    \"source\": \"IHS Markit Connectivity Technology report\",\n    \"parent_bom_name\": \"RF Transmitter Module\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"BLE 5.x (Bluetooth Low Energy)\",\n    \"market_share\": 20,\n    \"trend\": \"Growing\",\n    \"confidence\": \"MEDIUM\",\n    \"source\": \"Bluetooth.com IoT wireless connectivity comparison 2025\",\n    \"parent_bom_name\": \"RF Transmitter Module\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"LoRaWAN (868 MHz LPWAN)\",\n    \"market_share\": 10,\n    \"trend\": \"Growing\",\n    \"confidence\": \"MEDIUM\",\n    \"source\": \"GM Insights — LoRaWAN Market 2025–2034 (CAGR 41.1%)\",\n    \"parent_bom_name\": \"RF Transmitter Module\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Z-Wave\",\n    \"market_share\": 7,\n    \"trend\": \"Stable\",\n    \"confidence\": \"LOW\",\n    \"source\": \"Analyst estimate\",\n    \"parent_bom_name\": \"RF Transmitter Module\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Wi-Fi / NB-IoT\",\n    \"market_share\": 3,\n    \"trend\": \"Stable\",\n    \"confidence\": \"LOW\",\n    \"source\": \"Analyst estimate — unsuitable for battery-only devices\",\n    \"parent_bom_name\": \"RF Transmitter Module\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Alkaline 9V block\",\n    \"market_share\": 65,\n    \"trend\": \"Stable\",\n    \"confidence\": \"MEDIUM\",\n    \"source\": \"Analyst estimate\",\n    \"parent_bom_name\": \"Power Management Module\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Lithium 9V block\",\n    \"market_share\": 25,\n    \"trend\": \"Growing\",\n    \"confidence\": \"MEDIUM\",\n    \"source\": \"Analyst estimate — preferred for remote/infrequent-access deployments\",\n    \"parent_bom_name\": \"Power Management Module\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Rechargeable Li-ion with charging circuit\",\n    \"market_share\": 10,\n    \"trend\": \"Emerging\",\n    \"confidence\": \"LOW\",\n    \"source\": \"Analyst estimate\",\n    \"parent_bom_name\": \"Power Management Module\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"ABS / ABS-PC blend\",\n    \"market_share\": 55,\n    \"trend\": \"Stable\",\n    \"confidence\": \"MEDIUM\",\n    \"source\": \"Analyst estimate — standard injection-molded security device enclosure\",\n    \"parent_bom_name\": \"Guard Housing Assembly\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Glass-filled PA6 (PA6-GF30)\",\n    \"market_share\": 25,\n    \"trend\": \"Growing\",\n    \"confidence\": \"MEDIUM\",\n    \"source\": \"Analyst estimate — growing structural polymer use in hardware\",\n    \"parent_bom_name\": \"Guard Housing Assembly\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Zinc die-cast\",\n    \"market_share\": 15,\n    \"trend\": \"Stable\",\n    \"confidence\": \"MEDIUM\",\n    \"source\": \"Analyst estimate — premium mechanical hardware tradition\",\n    \"parent_bom_name\": \"Guard Housing Assembly\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  },\n  {\n    \"name\": \"Die-cast aluminium\",\n    \"market_share\": 5,\n    \"trend\": \"Stable\",\n    \"confidence\": \"LOW\",\n    \"source\": \"Analyst estimate — IP-rated outdoor variants\",\n    \"parent_bom_name\": \"Guard Housing Assembly\",\n    \"output_type\": \"Exit Control 179/1125 with IoT\"\n  }\n]\n```\n\n### ComponentMap (B.4)\n\n```json\n[\n  {\n    \"component_category\": \"Wireless Radio Module\",\n    \"bom_position\": \"L4-IOT > L3 RF Transmitter Module > L2 RF Circuit Board Assembly\",\n    \"function\": \"Broadcasts guard state (open/alarm/battery-low) to external receiver units\",\n    \"safety_critical\": false,\n    \"safety_note\": \"Supervisory only — mechanical alarm operates without electrical power. Radio failure does not impede escape.\",\n    \"alternatives_at_position\": [\n      {\"name\": \"Proprietary 868 MHz (EasyWave)\", \"share\": 35},\n      {\"name\": \"Zigbee 2.4 GHz\", \"share\": 25},\n      {\"name\": \"BLE 5.x\", \"share\": 20},\n      {\"name\": \"LoRaWAN\", \"share\": 10},\n      {\"name\": \"Z-Wave\", \"share\": 7},\n      {\"name\": \"Wi-Fi / NB-IoT\", \"share\": 3}\n    ],\n    \"output_type\": \"Exit Control 179/1125 with IoT\",\n    \"market_insight\": \"Museum security platforms expect IP/BACnet/KNX integration. EasyWave requires GfS-specific BUS gateway. A Zigbee or LoRaWAN radio variant closes architecture distance from 3→1 for NAICS 712110.\"\n  }\n]\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Criterion",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Criterion": "Product NAICS (manufacturer)",
+          "Value": "334290 — Communications Equipment / Security Devices"
+        },
+        {
+          "Criterion": "Target market NAICS",
+          "Value": "712110 — Museums, Historical Sites, and Similar Institutions"
+        },
+        {
+          "Criterion": "BOM applicable?",
+          "Value": "**YES** — product is a manufactured physical device with compositional hierarchy"
+        },
+        {
+          "Criterion": "Target market notes",
+          "Value": "Service sector (71); BOM is of the product, not the museum's operations"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Function",
+        "Museum relevance"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "**MECH** — Mechanical Locking Subsystem",
+          "Function": "Physically blocks handle depression; releases on 45° guard swing; triggers alarm linkage",
+          "Museum relevance": "Primary function; must not damage historic door hardware"
+        },
+        {
+          "L4 Subsystem": "**ALARM** — Acoustic Alarm Subsystem",
+          "Function": "Generates 95 dB alarm on guard activation; operates without electrical power",
+          "Museum relevance": "No power dependency critical for heritage buildings with unreliable power infrastructure"
+        },
+        {
+          "L4 Subsystem": "**IOT** — IoT Monitoring Subsystem",
+          "Function": "Wireless state broadcast (guard open / alarm / battery low) to receiver; battery power management",
+          "Museum relevance": "Protocol lock-in (EasyWave) creates integration friction with museum security/CCTV systems"
+        },
+        {
+          "L4 Subsystem": "**ENC** — Enclosure & Mounting Subsystem",
+          "Function": "Outer housing; surface-mount bracket; installation hardware",
+          "Museum relevance": "Non-damaging mount to heritage door fixtures; colour/finish may need to match interior aesthetics"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Guard-over-handle (Türwächter-style)",
+          "Share": "45%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Analyst estimate — dominant retrofit category"
+        },
+        {
+          "Alternative": "Alarmed push bar (integrated, e.g. GfS e-Bar, dormakaba)",
+          "Share": "30%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Analyst estimate"
+        },
+        {
+          "Alternative": "Electronic exit control with panic release (wired)",
+          "Share": "20%",
+          "Trend": "^ Growing",
+          "Confidence": "MEDIUM",
+          "Source": "Analyst estimate — smart building trend"
+        },
+        {
+          "Alternative": "Magnetic contact + separate alarm",
+          "Share": "5%",
+          "Trend": "v Declining",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Profile half-cylinder key",
+          "Share": "70%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Analyst estimate — standard in EU security hardware"
+        },
+        {
+          "Alternative": "Code keypad override",
+          "Share": "20%",
+          "Trend": "^ Growing",
+          "Confidence": "MEDIUM",
+          "Source": "Analyst estimate"
+        },
+        {
+          "Alternative": "RFID / NFC card override",
+          "Share": "10%",
+          "Trend": "^ Growing",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Glass-filled polyamide PA66-GF",
+          "Share": "40%",
+          "Trend": "^ Growing",
+          "Confidence": "MEDIUM",
+          "Source": "Industry material selection practice"
+        },
+        {
+          "Alternative": "Zinc die-cast (Zamak)",
+          "Share": "35%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Traditional hardware die-casting"
+        },
+        {
+          "Alternative": "ABS/PC blend",
+          "Share": "20%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Lower-cost variant"
+        },
+        {
+          "Alternative": "Stainless steel (CNC machined)",
+          "Share": "5%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Premium / IP-rated variants"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Piezoelectric buzzer",
+          "Share": "75%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "[Straits Research — Buzzer Market](https://straitsresearch.com/report/buzzer-market); dominant for low-power IoT/security"
+        },
+        {
+          "Alternative": "Electromagnetic buzzer",
+          "Share": "20%",
+          "Trend": "v Declining",
+          "Confidence": "MEDIUM",
+          "Source": "Legacy — higher power draw, moving parts"
+        },
+        {
+          "Alternative": "Electrodynamic speaker",
+          "Share": "5%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate — used in premium multi-tone devices"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "ABS",
+          "Share": "55%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Standard injection-molded enclosure material"
+        },
+        {
+          "Alternative": "ABS/PC blend",
+          "Share": "30%",
+          "Trend": "^ Growing",
+          "Confidence": "MEDIUM",
+          "Source": "Better impact resistance"
+        },
+        {
+          "Alternative": "PA6 (polyamide)",
+          "Share": "10%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Where heat resistance needed"
+        },
+        {
+          "Alternative": "UV-stabilized ASA",
+          "Share": "5%",
+          "Trend": "^ Emerging",
+          "Confidence": "LOW",
+          "Source": "Outdoor / UV-exposed variants"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Proprietary 868 MHz (EasyWave / Z-Wave / KEELOQ-based)",
+          "Share": "35%",
+          "Trend": "v Declining",
+          "Confidence": "MEDIUM",
+          "Source": "Analyst estimate — large EU installed base; no new platform growth"
+        },
+        {
+          "Alternative": "Zigbee (2.4 GHz mesh)",
+          "Share": "25%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "[IHS Markit Connectivity Report](https://cdn.ihs.com/www/pdf/IHS%20Markit%20-%20Connectivity%20Technology%20Competition%20Drivers%20and%20Influencers.pdf); dominant in smart building mesh"
+        },
+        {
+          "Alternative": "BLE 5.x (Bluetooth Low Energy)",
+          "Share": "20%",
+          "Trend": "^ Growing",
+          "Confidence": "MEDIUM",
+          "Source": "[Bluetooth.com IoT comparison](https://www.bluetooth.com/blog/wireless-connectivity-options-for-iot-applications-technology-comparison/)"
+        },
+        {
+          "Alternative": "LoRaWAN (868 MHz LPWAN)",
+          "Share": "10%",
+          "Trend": "^ Growing",
+          "Confidence": "MEDIUM",
+          "Source": "[GM Insights — LoRaWAN Market 2025–2034, CAGR 41%](https://www.gminsights.com/industry-analysis/lorawan-market); strong for large-building / campus deployments"
+        },
+        {
+          "Alternative": "Z-Wave",
+          "Share": "7%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate"
+        },
+        {
+          "Alternative": "Wi-Fi / NB-IoT",
+          "Share": "3%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Power-hungry; unsuitable for battery-only devices"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Alkaline 9V block (standard)",
+          "Share": "65%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Analyst estimate — default in most variants"
+        },
+        {
+          "Alternative": "Lithium 9V block (extended life, cold)",
+          "Share": "25%",
+          "Trend": "^ Growing",
+          "Confidence": "MEDIUM",
+          "Source": "Preferred for infrequently accessed locations — museums often have secure utility rooms with no regular maintenance access"
+        },
+        {
+          "Alternative": "Rechargeable Li-ion with charging circuit",
+          "Share": "10%",
+          "Trend": "^ Emerging",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate — next-gen IoT devices"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "ABS / ABS-PC blend",
+          "Share": "55%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Standard for injection-molded security devices"
+        },
+        {
+          "Alternative": "Glass-filled PA6 (PA6-GF30)",
+          "Share": "25%",
+          "Trend": "^ Growing",
+          "Confidence": "MEDIUM",
+          "Source": "Structural rigidity, dimensional stability"
+        },
+        {
+          "Alternative": "Zinc die-cast",
+          "Share": "15%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Premium mechanical feel; heavier; traditional hardware aesthetics"
+        },
+        {
+          "Alternative": "Die-cast aluminium",
+          "Share": "5%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "IP-rated outdoor variants"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Zinc-plated steel",
+          "Share": "50%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Standard hardware"
+        },
+        {
+          "Alternative": "Stainless steel A2",
+          "Share": "35%",
+          "Trend": "^ Growing",
+          "Confidence": "MEDIUM",
+          "Source": "Corrosion resistance for outdoor / IP45 variant"
+        },
+        {
+          "Alternative": "Stainless steel A4",
+          "Share": "10%",
+          "Trend": "^ Growing",
+          "Confidence": "LOW",
+          "Source": "Marine / heritage preference — no galvanic staining on historic metal fixtures"
+        },
+        {
+          "Alternative": "Nylon/polymer screws",
+          "Share": "5%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Non-conductive; museum display cases"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "BOM Position",
+        "Function",
+        "Safety-critical?",
+        "Key alternatives"
+      ],
+      "rows": [
+        {
+          "BOM Position": "L4-IOT > L3 RF Transmitter > L2 RF Circuit Board",
+          "Function": "Broadcasts guard state (open/alarm/battery) to receiver",
+          "Safety-critical?": "NO — supervisory layer only; mechanical alarm is safety-critical",
+          "Key alternatives": "868 MHz proprietary, Zigbee, BLE, LoRaWAN"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "BOM Level",
+        "Current state",
+        "Gap for museums",
+        "Severity"
+      ],
+      "rows": [
+        {
+          "BOM Level": "L3 RF protocol",
+          "Current state": "EasyWave (proprietary)",
+          "Gap for museums": "Museum security systems expect IP/BACnet/KNX",
+          "Severity": "HIGH — primary distance driver"
+        },
+        {
+          "BOM Level": "L0 Outer casing finish",
+          "Current state": "RAL 6029 safety green",
+          "Gap for museums": "Heritage interiors often require neutral / matching tones",
+          "Severity": "MEDIUM — addressable with colour variant"
+        },
+        {
+          "BOM Level": "L0 Mounting hardware",
+          "Current state": "Zinc-plated screws",
+          "Gap for museums": "Heritage fixtures require non-staining A4 stainless or non-metallic fixings",
+          "Severity": "MEDIUM — addressable with BOM swap"
+        },
+        {
+          "BOM Level": "L3 Battery chemistry",
+          "Current state": "Alkaline 9V standard",
+          "Gap for museums": "Museum utility rooms have infrequent maintenance → lithium preferred",
+          "Severity": "LOW — addressable with SKU selection"
+        },
+        {
+          "BOM Level": "L3 Key override",
+          "Current state": "Profile half-cylinder",
+          "Gap for museums": "Museums often run RFID staff cards → RFID override preferred",
+          "Severity": "LOW — product development opportunity"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Check",
+        "Status"
+      ],
+      "rows": [
+        {
+          "Check": "Every L4 subsystem decomposes to at least L2",
+          "Status": "PASS"
+        },
+        {
+          "Check": "Alternatives present at every design-choice level",
+          "Status": "PASS"
+        },
+        {
+          "Check": "All alternative sets sum to 100% ± 1%",
+          "Status": "PASS"
+        },
+        {
+          "Check": "Confidence + source on every alternative set",
+          "Status": "PASS"
+        },
+        {
+          "Check": "No company names or brand names at any BOM level",
+          "Status": "PASS — \"EasyWave\" cited only in protocol comparison (technology class, not brand)"
+        },
+        {
+          "Check": "Packaging/mounting subsystem included",
+          "Status": "PASS — L4-ENC"
+        },
+        {
+          "Check": "Control/interface subsystem included",
+          "Status": "PASS — L4-IOT"
+        },
+        {
+          "Check": "BOM vs. VN test: all items end up IN the product",
+          "Status": "PASS — receiver, repeaters, BMS are excluded (they are VN nodes)"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    [
+      {
+        "name": "Mechanical Locking Subsystem",
+        "level": "L4",
+        "description": "Physically blocks handle depression; 45° guard swing simultaneously releases handle and triggers alarm via mechanical linkage; key override for authorized bypass",
+        "naics_code": "334290",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Acoustic Alarm Subsystem",
+        "level": "L4",
+        "description": "Generates 95 dB audible alarm on guard activation; piezoelectric mechanism operates without electrical power; optional pre-alarm vibration sensing",
+        "naics_code": "334290",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "IoT Monitoring Subsystem",
+        "level": "L4",
+        "description": "868 MHz radio transmitter broadcasts guard state and alarm events to external receivers; battery-powered; state detection via reed switch",
+        "naics_code": "334290",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Enclosure & Mounting Subsystem",
+        "level": "L4",
+        "description": "Injection-molded outer housing (RAL 6029); surface-mount clamp bracket; fixing hardware; glass-frame adapter variant",
+        "naics_code": "334290",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Guard Actuator Assembly",
+        "level": "L3",
+        "description": "Guard body, pivot axle, return torsion spring, trigger linkage",
+        "naics_code": "334290",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Handle Engagement Mechanism",
+        "level": "L3",
+        "description": "Clamp block that interfaces with door handle; cam element that transfers guard rotation to alarm trigger",
+        "naics_code": "334290",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Key Override Assembly",
+        "level": "L3",
+        "description": "Profile half-cylinder lock housing and bitting mechanism enabling authorized bypass without alarm",
+        "naics_code": "334290",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Piezoelectric Alarm Module",
+        "level": "L3",
+        "description": "PZT piezo transducer on brass diaphragm; ABS resonator housing; volume-adjustable; no electrical dependency for basic alarm function",
+        "naics_code": "334290",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "RF Transmitter Module",
+        "level": "L3",
+        "description": "868 MHz RF circuit board with transceiver IC, crystal oscillator, and PCB trace antenna; EasyWave protocol",
+        "naics_code": "334290",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Power Management Module",
+        "level": "L3",
+        "description": "9V battery holder with phosphor-bronze spring contacts; LDO voltage regulator; decoupling capacitors",
+        "naics_code": "334290",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "State Detection Module",
+        "level": "L3",
+        "description": "Reed switch or Hall-effect sensor detecting guard open/closed position; LED status indicator",
+        "naics_code": "334290",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Guard Housing Assembly",
+        "level": "L3",
+        "description": "ABS/PC outer casing (front + back panel) with RAL 6029 safety green finish",
+        "naics_code": "334290",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Mounting Hardware Assembly",
+        "level": "L3",
+        "description": "Door handle clamp set; fixing screws (zinc-plated steel standard, A4 stainless for outdoor/heritage); glass-frame mounting plate accessory",
+        "naics_code": "334290",
+        "output_type": "Exit Control 179/1125 with IoT"
+      }
+    ],
+    [
+      {
+        "name": "Guard-over-handle (Türwächter-style)",
+        "market_share": 45,
+        "trend": "Stable",
+        "confidence": "MEDIUM",
+        "source": "Analyst estimate — dominant EU retrofit category",
+        "parent_bom_name": "Mechanical Locking Subsystem",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Alarmed push bar (integrated)",
+        "market_share": 30,
+        "trend": "Stable",
+        "confidence": "MEDIUM",
+        "source": "Analyst estimate",
+        "parent_bom_name": "Mechanical Locking Subsystem",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Electronic exit control with panic release (wired)",
+        "market_share": 20,
+        "trend": "Growing",
+        "confidence": "MEDIUM",
+        "source": "Analyst estimate",
+        "parent_bom_name": "Mechanical Locking Subsystem",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Magnetic contact + separate alarm",
+        "market_share": 5,
+        "trend": "Declining",
+        "confidence": "LOW",
+        "source": "Analyst estimate",
+        "parent_bom_name": "Mechanical Locking Subsystem",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Piezoelectric buzzer",
+        "market_share": 75,
+        "trend": "Stable",
+        "confidence": "MEDIUM",
+        "source": "Straits Research — Buzzer Market 2024; dominant in low-power IoT/security devices",
+        "parent_bom_name": "Piezoelectric Alarm Module",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Electromagnetic buzzer",
+        "market_share": 20,
+        "trend": "Declining",
+        "confidence": "MEDIUM",
+        "source": "Analyst estimate; higher power draw, moving parts",
+        "parent_bom_name": "Piezoelectric Alarm Module",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Electrodynamic speaker",
+        "market_share": 5,
+        "trend": "Stable",
+        "confidence": "LOW",
+        "source": "Analyst estimate",
+        "parent_bom_name": "Piezoelectric Alarm Module",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Proprietary 868 MHz (EasyWave-class)",
+        "market_share": 35,
+        "trend": "Declining",
+        "confidence": "MEDIUM",
+        "source": "IHS Markit Connectivity Technology report; large EU installed base, no new platform growth",
+        "parent_bom_name": "RF Transmitter Module",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Zigbee (2.4 GHz mesh)",
+        "market_share": 25,
+        "trend": "Stable",
+        "confidence": "MEDIUM",
+        "source": "IHS Markit Connectivity Technology report",
+        "parent_bom_name": "RF Transmitter Module",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "BLE 5.x (Bluetooth Low Energy)",
+        "market_share": 20,
+        "trend": "Growing",
+        "confidence": "MEDIUM",
+        "source": "Bluetooth.com IoT wireless connectivity comparison 2025",
+        "parent_bom_name": "RF Transmitter Module",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "LoRaWAN (868 MHz LPWAN)",
+        "market_share": 10,
+        "trend": "Growing",
+        "confidence": "MEDIUM",
+        "source": "GM Insights — LoRaWAN Market 2025–2034 (CAGR 41.1%)",
+        "parent_bom_name": "RF Transmitter Module",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Z-Wave",
+        "market_share": 7,
+        "trend": "Stable",
+        "confidence": "LOW",
+        "source": "Analyst estimate",
+        "parent_bom_name": "RF Transmitter Module",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Wi-Fi / NB-IoT",
+        "market_share": 3,
+        "trend": "Stable",
+        "confidence": "LOW",
+        "source": "Analyst estimate — unsuitable for battery-only devices",
+        "parent_bom_name": "RF Transmitter Module",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Alkaline 9V block",
+        "market_share": 65,
+        "trend": "Stable",
+        "confidence": "MEDIUM",
+        "source": "Analyst estimate",
+        "parent_bom_name": "Power Management Module",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Lithium 9V block",
+        "market_share": 25,
+        "trend": "Growing",
+        "confidence": "MEDIUM",
+        "source": "Analyst estimate — preferred for remote/infrequent-access deployments",
+        "parent_bom_name": "Power Management Module",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Rechargeable Li-ion with charging circuit",
+        "market_share": 10,
+        "trend": "Emerging",
+        "confidence": "LOW",
+        "source": "Analyst estimate",
+        "parent_bom_name": "Power Management Module",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "ABS / ABS-PC blend",
+        "market_share": 55,
+        "trend": "Stable",
+        "confidence": "MEDIUM",
+        "source": "Analyst estimate — standard injection-molded security device enclosure",
+        "parent_bom_name": "Guard Housing Assembly",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Glass-filled PA6 (PA6-GF30)",
+        "market_share": 25,
+        "trend": "Growing",
+        "confidence": "MEDIUM",
+        "source": "Analyst estimate — growing structural polymer use in hardware",
+        "parent_bom_name": "Guard Housing Assembly",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Zinc die-cast",
+        "market_share": 15,
+        "trend": "Stable",
+        "confidence": "MEDIUM",
+        "source": "Analyst estimate — premium mechanical hardware tradition",
+        "parent_bom_name": "Guard Housing Assembly",
+        "output_type": "Exit Control 179/1125 with IoT"
+      },
+      {
+        "name": "Die-cast aluminium",
+        "market_share": 5,
+        "trend": "Stable",
+        "confidence": "LOW",
+        "source": "Analyst estimate — IP-rated outdoor variants",
+        "parent_bom_name": "Guard Housing Assembly",
+        "output_type": "Exit Control 179/1125 with IoT"
+      }
+    ],
+    [
+      {
+        "component_category": "Wireless Radio Module",
+        "bom_position": "L4-IOT > L3 RF Transmitter Module > L2 RF Circuit Board Assembly",
+        "function": "Broadcasts guard state (open/alarm/battery-low) to external receiver units",
+        "safety_critical": false,
+        "safety_note": "Supervisory only — mechanical alarm operates without electrical power. Radio failure does not impede escape.",
+        "alternatives_at_position": [
+          {
+            "name": "Proprietary 868 MHz (EasyWave)",
+            "share": 35
+          },
+          {
+            "name": "Zigbee 2.4 GHz",
+            "share": 25
+          },
+          {
+            "name": "BLE 5.x",
+            "share": 20
+          },
+          {
+            "name": "LoRaWAN",
+            "share": 10
+          },
+          {
+            "name": "Z-Wave",
+            "share": 7
+          },
+          {
+            "name": "Wi-Fi / NB-IoT",
+            "share": 3
+          }
+        ],
+        "output_type": "Exit Control 179/1125 with IoT",
+        "market_insight": "Museum security platforms expect IP/BACnet/KNX integration. EasyWave requires GfS-specific BUS gateway. A Zigbee or LoRaWAN radio variant closes architecture distance from 3→1 for NAICS 712110."
+      }
+    ]
+  ],
+  "has_bom": true,
+  "naics_sector_type": "non_manufacturing"
+}

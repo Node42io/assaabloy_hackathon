@@ -1,0 +1,58 @@
+{
+  "naicsCode": "712110",
+  "marketName": "Museums, Historical Sites, and Similar Institutions",
+  "slug": "museums_historical_sites",
+  "features": [
+    {
+      "name": "Mechanical Handle Locking",
+      "kanoClass": "must_be",
+      "scores": { "time": 2, "cost": 5, "safety": 9, "reliability": 8, "skill": 6, "stress": 5, "pain": 6, "confidence": 7, "delight": 2 },
+      "overallFit": 5.56,
+      "rationale": "Core commodity FP function. Safety (9): prevents unauthorized access to collection vaults and conservation storage. Reliability (8): mechanical fail-safe essential in heritage buildings with unreliable mains."
+    },
+    {
+      "name": "Audible Alarm Trigger",
+      "kanoClass": "must_be",
+      "scores": { "time": 5, "cost": 6, "safety": 9, "reliability": 7, "skill": 5, "stress": 7, "pain": 6, "confidence": 7, "delight": 2 },
+      "overallFit": 6.00,
+      "rationale": "Commodity FP explicitly includes audible alarm. Safety (9): 95 dB deters theft and alerts adjacent staff. Stress (7): security officers know any unauthorized activation is audible."
+    },
+    {
+      "name": "Single-Motion Emergency Release",
+      "kanoClass": "must_be",
+      "scores": { "time": 3, "cost": 3, "safety": 10, "reliability": 8, "skill": 8, "stress": 6, "pain": 4, "confidence": 7, "delight": 2 },
+      "overallFit": 5.67,
+      "rationale": "Regulatory knockout without it. Safety (10): highest safety score; core life-safety function. Skill (8): zero prior knowledge required from museum visitors including reduced-mobility occupants."
+    },
+    {
+      "name": "Key Override Bypass",
+      "kanoClass": "must_be",
+      "scores": { "time": 5, "cost": 4, "safety": 5, "reliability": 6, "skill": 6, "stress": 7, "pain": 7, "confidence": 6, "delight": 3 },
+      "overallFit": 5.44,
+      "rationale": "Institutionally required; absence makes product inoperable. Stress (7) and Pain (7): conservation teams and night-shift security access storage without triggering false alerts."
+    },
+    {
+      "name": "Battery-Powered Operation",
+      "kanoClass": "attractive",
+      "scores": { "time": 7, "cost": 7, "safety": 6, "reliability": 5, "skill": 8, "stress": 6, "pain": 9, "confidence": 5, "delight": 7 },
+      "overallFit": 6.67,
+      "rationale": "Highest overall fit. Eliminates 3-12 month listed building consent barrier that disqualifies wired incumbent. Pain (9): removes heritage consent barrier. Skill (8): no electrician needed. Delight (7): genuinely surprising."
+    },
+    {
+      "name": "Pre-Alarm Warning",
+      "kanoClass": "attractive",
+      "scores": { "time": 4, "cost": 5, "safety": 4, "reliability": 4, "skill": 5, "stress": 7, "pain": 6, "confidence": 5, "delight": 5 },
+      "overallFit": 5.00,
+      "rationale": "Absent in basic alarms; reduces false-alarm fatigue during opening hours. Stress (7): duty managers avoid unnecessary alarm investigations from accidental visitor contact. Safety (4): modest — pre-alarm may give unauthorized users 1-2 seconds warning."
+    }
+  ],
+  "avgOverallFit": 5.72,
+  "productRelatedNeeds": [
+    "Minimize the likelihood of 868 MHz signal degradation from heritage-grade masonry construction creating silent monitoring gaps exceeding 15 minutes",
+    "Minimize the time required to pre-validate 868 MHz radio coverage through actual building wall materials before committing to gateway placement",
+    "Minimize the likelihood of 9V block battery depletion below operational threshold within the 2-year maintenance window in climate-controlled conservation environments",
+    "Minimize the time required to achieve complete exit monitoring coverage across all doors in a multi-room heritage building using exclusively surface-mount fixing methods",
+    "Minimize the likelihood of EasyWave protocol incompatibility causing integration failure when the museum BMS uses BACnet, KNX, or IP-based protocols"
+  ],
+  "sources": []
+}

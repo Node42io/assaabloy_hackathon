@@ -1,0 +1,58 @@
+{
+  "naicsCode": "493110",
+  "marketName": "General Warehousing and Storage",
+  "slug": "general_warehousing_storage",
+  "features": [
+    {
+      "name": "Mechanical Handle Locking",
+      "kanoClass": "must_be",
+      "scores": { "time": 3, "cost": 4, "safety": 8, "reliability": 7, "skill": 5, "stress": 5, "pain": 4, "confidence": 7, "delight": 2 },
+      "overallFit": 5.00,
+      "rationale": "Delivery mechanism for Commodity FP itself. Safety (8): direct deterrence of unauthorized dock exit use. Reliability (7): fully passive, no power dependency. Score limited because it contributes nothing to audit automation."
+    },
+    {
+      "name": "Audible Alarm Trigger",
+      "kanoClass": "must_be",
+      "scores": { "time": 4, "cost": 5, "safety": 9, "reliability": 6, "skill": 4, "stress": 6, "pain": 5, "confidence": 6, "delight": 2 },
+      "overallFit": 5.22,
+      "rationale": "Universal in competing products. Safety (9): primary incident-response trigger. Reliability (6) and Confidence (6) discounted: 95 dB alarm may be masked by 85-95 dB DC ambient noise from diesel forklifts."
+    },
+    {
+      "name": "Single-Motion Emergency Release",
+      "kanoClass": "must_be",
+      "scores": { "time": 6, "cost": 3, "safety": 9, "reliability": 6, "skill": 8, "stress": 7, "pain": 3, "confidence": 8, "delight": 2 },
+      "overallFit": 5.78,
+      "rationale": "Non-negotiable regulatory compliance. Highest among must_be features. Skill (8): zero training required from high-turnover DC workforce. Confidence (8): regulatory certification provides hard assurance."
+    },
+    {
+      "name": "Key Override Bypass",
+      "kanoClass": "must_be",
+      "scores": { "time": 5, "cost": 3, "safety": 6, "reliability": 5, "skill": 4, "stress": 6, "pain": 6, "confidence": 5, "delight": 2 },
+      "overallFit": 4.67,
+      "rationale": "Expected by all security managers. Lowest score — contributes nothing to top-5 opportunity needs. Pain (6): eliminates operational nuisance of alarm-triggering authorized access."
+    },
+    {
+      "name": "Battery-Powered Operation",
+      "kanoClass": "one_dimensional",
+      "scores": { "time": 6, "cost": 8, "safety": 5, "reliability": 5, "skill": 8, "stress": 5, "pain": 8, "confidence": 5, "delight": 5 },
+      "overallFit": 6.11,
+      "rationale": "Highest-scoring technology feature. DC exits are far from electrical infrastructure. Cost (8), Skill (8), Pain (8): enables no-electrician retrofit. Safety (5) and Reliability (5) suppressed by C4/N09 (battery depletion = undetected events)."
+    },
+    {
+      "name": "Pre-Alarm Warning",
+      "kanoClass": "attractive",
+      "scores": { "time": 3, "cost": 6, "safety": 3, "reliability": 4, "skill": 3, "stress": 7, "pain": 7, "confidence": 5, "delight": 5 },
+      "overallFit": 4.78,
+      "rationale": "Absent in mechanical-only and wired alternatives. Stress (7) and Pain (7): breaks the false-alarm response cycle from dock workers brushing handles. Safety (3): pre-alarm could lull genuine intruder into abort."
+    }
+  ],
+  "avgOverallFit": 5.26,
+  "productRelatedNeeds": [
+    "Minimize the likelihood of monitoring blind spots from 868 MHz signal attenuation through steel racking and corrugated metal cladding in DC facilities exceeding 5,000 m2",
+    "Minimize the effort required to plan battery replacement schedules when actual IoT module power consumption under high door-activation frequency is unpublished",
+    "Minimize the likelihood of guard misalignment from surface-mounting on non-standard or worn EN 179 lever handle geometries",
+    "Minimize the integration effort to translate EasyWave 868 MHz event messages into standard building automation formats (BACnet, Modbus, OPC-UA)",
+    "Minimize the likelihood of repeated receiver-to-gateway communication failures from RF interference from mobile warehouse equipment on adjacent frequency bands"
+  ],
+  "sources": []
+}

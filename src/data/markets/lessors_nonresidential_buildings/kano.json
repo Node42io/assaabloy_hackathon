@@ -1,0 +1,57 @@
+{
+  "naicsCode": "531120",
+  "marketName": "Lessors of Nonresidential Buildings (except Miniwarehouses)",
+  "slug": "lessors_nonresidential_buildings",
+  "features": [
+    {
+      "name": "Mechanical Handle Locking",
+      "kanoClass": "must_be",
+      "scores": { "time": 2, "cost": 4, "safety": 9, "reliability": 8, "skill": 5, "stress": 6, "pain": 4, "confidence": 8, "delight": 1 },
+      "overallFit": 5.22,
+      "rationale": "Must_be — physical handle block is the commodity FP core. Safety (9) and Reliability (8): directly addresses N04 (false-negative alarm rate). Delight (1) — no surprise value."
+    },
+    {
+      "name": "Audible Alarm Trigger",
+      "kanoClass": "must_be",
+      "scores": { "time": 2, "cost": 4, "safety": 10, "reliability": 8, "skill": 6, "stress": 7, "pain": 6, "confidence": 7, "delight": 2 },
+      "overallFit": 5.78,
+      "rationale": "Must_be — commodity FP explicitly names audible alarm. Safety (10): primary deterrence and immediate notification. Stress (7): FM receives local notification even without IoT dashboard."
+    },
+    {
+      "name": "Single-Motion Emergency Release",
+      "kanoClass": "must_be",
+      "scores": { "time": 3, "cost": 3, "safety": 10, "reliability": 7, "skill": 8, "stress": 7, "pain": 4, "confidence": 9, "delight": 1 },
+      "overallFit": 5.78,
+      "rationale": "Must_be — EN 179/EN 1125 certification requirement; absence is a regulatory knockout. Safety (10): fire evacuation compliance. Confidence (9): certification provides legal certainty."
+    },
+    {
+      "name": "Key Override Bypass",
+      "kanoClass": "one_dimensional",
+      "scores": { "time": 6, "cost": 5, "safety": 5, "reliability": 6, "skill": 5, "stress": 7, "pain": 6, "confidence": 6, "delight": 3 },
+      "overallFit": 5.44,
+      "rationale": "One_dimensional — richer key management proportionally improves FM operations. Stress (7): directly addresses N08 (false alarms from authorized access). Pain (6): eliminates alarm-trigger/silence cycle."
+    },
+    {
+      "name": "Battery-Powered Operation",
+      "kanoClass": "must_be",
+      "scores": { "time": 5, "cost": 8, "safety": 3, "reliability": 4, "skill": 7, "stress": 6, "pain": 8, "confidence": 5, "delight": 3 },
+      "overallFit": 5.44,
+      "rationale": "Must_be — commercial lessors operate existing building stock where adding conduit per door is prohibitively expensive. Cost (8) and Pain (8): directly serves N01 (no permanent electrical modification). Confidence (5) depressed by C4 battery life uncertainty."
+    },
+    {
+      "name": "Pre-Alarm Warning",
+      "kanoClass": "attractive",
+      "scores": { "time": 3, "cost": 4, "safety": 4, "reliability": 5, "skill": 5, "stress": 7, "pain": 6, "confidence": 5, "delight": 6 },
+      "overallFit": 5.00,
+      "rationale": "Attractive — dominant A1 competitor (40% share) does not have this. Delight (6): warns-before-it-alarms is genuinely unexpected. Stress (7): reduces FM false-alarm anxiety in multi-tenant buildings."
+    }
+  ],
+  "avgOverallFit": 5.44,
+  "productRelatedNeeds": [
+    "Minimize the likelihood of EasyWave protocol dependency requiring full hardware replacement when a portfolio transitions to open-standard BMS",
+    "Minimize the likelihood of 868 MHz signal attenuation through reinforced concrete floor slabs creating per-floor monitoring blackouts in multi-story buildings",
+    "Minimize the likelihood of IoT door-event timestamp collection triggering a GDPR Article 35 DPIA in EU commercial office deployments",
+    "Minimize the likelihood of unheated stairwell and service corridor temperature variations reducing battery service life below the 2-year target"
+  ],
+  "sources": []
+}

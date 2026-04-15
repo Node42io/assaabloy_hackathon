@@ -1,0 +1,1780 @@
+{
+  "id": "VN_data_centers",
+  "title": "Value Network: Computing Infrastructure Providers / Data Centers (NAICS 518210)",
+  "type": "value_network",
+  "market_slug": "data_centers",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Metadata",
+      "content": "| Field | Value |\n|---|---|\n| NAICS Code | 518210 |\n| NAICS Title | Computing Infrastructure Providers, Data Processing, Web Hosting, and Related Services |\n| NAICS Sector | 51 — Information |\n| Industry Type | Service |\n| Process VN | YES |\n| Product BOM | NO (service NAICS — output is compute/storage/network capacity, not a physical product) |\n| Architecture Distance | 3 — MEDIUM (from 05_market_discovery §Rank10) |\n| Market Priority | MEDIUM |\n| Physical Security Market (global, 2025) | ~$9.3B [[SRC: Grand View Research 2025]] |\n| Access Control Market (global, →2030) | $1.55B→$2.53B at 10.2% CAGR [[SRC: MarketsandMarkets 2025]] |\n| Data Center Power Market (global, 2025) | ~$35.1B [[SRC: MarketsandMarkets 2025]] |\n| Data Center Cooling Market (global, 2025) | ~$11.5B [[SRC: Data Bridge Market Research 2025]] |\n\n---"
+    },
+    {
+      "title": "Phase 1 — A.1: L6 Core Process Steps",
+      "content": "**CFJ (industry-level):** Deliver continuous, secure, and compliant compute, storage, and network capacity to tenants and end users at contracted uptime and performance levels.\n\n| ID | Name | Job Family | Notes |\n|---|---|---|---|\n| L6a | Power Supply & Conditioning | Transform and condition utility power to IT-grade uninterruptible supply at N+1 or 2N redundancy | Entry point of every DC value chain; no IT can operate without it |\n| L6b | Cooling & Thermal Management | Maintain IT equipment within operating temperature and humidity limits across all load densities | Rising importance with AI/GPU workloads driving kW/rack from 7 kW to 100+ kW |\n| L6c | Physical Infrastructure | Provide secure, structured rack space, cabling, and floor systems for tenant equipment | Colocation-specific; defines deployable capacity |\n| L6d | Physical Security & Access Control | Control, monitor, and log physical access to all facility zones (perimeter → cage → rack) | **Primary step where Emergency Exit Door Monitoring sits** |\n| L6e | Network Connectivity & Cross-Connect | Terminate diverse carrier connections; enable tenant-to-tenant and tenant-to-carrier cross-connects | Carrier-neutral DCs differentiate here |\n| L6f | IT Infrastructure Operations | Deploy, operate, and monitor compute, storage, and network equipment for managed workloads | Hyperscale and managed hosting only; skipped in pure-colo output type |\n\nCore steps follow the physical delivery sequence: L6a (power in) → L6b (heat out) → L6c (space prepared) → L6d (access controlled) → L6e (network connected) → L6f (workload running).\n\n---"
+    },
+    {
+      "title": "Phase 1 — A.2: L6 Horizontal Functions",
+      "content": "| ID | Name (H) | Runs Across | Distinction from Core |\n|---|---|---|---|\n| L6H1 | DCIM & Monitoring (H) | All L6 core steps | Does not produce capacity — enables real-time visibility into PUE, power, temperature, and uptime across all core steps |\n| L6H2 | Facilities Maintenance & Engineering (H) | All L6 core steps | Preventive and corrective maintenance across power, cooling, physical infra; required for all core steps to remain operational |\n| L6H3 | Compliance & Auditing (H) | All L6 core steps | SOC 2, ISO 27001, PCI-DSS, GDPR — does not produce capacity but without it no core step can operate legally for regulated tenants |\n| L6H4 | Fire Suppression & Life Safety (H) | All L6 core steps | Fire detection and suppression protecting equipment and personnel across all zones; cannot be skipped or the facility cannot be occupied |\n\n> **Warning test applied:** Removing L6d (Physical Security) means the facility cannot be operated in compliance with SOC 2 CC6.4, ISO 27001 A.7.2, or CISA/FISMA physical security requirements → output (certified capacity) cannot be delivered. Core. Removing L6H3 (Compliance) means the same output cannot be sold to regulated tenants → horizontal. Test passes.\n\n---"
+    },
+    {
+      "title": "Phase 1 — A.3: L5 Equipment per L6 Node",
+      "content": "### L6a — Power Supply & Conditioning\n\n| L5 | Alternatives | Confidence | Source |\n|---|---|---|---|\n| Medium Voltage Switchgear | 1. AIS air-insulated (~60%) · 2. GIS gas-insulated (~30%) · 3. Ring main unit (~10%) | MEDIUM | Siemens/ABB DC power white papers |\n| Transformer | 1. Dry-type step-down (~60%) · 2. Oil-immersed (~30%) · 3. Cast resin (~10%) | MEDIUM | Electrical market surveys |\n| UPS System | 1. Static VRLA (~62%) · 2. Static Li-ion (~25%) · 3. Rotary/diesel UPS (~8%) · 4. Flywheel UPS (~5%) | HIGH | MarketsandMarkets 2025; Precedence Research [[SRC: VRLA 62% / Li-ion ~25% as of 2025; Li-ion CAGR 8.29%]] |\n| Emergency Diesel Generator | 1. Diesel reciprocating (~85%) · 2. Natural gas (~10%) · 3. HVO/biodiesel (~5% growing) | MEDIUM | Generator industry reports 2025 |\n| Automatic Transfer Switch | 1. Static ATS (~55%) · 2. Mechanical ATS (~35%) · 3. Bypass-isolation ATS (~10%) | MEDIUM | Eaton/Schneider market briefs |\n| Power Distribution Unit (PDU) | 1. Intelligent iPDU (~55%) · 2. Basic metered PDU (~30%) · 3. Overhead busway distribution (~15%) | MEDIUM | MarketsandMarkets DC power 2025 [[SRC: UPS+PDU ≈60% of DC power revenue]] |\n\n### L6b — Cooling & Thermal Management\n\n| L5 | Alternatives | Confidence | Source |\n|---|---|---|---|\n| Chiller Plant | 1. Water-cooled centrifugal (~50%) · 2. Air-cooled chiller (~30%) · 3. Magnetic bearing centrifugal (~20%) | MEDIUM | Mordor Intelligence cooling 2025 |\n| Cooling Tower / Dry Cooler | 1. Open evaporative cooling tower (~55%) · 2. Dry cooler/fluid cooler (~30%) · 3. Hybrid adiabatic (~15%) | MEDIUM | Arizton market report 2025 |\n| Room Air Handler (CRAH/CRAC) | 1. CRAH with chilled water (~55%) · 2. DX precision CRAC (~30%) · 3. In-row cooling (~15%) | HIGH | Air-based cooling ~40% share of DC thermal market in 2024 [[SRC: Precedence Research 2025]] |\n| Liquid Cooling System | 1. CDU / direct-to-chip manifold (~40%) · 2. Rear-door heat exchanger (~38%) · 3. Full immersion tank (~22%) | HIGH | DLC ~38.4% of liquid cooling market in 2025 [[SRC: Straits Research 2025]]; fastest-growing segment |\n| Hot/Cold Aisle Containment | 1. Hot aisle containment (~45%) · 2. Cold aisle containment (~35%) · 3. Full chimney/cage containment (~20%) | MEDIUM | ASHRAE DC cooling guidelines; industry reports |\n\n### L6c — Physical Infrastructure\n\n| L5 | Alternatives | Confidence | Source |\n|---|---|---|---|\n| Server Rack & Cabinet | 1. Standard 42U/45U open rack (~65%) · 2. Enclosed security cabinet (~25%) · 3. OCP Open Rack v3 (~10% growing) | MEDIUM | Hyperscale DC deployment surveys |\n| Structured Cabling | 1. Multi-mode fiber OM4/OM5 (~35%) · 2. Single-mode fiber OS2 (~35%) · 3. Copper Cat 6A (~30%) | MEDIUM | TIA-942 cabling standards; industry surveys |\n| Floor Infrastructure | 1. Raised floor system (~55%) · 2. Slab with overhead cable trays (~30%) · 3. Hybrid raised+overhead (~15%) | MEDIUM | Uptime Institute DC design survey |\n| Cage & Compartment Barrier | 1. Modular wire cage barriers (~60%) · 2. Solid panel partitions (~25%) · 3. Permanent concrete/drywall walls (~15%) | LOW | Expert inference from colo facility design practice |\n\n### L6d — Physical Security & Access Control ⟵ Primary branch for Türwächter\n\n| L5 | Alternatives | Confidence | Source |\n|---|---|---|---|\n| Perimeter Security | 1. Anti-ram bollards + CCTV perimeter (~50%) · 2. Fenced perimeter + patrol (~30%) · 3. Integrated PIDS (perimeter intrusion detection) (~20%) | MEDIUM | Grand View Research physical security 2025 |\n| Biometric Access Control | 1. Fingerprint/hand geometry readers (~55%) · 2. Facial recognition (~25%) · 3. Iris/vein biometrics (~20%) | MEDIUM | MarketsandMarkets DC access control 2025 [[SRC: $1.55B→$2.53B market, CAGR 10.2%]] |\n| CCTV & Video Analytics | 1. IP fixed camera + NVR (~50%) · 2. AI-analytics VSaaS (~30%) · 3. PTZ cameras + VMS (~20%) | MEDIUM | Data center physical security market surveys |\n| Security Mantrap / Interlock | 1. Motorized mantrap vestibule (~60%) · 2. Electronic airlocked vestibule (~30%) · 3. Staffed checkpoint (~10%) | LOW | Expert inference from DC security design standards |\n| **Emergency Exit Door Monitoring** ← Türwächter L5 | 1. Wired electronic exit alarm, alarm-panel-integrated (~50%) · 2. **Wireless IoT door alarm guard (~30%)** ← Türwächter category · 3. Mechanical-only door prop/handle alarm (~20%) | LOW | No published DC-specific sub-segment data; inference from physical security market structure [[SRC: 05_market_discovery §Rank10]] |\n| Security Operations Center (SOC) | 1. On-site guard station + console (~50%) · 2. Remote SOC managed service (~35%) · 3. Hybrid on-site + remote (~15%) | LOW | Industry practice; DC security RFP standards |\n\n### L6e — Network Connectivity & Cross-Connect\n\n| L5 | Alternatives | Confidence | Source |\n|---|---|---|---|\n| Carrier Fiber Termination | 1. Dark fiber (~40%) · 2. Wavelength/lit services (~35%) · 3. IP transit / MPLS (~25%) | MEDIUM | Carrier-neutral DC market reports |\n| Cross-Connect Infrastructure | 1. Fiber patch panel cross-connect (~60%) · 2. Virtual cross-connect (VC) (~25%) · 3. Copper cross-connect (~15%) | MEDIUM | Equinix, Digital Realty interconnection pricing structures |\n| DDoS & Traffic Scrubbing | 1. Upstream provider scrubbing (~50%) · 2. On-premise scrubbing appliance (~35%) · 3. BGP blackhole-only (~15%) | LOW | Expert inference |\n\n### L6f — IT Infrastructure Operations (Hyperscale / Managed Hosting only)\n\n| L5 | Alternatives | Confidence | Source |\n|---|---|---|---|\n| Compute Servers | 1. Custom ODM/JDM (~55%) · 2. OEM branded (Dell, HPE, Lenovo) (~30%) · 3. ARM-based (~15% growing) | MEDIUM | Hyperscale capex disclosures; IDC server market 2025 |\n| Storage Arrays | 1. All-flash NVMe (~50%) · 2. Hybrid flash/HDD (~30%) · 3. Object storage nodes (~20%) | MEDIUM | IDC storage market 2025 |\n| Network Switching | 1. Merchant silicon (Broadcom Tomahawk/Tofino) (~45%) · 2. Custom ASIC (Arista, Cisco NX-OS) (~40%) · 3. Incumbent OEM bundled (~15%) | MEDIUM | Ethernet Alliance; DC networking reports |\n\n### L6H1 — DCIM & Monitoring (H)\n\n| L5 | Alternatives | Confidence | Source |\n|---|---|---|---|\n| DCIM Software Platform | 1. Schneider EcoStruxure IT (~30%) · 2. Vertiv Trellis (~20%) · 3. Niche DCIM SaaS (nlyte, Sunbird) (~30%) · 4. In-house custom (~20%) | MEDIUM | Gartner DCIM market 2025 |\n| Environmental Sensor Array | 1. IP-addressed T/H sensors on BACnet/SNMP (~60%) · 2. Wireless sensor mesh (~25%) · 3. IPMI/BMC embedded sensors (~15%) | MEDIUM | DC monitoring hardware market |\n| Power Monitoring System | 1. Intelligent PDU telemetry (~60%) · 2. Panel-level power meters (~30%) · 3. Sub-rack power monitoring (~10%) | MEDIUM | MarketsandMarkets DC power 2025 |\n\n### L6H2 — Facilities Maintenance (H)\n\n| L5 | Alternatives | Confidence | Source |\n|---|---|---|---|\n| CMMS Platform | 1. ServiceNow / ServiceMax (~40%) · 2. IBM Maximo (~25%) · 3. Purpose-built FM SaaS (Corrigo, Fiix) (~35%) | MEDIUM | FM software market reports 2025 |\n| Diagnostic & Test Equipment | 1. Thermal imaging cameras (~40%) · 2. Power quality analyzers (~35%) · 3. Vibration sensors / alignment tools (~25%) | LOW | Expert inference |\n\n### L6H3 — Compliance & Auditing (H)\n\n| L5 | Alternatives | Confidence | Source |\n|---|---|---|---|\n| SIEM & Audit Log Platform | 1. Splunk Enterprise Security (~35%) · 2. IBM QRadar (~20%) · 3. Microsoft Sentinel (~30%) · 4. Open-source SIEM (~15%) | MEDIUM | Gartner SIEM MQ 2025; SOC 2 CC7.2 requirement |\n| GRC / Compliance Platform | 1. ServiceNow GRC (~35%) · 2. Archer (~20%) · 3. Dedicated GRC SaaS (LogicGate, Vanta) (~30%) · 4. Manual spreadsheet (~15% declining) | MEDIUM | GRC market reports; ISO 27001 transition deadline Oct 2025 [[SRC: ISO 27001:2022 mandatory after Oct 2025]] |\n\n### L6H4 — Fire Suppression & Life Safety (H)\n\n| L5 | Alternatives | Confidence | Source |\n|---|---|---|---|\n| Clean Agent Suppression | 1. FM-200 / HFC-227ea (~40%) · 2. Novec 1230 (~30%) · 3. Inergen / inert gas blend (~20%) · 4. CO₂ (legacy, declining) (~10%) | MEDIUM | NFPA 2001; DC fire suppression market surveys |\n| Early Warning Smoke Detection | 1. VESDA aspirating (ASD) (~55%) · 2. Addressable ionization/optical detector (~35%) · 3. Beam detector (~10%) | MEDIUM | DC fire safety standards; Xtralis VESDA market position |\n| Sprinkler System | 1. Pre-action dry pipe (~60%) · 2. Wet pipe (non-server areas only) (~25%) · 3. Deluge (generator room) (~15%) | HIGH | NFPA 13 / FM Global data center sprinkler standards |\n\n---"
+    },
+    {
+      "title": "Phase 1 — A.4: Output Type Activation Matrix",
+      "content": "Output types = primary service models delivered under NAICS 518210.\n\n| L6 Step | Colocation | Hyperscale Cloud | Edge / Micro DC | Managed Hosting |\n|---|---|---|---|---|\n| L6a Power Supply | x | x | x | x |\n| L6b Cooling | x | x | x | x |\n| L6c Physical Infrastructure | x | x | x | x |\n| L6d Physical Security | x | x | x | x |\n| L6e Network Connectivity | x | x | x | x |\n| L6f IT Infrastructure Ops | — | x | — | x |\n| L6H1 DCIM & Monitoring | x | x | x | x |\n| L6H2 Facilities Maintenance | x | x | x | x |\n| L6H3 Compliance & Auditing | x | x | — | x |\n| L6H4 Fire Suppression | x | x | x | x |\n\n> **Column read:** Edge / Micro DC skips L6f (no managed compute — edge nodes are pre-configured appliances, not operated by DC staff) and typically lacks formal compliance auditing frameworks.\n> **Row read:** L6d Physical Security and L6H4 Fire Suppression are the only steps that activate universally — every DC type must comply with physical security and fire safety mandates regardless of service model. Emergency Exit Door Monitoring lives in L6d → universal activation.\n\n---"
+    },
+    {
+      "title": "Phase 2 — 04a: L4 Fill (≥ 3 L4 per L5)",
+      "content": "Critical branches fully decomposed. Emergency Exit Door Monitoring branch prioritized.\n\n### L6d — Emergency Exit Door Monitoring ⟵ Türwächter fits here as L4[1]\n\n| L4 | Description |\n|---|---|\n| **Door Guardian Alarm Unit** | Mechanical guard housing mounted over door handle; triggers 95 dB alarm on 45° rotation; battery-powered; mechanical alarm operates at 0 V. **← Türwächter (GfS Exit Control 179/1125)** |\n| Wireless Event Transmitter | 868 MHz / BLE / LoRaWAN radio module embedded in guard; broadcasts guard-state and alarm events to receiver upon trigger or state change |\n| IP Gateway / Protocol Bridge | Converts RF door events to IP (REST/SNMP/BACnet-IP); required for integration with DC security platforms and SOC dashboards; addresses C6 EasyWave lock-in constraint |\n| Key Override Cylinder | Profile half-cylinder or high-security keyed cylinder for authorized personnel bypass without triggering alarm; critical for data center maintenance operations |\n\n### L6d — Biometric Access Control\n\n| L4 | Description |\n|---|---|\n| Biometric Reader | Fingerprint/iris/face capture device at door; verifies enrolled identity in <2 s |\n| Door Controller / Edge Module | Edge device governing lock release, audit log generation, and alarm output; stores local access policies for offline operation |\n| Physical Access Control Server (PACS) | Central identity directory, access policy engine, and tamper-evident audit log store; SOC 2 CC6.2 / ISO 27001 A.7.3 requirement |\n| Locking Mechanism | EM lock, electric strike, or electric bolt; fail-safe release on power loss (compliant with EN 13637 / NFPA 101) |\n\n### L6d — CCTV & Video Analytics\n\n| L4 | Description |\n|---|---|\n| IP Fixed / PTZ Camera | 4K surveillance camera at perimeter, lobby, cage, row, and exit points; tamper-detection output |\n| Network Video Recorder (NVR) | Video storage with ≥90-day retention; indexed for compliance audit access |\n| Video Analytics Engine | Tailgating, loitering, and forced-door detection algorithms; triggers SOC alert in real time |\n| Video Management Software (VMS) | Operator dashboard for live view, playback, and alert management; integrates with PACS for correlated events |\n\n### L6a — UPS System\n\n| L4 | Description |\n|---|---|\n| Battery Module | VRLA (62% installed base) or Li-ion cells; primary energy storage; target runtime 5–15 min to bridge to generator |\n| Inverter / Rectifier Assembly | AC/DC and DC/AC conversion; maintains output voltage during utility disturbance |\n| Static Bypass Switch | Maintenance bypass isolating UPS from critical load path without outage; required for scheduled maintenance |\n| UPS Controller / BMS | Monitors battery state-of-health (SOH) and state-of-charge (SOC); communicates status to DCIM; triggers early-warning alarms |\n\n### L6b — Chiller Plant\n\n| L4 | Description |\n|---|---|\n| Compressor | Centrifugal or screw compressor; primary thermal lift; largest energy consumer in cooling chain |\n| Heat Exchanger (Evaporator/Condenser) | Chilled water and condenser water interface; transfers heat from IT load to condenser loop |\n| Variable Speed Drive (VSD) | Motor speed control for compressor and pump; enables part-load energy optimization (PUE benefit) |\n| Chiller Controller | PLC/DDC unit; optimizes compressor loading, free-cooling economizer switchover, and alarm management |\n\n### L6b — Liquid Cooling System\n\n| L4 | Description |\n|---|---|\n| Coolant Distribution Unit (CDU) | Pumps and heat exchangers distributing dielectric fluid or water directly to server heat sinks; primary active component |\n| Quick-Disconnect Server Manifold | Blind-mate connectors at rack level; enables hot-swap of servers without coolant spill |\n| Leak Detection Sensor | Point-of-use or rope-style leak sensor below raised floor and at manifold joints; triggers shutdown before coolant contacts electronics |\n\n### L6e — Cross-Connect Infrastructure\n\n| L4 | Description |\n|---|---|\n| Fiber Patch Panel | Physical termination point for fiber cross-connects; density ≥96 ports per 1U |\n| Optical Distribution Frame (ODF) | Organized termination for customer circuits; labeled for audit trail per colocation SLA |\n| Cross-Connect Order Management | Software layer tracking provisioned circuits, customer authorizations, and change requests; SOC 2 CC6.6 access change log |\n\n### L6H4 — Clean Agent Suppression\n\n| L4 | Description |\n|---|---|\n| Agent Storage Cylinder | Pressurized FM-200/Novec/Inergen cylinder; sized per protected zone volume per NFPA 2001 |\n| Detection Control Panel | Dual-detector (smoke + heat) pre-discharge alarm; two-sensor cross-zone prevents false discharge |\n| Discharge Nozzle | Fixed nozzle array distributing agent uniformly across protected volume within 10 s of activation |\n\n### Remaining L5 nodes (≥ 2 L4 each)\n\n| L5 | L4 — 1 | L4 — 2 | L4 — 3 |\n|---|---|---|---|\n| Medium Voltage Switchgear | Circuit Breaker | Busbar Assembly | Protection Relay |\n| Transformer | Primary / Secondary Windings | Cooling Radiator | Tap Changer |\n| Emergency Diesel Generator | Engine Block & Fuel System | Alternator | Governor / Auto-Start Controller |\n| Automatic Transfer Switch | Transfer Mechanism | Control & Sensing Module | Manual Bypass |\n| Power Distribution Unit | Circuit Breaker Strip | Current Transducer (per outlet) | Remote Management Card |\n| Cooling Tower | Fill Media | Drift Eliminator | Basin & Sump |\n| Room Air Handler (CRAH) | Fan Assembly | Water Coil / DX Coil | Variable Frequency Drive (VFD) |\n| Hot/Cold Aisle Containment | Containment Panels | Rack Blanking Panels | Door Seal & Brush Strip |\n| Server Rack & Cabinet | Mounting Rails | Power Strip (basic PDU) | Cable Management Arm |\n| Structured Cabling | Fiber Optic Trunk Cable | Patch Panel Module | Cable Tray / Ladder Rack |\n| Floor Infrastructure | Raised Floor Tile | Underfloor Air Plenum Seal | Cable Cut-Out Grommet |\n| Cage & Compartment Barrier | Mesh Panel | Locking Cage Door | Cage Key Management |\n| Perimeter Security | Anti-Ram Bollard | Fence / Wall | Perimeter Camera Mount |\n| Security Mantrap / Interlock | Motorized Door Assembly | Interlock Controller | Audio / Video Intercom |\n| SOC Infrastructure | Operator Workstation | Multi-Screen Video Wall | Alarm Management Console |\n| DCIM Software Platform | Asset & Capacity Module | Power Analytics Dashboard | API Integration Layer |\n| Environmental Sensor Array | Temperature / Humidity Probe | Sensor Hub / Concentrator | Alert Threshold Manager |\n| Power Monitoring System | Branch Circuit Monitor | Energy Meter | Reporting Engine |\n| CMMS Platform | Work Order Engine | PM Scheduling Module | Parts Inventory Tracker |\n| Diagnostic & Test Equipment | Thermal Camera | Power Quality Analyzer | Battery Test Set |\n| SIEM & Audit Log Platform | Log Collector / Forwarder | Correlation Engine | Incident Case Manager |\n| GRC / Compliance Platform | Control Register | Evidence Repository | Audit Workflow Engine |\n| Early Warning Smoke Detection | Aspirating Pipe Network | Sampling Head / Detector | VESDA Control Panel |\n| Sprinkler System | Sprinkler Head | Pre-Action Valve | Water Flow Switch |\n| Compute Servers | CPU / GPU Module | Memory / DIMM | Storage NVMe Drive |\n| Storage Arrays | NVMe Flash Module | Storage Controller | Cache Battery Backup |\n| Network Switching | ASIC / Line Card | Port Module (400G/800G) | Switch Management Module |\n| Fiber Termination | Fiber Splice Enclosure | ODF / Patch Panel | Signal Amplifier (EDFA) |\n| DDoS & Traffic Scrubbing | Scrubbing Appliance | Traffic Steering Router | Reporting / Analytics |\n\n---"
+    },
+    {
+      "title": "Phase 2 — 04b: Completeness Check",
+      "content": "| Check Dimension | Present | Missing / Gap |\n|---|---|---|\n| Core process steps (L6) | L6a–L6f | L6g Asset Decommission / Data Destruction absent — low relevance to Türwächter; acceptable gap |\n| Horizontal functions | DCIM, Maintenance, Compliance, Fire | Site Utilities (water, backup connectivity, fuel logistics) absent as horizontal — relevant for large DCs; acceptable gap for Türwächter scope |\n| Emergency exit chain L5→L4 | ✓ complete (4 L4 nodes) | — |\n| Physical security regulatory chain | ✓ L6d with SIEM/GRC in L6H3 | SOC 2 CC6.4 physical security evidence log → confirmed in SIEM L4 |\n| Power redundancy coverage | ✓ L6a with all major components | BESS (Battery Energy Storage System) growing segment absent; add as optional L5 under L6a |\n| AI / high-density cooling | ✓ Liquid Cooling L5 | Immersion cooling specifics minimal; acceptable for VN scope |\n| Compliance frameworks | SOC 2, ISO 27001 referenced | HIPAA, PCI-DSS physical addenda not explicitly modeled; in scope of GRC platform |\n\n> **is_complete:** false (soft) | **completeness_score:** 0.84 | Missing: Battery Energy Storage System (L5 under L6a); Site Utilities horizontal; Asset Decommission L6.\n\n---"
+    },
+    {
+      "title": "Phase 2 — 04c: Naming Review",
+      "content": "| Current Name | Action | Reason |\n|---|---|---|\n| IP Gateway / Protocol Bridge | Keep | Industry term for RF-to-IP bridging; used in building automation and DC security integration contexts |\n| Physical Access Control Server (PACS) | Shorten to \"PACS Backend\" in JSON | \"Physical Access Control Server\" is correct domain term; parenthetical in doc only |\n| Coolant Distribution Unit (CDU) | Keep — drop \"(CDU)\" in JSON | CDU is the domain-standard abbreviation; Schneider, Vertiv, and Emerson all use it |\n| Optical Distribution Frame (ODF) | Keep | IEC/TIA-942 standard term; universally recognized in DC cabling |\n| VESDA Control Panel | Keep | VESDA (Very Early Smoke Detection Apparatus) is the industry-standard generic term for aspirating detectors |\n| Door Guardian Alarm Unit | Keep | Functional category name, not brand; consistent with other VN documents in this project |\n\nNo renames required. All names pass three-question test:\n1. Commonly used in industry? ✓\n2. Removing \"system\"/\"module\" keeps meaning? ✓ (already minimal)\n3. Domain expert recognizes immediately? ✓\n\n---"
+    },
+    {
+      "title": "Phase 2 — 04d: Structural Validation (Deterministic)",
+      "content": "| Check | Status | Notes |\n|---|---|---|\n| Valid levels | PASS | All units use L7, L6, L5, or L4 only |\n| No orphan nodes | PASS | Every non-L7 unit references a valid parent |\n| Valid transitions | PASS | L7→L6→L5→L4 only; no level skipping; service NAICS does not require L6a sub-SoS groupings |\n| L4 children per L5 ≥ 2 | PASS | All L5 nodes have ≥ 3 L4 children (critical branches) or ≥ 2 (remaining table) |\n| Unit count | ~90 units | Above 20–40 soft target; justified by data center complexity (10 L6 nodes × 3–6 L5 each + L4 fill); within extended acceptable range |\n\n---"
+    },
+    {
+      "title": "Türwächter VN Anchor",
+      "content": "| Field | Value |\n|---|---|\n| **VN Anchor Level** | L4 |\n| **L4 Node** | Door Guardian Alarm Unit |\n| **Parent L5** | Emergency Exit Door Monitoring |\n| **Parent L6** | Physical Security & Access Control (L6d) |\n| **CFJ Contribution** | Fulfills the fire-code compliance and SOC 2 CC6.4 sub-job within L6d: ensuring emergency exit doors generate an audit-ready access-event log while remaining instantaneously usable for evacuation under all power conditions |\n| **Output types served** | Universal — all 4 data center output types require L6d Physical Security |\n| **Architecture distance** | 3 (MEDIUM) — physical fit is good (standard server room doors); primary barrier is C6 (EasyWave proprietary protocol; DCs expect REST/SNMP/BACnet-IP) and C3 (RF signal attenuation through server racks and shielded rooms) |\n\n### Constraint Overlay (data center specific)\n\n| Constraint | Impact in this market | Mitigation |\n|---|---|---|\n| C6 EasyWave Protocol Lock-In | **Primary barrier** — Data centers mandate IP-native, API-first integration with PACS/SIEM platforms. EasyWave to IP bridging required (IP Gateway L4 node above) | GfS wireless BUS gateway + IP converter; REST API adapter layer |\n| C3 Wireless Range | Metal server racks and shielded rooms (Faraday cage effect) attenuate 868 MHz. Typical DC aisles are <30 m but RF propagation is degraded | Repeaters + antenna placement at aisle ends; site RF survey required |\n| C5 Surface Mount | Acceptable — server room doors are standard commercial doors; aesthetic constraint does not apply | No action needed |\n| C8 GDPR | Door-event timestamps logged to SIEM create compliance data records; EU DC operators need DPA in place | DPA with SIEM provider; data minimization (no personnel identity in event log) |\n| C2 Mechanical Alarm Independence | **Pre-satisfied** — Battery-operated mechanical alarm continues during DC power events when emergency exits are most critical; this is a selling point, not a risk | Highlight as key differentiator vs. mains-powered exit controllers |\n\n### Competitive Position at L5 (Emergency Exit Door Monitoring)\n\n| Alternative | Share est. | Türwächter advantage | Türwächter disadvantage |\n|---|---|---|---|\n| Wired electronic exit alarm, alarm-panel-integrated | ~50% | No wiring required; retrofit-ready; battery fail-safe | Protocol lock-in vs. IP-native wired solutions |\n| Wireless IoT door alarm guard (Türwächter category) | ~30% | Dual-standard (EN 179 + EN 1125); mechanical fail-safe; 95 dB | EasyWave vs. BACnet/IP gap; surface mount only |\n| Mechanical-only door prop alarm | ~20% | Full compliance logging + remote monitoring vs. no monitoring | Higher cost; requires IP gateway for DC compliance |\n\n---"
+    },
+    {
+      "title": "QA Checklist",
+      "content": "| # | Check | Status | Notes |\n|---|---|---|---|\n| Q1 | CFJ is industry-level | PASS | \"Deliver continuous, secure, and compliant compute, storage, and network capacity…\" — no product or technology reference |\n| Q2 | No orphan nodes | PASS | All units reference valid parents |\n| Q3 | Valid level transitions | PASS | L7→L6→L5→L4 only; no skipping |\n| Q4 | L4 children per L5 ≥ 2 | PASS | Critical branches ≥ 3; all remaining ≥ 2 |\n| Q5 | No solution-specific L7/L6 names | PASS | \"Data Center Infrastructure Ecosystem\" (L7); L6 names describe operational functions, not technologies |\n| Q6 | Three-question naming test (5 spot checks) | PASS | Door Guardian Alarm Unit, Coolant Distribution Unit, PACS Backend, VESDA Control Panel, Emergency Diesel Generator — all domain-standard |\n| Q7 | Unit count 15–60 | SOFT PASS | ~90 units; data center is an exceptionally multi-system industry; 10 L6 nodes justified by ISO/IEC 22237 (data center reference architecture); all units genuine |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"naics_code\": \"518210\",\n  \"naics_title\": \"Computing Infrastructure Providers, Data Processing, Web Hosting, and Related Services\",\n  \"cfj_statement\": \"Deliver continuous, secure, and compliant compute, storage, and network capacity to tenants and end users at contracted uptime and performance levels\",\n  \"l7_solution\": \"Data Center Infrastructure Ecosystem\",\n  \"units\": [\n    { \"name\": \"Data Center Infrastructure Ecosystem\", \"level\": \"L7\", \"description\": \"Moore 1993 ecosystem — the complete community of operators, suppliers, tenants, regulators, and carriers coordinated to deliver digital infrastructure services\", \"bom_standard\": \"Moore 1993\", \"parent_name\": \"ROOT\" },\n\n    { \"name\": \"Power Supply & Conditioning\", \"level\": \"L6\", \"description\": \"Transform and condition utility power to IT-grade uninterruptible supply at N+1 or 2N redundancy\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Data Center Infrastructure Ecosystem\" },\n    { \"name\": \"Cooling & Thermal Management\", \"level\": \"L6\", \"description\": \"Maintain IT equipment within operating temperature and humidity limits across all load densities\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Data Center Infrastructure Ecosystem\" },\n    { \"name\": \"Physical Infrastructure\", \"level\": \"L6\", \"description\": \"Provide secure, structured rack space, cabling, and floor systems for tenant equipment\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Data Center Infrastructure Ecosystem\" },\n    { \"name\": \"Physical Security & Access Control\", \"level\": \"L6\", \"description\": \"Control, monitor, and log physical access to all facility zones — perimeter, lobby, colo floor, cage, row, rack\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Data Center Infrastructure Ecosystem\" },\n    { \"name\": \"Network Connectivity & Cross-Connect\", \"level\": \"L6\", \"description\": \"Terminate diverse carrier connections and enable tenant-to-tenant and tenant-to-carrier cross-connects\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Data Center Infrastructure Ecosystem\" },\n    { \"name\": \"IT Infrastructure Operations\", \"level\": \"L6\", \"description\": \"Deploy, operate, and monitor compute, storage, and network equipment for managed workloads (hyperscale and managed hosting only)\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Data Center Infrastructure Ecosystem\" },\n    { \"name\": \"DCIM & Monitoring\", \"level\": \"L6\", \"description\": \"Horizontal — real-time visibility into PUE, power, temperature, and uptime across all core steps\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Data Center Infrastructure Ecosystem\" },\n    { \"name\": \"Facilities Maintenance & Engineering\", \"level\": \"L6\", \"description\": \"Horizontal — preventive and corrective maintenance across all power, cooling, and physical infrastructure\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Data Center Infrastructure Ecosystem\" },\n    { \"name\": \"Compliance & Auditing\", \"level\": \"L6\", \"description\": \"Horizontal — SOC 2, ISO 27001, PCI-DSS, GDPR compliance across all steps\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Data Center Infrastructure Ecosystem\" },\n    { \"name\": \"Fire Suppression & Life Safety\", \"level\": \"L6\", \"description\": \"Horizontal — fire detection and suppression protecting equipment and personnel across all zones\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Data Center Infrastructure Ecosystem\" },\n\n    { \"name\": \"Medium Voltage Switchgear\", \"level\": \"L5\", \"description\": \"Switches and protection gear for incoming medium-voltage utility feed; first point of power control\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Power Supply & Conditioning\" },\n    { \"name\": \"Transformer\", \"level\": \"L5\", \"description\": \"Steps utility voltage down to LV distribution level; dry-type or oil-immersed\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Power Supply & Conditioning\" },\n    { \"name\": \"UPS System\", \"level\": \"L5\", \"description\": \"Uninterruptible power supply maintaining clean power during utility disturbances; VRLA or Li-ion battery\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Power Supply & Conditioning\" },\n    { \"name\": \"Emergency Diesel Generator\", \"level\": \"L5\", \"description\": \"On-site generation providing runtime power after UPS bridge time; diesel or gas-powered\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Power Supply & Conditioning\" },\n    { \"name\": \"Automatic Transfer Switch\", \"level\": \"L5\", \"description\": \"Switches critical load between utility and generator within milliseconds on utility failure\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Power Supply & Conditioning\" },\n    { \"name\": \"Power Distribution Unit\", \"level\": \"L5\", \"description\": \"Rack- or floor-level distribution of conditioned power to servers; intelligent iPDU enables per-outlet monitoring\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Power Supply & Conditioning\" },\n\n    { \"name\": \"Chiller Plant\", \"level\": \"L5\", \"description\": \"Produces chilled water for CRAH cooling coils; centrifugal or magnetic bearing compressor\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Cooling & Thermal Management\" },\n    { \"name\": \"Cooling Tower / Dry Cooler\", \"level\": \"L5\", \"description\": \"Rejects condenser heat to atmosphere; evaporative or dry-cooler type\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Cooling & Thermal Management\" },\n    { \"name\": \"Room Air Handler\", \"level\": \"L5\", \"description\": \"CRAH/CRAC units distributing conditioned air within server halls; chilled water or DX coil\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Cooling & Thermal Management\" },\n    { \"name\": \"Liquid Cooling System\", \"level\": \"L5\", \"description\": \"Direct-to-chip or immersion cooling for high-density GPU/CPU racks; fastest-growing segment\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Cooling & Thermal Management\" },\n    { \"name\": \"Hot/Cold Aisle Containment\", \"level\": \"L5\", \"description\": \"Physical separation of hot and cold air streams to improve cooling efficiency and PUE\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Cooling & Thermal Management\" },\n\n    { \"name\": \"Server Rack & Cabinet\", \"level\": \"L5\", \"description\": \"Standardized 42U–48U open or enclosed frames for mounting tenant equipment\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Physical Infrastructure\" },\n    { \"name\": \"Structured Cabling\", \"level\": \"L5\", \"description\": \"Fiber and copper cabling infrastructure connecting racks to patch panels and network equipment\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Physical Infrastructure\" },\n    { \"name\": \"Floor Infrastructure\", \"level\": \"L5\", \"description\": \"Raised floor or slab-plus-overhead-tray system managing airflow and cable routing below/above racks\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Physical Infrastructure\" },\n    { \"name\": \"Cage & Compartment Barrier\", \"level\": \"L5\", \"description\": \"Wire mesh or solid panel partitions separating tenant cages within shared colo floor\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Physical Infrastructure\" },\n\n    { \"name\": \"Perimeter Security\", \"level\": \"L5\", \"description\": \"Anti-ram bollards, fencing, and perimeter intrusion detection forming the outermost physical security layer\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Physical Security & Access Control\" },\n    { \"name\": \"Biometric Access Control\", \"level\": \"L5\", \"description\": \"Multi-factor identity verification at all controlled entry points; fingerprint, iris, or facial recognition\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Physical Security & Access Control\" },\n    { \"name\": \"CCTV & Video Analytics\", \"level\": \"L5\", \"description\": \"Continuous surveillance with AI analytics for tailgating, loitering, and forced-door detection\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Physical Security & Access Control\" },\n    { \"name\": \"Security Mantrap / Interlock\", \"level\": \"L5\", \"description\": \"Airlock-style vestibule preventing tailgating between lobby and colo floor; mandatory in Tier III/IV DCs\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Physical Security & Access Control\" },\n    { \"name\": \"Emergency Exit Door Monitoring\", \"level\": \"L5\", \"description\": \"Detection and logging of emergency exit door activations for SOC 2 CC6.4 and ISO 27001 A.7.2 audit trails; battery-operated monitoring required for power-event coverage\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Physical Security & Access Control\" },\n    { \"name\": \"Security Operations Center\", \"level\": \"L5\", \"description\": \"Centralized console for guard staff monitoring all physical security feeds; on-site or remote managed service\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Physical Security & Access Control\" },\n\n    { \"name\": \"Carrier Fiber Termination\", \"level\": \"L5\", \"description\": \"Dark fiber or lit wavelength entry points from diverse carrier paths; minimum two geographically separate entries\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Network Connectivity & Cross-Connect\" },\n    { \"name\": \"Cross-Connect Infrastructure\", \"level\": \"L5\", \"description\": \"Fiber patch panels enabling tenant-to-tenant and tenant-to-carrier physical cross-connects\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Network Connectivity & Cross-Connect\" },\n    { \"name\": \"DDoS & Traffic Scrubbing\", \"level\": \"L5\", \"description\": \"On-premise or upstream mitigation of volumetric denial-of-service traffic protecting tenant network connectivity\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Network Connectivity & Cross-Connect\" },\n\n    { \"name\": \"Compute Servers\", \"level\": \"L5\", \"description\": \"Custom ODM or OEM servers delivering compute capacity for hyperscale or managed workloads\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"IT Infrastructure Operations\" },\n    { \"name\": \"Storage Arrays\", \"level\": \"L5\", \"description\": \"All-flash NVMe or hybrid storage systems; object storage nodes for unstructured data\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"IT Infrastructure Operations\" },\n    { \"name\": \"Network Switching\", \"level\": \"L5\", \"description\": \"Leaf-spine switching fabric using merchant silicon or custom ASICs; 400G/800G port speeds\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"IT Infrastructure Operations\" },\n\n    { \"name\": \"DCIM Software Platform\", \"level\": \"L5\", \"description\": \"Data Center Infrastructure Management platform providing real-time PUE, capacity, and asset visibility\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"DCIM & Monitoring\" },\n    { \"name\": \"Environmental Sensor Array\", \"level\": \"L5\", \"description\": \"Distributed temperature, humidity, and airflow sensors reporting to DCIM; BACnet/SNMP/Modbus protocols\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"DCIM & Monitoring\" },\n    { \"name\": \"Power Monitoring System\", \"level\": \"L5\", \"description\": \"Branch-circuit and panel-level power meters feeding real-time kW data to DCIM and tenant billing systems\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"DCIM & Monitoring\" },\n\n    { \"name\": \"CMMS Platform\", \"level\": \"L5\", \"description\": \"Computerized Maintenance Management System scheduling preventive maintenance and tracking work orders\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Facilities Maintenance & Engineering\" },\n    { \"name\": \"Diagnostic & Test Equipment\", \"level\": \"L5\", \"description\": \"Thermal cameras, power quality analyzers, and vibration sensors for predictive maintenance routines\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Facilities Maintenance & Engineering\" },\n\n    { \"name\": \"SIEM & Audit Log Platform\", \"level\": \"L5\", \"description\": \"Security Information and Event Management collecting and correlating physical and logical access logs; SOC 2 CC7.2 / ISO 27001 A.8.15 requirement\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Compliance & Auditing\" },\n    { \"name\": \"GRC Platform\", \"level\": \"L5\", \"description\": \"Governance, Risk, and Compliance platform managing control registers, evidence collection, and audit workflows\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Compliance & Auditing\" },\n\n    { \"name\": \"Clean Agent Suppression\", \"level\": \"L5\", \"description\": \"FM-200, Novec 1230, or Inergen total-flooding system protecting IT zones without water damage\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Fire Suppression & Life Safety\" },\n    { \"name\": \"Early Warning Smoke Detection\", \"level\": \"L5\", \"description\": \"VESDA aspirating or addressable detectors providing pre-fire detection before visible smoke\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Fire Suppression & Life Safety\" },\n    { \"name\": \"Sprinkler System\", \"level\": \"L5\", \"description\": \"Pre-action dry-pipe sprinklers in IT areas; wet pipe in non-IT mechanical areas; per NFPA 13 / FM Global\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Fire Suppression & Life Safety\" },\n\n    { \"name\": \"Door Guardian Alarm Unit\", \"level\": \"L4\", \"description\": \"Mechanical guard housing over door handle; 95 dB alarm on 45° rotation; battery-powered; mechanical alarm operates at 0 V — fail-safe for power events. GfS Exit Control 179/1125 (Türwächter)\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Emergency Exit Door Monitoring\" },\n    { \"name\": \"Wireless Event Transmitter\", \"level\": \"L4\", \"description\": \"868 MHz / BLE / LoRaWAN radio module broadcasting guard-state and alarm events to receiver upon trigger\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Emergency Exit Door Monitoring\" },\n    { \"name\": \"IP Gateway / Protocol Bridge\", \"level\": \"L4\", \"description\": \"Converts proprietary RF (EasyWave) door events to IP (REST/SNMP/BACnet-IP) for integration with PACS and SIEM platforms; addresses C6 protocol lock-in constraint for data center environments\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Emergency Exit Door Monitoring\" },\n    { \"name\": \"Key Override Cylinder\", \"level\": \"L4\", \"description\": \"Profile half-cylinder for authorized personnel bypass without triggering alarm; critical for DC maintenance access operations\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Emergency Exit Door Monitoring\" },\n\n    { \"name\": \"Biometric Reader\", \"level\": \"L4\", \"description\": \"Fingerprint/iris/face capture device at door; verifies enrolled identity in <2 s\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Biometric Access Control\" },\n    { \"name\": \"Door Controller / Edge Module\", \"level\": \"L4\", \"description\": \"Edge device governing lock release, audit log generation, and alarm output; stores local access policies for offline operation\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Biometric Access Control\" },\n    { \"name\": \"PACS Backend\", \"level\": \"L4\", \"description\": \"Central identity directory, access policy engine, and tamper-evident audit log store; SOC 2 CC6.2 / ISO 27001 A.7.3 requirement\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Biometric Access Control\" },\n    { \"name\": \"Locking Mechanism\", \"level\": \"L4\", \"description\": \"EM lock, electric strike, or electric bolt; fail-safe release on power loss per EN 13637 / NFPA 101\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Biometric Access Control\" },\n\n    { \"name\": \"IP Fixed / PTZ Camera\", \"level\": \"L4\", \"description\": \"4K surveillance camera at perimeter, lobby, cage row, and exit points; tamper-detection output\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"CCTV & Video Analytics\" },\n    { \"name\": \"Network Video Recorder\", \"level\": \"L4\", \"description\": \"Video storage with ≥90-day retention; indexed for compliance audit replay\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"CCTV & Video Analytics\" },\n    { \"name\": \"Video Analytics Engine\", \"level\": \"L4\", \"description\": \"Tailgating, loitering, and forced-door detection algorithms; real-time SOC alert trigger\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"CCTV & Video Analytics\" },\n    { \"name\": \"Video Management Software\", \"level\": \"L4\", \"description\": \"Operator dashboard for live view, playback, and alert management; integrates with PACS for correlated events\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"CCTV & Video Analytics\" },\n\n    { \"name\": \"Battery Module\", \"level\": \"L4\", \"description\": \"VRLA or Li-ion cells; energy storage for UPS bridge time (5–15 min); 62% installed base VRLA, Li-ion growing at 8.29% CAGR\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"UPS System\" },\n    { \"name\": \"Inverter / Rectifier Assembly\", \"level\": \"L4\", \"description\": \"AC/DC and DC/AC conversion maintaining output voltage during utility disturbance\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"UPS System\" },\n    { \"name\": \"Static Bypass Switch\", \"level\": \"L4\", \"description\": \"Maintenance bypass isolating UPS from critical load path without outage\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"UPS System\" },\n    { \"name\": \"UPS Controller / BMS\", \"level\": \"L4\", \"description\": \"Monitors battery SOH and SOC; communicates to DCIM; triggers early-warning alarms\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"UPS System\" },\n\n    { \"name\": \"Compressor\", \"level\": \"L4\", \"description\": \"Centrifugal or screw compressor providing thermal lift; largest energy consumer in cooling chain\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Chiller Plant\" },\n    { \"name\": \"Heat Exchanger\", \"level\": \"L4\", \"description\": \"Evaporator and condenser coil transferring heat between chilled water and condenser loops\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Chiller Plant\" },\n    { \"name\": \"Variable Speed Drive\", \"level\": \"L4\", \"description\": \"Motor speed control enabling part-load energy optimization and PUE improvement\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Chiller Plant\" },\n    { \"name\": \"Chiller Controller\", \"level\": \"L4\", \"description\": \"PLC/DDC optimizing compressor loading and economizer switchover\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Chiller Plant\" },\n\n    { \"name\": \"Coolant Distribution Unit\", \"level\": \"L4\", \"description\": \"Pump and heat exchanger distributing dielectric fluid or water directly to server heat sinks\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Liquid Cooling System\" },\n    { \"name\": \"Quick-Disconnect Server Manifold\", \"level\": \"L4\", \"description\": \"Blind-mate connectors at rack level enabling hot-swap of servers without coolant spill\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Liquid Cooling System\" },\n    { \"name\": \"Leak Detection Sensor\", \"level\": \"L4\", \"description\": \"Point-of-use or rope-style leak sensor below raised floor and at manifold joints; triggers shutdown before coolant contacts electronics\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Liquid Cooling System\" },\n\n    { \"name\": \"Fiber Patch Panel\", \"level\": \"L4\", \"description\": \"Physical termination point for fiber cross-connects; ≥96 ports per 1U\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Cross-Connect Infrastructure\" },\n    { \"name\": \"Optical Distribution Frame\", \"level\": \"L4\", \"description\": \"Organized fiber termination for customer circuits; labeled per colocation SLA requirements\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Cross-Connect Infrastructure\" },\n    { \"name\": \"Cross-Connect Order Management\", \"level\": \"L4\", \"description\": \"Software tracking provisioned circuits, customer authorizations, and change requests; SOC 2 CC6.6 access change log\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Cross-Connect Infrastructure\" },\n\n    { \"name\": \"Agent Storage Cylinder\", \"level\": \"L4\", \"description\": \"Pressurized FM-200/Novec/Inergen cylinder sized per protected zone volume per NFPA 2001\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Clean Agent Suppression\" },\n    { \"name\": \"Detection Control Panel\", \"level\": \"L4\", \"description\": \"Dual-detector pre-discharge alarm panel; two-sensor cross-zone prevents false discharge\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Clean Agent Suppression\" },\n    { \"name\": \"Discharge Nozzle\", \"level\": \"L4\", \"description\": \"Fixed nozzle array distributing agent uniformly within protected volume in ≤10 s of activation\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Clean Agent Suppression\" }\n  ]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "NAICS Code",
+          "Value": "518210"
+        },
+        {
+          "Field": "NAICS Title",
+          "Value": "Computing Infrastructure Providers, Data Processing, Web Hosting, and Related Services"
+        },
+        {
+          "Field": "NAICS Sector",
+          "Value": "51 — Information"
+        },
+        {
+          "Field": "Industry Type",
+          "Value": "Service"
+        },
+        {
+          "Field": "Process VN",
+          "Value": "YES"
+        },
+        {
+          "Field": "Product BOM",
+          "Value": "NO (service NAICS — output is compute/storage/network capacity, not a physical product)"
+        },
+        {
+          "Field": "Architecture Distance",
+          "Value": "3 — MEDIUM (from 05_market_discovery §Rank10)"
+        },
+        {
+          "Field": "Market Priority",
+          "Value": "MEDIUM"
+        },
+        {
+          "Field": "Physical Security Market (global, 2025)",
+          "Value": "~$9.3B [[SRC: Grand View Research 2025]]"
+        },
+        {
+          "Field": "Access Control Market (global, →2030)",
+          "Value": "$1.55B→$2.53B at 10.2% CAGR [[SRC: MarketsandMarkets 2025]]"
+        },
+        {
+          "Field": "Data Center Power Market (global, 2025)",
+          "Value": "~$35.1B [[SRC: MarketsandMarkets 2025]]"
+        },
+        {
+          "Field": "Data Center Cooling Market (global, 2025)",
+          "Value": "~$11.5B [[SRC: Data Bridge Market Research 2025]]"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Name",
+        "Job Family",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "ID": "L6a",
+          "Name": "Power Supply & Conditioning",
+          "Job Family": "Transform and condition utility power to IT-grade uninterruptible supply at N+1 or 2N redundancy",
+          "Notes": "Entry point of every DC value chain; no IT can operate without it"
+        },
+        {
+          "ID": "L6b",
+          "Name": "Cooling & Thermal Management",
+          "Job Family": "Maintain IT equipment within operating temperature and humidity limits across all load densities",
+          "Notes": "Rising importance with AI/GPU workloads driving kW/rack from 7 kW to 100+ kW"
+        },
+        {
+          "ID": "L6c",
+          "Name": "Physical Infrastructure",
+          "Job Family": "Provide secure, structured rack space, cabling, and floor systems for tenant equipment",
+          "Notes": "Colocation-specific; defines deployable capacity"
+        },
+        {
+          "ID": "L6d",
+          "Name": "Physical Security & Access Control",
+          "Job Family": "Control, monitor, and log physical access to all facility zones (perimeter → cage → rack)",
+          "Notes": "**Primary step where Emergency Exit Door Monitoring sits**"
+        },
+        {
+          "ID": "L6e",
+          "Name": "Network Connectivity & Cross-Connect",
+          "Job Family": "Terminate diverse carrier connections; enable tenant-to-tenant and tenant-to-carrier cross-connects",
+          "Notes": "Carrier-neutral DCs differentiate here"
+        },
+        {
+          "ID": "L6f",
+          "Name": "IT Infrastructure Operations",
+          "Job Family": "Deploy, operate, and monitor compute, storage, and network equipment for managed workloads",
+          "Notes": "Hyperscale and managed hosting only; skipped in pure-colo output type"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Name (H)",
+        "Runs Across",
+        "Distinction from Core"
+      ],
+      "rows": [
+        {
+          "ID": "L6H1",
+          "Name (H)": "DCIM & Monitoring (H)",
+          "Runs Across": "All L6 core steps",
+          "Distinction from Core": "Does not produce capacity — enables real-time visibility into PUE, power, temperature, and uptime across all core steps"
+        },
+        {
+          "ID": "L6H2",
+          "Name (H)": "Facilities Maintenance & Engineering (H)",
+          "Runs Across": "All L6 core steps",
+          "Distinction from Core": "Preventive and corrective maintenance across power, cooling, physical infra; required for all core steps to remain operational"
+        },
+        {
+          "ID": "L6H3",
+          "Name (H)": "Compliance & Auditing (H)",
+          "Runs Across": "All L6 core steps",
+          "Distinction from Core": "SOC 2, ISO 27001, PCI-DSS, GDPR — does not produce capacity but without it no core step can operate legally for regulated tenants"
+        },
+        {
+          "ID": "L6H4",
+          "Name (H)": "Fire Suppression & Life Safety (H)",
+          "Runs Across": "All L6 core steps",
+          "Distinction from Core": "Fire detection and suppression protecting equipment and personnel across all zones; cannot be skipped or the facility cannot be occupied"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Medium Voltage Switchgear",
+          "Alternatives": "1. AIS air-insulated (~60%) · 2. GIS gas-insulated (~30%) · 3. Ring main unit (~10%)",
+          "Confidence": "MEDIUM",
+          "Source": "Siemens/ABB DC power white papers"
+        },
+        {
+          "L5": "Transformer",
+          "Alternatives": "1. Dry-type step-down (~60%) · 2. Oil-immersed (~30%) · 3. Cast resin (~10%)",
+          "Confidence": "MEDIUM",
+          "Source": "Electrical market surveys"
+        },
+        {
+          "L5": "UPS System",
+          "Alternatives": "1. Static VRLA (~62%) · 2. Static Li-ion (~25%) · 3. Rotary/diesel UPS (~8%) · 4. Flywheel UPS (~5%)",
+          "Confidence": "HIGH",
+          "Source": "MarketsandMarkets 2025; Precedence Research [[SRC: VRLA 62% / Li-ion ~25% as of 2025; Li-ion CAGR 8.29%]]"
+        },
+        {
+          "L5": "Emergency Diesel Generator",
+          "Alternatives": "1. Diesel reciprocating (~85%) · 2. Natural gas (~10%) · 3. HVO/biodiesel (~5% growing)",
+          "Confidence": "MEDIUM",
+          "Source": "Generator industry reports 2025"
+        },
+        {
+          "L5": "Automatic Transfer Switch",
+          "Alternatives": "1. Static ATS (~55%) · 2. Mechanical ATS (~35%) · 3. Bypass-isolation ATS (~10%)",
+          "Confidence": "MEDIUM",
+          "Source": "Eaton/Schneider market briefs"
+        },
+        {
+          "L5": "Power Distribution Unit (PDU)",
+          "Alternatives": "1. Intelligent iPDU (~55%) · 2. Basic metered PDU (~30%) · 3. Overhead busway distribution (~15%)",
+          "Confidence": "MEDIUM",
+          "Source": "MarketsandMarkets DC power 2025 [[SRC: UPS+PDU ≈60% of DC power revenue]]"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Chiller Plant",
+          "Alternatives": "1. Water-cooled centrifugal (~50%) · 2. Air-cooled chiller (~30%) · 3. Magnetic bearing centrifugal (~20%)",
+          "Confidence": "MEDIUM",
+          "Source": "Mordor Intelligence cooling 2025"
+        },
+        {
+          "L5": "Cooling Tower / Dry Cooler",
+          "Alternatives": "1. Open evaporative cooling tower (~55%) · 2. Dry cooler/fluid cooler (~30%) · 3. Hybrid adiabatic (~15%)",
+          "Confidence": "MEDIUM",
+          "Source": "Arizton market report 2025"
+        },
+        {
+          "L5": "Room Air Handler (CRAH/CRAC)",
+          "Alternatives": "1. CRAH with chilled water (~55%) · 2. DX precision CRAC (~30%) · 3. In-row cooling (~15%)",
+          "Confidence": "HIGH",
+          "Source": "Air-based cooling ~40% share of DC thermal market in 2024 [[SRC: Precedence Research 2025]]"
+        },
+        {
+          "L5": "Liquid Cooling System",
+          "Alternatives": "1. CDU / direct-to-chip manifold (~40%) · 2. Rear-door heat exchanger (~38%) · 3. Full immersion tank (~22%)",
+          "Confidence": "HIGH",
+          "Source": "DLC ~38.4% of liquid cooling market in 2025 [[SRC: Straits Research 2025]]; fastest-growing segment"
+        },
+        {
+          "L5": "Hot/Cold Aisle Containment",
+          "Alternatives": "1. Hot aisle containment (~45%) · 2. Cold aisle containment (~35%) · 3. Full chimney/cage containment (~20%)",
+          "Confidence": "MEDIUM",
+          "Source": "ASHRAE DC cooling guidelines; industry reports"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Server Rack & Cabinet",
+          "Alternatives": "1. Standard 42U/45U open rack (~65%) · 2. Enclosed security cabinet (~25%) · 3. OCP Open Rack v3 (~10% growing)",
+          "Confidence": "MEDIUM",
+          "Source": "Hyperscale DC deployment surveys"
+        },
+        {
+          "L5": "Structured Cabling",
+          "Alternatives": "1. Multi-mode fiber OM4/OM5 (~35%) · 2. Single-mode fiber OS2 (~35%) · 3. Copper Cat 6A (~30%)",
+          "Confidence": "MEDIUM",
+          "Source": "TIA-942 cabling standards; industry surveys"
+        },
+        {
+          "L5": "Floor Infrastructure",
+          "Alternatives": "1. Raised floor system (~55%) · 2. Slab with overhead cable trays (~30%) · 3. Hybrid raised+overhead (~15%)",
+          "Confidence": "MEDIUM",
+          "Source": "Uptime Institute DC design survey"
+        },
+        {
+          "L5": "Cage & Compartment Barrier",
+          "Alternatives": "1. Modular wire cage barriers (~60%) · 2. Solid panel partitions (~25%) · 3. Permanent concrete/drywall walls (~15%)",
+          "Confidence": "LOW",
+          "Source": "Expert inference from colo facility design practice"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Perimeter Security",
+          "Alternatives": "1. Anti-ram bollards + CCTV perimeter (~50%) · 2. Fenced perimeter + patrol (~30%) · 3. Integrated PIDS (perimeter intrusion detection) (~20%)",
+          "Confidence": "MEDIUM",
+          "Source": "Grand View Research physical security 2025"
+        },
+        {
+          "L5": "Biometric Access Control",
+          "Alternatives": "1. Fingerprint/hand geometry readers (~55%) · 2. Facial recognition (~25%) · 3. Iris/vein biometrics (~20%)",
+          "Confidence": "MEDIUM",
+          "Source": "MarketsandMarkets DC access control 2025 [[SRC: $1.55B→$2.53B market, CAGR 10.2%]]"
+        },
+        {
+          "L5": "CCTV & Video Analytics",
+          "Alternatives": "1. IP fixed camera + NVR (~50%) · 2. AI-analytics VSaaS (~30%) · 3. PTZ cameras + VMS (~20%)",
+          "Confidence": "MEDIUM",
+          "Source": "Data center physical security market surveys"
+        },
+        {
+          "L5": "Security Mantrap / Interlock",
+          "Alternatives": "1. Motorized mantrap vestibule (~60%) · 2. Electronic airlocked vestibule (~30%) · 3. Staffed checkpoint (~10%)",
+          "Confidence": "LOW",
+          "Source": "Expert inference from DC security design standards"
+        },
+        {
+          "L5": "**Emergency Exit Door Monitoring** ← Türwächter L5",
+          "Alternatives": "1. Wired electronic exit alarm, alarm-panel-integrated (~50%) · 2. **Wireless IoT door alarm guard (~30%)** ← Türwächter category · 3. Mechanical-only door prop/handle alarm (~20%)",
+          "Confidence": "LOW",
+          "Source": "No published DC-specific sub-segment data; inference from physical security market structure [[SRC: 05_market_discovery §Rank10]]"
+        },
+        {
+          "L5": "Security Operations Center (SOC)",
+          "Alternatives": "1. On-site guard station + console (~50%) · 2. Remote SOC managed service (~35%) · 3. Hybrid on-site + remote (~15%)",
+          "Confidence": "LOW",
+          "Source": "Industry practice; DC security RFP standards"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Carrier Fiber Termination",
+          "Alternatives": "1. Dark fiber (~40%) · 2. Wavelength/lit services (~35%) · 3. IP transit / MPLS (~25%)",
+          "Confidence": "MEDIUM",
+          "Source": "Carrier-neutral DC market reports"
+        },
+        {
+          "L5": "Cross-Connect Infrastructure",
+          "Alternatives": "1. Fiber patch panel cross-connect (~60%) · 2. Virtual cross-connect (VC) (~25%) · 3. Copper cross-connect (~15%)",
+          "Confidence": "MEDIUM",
+          "Source": "Equinix, Digital Realty interconnection pricing structures"
+        },
+        {
+          "L5": "DDoS & Traffic Scrubbing",
+          "Alternatives": "1. Upstream provider scrubbing (~50%) · 2. On-premise scrubbing appliance (~35%) · 3. BGP blackhole-only (~15%)",
+          "Confidence": "LOW",
+          "Source": "Expert inference"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Compute Servers",
+          "Alternatives": "1. Custom ODM/JDM (~55%) · 2. OEM branded (Dell, HPE, Lenovo) (~30%) · 3. ARM-based (~15% growing)",
+          "Confidence": "MEDIUM",
+          "Source": "Hyperscale capex disclosures; IDC server market 2025"
+        },
+        {
+          "L5": "Storage Arrays",
+          "Alternatives": "1. All-flash NVMe (~50%) · 2. Hybrid flash/HDD (~30%) · 3. Object storage nodes (~20%)",
+          "Confidence": "MEDIUM",
+          "Source": "IDC storage market 2025"
+        },
+        {
+          "L5": "Network Switching",
+          "Alternatives": "1. Merchant silicon (Broadcom Tomahawk/Tofino) (~45%) · 2. Custom ASIC (Arista, Cisco NX-OS) (~40%) · 3. Incumbent OEM bundled (~15%)",
+          "Confidence": "MEDIUM",
+          "Source": "Ethernet Alliance; DC networking reports"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "DCIM Software Platform",
+          "Alternatives": "1. Schneider EcoStruxure IT (~30%) · 2. Vertiv Trellis (~20%) · 3. Niche DCIM SaaS (nlyte, Sunbird) (~30%) · 4. In-house custom (~20%)",
+          "Confidence": "MEDIUM",
+          "Source": "Gartner DCIM market 2025"
+        },
+        {
+          "L5": "Environmental Sensor Array",
+          "Alternatives": "1. IP-addressed T/H sensors on BACnet/SNMP (~60%) · 2. Wireless sensor mesh (~25%) · 3. IPMI/BMC embedded sensors (~15%)",
+          "Confidence": "MEDIUM",
+          "Source": "DC monitoring hardware market"
+        },
+        {
+          "L5": "Power Monitoring System",
+          "Alternatives": "1. Intelligent PDU telemetry (~60%) · 2. Panel-level power meters (~30%) · 3. Sub-rack power monitoring (~10%)",
+          "Confidence": "MEDIUM",
+          "Source": "MarketsandMarkets DC power 2025"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "CMMS Platform",
+          "Alternatives": "1. ServiceNow / ServiceMax (~40%) · 2. IBM Maximo (~25%) · 3. Purpose-built FM SaaS (Corrigo, Fiix) (~35%)",
+          "Confidence": "MEDIUM",
+          "Source": "FM software market reports 2025"
+        },
+        {
+          "L5": "Diagnostic & Test Equipment",
+          "Alternatives": "1. Thermal imaging cameras (~40%) · 2. Power quality analyzers (~35%) · 3. Vibration sensors / alignment tools (~25%)",
+          "Confidence": "LOW",
+          "Source": "Expert inference"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "SIEM & Audit Log Platform",
+          "Alternatives": "1. Splunk Enterprise Security (~35%) · 2. IBM QRadar (~20%) · 3. Microsoft Sentinel (~30%) · 4. Open-source SIEM (~15%)",
+          "Confidence": "MEDIUM",
+          "Source": "Gartner SIEM MQ 2025; SOC 2 CC7.2 requirement"
+        },
+        {
+          "L5": "GRC / Compliance Platform",
+          "Alternatives": "1. ServiceNow GRC (~35%) · 2. Archer (~20%) · 3. Dedicated GRC SaaS (LogicGate, Vanta) (~30%) · 4. Manual spreadsheet (~15% declining)",
+          "Confidence": "MEDIUM",
+          "Source": "GRC market reports; ISO 27001 transition deadline Oct 2025 [[SRC: ISO 27001:2022 mandatory after Oct 2025]]"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Clean Agent Suppression",
+          "Alternatives": "1. FM-200 / HFC-227ea (~40%) · 2. Novec 1230 (~30%) · 3. Inergen / inert gas blend (~20%) · 4. CO₂ (legacy, declining) (~10%)",
+          "Confidence": "MEDIUM",
+          "Source": "NFPA 2001; DC fire suppression market surveys"
+        },
+        {
+          "L5": "Early Warning Smoke Detection",
+          "Alternatives": "1. VESDA aspirating (ASD) (~55%) · 2. Addressable ionization/optical detector (~35%) · 3. Beam detector (~10%)",
+          "Confidence": "MEDIUM",
+          "Source": "DC fire safety standards; Xtralis VESDA market position"
+        },
+        {
+          "L5": "Sprinkler System",
+          "Alternatives": "1. Pre-action dry pipe (~60%) · 2. Wet pipe (non-server areas only) (~25%) · 3. Deluge (generator room) (~15%)",
+          "Confidence": "HIGH",
+          "Source": "NFPA 13 / FM Global data center sprinkler standards"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L6 Step",
+        "Colocation",
+        "Hyperscale Cloud",
+        "Edge / Micro DC",
+        "Managed Hosting"
+      ],
+      "rows": [
+        {
+          "L6 Step": "L6a Power Supply",
+          "Colocation": "x",
+          "Hyperscale Cloud": "x",
+          "Edge / Micro DC": "x",
+          "Managed Hosting": "x"
+        },
+        {
+          "L6 Step": "L6b Cooling",
+          "Colocation": "x",
+          "Hyperscale Cloud": "x",
+          "Edge / Micro DC": "x",
+          "Managed Hosting": "x"
+        },
+        {
+          "L6 Step": "L6c Physical Infrastructure",
+          "Colocation": "x",
+          "Hyperscale Cloud": "x",
+          "Edge / Micro DC": "x",
+          "Managed Hosting": "x"
+        },
+        {
+          "L6 Step": "L6d Physical Security",
+          "Colocation": "x",
+          "Hyperscale Cloud": "x",
+          "Edge / Micro DC": "x",
+          "Managed Hosting": "x"
+        },
+        {
+          "L6 Step": "L6e Network Connectivity",
+          "Colocation": "x",
+          "Hyperscale Cloud": "x",
+          "Edge / Micro DC": "x",
+          "Managed Hosting": "x"
+        },
+        {
+          "L6 Step": "L6f IT Infrastructure Ops",
+          "Colocation": "—",
+          "Hyperscale Cloud": "x",
+          "Edge / Micro DC": "—",
+          "Managed Hosting": "x"
+        },
+        {
+          "L6 Step": "L6H1 DCIM & Monitoring",
+          "Colocation": "x",
+          "Hyperscale Cloud": "x",
+          "Edge / Micro DC": "x",
+          "Managed Hosting": "x"
+        },
+        {
+          "L6 Step": "L6H2 Facilities Maintenance",
+          "Colocation": "x",
+          "Hyperscale Cloud": "x",
+          "Edge / Micro DC": "x",
+          "Managed Hosting": "x"
+        },
+        {
+          "L6 Step": "L6H3 Compliance & Auditing",
+          "Colocation": "x",
+          "Hyperscale Cloud": "x",
+          "Edge / Micro DC": "—",
+          "Managed Hosting": "x"
+        },
+        {
+          "L6 Step": "L6H4 Fire Suppression",
+          "Colocation": "x",
+          "Hyperscale Cloud": "x",
+          "Edge / Micro DC": "x",
+          "Managed Hosting": "x"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "**Door Guardian Alarm Unit**",
+          "Description": "Mechanical guard housing mounted over door handle; triggers 95 dB alarm on 45° rotation; battery-powered; mechanical alarm operates at 0 V. **← Türwächter (GfS Exit Control 179/1125)**"
+        },
+        {
+          "L4": "Wireless Event Transmitter",
+          "Description": "868 MHz / BLE / LoRaWAN radio module embedded in guard; broadcasts guard-state and alarm events to receiver upon trigger or state change"
+        },
+        {
+          "L4": "IP Gateway / Protocol Bridge",
+          "Description": "Converts RF door events to IP (REST/SNMP/BACnet-IP); required for integration with DC security platforms and SOC dashboards; addresses C6 EasyWave lock-in constraint"
+        },
+        {
+          "L4": "Key Override Cylinder",
+          "Description": "Profile half-cylinder or high-security keyed cylinder for authorized personnel bypass without triggering alarm; critical for data center maintenance operations"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Biometric Reader",
+          "Description": "Fingerprint/iris/face capture device at door; verifies enrolled identity in <2 s"
+        },
+        {
+          "L4": "Door Controller / Edge Module",
+          "Description": "Edge device governing lock release, audit log generation, and alarm output; stores local access policies for offline operation"
+        },
+        {
+          "L4": "Physical Access Control Server (PACS)",
+          "Description": "Central identity directory, access policy engine, and tamper-evident audit log store; SOC 2 CC6.2 / ISO 27001 A.7.3 requirement"
+        },
+        {
+          "L4": "Locking Mechanism",
+          "Description": "EM lock, electric strike, or electric bolt; fail-safe release on power loss (compliant with EN 13637 / NFPA 101)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "IP Fixed / PTZ Camera",
+          "Description": "4K surveillance camera at perimeter, lobby, cage, row, and exit points; tamper-detection output"
+        },
+        {
+          "L4": "Network Video Recorder (NVR)",
+          "Description": "Video storage with ≥90-day retention; indexed for compliance audit access"
+        },
+        {
+          "L4": "Video Analytics Engine",
+          "Description": "Tailgating, loitering, and forced-door detection algorithms; triggers SOC alert in real time"
+        },
+        {
+          "L4": "Video Management Software (VMS)",
+          "Description": "Operator dashboard for live view, playback, and alert management; integrates with PACS for correlated events"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Battery Module",
+          "Description": "VRLA (62% installed base) or Li-ion cells; primary energy storage; target runtime 5–15 min to bridge to generator"
+        },
+        {
+          "L4": "Inverter / Rectifier Assembly",
+          "Description": "AC/DC and DC/AC conversion; maintains output voltage during utility disturbance"
+        },
+        {
+          "L4": "Static Bypass Switch",
+          "Description": "Maintenance bypass isolating UPS from critical load path without outage; required for scheduled maintenance"
+        },
+        {
+          "L4": "UPS Controller / BMS",
+          "Description": "Monitors battery state-of-health (SOH) and state-of-charge (SOC); communicates status to DCIM; triggers early-warning alarms"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Compressor",
+          "Description": "Centrifugal or screw compressor; primary thermal lift; largest energy consumer in cooling chain"
+        },
+        {
+          "L4": "Heat Exchanger (Evaporator/Condenser)",
+          "Description": "Chilled water and condenser water interface; transfers heat from IT load to condenser loop"
+        },
+        {
+          "L4": "Variable Speed Drive (VSD)",
+          "Description": "Motor speed control for compressor and pump; enables part-load energy optimization (PUE benefit)"
+        },
+        {
+          "L4": "Chiller Controller",
+          "Description": "PLC/DDC unit; optimizes compressor loading, free-cooling economizer switchover, and alarm management"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Coolant Distribution Unit (CDU)",
+          "Description": "Pumps and heat exchangers distributing dielectric fluid or water directly to server heat sinks; primary active component"
+        },
+        {
+          "L4": "Quick-Disconnect Server Manifold",
+          "Description": "Blind-mate connectors at rack level; enables hot-swap of servers without coolant spill"
+        },
+        {
+          "L4": "Leak Detection Sensor",
+          "Description": "Point-of-use or rope-style leak sensor below raised floor and at manifold joints; triggers shutdown before coolant contacts electronics"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Fiber Patch Panel",
+          "Description": "Physical termination point for fiber cross-connects; density ≥96 ports per 1U"
+        },
+        {
+          "L4": "Optical Distribution Frame (ODF)",
+          "Description": "Organized termination for customer circuits; labeled for audit trail per colocation SLA"
+        },
+        {
+          "L4": "Cross-Connect Order Management",
+          "Description": "Software layer tracking provisioned circuits, customer authorizations, and change requests; SOC 2 CC6.6 access change log"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Agent Storage Cylinder",
+          "Description": "Pressurized FM-200/Novec/Inergen cylinder; sized per protected zone volume per NFPA 2001"
+        },
+        {
+          "L4": "Detection Control Panel",
+          "Description": "Dual-detector (smoke + heat) pre-discharge alarm; two-sensor cross-zone prevents false discharge"
+        },
+        {
+          "L4": "Discharge Nozzle",
+          "Description": "Fixed nozzle array distributing agent uniformly across protected volume within 10 s of activation"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "L4 — 1",
+        "L4 — 2",
+        "L4 — 3"
+      ],
+      "rows": [
+        {
+          "L5": "Medium Voltage Switchgear",
+          "L4 — 1": "Circuit Breaker",
+          "L4 — 2": "Busbar Assembly",
+          "L4 — 3": "Protection Relay"
+        },
+        {
+          "L5": "Transformer",
+          "L4 — 1": "Primary / Secondary Windings",
+          "L4 — 2": "Cooling Radiator",
+          "L4 — 3": "Tap Changer"
+        },
+        {
+          "L5": "Emergency Diesel Generator",
+          "L4 — 1": "Engine Block & Fuel System",
+          "L4 — 2": "Alternator",
+          "L4 — 3": "Governor / Auto-Start Controller"
+        },
+        {
+          "L5": "Automatic Transfer Switch",
+          "L4 — 1": "Transfer Mechanism",
+          "L4 — 2": "Control & Sensing Module",
+          "L4 — 3": "Manual Bypass"
+        },
+        {
+          "L5": "Power Distribution Unit",
+          "L4 — 1": "Circuit Breaker Strip",
+          "L4 — 2": "Current Transducer (per outlet)",
+          "L4 — 3": "Remote Management Card"
+        },
+        {
+          "L5": "Cooling Tower",
+          "L4 — 1": "Fill Media",
+          "L4 — 2": "Drift Eliminator",
+          "L4 — 3": "Basin & Sump"
+        },
+        {
+          "L5": "Room Air Handler (CRAH)",
+          "L4 — 1": "Fan Assembly",
+          "L4 — 2": "Water Coil / DX Coil",
+          "L4 — 3": "Variable Frequency Drive (VFD)"
+        },
+        {
+          "L5": "Hot/Cold Aisle Containment",
+          "L4 — 1": "Containment Panels",
+          "L4 — 2": "Rack Blanking Panels",
+          "L4 — 3": "Door Seal & Brush Strip"
+        },
+        {
+          "L5": "Server Rack & Cabinet",
+          "L4 — 1": "Mounting Rails",
+          "L4 — 2": "Power Strip (basic PDU)",
+          "L4 — 3": "Cable Management Arm"
+        },
+        {
+          "L5": "Structured Cabling",
+          "L4 — 1": "Fiber Optic Trunk Cable",
+          "L4 — 2": "Patch Panel Module",
+          "L4 — 3": "Cable Tray / Ladder Rack"
+        },
+        {
+          "L5": "Floor Infrastructure",
+          "L4 — 1": "Raised Floor Tile",
+          "L4 — 2": "Underfloor Air Plenum Seal",
+          "L4 — 3": "Cable Cut-Out Grommet"
+        },
+        {
+          "L5": "Cage & Compartment Barrier",
+          "L4 — 1": "Mesh Panel",
+          "L4 — 2": "Locking Cage Door",
+          "L4 — 3": "Cage Key Management"
+        },
+        {
+          "L5": "Perimeter Security",
+          "L4 — 1": "Anti-Ram Bollard",
+          "L4 — 2": "Fence / Wall",
+          "L4 — 3": "Perimeter Camera Mount"
+        },
+        {
+          "L5": "Security Mantrap / Interlock",
+          "L4 — 1": "Motorized Door Assembly",
+          "L4 — 2": "Interlock Controller",
+          "L4 — 3": "Audio / Video Intercom"
+        },
+        {
+          "L5": "SOC Infrastructure",
+          "L4 — 1": "Operator Workstation",
+          "L4 — 2": "Multi-Screen Video Wall",
+          "L4 — 3": "Alarm Management Console"
+        },
+        {
+          "L5": "DCIM Software Platform",
+          "L4 — 1": "Asset & Capacity Module",
+          "L4 — 2": "Power Analytics Dashboard",
+          "L4 — 3": "API Integration Layer"
+        },
+        {
+          "L5": "Environmental Sensor Array",
+          "L4 — 1": "Temperature / Humidity Probe",
+          "L4 — 2": "Sensor Hub / Concentrator",
+          "L4 — 3": "Alert Threshold Manager"
+        },
+        {
+          "L5": "Power Monitoring System",
+          "L4 — 1": "Branch Circuit Monitor",
+          "L4 — 2": "Energy Meter",
+          "L4 — 3": "Reporting Engine"
+        },
+        {
+          "L5": "CMMS Platform",
+          "L4 — 1": "Work Order Engine",
+          "L4 — 2": "PM Scheduling Module",
+          "L4 — 3": "Parts Inventory Tracker"
+        },
+        {
+          "L5": "Diagnostic & Test Equipment",
+          "L4 — 1": "Thermal Camera",
+          "L4 — 2": "Power Quality Analyzer",
+          "L4 — 3": "Battery Test Set"
+        },
+        {
+          "L5": "SIEM & Audit Log Platform",
+          "L4 — 1": "Log Collector / Forwarder",
+          "L4 — 2": "Correlation Engine",
+          "L4 — 3": "Incident Case Manager"
+        },
+        {
+          "L5": "GRC / Compliance Platform",
+          "L4 — 1": "Control Register",
+          "L4 — 2": "Evidence Repository",
+          "L4 — 3": "Audit Workflow Engine"
+        },
+        {
+          "L5": "Early Warning Smoke Detection",
+          "L4 — 1": "Aspirating Pipe Network",
+          "L4 — 2": "Sampling Head / Detector",
+          "L4 — 3": "VESDA Control Panel"
+        },
+        {
+          "L5": "Sprinkler System",
+          "L4 — 1": "Sprinkler Head",
+          "L4 — 2": "Pre-Action Valve",
+          "L4 — 3": "Water Flow Switch"
+        },
+        {
+          "L5": "Compute Servers",
+          "L4 — 1": "CPU / GPU Module",
+          "L4 — 2": "Memory / DIMM",
+          "L4 — 3": "Storage NVMe Drive"
+        },
+        {
+          "L5": "Storage Arrays",
+          "L4 — 1": "NVMe Flash Module",
+          "L4 — 2": "Storage Controller",
+          "L4 — 3": "Cache Battery Backup"
+        },
+        {
+          "L5": "Network Switching",
+          "L4 — 1": "ASIC / Line Card",
+          "L4 — 2": "Port Module (400G/800G)",
+          "L4 — 3": "Switch Management Module"
+        },
+        {
+          "L5": "Fiber Termination",
+          "L4 — 1": "Fiber Splice Enclosure",
+          "L4 — 2": "ODF / Patch Panel",
+          "L4 — 3": "Signal Amplifier (EDFA)"
+        },
+        {
+          "L5": "DDoS & Traffic Scrubbing",
+          "L4 — 1": "Scrubbing Appliance",
+          "L4 — 2": "Traffic Steering Router",
+          "L4 — 3": "Reporting / Analytics"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Check Dimension",
+        "Present",
+        "Missing / Gap"
+      ],
+      "rows": [
+        {
+          "Check Dimension": "Core process steps (L6)",
+          "Present": "L6a–L6f",
+          "Missing / Gap": "L6g Asset Decommission / Data Destruction absent — low relevance to Türwächter; acceptable gap"
+        },
+        {
+          "Check Dimension": "Horizontal functions",
+          "Present": "DCIM, Maintenance, Compliance, Fire",
+          "Missing / Gap": "Site Utilities (water, backup connectivity, fuel logistics) absent as horizontal — relevant for large DCs; acceptable gap for Türwächter scope"
+        },
+        {
+          "Check Dimension": "Emergency exit chain L5→L4",
+          "Present": "✓ complete (4 L4 nodes)",
+          "Missing / Gap": "—"
+        },
+        {
+          "Check Dimension": "Physical security regulatory chain",
+          "Present": "✓ L6d with SIEM/GRC in L6H3",
+          "Missing / Gap": "SOC 2 CC6.4 physical security evidence log → confirmed in SIEM L4"
+        },
+        {
+          "Check Dimension": "Power redundancy coverage",
+          "Present": "✓ L6a with all major components",
+          "Missing / Gap": "BESS (Battery Energy Storage System) growing segment absent; add as optional L5 under L6a"
+        },
+        {
+          "Check Dimension": "AI / high-density cooling",
+          "Present": "✓ Liquid Cooling L5",
+          "Missing / Gap": "Immersion cooling specifics minimal; acceptable for VN scope"
+        },
+        {
+          "Check Dimension": "Compliance frameworks",
+          "Present": "SOC 2, ISO 27001 referenced",
+          "Missing / Gap": "HIPAA, PCI-DSS physical addenda not explicitly modeled; in scope of GRC platform"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Current Name",
+        "Action",
+        "Reason"
+      ],
+      "rows": [
+        {
+          "Current Name": "IP Gateway / Protocol Bridge",
+          "Action": "Keep",
+          "Reason": "Industry term for RF-to-IP bridging; used in building automation and DC security integration contexts"
+        },
+        {
+          "Current Name": "Physical Access Control Server (PACS)",
+          "Action": "Shorten to \"PACS Backend\" in JSON",
+          "Reason": "\"Physical Access Control Server\" is correct domain term; parenthetical in doc only"
+        },
+        {
+          "Current Name": "Coolant Distribution Unit (CDU)",
+          "Action": "Keep — drop \"(CDU)\" in JSON",
+          "Reason": "CDU is the domain-standard abbreviation; Schneider, Vertiv, and Emerson all use it"
+        },
+        {
+          "Current Name": "Optical Distribution Frame (ODF)",
+          "Action": "Keep",
+          "Reason": "IEC/TIA-942 standard term; universally recognized in DC cabling"
+        },
+        {
+          "Current Name": "VESDA Control Panel",
+          "Action": "Keep",
+          "Reason": "VESDA (Very Early Smoke Detection Apparatus) is the industry-standard generic term for aspirating detectors"
+        },
+        {
+          "Current Name": "Door Guardian Alarm Unit",
+          "Action": "Keep",
+          "Reason": "Functional category name, not brand; consistent with other VN documents in this project"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Check",
+        "Status",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "Check": "Valid levels",
+          "Status": "PASS",
+          "Notes": "All units use L7, L6, L5, or L4 only"
+        },
+        {
+          "Check": "No orphan nodes",
+          "Status": "PASS",
+          "Notes": "Every non-L7 unit references a valid parent"
+        },
+        {
+          "Check": "Valid transitions",
+          "Status": "PASS",
+          "Notes": "L7→L6→L5→L4 only; no level skipping; service NAICS does not require L6a sub-SoS groupings"
+        },
+        {
+          "Check": "L4 children per L5 ≥ 2",
+          "Status": "PASS",
+          "Notes": "All L5 nodes have ≥ 3 L4 children (critical branches) or ≥ 2 (remaining table)"
+        },
+        {
+          "Check": "Unit count",
+          "Status": "~90 units",
+          "Notes": "Above 20–40 soft target; justified by data center complexity (10 L6 nodes × 3–6 L5 each + L4 fill); within extended acceptable range"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**VN Anchor Level**",
+          "Value": "L4"
+        },
+        {
+          "Field": "**L4 Node**",
+          "Value": "Door Guardian Alarm Unit"
+        },
+        {
+          "Field": "**Parent L5**",
+          "Value": "Emergency Exit Door Monitoring"
+        },
+        {
+          "Field": "**Parent L6**",
+          "Value": "Physical Security & Access Control (L6d)"
+        },
+        {
+          "Field": "**CFJ Contribution**",
+          "Value": "Fulfills the fire-code compliance and SOC 2 CC6.4 sub-job within L6d: ensuring emergency exit doors generate an audit-ready access-event log while remaining instantaneously usable for evacuation under all power conditions"
+        },
+        {
+          "Field": "**Output types served**",
+          "Value": "Universal — all 4 data center output types require L6d Physical Security"
+        },
+        {
+          "Field": "**Architecture distance**",
+          "Value": "3 (MEDIUM) — physical fit is good (standard server room doors); primary barrier is C6 (EasyWave proprietary protocol; DCs expect REST/SNMP/BACnet-IP) and C3 (RF signal attenuation through server racks and shielded rooms)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Constraint",
+        "Impact in this market",
+        "Mitigation"
+      ],
+      "rows": [
+        {
+          "Constraint": "C6 EasyWave Protocol Lock-In",
+          "Impact in this market": "**Primary barrier** — Data centers mandate IP-native, API-first integration with PACS/SIEM platforms. EasyWave to IP bridging required (IP Gateway L4 node above)",
+          "Mitigation": "GfS wireless BUS gateway + IP converter; REST API adapter layer"
+        },
+        {
+          "Constraint": "C3 Wireless Range",
+          "Impact in this market": "Metal server racks and shielded rooms (Faraday cage effect) attenuate 868 MHz. Typical DC aisles are <30 m but RF propagation is degraded",
+          "Mitigation": "Repeaters + antenna placement at aisle ends; site RF survey required"
+        },
+        {
+          "Constraint": "C5 Surface Mount",
+          "Impact in this market": "Acceptable — server room doors are standard commercial doors; aesthetic constraint does not apply",
+          "Mitigation": "No action needed"
+        },
+        {
+          "Constraint": "C8 GDPR",
+          "Impact in this market": "Door-event timestamps logged to SIEM create compliance data records; EU DC operators need DPA in place",
+          "Mitigation": "DPA with SIEM provider; data minimization (no personnel identity in event log)"
+        },
+        {
+          "Constraint": "C2 Mechanical Alarm Independence",
+          "Impact in this market": "**Pre-satisfied** — Battery-operated mechanical alarm continues during DC power events when emergency exits are most critical; this is a selling point, not a risk",
+          "Mitigation": "Highlight as key differentiator vs. mains-powered exit controllers"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share est.",
+        "Türwächter advantage",
+        "Türwächter disadvantage"
+      ],
+      "rows": [
+        {
+          "Alternative": "Wired electronic exit alarm, alarm-panel-integrated",
+          "Share est.": "~50%",
+          "Türwächter advantage": "No wiring required; retrofit-ready; battery fail-safe",
+          "Türwächter disadvantage": "Protocol lock-in vs. IP-native wired solutions"
+        },
+        {
+          "Alternative": "Wireless IoT door alarm guard (Türwächter category)",
+          "Share est.": "~30%",
+          "Türwächter advantage": "Dual-standard (EN 179 + EN 1125); mechanical fail-safe; 95 dB",
+          "Türwächter disadvantage": "EasyWave vs. BACnet/IP gap; surface mount only"
+        },
+        {
+          "Alternative": "Mechanical-only door prop alarm",
+          "Share est.": "~20%",
+          "Türwächter advantage": "Full compliance logging + remote monitoring vs. no monitoring",
+          "Türwächter disadvantage": "Higher cost; requires IP gateway for DC compliance"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Check",
+        "Status",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "#": "Q1",
+          "Check": "CFJ is industry-level",
+          "Status": "PASS",
+          "Notes": "\"Deliver continuous, secure, and compliant compute, storage, and network capacity…\" — no product or technology reference"
+        },
+        {
+          "#": "Q2",
+          "Check": "No orphan nodes",
+          "Status": "PASS",
+          "Notes": "All units reference valid parents"
+        },
+        {
+          "#": "Q3",
+          "Check": "Valid level transitions",
+          "Status": "PASS",
+          "Notes": "L7→L6→L5→L4 only; no skipping"
+        },
+        {
+          "#": "Q4",
+          "Check": "L4 children per L5 ≥ 2",
+          "Status": "PASS",
+          "Notes": "Critical branches ≥ 3; all remaining ≥ 2"
+        },
+        {
+          "#": "Q5",
+          "Check": "No solution-specific L7/L6 names",
+          "Status": "PASS",
+          "Notes": "\"Data Center Infrastructure Ecosystem\" (L7); L6 names describe operational functions, not technologies"
+        },
+        {
+          "#": "Q6",
+          "Check": "Three-question naming test (5 spot checks)",
+          "Status": "PASS",
+          "Notes": "Door Guardian Alarm Unit, Coolant Distribution Unit, PACS Backend, VESDA Control Panel, Emergency Diesel Generator — all domain-standard"
+        },
+        {
+          "#": "Q7",
+          "Check": "Unit count 15–60",
+          "Status": "SOFT PASS",
+          "Notes": "~90 units; data center is an exceptionally multi-system industry; 10 L6 nodes justified by ISO/IEC 22237 (data center reference architecture); all units genuine"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "naics_code": "518210",
+      "naics_title": "Computing Infrastructure Providers, Data Processing, Web Hosting, and Related Services",
+      "cfj_statement": "Deliver continuous, secure, and compliant compute, storage, and network capacity to tenants and end users at contracted uptime and performance levels",
+      "l7_solution": "Data Center Infrastructure Ecosystem",
+      "units": [
+        {
+          "name": "Data Center Infrastructure Ecosystem",
+          "level": "L7",
+          "description": "Moore 1993 ecosystem — the complete community of operators, suppliers, tenants, regulators, and carriers coordinated to deliver digital infrastructure services",
+          "bom_standard": "Moore 1993",
+          "parent_name": "ROOT"
+        },
+        {
+          "name": "Power Supply & Conditioning",
+          "level": "L6",
+          "description": "Transform and condition utility power to IT-grade uninterruptible supply at N+1 or 2N redundancy",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Data Center Infrastructure Ecosystem"
+        },
+        {
+          "name": "Cooling & Thermal Management",
+          "level": "L6",
+          "description": "Maintain IT equipment within operating temperature and humidity limits across all load densities",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Data Center Infrastructure Ecosystem"
+        },
+        {
+          "name": "Physical Infrastructure",
+          "level": "L6",
+          "description": "Provide secure, structured rack space, cabling, and floor systems for tenant equipment",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Data Center Infrastructure Ecosystem"
+        },
+        {
+          "name": "Physical Security & Access Control",
+          "level": "L6",
+          "description": "Control, monitor, and log physical access to all facility zones — perimeter, lobby, colo floor, cage, row, rack",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Data Center Infrastructure Ecosystem"
+        },
+        {
+          "name": "Network Connectivity & Cross-Connect",
+          "level": "L6",
+          "description": "Terminate diverse carrier connections and enable tenant-to-tenant and tenant-to-carrier cross-connects",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Data Center Infrastructure Ecosystem"
+        },
+        {
+          "name": "IT Infrastructure Operations",
+          "level": "L6",
+          "description": "Deploy, operate, and monitor compute, storage, and network equipment for managed workloads (hyperscale and managed hosting only)",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Data Center Infrastructure Ecosystem"
+        },
+        {
+          "name": "DCIM & Monitoring",
+          "level": "L6",
+          "description": "Horizontal — real-time visibility into PUE, power, temperature, and uptime across all core steps",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Data Center Infrastructure Ecosystem"
+        },
+        {
+          "name": "Facilities Maintenance & Engineering",
+          "level": "L6",
+          "description": "Horizontal — preventive and corrective maintenance across all power, cooling, and physical infrastructure",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Data Center Infrastructure Ecosystem"
+        },
+        {
+          "name": "Compliance & Auditing",
+          "level": "L6",
+          "description": "Horizontal — SOC 2, ISO 27001, PCI-DSS, GDPR compliance across all steps",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Data Center Infrastructure Ecosystem"
+        },
+        {
+          "name": "Fire Suppression & Life Safety",
+          "level": "L6",
+          "description": "Horizontal — fire detection and suppression protecting equipment and personnel across all zones",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Data Center Infrastructure Ecosystem"
+        },
+        {
+          "name": "Medium Voltage Switchgear",
+          "level": "L5",
+          "description": "Switches and protection gear for incoming medium-voltage utility feed; first point of power control",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Power Supply & Conditioning"
+        },
+        {
+          "name": "Transformer",
+          "level": "L5",
+          "description": "Steps utility voltage down to LV distribution level; dry-type or oil-immersed",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Power Supply & Conditioning"
+        },
+        {
+          "name": "UPS System",
+          "level": "L5",
+          "description": "Uninterruptible power supply maintaining clean power during utility disturbances; VRLA or Li-ion battery",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Power Supply & Conditioning"
+        },
+        {
+          "name": "Emergency Diesel Generator",
+          "level": "L5",
+          "description": "On-site generation providing runtime power after UPS bridge time; diesel or gas-powered",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Power Supply & Conditioning"
+        },
+        {
+          "name": "Automatic Transfer Switch",
+          "level": "L5",
+          "description": "Switches critical load between utility and generator within milliseconds on utility failure",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Power Supply & Conditioning"
+        },
+        {
+          "name": "Power Distribution Unit",
+          "level": "L5",
+          "description": "Rack- or floor-level distribution of conditioned power to servers; intelligent iPDU enables per-outlet monitoring",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Power Supply & Conditioning"
+        },
+        {
+          "name": "Chiller Plant",
+          "level": "L5",
+          "description": "Produces chilled water for CRAH cooling coils; centrifugal or magnetic bearing compressor",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Cooling & Thermal Management"
+        },
+        {
+          "name": "Cooling Tower / Dry Cooler",
+          "level": "L5",
+          "description": "Rejects condenser heat to atmosphere; evaporative or dry-cooler type",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Cooling & Thermal Management"
+        },
+        {
+          "name": "Room Air Handler",
+          "level": "L5",
+          "description": "CRAH/CRAC units distributing conditioned air within server halls; chilled water or DX coil",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Cooling & Thermal Management"
+        },
+        {
+          "name": "Liquid Cooling System",
+          "level": "L5",
+          "description": "Direct-to-chip or immersion cooling for high-density GPU/CPU racks; fastest-growing segment",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Cooling & Thermal Management"
+        },
+        {
+          "name": "Hot/Cold Aisle Containment",
+          "level": "L5",
+          "description": "Physical separation of hot and cold air streams to improve cooling efficiency and PUE",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Cooling & Thermal Management"
+        },
+        {
+          "name": "Server Rack & Cabinet",
+          "level": "L5",
+          "description": "Standardized 42U–48U open or enclosed frames for mounting tenant equipment",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Physical Infrastructure"
+        },
+        {
+          "name": "Structured Cabling",
+          "level": "L5",
+          "description": "Fiber and copper cabling infrastructure connecting racks to patch panels and network equipment",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Physical Infrastructure"
+        },
+        {
+          "name": "Floor Infrastructure",
+          "level": "L5",
+          "description": "Raised floor or slab-plus-overhead-tray system managing airflow and cable routing below/above racks",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Physical Infrastructure"
+        },
+        {
+          "name": "Cage & Compartment Barrier",
+          "level": "L5",
+          "description": "Wire mesh or solid panel partitions separating tenant cages within shared colo floor",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Physical Infrastructure"
+        },
+        {
+          "name": "Perimeter Security",
+          "level": "L5",
+          "description": "Anti-ram bollards, fencing, and perimeter intrusion detection forming the outermost physical security layer",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Physical Security & Access Control"
+        },
+        {
+          "name": "Biometric Access Control",
+          "level": "L5",
+          "description": "Multi-factor identity verification at all controlled entry points; fingerprint, iris, or facial recognition",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Physical Security & Access Control"
+        },
+        {
+          "name": "CCTV & Video Analytics",
+          "level": "L5",
+          "description": "Continuous surveillance with AI analytics for tailgating, loitering, and forced-door detection",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Physical Security & Access Control"
+        },
+        {
+          "name": "Security Mantrap / Interlock",
+          "level": "L5",
+          "description": "Airlock-style vestibule preventing tailgating between lobby and colo floor; mandatory in Tier III/IV DCs",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Physical Security & Access Control"
+        },
+        {
+          "name": "Emergency Exit Door Monitoring",
+          "level": "L5",
+          "description": "Detection and logging of emergency exit door activations for SOC 2 CC6.4 and ISO 27001 A.7.2 audit trails; battery-operated monitoring required for power-event coverage",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Physical Security & Access Control"
+        },
+        {
+          "name": "Security Operations Center",
+          "level": "L5",
+          "description": "Centralized console for guard staff monitoring all physical security feeds; on-site or remote managed service",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Physical Security & Access Control"
+        },
+        {
+          "name": "Carrier Fiber Termination",
+          "level": "L5",
+          "description": "Dark fiber or lit wavelength entry points from diverse carrier paths; minimum two geographically separate entries",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Network Connectivity & Cross-Connect"
+        },
+        {
+          "name": "Cross-Connect Infrastructure",
+          "level": "L5",
+          "description": "Fiber patch panels enabling tenant-to-tenant and tenant-to-carrier physical cross-connects",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Network Connectivity & Cross-Connect"
+        },
+        {
+          "name": "DDoS & Traffic Scrubbing",
+          "level": "L5",
+          "description": "On-premise or upstream mitigation of volumetric denial-of-service traffic protecting tenant network connectivity",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Network Connectivity & Cross-Connect"
+        },
+        {
+          "name": "Compute Servers",
+          "level": "L5",
+          "description": "Custom ODM or OEM servers delivering compute capacity for hyperscale or managed workloads",
+          "bom_standard": "ISO 15288",
+          "parent_name": "IT Infrastructure Operations"
+        },
+        {
+          "name": "Storage Arrays",
+          "level": "L5",
+          "description": "All-flash NVMe or hybrid storage systems; object storage nodes for unstructured data",
+          "bom_standard": "ISO 15288",
+          "parent_name": "IT Infrastructure Operations"
+        },
+        {
+          "name": "Network Switching",
+          "level": "L5",
+          "description": "Leaf-spine switching fabric using merchant silicon or custom ASICs; 400G/800G port speeds",
+          "bom_standard": "ISO 15288",
+          "parent_name": "IT Infrastructure Operations"
+        },
+        {
+          "name": "DCIM Software Platform",
+          "level": "L5",
+          "description": "Data Center Infrastructure Management platform providing real-time PUE, capacity, and asset visibility",
+          "bom_standard": "ISO 15288",
+          "parent_name": "DCIM & Monitoring"
+        },
+        {
+          "name": "Environmental Sensor Array",
+          "level": "L5",
+          "description": "Distributed temperature, humidity, and airflow sensors reporting to DCIM; BACnet/SNMP/Modbus protocols",
+          "bom_standard": "ISO 15288",
+          "parent_name": "DCIM & Monitoring"
+        },
+        {
+          "name": "Power Monitoring System",
+          "level": "L5",
+          "description": "Branch-circuit and panel-level power meters feeding real-time kW data to DCIM and tenant billing systems",
+          "bom_standard": "ISO 15288",
+          "parent_name": "DCIM & Monitoring"
+        },
+        {
+          "name": "CMMS Platform",
+          "level": "L5",
+          "description": "Computerized Maintenance Management System scheduling preventive maintenance and tracking work orders",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facilities Maintenance & Engineering"
+        },
+        {
+          "name": "Diagnostic & Test Equipment",
+          "level": "L5",
+          "description": "Thermal cameras, power quality analyzers, and vibration sensors for predictive maintenance routines",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facilities Maintenance & Engineering"
+        },
+        {
+          "name": "SIEM & Audit Log Platform",
+          "level": "L5",
+          "description": "Security Information and Event Management collecting and correlating physical and logical access logs; SOC 2 CC7.2 / ISO 27001 A.8.15 requirement",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Compliance & Auditing"
+        },
+        {
+          "name": "GRC Platform",
+          "level": "L5",
+          "description": "Governance, Risk, and Compliance platform managing control registers, evidence collection, and audit workflows",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Compliance & Auditing"
+        },
+        {
+          "name": "Clean Agent Suppression",
+          "level": "L5",
+          "description": "FM-200, Novec 1230, or Inergen total-flooding system protecting IT zones without water damage",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Fire Suppression & Life Safety"
+        },
+        {
+          "name": "Early Warning Smoke Detection",
+          "level": "L5",
+          "description": "VESDA aspirating or addressable detectors providing pre-fire detection before visible smoke",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Fire Suppression & Life Safety"
+        },
+        {
+          "name": "Sprinkler System",
+          "level": "L5",
+          "description": "Pre-action dry-pipe sprinklers in IT areas; wet pipe in non-IT mechanical areas; per NFPA 13 / FM Global",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Fire Suppression & Life Safety"
+        },
+        {
+          "name": "Door Guardian Alarm Unit",
+          "level": "L4",
+          "description": "Mechanical guard housing over door handle; 95 dB alarm on 45° rotation; battery-powered; mechanical alarm operates at 0 V — fail-safe for power events. GfS Exit Control 179/1125 (Türwächter)",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Door Monitoring"
+        },
+        {
+          "name": "Wireless Event Transmitter",
+          "level": "L4",
+          "description": "868 MHz / BLE / LoRaWAN radio module broadcasting guard-state and alarm events to receiver upon trigger",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Door Monitoring"
+        },
+        {
+          "name": "IP Gateway / Protocol Bridge",
+          "level": "L4",
+          "description": "Converts proprietary RF (EasyWave) door events to IP (REST/SNMP/BACnet-IP) for integration with PACS and SIEM platforms; addresses C6 protocol lock-in constraint for data center environments",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Door Monitoring"
+        },
+        {
+          "name": "Key Override Cylinder",
+          "level": "L4",
+          "description": "Profile half-cylinder for authorized personnel bypass without triggering alarm; critical for DC maintenance access operations",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Door Monitoring"
+        },
+        {
+          "name": "Biometric Reader",
+          "level": "L4",
+          "description": "Fingerprint/iris/face capture device at door; verifies enrolled identity in <2 s",
+          "bom_standard": "INCOSE",
+          "parent_name": "Biometric Access Control"
+        },
+        {
+          "name": "Door Controller / Edge Module",
+          "level": "L4",
+          "description": "Edge device governing lock release, audit log generation, and alarm output; stores local access policies for offline operation",
+          "bom_standard": "INCOSE",
+          "parent_name": "Biometric Access Control"
+        },
+        {
+          "name": "PACS Backend",
+          "level": "L4",
+          "description": "Central identity directory, access policy engine, and tamper-evident audit log store; SOC 2 CC6.2 / ISO 27001 A.7.3 requirement",
+          "bom_standard": "INCOSE",
+          "parent_name": "Biometric Access Control"
+        },
+        {
+          "name": "Locking Mechanism",
+          "level": "L4",
+          "description": "EM lock, electric strike, or electric bolt; fail-safe release on power loss per EN 13637 / NFPA 101",
+          "bom_standard": "INCOSE",
+          "parent_name": "Biometric Access Control"
+        },
+        {
+          "name": "IP Fixed / PTZ Camera",
+          "level": "L4",
+          "description": "4K surveillance camera at perimeter, lobby, cage row, and exit points; tamper-detection output",
+          "bom_standard": "INCOSE",
+          "parent_name": "CCTV & Video Analytics"
+        },
+        {
+          "name": "Network Video Recorder",
+          "level": "L4",
+          "description": "Video storage with ≥90-day retention; indexed for compliance audit replay",
+          "bom_standard": "INCOSE",
+          "parent_name": "CCTV & Video Analytics"
+        },
+        {
+          "name": "Video Analytics Engine",
+          "level": "L4",
+          "description": "Tailgating, loitering, and forced-door detection algorithms; real-time SOC alert trigger",
+          "bom_standard": "INCOSE",
+          "parent_name": "CCTV & Video Analytics"
+        },
+        {
+          "name": "Video Management Software",
+          "level": "L4",
+          "description": "Operator dashboard for live view, playback, and alert management; integrates with PACS for correlated events",
+          "bom_standard": "INCOSE",
+          "parent_name": "CCTV & Video Analytics"
+        },
+        {
+          "name": "Battery Module",
+          "level": "L4",
+          "description": "VRLA or Li-ion cells; energy storage for UPS bridge time (5–15 min); 62% installed base VRLA, Li-ion growing at 8.29% CAGR",
+          "bom_standard": "INCOSE",
+          "parent_name": "UPS System"
+        },
+        {
+          "name": "Inverter / Rectifier Assembly",
+          "level": "L4",
+          "description": "AC/DC and DC/AC conversion maintaining output voltage during utility disturbance",
+          "bom_standard": "INCOSE",
+          "parent_name": "UPS System"
+        },
+        {
+          "name": "Static Bypass Switch",
+          "level": "L4",
+          "description": "Maintenance bypass isolating UPS from critical load path without outage",
+          "bom_standard": "INCOSE",
+          "parent_name": "UPS System"
+        },
+        {
+          "name": "UPS Controller / BMS",
+          "level": "L4",
+          "description": "Monitors battery SOH and SOC; communicates to DCIM; triggers early-warning alarms",
+          "bom_standard": "INCOSE",
+          "parent_name": "UPS System"
+        },
+        {
+          "name": "Compressor",
+          "level": "L4",
+          "description": "Centrifugal or screw compressor providing thermal lift; largest energy consumer in cooling chain",
+          "bom_standard": "INCOSE",
+          "parent_name": "Chiller Plant"
+        },
+        {
+          "name": "Heat Exchanger",
+          "level": "L4",
+          "description": "Evaporator and condenser coil transferring heat between chilled water and condenser loops",
+          "bom_standard": "INCOSE",
+          "parent_name": "Chiller Plant"
+        },
+        {
+          "name": "Variable Speed Drive",
+          "level": "L4",
+          "description": "Motor speed control enabling part-load energy optimization and PUE improvement",
+          "bom_standard": "INCOSE",
+          "parent_name": "Chiller Plant"
+        },
+        {
+          "name": "Chiller Controller",
+          "level": "L4",
+          "description": "PLC/DDC optimizing compressor loading and economizer switchover",
+          "bom_standard": "INCOSE",
+          "parent_name": "Chiller Plant"
+        },
+        {
+          "name": "Coolant Distribution Unit",
+          "level": "L4",
+          "description": "Pump and heat exchanger distributing dielectric fluid or water directly to server heat sinks",
+          "bom_standard": "INCOSE",
+          "parent_name": "Liquid Cooling System"
+        },
+        {
+          "name": "Quick-Disconnect Server Manifold",
+          "level": "L4",
+          "description": "Blind-mate connectors at rack level enabling hot-swap of servers without coolant spill",
+          "bom_standard": "INCOSE",
+          "parent_name": "Liquid Cooling System"
+        },
+        {
+          "name": "Leak Detection Sensor",
+          "level": "L4",
+          "description": "Point-of-use or rope-style leak sensor below raised floor and at manifold joints; triggers shutdown before coolant contacts electronics",
+          "bom_standard": "INCOSE",
+          "parent_name": "Liquid Cooling System"
+        },
+        {
+          "name": "Fiber Patch Panel",
+          "level": "L4",
+          "description": "Physical termination point for fiber cross-connects; ≥96 ports per 1U",
+          "bom_standard": "INCOSE",
+          "parent_name": "Cross-Connect Infrastructure"
+        },
+        {
+          "name": "Optical Distribution Frame",
+          "level": "L4",
+          "description": "Organized fiber termination for customer circuits; labeled per colocation SLA requirements",
+          "bom_standard": "INCOSE",
+          "parent_name": "Cross-Connect Infrastructure"
+        },
+        {
+          "name": "Cross-Connect Order Management",
+          "level": "L4",
+          "description": "Software tracking provisioned circuits, customer authorizations, and change requests; SOC 2 CC6.6 access change log",
+          "bom_standard": "INCOSE",
+          "parent_name": "Cross-Connect Infrastructure"
+        },
+        {
+          "name": "Agent Storage Cylinder",
+          "level": "L4",
+          "description": "Pressurized FM-200/Novec/Inergen cylinder sized per protected zone volume per NFPA 2001",
+          "bom_standard": "INCOSE",
+          "parent_name": "Clean Agent Suppression"
+        },
+        {
+          "name": "Detection Control Panel",
+          "level": "L4",
+          "description": "Dual-detector pre-discharge alarm panel; two-sensor cross-zone prevents false discharge",
+          "bom_standard": "INCOSE",
+          "parent_name": "Clean Agent Suppression"
+        },
+        {
+          "name": "Discharge Nozzle",
+          "level": "L4",
+          "description": "Fixed nozzle array distributing agent uniformly within protected volume in ≤10 s of activation",
+          "bom_standard": "INCOSE",
+          "parent_name": "Clean Agent Suppression"
+        }
+      ]
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

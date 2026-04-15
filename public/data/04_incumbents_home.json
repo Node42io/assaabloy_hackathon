@@ -1,0 +1,20 @@
+{
+  "id": "04_incumbents_home",
+  "title": "04 — Home Market Competition (Skipped)",
+  "type": "home_market_competition",
+  "market_slug": null,
+  "is_per_market": false,
+  "sections": [
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\"entities\": []}\n```"
+    }
+  ],
+  "tables": [],
+  "entities": [
+    {
+      "entities": []
+    }
+  ],
+  "has_bom": false
+}

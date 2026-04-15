@@ -1,0 +1,210 @@
+{
+  "slug": "general_warehousing_storage",
+  "marketName": "General Warehousing and Storage",
+  "naicsCode": "493110",
+  "confidence": "medium",
+  "dataPending": false,
+  "sensorNote": "Emergency Exit Door Alarm Guard with IoT Monitoring",
+  "outputTypes": [],
+  "marquardtAnchorIds": [],
+  "l4Subsystems": [
+    {
+      "id": "L4.1", "name": "Mechanical locking/release subsystem", "costSharePct": 0,
+      "keyDesignChoice": "Spring-loaded mechanical-primary is preferred for hotels due to power-independence mandate (C2) and retrofit simplicity (C5).",
+      "isMarquardtAnchor": false, "confidence": "medium",
+      "alternatives": [
+        { "name": "Spring-loaded swing-release guard (mechanical-primary)", "sharePct": 65, "trend": "stable" },
+        { "name": "Electromagnetic detent + spring-release (powered hold)", "sharePct": 20, "trend": "growing" },
+        { "name": "Magnetic latch with alarm trigger (no physical blocker)", "sharePct": 10, "trend": "stable" },
+        { "name": "Hydraulic/pneumatic resistance guard", "sharePct": 5, "trend": "declining" }
+      ],
+      "modules": [
+        { "id": "L3-1", "name": "Guard arm mechanism", "isMarquardtAnchor": false,
+          "alternatives": [
+            { "name": "Zinc die-cast guard arm", "sharePct": 55, "trend": "stable" },
+            { "name": "Engineering polymer (PA66 / glass-filled nylon)", "sharePct": 30, "trend": "growing" },
+            { "name": "Aluminum die-cast guard arm", "sharePct": 15, "trend": "stable" }
+          ],
+          "children": [
+            { "id": "L2-1-1", "name": "Pivot/spring assembly",
+              "alternatives": [
+                { "name": "Torsion spring (coiled, around pivot axis)", "sharePct": 70, "trend": "stable" },
+                { "name": "Leaf spring (flat, cantilever)", "sharePct": 25, "trend": "stable" },
+                { "name": "Compression spring + lever", "sharePct": 5, "trend": "declining" }
+              ],
+              "rawMaterials": [{ "component": "Torsion spring", "materials": [
+                { "name": "Spring steel (carbon steel, high-tensile)", "sharePct": 90, "trend": "stable", "confidence": "MEDIUM", "source": "Standard for small coil/torsion springs; cost-effective, reliable fatigue life" },
+                { "name": "Stainless steel (304/316)", "sharePct": 10, "trend": "stable", "confidence": "MEDIUM", "source": "IP45 outdoor / humid environments; corrosion-resistant premium" }
+              ]}]
+            },
+            { "id": "L2-1-2", "name": "Handle engagement bracket",
+              "alternatives": [
+                { "name": "Universal U-bracket (fits most lever handles)", "sharePct": 65, "trend": "stable" },
+                { "name": "Lever-specific saddle bracket", "sharePct": 25, "trend": "stable" },
+                { "name": "Custom OEM-profiled bracket", "sharePct": 10, "trend": "declining" }
+              ],
+              "rawMaterials": [{ "component": "Bracket material", "materials": [
+                { "name": "Zinc die-cast (ZA-8 or Zamak alloys)", "sharePct": 55, "trend": "stable", "confidence": "MEDIUM", "source": "Cost-effective; standard in door hardware fittings; ~69% of volume-based hardware uses zinc alloy (Grand View Research, Door Hardware Market 2024)" },
+                { "name": "Stainless steel (stamped, 304)", "sharePct": 30, "trend": "growing", "confidence": "MEDIUM", "source": "Corrosion resistance; premium segment; ~38% of global door hardware by material volume (Verified Market Research 2024)" },
+                { "name": "Carbon steel (zinc-plated)", "sharePct": 15, "trend": "declining", "confidence": "MEDIUM", "source": "Lowest cost; declining due to corrosion concerns" }
+              ]}]
+            }
+          ]
+        },
+        { "id": "L3-2", "name": "Key override mechanism", "isMarquardtAnchor": false,
+          "alternatives": [
+            { "name": "Profile half-cylinder (DIN EN 1303)", "sharePct": 75, "trend": "stable" },
+            { "name": "Oval cylinder (Scandinavian / ANSI format)", "sharePct": 15, "trend": "stable" },
+            { "name": "Cam lock / furniture cylinder", "sharePct": 8, "trend": "declining" },
+            { "name": "No key override (alarm-only)", "sharePct": 2, "trend": "stable" }
+          ],
+          "rawMaterials": [{ "component": "Cylinder housing material", "materials": [
+            { "name": "Brass (CuZn39Pb3)", "sharePct": 65, "trend": "stable", "confidence": "MEDIUM", "source": "Traditional key cylinder material; machinability, corrosion resistance" },
+            { "name": "Zinc alloy (die-cast)", "sharePct": 25, "trend": "stable", "confidence": "MEDIUM", "source": "Cost reduction; slightly lower durability" },
+            { "name": "Stainless steel", "sharePct": 10, "trend": "growing", "confidence": "LOW", "source": "Analyst estimate; high-security / corrosive environments" }
+          ]}]
+        }
+      ]
+    },
+    { "id": "L4.2", "name": "Acoustic alarm subsystem", "costSharePct": 0,
+      "keyDesignChoice": "The alarm transducer must operate at 0 V (C2 — absolute constraint). This eliminates all alternatives that require continuous power. Only piezoelectric disc and mechanical striker pass this constraint. The 70% piezo dominance reflects regulatory selection pressure.",
+      "isMarquardtAnchor": false, "confidence": "medium",
+      "alternatives": [
+        { "name": "Piezoelectric alarm horn (electromechanical disc)", "sharePct": 70, "trend": "stable" },
+        { "name": "Electromagnetic buzzer/sounder", "sharePct": 25, "trend": "declining" },
+        { "name": "MEMS acoustic transducer", "sharePct": 3, "trend": "emerging" },
+        { "name": "Mechanical striker/bell (fully passive)", "sharePct": 2, "trend": "declining" }
+      ],
+      "modules": [{ "id": "L3-1", "name": "Alarm transducer module", "isMarquardtAnchor": false, "alternatives": [],
+        "children": [
+          { "id": "L2-1-1", "name": "Piezoelectric disc assembly", "alternatives": [],
+            "rawMaterials": [
+              { "component": "Piezo disc element material", "materials": [
+                { "name": "PZT ceramic (Lead Zirconate Titanate)", "sharePct": 85, "trend": "stable", "confidence": "MEDIUM", "source": "Industry standard piezo material; high piezoelectric coefficient; used in virtually all commercial alarm horns" },
+                { "name": "Lead-free BaTiO3 (Barium Titanate) ceramic", "sharePct": 10, "trend": "growing", "confidence": "MEDIUM", "source": "RoHS/REACH compliance push; lower coefficient but improving" },
+                { "name": "PVDF polymer film", "sharePct": 5, "trend": "niche", "confidence": "LOW", "source": "Analyst estimate; flexible, low voltage — used in thin transducers" }
+              ]},
+              { "component": "Acoustic resonance chamber material", "materials": [
+                { "name": "ABS polymer", "sharePct": 70, "trend": "stable", "confidence": "MEDIUM", "source": "Cost, moldability, acoustic properties; dominant in electronic housings" },
+                { "name": "PC/ABS blend", "sharePct": 20, "trend": "stable", "confidence": "MEDIUM", "source": "Better impact resistance; used in higher-grade devices" },
+                { "name": "Glass-filled nylon (PA66-GF)", "sharePct": 10, "trend": "growing", "confidence": "LOW", "source": "Analyst estimate; dimensional stability at temperature extremes" }
+              ]}
+            ]
+          },
+          { "id": "L2-1-2", "name": "Mechanical trigger linkage", "alternatives": [],
+            "rawMaterials": [{ "component": "Trigger arm material", "materials": [
+              { "name": "Stainless steel (stamped, 304)", "sharePct": 70, "trend": "stable", "confidence": "MEDIUM", "source": "Corrosion resistance; fatigue-critical component in safety device" },
+              { "name": "Zinc-plated carbon steel", "sharePct": 25, "trend": "declining", "confidence": "MEDIUM", "source": "Cost reduction; corrosion risk in humid environments (hotel stairwells)" },
+              { "name": "Engineering polymer (POM / acetal)", "sharePct": 5, "trend": "growing", "confidence": "LOW", "source": "Analyst estimate; weight reduction; creep risk at elevated load" }
+            ]}]
+          }
+        ]
+      }]
+    },
+    { "id": "L4.3", "name": "IoT telemetry subsystem", "costSharePct": 0,
+      "keyDesignChoice": "Hotels increasingly standardize on BACnet/IP or KNX BMS platforms. EasyWave's proprietary protocol creates C6 lock-in. BLE and Zigbee alternatives are gaining share in new hotel builds; LoRaWAN suits large resort/campus properties. GfS wireless BUS gateway partially bridges C6 but does not eliminate it.",
+      "isMarquardtAnchor": false, "confidence": "medium",
+      "alternatives": [
+        { "name": "Proprietary sub-GHz (e.g., 868 MHz EasyWave)", "sharePct": 35, "trend": "declining" },
+        { "name": "BLE (Bluetooth Low Energy, 2.4 GHz)", "sharePct": 30, "trend": "growing" },
+        { "name": "Zigbee (IEEE 802.15.4, 2.4 GHz mesh)", "sharePct": 15, "trend": "stable" },
+        { "name": "LoRaWAN (Sub-GHz LPWAN)", "sharePct": 12, "trend": "growing" },
+        { "name": "Z-Wave (Sub-GHz mesh)", "sharePct": 5, "trend": "stable" },
+        { "name": "Wi-Fi (802.11)", "sharePct": 3, "trend": "stable" }
+      ],
+      "modules": [
+        { "id": "L3-1", "name": "Radio communication module", "isMarquardtAnchor": false, "alternatives": [],
+          "children": [{ "id": "L2-1-1", "name": "RF transceiver circuit assembly",
+            "alternatives": [
+              { "name": "PCB trace antenna (inverted-F or meander)", "sharePct": 55, "trend": "stable" },
+              { "name": "Ceramic chip antenna", "sharePct": 30, "trend": "growing" },
+              { "name": "Whip/wire stub antenna", "sharePct": 15, "trend": "declining" }
+            ],
+            "rawMaterials": [{ "component": "PCB substrate", "materials": [
+              { "name": "FR4 (epoxy resin + woven glass fiber)", "sharePct": 85, "trend": "stable", "confidence": "HIGH", "source": "Industry standard for IoT device PCBs; cost-effective, well-characterized" },
+              { "name": "Rogers/PTFE high-frequency laminate", "sharePct": 10, "trend": "stable", "confidence": "LOW", "source": "Analyst estimate; used only where RF performance is critical at high frequency" },
+              { "name": "Flexible polyimide (FPC)", "sharePct": 5, "trend": "growing", "confidence": "LOW", "source": "Analyst estimate; space-constrained folded assemblies" }
+            ]}]
+          }]
+        },
+        { "id": "L3-2", "name": "State detection module", "isMarquardtAnchor": false,
+          "alternatives": [
+            { "name": "Reed switch + permanent magnet", "sharePct": 60, "trend": "stable" },
+            { "name": "Hall-effect sensor (solid-state)", "sharePct": 30, "trend": "growing" },
+            { "name": "Optical interrupt sensor", "sharePct": 8, "trend": "stable" },
+            { "name": "Mechanical microswitch", "sharePct": 2, "trend": "declining" }
+          ],
+          "rawMaterials": [{ "component": "Permanent magnet (reed switch variant)", "materials": [
+            { "name": "NdFeB (Neodymium Iron Boron, sintered)", "sharePct": 75, "trend": "stable", "confidence": "MEDIUM", "source": "Highest energy density; standard for small magnet applications in electronics" },
+            { "name": "Ferrite (BaFe12O19)", "sharePct": 25, "trend": "declining", "confidence": "MEDIUM", "source": "Lower energy density; cost advantage in price-sensitive applications" }
+          ]}]
+        },
+        { "id": "L3-3", "name": "Power supply module", "isMarquardtAnchor": false,
+          "alternatives": [
+            { "name": "Alkaline 9V block (MnO2/Zn)", "sharePct": 60, "trend": "declining" },
+            { "name": "Lithium primary 9V (LiSO2 or LiMnO2)", "sharePct": 30, "trend": "growing" },
+            { "name": "Lithium coin cell array (CR2032 × N)", "sharePct": 8, "trend": "stable" },
+            { "name": "Rechargeable NiMH 9V", "sharePct": 2, "trend": "niche" }
+          ],
+          "rawMaterials": [
+            { "component": "Alkaline 9V cell composition", "materials": [
+              { "name": "MnO2 (Manganese Dioxide)", "sharePct": 0, "source": "~40% of cell mass" },
+              { "name": "Zinc powder (Zn)", "sharePct": 0, "source": "~25%" },
+              { "name": "KOH solution", "sharePct": 0, "source": "~15%" },
+              { "name": "Carbon/graphite", "sharePct": 0, "source": "~10%" },
+              { "name": "Steel/nickel", "sharePct": 0, "source": "~10%" }
+            ]},
+            { "component": "Lithium primary 9V cell", "materials": [
+              { "name": "LiMnO2 or LiSO2 active material", "sharePct": 0, "source": "~55% of cell energy" },
+              { "name": "Organic electrolyte (LiCF3SO3 / LiClO4)", "sharePct": 0, "source": "~20%" },
+              { "name": "Aluminum/steel casing", "sharePct": 0, "source": "~15%" },
+              { "name": "Carbon/graphite", "sharePct": 0, "source": "~10%" }
+            ]}
+          ]
+        }
+      ]
+    },
+    { "id": "L4.4", "name": "Enclosure/mounting subsystem", "costSharePct": 0,
+      "keyDesignChoice": "Surface-mounted polymer housing is the standard. For 4–5-star hotels, C5 (visible protrusion) creates aesthetic friction. Semi-recessed alternatives are gaining share as premium hospitality increasingly specifies minimalist door hardware aesthetics.",
+      "isMarquardtAnchor": false, "confidence": "medium",
+      "alternatives": [
+        { "name": "Surface-mounted polymer housing (snap-fit assembly)", "sharePct": 70, "trend": "stable" },
+        { "name": "Surface-mounted die-cast metal housing", "sharePct": 20, "trend": "declining" },
+        { "name": "Semi-recessed polymer housing (requires shallow door channel)", "sharePct": 7, "trend": "growing" },
+        { "name": "Flush-mount integrated housing (door modification required)", "sharePct": 3, "trend": "niche" }
+      ],
+      "modules": [
+        { "id": "L3-1", "name": "Primary housing module", "isMarquardtAnchor": false,
+          "alternatives": [
+            { "name": "ABS (Acrylonitrile Butadiene Styrene)", "sharePct": 40, "trend": "stable" },
+            { "name": "PC/ABS blend (Polycarbonate/ABS)", "sharePct": 35, "trend": "growing" },
+            { "name": "PA66-GF (Glass-filled Nylon, 30%)", "sharePct": 15, "trend": "growing" },
+            { "name": "PP/ABS blend", "sharePct": 10, "trend": "declining" }
+          ],
+          "rawMaterials": [{ "component": "Surface coating (RAL 6029 Safety Green)", "materials": [
+            { "name": "Polyurethane powder coat", "sharePct": 70, "trend": "stable", "confidence": "MEDIUM", "source": "Industry standard for safety-colored hardware; durable, scratch-resistant" },
+            { "name": "Liquid polyurethane paint (spray)", "sharePct": 20, "trend": "declining", "confidence": "MEDIUM", "source": "Lower tooling cost; less durability" },
+            { "name": "Integral pigmented polymer (co-injection/colored resin)", "sharePct": 10, "trend": "growing", "confidence": "LOW", "source": "Analyst estimate; no secondary coating step; color stability over UV exposure" }
+          ]}]
+        },
+        { "id": "L3-2", "name": "Mounting hardware module", "isMarquardtAnchor": false, "alternatives": [],
+          "children": [
+            { "id": "L2-2-1", "name": "Door attachment assembly — Screw material", "alternatives": [],
+              "rawMaterials": [{ "component": "Door attachment assembly — Screw material", "materials": [
+                { "name": "Stainless steel (A2-70, 304)", "sharePct": 60, "trend": "growing", "confidence": "MEDIUM", "source": "Corrosion resistance; preferred for surface-mounted hardware in humid stairwells" },
+                { "name": "Zinc-plated carbon steel", "sharePct": 35, "trend": "declining", "confidence": "MEDIUM", "source": "Cost-effective; corrosion risk in hotel stairwell environments" },
+                { "name": "Polymer/nylon (for glass-frame variant)", "sharePct": 5, "trend": "stable", "confidence": "LOW", "source": "Analyst estimate; non-metallic for glass-panel doors" }
+              ]}]
+            },
+            { "id": "L2-2-2", "name": "Glass-frame mounting plate (optional — Art. 991170)", "alternatives": [],
+              "rawMaterials": [{ "component": "Glass-frame mounting plate (optional — Art. 991170)", "materials": [
+                { "name": "Steel (stamped, powder-coated)", "sharePct": 80, "trend": "stable", "confidence": "LOW", "source": "Analyst estimate; standard adapter plate material" },
+                { "name": "Aluminum (extruded)", "sharePct": 20, "trend": "growing", "confidence": "LOW", "source": "Analyst estimate; lighter, architectural aesthetic" }
+              ]}]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,306 @@
+{
+  "PROD-S01": {
+    "id": "S01",
+    "label": "Project brief — INSTRUCTIONS.md (internal document)",
+    "prefixedId": "PROD-S01"
+  },
+  "PROD-S02": {
+    "id": "S02",
+    "label": "Clayton component spec — product-decomposition.html (internal document)",
+    "prefixedId": "PROD-S02"
+  },
+  "PROD-S03": {
+    "id": "S03",
+    "label": "GfS Exit Control 179/1125 product page",
+    "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/",
+    "prefixedId": "PROD-S03"
+  },
+  "PROD-S04": {
+    "id": "S04",
+    "label": "GfS Exit Control Variants",
+    "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control/Variants/",
+    "prefixedId": "PROD-S04"
+  },
+  "PROD-S05": {
+    "id": "S05",
+    "label": "GfS Exit Control Wireless Signal Transmission",
+    "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/GfS-Exit-Control-179-1125-with-external-signal-devices/",
+    "prefixedId": "PROD-S05"
+  },
+  "PROD-S06": {
+    "id": "S06",
+    "label": "GfS Exit Control Accessories",
+    "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control/Accessories/",
+    "prefixedId": "PROD-S06"
+  },
+  "PROD-S07": {
+    "id": "S07",
+    "label": "GfS DEXCON — Door/Window Monitoring Device",
+    "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-DEXCON-95dB-75dB-9V-with-battery-monitoring-and-integrated-reed-contact/",
+    "prefixedId": "PROD-S07"
+  },
+  "PROD-S08": {
+    "id": "S08",
+    "label": "GfS e-Bar — Push Bar with Integrated Alarm",
+    "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-e-Bar/",
+    "prefixedId": "PROD-S08"
+  },
+  "PROD-S09": {
+    "id": "S09",
+    "label": "DIN EN 179 — Lever Handle Emergency Exit Devices (HOPPE reference)",
+    "url": "https://www.hoppe.com/in-en/contacts-service/standards/din-en-179/",
+    "prefixedId": "PROD-S09"
+  },
+  "PROD-S10": {
+    "id": "S10",
+    "label": "EN 1125 — Panic Exit Devices (Intertek reference)",
+    "url": "https://www.intertek.com/building/standards/en-1125/",
+    "prefixedId": "PROD-S10"
+  },
+  "PROD-S11": {
+    "id": "S11",
+    "label": "EN 179 vs EN 1125 Classification — Allegion",
+    "url": "https://mea.allegion.com/content/dam/mea/EN_Classification_16_(1).pdf",
+    "prefixedId": "PROD-S11"
+  },
+  "PROD-S12": {
+    "id": "S12",
+    "label": "dormakaba SafeRoute — Escape Route Technology",
+    "url": "https://www.dormakaba.com/gb-en/saferoute-escape-route",
+    "prefixedId": "PROD-S12"
+  },
+  "PROD-S13": {
+    "id": "S13",
+    "label": "GEZE SecuLogic Emergency Exit Systems",
+    "url": "https://www.geze.com/en/products-solutions/access_control_and_safety/emergency_exit_systems/c_36819",
+    "prefixedId": "PROD-S13"
+  },
+  "PROD-S14": {
+    "id": "S14",
+    "label": "UNSPSC 46171500 — Locks and security hardware (nearest class)",
+    "url": "https://usa.databasesets.com/unspsc/class/46171500",
+    "prefixedId": "PROD-S14"
+  },
+  "PROD-S15": {
+    "id": "S15",
+    "label": "UNSPSC 46171501 — Padlocks (nearest commodity, rejected)",
+    "url": "https://usa.databasesets.com/unspsc/commodity/46171501",
+    "prefixedId": "PROD-S15"
+  },
+  "PROD-S16": {
+    "id": "S16",
+    "label": "Amazon DE — GfS EH-Türwächter (retail listing, ~730 EUR)",
+    "url": "https://www.amazon.de/GFS-Fluchtt%C3%BCrw%C3%A4chter-Batteriebetrieben-T%C3%BCrsicherung-Stangengriff/dp/B089SXGK7C",
+    "prefixedId": "PROD-S16"
+  },
+  "PROD-S17": {
+    "id": "S17",
+    "label": "GfS EH-Türwächter Basic with battery monitoring (Art. 990000-BUE)",
+    "url": "https://www.gfs-online.com/GfS-EH-Tuerwaechter-Basis-Batterieueberwachung-RAL-6029/990000-BUE",
+    "prefixedId": "PROD-S17"
+  },
+  "MD-S01": {
+    "id": "MD-S01",
+    "label": "GfS Exit Control 179/1125 — Product Page",
+    "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/",
+    "prefixedId": "MD-S01"
+  },
+  "MD-S02": {
+    "id": "MD-S02",
+    "label": "UNSPSC 46171500 — Locks and security hardware",
+    "url": "https://usa.databasesets.com/unspsc/class/46171500",
+    "prefixedId": "MD-S02"
+  },
+  "MD-S03": {
+    "id": "MD-S03",
+    "label": "DIN EN 179 — HOPPE Standard Reference",
+    "url": "https://www.hoppe.com/in-en/contacts-service/standards/din-en-179/",
+    "prefixedId": "MD-S03"
+  },
+  "MD-S04": {
+    "id": "MD-S04",
+    "label": "EN 1125 — Intertek Standard Reference",
+    "url": "https://www.intertek.com/building/standards/en-1125/",
+    "prefixedId": "MD-S04"
+  },
+  "OVW-S01": {
+    "id": "OVW-S01",
+    "label": "GfS Exit Control 179/1125 — Product Page",
+    "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/",
+    "prefixedId": "OVW-S01"
+  },
+  "OVW-S02": {
+    "id": "OVW-S02",
+    "label": "GfS Exit Control Variants",
+    "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control/Variants/",
+    "prefixedId": "OVW-S02"
+  },
+  "OVW-S03": {
+    "id": "OVW-S03",
+    "label": "GfS Wireless Signal Transmission",
+    "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/GfS-Exit-Control-179-1125-with-external-signal-devices/",
+    "prefixedId": "OVW-S03"
+  },
+  "OVW-S04": {
+    "id": "OVW-S04",
+    "label": "Assa Abloy Group — Company Profile",
+    "url": "https://www.assaabloy.com/group/en/about-us",
+    "prefixedId": "OVW-S04"
+  },
+  "OVW-S05": {
+    "id": "OVW-S05",
+    "label": "Assa Abloy Group — Company Profile",
+    "url": "https://www.assaabloy.com/group/en/about-us",
+    "prefixedId": "OVW-S05"
+  },
+  "OVW-S06": {
+    "id": "OVW-S06",
+    "label": "GfS Exit Control Accessories",
+    "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control/Accessories/",
+    "prefixedId": "OVW-S06"
+  },
+  "OVW-S07": {
+    "id": "OVW-S07",
+    "label": "GfS Rettungswegtechnik — Full Product Range",
+    "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/",
+    "prefixedId": "OVW-S07"
+  },
+  "OVW-S08": {
+    "id": "OVW-S08",
+    "label": "Assa Abloy — Innovation & Patents",
+    "url": "https://www.assaabloy.com/group/en/about-us/innovation",
+    "prefixedId": "OVW-S08"
+  },
+  "OVW-S09": {
+    "id": "OVW-S09",
+    "label": "DIN EN 179 / EN 1125 — HOPPE Standard Reference",
+    "url": "https://www.hoppe.com/in-en/contacts-service/standards/din-en-179/",
+    "prefixedId": "OVW-S09"
+  },
+  "OVW-S10": {
+    "id": "OVW-S10",
+    "label": "Amazon DE — GfS EH-Türwächter (retail listing)",
+    "url": "https://www.amazon.de/GFS-Fluchtt%C3%BCrw%C3%A4chter-Batteriebetrieben-T%C3%BCrsicherung-Stangengriff/dp/B089SXGK7C",
+    "prefixedId": "OVW-S10"
+  },
+  "CON-S01": {
+    "id": "CON-S01",
+    "label": "DIN EN 179 — Building hardware — Lever operated emergency exit devices",
+    "url": "https://www.hoppe.com/in-en/contacts-service/standards/din-en-179/",
+    "prefixedId": "CON-S01"
+  },
+  "CON-S02": {
+    "id": "CON-S02",
+    "label": "EN 1125 — Panic exit devices operated by a horizontal bar",
+    "url": "https://www.intertek.com/building/standards/en-1125/",
+    "prefixedId": "CON-S02"
+  },
+  "CON-S03": {
+    "id": "CON-S03",
+    "label": "GfS Exit Control 179/1125 — Technical specifications",
+    "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/",
+    "prefixedId": "CON-S03"
+  },
+  "CON-S04": {
+    "id": "CON-S04",
+    "label": "GfS Exit Control Wireless Signal Transmission — EasyWave protocol",
+    "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/GfS-Exit-Control-179-1125-with-external-signal-devices/",
+    "prefixedId": "CON-S04"
+  },
+  "CON-S05": {
+    "id": "CON-S05",
+    "label": "Amazon DE — GfS EH-Türwächter retail pricing (~730 EUR)",
+    "url": "https://www.amazon.de/GFS-Fluchtt%C3%BCrw%C3%A4chter-Batteriebetrieben-T%C3%BCrsicherung-Stangengriff/dp/B089SXGK7C",
+    "prefixedId": "CON-S05"
+  },
+  "CON-S06": {
+    "id": "CON-S06",
+    "label": "GDPR — Regulation (EU) 2016/679",
+    "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+    "prefixedId": "CON-S06"
+  },
+  "CON-S07": {
+    "id": "CON-S07",
+    "label": "GfS IP45 Outdoor Variant (Art. 990000-IP)",
+    "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control/Variants/",
+    "prefixedId": "CON-S07"
+  },
+  "JTBD-CONTINUING_CARE_RETIREMENT-S01": {
+    "id": "S01",
+    "label": "Shocking Elopement Statistics — Tangram Insurance",
+    "url": "https://tangramins.com/news-insights/shocking-elopement-statistics-how-to-keep-wandering-residents-safe/",
+    "prefixedId": "JTBD-CONTINUING_CARE_RETIREMENT-S01"
+  },
+  "JTBD-CONTINUING_CARE_RETIREMENT-S02": {
+    "id": "S02",
+    "label": "CMS Life Safety Code Requirements",
+    "url": "https://www.cms.gov/medicare/health-safety-standards/certification-compliance/life-safety-code-health-care-facilities-code-requirements",
+    "prefixedId": "JTBD-CONTINUING_CARE_RETIREMENT-S02"
+  },
+  "JTBD-CONTINUING_CARE_RETIREMENT-S03": {
+    "id": "S03",
+    "label": "AHCA Door Locking Provisions (NFPA 101 delayed egress)",
+    "url": "https://www.ahcancal.org/Survey-Regulatory-Legal/Documents/LSC%20Door%20Locking%20Provisions.21.pdf",
+    "prefixedId": "JTBD-CONTINUING_CARE_RETIREMENT-S03"
+  },
+  "JTBD-CONTINUING_CARE_RETIREMENT-S04": {
+    "id": "S04",
+    "label": "Decoded: Deterring Elopement in Health Care Facilities — I Dig Hardware",
+    "url": "https://idighardware.com/2018/07/decoded-deterring-egress-in-health-care-facilities/",
+    "prefixedId": "JTBD-CONTINUING_CARE_RETIREMENT-S04"
+  },
+  "JTBD-CONTINUING_CARE_RETIREMENT-S05": {
+    "id": "S05",
+    "label": "WanderGuard System Cost Breakdown — BEC Integrated",
+    "url": "https://becintegrated.com/wander-guard-system-cost-breakdown-and-pricing",
+    "prefixedId": "JTBD-CONTINUING_CARE_RETIREMENT-S05"
+  },
+  "JTBD-CONTINUING_CARE_RETIREMENT-S06": {
+    "id": "S06",
+    "label": "WanderGuard BLUE — Securitas Healthcare",
+    "url": "https://www.securitashealthcare.com/solutions/wander-management",
+    "prefixedId": "JTBD-CONTINUING_CARE_RETIREMENT-S06"
+  },
+  "JTBD-CONTINUING_CARE_RETIREMENT-S07": {
+    "id": "S07",
+    "label": "ECRI: Emerging Technologies for Wandering and Elopement",
+    "url": "https://home.ecri.org/blogs/ecri-blog/preventing-harm-in-aging-services-emerging-technologies-to-mitigate-hazardous-wandering-and-elopement",
+    "prefixedId": "JTBD-CONTINUING_CARE_RETIREMENT-S07"
+  },
+  "JTBD-CONTINUING_CARE_RETIREMENT-S08": {
+    "id": "S08",
+    "label": "Wikipedia: Continuing Care Retirement Communities in the United States",
+    "url": "https://en.wikipedia.org/wiki/Continuing_care_retirement_communities_in_the_United_States",
+    "prefixedId": "JTBD-CONTINUING_CARE_RETIREMENT-S08"
+  },
+  "COMPAT-FACILITIES_SUPPORT_SERVICES-S01": {
+    "id": "S01",
+    "label": "01_product_decomposition.md — Technology class, mechanism, specifications, UNSPSC",
+    "prefixedId": "COMPAT-FACILITIES_SUPPORT_SERVICES-S01"
+  },
+  "COMPAT-FACILITIES_SUPPORT_SERVICES-S02": {
+    "id": "S02",
+    "label": "02_functional_promise.md — Functional promise, complements, BOM position, FP extension",
+    "prefixedId": "COMPAT-FACILITIES_SUPPORT_SERVICES-S02"
+  },
+  "COMPAT-FACILITIES_SUPPORT_SERVICES-S03": {
+    "id": "S03",
+    "label": "03_constraints.md — All 10 product constraints with types, thresholds, absolute classification",
+    "prefixedId": "COMPAT-FACILITIES_SUPPORT_SERVICES-S03"
+  },
+  "COMPAT-FACILITIES_SUPPORT_SERVICES-S04": {
+    "id": "S04",
+    "label": "05_market_discovery.md — Facilities Support Services NAICS 561210: relevance, architecture distance",
+    "prefixedId": "COMPAT-FACILITIES_SUPPORT_SERVICES-S04"
+  },
+  "COMPAT-FACILITIES_SUPPORT_SERVICES-S05": {
+    "id": "S05",
+    "label": "VN_facilities_support_services.md — Value network structure, BMS alternative shares, Türwächter anchor",
+    "prefixedId": "COMPAT-FACILITIES_SUPPORT_SERVICES-S05"
+  },
+  "COMPAT-FACILITIES_SUPPORT_SERVICES-S06": {
+    "id": "S06",
+    "label": "Industry analysis — FM market structure and procurement channels",
+    "prefixedId": "COMPAT-FACILITIES_SUPPORT_SERVICES-S06"
+  }
+}

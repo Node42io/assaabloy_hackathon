@@ -1,0 +1,21 @@
+{
+  "slug": "data_centers",
+  "name": "Data Processing, Hosting, and Related Services",
+  "naicsCode": "518210",
+  "isReference": false,
+  "rank": 10,
+  "scores": {
+    "odi": 5.96,
+    "featureFit": 5.25,
+    "constraintCompatibility": 6.5,
+    "jobCoverage": 5,
+    "vnHierarchy": 3,
+    "incumbentVulnerability": 3.7,
+    "composite": 5.04
+  },
+  "recommendation": "investigate",
+  "rationale": "",
+  "entryStrategy": "Target edge/colocation DCs first (under 5,000 m² — RF constraint least severe); partner with DC physical security integrators; lead with SOC 2 CC6.4 audit log automation; defer hyperscale until IP Gateway BACnet/REST integration is proven",
+  "estimatedTimeToEntry": "8-14 months",
+  "estimatedInvestment": "€200000-500000"
+}

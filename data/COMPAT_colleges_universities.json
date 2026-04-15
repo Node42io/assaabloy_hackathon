@@ -1,0 +1,422 @@
+{
+  "id": "COMPAT_colleges_universities",
+  "title": "Constraint-Market Compatibility: Colleges, Universities, and Professional Schools",
+  "type": "constraint_compatibility",
+  "market_slug": "colleges_universities",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Market Context",
+      "content": "| Field | Value |\n|---|---|\n| **NAICS code** | 611310 |\n| **NAICS title** | Colleges, Universities, and Professional Schools |\n| **VN entry point** | L5.h1.2 — Emergency Exit Alarm Guards (under L6-H1 Campus Safety) |\n| **Architecture distance** | 2 (HIGH priority) |\n| **Applicable standards** | NFPA 101 Life Safety Code, IBC Chapter 10, Clery Act; EN 179 / EN 1125 (EU campuses) |\n| **Building stock** | 1/3 of campus buildings exceed 50 years old; >$100B national deferred maintenance backlog |\n| **Buyer** | Director of Public Safety; Facilities Director; competitive bid required (public universities >$25K threshold) |\n| **Key integration platforms** | Lenel OnGuard, Genetec Security Center, Software House C•CURE (PSIM) |\n\n---"
+    },
+    {
+      "title": "Step 08 — Verdict Table",
+      "content": "| # | Constraint | Type | Threshold | Verdict | Primary Reason |\n|---|---|---|---|---|---|\n| C1 | Emergency Escape Non-Impedance | regulatory | 0 additional steps | **none** | Product certified EN 179/EN 1125; NFPA 101 single-motion egress requirement already met |\n| C2 | Mechanical Alarm Independence | regulatory | 0 V | **none** | Product's mechanical-primary design satisfies NFPA 101 power-failure fail-safe requirement by construction |\n| C3 | Wireless Range Limitation | physical | 30 m / 60 m | **mitigable** | Large lecture halls, research buildings, and multi-wing dorms exceed 30 m range; concrete attenuation common in aging stock |\n| C4 | IoT Battery Life Floor | operational | 2 years | **mitigable** | Dormitory stairwells and corridor exits have high door-event frequency; campus CMMS enables mitigation |\n| C5 | Retrofit-Only Surface Mount | physical | surface-mount only | **none** | Retrofit advantage: no-drill/no-conduit installation avoids renovation permits in 50+ year-old buildings; historic fabric preserved |\n| C6 | EasyWave Protocol Lock-In | operational | 0 open protocols | **mitigable** | Campus PSIM platforms (Lenel, Genetec) expect IP-native input; EasyWave bridge required — primary friction point |\n| C7 | IoT Price Premium | economic | 2× non-IoT | **mitigable** | Public universities require competitive bid >$25K; ROI case via patrol labor reduction + automated Clery reporting is achievable |\n| C8 | GDPR Monitoring Data Compliance | regulatory | DPA + DPIA | **none** | US campus exit events (building-level door/alarm logs) are not personally identifiable under FERPA; EU campuses require standard DPA |\n| C9 | IP Protection Boundary | environmental | IP45 | **none** | Primary campus use case is indoor emergency exits; IP45 outdoor variant covers outdoor and wet-zone exceptions |\n| C10 | EN 13637 / EltVTR Electrical Compliance | regulatory | fail-safe at system level | **mitigable** | Campus doors commonly combine access control (card reader + EM holder) with emergency exit — combined system must satisfy NFPA 101 fail-safe; IoT module alone is compliant |\n\n**Result: 0 knockouts. Market survives. 4 mitigable constraints.**\n\n---"
+    },
+    {
+      "title": "Mitigable Constraint Details",
+      "content": "### C3 — Wireless Range Limitation\n\n| Field | Value |\n|---|---|\n| **Rationale** | Campus buildings from the 1950s–1970s use reinforced concrete construction. Large lecture halls (~40–60 m footprint), multi-wing dormitories, and underground/basement emergency exits regularly exceed the 30 m integrated TX limit. Each concrete floor slab reduces effective range by 30–50%. |\n| **Mitigation actions** | (1) Per-building radio survey during installation design; (2) deploy repeater chain (GfS repeater, +30 m each stage); (3) for large buildings, locate wireless receiver at building-level aggregation point with wired backbone to campus SOC |\n| **Cost estimate** | low (1–3 repeaters per standard building, <$10K hardware) |\n| **Time estimate** | 1–2 months (survey + installation per building) |\n\n### C4 — IoT Battery Life Floor\n\n| Field | Value |\n|---|---|\n| **Rationale** | Dormitory corridor exits and classroom building emergency doors see regular student use (propping, frequent activation). High door-event frequency drains 9V battery faster than the 2-year target. Battery life not published by GfS for IoT variant under sustained use. |\n| **Mitigation actions** | (1) Specify battery-monitoring variant (GfS battery status indicator); (2) integrate battery-low alerts into campus CMMS (Famis 360, Archibus, or IBM Maximo) for PM scheduling; (3) establish quarterly inspection protocol for high-traffic doors; (4) evaluate wired power adapter (9–28 V operating range supports hardwired option) |\n| **Cost estimate** | low (<$10K — CMMS configuration and inspection schedule) |\n| **Time estimate** | 1–2 months |\n\n### C6 — EasyWave Protocol Lock-In\n\n| Field | Value |\n|---|---|\n| **Rationale** | Campus security operations centers integrate physical security via enterprise PSIM (Lenel OnGuard, Genetec Security Center, Software House C•CURE). These platforms consume IP-native event streams; EasyWave is not a supported input. Without a bridge, Türwächter events appear only on the GfS receiver output — siloed from the unified campus security dashboard. This is the primary integration friction flagged in the VN. |\n| **Mitigation actions** | (1) Deploy GfS wireless BUS gateway (bridges EasyWave → potential-free contact + RS-485); (2) develop REST/Webhook adapter from gateway to campus PSIM API; (3) alternatively, wire gateway relay output to existing fire/security alarm panel input (simpler; loses event metadata) |\n| **Cost estimate** | medium ($10K–$100K depending on campus scale, PSIM license scope, and integration development) |\n| **Time estimate** | 3–6 months (gateway deployment + PSIM integration + UAT) |\n\n### C10 — EN 13637 / EltVTR Electrical Compliance\n\n| Field | Value |\n|---|---|\n| **Rationale** | University campuses frequently deploy combined door systems: card-reader access control + electromagnetic door holder + emergency exit hardware on the same door (e.g., laboratory wings, server rooms, pharmacy stores on campus). The combined system must satisfy NFPA 101 §7.2 fail-safe egress requirements (US) or EN 13637 (EU campuses). The Türwächter IoT module is supervisory-only and does not add a failure mode to the escape path, but the system integrator must certify the full combined configuration. |\n| **Mitigation actions** | (1) NFPA 101 life safety review of combined access control + emergency exit door configurations during system design; (2) specify that any EM holder on the same door must fail-open (power-off = door releases); (3) documentation package for AHJ (Authority Having Jurisdiction) review |\n| **Cost estimate** | low (design review and documentation; no hardware modification required for Türwächter itself) |\n| **Time estimate** | 1–2 months (design phase, concurrent with access control system spec) |\n\n---"
+    },
+    {
+      "title": "Constraint Interaction Summary",
+      "content": "No knockout constraints. Four mitigable constraints cluster into two themes:\n\n| Theme | Constraints | Net complexity |\n|---|---|---|\n| Infrastructure / integration | C3 (range), C6 (protocol), C10 (combined systems) | Medium — solvable by a campus security integrator with GfS gateway kit; does not require product modification |\n| Operational | C4 (battery life) | Low — CMMS scheduling and battery monitoring variant; resolved in commissioning phase |\n\nC5 (surface mount) flips from constraint to advantage in this market. C1, C2, C8, C9 are irrelevant at normal campus operating conditions.\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"market_name\": \"Colleges, Universities, and Professional Schools\",\n  \"naics_code\": \"611310\",\n  \"markets_eliminated\": [],\n  \"markets_surviving\": [\"611310\"],\n  \"assessments\": [\n    {\n      \"constraint_name\": \"Emergency Escape Non-Impedance\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Product is certified to EN 179 / EN 1125 (single-motion, ≤70N). NFPA 101 Life Safety Code and IBC Chapter 10 impose equivalent single-motion egress requirements for US campuses. The product's design pre-satisfies both regimes. No additional steps are added to the escape path.\"\n    },\n    {\n      \"constraint_name\": \"Mechanical Alarm Independence\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"NFPA 101 requires emergency egress devices to function under power failure. The Türwächter's mechanical alarm trigger operates at 0V by design — satisfies the absolute constraint in full. No gap between product capability and market requirement.\"\n    },\n    {\n      \"constraint_name\": \"Wireless Range Limitation\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Conduct per-building radio survey during installation planning to identify coverage gaps\",\n        \"Deploy GfS repeater units (+30 m per stage) in stairwells and corridor junctions\",\n        \"For large buildings (>60 m footprint), install GfS wireless BUS gateway at building core with potential-free wired relay to campus security backbone\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1–2 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"University buildings — particularly 1950s–1970s reinforced concrete construction — regularly exceed the 30 m integrated TX range. Multi-wing dormitories, research lab clusters, and lecture halls require repeater stages. Known engineering solution with available hardware.\"\n    },\n    {\n      \"constraint_name\": \"IoT Battery Life Floor\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Specify battery-monitoring variant to surface battery-low alerts before failure\",\n        \"Integrate battery-low alerts into campus CMMS (Famis 360 / Archibus / IBM Maximo) for preventive maintenance scheduling\",\n        \"Classify high-traffic exits (dormitory corridors, main academic building stairwells) as quarterly inspection points\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1–2 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Dormitory stairwell exits and high-traffic academic corridor exits see frequent door events, increasing current draw on the 9V battery. Campus CMMS infrastructure enables systematic PM scheduling. Wired power supply (9–28V input range) is an option for highest-traffic doors.\"\n    },\n    {\n      \"constraint_name\": \"Retrofit-Only Surface Mount\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Surface-mount installation is an advantage in this market. One-third of US campus buildings exceed 50 years of age; retrofitting wired or flush-mount hardware requires renovation permits, asbestos/lead surveys, and construction disruption. The Türwächter's no-drill surface mount avoids all of these, fitting existing EN 179/EN 1125-compliant door hardware without modification.\"\n    },\n    {\n      \"constraint_name\": \"EasyWave Protocol Lock-In\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Deploy GfS wireless BUS gateway to aggregate EasyWave events and provide IP-accessible output\",\n        \"Develop REST/Webhook integration from GfS gateway to campus PSIM (Lenel OnGuard, Genetec Security Center, Software House C•CURE) event feed\",\n        \"As interim fallback: wire gateway relay output to existing campus alarm panel input (loses event metadata but provides alarm coverage)\"\n      ],\n      \"mitigation_cost_estimate\": \"medium\",\n      \"mitigation_time_estimate\": \"3–6 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"University SOC platforms (Lenel, Genetec) expect IP-native security device integration. EasyWave requires a GfS BUS gateway bridge and custom API connector to enter the PSIM event stream. This is the primary integration gap for this market — solvable by a campus security integrator but requires explicit project scope and budget.\"\n    },\n    {\n      \"constraint_name\": \"IoT Price Premium\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Develop campus-scale TCO model: IoT deployment vs. incremental security patrol FTE cost over 5 years\",\n        \"Quantify Clery Act compliance labor savings: automated inspection log generation vs. manual quarterly documentation\",\n        \"Structure campus deployment in phases (pilot 20–50 doors in one building) to stay below public competitive bid threshold for initial procurement\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1–3 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"At ~€730/unit, a 100-door campus deployment reaches ~€73K — above many public university's competitive bid threshold (~$25K). ROI case is achievable: automated Clery Act documentation, reduced security patrol, and insurance compliance demonstrate clear payback. Per-phase rollout manages procurement process.\"\n    },\n    {\n      \"constraint_name\": \"GDPR Monitoring Data Compliance\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"US campus emergency exit event logs (door-opened, alarm-triggered, battery-low timestamps) are building-level data not linked to individual identities — not covered by FERPA. GDPR applies to EU campus deployments; for those, a standard DPA with the monitoring service provider and a screening DPIA suffice (established compliance path).\"\n    },\n    {\n      \"constraint_name\": \"IP Protection Boundary\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Primary campus installation environment is indoor corridors, stairwells, and hallways — no washdown, no moisture exposure. Exceptions (outdoor emergency exits, dining hall kitchen corridors, pool locker rooms) are served by the IP45 outdoor variant already in the product lineup, requiring no new engineering.\"\n    },\n    {\n      \"constraint_name\": \"EN 13637 / EltVTR Electrical Compliance\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Include NFPA 101 §7.2 fail-safe egress review in campus door hardware specification for combined access control + emergency exit configurations\",\n        \"Specify EM holders on the same door as Türwächter must be fail-open (power-off = door releases) to comply with NFPA 101\",\n        \"Prepare AHJ documentation package for combined system configurations in laboratory wings and controlled-access zones\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1–2 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"University campuses frequently combine access control (card reader + EM holder) with emergency exit compliance on the same door (lab wings, pharmacy stores, secure server rooms). The combined system must satisfy NFPA 101 (US) or EN 13637 (EU) fail-safe requirements. The Türwächter IoT module is supervisory-only and does not add a failure mode; system integrator certification of combined configurations is standard practice.\"\n    }\n  ]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**NAICS code**",
+          "Value": "611310"
+        },
+        {
+          "Field": "**NAICS title**",
+          "Value": "Colleges, Universities, and Professional Schools"
+        },
+        {
+          "Field": "**VN entry point**",
+          "Value": "L5.h1.2 — Emergency Exit Alarm Guards (under L6-H1 Campus Safety)"
+        },
+        {
+          "Field": "**Architecture distance**",
+          "Value": "2 (HIGH priority)"
+        },
+        {
+          "Field": "**Applicable standards**",
+          "Value": "NFPA 101 Life Safety Code, IBC Chapter 10, Clery Act; EN 179 / EN 1125 (EU campuses)"
+        },
+        {
+          "Field": "**Building stock**",
+          "Value": "1/3 of campus buildings exceed 50 years old; >$100B national deferred maintenance backlog"
+        },
+        {
+          "Field": "**Buyer**",
+          "Value": "Director of Public Safety; Facilities Director; competitive bid required (public universities >$25K threshold)"
+        },
+        {
+          "Field": "**Key integration platforms**",
+          "Value": "Lenel OnGuard, Genetec Security Center, Software House C•CURE (PSIM)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Constraint",
+        "Type",
+        "Threshold",
+        "Verdict",
+        "Primary Reason"
+      ],
+      "rows": [
+        {
+          "#": "C1",
+          "Constraint": "Emergency Escape Non-Impedance",
+          "Type": "regulatory",
+          "Threshold": "0 additional steps",
+          "Verdict": "**none**",
+          "Primary Reason": "Product certified EN 179/EN 1125; NFPA 101 single-motion egress requirement already met"
+        },
+        {
+          "#": "C2",
+          "Constraint": "Mechanical Alarm Independence",
+          "Type": "regulatory",
+          "Threshold": "0 V",
+          "Verdict": "**none**",
+          "Primary Reason": "Product's mechanical-primary design satisfies NFPA 101 power-failure fail-safe requirement by construction"
+        },
+        {
+          "#": "C3",
+          "Constraint": "Wireless Range Limitation",
+          "Type": "physical",
+          "Threshold": "30 m / 60 m",
+          "Verdict": "**mitigable**",
+          "Primary Reason": "Large lecture halls, research buildings, and multi-wing dorms exceed 30 m range; concrete attenuation common in aging stock"
+        },
+        {
+          "#": "C4",
+          "Constraint": "IoT Battery Life Floor",
+          "Type": "operational",
+          "Threshold": "2 years",
+          "Verdict": "**mitigable**",
+          "Primary Reason": "Dormitory stairwells and corridor exits have high door-event frequency; campus CMMS enables mitigation"
+        },
+        {
+          "#": "C5",
+          "Constraint": "Retrofit-Only Surface Mount",
+          "Type": "physical",
+          "Threshold": "surface-mount only",
+          "Verdict": "**none**",
+          "Primary Reason": "Retrofit advantage: no-drill/no-conduit installation avoids renovation permits in 50+ year-old buildings; historic fabric preserved"
+        },
+        {
+          "#": "C6",
+          "Constraint": "EasyWave Protocol Lock-In",
+          "Type": "operational",
+          "Threshold": "0 open protocols",
+          "Verdict": "**mitigable**",
+          "Primary Reason": "Campus PSIM platforms (Lenel, Genetec) expect IP-native input; EasyWave bridge required — primary friction point"
+        },
+        {
+          "#": "C7",
+          "Constraint": "IoT Price Premium",
+          "Type": "economic",
+          "Threshold": "2× non-IoT",
+          "Verdict": "**mitigable**",
+          "Primary Reason": "Public universities require competitive bid >$25K; ROI case via patrol labor reduction + automated Clery reporting is achievable"
+        },
+        {
+          "#": "C8",
+          "Constraint": "GDPR Monitoring Data Compliance",
+          "Type": "regulatory",
+          "Threshold": "DPA + DPIA",
+          "Verdict": "**none**",
+          "Primary Reason": "US campus exit events (building-level door/alarm logs) are not personally identifiable under FERPA; EU campuses require standard DPA"
+        },
+        {
+          "#": "C9",
+          "Constraint": "IP Protection Boundary",
+          "Type": "environmental",
+          "Threshold": "IP45",
+          "Verdict": "**none**",
+          "Primary Reason": "Primary campus use case is indoor emergency exits; IP45 outdoor variant covers outdoor and wet-zone exceptions"
+        },
+        {
+          "#": "C10",
+          "Constraint": "EN 13637 / EltVTR Electrical Compliance",
+          "Type": "regulatory",
+          "Threshold": "fail-safe at system level",
+          "Verdict": "**mitigable**",
+          "Primary Reason": "Campus doors commonly combine access control (card reader + EM holder) with emergency exit — combined system must satisfy NFPA 101 fail-safe; IoT module alone is compliant"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Rationale**",
+          "Value": "Campus buildings from the 1950s–1970s use reinforced concrete construction. Large lecture halls (~40–60 m footprint), multi-wing dormitories, and underground/basement emergency exits regularly exceed the 30 m integrated TX limit. Each concrete floor slab reduces effective range by 30–50%."
+        },
+        {
+          "Field": "**Mitigation actions**",
+          "Value": "(1) Per-building radio survey during installation design; (2) deploy repeater chain (GfS repeater, +30 m each stage); (3) for large buildings, locate wireless receiver at building-level aggregation point with wired backbone to campus SOC"
+        },
+        {
+          "Field": "**Cost estimate**",
+          "Value": "low (1–3 repeaters per standard building, <$10K hardware)"
+        },
+        {
+          "Field": "**Time estimate**",
+          "Value": "1–2 months (survey + installation per building)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Rationale**",
+          "Value": "Dormitory corridor exits and classroom building emergency doors see regular student use (propping, frequent activation). High door-event frequency drains 9V battery faster than the 2-year target. Battery life not published by GfS for IoT variant under sustained use."
+        },
+        {
+          "Field": "**Mitigation actions**",
+          "Value": "(1) Specify battery-monitoring variant (GfS battery status indicator); (2) integrate battery-low alerts into campus CMMS (Famis 360, Archibus, or IBM Maximo) for PM scheduling; (3) establish quarterly inspection protocol for high-traffic doors; (4) evaluate wired power adapter (9–28 V operating range supports hardwired option)"
+        },
+        {
+          "Field": "**Cost estimate**",
+          "Value": "low (<$10K — CMMS configuration and inspection schedule)"
+        },
+        {
+          "Field": "**Time estimate**",
+          "Value": "1–2 months"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Rationale**",
+          "Value": "Campus security operations centers integrate physical security via enterprise PSIM (Lenel OnGuard, Genetec Security Center, Software House C•CURE). These platforms consume IP-native event streams; EasyWave is not a supported input. Without a bridge, Türwächter events appear only on the GfS receiver output — siloed from the unified campus security dashboard. This is the primary integration friction flagged in the VN."
+        },
+        {
+          "Field": "**Mitigation actions**",
+          "Value": "(1) Deploy GfS wireless BUS gateway (bridges EasyWave → potential-free contact + RS-485); (2) develop REST/Webhook adapter from gateway to campus PSIM API; (3) alternatively, wire gateway relay output to existing fire/security alarm panel input (simpler; loses event metadata)"
+        },
+        {
+          "Field": "**Cost estimate**",
+          "Value": "medium ($10K–$100K depending on campus scale, PSIM license scope, and integration development)"
+        },
+        {
+          "Field": "**Time estimate**",
+          "Value": "3–6 months (gateway deployment + PSIM integration + UAT)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Rationale**",
+          "Value": "University campuses frequently deploy combined door systems: card-reader access control + electromagnetic door holder + emergency exit hardware on the same door (e.g., laboratory wings, server rooms, pharmacy stores on campus). The combined system must satisfy NFPA 101 §7.2 fail-safe egress requirements (US) or EN 13637 (EU campuses). The Türwächter IoT module is supervisory-only and does not add a failure mode to the escape path, but the system integrator must certify the full combined configuration."
+        },
+        {
+          "Field": "**Mitigation actions**",
+          "Value": "(1) NFPA 101 life safety review of combined access control + emergency exit door configurations during system design; (2) specify that any EM holder on the same door must fail-open (power-off = door releases); (3) documentation package for AHJ (Authority Having Jurisdiction) review"
+        },
+        {
+          "Field": "**Cost estimate**",
+          "Value": "low (design review and documentation; no hardware modification required for Türwächter itself)"
+        },
+        {
+          "Field": "**Time estimate**",
+          "Value": "1–2 months (design phase, concurrent with access control system spec)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Theme",
+        "Constraints",
+        "Net complexity"
+      ],
+      "rows": [
+        {
+          "Theme": "Infrastructure / integration",
+          "Constraints": "C3 (range), C6 (protocol), C10 (combined systems)",
+          "Net complexity": "Medium — solvable by a campus security integrator with GfS gateway kit; does not require product modification"
+        },
+        {
+          "Theme": "Operational",
+          "Constraints": "C4 (battery life)",
+          "Net complexity": "Low — CMMS scheduling and battery monitoring variant; resolved in commissioning phase"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market_name": "Colleges, Universities, and Professional Schools",
+      "naics_code": "611310",
+      "markets_eliminated": [],
+      "markets_surviving": [
+        "611310"
+      ],
+      "assessments": [
+        {
+          "constraint_name": "Emergency Escape Non-Impedance",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Product is certified to EN 179 / EN 1125 (single-motion, ≤70N). NFPA 101 Life Safety Code and IBC Chapter 10 impose equivalent single-motion egress requirements for US campuses. The product's design pre-satisfies both regimes. No additional steps are added to the escape path."
+        },
+        {
+          "constraint_name": "Mechanical Alarm Independence",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "NFPA 101 requires emergency egress devices to function under power failure. The Türwächter's mechanical alarm trigger operates at 0V by design — satisfies the absolute constraint in full. No gap between product capability and market requirement."
+        },
+        {
+          "constraint_name": "Wireless Range Limitation",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Conduct per-building radio survey during installation planning to identify coverage gaps",
+            "Deploy GfS repeater units (+30 m per stage) in stairwells and corridor junctions",
+            "For large buildings (>60 m footprint), install GfS wireless BUS gateway at building core with potential-free wired relay to campus security backbone"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1–2 months",
+          "knockout_reason": null,
+          "rationale": "University buildings — particularly 1950s–1970s reinforced concrete construction — regularly exceed the 30 m integrated TX range. Multi-wing dormitories, research lab clusters, and lecture halls require repeater stages. Known engineering solution with available hardware."
+        },
+        {
+          "constraint_name": "IoT Battery Life Floor",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Specify battery-monitoring variant to surface battery-low alerts before failure",
+            "Integrate battery-low alerts into campus CMMS (Famis 360 / Archibus / IBM Maximo) for preventive maintenance scheduling",
+            "Classify high-traffic exits (dormitory corridors, main academic building stairwells) as quarterly inspection points"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1–2 months",
+          "knockout_reason": null,
+          "rationale": "Dormitory stairwell exits and high-traffic academic corridor exits see frequent door events, increasing current draw on the 9V battery. Campus CMMS infrastructure enables systematic PM scheduling. Wired power supply (9–28V input range) is an option for highest-traffic doors."
+        },
+        {
+          "constraint_name": "Retrofit-Only Surface Mount",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Surface-mount installation is an advantage in this market. One-third of US campus buildings exceed 50 years of age; retrofitting wired or flush-mount hardware requires renovation permits, asbestos/lead surveys, and construction disruption. The Türwächter's no-drill surface mount avoids all of these, fitting existing EN 179/EN 1125-compliant door hardware without modification."
+        },
+        {
+          "constraint_name": "EasyWave Protocol Lock-In",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Deploy GfS wireless BUS gateway to aggregate EasyWave events and provide IP-accessible output",
+            "Develop REST/Webhook integration from GfS gateway to campus PSIM (Lenel OnGuard, Genetec Security Center, Software House C•CURE) event feed",
+            "As interim fallback: wire gateway relay output to existing campus alarm panel input (loses event metadata but provides alarm coverage)"
+          ],
+          "mitigation_cost_estimate": "medium",
+          "mitigation_time_estimate": "3–6 months",
+          "knockout_reason": null,
+          "rationale": "University SOC platforms (Lenel, Genetec) expect IP-native security device integration. EasyWave requires a GfS BUS gateway bridge and custom API connector to enter the PSIM event stream. This is the primary integration gap for this market — solvable by a campus security integrator but requires explicit project scope and budget."
+        },
+        {
+          "constraint_name": "IoT Price Premium",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Develop campus-scale TCO model: IoT deployment vs. incremental security patrol FTE cost over 5 years",
+            "Quantify Clery Act compliance labor savings: automated inspection log generation vs. manual quarterly documentation",
+            "Structure campus deployment in phases (pilot 20–50 doors in one building) to stay below public competitive bid threshold for initial procurement"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1–3 months",
+          "knockout_reason": null,
+          "rationale": "At ~€730/unit, a 100-door campus deployment reaches ~€73K — above many public university's competitive bid threshold (~$25K). ROI case is achievable: automated Clery Act documentation, reduced security patrol, and insurance compliance demonstrate clear payback. Per-phase rollout manages procurement process."
+        },
+        {
+          "constraint_name": "GDPR Monitoring Data Compliance",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "US campus emergency exit event logs (door-opened, alarm-triggered, battery-low timestamps) are building-level data not linked to individual identities — not covered by FERPA. GDPR applies to EU campus deployments; for those, a standard DPA with the monitoring service provider and a screening DPIA suffice (established compliance path)."
+        },
+        {
+          "constraint_name": "IP Protection Boundary",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Primary campus installation environment is indoor corridors, stairwells, and hallways — no washdown, no moisture exposure. Exceptions (outdoor emergency exits, dining hall kitchen corridors, pool locker rooms) are served by the IP45 outdoor variant already in the product lineup, requiring no new engineering."
+        },
+        {
+          "constraint_name": "EN 13637 / EltVTR Electrical Compliance",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Include NFPA 101 §7.2 fail-safe egress review in campus door hardware specification for combined access control + emergency exit configurations",
+            "Specify EM holders on the same door as Türwächter must be fail-open (power-off = door releases) to comply with NFPA 101",
+            "Prepare AHJ documentation package for combined system configurations in laboratory wings and controlled-access zones"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1–2 months",
+          "knockout_reason": null,
+          "rationale": "University campuses frequently combine access control (card reader + EM holder) with emergency exit compliance on the same door (lab wings, pharmacy stores, secure server rooms). The combined system must satisfy NFPA 101 (US) or EN 13637 (EU) fail-safe requirements. The Türwächter IoT module is supervisory-only and does not add a failure mode; system integrator certification of combined configurations is standard practice."
+        }
+      ]
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

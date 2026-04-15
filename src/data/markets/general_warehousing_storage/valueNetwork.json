@@ -1,0 +1,406 @@
+{
+  "naicsCode": "493110",
+  "marketName": "General Warehousing and Storage",
+  "slug": "general_warehousing_storage",
+  "coreJobStatement": "Receive, store, and dispatch client goods with full inventory integrity — from inbound receiving through storage and pick-and-pack to outbound dispatch and carrier hand-off.",
+  "outputTypes": [],
+  "hierarchy": "",
+  "architectureDistance": 2,
+  "marketSize": "",
+  "l6Systems": [
+    {
+      "id": "L6a",
+      "name": "Inbound Receiving",
+      "type": "Core",
+      "jobFamily": "Receive, verify, and register arriving shipments into inventory",
+      "l5Units": []
+    },
+    {
+      "id": "L6b",
+      "name": "Put-Away & Slotting",
+      "type": "Core",
+      "jobFamily": "Move verified goods to designated storage locations",
+      "l5Units": []
+    },
+    {
+      "id": "L6c",
+      "name": "Storage & Inventory Control",
+      "type": "Core",
+      "jobFamily": "Maintain goods in condition-appropriate zones; preserve inventory accuracy",
+      "l5Units": []
+    },
+    {
+      "id": "L6d",
+      "name": "Order Picking & Consolidation",
+      "type": "Core",
+      "jobFamily": "Retrieve and consolidate SKUs per outbound orders",
+      "l5Units": []
+    },
+    {
+      "id": "L6e",
+      "name": "Packing, Labeling & Staging",
+      "type": "Core",
+      "jobFamily": "Pack shipments to carrier spec, apply labels, stage at outbound dock",
+      "l5Units": []
+    },
+    {
+      "id": "L6f",
+      "name": "Outbound Dispatch",
+      "type": "Core",
+      "jobFamily": "Load vehicles, confirm shipment, hand off to carrier",
+      "l5Units": []
+    },
+    {
+      "id": "L6h1",
+      "name": "Facility Safety & Security (H)",
+      "type": "Horizontal",
+      "jobFamily": "Maintain fire safety, emergency exit compliance, physical access control, and surveillance across all warehouse zones and dock areas",
+      "isHorizontal": true,
+      "l5Units": []
+    },
+    {
+      "id": "L6h2",
+      "name": "Inventory & WMS Operations (H)",
+      "type": "Horizontal",
+      "jobFamily": "Provide real-time inventory tracking, location management, task direction, and labor management supporting every core process step",
+      "isHorizontal": true,
+      "l5Units": []
+    },
+    {
+      "id": "L6h3",
+      "name": "Maintenance & Equipment Reliability (H)",
+      "type": "Horizontal",
+      "jobFamily": "Maintain material handling equipment, racking, dock equipment, and building infrastructure to prevent downtime and safety incidents",
+      "isHorizontal": true,
+      "l5Units": []
+    }
+  ],
+  "vnUnits": [
+    {
+      "level": "L5",
+      "id": "L6a.1",
+      "name": "Dock Leveler & Loading Dock Equipment",
+      "functionalJob": "Bridge the height gap between truck bed and dock floor to enable safe and efficient loading and unloading of goods",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": true,
+      "alternatives": [
+        {
+          "name": "Mechanical dock levelers (Assa Abloy Loading Systems, Serco) / Hydraulic dock levelers (Kelley, McGuire, Pentalift) / Air-bag levelers (Assa Abloy, Niverplast)",
+          "sharePct": 40,
+          "confidence": "MEDIUM",
+          "source": "Industry supplier surveys [WEB]",
+          "isPrimary": true
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6a.2",
+      "name": "Inbound Scanning & Labeling Station",
+      "functionalJob": "Scan, verify, and label arriving goods to create inventory records and confirm shipment accuracy against purchase orders",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Mobile handheld scanner (Zebra, Honeywell) / Fixed RFID portal scanner (Zebra Impinj, Alien Technology) / Combined handheld+RFID (Zebra FX7500)",
+          "sharePct": 55,
+          "confidence": "MEDIUM",
+          "source": "Analyst estimates",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.1",
+      "name": "Industrial Forklift Fleet",
+      "functionalJob": "Transport palletized goods from receiving docks to designated storage locations and between warehouse zones",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Electric counterbalance/reach truck (Toyota, Crown, Jungheinrich, Kion) / IC counterbalance (Toyota, Hyster-Yale, Mitsubishi) / Automated guided vehicle — AGV (Dematic, Swisslog, Linde)",
+          "sharePct": 58,
+          "confidence": "MEDIUM",
+          "source": "Grand View Research 2025 — electric forklifts ~58% total [WEB]",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.2",
+      "name": "Induct Conveyor System",
+      "functionalJob": "Move goods mechanically from receiving to put-away zones, reducing manual handling and increasing throughput for case and carton flows",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "No conveyor — manual pallet jack routing / Roller/belt conveyor (Hytrol, Dematic, Intralox) / Tow/tugger conveyor (Jervis B. Webb)",
+          "sharePct": 40,
+          "confidence": "LOW",
+          "source": "Analyst estimates",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.1",
+      "name": "Pallet Storage System",
+      "functionalJob": "Provide structured vertical racking to store palletized goods at defined locations, maximizing storage density while enabling forklift access",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Selective pallet rack (Mecalux, SSI Schäfer, Constructor, AR Racking) / Drive-in or push-back rack (Mecalux, Dematic) / Wide-aisle floor stacking (no rack)",
+          "sharePct": 60,
+          "confidence": "MEDIUM",
+          "source": "Industry estimates",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.2",
+      "name": "Automated Storage & Retrieval System (AS/RS)",
+      "functionalJob": "Automatically store and retrieve goods using crane, shuttle, or robotic systems to increase throughput and storage density with minimal manual labor",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Unit-load AS/RS crane (Dematic, SSI Schäfer, Daifuku) / Shuttle-based (Kardex, Dematic) / Goods-to-person cube storage (AutoStore, Geek+, Symbotic)",
+          "sharePct": 40,
+          "confidence": "MEDIUM",
+          "source": "Precedence Research 2025 — Daifuku, SSI Schäfer, Dematic, Symbotic, AutoStore combined >55% share [WEB]",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.1",
+      "name": "Order Picking Technology",
+      "functionalJob": "Guide warehouse operators or autonomous robots to retrieve correct SKUs from storage locations and consolidate them into outbound orders",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Paper/RF-directed manual picking (legacy) / Guided picking (pick-to-light, voice picking — SSI Schäfer, Knapp, Honeywell Vocollect, Lucas Systems) / Autonomous mobile robot (Locus Robotics, 6RS/Ocado, Geek+, Fetch/Zebra)",
+          "sharePct": 35,
+          "confidence": "LOW",
+          "source": "Analyst estimates; AMR share growing rapidly 2023–2025",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6e.1",
+      "name": "Packing & Labeling Workstation",
+      "functionalJob": "Pack picked goods into shipping containers, apply void fill, seal cartons, and print and affix carrier-compliant shipping labels",
+      "description": "",
+      "parentL6": "L6e",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Manual packing bench + label printer (Zebra ZT series) / Semi-automated void fill + sealer (Sealed Air, FP International) / Fully automated packing machine (Neopost, Quadient, Sparck Technologies)",
+          "sharePct": 55,
+          "confidence": "MEDIUM",
+          "source": "Industry estimates",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6f.1",
+      "name": "Transport Management System (TMS)",
+      "functionalJob": "Plan, execute, and track outbound shipments including carrier selection, bill of lading generation, and delivery confirmation",
+      "description": "",
+      "parentL6": "L6f",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "ERP-integrated TMS (SAP TM, Oracle TM) / Best-of-breed TMS (MercuryGate, Transplace/Uber Freight, Descartes) / Carrier-provided portal (no dedicated TMS)",
+          "sharePct": 30,
+          "confidence": "MEDIUM",
+          "source": "MarketsandMarkets 2024",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6h1.1",
+      "name": "Fire Detection & Alarm System",
+      "functionalJob": "Detect smoke, heat, or fire conditions across warehouse zones and trigger alarm notification to occupants and emergency services",
+      "description": "",
+      "parentL6": "L6h1",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Johnson Controls (Simplex/Tyco) / Siemens (Cerberus) / Honeywell (Notifier)",
+          "sharePct": 26,
+          "confidence": "MEDIUM",
+          "source": "Johnson Controls, Siemens, Honeywell collectively >62% fire alarm market [WEB — IntelMarketResearch 2025]",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6h1.2",
+      "name": "Emergency Exit Security Device",
+      "functionalJob": "Prevent unauthorized propping or misuse of emergency exit doors while maintaining fire evacuation compliance and reporting door events to centralized monitoring",
+      "description": "",
+      "parentL6": "L6h1",
+      "dependencies": [],
+      "isPrimaryPosition": true,
+      "alternatives": [
+        {
+          "name": "Wired alarmed exit bars (Von Duprin/Allegion, Corbin Russwin) / Mechanical door-handle alarm guards (GfS Exit Control, ABUS) / Wireless electronic exit control (dormakaba SafeRoute, GEZE SecuLogic) / Integrated delayed egress (Allegion, dormakaba)",
+          "sharePct": 45,
+          "confidence": "LOW",
+          "source": "No published warehouse-specific split; estimated from install base patterns [WEB]",
+          "isPrimary": true
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6h1.3",
+      "name": "Perimeter Access Control System",
+      "functionalJob": "Control and log physical access at dock doors, personnel entrances, and zone boundaries through credential-based authorization",
+      "description": "",
+      "parentL6": "L6h1",
+      "dependencies": [],
+      "isPrimaryPosition": true,
+      "alternatives": [
+        {
+          "name": "Wired enterprise ACS (Lenel-S2, Software House, Honeywell Pro-Watch) / Cloud ACS (Brivo, Genetec, Verkada) / Wireless RF ACS (ASSA ABLOY Aperio, dormakaba MATRIX)",
+          "sharePct": 50,
+          "confidence": "MEDIUM",
+          "source": "MarketsandMarkets 2025 — ASSA ABLOY, dormakaba, Johnson Controls, Allegion, Honeywell hold ~70–80% ACS market [WEB]",
+          "isPrimary": true
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6h1.4",
+      "name": "Video Surveillance System",
+      "functionalJob": "Monitor and record activity across dock areas, aisles, and perimeter zones to deter theft, verify incidents, and support insurance and audit requirements",
+      "description": "",
+      "parentL6": "L6h1",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "IP network cameras (Axis, Hanwha, Avigilon) / AI-analytics camera platforms (Verkada, Arlo, Milestone) / Legacy analog CCTV (Hikvision, Dahua, Bosch)",
+          "sharePct": 45,
+          "confidence": "MEDIUM",
+          "source": "Analyst estimates — IP share growing year on year",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6h1.5",
+      "name": "Building Management System (BMS)",
+      "functionalJob": "Centrally monitor and control HVAC, lighting, fire, and security systems to maintain safe operating conditions and energy efficiency across the facility",
+      "description": "",
+      "parentL6": "L6h1",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Siemens (Desigo CC) / Honeywell (EBI, Forge) / Schneider Electric (EcoStruxure)",
+          "sharePct": 28,
+          "confidence": "MEDIUM",
+          "source": "Commercial security market data [WEB — Precedence Research 2025]",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6h2.1",
+      "name": "Warehouse Management System Platform",
+      "functionalJob": "Provide real-time inventory tracking, location management, task direction, and labor optimization across all warehouse operations",
+      "description": "",
+      "parentL6": "L6h2",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "SAP Extended Warehouse Management (SAP EWM) / Manhattan Active WMS / Blue Yonder WMS / Oracle WMS Cloud",
+          "sharePct": 9,
+          "confidence": "MEDIUM",
+          "source": "MarketsandMarkets 2025 — top 5 players (Oracle, Blue Yonder, SAP, Manhattan, Tecsys) ~33% combined; global WMS market $4.57B in 2025 [WEB]",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6h3.1",
+      "name": "Forklift Fleet Telematics",
+      "functionalJob": "Track forklift utilization, operator behavior, shock events, and maintenance intervals to optimize fleet performance and ensure safety compliance",
+      "description": "",
+      "parentL6": "L6h3",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "OEM telematics (Toyota I_Site, Crown InfoLink, Jungheinrich ISM Online) / Third-party fleet mgmt (Hyster Tracker, Linde Connect) / Manual logbook",
+          "sharePct": 45,
+          "confidence": "LOW",
+          "source": "Analyst estimates",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6h3.2",
+      "name": "Racking Inspection System",
+      "functionalJob": "Inspect pallet racking for structural damage, overloading, and compliance with ANSI MH16.1 safety standards to prevent collapse incidents",
+      "description": "",
+      "parentL6": "L6h3",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Periodic manual inspection (ANSI MH16.1 schedule) / Digital audit software (RackEye, IntelliRack) / Load monitoring sensors",
+          "sharePct": 70,
+          "confidence": "LOW",
+          "source": "Industry practice survey",
+          "isPrimary": false
+        }
+      ]
+    }
+  ],
+  "marquardtPosition": "",
+  "strategicPosition": null,
+  "sources": []
+}

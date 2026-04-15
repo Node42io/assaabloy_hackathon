@@ -1,0 +1,496 @@
+{
+  "id": "FIT_museums_historical_sites",
+  "title": "Feature-Market Fit — Museums, Historical Sites, and Similar Institutions (NAICS 712110)",
+  "type": "feature_market_fit",
+  "market_slug": "museums_historical_sites",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Step 09 — Technology-Level Feature-Market Fit",
+      "content": "Technology-scope = features any product in the \"Emergency Exit Door Alarm Guards\" group delivers.  \nMarket needs grounded in JTBD error statements (E1–E19).\n\n### Kano + ODI Scores\n\n| Feature | Kano | Time | Cost | Safety | Rely. | Skill | Stress | Pain | Conf. | Delight | **Overall** |\n|---|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| Mechanical Handle Locking | `must_be` | 2 | 5 | 9 | 8 | 6 | 5 | 6 | 7 | 2 | **5.56** |\n| Audible Alarm Trigger | `must_be` | 5 | 6 | 9 | 7 | 5 | 7 | 6 | 7 | 2 | **6.00** |\n| Single-Motion Emergency Release | `must_be` | 3 | 3 | 10 | 8 | 8 | 6 | 4 | 7 | 2 | **5.67** |\n| Key Override Bypass | `must_be` | 5 | 4 | 5 | 6 | 6 | 7 | 7 | 6 | 3 | **5.44** |\n| Battery-Powered Operation | `attractive` | 7 | 7 | 6 | 5 | 8 | 6 | 9 | 5 | 7 | **6.67** |\n| Pre-Alarm Warning | `attractive` | 4 | 5 | 4 | 4 | 5 | 7 | 6 | 5 | 5 | **5.00** |\n\n### Rationale per Feature\n\n**Mechanical Handle Locking — must_be, 5.56**  \nCore commodity FP function; every product in the category delivers it. Primary drivers: Safety (9) — prevents unauthorized access to collection vaults and conservation storage, directly addressing E8 (imp=10, sat=3); Reliability (8) — mechanical fail-safe with no power dependency is essential in heritage buildings with unreliable mains. Delight (2) — table-stakes, no surprise value.\n\n**Audible Alarm Trigger — must_be, 6.00**  \nCommodity FP explicitly includes audible alarm; absence = product does not exist in category. Primary drivers: Safety (9) — 95 dB deters theft and alerts adjacent staff during opening hours; Stress (7) — security officers know any unauthorized activation is audible, reducing overnight anxiety. Slightly higher than Mechanical Handle Locking due to detection contribution.  \n*E8 / E18 grounding.*\n\n**Single-Motion Emergency Release — must_be, 5.67**  \nRegulatory knockout without it (EN 179 / EN 1125 certification impossible). Primary drivers: Safety (10) — the core life-safety function; highest Safety score across all features; Skill (8) — requires no prior knowledge or technique from any visitor, including reduced-mobility museum visitors in historic buildings with unfamiliar layouts. Low Delight (2) — entirely expected.  \n*E9 (imp=10, sat=8) is well addressed.*\n\n**Key Override Bypass — must_be, 5.44**  \nInstitutionally required; absence makes the product inoperable for normal museum use. Primary drivers: Stress (7) and Pain (7) — conservation teams and night-shift security access storage areas without triggering false alerts (E10, imp=7); Pain eliminates unnecessary incident investigations from authorized movement. Safety (5) — neutral; key override does not enhance collection protection, it bypasses it.\n\n**Battery-Powered Operation — attractive, 6.67**  \nHighest overall fit. Not expected — wired alarm panels dominate institutional security; battery power creates disproportionate value by eliminating mains-wiring heritage consent. Primary drivers: Pain (9) — removes the 3–12 month listed building consent barrier that disqualifies Wired incumbent (A2) entirely in S2 heritage segments; Skill (8) — no electrician required, installation achievable by facility staff; Delight (7) — museum facilities managers are genuinely surprised by no-wiring-needed deployment.  \n*E5 (imp=8) and E6 (imp=9) grounding. Heritage inversion: C5 + battery power are inseparable in this market.*\n\n**Pre-Alarm Warning — attractive, 5.00**  \nAbsent in basic mechanical alarms; reduces false-alarm fatigue during opening hours. Primary drivers: Stress (7) — duty managers avoid unnecessary alarm investigations from accidental visitor contact (E10, E15); Pain (6) — reduces workload from minor door-touch incidents. Safety (4) receives a moderate score: pre-alarm may give an unauthorized user 1–2 seconds of warning in after-hours vault contexts, though the full 95 dB alarm still triggers immediately. Not a significant detriment but constrains the Safety ceiling.\n\n---"
+    },
+    {
+      "title": "Step 10 — Product-Related Needs",
+      "content": "Needs that exist **because** this technology uses 868 MHz wireless transmission, a 9V block battery, and surface-mount mechanics. Each passes the litmus test: a wired sensor system (A2), gallery attendants (A4), or a basic mechanical alarm (A1) would not generate these needs.\n\n| # | Statement | Source Constraint | Affected Markets | Imp | Sat |\n|---|---|---|---|:---:|:---:|\n| N1 | Minimize the likelihood of 868 MHz signal degradation from heritage-grade masonry (stone walls >400mm, reinforced concrete) creating silent monitoring gaps on emergency exit devices exceeding 15 minutes — in buildings where signal loss is not visually apparent | Wireless Range Limitation (C3) | Museums / Historical Sites | 8.0 | 4.0 |\n| N2 | Minimize the time required to pre-validate 868 MHz radio coverage through actual building wall materials before committing to gateway placement — preventing post-installation discovery of exit zones with insufficient signal strength | Wireless Range Limitation (C3) | Museums / Historical Sites | 7.0 | 4.0 |\n| N3 | Minimize the likelihood of 9V block battery depletion in exit monitoring devices below operational threshold within the 2-year maintenance window — accounting for reduced electrochemical performance in climate-controlled conservation environments (15–20°C, 45–55% RH) | IoT Battery Life Floor (C4) | Museums / Historical Sites · Schools · Senior Care | 7.0 | 4.0 |\n| N4 | Minimize the time required to achieve complete emergency exit monitoring coverage across all doors in a multi-room heritage building using exclusively surface-mount fixing methods — completing installation within a single operational day without disrupting gallery activities | Retrofit-Only Surface Mount (C5) | Museums / Historical Sites | 8.0 | 5.0 |\n| N5 | Minimize the likelihood of EasyWave protocol incompatibility causing integration failure when the museum BMS or intruder detection panel uses BACnet, KNX, or IP-based protocols — requiring additional unplanned gateway hardware to achieve centralized monitoring | EasyWave Protocol Lock-In (C6) | Museums / Historical Sites · Commercial Office Buildings | 6.0 | 5.0 |\n\n**5 product-related needs. All 5 pass litmus test.** N1/N2 trace to C3 (range); N3 to C4 (battery); N4 to C5 (surface mount); N5 to C6 (protocol). Every constraint generates at least one need.\n\n---"
+    },
+    {
+      "title": "Step 11 — Vendor Feature-Market Fit",
+      "content": "Vendor: **GfS / Assa Abloy**  \nBest incumbent reference: **dormakaba SafeRoute** (wired electronic exit control, LON/BACnet, BMS-integrated) for IoT features; basic mechanical alarm panel for physical features.\n\n| Feature | Kano | Vendor | Incumbent | Advantage | Rationale |\n|---|---|:---:|:---:|:---:|---|\n| 868 MHz EasyWave Radio Transmission | `attractive` | 7 | 4 | **superior** | Battery-powered wireless at EU-reserved 868 MHz enables heritage retrofit without wiring consent. dormakaba SafeRoute (best wired incumbent) scores low because mains wiring requires heritage consent in listed buildings — functionally disqualified in S2. EasyWave scores below theoretical optimum due to proprietary protocol (C6) and 30m range limit in large museums. |\n| Wireless BUS Interface Integration | `attractive` | 5 | 7 | **inferior** | Proprietary GfS-only ecosystem with no native BACnet/KNX/IP support. dormakaba SafeRoute and GEZE SecuLogic provide superior multi-vendor BMS aggregation via open protocols. For S5 multi-site museum groups with centralized BMS, EasyWave lock-in (C6) limits scalability. Genuine weakness that must be addressed for large institutional group procurement. |\n| Dual-Standard Variant Range (EN 179 + EN 1125) | `must_be` | 8 | 7 | **parity** | GfS matched EN 179 / EN 1125 families enable consistent deployment across mixed museum door configurations (lever-handle storage corridors + panic-bar public galleries). Most competitors offer dual-standard coverage; difference of 1 point = parity. |\n| IP45 Outdoor Variant | `indifferent` | 5 | 5 | **parity** | Most museum exits are climate-controlled interior spaces. IP45 adds minor value only for outdoor courtyard doors or archaeological site perimeter points (S4). Standard indoor variant carries no published IP class. Market does not evaluate this feature for the dominant S1/S2 interior use case. |\n| Glass-Frame Mounting Plate (Art. 991170) | `attractive` | 8 | 3 | **superior** | Modern museum additions, atria, and public-facing gallery extensions frequently use glass-frame internal doors. Art. 991170 enables no-modification installation on an otherwise uncoverable door type. No established competitor equivalent — alternatives require adhesive mounting or custom fabrication. Strong differentiator in procurement specifications that include glass-frame exit coverage. |\n\n---"
+    },
+    {
+      "title": "Key Findings",
+      "content": "| Dimension | Finding |\n|---|---|\n| **Strongest technology feature** | Battery-Powered Operation (6.67) — highest fit; uniquely unlocks heritage market via no-consent installation |\n| **Must-be floor** | 4 of 6 technology features are must_be — they set the compliance and safety baseline before IoT differentiation is even evaluated |\n| **Heritage pairing** | Battery-Powered Operation + surface-mount mechanics together resolve E5/E6 (heritage consent barrier) — no incumbent alternative replicates this pairing |\n| **Vendor advantage** | Superior on wireless retrofit (EasyWave for heritage buildings) and glass-frame coverage (Art. 991170) |\n| **Vendor gap** | Inferior on BMS integration — EasyWave protocol lock-in (C6) is a genuine liability for S1/S5 segments with centralized BMS |\n| **Primary product-related risk** | N1 + N2: RF signal uncertainty in thick masonry; unresolved at point of sale; affects adoption in S1/S2 listed buildings |\n| **Highest single opportunity** | E8 (vault activation undetected >2 min, OS=17): EasyWave radio + battery operation address this need directly with no wired equivalent viable in heritage buildings |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"step_09_tech_feature_market_fit\": {\n    \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n    \"naics_code\": \"712110\",\n    \"entries\": [\n      {\n        \"feature_name\": \"Mechanical Handle Locking\",\n        \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n        \"naics_code\": \"712110\",\n        \"kano_class\": \"must_be\",\n        \"fit_score_time\": 2,\n        \"fit_score_cost\": 5,\n        \"fit_score_safety\": 9,\n        \"fit_score_reliability\": 8,\n        \"fit_score_skill\": 6,\n        \"fit_score_stress\": 5,\n        \"fit_score_pain\": 6,\n        \"fit_score_confidence\": 7,\n        \"fit_score_delight\": 2,\n        \"overall_fit\": 5.56,\n        \"rationale\": \"Commodity FP core function — table-stakes. Safety (9) prevents unauthorized collection vault access; Reliability (8) mechanical fail-safe addresses E8 (imp=10, sat=3). Delight (2) — expected baseline.\"\n      },\n      {\n        \"feature_name\": \"Audible Alarm Trigger\",\n        \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n        \"naics_code\": \"712110\",\n        \"kano_class\": \"must_be\",\n        \"fit_score_time\": 5,\n        \"fit_score_cost\": 6,\n        \"fit_score_safety\": 9,\n        \"fit_score_reliability\": 7,\n        \"fit_score_skill\": 5,\n        \"fit_score_stress\": 7,\n        \"fit_score_pain\": 6,\n        \"fit_score_confidence\": 7,\n        \"fit_score_delight\": 2,\n        \"overall_fit\": 6.00,\n        \"rationale\": \"Commodity FP explicitly includes audible alarm. Safety (9) — 95 dB deters theft and triggers immediate staff response; Stress (7) — officers confident breach will be audible. E8/E18 grounding.\"\n      },\n      {\n        \"feature_name\": \"Single-Motion Emergency Release\",\n        \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n        \"naics_code\": \"712110\",\n        \"kano_class\": \"must_be\",\n        \"fit_score_time\": 3,\n        \"fit_score_cost\": 3,\n        \"fit_score_safety\": 10,\n        \"fit_score_reliability\": 8,\n        \"fit_score_skill\": 8,\n        \"fit_score_stress\": 6,\n        \"fit_score_pain\": 4,\n        \"fit_score_confidence\": 7,\n        \"fit_score_delight\": 2,\n        \"overall_fit\": 5.67,\n        \"rationale\": \"Regulatory knockout without it. Safety (10) — core life-safety function, highest scoring dimension; Skill (8) — zero prior knowledge required for museum visitors and reduced-mobility occupants. E9 (imp=10, sat=8) well addressed.\"\n      },\n      {\n        \"feature_name\": \"Key Override Bypass\",\n        \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n        \"naics_code\": \"712110\",\n        \"kano_class\": \"must_be\",\n        \"fit_score_time\": 5,\n        \"fit_score_cost\": 4,\n        \"fit_score_safety\": 5,\n        \"fit_score_reliability\": 6,\n        \"fit_score_skill\": 6,\n        \"fit_score_stress\": 7,\n        \"fit_score_pain\": 7,\n        \"fit_score_confidence\": 6,\n        \"fit_score_delight\": 3,\n        \"overall_fit\": 5.44,\n        \"rationale\": \"Expected by all institutional buyers; absence makes product operationally unusable. Stress (7) and Pain (7) — conservation staff access storage areas at night without triggering false alerts (E10, imp=7). Safety (5) — neutral; key bypass does not enhance collection protection.\"\n      },\n      {\n        \"feature_name\": \"Battery-Powered Operation\",\n        \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n        \"naics_code\": \"712110\",\n        \"kano_class\": \"attractive\",\n        \"fit_score_time\": 7,\n        \"fit_score_cost\": 7,\n        \"fit_score_safety\": 6,\n        \"fit_score_reliability\": 5,\n        \"fit_score_skill\": 8,\n        \"fit_score_stress\": 6,\n        \"fit_score_pain\": 9,\n        \"fit_score_confidence\": 5,\n        \"fit_score_delight\": 7,\n        \"overall_fit\": 6.67,\n        \"rationale\": \"Highest overall fit. Wired systems are market norm; battery operation eliminates heritage consent for wiring (3-12 months barrier). Pain (9) removes A2 (wired) adoption barrier for listed buildings; Skill (8) no electrician needed; Delight (7) museum managers genuinely surprised by no-wiring deployment. E5/E6 grounding.\"\n      },\n      {\n        \"feature_name\": \"Pre-Alarm Warning\",\n        \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n        \"naics_code\": \"712110\",\n        \"kano_class\": \"attractive\",\n        \"fit_score_time\": 4,\n        \"fit_score_cost\": 5,\n        \"fit_score_safety\": 4,\n        \"fit_score_reliability\": 4,\n        \"fit_score_skill\": 5,\n        \"fit_score_stress\": 7,\n        \"fit_score_pain\": 6,\n        \"fit_score_confidence\": 5,\n        \"fit_score_delight\": 5,\n        \"overall_fit\": 5.00,\n        \"rationale\": \"Not present in basic alarms; reduces false-alarm fatigue during opening hours. Stress (7) reduces duty manager anxiety over unnecessary incident reports (E10, E15). Safety (4) modest — pre-alarm may give unauthorized users 1-2 seconds of warning in after-hours vault contexts; full alarm still triggers immediately.\"\n      }\n    ]\n  },\n  \"step_10_product_related_needs\": [\n    {\n      \"statement\": \"Minimize the likelihood of 868 MHz signal degradation from heritage-grade masonry construction (stone walls >400mm, reinforced concrete) creating silent monitoring gaps on emergency exit devices exceeding 15 minutes — in buildings where signal loss is not visually apparent\",\n      \"source_constraint\": \"Wireless Range Limitation\",\n      \"affected_markets\": [\"Museums, Historical Sites, and Similar Institutions\"],\n      \"importance\": 8.0,\n      \"satisfaction_current\": 4.0\n    },\n    {\n      \"statement\": \"Minimize the time required to pre-validate 868 MHz radio coverage through actual building wall materials before committing to gateway placement — preventing post-installation discovery of exit zones with insufficient signal strength\",\n      \"source_constraint\": \"Wireless Range Limitation\",\n      \"affected_markets\": [\"Museums, Historical Sites, and Similar Institutions\"],\n      \"importance\": 7.0,\n      \"satisfaction_current\": 4.0\n    },\n    {\n      \"statement\": \"Minimize the likelihood of 9V block battery depletion in exit monitoring devices below operational threshold within the 2-year maintenance window — accounting for reduced electrochemical performance in climate-controlled conservation environments (15–20°C, 45–55% RH)\",\n      \"source_constraint\": \"IoT Battery Life Floor\",\n      \"affected_markets\": [\n        \"Museums, Historical Sites, and Similar Institutions\",\n        \"Elementary and Secondary Schools\",\n        \"Continuing Care Retirement Communities\"\n      ],\n      \"importance\": 7.0,\n      \"satisfaction_current\": 4.0\n    },\n    {\n      \"statement\": \"Minimize the time required to achieve complete emergency exit monitoring coverage across all doors in a multi-room heritage building using exclusively surface-mount fixing methods — completing installation within a single operational day without disrupting gallery activities\",\n      \"source_constraint\": \"Retrofit-Only Surface Mount\",\n      \"affected_markets\": [\"Museums, Historical Sites, and Similar Institutions\"],\n      \"importance\": 8.0,\n      \"satisfaction_current\": 5.0\n    },\n    {\n      \"statement\": \"Minimize the likelihood of EasyWave protocol incompatibility causing integration failure when the museum BMS or intruder detection panel uses BACnet, KNX, or IP-based protocols — requiring additional unplanned gateway hardware to achieve centralized monitoring\",\n      \"source_constraint\": \"EasyWave Protocol Lock-In\",\n      \"affected_markets\": [\n        \"Museums, Historical Sites, and Similar Institutions\",\n        \"Lessors of Nonresidential Buildings\"\n      ],\n      \"importance\": 6.0,\n      \"satisfaction_current\": 5.0\n    }\n  ],\n  \"step_11_vendor_feature_fit\": {\n    \"vendor_name\": \"GfS (Assa Abloy)\",\n    \"product_name\": \"Türwächter Exit Control 179/1125 with IoT\",\n    \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n    \"naics_code\": \"712110\",\n    \"best_incumbent_reference\": \"dormakaba SafeRoute (wired electronic exit control, LON/BACnet, BMS-integrated)\",\n    \"entries\": [\n      {\n        \"feature_name\": \"868 MHz EasyWave Radio Transmission\",\n        \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n        \"naics_code\": \"712110\",\n        \"kano_class\": \"attractive\",\n        \"vendor_score\": 7,\n        \"best_incumbent_score\": 4,\n        \"advantage\": \"superior\",\n        \"rationale\": \"Battery-powered wireless at EU-reserved 868 MHz enables heritage retrofit without wiring consent. dormakaba SafeRoute (best wired incumbent) disqualified in S2 listed buildings without 3-12 month heritage consent. Scores below optimum due to proprietary protocol (C6) and 30m range limit in large S1 museums.\"\n      },\n      {\n        \"feature_name\": \"Wireless BUS Interface Integration\",\n        \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n        \"naics_code\": \"712110\",\n        \"kano_class\": \"attractive\",\n        \"vendor_score\": 5,\n        \"best_incumbent_score\": 7,\n        \"advantage\": \"inferior\",\n        \"rationale\": \"Proprietary GfS-only ecosystem; no native BACnet/KNX/IP. dormakaba SafeRoute and GEZE SecuLogic provide superior open-protocol BMS aggregation. EasyWave lock-in (C6) is a genuine liability for S1/S5 multi-site groups with centralized BMS infrastructure.\"\n      },\n      {\n        \"feature_name\": \"Dual-Standard Variant Range (EN 179 + EN 1125)\",\n        \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n        \"naics_code\": \"712110\",\n        \"kano_class\": \"must_be\",\n        \"vendor_score\": 8,\n        \"best_incumbent_score\": 7,\n        \"advantage\": \"parity\",\n        \"rationale\": \"GfS matched EN 179/EN 1125 families enable consistent mixed-door deployment (lever-handle storage corridors + panic-bar public galleries). Most competitors offer dual-standard coverage. Difference of 1 = parity per classification rules.\"\n      },\n      {\n        \"feature_name\": \"IP45 Outdoor Variant\",\n        \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n        \"naics_code\": \"712110\",\n        \"kano_class\": \"indifferent\",\n        \"vendor_score\": 5,\n        \"best_incumbent_score\": 5,\n        \"advantage\": \"parity\",\n        \"rationale\": \"Most museum exits are climate-controlled interior spaces. IP45 adds value only for outdoor courtyard doors or S4 archaeological sites — not the dominant S1/S2 interior use case. Standard indoor variant has no published IP class; market does not evaluate on this dimension.\"\n      },\n      {\n        \"feature_name\": \"Glass-Frame Mounting Plate (Art. 991170)\",\n        \"market_name\": \"Museums, Historical Sites, and Similar Institutions\",\n        \"naics_code\": \"712110\",\n        \"kano_class\": \"attractive\",\n        \"vendor_score\": 8,\n        \"best_incumbent_score\": 3,\n        \"advantage\": \"superior\",\n        \"rationale\": \"Modern museum additions and public-facing galleries frequently use glass-frame internal doors. Art. 991170 enables no-modification installation on an otherwise uncoverable door type. No established competitor equivalent — alternatives require adhesive mounting or custom fabrication. Strong procurement differentiator when glass-frame exits must be included in coverage.\"\n      }\n    ]\n  }\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Feature",
+        "Kano",
+        "Time",
+        "Cost",
+        "Safety",
+        "Rely.",
+        "Skill",
+        "Stress",
+        "Pain",
+        "Conf.",
+        "Delight",
+        "**Overall**"
+      ],
+      "rows": [
+        {
+          "Feature": "Mechanical Handle Locking",
+          "Kano": "`must_be`",
+          "Time": "2",
+          "Cost": "5",
+          "Safety": "9",
+          "Rely.": "8",
+          "Skill": "6",
+          "Stress": "5",
+          "Pain": "6",
+          "Conf.": "7",
+          "Delight": "2",
+          "**Overall**": "**5.56**"
+        },
+        {
+          "Feature": "Audible Alarm Trigger",
+          "Kano": "`must_be`",
+          "Time": "5",
+          "Cost": "6",
+          "Safety": "9",
+          "Rely.": "7",
+          "Skill": "5",
+          "Stress": "7",
+          "Pain": "6",
+          "Conf.": "7",
+          "Delight": "2",
+          "**Overall**": "**6.00**"
+        },
+        {
+          "Feature": "Single-Motion Emergency Release",
+          "Kano": "`must_be`",
+          "Time": "3",
+          "Cost": "3",
+          "Safety": "10",
+          "Rely.": "8",
+          "Skill": "8",
+          "Stress": "6",
+          "Pain": "4",
+          "Conf.": "7",
+          "Delight": "2",
+          "**Overall**": "**5.67**"
+        },
+        {
+          "Feature": "Key Override Bypass",
+          "Kano": "`must_be`",
+          "Time": "5",
+          "Cost": "4",
+          "Safety": "5",
+          "Rely.": "6",
+          "Skill": "6",
+          "Stress": "7",
+          "Pain": "7",
+          "Conf.": "6",
+          "Delight": "3",
+          "**Overall**": "**5.44**"
+        },
+        {
+          "Feature": "Battery-Powered Operation",
+          "Kano": "`attractive`",
+          "Time": "7",
+          "Cost": "7",
+          "Safety": "6",
+          "Rely.": "5",
+          "Skill": "8",
+          "Stress": "6",
+          "Pain": "9",
+          "Conf.": "5",
+          "Delight": "7",
+          "**Overall**": "**6.67**"
+        },
+        {
+          "Feature": "Pre-Alarm Warning",
+          "Kano": "`attractive`",
+          "Time": "4",
+          "Cost": "5",
+          "Safety": "4",
+          "Rely.": "4",
+          "Skill": "5",
+          "Stress": "7",
+          "Pain": "6",
+          "Conf.": "5",
+          "Delight": "5",
+          "**Overall**": "**5.00**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Statement",
+        "Source Constraint",
+        "Affected Markets",
+        "Imp",
+        "Sat"
+      ],
+      "rows": [
+        {
+          "#": "N1",
+          "Statement": "Minimize the likelihood of 868 MHz signal degradation from heritage-grade masonry (stone walls >400mm, reinforced concrete) creating silent monitoring gaps on emergency exit devices exceeding 15 minutes — in buildings where signal loss is not visually apparent",
+          "Source Constraint": "Wireless Range Limitation (C3)",
+          "Affected Markets": "Museums / Historical Sites",
+          "Imp": "8.0",
+          "Sat": "4.0"
+        },
+        {
+          "#": "N2",
+          "Statement": "Minimize the time required to pre-validate 868 MHz radio coverage through actual building wall materials before committing to gateway placement — preventing post-installation discovery of exit zones with insufficient signal strength",
+          "Source Constraint": "Wireless Range Limitation (C3)",
+          "Affected Markets": "Museums / Historical Sites",
+          "Imp": "7.0",
+          "Sat": "4.0"
+        },
+        {
+          "#": "N3",
+          "Statement": "Minimize the likelihood of 9V block battery depletion in exit monitoring devices below operational threshold within the 2-year maintenance window — accounting for reduced electrochemical performance in climate-controlled conservation environments (15–20°C, 45–55% RH)",
+          "Source Constraint": "IoT Battery Life Floor (C4)",
+          "Affected Markets": "Museums / Historical Sites · Schools · Senior Care",
+          "Imp": "7.0",
+          "Sat": "4.0"
+        },
+        {
+          "#": "N4",
+          "Statement": "Minimize the time required to achieve complete emergency exit monitoring coverage across all doors in a multi-room heritage building using exclusively surface-mount fixing methods — completing installation within a single operational day without disrupting gallery activities",
+          "Source Constraint": "Retrofit-Only Surface Mount (C5)",
+          "Affected Markets": "Museums / Historical Sites",
+          "Imp": "8.0",
+          "Sat": "5.0"
+        },
+        {
+          "#": "N5",
+          "Statement": "Minimize the likelihood of EasyWave protocol incompatibility causing integration failure when the museum BMS or intruder detection panel uses BACnet, KNX, or IP-based protocols — requiring additional unplanned gateway hardware to achieve centralized monitoring",
+          "Source Constraint": "EasyWave Protocol Lock-In (C6)",
+          "Affected Markets": "Museums / Historical Sites · Commercial Office Buildings",
+          "Imp": "6.0",
+          "Sat": "5.0"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Feature",
+        "Kano",
+        "Vendor",
+        "Incumbent",
+        "Advantage",
+        "Rationale"
+      ],
+      "rows": [
+        {
+          "Feature": "868 MHz EasyWave Radio Transmission",
+          "Kano": "`attractive`",
+          "Vendor": "7",
+          "Incumbent": "4",
+          "Advantage": "**superior**",
+          "Rationale": "Battery-powered wireless at EU-reserved 868 MHz enables heritage retrofit without wiring consent. dormakaba SafeRoute (best wired incumbent) scores low because mains wiring requires heritage consent in listed buildings — functionally disqualified in S2. EasyWave scores below theoretical optimum due to proprietary protocol (C6) and 30m range limit in large museums."
+        },
+        {
+          "Feature": "Wireless BUS Interface Integration",
+          "Kano": "`attractive`",
+          "Vendor": "5",
+          "Incumbent": "7",
+          "Advantage": "**inferior**",
+          "Rationale": "Proprietary GfS-only ecosystem with no native BACnet/KNX/IP support. dormakaba SafeRoute and GEZE SecuLogic provide superior multi-vendor BMS aggregation via open protocols. For S5 multi-site museum groups with centralized BMS, EasyWave lock-in (C6) limits scalability. Genuine weakness that must be addressed for large institutional group procurement."
+        },
+        {
+          "Feature": "Dual-Standard Variant Range (EN 179 + EN 1125)",
+          "Kano": "`must_be`",
+          "Vendor": "8",
+          "Incumbent": "7",
+          "Advantage": "**parity**",
+          "Rationale": "GfS matched EN 179 / EN 1125 families enable consistent deployment across mixed museum door configurations (lever-handle storage corridors + panic-bar public galleries). Most competitors offer dual-standard coverage; difference of 1 point = parity."
+        },
+        {
+          "Feature": "IP45 Outdoor Variant",
+          "Kano": "`indifferent`",
+          "Vendor": "5",
+          "Incumbent": "5",
+          "Advantage": "**parity**",
+          "Rationale": "Most museum exits are climate-controlled interior spaces. IP45 adds minor value only for outdoor courtyard doors or archaeological site perimeter points (S4). Standard indoor variant carries no published IP class. Market does not evaluate this feature for the dominant S1/S2 interior use case."
+        },
+        {
+          "Feature": "Glass-Frame Mounting Plate (Art. 991170)",
+          "Kano": "`attractive`",
+          "Vendor": "8",
+          "Incumbent": "3",
+          "Advantage": "**superior**",
+          "Rationale": "Modern museum additions, atria, and public-facing gallery extensions frequently use glass-frame internal doors. Art. 991170 enables no-modification installation on an otherwise uncoverable door type. No established competitor equivalent — alternatives require adhesive mounting or custom fabrication. Strong differentiator in procurement specifications that include glass-frame exit coverage."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Dimension",
+        "Finding"
+      ],
+      "rows": [
+        {
+          "Dimension": "**Strongest technology feature**",
+          "Finding": "Battery-Powered Operation (6.67) — highest fit; uniquely unlocks heritage market via no-consent installation"
+        },
+        {
+          "Dimension": "**Must-be floor**",
+          "Finding": "4 of 6 technology features are must_be — they set the compliance and safety baseline before IoT differentiation is even evaluated"
+        },
+        {
+          "Dimension": "**Heritage pairing**",
+          "Finding": "Battery-Powered Operation + surface-mount mechanics together resolve E5/E6 (heritage consent barrier) — no incumbent alternative replicates this pairing"
+        },
+        {
+          "Dimension": "**Vendor advantage**",
+          "Finding": "Superior on wireless retrofit (EasyWave for heritage buildings) and glass-frame coverage (Art. 991170)"
+        },
+        {
+          "Dimension": "**Vendor gap**",
+          "Finding": "Inferior on BMS integration — EasyWave protocol lock-in (C6) is a genuine liability for S1/S5 segments with centralized BMS"
+        },
+        {
+          "Dimension": "**Primary product-related risk**",
+          "Finding": "N1 + N2: RF signal uncertainty in thick masonry; unresolved at point of sale; affects adoption in S1/S2 listed buildings"
+        },
+        {
+          "Dimension": "**Highest single opportunity**",
+          "Finding": "E8 (vault activation undetected >2 min, OS=17): EasyWave radio + battery operation address this need directly with no wired equivalent viable in heritage buildings"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "step_09_tech_feature_market_fit": {
+        "market_name": "Museums, Historical Sites, and Similar Institutions",
+        "naics_code": "712110",
+        "entries": [
+          {
+            "feature_name": "Mechanical Handle Locking",
+            "market_name": "Museums, Historical Sites, and Similar Institutions",
+            "naics_code": "712110",
+            "kano_class": "must_be",
+            "fit_score_time": 2,
+            "fit_score_cost": 5,
+            "fit_score_safety": 9,
+            "fit_score_reliability": 8,
+            "fit_score_skill": 6,
+            "fit_score_stress": 5,
+            "fit_score_pain": 6,
+            "fit_score_confidence": 7,
+            "fit_score_delight": 2,
+            "overall_fit": 5.56,
+            "rationale": "Commodity FP core function — table-stakes. Safety (9) prevents unauthorized collection vault access; Reliability (8) mechanical fail-safe addresses E8 (imp=10, sat=3). Delight (2) — expected baseline."
+          },
+          {
+            "feature_name": "Audible Alarm Trigger",
+            "market_name": "Museums, Historical Sites, and Similar Institutions",
+            "naics_code": "712110",
+            "kano_class": "must_be",
+            "fit_score_time": 5,
+            "fit_score_cost": 6,
+            "fit_score_safety": 9,
+            "fit_score_reliability": 7,
+            "fit_score_skill": 5,
+            "fit_score_stress": 7,
+            "fit_score_pain": 6,
+            "fit_score_confidence": 7,
+            "fit_score_delight": 2,
+            "overall_fit": 6.0,
+            "rationale": "Commodity FP explicitly includes audible alarm. Safety (9) — 95 dB deters theft and triggers immediate staff response; Stress (7) — officers confident breach will be audible. E8/E18 grounding."
+          },
+          {
+            "feature_name": "Single-Motion Emergency Release",
+            "market_name": "Museums, Historical Sites, and Similar Institutions",
+            "naics_code": "712110",
+            "kano_class": "must_be",
+            "fit_score_time": 3,
+            "fit_score_cost": 3,
+            "fit_score_safety": 10,
+            "fit_score_reliability": 8,
+            "fit_score_skill": 8,
+            "fit_score_stress": 6,
+            "fit_score_pain": 4,
+            "fit_score_confidence": 7,
+            "fit_score_delight": 2,
+            "overall_fit": 5.67,
+            "rationale": "Regulatory knockout without it. Safety (10) — core life-safety function, highest scoring dimension; Skill (8) — zero prior knowledge required for museum visitors and reduced-mobility occupants. E9 (imp=10, sat=8) well addressed."
+          },
+          {
+            "feature_name": "Key Override Bypass",
+            "market_name": "Museums, Historical Sites, and Similar Institutions",
+            "naics_code": "712110",
+            "kano_class": "must_be",
+            "fit_score_time": 5,
+            "fit_score_cost": 4,
+            "fit_score_safety": 5,
+            "fit_score_reliability": 6,
+            "fit_score_skill": 6,
+            "fit_score_stress": 7,
+            "fit_score_pain": 7,
+            "fit_score_confidence": 6,
+            "fit_score_delight": 3,
+            "overall_fit": 5.44,
+            "rationale": "Expected by all institutional buyers; absence makes product operationally unusable. Stress (7) and Pain (7) — conservation staff access storage areas at night without triggering false alerts (E10, imp=7). Safety (5) — neutral; key bypass does not enhance collection protection."
+          },
+          {
+            "feature_name": "Battery-Powered Operation",
+            "market_name": "Museums, Historical Sites, and Similar Institutions",
+            "naics_code": "712110",
+            "kano_class": "attractive",
+            "fit_score_time": 7,
+            "fit_score_cost": 7,
+            "fit_score_safety": 6,
+            "fit_score_reliability": 5,
+            "fit_score_skill": 8,
+            "fit_score_stress": 6,
+            "fit_score_pain": 9,
+            "fit_score_confidence": 5,
+            "fit_score_delight": 7,
+            "overall_fit": 6.67,
+            "rationale": "Highest overall fit. Wired systems are market norm; battery operation eliminates heritage consent for wiring (3-12 months barrier). Pain (9) removes A2 (wired) adoption barrier for listed buildings; Skill (8) no electrician needed; Delight (7) museum managers genuinely surprised by no-wiring deployment. E5/E6 grounding."
+          },
+          {
+            "feature_name": "Pre-Alarm Warning",
+            "market_name": "Museums, Historical Sites, and Similar Institutions",
+            "naics_code": "712110",
+            "kano_class": "attractive",
+            "fit_score_time": 4,
+            "fit_score_cost": 5,
+            "fit_score_safety": 4,
+            "fit_score_reliability": 4,
+            "fit_score_skill": 5,
+            "fit_score_stress": 7,
+            "fit_score_pain": 6,
+            "fit_score_confidence": 5,
+            "fit_score_delight": 5,
+            "overall_fit": 5.0,
+            "rationale": "Not present in basic alarms; reduces false-alarm fatigue during opening hours. Stress (7) reduces duty manager anxiety over unnecessary incident reports (E10, E15). Safety (4) modest — pre-alarm may give unauthorized users 1-2 seconds of warning in after-hours vault contexts; full alarm still triggers immediately."
+          }
+        ]
+      },
+      "step_10_product_related_needs": [
+        {
+          "statement": "Minimize the likelihood of 868 MHz signal degradation from heritage-grade masonry construction (stone walls >400mm, reinforced concrete) creating silent monitoring gaps on emergency exit devices exceeding 15 minutes — in buildings where signal loss is not visually apparent",
+          "source_constraint": "Wireless Range Limitation",
+          "affected_markets": [
+            "Museums, Historical Sites, and Similar Institutions"
+          ],
+          "importance": 8.0,
+          "satisfaction_current": 4.0
+        },
+        {
+          "statement": "Minimize the time required to pre-validate 868 MHz radio coverage through actual building wall materials before committing to gateway placement — preventing post-installation discovery of exit zones with insufficient signal strength",
+          "source_constraint": "Wireless Range Limitation",
+          "affected_markets": [
+            "Museums, Historical Sites, and Similar Institutions"
+          ],
+          "importance": 7.0,
+          "satisfaction_current": 4.0
+        },
+        {
+          "statement": "Minimize the likelihood of 9V block battery depletion in exit monitoring devices below operational threshold within the 2-year maintenance window — accounting for reduced electrochemical performance in climate-controlled conservation environments (15–20°C, 45–55% RH)",
+          "source_constraint": "IoT Battery Life Floor",
+          "affected_markets": [
+            "Museums, Historical Sites, and Similar Institutions",
+            "Elementary and Secondary Schools",
+            "Continuing Care Retirement Communities"
+          ],
+          "importance": 7.0,
+          "satisfaction_current": 4.0
+        },
+        {
+          "statement": "Minimize the time required to achieve complete emergency exit monitoring coverage across all doors in a multi-room heritage building using exclusively surface-mount fixing methods — completing installation within a single operational day without disrupting gallery activities",
+          "source_constraint": "Retrofit-Only Surface Mount",
+          "affected_markets": [
+            "Museums, Historical Sites, and Similar Institutions"
+          ],
+          "importance": 8.0,
+          "satisfaction_current": 5.0
+        },
+        {
+          "statement": "Minimize the likelihood of EasyWave protocol incompatibility causing integration failure when the museum BMS or intruder detection panel uses BACnet, KNX, or IP-based protocols — requiring additional unplanned gateway hardware to achieve centralized monitoring",
+          "source_constraint": "EasyWave Protocol Lock-In",
+          "affected_markets": [
+            "Museums, Historical Sites, and Similar Institutions",
+            "Lessors of Nonresidential Buildings"
+          ],
+          "importance": 6.0,
+          "satisfaction_current": 5.0
+        }
+      ],
+      "step_11_vendor_feature_fit": {
+        "vendor_name": "GfS (Assa Abloy)",
+        "product_name": "Türwächter Exit Control 179/1125 with IoT",
+        "market_name": "Museums, Historical Sites, and Similar Institutions",
+        "naics_code": "712110",
+        "best_incumbent_reference": "dormakaba SafeRoute (wired electronic exit control, LON/BACnet, BMS-integrated)",
+        "entries": [
+          {
+            "feature_name": "868 MHz EasyWave Radio Transmission",
+            "market_name": "Museums, Historical Sites, and Similar Institutions",
+            "naics_code": "712110",
+            "kano_class": "attractive",
+            "vendor_score": 7,
+            "best_incumbent_score": 4,
+            "advantage": "superior",
+            "rationale": "Battery-powered wireless at EU-reserved 868 MHz enables heritage retrofit without wiring consent. dormakaba SafeRoute (best wired incumbent) disqualified in S2 listed buildings without 3-12 month heritage consent. Scores below optimum due to proprietary protocol (C6) and 30m range limit in large S1 museums."
+          },
+          {
+            "feature_name": "Wireless BUS Interface Integration",
+            "market_name": "Museums, Historical Sites, and Similar Institutions",
+            "naics_code": "712110",
+            "kano_class": "attractive",
+            "vendor_score": 5,
+            "best_incumbent_score": 7,
+            "advantage": "inferior",
+            "rationale": "Proprietary GfS-only ecosystem; no native BACnet/KNX/IP. dormakaba SafeRoute and GEZE SecuLogic provide superior open-protocol BMS aggregation. EasyWave lock-in (C6) is a genuine liability for S1/S5 multi-site groups with centralized BMS infrastructure."
+          },
+          {
+            "feature_name": "Dual-Standard Variant Range (EN 179 + EN 1125)",
+            "market_name": "Museums, Historical Sites, and Similar Institutions",
+            "naics_code": "712110",
+            "kano_class": "must_be",
+            "vendor_score": 8,
+            "best_incumbent_score": 7,
+            "advantage": "parity",
+            "rationale": "GfS matched EN 179/EN 1125 families enable consistent mixed-door deployment (lever-handle storage corridors + panic-bar public galleries). Most competitors offer dual-standard coverage. Difference of 1 = parity per classification rules."
+          },
+          {
+            "feature_name": "IP45 Outdoor Variant",
+            "market_name": "Museums, Historical Sites, and Similar Institutions",
+            "naics_code": "712110",
+            "kano_class": "indifferent",
+            "vendor_score": 5,
+            "best_incumbent_score": 5,
+            "advantage": "parity",
+            "rationale": "Most museum exits are climate-controlled interior spaces. IP45 adds value only for outdoor courtyard doors or S4 archaeological sites — not the dominant S1/S2 interior use case. Standard indoor variant has no published IP class; market does not evaluate on this dimension."
+          },
+          {
+            "feature_name": "Glass-Frame Mounting Plate (Art. 991170)",
+            "market_name": "Museums, Historical Sites, and Similar Institutions",
+            "naics_code": "712110",
+            "kano_class": "attractive",
+            "vendor_score": 8,
+            "best_incumbent_score": 3,
+            "advantage": "superior",
+            "rationale": "Modern museum additions and public-facing galleries frequently use glass-frame internal doors. Art. 991170 enables no-modification installation on an otherwise uncoverable door type. No established competitor equivalent — alternatives require adhesive mounting or custom fabrication. Strong procurement differentiator when glass-frame exits must be included in coverage."
+          }
+        ]
+      }
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

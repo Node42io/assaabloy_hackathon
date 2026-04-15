@@ -1,0 +1,861 @@
+{
+  "naicsCode": "623311",
+  "marketName": "Continuing Care Retirement Communities",
+  "slug": "continuing_care_retirement",
+  "coreJobStatement": "Provide safe, integrated residential accommodation and healthcare services across a continuum of care levels to older adults, enabling aging in place with progressively intensive clinical support as functional needs evolve.",
+  "outputTypes": [
+    "Independent Living",
+    "Assisted Living",
+    "Memory Care",
+    "Skilled Nursing",
+    "Post-Acute Rehab"
+  ],
+  "hierarchy": "",
+  "architectureDistance": 0,
+  "marketSize": "",
+  "l6Systems": [
+    {
+      "id": "L6a",
+      "name": "Resident Intake & Care Planning",
+      "type": "Core",
+      "jobFamily": "Assess functional status and establish individualized care plan for each incoming resident",
+      "l5Units": []
+    },
+    {
+      "id": "L6b",
+      "name": "Independent Living Services",
+      "type": "Core",
+      "jobFamily": "Provide residential amenities, social programming, and wellness services to functionally independent older adults",
+      "l5Units": []
+    },
+    {
+      "id": "L6c",
+      "name": "Assisted Living Services",
+      "type": "Core",
+      "jobFamily": "Deliver personal care assistance, medication management, and ADL support to residents needing moderate daily help",
+      "l5Units": []
+    },
+    {
+      "id": "L6d",
+      "name": "Memory Care Services",
+      "type": "Core",
+      "jobFamily": "Provide secured residential care and specialized behavioral programming for residents with dementia and cognitive impairment",
+      "l5Units": []
+    },
+    {
+      "id": "L6e",
+      "name": "Skilled Nursing Care",
+      "type": "Core",
+      "jobFamily": "Deliver 24-hour clinical nursing, physician oversight, and complex medical management for residents with intensive health needs",
+      "l5Units": []
+    },
+    {
+      "id": "L6f",
+      "name": "Rehabilitation Services",
+      "type": "Core",
+      "jobFamily": "Restore and maintain physical, occupational, and speech function through therapeutic interventions",
+      "l5Units": []
+    },
+    {
+      "id": "L6g",
+      "name": "Care Transition Management",
+      "type": "Core",
+      "jobFamily": "Coordinate resident transfers between care levels and to/from external facilities",
+      "l5Units": []
+    },
+    {
+      "id": "L6H-SAF",
+      "name": "Facility Safety & Emergency Management",
+      "type": "Horizontal",
+      "jobFamily": "Protect residents, staff, and assets from safety incidents at all times",
+      "isHorizontal": true,
+      "l5Units": []
+    },
+    {
+      "id": "L6H-NUT",
+      "name": "Nutrition & Food Service",
+      "type": "Horizontal",
+      "jobFamily": "Deliver nutritionally appropriate meals and hydration across all care levels",
+      "isHorizontal": true,
+      "l5Units": []
+    },
+    {
+      "id": "L6H-QA",
+      "name": "Regulatory Compliance & Quality Assurance",
+      "type": "Horizontal",
+      "jobFamily": "Ensure clinical, operational, and regulatory compliance with CMS, state licensing, and CARF standards",
+      "isHorizontal": true,
+      "l5Units": []
+    },
+    {
+      "id": "L6H-IT",
+      "name": "Resident Information Systems",
+      "type": "Horizontal",
+      "jobFamily": "Maintain accurate resident health records and operational data across all care processes",
+      "isHorizontal": true,
+      "l5Units": []
+    }
+  ],
+  "vnUnits": [
+    {
+      "level": "L5",
+      "id": "L6a.1",
+      "name": "EHR Platform",
+      "functionalJob": "Integrated electronic health record system managing clinical documentation, medication administration, care planning, and billing",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "PointClickCare",
+          "sharePct": 26,
+          "confidence": "MEDIUM",
+          "source": "KLAS Research 2025 — LTC EHR Market",
+          "isPrimary": false
+        },
+        {
+          "name": "MatrixCare",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Netsmart",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "WellSky",
+          "sharePct": 8,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Other / legacy",
+          "sharePct": 36,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6a.2",
+      "name": "Clinical Assessment Tools (MDS 3.0 / ADL scoring)",
+      "functionalJob": "Standardized instruments for evaluating resident functional status, cognitive level, and care needs at intake and periodically",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Integrated in EHR",
+          "sharePct": 65,
+          "confidence": "LOW",
+          "source": "Industry estimate",
+          "isPrimary": false
+        },
+        {
+          "name": "Standalone assessment software",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Paper-based forms",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "Declining",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.1",
+      "name": "Resident Engagement Platform",
+      "functionalJob": "Digital platform for scheduling social activities, wellness programming, and community engagement for independent living residents",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "LifeLoop",
+          "sharePct": 18,
+          "confidence": "LOW",
+          "source": "Vendor market presence",
+          "isPrimary": false
+        },
+        {
+          "name": "Accushield",
+          "sharePct": 12,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "K4Connect / WELL",
+          "sharePct": 8,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Manual / paper-based",
+          "sharePct": 62,
+          "confidence": "",
+          "source": "Majority still non-digital",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.2",
+      "name": "Smart Home / Ambient Monitoring",
+      "functionalJob": "In-unit sensor and alert systems passively monitoring resident activity patterns and triggering emergency response when anomalies are detected",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Pendant / pull-cord system",
+          "sharePct": 45,
+          "confidence": "LOW",
+          "source": "—",
+          "isPrimary": false
+        },
+        {
+          "name": "In-unit passive sensor monitoring",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Voice assistant integration",
+          "sharePct": 5,
+          "confidence": "",
+          "source": "Emerging",
+          "isPrimary": false
+        },
+        {
+          "name": "None",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.1",
+      "name": "Nurse Call & Emergency Response",
+      "functionalJob": "Resident-activated alert system enabling rapid staff response to emergencies across care areas",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Wireless pendant system (Stanley Healthcare, Jeron)",
+          "sharePct": 40,
+          "confidence": "MEDIUM",
+          "source": "Vendor market presence",
+          "isPrimary": false
+        },
+        {
+          "name": "Hardwired nurse call panel (Rauland, Jeron)",
+          "sharePct": 35,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Hybrid system",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.2",
+      "name": "Medication Management",
+      "functionalJob": "Systems for secure storage, dispensing, administration tracking, and drug-interaction checking of resident medications",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "eMAR-guided manual dispensing",
+          "sharePct": 55,
+          "confidence": "MEDIUM",
+          "source": "Industry standard",
+          "isPrimary": false
+        },
+        {
+          "name": "Automated dispensing cabinets (Omnicell, Pyxis)",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Pharmacy blister / unit-dose pack",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.1",
+      "name": "Wander Prevention & Exit Security",
+      "functionalJob": "Systems detecting and alerting to at-risk resident proximity to or use of exit doors, preventing elopement while maintaining fire-code-compliant escape",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": true,
+      "alternatives": [
+        {
+          "name": "RFID/BLE wander management (Stanley Healthcare / Securitas Healthcare, CenTrak)",
+          "sharePct": 40,
+          "confidence": "MEDIUM",
+          "source": "CenTrak wander management; WanderGuard BLUE",
+          "isPrimary": false
+        },
+        {
+          "name": "Electromagnetic delayed-egress locks (Assa Abloy, dormakaba)",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "",
+          "isPrimary": true
+        },
+        {
+          "name": "Emergency exit door alarm guards with IoT monitoring ← Türwächter",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": true
+        },
+        {
+          "name": "Coded keypad exits",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.2",
+      "name": "Secured Perimeter Door Hardware",
+      "functionalJob": "Physical door locking and access control hardware securing the memory care unit perimeter against unauthorized egress per CMS Life Safety Code",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Electromagnetic delayed-egress locks",
+          "sharePct": 50,
+          "confidence": "MEDIUM",
+          "source": "CMS Life Safety Code §19.2.2.2 permits delayed-egress in AL/MC",
+          "isPrimary": false
+        },
+        {
+          "name": "Alarmed exit bars / crash bars with alarm",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Electronic access control with keypad",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Biometric reader",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "Emerging",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.3",
+      "name": "Cognitive Stimulation & Sensory Technology",
+      "functionalJob": "Technology and equipment delivering therapeutic cognitive stimulation and sensory engagement for residents with dementia",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Conventional activity supplies",
+          "sharePct": 50,
+          "confidence": "LOW",
+          "source": "—",
+          "isPrimary": false
+        },
+        {
+          "name": "Tablet-based activity platforms (iN2L, Linked Senior)",
+          "sharePct": 35,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Purpose-built sensory systems (Snoezelen)",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6e.1",
+      "name": "Patient Monitoring Equipment",
+      "functionalJob": "Bedside and mobile devices for continuous or periodic measurement of vital signs in skilled nursing residents",
+      "description": "",
+      "parentL6": "L6e",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Wired multi-parameter monitors (Philips, GE Healthcare)",
+          "sharePct": 45,
+          "confidence": "MEDIUM",
+          "source": "Market presence",
+          "isPrimary": false
+        },
+        {
+          "name": "Wireless vital signs systems",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Handheld spot-check devices",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6e.2",
+      "name": "IV & Infusion Therapy Equipment",
+      "functionalJob": "Pumps and administration sets for controlled intravenous delivery of medications and fluids to skilled nursing residents",
+      "description": "",
+      "parentL6": "L6e",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Standalone IV pumps (BD, Baxter)",
+          "sharePct": 60,
+          "confidence": "MEDIUM",
+          "source": "—",
+          "isPrimary": false
+        },
+        {
+          "name": "Smart pumps with dose-error reduction (DERS)",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Gravity flow administration",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "Declining",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6f.1",
+      "name": "Rehabilitation Management Software",
+      "functionalJob": "Software for scheduling, documenting, and billing physical, occupational, and speech therapy sessions",
+      "description": "",
+      "parentL6": "L6f",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": []
+    },
+    {
+      "level": "L5",
+      "id": "L6f.2",
+      "name": "Physical & Occupational Therapy Equipment",
+      "functionalJob": "Therapeutic tables, exercise devices, and assistive equipment for restoring and maintaining resident functional mobility",
+      "description": "",
+      "parentL6": "L6f",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": []
+    },
+    {
+      "level": "L5",
+      "id": "L6g.1",
+      "name": "Care Coordination Platform",
+      "functionalJob": "Software managing resident transfers between care levels, discharge planning, and coordination with external facilities",
+      "description": "",
+      "parentL6": "L6g",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": []
+    },
+    {
+      "level": "L5",
+      "id": "L6g.2",
+      "name": "Transportation Management",
+      "functionalJob": "Fleet scheduling and contracted transport services for resident transfers to medical appointments and external facilities",
+      "description": "",
+      "parentL6": "L6g",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": []
+    },
+    {
+      "level": "L5",
+      "id": "L6H-SAF.1",
+      "name": "Emergency Exit Door Alarm Guards",
+      "functionalJob": "Devices securing emergency exit doors against unauthorized use while maintaining fire-code-compliant unimpeded escape",
+      "description": "",
+      "parentL6": "L6H-SAF",
+      "dependencies": [],
+      "isPrimaryPosition": true,
+      "alternatives": [
+        {
+          "name": "Mechanical-only alarm guards (no monitoring)",
+          "sharePct": 35,
+          "confidence": "LOW",
+          "source": "Industry estimate — no published CCRC-specific split",
+          "isPrimary": false
+        },
+        {
+          "name": "Electromagnetic delayed-egress locks",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "CMS permits up to 30-second delay in MCUs",
+          "isPrimary": false
+        },
+        {
+          "name": "IoT-enabled alarm guards with wireless monitoring ← Türwächter",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "Growing with IoT adoption",
+          "isPrimary": true
+        },
+        {
+          "name": "No dedicated exit monitoring / basic door stops",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "Typically smaller / rural facilities",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-SAF.2",
+      "name": "Fire Detection & Alarm System",
+      "functionalJob": "Building-wide fire detection and alarm network per NFPA 72 / EN 54; mandatory under CMS Life Safety Code",
+      "description": "",
+      "parentL6": "L6H-SAF",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Addressable fire alarm panel (Notifier, Simplex, Siemens)",
+          "sharePct": 55,
+          "confidence": "MEDIUM",
+          "source": "Mordor Intelligence — Fire Safety Systems",
+          "isPrimary": false
+        },
+        {
+          "name": "Conventional panel",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Wireless fire detection (Napco, EMS)",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "Growing for retrofit wings",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-SAF.3",
+      "name": "Access Control & Perimeter Security",
+      "functionalJob": "Electronic credential-based entry management for building perimeter and controlled access zones",
+      "description": "",
+      "parentL6": "L6H-SAF",
+      "dependencies": [],
+      "isPrimaryPosition": true,
+      "alternatives": [
+        {
+          "name": "IP-based electronic access control (Assa Abloy, Honeywell)",
+          "sharePct": 55,
+          "confidence": "MEDIUM",
+          "source": "Market presence",
+          "isPrimary": true
+        },
+        {
+          "name": "Proximity card / fob",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "PIN keypad",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Key-only (no electronic)",
+          "sharePct": 5,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-SAF.4",
+      "name": "Video Surveillance (CCTV)",
+      "functionalJob": "IP camera network for 24/7 monitoring of common areas, perimeter, and controlled zones for resident safety and incident investigation",
+      "description": "",
+      "parentL6": "L6H-SAF",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "IP cameras / NVR (Axis, Hikvision, Dahua)",
+          "sharePct": 60,
+          "confidence": "MEDIUM",
+          "source": "Industry standard",
+          "isPrimary": false
+        },
+        {
+          "name": "Analog / DVR",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Cloud-managed (Verkada, Rhombus)",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-SAF.5",
+      "name": "Emergency Communication System",
+      "functionalJob": "Facility-wide paging, intercom, and mass notification infrastructure for emergency alerts and staff coordination",
+      "description": "",
+      "parentL6": "L6H-SAF",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Overhead paging / intercom",
+          "sharePct": 60,
+          "confidence": "LOW",
+          "source": "Industry estimate",
+          "isPrimary": false
+        },
+        {
+          "name": "Mass notification platform (Rave, Everbridge)",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Basic radio / telephone system",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-NUT.1",
+      "name": "Nutrition Management Software",
+      "functionalJob": "Software for dietary planning, menu management, and nutritional compliance tracking across resident care levels",
+      "description": "",
+      "parentL6": "L6H-NUT",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": []
+    },
+    {
+      "level": "L5",
+      "id": "L6H-NUT.2",
+      "name": "Commercial Kitchen Equipment",
+      "functionalJob": "Institutional food service equipment for preparing and serving meals to residents across all care levels",
+      "description": "",
+      "parentL6": "L6H-NUT",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": []
+    },
+    {
+      "level": "L5",
+      "id": "L6H-QA.1",
+      "name": "Quality Management & Survey Prep",
+      "functionalJob": "MDS-based quality measure reporting and CMS survey preparation tools for regulatory compliance",
+      "description": "",
+      "parentL6": "L6H-QA",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": []
+    },
+    {
+      "level": "L5",
+      "id": "L6H-QA.2",
+      "name": "Infection Prevention & Control",
+      "functionalJob": "Protocols, equipment, and monitoring systems for preventing healthcare-associated infections across all care areas",
+      "description": "",
+      "parentL6": "L6H-QA",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": []
+    },
+    {
+      "level": "L5",
+      "id": "L6H-IT.1",
+      "name": "EHR Platform",
+      "functionalJob": "Integrated electronic health record system shared across all care levels for clinical documentation and operational data",
+      "description": "",
+      "parentL6": "L6H-IT",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "(shared with L6a — see above)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "PointClickCare #1 KLAS 2025",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-IT.2",
+      "name": "Wi-Fi & Network Infrastructure",
+      "functionalJob": "Enterprise wireless and wired network serving EHR, nurse call, security, and resident connectivity across all buildings",
+      "description": "",
+      "parentL6": "L6H-IT",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Enterprise Wi-Fi (Cisco, Aruba, Ruckus)",
+          "sharePct": 55,
+          "confidence": "MEDIUM",
+          "source": "Market presence",
+          "isPrimary": false
+        },
+        {
+          "name": "Mid-range managed Wi-Fi (Meraki)",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Basic / consumer-grade",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "Smaller / rural facilities",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-IT.3",
+      "name": "Resident & Family Communication Platform",
+      "functionalJob": "Digital portal enabling residents and families to access care updates, activity schedules, and communicate with staff",
+      "description": "",
+      "parentL6": "L6H-IT",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "EHR-integrated portal",
+          "sharePct": 45,
+          "confidence": "LOW",
+          "source": "—",
+          "isPrimary": false
+        },
+        {
+          "name": "LifeLoop / VIVO / Sagely",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Email / phone only",
+          "sharePct": 40,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    }
+  ],
+  "marquardtPosition": "",
+  "strategicPosition": null,
+  "sources": []
+}

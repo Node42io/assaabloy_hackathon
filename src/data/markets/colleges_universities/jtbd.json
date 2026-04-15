@@ -1,0 +1,525 @@
+{
+  "naicsCode": "611310",
+  "marketName": "Colleges, Universities, and Professional Schools",
+  "slug": "colleges_universities",
+  "coreJobStatement": "Deliver accredited higher education programs and credentials to enrolled students within a safe, legally compliant, and research-capable campus environment",
+  "productJobStatement": "Help Campus Safety, Security & Emergency Management to secure emergency exit doors against unauthorized use while maintaining fire-code-compliant single-motion escape capability and reporting door status events to centralized monitoring — across distributed campus buildings with aging, heterogeneous infrastructure",
+  "anchorLevel": "L5",
+  "lPath": "L5.h1.2 — Emergency Exit Alarm Guards → L6-H1 — Campus Safety, Security & Emergency Management",
+  "segments": [
+    {
+      "segmentNumber": 1,
+      "name": "S1 — Legacy building stock",
+      "qualifier": "",
+      "characteristics": "Buildings >40 years old; no existing wired alarm infrastructure; surface-mount only viable path. Dominant in US public universities; >75% of campus facilities 30-40+ years old.",
+      "isTargetable": true,
+      "targetabilityReason": "Wired alternatives not viable; wireless retrofit is the only path",
+      "circumstance": "Building constructed >40 years ago; no existing wired alarm infrastructure; surface-mount install is the only viable path",
+      "alternativesDiffer": "Yes — wired alternatives not viable"
+    },
+    {
+      "segmentNumber": 2,
+      "name": "S2 — Research labs and controlled-access facilities",
+      "qualifier": "",
+      "characteristics": "High-value equipment, hazardous materials, or export-controlled research; after-hours unauthorized entry risk elevated. R1/R2 research universities; EAR/ITAR-controlled zones.",
+      "isTargetable": true,
+      "targetabilityReason": "Higher sensitivity, stricter audit requirements",
+      "circumstance": "High-value equipment, hazardous materials, or export-controlled research; after-hours unauthorized entry risk elevated",
+      "alternativesDiffer": "Yes — higher sensitivity, stricter audit requirements"
+    },
+    {
+      "segmentNumber": 3,
+      "name": "S3 — Residential dormitories",
+      "qualifier": "",
+      "characteristics": "24/7 student occupancy; elopement and unauthorized external entry risk; building occupied when security staffing is minimal.",
+      "isTargetable": true,
+      "targetabilityReason": "24/7 monitoring requirement; battery life critical at high-use exits",
+      "circumstance": "24/7 student occupancy; elopement and unauthorized external entry risk; building occupied when security staffing is minimal",
+      "alternativesDiffer": "Yes — 24/7 monitoring requirement; battery life critical at high-use exits"
+    },
+    {
+      "segmentNumber": 4,
+      "name": "S4 — High-occupancy assembly spaces",
+      "qualifier": "",
+      "characteristics": "Lecture halls, event centers, performance venues with variable, large-scale occupancy; emergency exits critical under peak load.",
+      "isTargetable": true,
+      "targetabilityReason": "False alarm cost high during public events",
+      "circumstance": "Lecture halls, event centers, performance venues with variable, large-scale occupancy; emergency exits critical under peak load",
+      "alternativesDiffer": "Yes — false alarm cost high during public events"
+    },
+    {
+      "segmentNumber": 5,
+      "name": "S5 — Open-access public buildings",
+      "qualifier": "",
+      "characteristics": "Libraries, student unions, visitor centers open to the general public; unauthorized entry difficult to detect via credential-based access alone.",
+      "isTargetable": true,
+      "targetabilityReason": "Perimeter security less controlled; more frequent door events",
+      "circumstance": "Libraries, student unions, visitor centers open to the general public; unauthorized entry difficult to detect via credential-based access alone",
+      "alternativesDiffer": "Yes — perimeter security less controlled; more frequent door events"
+    }
+  ],
+  "alternatives": [
+    {
+      "name": "GfS Tuerwachter (mechanical + IoT alarm guard) — spring-loaded handle guard with EasyWave radio",
+      "unspsc": "46171600",
+      "tradeoffs": "EasyWave protocol lock-in — not interoperable with campus PSIM natively; 30 m wireless range requires repeaters in large buildings; battery replacement maintenance cycle; surface-mount visible protrusion on door handle"
+    },
+    {
+      "name": "Electronic Exit Control Systems (dormakaba SafeRoute, GEZE SecuLogic) — mains-powered electronic exit control",
+      "unspsc": "46171600",
+      "tradeoffs": "Requires mains power at door — major construction in legacy buildings; high per-door installation cost; licensed contractor required; single point of failure if power-dependent alarm"
+    },
+    {
+      "name": "Basic mechanical door prop alarms (Detex EC-100, Seco-Larm) — contact alarm, no monitoring",
+      "unspsc": "46171501",
+      "tradeoffs": "Local alarm only — no centralized monitoring; no Clery Act-compliant documentation; no battery status visibility; no IoT; security officer must be on-site to hear alarm"
+    },
+    {
+      "name": "Campus access control with alarmed exit hardware (ASSA ABLOY Aperio, Allegion Von Duprin) — credential-based control with alarmed release",
+      "unspsc": "46171600",
+      "tradeoffs": "Requires full IT provisioning and credential management; high system complexity; wired infrastructure; designed for access control, not standalone exit alarm monitoring; high integration cost for legacy buildings"
+    },
+    {
+      "name": "Campus police patrol + manual inspection rounds",
+      "unspsc": "",
+      "tradeoffs": "2-4 FTEs for full 24/7 campus coverage; no real-time detection; manual compliance logs — error-prone; patrol frequency gaps at night; does not meet continuous monitoring expectations of fire marshals or insurance underwriters"
+    },
+    {
+      "name": "Do nothing / accept non-compliance",
+      "unspsc": "",
+      "tradeoffs": "Zero cost. Clery Act violation risk; NFPA/state fire marshal fine exposure (>$10K/violation); insurance liability exposure; no monitoring; reputational risk at accreditation review"
+    }
+  ],
+  "jobSteps": [
+    {
+      "stepNumber": 1,
+      "verb": "Define",
+      "description": "Identify which campus exit doors require alarm guard coverage per NFPA 101, IBC Chapter 10, and campus security policy",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Scoping errors lead to gaps in mandated coverage",
+      "rawStatement": "Identify which campus exits require coverage; fire code specifications; campus security policy",
+      "jobStep": "DEFINE",
+      "relevant": true,
+      "rationale": "Scoping errors lead to gaps in mandated coverage"
+    },
+    {
+      "stepNumber": 2,
+      "verb": "Locate",
+      "description": "Assess door hardware types, building RF environment, and distance from doors to wireless gateway",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "RF coverage and door compatibility determine install complexity",
+      "rawStatement": "Assess door hardware types, building RF environment, distance to gateway",
+      "jobStep": "LOCATE",
+      "relevant": true,
+      "rationale": "RF coverage and door compatibility determine install complexity"
+    },
+    {
+      "stepNumber": 3,
+      "verb": "Prepare",
+      "description": "Install and configure alarm guards; provision wireless receivers; establish campus monitoring dashboard",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Primary installation quality driver",
+      "rawStatement": "Install and configure alarm guards; provision receivers; establish monitoring dashboard",
+      "jobStep": "PREPARE",
+      "relevant": true,
+      "rationale": "Primary installation quality driver"
+    },
+    {
+      "stepNumber": 4,
+      "verb": "Confirm",
+      "description": "Verify device functionality, wireless transmission, alarm trigger, and key override before go-live",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Silent commissioning failures are the main deployment risk",
+      "rawStatement": "Verify device functionality, wireless connectivity, alarm trigger, key override",
+      "jobStep": "CONFIRM",
+      "relevant": true,
+      "rationale": "Silent commissioning failures are the main deployment risk"
+    },
+    {
+      "stepNumber": 5,
+      "verb": "Execute",
+      "description": "Alarm guards continuously secure exit doors; alarm triggers on unauthorized activation",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Core functional step",
+      "rawStatement": "Devices actively guard doors; alarm triggers on unauthorized activation",
+      "jobStep": "EXECUTE",
+      "relevant": true,
+      "rationale": "Core functional step"
+    },
+    {
+      "stepNumber": 6,
+      "verb": "Monitor",
+      "description": "Centralized dashboard aggregates door status, alarm events, and battery levels across all campus buildings",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Primary value of IoT layer",
+      "rawStatement": "Dashboard aggregates door status, alarms, battery levels across campus",
+      "jobStep": "MONITOR",
+      "relevant": true,
+      "rationale": "Primary value of IoT layer"
+    },
+    {
+      "stepNumber": 7,
+      "verb": "Modify",
+      "description": "Replace batteries, respond to alarm events, add/remove devices as campus footprint changes",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Primary operational maintenance burden",
+      "rawStatement": "Battery replacement; device add/remove; configuration updates",
+      "jobStep": "MODIFY",
+      "relevant": true,
+      "rationale": "Primary operational maintenance burden"
+    },
+    {
+      "stepNumber": 8,
+      "verb": "Conclude",
+      "description": "Compile compliance documentation for annual fire safety inspections and Clery Act Annual Security Report",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Compliance documentation = key differentiator vs. basic alarms",
+      "rawStatement": "Compile compliance records for fire inspections, Clery Act reporting, insurance",
+      "jobStep": "CONCLUDE",
+      "relevant": true,
+      "rationale": "Compliance documentation = key differentiator vs. basic alarms"
+    }
+  ],
+  "stakeholders": [
+    {
+      "role": "Job Executor",
+      "who": "Campus Security Officer / Facility Security Manager — monitors dashboard, responds to alerts, manages devices",
+      "pyramidLevels": "P1 ALL + P2 + P3 + P4 + P5"
+    },
+    {
+      "role": "Job Overseer",
+      "who": "VP Facilities / Chief Security Officer — accountable for Clery Act compliance, fire inspections, insurance",
+      "pyramidLevels": "P1 own + P2 + P4 ALL + P5 rarely"
+    },
+    {
+      "role": "Product Lifecycle Support",
+      "who": "Installer / Facilities Maintenance Tech — installs, commissions, replaces batteries",
+      "pyramidLevels": "P1 own (Preparation + Maintenance)"
+    },
+    {
+      "role": "Purchase Executor",
+      "who": "Facilities Director / Procurement Officer — approves budget, signs contracts",
+      "pyramidLevels": "P1 Acquisition"
+    },
+    {
+      "role": "Purchase Influencer",
+      "who": "Fire Marshal / State Fire Inspector / Insurance Auditor / Campus Safety Committee",
+      "pyramidLevels": "P2 own + P4 ALL"
+    }
+  ],
+  "needs": [
+    {
+      "id": "N01",
+      "statement": "Minimize the likelihood of incomplete emergency exit coverage mapping that leaves fire-code-mandated campus exits unmonitored after initial deployment",
+      "jobStep": "DEFINE",
+      "errorType": "ACCURACY",
+      "importance": 9,
+      "satisfaction": 4,
+      "opportunity": 14,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "N02",
+      "statement": "Minimize the effort required to assess door hardware compatibility and wireless signal reach across heterogeneous campus building stock before device selection",
+      "jobStep": "LOCATE",
+      "errorType": "EFFORT",
+      "importance": 8,
+      "satisfaction": 5,
+      "opportunity": 11,
+      "impactCategory": "cost",
+      "productRelated": true,
+      "confidence": 0.80
+    },
+    {
+      "id": "N03",
+      "statement": "Minimize the likelihood of RF dead zones in concrete campus buildings causing emergency exit devices to transmit outside effective receiver range",
+      "jobStep": "LOCATE",
+      "errorType": "ROBUSTNESS",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.82
+    },
+    {
+      "id": "N04",
+      "statement": "Minimize installation labor-hours required to deploy exit monitoring devices across a multi-building campus without licensed electrical contractor involvement",
+      "jobStep": "PREPARE",
+      "errorType": "EFFORT",
+      "importance": 8,
+      "satisfaction": 5,
+      "opportunity": 11,
+      "impactCategory": "cost",
+      "productRelated": false,
+      "confidence": 0.90
+    },
+    {
+      "id": "N05",
+      "statement": "Minimize variability in alarm guard installation quality across lever-handle, panic-bar, and glass-frame door configurations during a campus-wide rollout",
+      "jobStep": "PREPARE",
+      "errorType": "CONSISTENCY",
+      "importance": 7,
+      "satisfaction": 5,
+      "opportunity": 9,
+      "impactCategory": "reliability",
+      "productRelated": false,
+      "confidence": 0.75
+    },
+    {
+      "id": "N06",
+      "statement": "Minimize the likelihood of deploying exit alarm devices with undetected wireless connectivity failures that are not discovered until after campus go-live",
+      "jobStep": "CONFIRM",
+      "errorType": "ACCURACY",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.82
+    },
+    {
+      "id": "N07",
+      "statement": "Minimize the effort required to verify wireless transmission integrity between each newly installed device and the central receiver before commissioning sign-off",
+      "jobStep": "CONFIRM",
+      "errorType": "EFFORT",
+      "importance": 7,
+      "satisfaction": 4,
+      "opportunity": 10,
+      "impactCategory": "time",
+      "productRelated": true,
+      "confidence": 0.78
+    },
+    {
+      "id": "N08",
+      "statement": "Minimize the likelihood of alarm guard mechanical failure in high-traffic campus exit environments causing an unguarded door state",
+      "jobStep": "EXECUTE",
+      "errorType": "ROBUSTNESS",
+      "importance": 9,
+      "satisfaction": 5,
+      "opportunity": 13,
+      "impactCategory": "reliability",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "N09",
+      "statement": "Minimize the likelihood of false alarm triggers caused by accidental door contact during normal building operations disrupting campus activities",
+      "jobStep": "EXECUTE",
+      "errorType": "ROBUSTNESS",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "reliability",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "N10",
+      "statement": "Minimize the time to detect and route an unauthorized emergency exit opening event to the campus security operations center",
+      "jobStep": "EXECUTE",
+      "errorType": "DETECTION",
+      "importance": 9,
+      "satisfaction": 4,
+      "opportunity": 14,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.88
+    },
+    {
+      "id": "N11",
+      "statement": "Minimize the number of door events failing to reach the central monitoring dashboard due to RF signal attenuation in reinforced-concrete campus buildings",
+      "jobStep": "MONITOR",
+      "errorType": "DETECTION",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.80
+    },
+    {
+      "id": "N12",
+      "statement": "Minimize variability in battery depletion rates across devices deployed in buildings with different door-use frequencies and ambient temperatures",
+      "jobStep": "MONITOR",
+      "errorType": "CONSISTENCY",
+      "importance": 7,
+      "satisfaction": 3,
+      "opportunity": 11,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.78
+    },
+    {
+      "id": "N13",
+      "statement": "Minimize the time between a campus emergency exit device losing wireless connectivity and the security operations center detecting the monitoring gap",
+      "jobStep": "MONITOR",
+      "errorType": "DETECTION",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "time",
+      "productRelated": true,
+      "confidence": 0.80
+    },
+    {
+      "id": "N14",
+      "statement": "Increase the ability to monitor all campus emergency exit devices from a single security dashboard without requiring building-specific logins or separate hardware systems",
+      "jobStep": "MONITOR",
+      "errorType": "THROUGHPUT",
+      "importance": 7,
+      "satisfaction": 3,
+      "opportunity": 11,
+      "impactCategory": "skill",
+      "productRelated": true,
+      "confidence": 0.75
+    },
+    {
+      "id": "N15",
+      "statement": "Minimize the time required to replace an exit alarm guard battery without triggering the alarm horn or temporarily disabling the door's fire-code escape path",
+      "jobStep": "MODIFY",
+      "errorType": "EFFORT",
+      "importance": 7,
+      "satisfaction": 5,
+      "opportunity": 9,
+      "impactCategory": "time",
+      "productRelated": true,
+      "confidence": 0.82
+    },
+    {
+      "id": "N16",
+      "statement": "Minimize the time to restore full exit alarm and wireless monitoring function after a device fault or battery exhaustion event",
+      "jobStep": "MODIFY",
+      "errorType": "RECOVERY",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "reliability",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "N17",
+      "statement": "Minimize the labor required to compile emergency exit compliance documentation for annual fire safety inspections and Clery Act Annual Security Report filings",
+      "jobStep": "CONCLUDE",
+      "errorType": "EFFORT",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "cost",
+      "productRelated": false,
+      "confidence": 0.88
+    },
+    {
+      "id": "N18",
+      "statement": "Minimize the likelihood of Clery Act compliance gaps due to missing door event records from campus exit devices that experienced intermittent wireless outages",
+      "jobStep": "CONCLUDE",
+      "errorType": "ACCURACY",
+      "importance": 9,
+      "satisfaction": 3,
+      "opportunity": 15,
+      "impactCategory": "safety",
+      "productRelated": true,
+      "confidence": 0.85
+    },
+    {
+      "id": "N19",
+      "statement": "Minimize the risk of regulatory fine exposure from undocumented emergency exit non-compliance events discovered during unannounced NFPA or state fire marshal audits",
+      "jobStep": "CONCLUDE",
+      "errorType": "ACCURACY",
+      "importance": 9,
+      "satisfaction": 3,
+      "opportunity": 15,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.90
+    },
+    {
+      "id": "N20",
+      "statement": "Increase the ability to scale emergency exit monitoring incrementally across a campus building-by-building without system-wide infrastructure changes or full re-commissioning",
+      "jobStep": "DEFINE",
+      "errorType": "THROUGHPUT",
+      "importance": 7,
+      "satisfaction": 4,
+      "opportunity": 10,
+      "impactCategory": "cost",
+      "productRelated": false,
+      "confidence": 0.78
+    },
+    {
+      "id": "N21",
+      "statement": "Minimize the effort required to evaluate exit monitoring vendor interoperability with existing campus PSIM and Building Management Systems before procurement commitment",
+      "jobStep": "DEFINE",
+      "errorType": "EFFORT",
+      "importance": 7,
+      "satisfaction": 4,
+      "opportunity": 10,
+      "impactCategory": "cost",
+      "productRelated": true,
+      "confidence": 0.75
+    },
+    {
+      "id": "N22",
+      "statement": "Minimize the likelihood of Clery Act Annual Security Report inaccuracies caused by manual compilation of door-event records not captured in a central digital log",
+      "jobStep": "CONCLUDE",
+      "errorType": "ACCURACY",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "P3-1",
+      "statement": "Minimize the likelihood of emergency exit non-compliance being discovered during an unannounced fire marshal visit rather than through the institution's own continuous monitoring",
+      "jobStep": "P3 ROLE IDENTITY",
+      "errorType": "P3_ROLE_IDENTITY",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "confidence",
+      "productRelated": false,
+      "confidence": 0.50
+    },
+    {
+      "id": "P4-1",
+      "statement": "Increase the ability to generate audit-ready emergency exit compliance reports demonstrating date-stamped 100% door-event coverage for the prior 12 months, on demand within minutes",
+      "jobStep": "P4 IMAGE IDENTITY",
+      "errorType": "P4_IMAGE_IDENTITY",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "confidence",
+      "productRelated": false,
+      "confidence": 0.50
+    },
+    {
+      "id": "P5-1",
+      "statement": "Minimize the likelihood of undetected after-hours emergency exit breaches remaining unresolved until the next morning's security review",
+      "jobStep": "P5 EMOTIONAL",
+      "errorType": "P5_EMOTIONAL",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "confidence",
+      "productRelated": false,
+      "confidence": 0.50
+    },
+    {
+      "id": "P3-2",
+      "statement": "Increase the ability to provide fire marshals with continuous, remotely accessible exit-status records that eliminate the need for 100% on-site physical inspection of every door",
+      "jobStep": "P3 ROLE IDENTITY",
+      "errorType": "P3_ROLE_IDENTITY",
+      "importance": 7,
+      "satisfaction": 3,
+      "opportunity": 11,
+      "impactCategory": "confidence",
+      "productRelated": false,
+      "confidence": 0.50
+    }
+  ],
+  "sources": []
+}

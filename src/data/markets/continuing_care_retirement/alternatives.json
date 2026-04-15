@@ -1,0 +1,32 @@
+{
+  "naicsCode": "623311",
+  "marketName": "Continuing Care Retirement Communities",
+  "slug": "continuing_care_retirement",
+  "alternatives": [
+    {
+      "name": "RFID/BLE Wander Management (Stanley WanderGuard, CenTrak)",
+      "unspsc": "",
+      "tradeoffs": "Per-resident wristband required — fails if resident removes it; requires ceiling-mounted door antennas; cannot independently satisfy NFPA 101 single-motion escape requirements; $250K–$600K+ full facility deployment; 9,000+ facility installed base"
+    },
+    {
+      "name": "Electromagnetic Delayed-Egress Locks (Assa Abloy, dormakaba)",
+      "unspsc": "",
+      "tradeoffs": "Power-dependent — must have battery backup for fire-safe operation; NFPA 101 §7.2.1.6 limits delay to max 30 s; licensed electrician required for installation and wiring; disruptive retrofit in existing buildings"
+    },
+    {
+      "name": "IoT Emergency Exit Alarm Guards (GfS Türwächter) ← this product",
+      "unspsc": "",
+      "tradeoffs": "Alarms but does not delay exit — cannot physically prevent elopement in the way a delayed-egress lock can; EasyWave protocol not native BACnet/KNX; ~€730 per door; pre-alarm false-trigger risk in high-traffic zones"
+    },
+    {
+      "name": "Coded Keypad Exits",
+      "unspsc": "",
+      "tradeoffs": "No monitoring capability; NFPA 101 requires single-motion escape — keypad entry adds a step and may require AHJ approval; staff must memorize codes; codes expire or are shared"
+    },
+    {
+      "name": "Manual staff monitoring / do nothing",
+      "unspsc": "",
+      "tradeoffs": "Zero hardware cost; zero false alarms; inadequate overnight/weekend coverage; CMS F-tag immediate jeopardy exposure when elopement is documented; average elopement claim = $360,000"
+    }
+  ]
+}

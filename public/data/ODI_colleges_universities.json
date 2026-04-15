@@ -1,0 +1,1024 @@
+{
+  "id": "ODI_colleges_universities",
+  "title": "ODI Matrix: Colleges, Universities, and Professional Schools",
+  "type": "odi_matrix",
+  "market_slug": "colleges_universities",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Formula",
+      "content": "```\nopportunity_score = importance + max(importance - satisfaction, 0)\nis_underserved    = importance > 7.0 AND satisfaction < 5.0\nis_overserved     = importance < 3.0 AND satisfaction > 7.0\n```\n\n---"
+    },
+    {
+      "title": "Step 1 — Error Statement Inventory",
+      "content": "**28 total needs:** 22 from Step 06 (JTBD) + 6 from Step 10 (product-related, injected as job_step=0 / \"product_constraint\").\n\n| ID | Source | Error Statement (abbreviated) | Step | product_related |\n|---|---|---|---|---|\n| N01 | Step 06 | Incomplete coverage mapping → exits unmonitored | DEFINE | false |\n| N02 | Step 06 | Effort to assess door hardware compatibility + RF reach | LOCATE | true |\n| N03 | Step 06 | RF dead zones in concrete buildings | LOCATE | true |\n| N04 | Step 06 | Installation labor without licensed electrician | PREPARE | false |\n| N05 | Step 06 | Installation quality variability across door configurations | PREPARE | false |\n| N06 | Step 06 | Undetected wireless connectivity failures at go-live | CONFIRM | true |\n| N07 | Step 06 | Effort to verify wireless integrity pre-commissioning | CONFIRM | true |\n| N08 | Step 06 | Mechanical failure in high-traffic dorm/union exits | EXECUTE | false |\n| N09 | Step 06 | False alarm triggers from accidental door contact | EXECUTE | false |\n| N10 | Step 06 | Time to detect unauthorized exit opening → security ops | EXECUTE | false |\n| N11 | Step 06 | Door events lost to RF attenuation in concrete buildings | MONITOR | true |\n| N12 | Step 06 | Battery depletion variability across buildings | MONITOR | true |\n| N13 | Step 06 | Connectivity gap detection time | MONITOR | true |\n| N14 | Step 06 | Single dashboard monitoring without building-specific logins | MONITOR | true |\n| N15 | Step 06 | Battery replacement effort without triggering alarm | MODIFY | true |\n| N16 | Step 06 | Time to restore function after device fault | MODIFY | false |\n| N17 | Step 06 | Labor to compile compliance docs for fire/Clery inspections | CONCLUDE | false |\n| N18 | Step 06 | Clery Act gaps from wireless outage → missing records | CONCLUDE | true |\n| N19 | Step 06 | Regulatory fine from undocumented exit non-compliance | CONCLUDE | false |\n| N20 | Step 06 | Scale monitoring incrementally without full re-commissioning | DEFINE | false |\n| N21 | Step 06 | Vendor PSIM/BMS interoperability evaluation effort | DEFINE | true |\n| N22 | Step 06 | Clery Act inaccuracies from manual door-event compilation | CONCLUDE | false |\n| PR01 | Step 10 | Signal attenuation below threshold in reinforced-concrete buildings (C3) | product_constraint | true |\n| PR02 | Step 10 | Coverage gaps discovered post-deployment requiring unplanned repeaters (C3) | product_constraint | true |\n| PR03 | Step 10 | IoT battery exhaustion on dormitory exits at high door-event frequency (C4) | product_constraint | true |\n| PR04 | Step 10 | EasyWave → PSIM/BACnet/KNX integration effort via proprietary gateway (C6) | product_constraint | true |\n| PR05 | Step 10 | FERPA/GDPR exposure from identifiable student access event records (C8) | product_constraint | true |\n| PR06 | Step 10 | Surface-mount housing tampered/dislodged in student corridors without alert (C5) | product_constraint | true |\n\n---"
+    },
+    {
+      "title": "Step 2 — Satisfaction Recalibration (Incumbent Evidence)",
+      "content": "| Incumbent | Est. Campus Share | Mechanism | Strengths | Weaknesses |\n|---|---|---|---|---|\n| **A3: Basic prop alarms** (Detex EC-100, Seco-Larm) | ~64% | Contact/spring alarm strip | Low cost, simple install, mechanical reliability, no power infrastructure | Local alarm only — no centralized monitoring, no compliance logging, no battery visibility |\n| **A5: Patrol + manual log** | ~15% | Human rounds + clipboard | Zero hardware cost | No real-time detection, patrol gaps overnight, manual documentation error-prone |\n| **A2: Electronic exit control** (dormakaba SafeRoute, GEZE SecuLogic) | ~10–15% | Mains-powered electronic control with central software | BMS integration, centralized monitoring, structured logging | Requires mains wiring — incompatible with >75% legacy campus buildings; 3–5× cost |\n| **A4: Access control + alarmed hardware** (Allegion Von Duprin, ASSA ABLOY Aperio) | ~6% | Credential + alarmed release | Integrated credential management | Complex IT provisioning, wired, designed for access control not alarm monitoring |\n\n**Recalibration verdict:** Original Step 06 satisfaction scores are consistent with incumbent profile. A3 dominates at 64% and provides zero monitoring, documentation, or wireless capability — scores of 3–4 for monitoring/compliance needs are appropriate and are kept unchanged. No satisfaction score adjusted.\n\n---"
+    },
+    {
+      "title": "Step 3 — ODI Scores (sorted by opportunity_score desc)",
+      "content": "| ID | Error Statement (short) | Imp | Sat | Opp | U/S | O/S | PR |\n|---|---|---|---|---|---|---|---|\n| N18 | Clery Act gaps from wireless outage records | 9 | 3 | **15** | ✓ | — | true |\n| N19 | Regulatory fine from undocumented non-compliance | 9 | 3 | **15** | ✓ | — | false |\n| N01 | Incomplete coverage mapping → exits unmonitored | 9 | 4 | **14** | ✓ | — | false |\n| N10 | Detection time: unauthorized exit → security ops | 9 | 4 | **14** | ✓ | — | false |\n| N03 | RF dead zones in concrete buildings | 8 | 3 | **13** | ✓ | — | true |\n| N08 | Mechanical failure in high-traffic dorm exits | 9 | 5 | **13** | — | — | false |\n| N11 | Door events lost to RF attenuation | 8 | 3 | **13** | ✓ | — | true |\n| N13 | Connectivity gap detection time | 8 | 3 | **13** | ✓ | — | true |\n| N17 | Labor to compile fire/Clery compliance docs | 8 | 3 | **13** | ✓ | — | false |\n| PR03 | Battery exhaustion on dormitory exits (C4) | 8 | 3 | **13** | ✓ | — | true |\n| N06 | Undetected wireless failures at go-live | 8 | 4 | **12** | ✓ | — | true |\n| N09 | False alarm triggers (accidental door contact) | 8 | 4 | **12** | ✓ | — | false |\n| N16 | Time to restore after device fault | 8 | 4 | **12** | ✓ | — | false |\n| N22 | Clery Act inaccuracies from manual compilation | 8 | 4 | **12** | ✓ | — | false |\n| PR01 | Signal attenuation in reinforced-concrete (C3) | 8 | 4 | **12** | ✓ | — | true |\n| N14 | Single dashboard (no building-specific logins) | 7 | 3 | **11** | — | — | true |\n| N02 | Door hardware + RF reach assessment effort | 8 | 5 | **11** | — | — | true |\n| N04 | Installation labor without licensed electrician | 8 | 5 | **11** | — | — | false |\n| N12 | Battery depletion variability across buildings | 7 | 3 | **11** | — | — | true |\n| PR04 | EasyWave → PSIM/BACnet integration effort (C6) | 7 | 3 | **11** | — | — | true |\n| N07 | Verify wireless integrity pre-commissioning | 7 | 4 | **10** | — | — | true |\n| N20 | Scale monitoring incrementally | 7 | 4 | **10** | — | — | false |\n| N21 | PSIM/BMS interoperability evaluation effort | 7 | 4 | **10** | — | — | true |\n| PR02 | Coverage gaps discovered post-deployment (C3) | 7 | 4 | **10** | — | — | true |\n| PR05 | FERPA/GDPR exposure from student event logs (C8) | 7 | 4 | **10** | — | — | true |\n| N05 | Installation quality variability | 7 | 5 | **9** | — | — | false |\n| N15 | Battery replacement without triggering alarm | 7 | 5 | **9** | — | — | true |\n| PR06 | Surface-mount tampered/dislodged without alert (C5) | 6 | 4 | **8** | — | — | true |\n\nU/S = is_underserved | O/S = is_overserved | PR = product_related\n\n**N08 note:** importance=9 but satisfaction=5 (not <5) → is_underserved=false. Incumbents meet the mechanical reliability need adequately via basic prop alarms.\n\n---"
+    },
+    {
+      "title": "Step 4 — Market ODI Summary",
+      "content": "| Field | Value |\n|---|---|\n| **Market** | Colleges, Universities, and Professional Schools |\n| **NAICS** | 611310 |\n| **Total needs** | 28 |\n| **Underserved count** | 14 |\n| **Overserved count** | 0 |\n| **Avg opportunity score** | 11.68 |\n| **Zone** | Appropriately Served / low-Underserved boundary |\n\n**Top 5 opportunities:**\n1. (15) Minimize the likelihood of Clery Act compliance gaps due to missing door event records from campus exit devices that experienced intermittent wireless outages\n2. (15) Minimize the risk of regulatory fine exposure from undocumented emergency exit non-compliance events discovered during unannounced NFPA or state fire marshal audits\n3. (14) Minimize the likelihood of incomplete emergency exit coverage mapping that leaves fire-code-mandated campus exits unmonitored after initial deployment\n4. (14) Minimize the time to detect and route an unauthorized emergency exit opening event to the campus security operations center\n5. (13) Minimize the likelihood of RF dead zones in concrete campus buildings causing emergency exit devices to transmit outside effective receiver range\n\n---"
+    },
+    {
+      "title": "Step 5 — Cross-Check: ODI vs Feature-Fit (Step 09)",
+      "content": "| Metric | Value | Threshold |\n|---|---|---|\n| ODI avg opportunity score | 11.68 | >12 → \"high opportunity, low fit\" flag trigger |\n| Feature-Fit avg (Step 09) | 6.24 (mean of 8 features, 5.00–7.78) | <4 → flag trigger |\n\n**Result: No inconsistency.** ODI avg (11.68) does not exceed 12; Feature-Fit avg (6.24) does not fall below 4. Both metrics are consistent: moderately high unmet need with adequate product-to-market feature alignment. The market has strong underserved clusters (compliance documentation, real-time monitoring) where product features (F8 Automated Event Log, F6 Battery Status Reporting) provide direct coverage.\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"market_name\": \"Colleges, Universities, and Professional Schools\",\n  \"naics_code\": \"611310\",\n  \"product\": \"GfS Türwächter IoT (Exit Control 179/1125 with IoT)\",\n  \"market_summary\": {\n    \"market_name\": \"Colleges, Universities, and Professional Schools\",\n    \"naics_code\": \"611310\",\n    \"total_needs\": 28,\n    \"underserved_count\": 14,\n    \"overserved_count\": 0,\n    \"avg_opportunity_score\": 11.68,\n    \"top_opportunities\": [\n      \"Minimize the likelihood of Clery Act compliance gaps due to missing door event records from campus exit devices that experienced intermittent wireless outages\",\n      \"Minimize the risk of regulatory fine exposure from undocumented emergency exit non-compliance events discovered during unannounced NFPA or state fire marshal audits\",\n      \"Minimize the likelihood of incomplete emergency exit coverage mapping that leaves fire-code-mandated campus exits unmonitored after initial deployment\",\n      \"Minimize the time to detect and route an unauthorized emergency exit opening event to the campus security operations center\",\n      \"Minimize the likelihood of RF dead zones in concrete campus buildings causing emergency exit devices to transmit outside effective receiver range\"\n    ]\n  },\n  \"entries\": [\n    {\n      \"error_statement\": \"Minimize the likelihood of incomplete emergency exit coverage mapping that leaves fire-code-mandated campus exits unmonitored after initial deployment\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 9.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 14.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 1,\n      \"job_step_name\": \"DEFINE\"\n    },\n    {\n      \"error_statement\": \"Minimize the effort required to assess door hardware compatibility and wireless signal reach across heterogeneous campus building stock before device selection\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 5.0,\n      \"opportunity_score\": 11.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 2,\n      \"job_step_name\": \"LOCATE\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of RF dead zones in concrete campus buildings causing emergency exit devices to transmit outside effective receiver range\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 13.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 2,\n      \"job_step_name\": \"LOCATE\"\n    },\n    {\n      \"error_statement\": \"Minimize installation labor-hours required to deploy exit monitoring devices across a multi-building campus without licensed electrical contractor involvement\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 5.0,\n      \"opportunity_score\": 11.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 3,\n      \"job_step_name\": \"PREPARE\"\n    },\n    {\n      \"error_statement\": \"Minimize variability in alarm guard installation quality across lever-handle, panic-bar, and glass-frame door configurations during a campus-wide rollout\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 5.0,\n      \"opportunity_score\": 9.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 3,\n      \"job_step_name\": \"PREPARE\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of deploying exit alarm devices with undetected wireless connectivity failures that are not discovered until after campus go-live\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 12.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 4,\n      \"job_step_name\": \"CONFIRM\"\n    },\n    {\n      \"error_statement\": \"Minimize the effort required to verify wireless transmission integrity between each newly installed device and the central receiver before signing off on commissioning\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 10.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 4,\n      \"job_step_name\": \"CONFIRM\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of alarm guard mechanical failure in high-traffic campus exit environments (dormitories, student unions) causing an unguarded door state\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 9.0,\n      \"satisfaction_current\": 5.0,\n      \"opportunity_score\": 13.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 5,\n      \"job_step_name\": \"EXECUTE\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of false alarm triggers caused by accidental door contact disrupting normal building operations\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 12.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 5,\n      \"job_step_name\": \"EXECUTE\"\n    },\n    {\n      \"error_statement\": \"Minimize the time to detect and route an unauthorized emergency exit opening event to the campus security operations center\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 9.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 14.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 5,\n      \"job_step_name\": \"EXECUTE\"\n    },\n    {\n      \"error_statement\": \"Minimize the number of door events failing to reach the central monitoring dashboard due to RF signal attenuation in reinforced-concrete campus buildings\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 13.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 6,\n      \"job_step_name\": \"MONITOR\"\n    },\n    {\n      \"error_statement\": \"Minimize variability in battery depletion rates across devices deployed in buildings with different door-use frequencies and ambient temperatures\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 11.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 6,\n      \"job_step_name\": \"MONITOR\"\n    },\n    {\n      \"error_statement\": \"Minimize the time between a campus emergency exit device losing wireless connectivity and the security operations center detecting the monitoring gap\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 13.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 6,\n      \"job_step_name\": \"MONITOR\"\n    },\n    {\n      \"error_statement\": \"Increase the ability to monitor all campus emergency exit devices from a single security dashboard without requiring building-specific logins or separate hardware systems\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 11.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 6,\n      \"job_step_name\": \"MONITOR\"\n    },\n    {\n      \"error_statement\": \"Minimize the time required to replace an exit alarm guard battery without triggering the alarm horn or temporarily disabling the door's fire-code escape path\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 5.0,\n      \"opportunity_score\": 9.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 7,\n      \"job_step_name\": \"MODIFY\"\n    },\n    {\n      \"error_statement\": \"Minimize the time to restore full exit alarm and wireless monitoring function after a device fault or battery exhaustion event\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 12.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 7,\n      \"job_step_name\": \"MODIFY\"\n    },\n    {\n      \"error_statement\": \"Minimize the labor required to compile emergency exit compliance documentation for annual fire safety inspections and Clery Act Annual Security Report filings\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 13.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 8,\n      \"job_step_name\": \"CONCLUDE\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of Clery Act compliance gaps due to missing door event records from campus exit devices that experienced intermittent wireless outages\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 9.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 15.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 8,\n      \"job_step_name\": \"CONCLUDE\"\n    },\n    {\n      \"error_statement\": \"Minimize the risk of regulatory fine exposure from undocumented emergency exit non-compliance events discovered during unannounced NFPA or state fire marshal audits\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 9.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 15.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 8,\n      \"job_step_name\": \"CONCLUDE\"\n    },\n    {\n      \"error_statement\": \"Increase the ability to scale emergency exit monitoring incrementally across a campus building-by-building without system-wide infrastructure changes or full re-commissioning\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 10.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 1,\n      \"job_step_name\": \"DEFINE\"\n    },\n    {\n      \"error_statement\": \"Minimize the effort required to evaluate exit monitoring vendor interoperability with existing campus PSIM and Building Management Systems before procurement commitment\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 10.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 1,\n      \"job_step_name\": \"DEFINE\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of Clery Act Annual Security Report inaccuracies caused by manual compilation of door-event records that were not captured in a central digital log\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 12.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 8,\n      \"job_step_name\": \"CONCLUDE\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of wireless signal attenuation below reliable reporting threshold in reinforced-concrete campus buildings where structural floors and walls exceed the 30 m EasyWave integrated transmitter range\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 12.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 0,\n      \"job_step_name\": \"product_constraint\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of wireless coverage gaps discovered only after campus-wide deployment, requiring unplanned repeater infrastructure additions that increase per-door cost and delay full-campus monitoring go-live\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 10.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 0,\n      \"job_step_name\": \"product_constraint\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of IoT battery exhaustion on dormitory emergency exits where 24/7 student occupancy and high door-event frequency depletes a 9V block battery before the scheduled 2-year maintenance cycle\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 13.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 0,\n      \"job_step_name\": \"product_constraint\"\n    },\n    {\n      \"error_statement\": \"Minimize the integration effort required to relay EasyWave alarm events into campus PSIM or building automation platforms standardized on BACnet, KNX, or IP-based protocols via GfS-proprietary BUS gateway\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 11.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 0,\n      \"job_step_name\": \"product_constraint\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of door-event timestamps logged by the IoT monitoring system creating FERPA or EU GDPR compliance exposure when access event records are attributable to identifiable resident students\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 10.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 0,\n      \"job_step_name\": \"product_constraint\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of surface-mounted exit alarm guard housings being physically tampered with or dislodged in student dormitory corridors, leaving an emergency exit in an unguarded state without a monitoring system alert\",\n      \"market_name\": \"Colleges, Universities, and Professional Schools\",\n      \"naics_code\": \"611310\",\n      \"importance\": 6.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 8.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 0,\n      \"job_step_name\": \"product_constraint\"\n    }\n  ]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "ID",
+        "Source",
+        "Error Statement (abbreviated)",
+        "Step",
+        "product_related"
+      ],
+      "rows": [
+        {
+          "ID": "N01",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Incomplete coverage mapping → exits unmonitored",
+          "Step": "DEFINE",
+          "product_related": "false"
+        },
+        {
+          "ID": "N02",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Effort to assess door hardware compatibility + RF reach",
+          "Step": "LOCATE",
+          "product_related": "true"
+        },
+        {
+          "ID": "N03",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "RF dead zones in concrete buildings",
+          "Step": "LOCATE",
+          "product_related": "true"
+        },
+        {
+          "ID": "N04",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Installation labor without licensed electrician",
+          "Step": "PREPARE",
+          "product_related": "false"
+        },
+        {
+          "ID": "N05",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Installation quality variability across door configurations",
+          "Step": "PREPARE",
+          "product_related": "false"
+        },
+        {
+          "ID": "N06",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Undetected wireless connectivity failures at go-live",
+          "Step": "CONFIRM",
+          "product_related": "true"
+        },
+        {
+          "ID": "N07",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Effort to verify wireless integrity pre-commissioning",
+          "Step": "CONFIRM",
+          "product_related": "true"
+        },
+        {
+          "ID": "N08",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Mechanical failure in high-traffic dorm/union exits",
+          "Step": "EXECUTE",
+          "product_related": "false"
+        },
+        {
+          "ID": "N09",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "False alarm triggers from accidental door contact",
+          "Step": "EXECUTE",
+          "product_related": "false"
+        },
+        {
+          "ID": "N10",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Time to detect unauthorized exit opening → security ops",
+          "Step": "EXECUTE",
+          "product_related": "false"
+        },
+        {
+          "ID": "N11",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Door events lost to RF attenuation in concrete buildings",
+          "Step": "MONITOR",
+          "product_related": "true"
+        },
+        {
+          "ID": "N12",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Battery depletion variability across buildings",
+          "Step": "MONITOR",
+          "product_related": "true"
+        },
+        {
+          "ID": "N13",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Connectivity gap detection time",
+          "Step": "MONITOR",
+          "product_related": "true"
+        },
+        {
+          "ID": "N14",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Single dashboard monitoring without building-specific logins",
+          "Step": "MONITOR",
+          "product_related": "true"
+        },
+        {
+          "ID": "N15",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Battery replacement effort without triggering alarm",
+          "Step": "MODIFY",
+          "product_related": "true"
+        },
+        {
+          "ID": "N16",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Time to restore function after device fault",
+          "Step": "MODIFY",
+          "product_related": "false"
+        },
+        {
+          "ID": "N17",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Labor to compile compliance docs for fire/Clery inspections",
+          "Step": "CONCLUDE",
+          "product_related": "false"
+        },
+        {
+          "ID": "N18",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Clery Act gaps from wireless outage → missing records",
+          "Step": "CONCLUDE",
+          "product_related": "true"
+        },
+        {
+          "ID": "N19",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Regulatory fine from undocumented exit non-compliance",
+          "Step": "CONCLUDE",
+          "product_related": "false"
+        },
+        {
+          "ID": "N20",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Scale monitoring incrementally without full re-commissioning",
+          "Step": "DEFINE",
+          "product_related": "false"
+        },
+        {
+          "ID": "N21",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Vendor PSIM/BMS interoperability evaluation effort",
+          "Step": "DEFINE",
+          "product_related": "true"
+        },
+        {
+          "ID": "N22",
+          "Source": "Step 06",
+          "Error Statement (abbreviated)": "Clery Act inaccuracies from manual door-event compilation",
+          "Step": "CONCLUDE",
+          "product_related": "false"
+        },
+        {
+          "ID": "PR01",
+          "Source": "Step 10",
+          "Error Statement (abbreviated)": "Signal attenuation below threshold in reinforced-concrete buildings (C3)",
+          "Step": "product_constraint",
+          "product_related": "true"
+        },
+        {
+          "ID": "PR02",
+          "Source": "Step 10",
+          "Error Statement (abbreviated)": "Coverage gaps discovered post-deployment requiring unplanned repeaters (C3)",
+          "Step": "product_constraint",
+          "product_related": "true"
+        },
+        {
+          "ID": "PR03",
+          "Source": "Step 10",
+          "Error Statement (abbreviated)": "IoT battery exhaustion on dormitory exits at high door-event frequency (C4)",
+          "Step": "product_constraint",
+          "product_related": "true"
+        },
+        {
+          "ID": "PR04",
+          "Source": "Step 10",
+          "Error Statement (abbreviated)": "EasyWave → PSIM/BACnet/KNX integration effort via proprietary gateway (C6)",
+          "Step": "product_constraint",
+          "product_related": "true"
+        },
+        {
+          "ID": "PR05",
+          "Source": "Step 10",
+          "Error Statement (abbreviated)": "FERPA/GDPR exposure from identifiable student access event records (C8)",
+          "Step": "product_constraint",
+          "product_related": "true"
+        },
+        {
+          "ID": "PR06",
+          "Source": "Step 10",
+          "Error Statement (abbreviated)": "Surface-mount housing tampered/dislodged in student corridors without alert (C5)",
+          "Step": "product_constraint",
+          "product_related": "true"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Incumbent",
+        "Est. Campus Share",
+        "Mechanism",
+        "Strengths",
+        "Weaknesses"
+      ],
+      "rows": [
+        {
+          "Incumbent": "**A3: Basic prop alarms** (Detex EC-100, Seco-Larm)",
+          "Est. Campus Share": "~64%",
+          "Mechanism": "Contact/spring alarm strip",
+          "Strengths": "Low cost, simple install, mechanical reliability, no power infrastructure",
+          "Weaknesses": "Local alarm only — no centralized monitoring, no compliance logging, no battery visibility"
+        },
+        {
+          "Incumbent": "**A5: Patrol + manual log**",
+          "Est. Campus Share": "~15%",
+          "Mechanism": "Human rounds + clipboard",
+          "Strengths": "Zero hardware cost",
+          "Weaknesses": "No real-time detection, patrol gaps overnight, manual documentation error-prone"
+        },
+        {
+          "Incumbent": "**A2: Electronic exit control** (dormakaba SafeRoute, GEZE SecuLogic)",
+          "Est. Campus Share": "~10–15%",
+          "Mechanism": "Mains-powered electronic control with central software",
+          "Strengths": "BMS integration, centralized monitoring, structured logging",
+          "Weaknesses": "Requires mains wiring — incompatible with >75% legacy campus buildings; 3–5× cost"
+        },
+        {
+          "Incumbent": "**A4: Access control + alarmed hardware** (Allegion Von Duprin, ASSA ABLOY Aperio)",
+          "Est. Campus Share": "~6%",
+          "Mechanism": "Credential + alarmed release",
+          "Strengths": "Integrated credential management",
+          "Weaknesses": "Complex IT provisioning, wired, designed for access control not alarm monitoring"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Error Statement (short)",
+        "Imp",
+        "Sat",
+        "Opp",
+        "U/S",
+        "O/S",
+        "PR"
+      ],
+      "rows": [
+        {
+          "ID": "N18",
+          "Error Statement (short)": "Clery Act gaps from wireless outage records",
+          "Imp": "9",
+          "Sat": "3",
+          "Opp": "**15**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "true"
+        },
+        {
+          "ID": "N19",
+          "Error Statement (short)": "Regulatory fine from undocumented non-compliance",
+          "Imp": "9",
+          "Sat": "3",
+          "Opp": "**15**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "false"
+        },
+        {
+          "ID": "N01",
+          "Error Statement (short)": "Incomplete coverage mapping → exits unmonitored",
+          "Imp": "9",
+          "Sat": "4",
+          "Opp": "**14**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "false"
+        },
+        {
+          "ID": "N10",
+          "Error Statement (short)": "Detection time: unauthorized exit → security ops",
+          "Imp": "9",
+          "Sat": "4",
+          "Opp": "**14**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "false"
+        },
+        {
+          "ID": "N03",
+          "Error Statement (short)": "RF dead zones in concrete buildings",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "**13**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "true"
+        },
+        {
+          "ID": "N08",
+          "Error Statement (short)": "Mechanical failure in high-traffic dorm exits",
+          "Imp": "9",
+          "Sat": "5",
+          "Opp": "**13**",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "false"
+        },
+        {
+          "ID": "N11",
+          "Error Statement (short)": "Door events lost to RF attenuation",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "**13**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "true"
+        },
+        {
+          "ID": "N13",
+          "Error Statement (short)": "Connectivity gap detection time",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "**13**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "true"
+        },
+        {
+          "ID": "N17",
+          "Error Statement (short)": "Labor to compile fire/Clery compliance docs",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "**13**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "false"
+        },
+        {
+          "ID": "PR03",
+          "Error Statement (short)": "Battery exhaustion on dormitory exits (C4)",
+          "Imp": "8",
+          "Sat": "3",
+          "Opp": "**13**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "true"
+        },
+        {
+          "ID": "N06",
+          "Error Statement (short)": "Undetected wireless failures at go-live",
+          "Imp": "8",
+          "Sat": "4",
+          "Opp": "**12**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "true"
+        },
+        {
+          "ID": "N09",
+          "Error Statement (short)": "False alarm triggers (accidental door contact)",
+          "Imp": "8",
+          "Sat": "4",
+          "Opp": "**12**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "false"
+        },
+        {
+          "ID": "N16",
+          "Error Statement (short)": "Time to restore after device fault",
+          "Imp": "8",
+          "Sat": "4",
+          "Opp": "**12**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "false"
+        },
+        {
+          "ID": "N22",
+          "Error Statement (short)": "Clery Act inaccuracies from manual compilation",
+          "Imp": "8",
+          "Sat": "4",
+          "Opp": "**12**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "false"
+        },
+        {
+          "ID": "PR01",
+          "Error Statement (short)": "Signal attenuation in reinforced-concrete (C3)",
+          "Imp": "8",
+          "Sat": "4",
+          "Opp": "**12**",
+          "U/S": "✓",
+          "O/S": "—",
+          "PR": "true"
+        },
+        {
+          "ID": "N14",
+          "Error Statement (short)": "Single dashboard (no building-specific logins)",
+          "Imp": "7",
+          "Sat": "3",
+          "Opp": "**11**",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "true"
+        },
+        {
+          "ID": "N02",
+          "Error Statement (short)": "Door hardware + RF reach assessment effort",
+          "Imp": "8",
+          "Sat": "5",
+          "Opp": "**11**",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "true"
+        },
+        {
+          "ID": "N04",
+          "Error Statement (short)": "Installation labor without licensed electrician",
+          "Imp": "8",
+          "Sat": "5",
+          "Opp": "**11**",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "false"
+        },
+        {
+          "ID": "N12",
+          "Error Statement (short)": "Battery depletion variability across buildings",
+          "Imp": "7",
+          "Sat": "3",
+          "Opp": "**11**",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "true"
+        },
+        {
+          "ID": "PR04",
+          "Error Statement (short)": "EasyWave → PSIM/BACnet integration effort (C6)",
+          "Imp": "7",
+          "Sat": "3",
+          "Opp": "**11**",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "true"
+        },
+        {
+          "ID": "N07",
+          "Error Statement (short)": "Verify wireless integrity pre-commissioning",
+          "Imp": "7",
+          "Sat": "4",
+          "Opp": "**10**",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "true"
+        },
+        {
+          "ID": "N20",
+          "Error Statement (short)": "Scale monitoring incrementally",
+          "Imp": "7",
+          "Sat": "4",
+          "Opp": "**10**",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "false"
+        },
+        {
+          "ID": "N21",
+          "Error Statement (short)": "PSIM/BMS interoperability evaluation effort",
+          "Imp": "7",
+          "Sat": "4",
+          "Opp": "**10**",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "true"
+        },
+        {
+          "ID": "PR02",
+          "Error Statement (short)": "Coverage gaps discovered post-deployment (C3)",
+          "Imp": "7",
+          "Sat": "4",
+          "Opp": "**10**",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "true"
+        },
+        {
+          "ID": "PR05",
+          "Error Statement (short)": "FERPA/GDPR exposure from student event logs (C8)",
+          "Imp": "7",
+          "Sat": "4",
+          "Opp": "**10**",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "true"
+        },
+        {
+          "ID": "N05",
+          "Error Statement (short)": "Installation quality variability",
+          "Imp": "7",
+          "Sat": "5",
+          "Opp": "**9**",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "false"
+        },
+        {
+          "ID": "N15",
+          "Error Statement (short)": "Battery replacement without triggering alarm",
+          "Imp": "7",
+          "Sat": "5",
+          "Opp": "**9**",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "true"
+        },
+        {
+          "ID": "PR06",
+          "Error Statement (short)": "Surface-mount tampered/dislodged without alert (C5)",
+          "Imp": "6",
+          "Sat": "4",
+          "Opp": "**8**",
+          "U/S": "—",
+          "O/S": "—",
+          "PR": "true"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Market**",
+          "Value": "Colleges, Universities, and Professional Schools"
+        },
+        {
+          "Field": "**NAICS**",
+          "Value": "611310"
+        },
+        {
+          "Field": "**Total needs**",
+          "Value": "28"
+        },
+        {
+          "Field": "**Underserved count**",
+          "Value": "14"
+        },
+        {
+          "Field": "**Overserved count**",
+          "Value": "0"
+        },
+        {
+          "Field": "**Avg opportunity score**",
+          "Value": "11.68"
+        },
+        {
+          "Field": "**Zone**",
+          "Value": "Appropriately Served / low-Underserved boundary"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Metric",
+        "Value",
+        "Threshold"
+      ],
+      "rows": [
+        {
+          "Metric": "ODI avg opportunity score",
+          "Value": "11.68",
+          "Threshold": ">12 → \"high opportunity, low fit\" flag trigger"
+        },
+        {
+          "Metric": "Feature-Fit avg (Step 09)",
+          "Value": "6.24 (mean of 8 features, 5.00–7.78)",
+          "Threshold": "<4 → flag trigger"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market_name": "Colleges, Universities, and Professional Schools",
+      "naics_code": "611310",
+      "product": "GfS Türwächter IoT (Exit Control 179/1125 with IoT)",
+      "market_summary": {
+        "market_name": "Colleges, Universities, and Professional Schools",
+        "naics_code": "611310",
+        "total_needs": 28,
+        "underserved_count": 14,
+        "overserved_count": 0,
+        "avg_opportunity_score": 11.68,
+        "top_opportunities": [
+          "Minimize the likelihood of Clery Act compliance gaps due to missing door event records from campus exit devices that experienced intermittent wireless outages",
+          "Minimize the risk of regulatory fine exposure from undocumented emergency exit non-compliance events discovered during unannounced NFPA or state fire marshal audits",
+          "Minimize the likelihood of incomplete emergency exit coverage mapping that leaves fire-code-mandated campus exits unmonitored after initial deployment",
+          "Minimize the time to detect and route an unauthorized emergency exit opening event to the campus security operations center",
+          "Minimize the likelihood of RF dead zones in concrete campus buildings causing emergency exit devices to transmit outside effective receiver range"
+        ]
+      },
+      "entries": [
+        {
+          "error_statement": "Minimize the likelihood of incomplete emergency exit coverage mapping that leaves fire-code-mandated campus exits unmonitored after initial deployment",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 9.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 14.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 1,
+          "job_step_name": "DEFINE"
+        },
+        {
+          "error_statement": "Minimize the effort required to assess door hardware compatibility and wireless signal reach across heterogeneous campus building stock before device selection",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 8.0,
+          "satisfaction_current": 5.0,
+          "opportunity_score": 11.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 2,
+          "job_step_name": "LOCATE"
+        },
+        {
+          "error_statement": "Minimize the likelihood of RF dead zones in concrete campus buildings causing emergency exit devices to transmit outside effective receiver range",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 8.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 13.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 2,
+          "job_step_name": "LOCATE"
+        },
+        {
+          "error_statement": "Minimize installation labor-hours required to deploy exit monitoring devices across a multi-building campus without licensed electrical contractor involvement",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 8.0,
+          "satisfaction_current": 5.0,
+          "opportunity_score": 11.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 3,
+          "job_step_name": "PREPARE"
+        },
+        {
+          "error_statement": "Minimize variability in alarm guard installation quality across lever-handle, panic-bar, and glass-frame door configurations during a campus-wide rollout",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 7.0,
+          "satisfaction_current": 5.0,
+          "opportunity_score": 9.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 3,
+          "job_step_name": "PREPARE"
+        },
+        {
+          "error_statement": "Minimize the likelihood of deploying exit alarm devices with undetected wireless connectivity failures that are not discovered until after campus go-live",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 8.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 12.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 4,
+          "job_step_name": "CONFIRM"
+        },
+        {
+          "error_statement": "Minimize the effort required to verify wireless transmission integrity between each newly installed device and the central receiver before signing off on commissioning",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 7.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 10.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 4,
+          "job_step_name": "CONFIRM"
+        },
+        {
+          "error_statement": "Minimize the likelihood of alarm guard mechanical failure in high-traffic campus exit environments (dormitories, student unions) causing an unguarded door state",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 9.0,
+          "satisfaction_current": 5.0,
+          "opportunity_score": 13.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 5,
+          "job_step_name": "EXECUTE"
+        },
+        {
+          "error_statement": "Minimize the likelihood of false alarm triggers caused by accidental door contact disrupting normal building operations",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 8.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 12.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 5,
+          "job_step_name": "EXECUTE"
+        },
+        {
+          "error_statement": "Minimize the time to detect and route an unauthorized emergency exit opening event to the campus security operations center",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 9.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 14.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 5,
+          "job_step_name": "EXECUTE"
+        },
+        {
+          "error_statement": "Minimize the number of door events failing to reach the central monitoring dashboard due to RF signal attenuation in reinforced-concrete campus buildings",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 8.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 13.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 6,
+          "job_step_name": "MONITOR"
+        },
+        {
+          "error_statement": "Minimize variability in battery depletion rates across devices deployed in buildings with different door-use frequencies and ambient temperatures",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 7.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 11.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 6,
+          "job_step_name": "MONITOR"
+        },
+        {
+          "error_statement": "Minimize the time between a campus emergency exit device losing wireless connectivity and the security operations center detecting the monitoring gap",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 8.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 13.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 6,
+          "job_step_name": "MONITOR"
+        },
+        {
+          "error_statement": "Increase the ability to monitor all campus emergency exit devices from a single security dashboard without requiring building-specific logins or separate hardware systems",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 7.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 11.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 6,
+          "job_step_name": "MONITOR"
+        },
+        {
+          "error_statement": "Minimize the time required to replace an exit alarm guard battery without triggering the alarm horn or temporarily disabling the door's fire-code escape path",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 7.0,
+          "satisfaction_current": 5.0,
+          "opportunity_score": 9.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 7,
+          "job_step_name": "MODIFY"
+        },
+        {
+          "error_statement": "Minimize the time to restore full exit alarm and wireless monitoring function after a device fault or battery exhaustion event",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 8.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 12.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 7,
+          "job_step_name": "MODIFY"
+        },
+        {
+          "error_statement": "Minimize the labor required to compile emergency exit compliance documentation for annual fire safety inspections and Clery Act Annual Security Report filings",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 8.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 13.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 8,
+          "job_step_name": "CONCLUDE"
+        },
+        {
+          "error_statement": "Minimize the likelihood of Clery Act compliance gaps due to missing door event records from campus exit devices that experienced intermittent wireless outages",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 9.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 15.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 8,
+          "job_step_name": "CONCLUDE"
+        },
+        {
+          "error_statement": "Minimize the risk of regulatory fine exposure from undocumented emergency exit non-compliance events discovered during unannounced NFPA or state fire marshal audits",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 9.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 15.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 8,
+          "job_step_name": "CONCLUDE"
+        },
+        {
+          "error_statement": "Increase the ability to scale emergency exit monitoring incrementally across a campus building-by-building without system-wide infrastructure changes or full re-commissioning",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 7.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 10.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 1,
+          "job_step_name": "DEFINE"
+        },
+        {
+          "error_statement": "Minimize the effort required to evaluate exit monitoring vendor interoperability with existing campus PSIM and Building Management Systems before procurement commitment",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 7.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 10.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 1,
+          "job_step_name": "DEFINE"
+        },
+        {
+          "error_statement": "Minimize the likelihood of Clery Act Annual Security Report inaccuracies caused by manual compilation of door-event records that were not captured in a central digital log",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 8.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 12.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 8,
+          "job_step_name": "CONCLUDE"
+        },
+        {
+          "error_statement": "Minimize the likelihood of wireless signal attenuation below reliable reporting threshold in reinforced-concrete campus buildings where structural floors and walls exceed the 30 m EasyWave integrated transmitter range",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 8.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 12.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 0,
+          "job_step_name": "product_constraint"
+        },
+        {
+          "error_statement": "Minimize the likelihood of wireless coverage gaps discovered only after campus-wide deployment, requiring unplanned repeater infrastructure additions that increase per-door cost and delay full-campus monitoring go-live",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 7.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 10.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 0,
+          "job_step_name": "product_constraint"
+        },
+        {
+          "error_statement": "Minimize the likelihood of IoT battery exhaustion on dormitory emergency exits where 24/7 student occupancy and high door-event frequency depletes a 9V block battery before the scheduled 2-year maintenance cycle",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 8.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 13.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 0,
+          "job_step_name": "product_constraint"
+        },
+        {
+          "error_statement": "Minimize the integration effort required to relay EasyWave alarm events into campus PSIM or building automation platforms standardized on BACnet, KNX, or IP-based protocols via GfS-proprietary BUS gateway",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 7.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 11.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 0,
+          "job_step_name": "product_constraint"
+        },
+        {
+          "error_statement": "Minimize the likelihood of door-event timestamps logged by the IoT monitoring system creating FERPA or EU GDPR compliance exposure when access event records are attributable to identifiable resident students",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 7.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 10.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 0,
+          "job_step_name": "product_constraint"
+        },
+        {
+          "error_statement": "Minimize the likelihood of surface-mounted exit alarm guard housings being physically tampered with or dislodged in student dormitory corridors, leaving an emergency exit in an unguarded state without a monitoring system alert",
+          "market_name": "Colleges, Universities, and Professional Schools",
+          "naics_code": "611310",
+          "importance": 6.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 8.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 0,
+          "job_step_name": "product_constraint"
+        }
+      ]
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

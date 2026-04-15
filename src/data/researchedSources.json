@@ -1,0 +1,216 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-04-15T00:00:00.000Z",
+  "sources": [
+    {
+      "id": "RS001",
+      "claim": "GfS Exit Control 179/1125 product line covers both DIN EN 179 (lever handle) and DIN EN 1125 (panic bar) emergency exit standards with basic, pre-alarm, and pre-alarm + radio variants",
+      "appliesTo": ["product-decomposition", "functional-promise"],
+      "sourceName": "GfS Rettungswegtechnik — Exit Control 179/1125 Product Page",
+      "sourceUrl": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/",
+      "quotedText": "The GfS Exit Control 179/1125 is an emergency exit door guard that prevents misuse of emergency exit doors while maintaining full escape route compliance.",
+      "confidence": "high",
+      "notes": "Primary product page. Confirms all variant article numbers (990000, 990100, 990140, 994000, 994100, 990000-IP), technical specifications, and safety standard compliance."
+    },
+    {
+      "id": "RS002",
+      "claim": "GfS Exit Control uses 868.3 MHz EasyWave wireless protocol for state transmission with integrated transmitter, external receivers, repeaters, and BUS interface for building management integration",
+      "appliesTo": ["product-decomposition", "constraints"],
+      "sourceName": "GfS — Exit Control with External Signal Devices (Wireless Signal Transmission)",
+      "sourceUrl": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/GfS-Exit-Control-179-1125-with-external-signal-devices/",
+      "quotedText": "The wireless receiver receives the radio signal of the Exit Control and converts it into a potential-free contact. External signal devices such as strobe lights, sirens or BMS integration can be connected.",
+      "confidence": "high",
+      "notes": "Confirms EasyWave protocol, ~30m integrated TX range, receiver dimensions (70×62×35mm, 57g), repeater range extension, and BUS interface centralization."
+    },
+    {
+      "id": "RS003",
+      "claim": "GfS Exit Control product family includes complementary products: DEXCON (reed-contact door monitoring), e-Bar (push bar with integrated alarm), and Day Alarm (cost-effective daytime monitoring)",
+      "appliesTo": ["product-decomposition"],
+      "sourceName": "GfS DEXCON Product Page",
+      "sourceUrl": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-DEXCON-95dB-75dB-9V-with-battery-monitoring-and-integrated-reed-contact/",
+      "quotedText": "The GfS DEXCON is a door and window monitoring device with integrated reed contact and 95 dB alarm.",
+      "confidence": "high",
+      "notes": "Positions GfS DEXCON as complementary (monitoring-only, no handle-locking) vs. Türwächter (handle-locking + alarm + monitoring)."
+    },
+    {
+      "id": "RS004",
+      "claim": "GfS e-Bar integrates alarm function directly into the push bar mechanism, offering an alternative architecture to the externally-mounted Türwächter",
+      "appliesTo": ["product-decomposition"],
+      "sourceName": "GfS e-Bar Product Page",
+      "sourceUrl": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-e-Bar/",
+      "quotedText": "Push bar with integrated alarm for emergency exits.",
+      "confidence": "high",
+      "notes": "GfS e-Bar is an alternative product within the GfS family that replaces the door's push bar entirely rather than adding an external guard."
+    },
+    {
+      "id": "RS005",
+      "claim": "DIN EN 179 specifies requirements for lever-handle-operated emergency exit devices — single-motion operation with maximum 70N force",
+      "appliesTo": ["product-decomposition", "constraints", "functional-promise"],
+      "sourceName": "HOPPE — DIN EN 179 Standard Reference",
+      "sourceUrl": "https://www.hoppe.com/in-en/contacts-service/standards/din-en-179/",
+      "quotedText": "EN 179 specifies requirements for mechanically operated emergency exit devices which are operated by a lever handle or push pad and are intended to be used in an emergency exit situation.",
+      "confidence": "high",
+      "notes": "Establishes the regulatory foundation for the lever-handle (Exit Control 179) variant. Force threshold ≤70N is a hard constraint."
+    },
+    {
+      "id": "RS006",
+      "claim": "EN 1125 specifies requirements for panic exit devices operated by a horizontal bar — the standard governing the Exit Control 1125 (panic bar) variant",
+      "appliesTo": ["product-decomposition", "constraints"],
+      "sourceName": "Intertek — EN 1125 Building Standards",
+      "sourceUrl": "https://www.intertek.com/building/standards/en-1125/",
+      "quotedText": "EN 1125 specifies requirements for panic exit devices which are operated by a horizontal bar and are intended for use on escape routes.",
+      "confidence": "high",
+      "notes": "EN 1125 requires ≥60% door width coverage for the panic bar and single-motion operation without prior knowledge."
+    },
+    {
+      "id": "RS007",
+      "claim": "dormakaba SafeRoute is a competing electronic escape route system offering wired electronic exit control with BMS integration — represents the high-end incumbent technology",
+      "appliesTo": ["competitive-landscape", "product-decomposition"],
+      "sourceName": "dormakaba — SafeRoute Escape Route Technology",
+      "sourceUrl": "https://www.dormakaba.com/gb-en/saferoute-escape-route",
+      "quotedText": "SafeRoute is a comprehensive solution for securing escape routes while maintaining the highest safety standards.",
+      "confidence": "high",
+      "notes": "dormakaba SafeRoute is a wired, mains-powered system — opposite architectural approach to the battery-powered, wireless Türwächter. Higher cost, requires electrician installation, but offers deeper BMS integration."
+    },
+    {
+      "id": "RS008",
+      "claim": "GEZE SecuLogic is a competing electronic emergency exit system with integrated access control — represents the premium-tier incumbent in the European market",
+      "appliesTo": ["competitive-landscape", "product-decomposition"],
+      "sourceName": "GEZE — SecuLogic Emergency Exit Systems",
+      "sourceUrl": "https://www.geze.com/en/products-solutions/access_control_and_safety/emergency_exit_systems/c_36819",
+      "quotedText": "GEZE emergency exit systems combine safety requirements with building security and access control.",
+      "confidence": "high",
+      "notes": "GEZE SecuLogic offers full electronic exit control with access management. Significantly more expensive and complex than the Türwächter but provides electronic access control (card readers, time scheduling) that the Türwächter's mechanical-primary design does not."
+    },
+    {
+      "id": "RS009",
+      "claim": "GfS EH-Türwächter retails at approximately 730 EUR (incl. VAT) for the pre-alarm + radio variant in Germany",
+      "appliesTo": ["constraints", "product-decomposition"],
+      "sourceName": "Amazon DE — GfS EH-Türwächter (retail listing)",
+      "sourceUrl": "https://www.amazon.de/GFS-Fluchtt%C3%BCrw%C3%A4chter-Batteriebetrieben-T%C3%BCrsicherung-Stangengriff/dp/B089SXGK7C",
+      "quotedText": null,
+      "confidence": "high",
+      "notes": "Retail price point establishes the ~730 EUR / ~2x premium constraint (C7). Basic mechanical variant is substantially cheaper."
+    },
+    {
+      "id": "RS010",
+      "claim": "GfS EH-Türwächter Basic variant with battery monitoring (Art. 990000-BUE) is available as the entry-level product in the family",
+      "appliesTo": ["product-decomposition"],
+      "sourceName": "GfS — EH-Türwächter Basic with Battery Monitoring",
+      "sourceUrl": "https://www.gfs-online.com/GfS-EH-Tuerwaechter-Basis-Batterieueberwachung-RAL-6029/990000-BUE",
+      "quotedText": null,
+      "confidence": "high",
+      "notes": "Entry-level variant establishes the price floor for the IoT price premium constraint."
+    },
+    {
+      "id": "RS011",
+      "claim": "GDPR (EU 2016/679) applies to door-open timestamp and access event logs when attributable to identifiable individuals — requires DPA, DPIA, and legal basis for processing",
+      "appliesTo": ["constraints"],
+      "sourceName": "Regulation (EU) 2016/679 — General Data Protection Regulation",
+      "sourceUrl": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "quotedText": null,
+      "confidence": "high",
+      "notes": "GDPR constraint (C8) applies to all EU deployments where IoT monitoring data could identify building occupants."
+    },
+    {
+      "id": "RS012",
+      "claim": "Assa Abloy Group is the world's largest manufacturer of locks and security hardware, operating in 70+ countries with ~52,000 employees and SEK 140B (~€12.5B) group revenue",
+      "appliesTo": ["overview"],
+      "sourceName": "Assa Abloy Group — About Us",
+      "sourceUrl": "https://www.assaabloy.com/group/en/about-us",
+      "quotedText": null,
+      "confidence": "high",
+      "notes": "GfS Rettungswegtechnik operates as a specialized brand within the Assa Abloy EMEIA division."
+    },
+    {
+      "id": "RS013",
+      "claim": "CMS Conditions of Participation §483.12(a) require nursing facilities to develop and implement written policies and procedures that prohibit resident abuse and neglect, including elopement prevention",
+      "appliesTo": ["continuing_care_retirement"],
+      "sourceName": "CMS — Conditions of Participation for Long-Term Care Facilities",
+      "sourceUrl": "https://www.cms.gov/Regulations-and-Guidance/Legislation/CFR/index",
+      "quotedText": null,
+      "confidence": "high",
+      "notes": "Regulatory driver for CCRC market (Rank #2). Elopement is a CMS-cited deficiency that creates direct liability for facility operators."
+    },
+    {
+      "id": "RS014",
+      "claim": "Joint Commission EC.02.01.01 requires hospitals to maintain operational fire safety equipment and egress paths with documented inspection records",
+      "appliesTo": ["general_medical_surgical_hospitals"],
+      "sourceName": "Joint Commission — Environment of Care Standards",
+      "sourceUrl": "https://www.jointcommission.org/standards/",
+      "quotedText": null,
+      "confidence": "medium",
+      "notes": "Regulatory driver for hospital market (Rank #8). IoT-automated compliance documentation directly addresses this Joint Commission requirement."
+    },
+    {
+      "id": "RS015",
+      "claim": "UNSPSC Class 46171500 (Locks and security hardware and accessories) is the nearest standard classification but no 8-digit commodity code precisely captures emergency exit door alarm guards with IoT monitoring",
+      "appliesTo": ["functional-promise", "product-decomposition"],
+      "sourceName": "DatabaseSets — UNSPSC 46171500",
+      "sourceUrl": "https://usa.databasesets.com/unspsc/class/46171500",
+      "quotedText": null,
+      "confidence": "high",
+      "notes": "Custom product group 'Emergency Exit Door Alarm Guards' selected because max UNSPSC confidence < 80% threshold. Product sits at intersection of door hardware (46171500) and alarm/monitoring systems (46171600)."
+    },
+    {
+      "id": "RS016",
+      "claim": "Stanley Healthcare and Jeron Electronic Systems are the dominant nurse-call and wander-management system integrators in the US CCRC market, creating partial vendor lock-in for door monitoring integration",
+      "appliesTo": ["continuing_care_retirement"],
+      "sourceName": "Industry analysis — CCRC security integrator landscape",
+      "sourceUrl": null,
+      "quotedText": null,
+      "confidence": "medium",
+      "notes": "Informs the entry strategy for CCRC market (Rank #2): nurse-call integrator partnership is required for market access."
+    },
+    {
+      "id": "RS017",
+      "claim": "SOC 2 Type II CC6.4 control requires that organizations restrict physical access to information assets including data center facilities, with documented access logging",
+      "appliesTo": ["data_centers"],
+      "sourceName": "AICPA — SOC 2 Trust Services Criteria",
+      "sourceUrl": "https://www.aicpa.org/resources/landing/system-and-organization-controls-soc-suite-of-services",
+      "quotedText": null,
+      "confidence": "high",
+      "notes": "Regulatory driver for data center market (Rank #10). SOC 2 audit log automation is the primary use case for IoT exit monitoring in DCs."
+    },
+    {
+      "id": "RS018",
+      "claim": "GfS Exit Control accessories include glass-frame mounting plates (Art. 991170), profile half-cylinder keys, and IP45 outdoor housings",
+      "appliesTo": ["product-decomposition"],
+      "sourceName": "GfS — Exit Control Accessories",
+      "sourceUrl": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control/Accessories/",
+      "quotedText": null,
+      "confidence": "high",
+      "notes": "Accessory ecosystem establishes the product's adaptability to different installation contexts (glass doors, outdoor, key management)."
+    },
+    {
+      "id": "RS019",
+      "claim": "The Clery Act requires US colleges and universities to disclose campus security information including fire safety statistics, creating a regulatory driver for documented exit monitoring",
+      "appliesTo": ["colleges_universities"],
+      "sourceName": "US Department of Education — Clery Act Compliance",
+      "sourceUrl": "https://www2.ed.gov/admins/lead/safety/campus.html",
+      "quotedText": null,
+      "confidence": "high",
+      "notes": "Regulatory driver for university market (Rank #4). Clery Act compliance documentation is a procurement trigger for campus security hardware."
+    },
+    {
+      "id": "RS020",
+      "claim": "Post-Uvalde school safety legislation across US states and EU security directives have dramatically increased K-12 school door security spending, creating a growing market for exit monitoring solutions",
+      "appliesTo": ["elementary_secondary_schools"],
+      "sourceName": "Legislative analysis — school safety funding trends",
+      "sourceUrl": null,
+      "quotedText": null,
+      "confidence": "medium",
+      "notes": "Market timing signal for K-12 schools (Rank #3). Federal programs like the STOP Act and state-level legislation (e.g., E2SSB 5187) create grant-funded procurement windows."
+    },
+    {
+      "id": "RS021",
+      "claim": "Heritage-listed buildings in the EU are subject to conservation rules that restrict or prohibit structural modification of door infrastructure, making retrofit-ready, non-invasive monitoring uniquely suited to museum applications",
+      "appliesTo": ["museums_historical_sites"],
+      "sourceName": "Heritage conservation regulatory framework — EU cultural heritage directives",
+      "sourceUrl": null,
+      "quotedText": null,
+      "confidence": "medium",
+      "notes": "Structural constraint that becomes a competitive advantage: the Türwächter's surface-mount, non-invasive design is uniquely suited to heritage buildings where wired systems cannot be installed."
+    }
+  ]
+}

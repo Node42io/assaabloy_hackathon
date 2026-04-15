@@ -1,0 +1,32 @@
+{
+  "naicsCode": "611110",
+  "marketName": "Elementary and Secondary Schools",
+  "slug": "elementary_secondary_schools",
+  "alternatives": [
+    {
+      "name": "Wired panic hardware + alarm panel integration",
+      "unspsc": "46191501",
+      "tradeoffs": "High installation labor; conduit to each door; retrofit disruption in 49-yr-old buildings; ongoing panel maintenance; certified integrator required. ~55% market share."
+    },
+    {
+      "name": "Mechanical-only door alarms (no monitoring)",
+      "unspsc": "46171600",
+      "tradeoffs": "Zero monitoring: staff learn of events only by physical discovery or triggered alarm heard locally; no compliance log; no remote visibility. ~30% market share."
+    },
+    {
+      "name": "Wireless IoT alarmed exit guards ← Türwächter category",
+      "unspsc": "46171600",
+      "tradeoffs": "Battery management overhead; wireless range limited in concrete (C3/C4); proprietary protocol (C6); no native integration with BACnet/KNX. ~15% market share."
+    },
+    {
+      "name": "Security personnel stationed / patrolling exits",
+      "unspsc": "—",
+      "tradeoffs": "High recurring labor cost; coverage gaps during breaks/shifts; human error; no automated log; scales poorly to multi-building campuses. <5% market share."
+    },
+    {
+      "name": "Do nothing / accept risk",
+      "unspsc": "—",
+      "tradeoffs": "Zero P1 burden; compliance violation risk; insurance liability; state audit findings; zero monitoring of unauthorized entry through fire exits. Most common current state in budget-constrained districts."
+    }
+  ]
+}

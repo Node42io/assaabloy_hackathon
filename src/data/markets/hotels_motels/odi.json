@@ -1,0 +1,89 @@
+{
+  "naicsCode": "721110",
+  "marketName": "Hotels (except Casino Hotels) and Motels",
+  "slug": "hotels_motels",
+  "summary": {
+    "totalNeeds": 27,
+    "underservedCount": 6,
+    "overservedCount": 0,
+    "avgOpportunityScore": 10.63
+  },
+  "top5Opportunities": [
+    {
+      "rank": 1,
+      "needId": "E6",
+      "statement": "Minimize the likelihood of an emergency exit remaining in an unauthorized open state for >5 minutes without triggering a staff alert",
+      "importance": 9,
+      "satisfaction": 4,
+      "opportunity": 14,
+      "zone": "underserved"
+    },
+    {
+      "rank": 2,
+      "needId": "E9",
+      "statement": "Increase the ability of a single security officer to monitor real-time exit door status across all floors from one centralized interface without physical patrol — covering 50+ exit points simultaneously",
+      "importance": 9,
+      "satisfaction": 4,
+      "opportunity": 14,
+      "zone": "underserved"
+    },
+    {
+      "rank": 3,
+      "needId": "E10",
+      "statement": "Minimize the time from emergency exit activation event to security staff notification to <30 seconds regardless of time of day",
+      "importance": 9,
+      "satisfaction": 4,
+      "opportunity": 14,
+      "zone": "underserved"
+    },
+    {
+      "rank": 4,
+      "needId": "E5",
+      "statement": "Increase the ability to verify that every installed exit monitoring device is transmitting correctly and that the audible alarm operates without obstruction — within a single end-to-end commissioning test",
+      "importance": 9,
+      "satisfaction": 5,
+      "opportunity": 13,
+      "zone": "appropriately-served"
+    },
+    {
+      "rank": 5,
+      "needId": "E15",
+      "statement": "Increase the ability to produce a complete timestamped digital audit log of all emergency exit activations and response actions, formatted for fire marshal inspection without manual compilation",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "zone": "underserved"
+    }
+  ],
+  "needs": [
+    { "name": "E1", "importance": 7, "satisfaction": 5, "opportunityScore": 9, "isUnderserved": false, "isOverserved": false, "impactCategory": "safety", "confidence": 0.70, "productRelated": false },
+    { "name": "E2", "importance": 7, "satisfaction": 4, "opportunityScore": 10, "isUnderserved": false, "isOverserved": false, "impactCategory": "reliability", "confidence": 0.70, "productRelated": true },
+    { "name": "E3", "importance": 8, "satisfaction": 5, "opportunityScore": 11, "isUnderserved": false, "isOverserved": false, "impactCategory": "time", "confidence": 0.75, "productRelated": true },
+    { "name": "E4", "importance": 9, "satisfaction": 7, "opportunityScore": 11, "isUnderserved": false, "isOverserved": false, "impactCategory": "safety", "confidence": 0.80, "productRelated": false },
+    { "name": "E5", "importance": 9, "satisfaction": 5, "opportunityScore": 13, "isUnderserved": false, "isOverserved": false, "impactCategory": "reliability", "confidence": 0.80, "productRelated": false },
+    { "name": "E6", "importance": 9, "satisfaction": 4, "opportunityScore": 14, "isUnderserved": true, "isOverserved": false, "impactCategory": "safety", "confidence": 0.85, "productRelated": false },
+    { "name": "E7", "importance": 8, "satisfaction": 4, "opportunityScore": 12, "isUnderserved": true, "isOverserved": false, "impactCategory": "reliability", "confidence": 0.80, "productRelated": false },
+    { "name": "E8", "importance": 10, "satisfaction": 8, "opportunityScore": 12, "isUnderserved": false, "isOverserved": false, "impactCategory": "safety", "confidence": 0.90, "productRelated": false },
+    { "name": "E9", "importance": 9, "satisfaction": 4, "opportunityScore": 14, "isUnderserved": true, "isOverserved": false, "impactCategory": "time", "confidence": 0.85, "productRelated": false },
+    { "name": "E10", "importance": 9, "satisfaction": 4, "opportunityScore": 14, "isUnderserved": true, "isOverserved": false, "impactCategory": "time", "confidence": 0.85, "productRelated": false },
+    { "name": "E11", "importance": 8, "satisfaction": 5, "opportunityScore": 11, "isUnderserved": false, "isOverserved": false, "impactCategory": "reliability", "confidence": 0.75, "productRelated": true },
+    { "name": "E12", "importance": 8, "satisfaction": 5, "opportunityScore": 11, "isUnderserved": false, "isOverserved": false, "impactCategory": "safety", "confidence": 0.70, "productRelated": false },
+    { "name": "E13", "importance": 7, "satisfaction": 6, "opportunityScore": 8, "isUnderserved": false, "isOverserved": false, "impactCategory": "time", "confidence": 0.70, "productRelated": false },
+    { "name": "E14", "importance": 8, "satisfaction": 5, "opportunityScore": 11, "isUnderserved": false, "isOverserved": false, "impactCategory": "safety", "confidence": 0.75, "productRelated": false },
+    { "name": "E15", "importance": 8, "satisfaction": 3, "opportunityScore": 13, "isUnderserved": true, "isOverserved": false, "impactCategory": "safety", "confidence": 0.80, "productRelated": false },
+    { "name": "E16", "importance": 7, "satisfaction": 4, "opportunityScore": 10, "isUnderserved": false, "isOverserved": false, "impactCategory": "reliability", "confidence": 0.75, "productRelated": true },
+    { "name": "E17", "importance": 7, "satisfaction": 4, "opportunityScore": 10, "isUnderserved": false, "isOverserved": false, "impactCategory": "cost", "confidence": 0.70, "productRelated": true },
+    { "name": "E18", "importance": 8, "satisfaction": 4, "opportunityScore": 12, "isUnderserved": true, "isOverserved": false, "impactCategory": "safety", "confidence": 0.80, "productRelated": false },
+    { "name": "E19", "importance": 9, "satisfaction": 6, "opportunityScore": 12, "isUnderserved": false, "isOverserved": false, "impactCategory": "safety", "confidence": 0.80, "productRelated": false },
+    { "name": "N1", "importance": 7, "satisfaction": 3, "opportunityScore": 11, "isUnderserved": false, "isOverserved": false, "impactCategory": "reliability", "confidence": 0.70, "productRelated": true },
+    { "name": "N2", "importance": 6, "satisfaction": 3, "opportunityScore": 9, "isUnderserved": false, "isOverserved": false, "impactCategory": "reliability", "confidence": 0.70, "productRelated": true },
+    { "name": "N3", "importance": 7, "satisfaction": 4, "opportunityScore": 10, "isUnderserved": false, "isOverserved": false, "impactCategory": "reliability", "confidence": 0.70, "productRelated": true },
+    { "name": "N4", "importance": 6, "satisfaction": 4, "opportunityScore": 8, "isUnderserved": false, "isOverserved": false, "impactCategory": "reliability", "confidence": 0.70, "productRelated": true },
+    { "name": "N5", "importance": 5, "satisfaction": 4, "opportunityScore": 6, "isUnderserved": false, "isOverserved": false, "impactCategory": "reliability", "confidence": 0.70, "productRelated": true },
+    { "name": "N6", "importance": 7, "satisfaction": 4, "opportunityScore": 10, "isUnderserved": false, "isOverserved": false, "impactCategory": "reliability", "confidence": 0.70, "productRelated": true },
+    { "name": "N7", "importance": 6, "satisfaction": 4, "opportunityScore": 8, "isUnderserved": false, "isOverserved": false, "impactCategory": "reliability", "confidence": 0.70, "productRelated": true },
+    { "name": "N8", "importance": 6, "satisfaction": 5, "opportunityScore": 7, "isUnderserved": false, "isOverserved": false, "impactCategory": "reliability", "confidence": 0.70, "productRelated": true }
+  ],
+  "flaggedRationalesCount": 0,
+  "sources": []
+}

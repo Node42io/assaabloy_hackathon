@@ -1,0 +1,21 @@
+{
+  "slug": "elementary_secondary_schools",
+  "name": "Elementary and Secondary Schools",
+  "naicsCode": "611110",
+  "isReference": false,
+  "rank": 3,
+  "scores": {
+    "odi": 6.21,
+    "featureFit": 6.83,
+    "constraintCompatibility": 7,
+    "jobCoverage": 6.25,
+    "vnHierarchy": 6.5,
+    "incumbentVulnerability": 7,
+    "composite": 6.61
+  },
+  "recommendation": "investigate",
+  "rationale": "",
+  "entryStrategy": "Channel through school safety distributors; target district procurement; align to federal/state safety grant cycles",
+  "estimatedTimeToEntry": "4-6 months",
+  "estimatedInvestment": "€50000-100000"
+}

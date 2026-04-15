@@ -1,0 +1,1039 @@
+{
+  "naicsCode": "712110",
+  "marketName": "Museums, Historical Sites, and Similar Institutions",
+  "slug": "museums_historical_sites",
+  "coreJobStatement": "Acquire, preserve, and present cultural, historical, natural, and scientific heritage to the public through curated exhibitions, conservation, and educational programming.",
+  "outputTypes": [
+    "Art museum",
+    "Natural history / science museum",
+    "History museum",
+    "Archaeological site / open-air museum",
+    "Science & technology center"
+  ],
+  "hierarchy": "",
+  "architectureDistance": 0,
+  "marketSize": "",
+  "l6Systems": [
+    {
+      "id": "L6a",
+      "name": "Collection Acquisition & Registration",
+      "type": "Core",
+      "jobFamily": "Receive, document, and formally accession incoming objects into the collection",
+      "l5Units": []
+    },
+    {
+      "id": "L6b",
+      "name": "Conservation & Collections Care",
+      "type": "Core",
+      "jobFamily": "Stabilize, treat, and store collection objects to prevent deterioration and ensure long-term integrity",
+      "l5Units": []
+    },
+    {
+      "id": "L6c",
+      "name": "Exhibition Development & Installation",
+      "type": "Core",
+      "jobFamily": "Design, plan, fabricate, and install gallery or site presentations for visitor access",
+      "l5Units": []
+    },
+    {
+      "id": "L6d",
+      "name": "Visitor Experience & Public Programming",
+      "type": "Core",
+      "jobFamily": "Deliver admissions, guided tours, education programs, and public events",
+      "l5Units": []
+    },
+    {
+      "id": "L6e",
+      "name": "Collection Access & Research Services",
+      "type": "Core",
+      "jobFamily": "Manage scholarly access, object loans to partner institutions, and provenance research requests",
+      "l5Units": []
+    },
+    {
+      "id": "L6H-SEC",
+      "name": "Building Security & Life Safety",
+      "type": "Horizontal",
+      "jobFamily": "Protect collections, staff, and visitors against theft, unauthorized access, fire, and emergency exit misuse at all times",
+      "isHorizontal": true,
+      "l5Units": []
+    },
+    {
+      "id": "L6H-ENV",
+      "name": "Environmental & Climate Control",
+      "type": "Horizontal",
+      "jobFamily": "Maintain conservation-grade temperature, humidity, and light levels continuously across collection and storage areas",
+      "isHorizontal": true,
+      "l5Units": []
+    },
+    {
+      "id": "L6H-FM",
+      "name": "Facility Management & Maintenance",
+      "type": "Horizontal",
+      "jobFamily": "Maintain building fabric, utilities, and physical infrastructure in operational and compliant condition",
+      "isHorizontal": true,
+      "l5Units": []
+    },
+    {
+      "id": "L6H-IT",
+      "name": "Digital & Collections IT",
+      "type": "Horizontal",
+      "jobFamily": "Provide Collections Management System, visitor-facing digital, and network infrastructure for all operational systems",
+      "isHorizontal": true,
+      "l5Units": []
+    }
+  ],
+  "vnUnits": [
+    {
+      "level": "L5",
+      "id": "L6a.1",
+      "name": "Collections Management System (CMS)",
+      "functionalJob": "Catalogue, track, and manage all collection objects from accession through deaccession, maintaining authoritative records of provenance, location, and condition",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "The Museum System / TMS (Gallery Systems)",
+          "sharePct": 30,
+          "confidence": "LOW",
+          "source": "Analyst estimate; dominant in large art museums",
+          "isPrimary": false
+        },
+        {
+          "name": "PastPerfect (Altus Systems)",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "Strong in history/natural history",
+          "isPrimary": false
+        },
+        {
+          "name": "MuseumPlus / Qi (Zetcom)",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "European institutions",
+          "isPrimary": false
+        },
+        {
+          "name": "KE EMu (Axiell)",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "Natural history / sciences",
+          "isPrimary": false
+        },
+        {
+          "name": "Other / custom",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6a.2",
+      "name": "Object Photography & Documentation Station",
+      "functionalJob": "Capture high-resolution 2D and 3D visual records of incoming objects for condition documentation, catalogue illustration, and digital access",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Camera + copy stand + controlled lighting rig",
+          "sharePct": 70,
+          "confidence": "LOW",
+          "source": "Industry standard for 2D/3D documentation",
+          "isPrimary": false
+        },
+        {
+          "name": "3D structured-light scanner (for objects)",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "Growing for sculptures, artifacts",
+          "isPrimary": false
+        },
+        {
+          "name": "Photogrammetry rig",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "Archaeological / open-air sites",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6a.3",
+      "name": "Condition Reporting Tool",
+      "functionalJob": "Record and track the physical condition of collection objects at intake, loan, exhibition, and return to detect and document any change or damage",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Tablet + CMS-integrated app (Axiell, Mimsy)",
+          "sharePct": 55,
+          "confidence": "LOW",
+          "source": "Replacing paper forms in most institutions",
+          "isPrimary": false
+        },
+        {
+          "name": "Paper condition report form",
+          "sharePct": 35,
+          "confidence": "",
+          "source": "Legacy; still common in smaller museums",
+          "isPrimary": false
+        },
+        {
+          "name": "Standalone app (MicroMusée, MuseReport)",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.1",
+      "name": "Environmental Monitoring System",
+      "functionalJob": "Continuously measure temperature, relative humidity, and light levels in collection and storage areas to detect deviations from conservation thresholds",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "HOBO data loggers (Onset)",
+          "sharePct": 35,
+          "confidence": "LOW",
+          "source": "Onset smart monitoring for museums",
+          "isPrimary": false
+        },
+        {
+          "name": "Hanwell / ElvaX wireless loggers",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Conserv (cloud-native)",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "Emerging; strong in US art museums",
+          "isPrimary": false
+        },
+        {
+          "name": "Eltek Darca / other wired",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "Legacy installations",
+          "isPrimary": false
+        },
+        {
+          "name": "Other",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.2",
+      "name": "Archival Storage Racking",
+      "functionalJob": "Provide space-efficient, collection-safe physical storage for objects not currently on exhibition, preserving accessibility for retrieval and inventory audits",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Compact mobile shelving (mechanical compactus)",
+          "sharePct": 50,
+          "confidence": "LOW",
+          "source": "Space-efficient; museum standard",
+          "isPrimary": false
+        },
+        {
+          "name": "Static metal shelving",
+          "sharePct": 35,
+          "confidence": "",
+          "source": "Low-cost option",
+          "isPrimary": false
+        },
+        {
+          "name": "Archival flat files / map cabinets",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "For oversized works on paper",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.3",
+      "name": "Integrated Pest Management Equipment",
+      "functionalJob": "Detect, monitor, and eradicate insect and rodent threats to organic collection materials through trapping, environmental control, and treatment",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Sticky traps + insect monitoring stations",
+          "sharePct": 60,
+          "confidence": "LOW",
+          "source": "Primary detection layer",
+          "isPrimary": false
+        },
+        {
+          "name": "Anoxic treatment chambers",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "Active eradication; heritage collections",
+          "isPrimary": false
+        },
+        {
+          "name": "Freeze treatment unit",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "For textile / organic materials",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.1",
+      "name": "Exhibition Design Software",
+      "functionalJob": "Create spatial layouts, sightline studies, and fabrication drawings for gallery installations and temporary exhibitions",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "AutoCAD / Revit (Autodesk)",
+          "sharePct": 45,
+          "confidence": "LOW",
+          "source": "Default in large institutions with design teams",
+          "isPrimary": false
+        },
+        {
+          "name": "SketchUp (Trimble)",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "Smaller teams; rapid concept",
+          "isPrimary": false
+        },
+        {
+          "name": "Vectorworks (Nemetschek)",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "Theatre/events crossover; exhibitions",
+          "isPrimary": false
+        },
+        {
+          "name": "Other / hand drafting",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.2",
+      "name": "Audio-Visual Presentation System",
+      "functionalJob": "Deliver multimedia interpretive content to visitors within gallery spaces through projection, interactive displays, and immersive audio",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "AV projection (Christie, Barco)",
+          "sharePct": 35,
+          "confidence": "LOW",
+          "source": "Immersive galleries; large-format",
+          "isPrimary": false
+        },
+        {
+          "name": "Touchscreen interactive kiosk",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "Interpretive / educational content",
+          "isPrimary": false
+        },
+        {
+          "name": "LED video panel",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "Permanent installations",
+          "isPrimary": false
+        },
+        {
+          "name": "360° immersive / spatial audio",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "Emerging; flagship exhibitions",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.3",
+      "name": "Gallery Lighting",
+      "functionalJob": "Illuminate exhibited objects with conservation-safe, tunable light that minimizes UV and IR exposure while optimizing visual presentation",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "LED tunable-white luminaires (Erco, Zumtobel)",
+          "sharePct": 65,
+          "confidence": "LOW",
+          "source": "Conservation-grade (no UV/IR)",
+          "isPrimary": false
+        },
+        {
+          "name": "Fibre-optic spotlight (legacy)",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "Sensitive textiles, manuscripts",
+          "isPrimary": false
+        },
+        {
+          "name": "Incandescent / halogen (legacy)",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "Declining; retrofit replacement ongoing",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.1",
+      "name": "Ticketing & Admissions System",
+      "functionalJob": "Sell, validate, and manage visitor admission tickets across online, on-site, and group booking channels",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Altru (Blackbaud)",
+          "sharePct": 20,
+          "confidence": "LOW",
+          "source": "Nonprofit museums",
+          "isPrimary": false
+        },
+        {
+          "name": "Tessitura Network",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "Performing arts / large institutions",
+          "isPrimary": false
+        },
+        {
+          "name": "SIRIUSWARE",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "National parks, science centers",
+          "isPrimary": false
+        },
+        {
+          "name": "Other (Spektrix, TicketSolve, Shopify)",
+          "sharePct": 55,
+          "confidence": "",
+          "source": "Fragmented; many local/bespoke",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.2",
+      "name": "Audio Guide System",
+      "functionalJob": "Deliver interpretive audio commentary to visitors as they move through galleries, synchronized to exhibit locations",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "App-based (Bloomberg Connects, izi.TRAVEL)",
+          "sharePct": 45,
+          "confidence": "LOW",
+          "source": "Bloomberg Connects dominates US art museums",
+          "isPrimary": false
+        },
+        {
+          "name": "Dedicated handheld audio guide device",
+          "sharePct": 40,
+          "confidence": "",
+          "source": "Common in history and natural history",
+          "isPrimary": false
+        },
+        {
+          "name": "Printed guide only",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "Low-budget institutions",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.3",
+      "name": "Visitor Counting & Flow Analytics",
+      "functionalJob": "Count visitors at entry points and track gallery-level movement patterns to inform capacity management, staffing, and exhibition planning",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Thermal / infrared people counter",
+          "sharePct": 45,
+          "confidence": "LOW",
+          "source": "Primary entrance counting",
+          "isPrimary": false
+        },
+        {
+          "name": "Wi-Fi / BLE anonymized tracking",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "Gallery-level dwell analytics",
+          "isPrimary": false
+        },
+        {
+          "name": "Manual clicker count",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "Smaller / historic sites",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6e.1",
+      "name": "Loan & Object Movement Tracking",
+      "functionalJob": "Manage the full lifecycle of outgoing and incoming object loans including approval workflows, packing, transport, and condition reporting at each handover",
+      "description": "",
+      "parentL6": "L6e",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "CMS-integrated loan module (TMS, PastPerfect)",
+          "sharePct": 70,
+          "confidence": "LOW",
+          "source": "Majority use CMS module",
+          "isPrimary": false
+        },
+        {
+          "name": "Standalone loan software (Argus Loans)",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Manual / spreadsheet",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6e.2",
+      "name": "RFID / Barcode Object Tagging",
+      "functionalJob": "Uniquely identify and locate collection objects through machine-readable tags to enable rapid inventory audits and movement verification",
+      "description": "",
+      "parentL6": "L6e",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Barcode label + handheld scanner",
+          "sharePct": 50,
+          "confidence": "LOW",
+          "source": "Cost-effective; most institutions",
+          "isPrimary": false
+        },
+        {
+          "name": "RFID tag + fixed / handheld reader",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "Growing for high-value collections",
+          "isPrimary": false
+        },
+        {
+          "name": "Manual checklist only",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "Smaller historic sites",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-SEC.1",
+      "name": "Emergency Exit Security Devices",
+      "functionalJob": "Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape and reporting door status events to centralized monitoring",
+      "description": "",
+      "parentL6": "L6H-SEC",
+      "dependencies": [],
+      "isPrimaryPosition": true,
+      "alternatives": [
+        {
+          "name": "Basic mechanical door alarm (no monitoring)",
+          "sharePct": 45,
+          "confidence": "LOW",
+          "source": "Common in heritage buildings with wiring constraints",
+          "isPrimary": false
+        },
+        {
+          "name": "Alarmed exit hardware with IoT monitoring ← Türwächter",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "Battery-powered wireless; ideal for listed buildings",
+          "isPrimary": true
+        },
+        {
+          "name": "Wired panic bar / crash bar alarm",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "New-build or major refurbishment",
+          "isPrimary": false
+        },
+        {
+          "name": "No dedicated exit monitoring",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "Small historic house museums",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-SEC.2",
+      "name": "Intruder Detection & Alarm System",
+      "functionalJob": "Detect unauthorized presence or movement within galleries, storage areas, and restricted zones and trigger alarm response",
+      "description": "",
+      "parentL6": "L6H-SEC",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "PIR / microwave motion detectors",
+          "sharePct": 55,
+          "confidence": "MEDIUM",
+          "source": "Museum security systems overview",
+          "isPrimary": false
+        },
+        {
+          "name": "Vibration / seismic sensors (for cases)",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "Jewelry, small valuables",
+          "isPrimary": false
+        },
+        {
+          "name": "Glass-break detectors",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "Historic buildings with large windows",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-SEC.3",
+      "name": "Electronic Access Control",
+      "functionalJob": "Restrict and log physical access to collection storage, conservation labs, and staff-only areas through credential-based door control",
+      "description": "",
+      "parentL6": "L6H-SEC",
+      "dependencies": [],
+      "isPrimaryPosition": true,
+      "alternatives": [
+        {
+          "name": "IP-based (ASSA ABLOY, Dormakaba, Salto)",
+          "sharePct": 55,
+          "confidence": "MEDIUM",
+          "source": "Advanced museum security 2025",
+          "isPrimary": true
+        },
+        {
+          "name": "Legacy magnetic card reader",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "Older installations",
+          "isPrimary": false
+        },
+        {
+          "name": "Mobile credential (ASSA ABLOY Seos)",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "Growing for staff-only zones",
+          "isPrimary": true
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-SEC.4",
+      "name": "Video Surveillance (CCTV)",
+      "functionalJob": "Provide continuous visual monitoring and recording of galleries, entrances, and perimeter to deter theft and support incident investigation",
+      "description": "",
+      "parentL6": "L6H-SEC",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "IP camera / NVR (Axis, Bosch, Hikvision)",
+          "sharePct": 65,
+          "confidence": "MEDIUM",
+          "source": "NPS Museum Security 2024",
+          "isPrimary": false
+        },
+        {
+          "name": "Analog / DVR (legacy)",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "Aging institutions upgrading 1990s systems",
+          "isPrimary": false
+        },
+        {
+          "name": "Cloud-managed camera (Verkada)",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "Emerging",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-SEC.5",
+      "name": "Fire Detection & Alarm System",
+      "functionalJob": "Detect smoke, heat, or fire conditions throughout the building and alert occupants and emergency services to enable safe evacuation and collection protection",
+      "description": "",
+      "parentL6": "L6H-SEC",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Addressable panel (Honeywell, Siemens, Hochiki)",
+          "sharePct": 60,
+          "confidence": "MEDIUM",
+          "source": "Museum fire safety reference",
+          "isPrimary": false
+        },
+        {
+          "name": "Conventional zone panel",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "Smaller historic sites",
+          "isPrimary": false
+        },
+        {
+          "name": "Wireless fire system",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "Heritage retrofit where wiring is prohibited",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-ENV.1",
+      "name": "HVAC Precision Climate System",
+      "functionalJob": "Deliver conservation-grade air temperature and relative humidity control within tight tolerances across gallery and storage zones",
+      "description": "",
+      "parentL6": "L6H-ENV",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Chiller plant + dedicated AHU (precision RH ±5%)",
+          "sharePct": 45,
+          "confidence": "LOW",
+          "source": "Major art / natural history museums",
+          "isPrimary": false
+        },
+        {
+          "name": "VRF/split with supplemental humidification",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "Mid-size museums; heritage buildings",
+          "isPrimary": false
+        },
+        {
+          "name": "Conventional commercial HVAC (no precision RH)",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "Small institutions; lower-value collections",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-ENV.2",
+      "name": "Humidifier / Dehumidifier",
+      "functionalJob": "Add or remove moisture from gallery and storage air to maintain relative humidity within conservation set points and prevent material degradation",
+      "description": "",
+      "parentL6": "L6H-ENV",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Integrated HVAC humidification section",
+          "sharePct": 40,
+          "confidence": "LOW",
+          "source": "Purpose-built galleries",
+          "isPrimary": false
+        },
+        {
+          "name": "Standalone ultrasonic / steam humidifiers",
+          "sharePct": 35,
+          "confidence": "",
+          "source": "Retrofit; seasonal correction",
+          "isPrimary": false
+        },
+        {
+          "name": "Silica gel passive buffering",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "Historic house museums; low-budget",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-ENV.3",
+      "name": "UV & Light Control",
+      "functionalJob": "Filter ultraviolet radiation and regulate visible light intensity from natural and artificial sources to protect light-sensitive collection materials",
+      "description": "",
+      "parentL6": "L6H-ENV",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "UV-filtering window film / glazing",
+          "sharePct": 40,
+          "confidence": "LOW",
+          "source": "Heritage fire & light protection",
+          "isPrimary": false
+        },
+        {
+          "name": "Motorized blackout / solar-control blinds",
+          "sharePct": 35,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Specialized gallery lighting controls (daylight sensor + dimming)",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-FM.1",
+      "name": "Building Management System (BMS)",
+      "functionalJob": "Centrally monitor and control HVAC, lighting, and building utilities to maintain operational efficiency and environmental stability across the facility",
+      "description": "",
+      "parentL6": "L6H-FM",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Honeywell Building Technologies",
+          "sharePct": 30,
+          "confidence": "LOW",
+          "source": "Dominant across institutional buildings",
+          "isPrimary": false
+        },
+        {
+          "name": "Siemens Desigo CC",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Johnson Controls Metasys",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Other / no BMS",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "Smaller historic sites",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-FM.2",
+      "name": "CMMS (Preventive Maintenance)",
+      "functionalJob": "Schedule, track, and document preventive and corrective maintenance tasks for building systems and heritage fabric to ensure compliance and prevent equipment failure",
+      "description": "",
+      "parentL6": "L6H-FM",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Archibus",
+          "sharePct": 20,
+          "confidence": "LOW",
+          "source": "Higher-education / large institutions",
+          "isPrimary": false
+        },
+        {
+          "name": "IBM Maximo",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Hippo CMMS / other cloud",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Manual / spreadsheet",
+          "sharePct": 35,
+          "confidence": "",
+          "source": "Common in smaller museums",
+          "isPrimary": false
+        },
+        {
+          "name": "Other",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-IT.1",
+      "name": "Network Infrastructure (LAN/WiFi)",
+      "functionalJob": "Provide wired and wireless network connectivity for CMS, security systems, visitor WiFi, and IoT sensors across all building areas",
+      "description": "",
+      "parentL6": "L6H-IT",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Cisco Meraki",
+          "sharePct": 35,
+          "confidence": "LOW",
+          "source": "Common in institutional campus settings",
+          "isPrimary": false
+        },
+        {
+          "name": "Aruba / HPE",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Ruckus (CommScope)",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Other",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-IT.2",
+      "name": "Visitor-Facing Digital Platform",
+      "functionalJob": "Provide public-facing web, mobile app, and digital collection access enabling visitors to plan visits, explore collections online, and engage with content remotely",
+      "description": "",
+      "parentL6": "L6H-IT",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Institution-managed website + app (bespoke)",
+          "sharePct": 40,
+          "confidence": "LOW",
+          "source": "Larger museums with dev capability",
+          "isPrimary": false
+        },
+        {
+          "name": "Bloomberg Connects (free platform)",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "Rapidly growing in US/EU art museums",
+          "isPrimary": false
+        },
+        {
+          "name": "Google Arts & Culture partnership",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "Secondary channel; not primary",
+          "isPrimary": false
+        },
+        {
+          "name": "Other (Cuseum, Smartify)",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    }
+  ],
+  "marquardtPosition": "",
+  "strategicPosition": null,
+  "sources": []
+}

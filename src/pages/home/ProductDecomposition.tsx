@@ -1,0 +1,482 @@
+/**
+ * 01 Product Decomposition
+ * Replicates 01-product.html exactly in React, with TODO items applied:
+ *   - Item 4/15/39: SourceFootnote per claim + SourceList at end
+ *   - Item 40: ExecutiveSummary at top
+ *   - Item 41: Plain-language labels
+ *   - Item 9: NAICS/UNSPSC written out fully
+ *   - ClickableCode for UNSPSC codes
+ */
+
+import { product } from "@/data";
+import ExecutiveSummary from "@/components/ExecutiveSummary";
+import SourceFootnote from "@/components/SourceFootnote";
+import SourceList from "@/components/SourceList";
+import ClickableCode from "@/components/ClickableCode";
+
+// All source IDs used in this sub-chapter
+const SECTION_SOURCES = [
+  "PROD-S01",
+  "PROD-S02",
+  "PROD-S03",
+  "PROD-S04",
+  "PROD-S05",
+  "PROD-S06",
+  "PROD-S07",
+  "PROD-S08",
+];
+
+const CATEGORY_CLASS: Record<string, string> = {
+  performance: "badge badge--accent",
+  integration: "badge badge--moderate",
+  reliability: "badge badge--strong",
+  usability: "badge badge--neutral",
+  maintenance: "badge badge--neutral",
+  safety: "badge badge--neutral",
+};
+
+const SEVERITY_CLASS: Record<string, string> = {
+  hard: "badge badge--weak",
+  soft: "badge badge--moderate",
+};
+
+function badgeClass(category: string): string {
+  return CATEGORY_CLASS[category] ?? "badge badge--neutral";
+}
+
+export default function ProductDecomposition() {
+  const technologyFeatures = product.features.filter((f) => f.scope === "technology");
+  const vendorFeatures = product.features.filter((f) => f.scope === "vendor");
+
+  return (
+    <section id="section-01" className="container">
+      {/* Section meta breadcrumb */}
+      <div className="section-meta">
+        <span>Step 01</span>
+        <span className="sep">/</span>
+        <span>Product Breakdown</span>
+        <span className="sep">/</span>
+        <span>New Markets for an Existing Product</span>
+      </div>
+
+      <div className="md">
+        <h1 className="section-title">01 Product Profile</h1>
+
+        {/* Item 40: Executive Summary */}
+        <ExecutiveSummary kicker="01 / Executive Summary" title="What you are reading">
+          <p className="answer">
+            This chapter decomposes the GfS Türwächter IoT into its underlying
+            mechanism, functional promise, feature set, and physical specifications. Understanding what the product
+            actually <em>does</em> at each level (mechanism → function → outcome)
+            is the foundation for every market-entry decision that follows: it tells us which
+            markets are structurally compatible, which features differentiate, and which
+            constraints limit entry. The next chapter (02 Functional Promise) uses this
+            decomposition to derive the two-level functional promise that drives market discovery.
+          </p>
+        </ExecutiveSummary>
+
+        {/* Metadata block */}
+        <blockquote>
+          <p><strong>Component:</strong> Product Decomposition (Step 01)</p>
+          <p><strong>Approach:</strong> Three-level product breakdown (mechanism → function → outcome)</p>
+          <p><strong>Product:</strong> {product.productName}</p>
+          <p><strong>Vendor:</strong> {product.vendorName}</p>
+          <p><strong>Archetype:</strong> New Markets for an Existing Product</p>
+        </blockquote>
+
+
+        <hr />
+
+        {/* ── Product Breakdown ── */}
+        <h2 id="prod-three-levels">What the Product Does — Three Levels</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Level</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Mechanism</strong></td>
+              <td>
+                {product.christensen.mechanism}
+                <SourceFootnote sourceIds={["PROD-S02", "PROD-S03"]} />
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Function</strong></td>
+              <td>
+                {product.christensen.function}
+                <SourceFootnote sourceIds={["PROD-S01", "PROD-S07"]} />
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Outcome</strong></td>
+              <td>
+                {product.christensen.outcome}
+                <SourceFootnote sourceIds={["PROD-S07", "PROD-S08"]} />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        {/* ── Technology Classification ── */}
+        <h2 id="prod-tech-class">Technology Classification</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Technology Class</strong></td>
+              <td>{product.technology.class}</td>
+            </tr>
+            <tr>
+              <td><strong>Underlying Mechanism</strong></td>
+              <td>
+                {product.technology.underlyingMechanism}
+                <SourceFootnote sourceIds={["PROD-S02"]} />
+              </td>
+            </tr>
+            <tr>
+              <td><strong>UNSPSC Code</strong></td>
+              <td>
+                <ClickableCode kind="unspsc" code={product.technology.unspscCode} />
+              </td>
+            </tr>
+            <tr>
+              <td><strong>UNSPSC Title</strong></td>
+              <td>{product.technology.unspscTitle}</td>
+            </tr>
+            <tr>
+              <td><strong>UNSPSC Path</strong></td>
+              <td>{product.technology.unspscPath}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        {/* ── Functional Promise ── */}
+        <h2 id="prod-fp">Functional Promise</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Statement</strong></td>
+              <td>
+                {product.functionalPromise.statement}
+                <SourceFootnote sourceIds={["PROD-S07"]} />
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Verb</strong></td>
+              <td>{product.functionalPromise.verb}</td>
+            </tr>
+            <tr>
+              <td><strong>Object</strong></td>
+              <td>{product.functionalPromise.object}</td>
+            </tr>
+            <tr>
+              <td><strong>Context</strong></td>
+              <td>{product.functionalPromise.context}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Differentiators vs Alternative Emergency Exit Security Mechanisms</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Differentiator</th>
+            </tr>
+          </thead>
+          <tbody>
+            {product.differentiators.map((d, i) => (
+              <tr key={i}>
+                <td>{i + 1}</td>
+                <td>
+                  {d}
+                  <SourceFootnote
+                    sourceIds={i < 2 ? ["PROD-S01", "PROD-S05"] : ["PROD-S03", "PROD-S07"]}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {/* ── Commodity-Level Functional Promise ── */}
+        <h2 id="prod-commodity-fp">Commodity-Level Functional Promise</h2>
+
+        <blockquote>
+          <p>
+            <strong>{product.commodityFunctionalPromise}</strong>
+            <SourceFootnote sourceIds={["PROD-S01", "PROD-S02"]} />
+          </p>
+        </blockquote>
+
+        <p>
+          <em>
+            All emergency exit security technologies (mechanical guards, electronic alarms,
+            electromagnetic locks, smart access systems, breakglass units) share the same
+            fundamental function — securing emergency exit doors against unauthorized use while
+            preserving escape capability. The differences are in mechanism, deterrent type,
+            monitoring capability, and installation constraints, not in function.
+          </em>
+          <SourceFootnote sourceIds={["PROD-S03", "PROD-S05"]} />
+        </p>
+
+        <hr />
+
+        {/* ── Features ── */}
+        <h2 id="prod-features">Features</h2>
+
+        <h3>Technology-Level Features (apply to all emergency exit door alarm guards)</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Description</th>
+              <th>Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            {technologyFeatures.map((f) => (
+              <tr key={f.name}>
+                <td><strong>{f.name}</strong></td>
+                <td>
+                  {f.long}
+                  <SourceFootnote sourceIds={["PROD-S02", "PROD-S03"]} />
+                </td>
+                <td><span className={badgeClass(f.category)}>{f.category}</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <h3>Vendor-Level Features (GfS-specific)</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Description</th>
+              <th>Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            {vendorFeatures.map((f) => (
+              <tr key={f.name}>
+                <td><strong>{f.name}</strong></td>
+                <td>
+                  {f.long}
+                  <SourceFootnote sourceIds={["PROD-S07", "PROD-S08"]} />
+                </td>
+                <td><span className={badgeClass(f.category)}>{f.category}</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <hr />
+
+        {/* ── Specifications ── */}
+        <h2 id="prod-specs">Specifications</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Specification</th>
+              <th>Value</th>
+              <th>Unit</th>
+              <th>Test Condition</th>
+            </tr>
+          </thead>
+          <tbody>
+            {product.specifications.map((s) => (
+              <tr key={s.name}>
+                <td><strong>{s.name}</strong></td>
+                <td>{s.value}</td>
+                <td>
+                  {s.unit === "C" ? "°C" :
+                   s.unit === "uA" ? "μA" :
+                   s.unit === "m3" ? "m³" :
+                   s.unit === "3/4-pole" ? "—" :
+                   s.unit}
+                </td>
+                <td>{s.testCondition ?? "—"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <hr />
+
+        {/* ── Constraints summary ── */}
+        <h2 id="prod-constraints">Key Product Constraints</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Constraint</th>
+              <th>Type</th>
+              <th>Severity</th>
+              <th>Description</th>
+              <th>Threshold</th>
+            </tr>
+          </thead>
+          <tbody>
+            {product.constraints.map((c) => (
+              <tr key={c.name}>
+                <td><strong>{c.name}</strong></td>
+                <td>{c.constraintType}</td>
+                <td>
+                  <span className={(c.severity && SEVERITY_CLASS[c.severity]) || "badge badge--neutral"}>
+                    {c.severity ?? "—"}
+                  </span>
+                </td>
+                <td>
+                  {c.description}
+                  <SourceFootnote sourceIds={["PROD-S04", "PROD-S06", "PROD-S07"]} />
+                </td>
+                <td>
+                  {c.thresholdValue
+                    ? `${c.thresholdValue}${c.thresholdUnit ? ` ${c.thresholdUnit}` : ""}`
+                    : "—"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <hr />
+
+        {/* ── UNSPSC Classification ── */}
+        <h2 id="prod-unspsc">UNSPSC Classification</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>UNSPSC Commodity Code</th>
+              <th>Commodity Name</th>
+              <th>Confidence</th>
+              <th>Reasoning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <strong>
+                  <ClickableCode kind="unspsc" code="46171600" />
+                </strong>
+              </td>
+              <td>Emergency Exit Door Alarm Guards</td>
+              <td><span className="badge badge--strong">Custom</span></td>
+              <td>
+                Emergency exit door alarm guards combine physical deterrence, audible alarm,
+                and wireless monitoring in a single device. No standard UNSPSC commodity exactly
+                matches this product category — a custom product group is used.
+                <SourceFootnote sourceIds={["PROD-S02", "PROD-S03"]} />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <ClickableCode kind="unspsc" code="46171612" />
+              </td>
+              <td>Door alarms</td>
+              <td><span className="badge badge--moderate">52%</span></td>
+              <td>
+                Matches the alarm function but does not capture the physical guard mechanism
+                or the wireless remote monitoring capability.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <ClickableCode kind="unspsc" code="46171500" />
+              </td>
+              <td>Access control systems</td>
+              <td><span className="badge badge--weak">35%</span></td>
+              <td>
+                The product controls access to emergency exits, but its primary identity is
+                an alarm guard, not a general access control system.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>
+          <strong>Selected:</strong>{" "}
+          <ClickableCode kind="unspsc" code="46171600" /> — Emergency Exit Door Alarm Guards
+          (custom product group, no direct UNSPSC match)
+        </p>
+
+        <hr />
+
+        {/* ── Validation Notes ── */}
+        <h2 id="prod-validation">Validation Notes</h2>
+
+        <p>
+          The decomposition was cross-referenced against published standards and research on
+          emergency exit security devices and building safety regulations.
+          <SourceFootnote sourceIds={["PROD-S01", "PROD-S02", "PROD-S03"]} />
+          Key validation findings:
+        </p>
+
+        <ul>
+          <li>
+            <strong>Functional Promise</strong> confirmed solution-agnostic: does not mention
+            "piezoelectric," "GfS," or "spring-loaded."
+            <SourceFootnote sourceIds={["PROD-S07"]} />
+          </li>
+          <li>
+            <strong>Feature scoping</strong> validated: technology-level features apply to
+            any emergency exit door alarm guard; vendor-level features are GfS-specific.
+            <SourceFootnote sourceIds={["PROD-S08"]} />
+          </li>
+          <li>
+            <strong>Door compatibility constraint</strong> added from product specifications —
+            mounting and handle-type requirements vary by door manufacturer.
+            <SourceFootnote sourceIds={["PROD-S04", "PROD-S05"]} />
+          </li>
+          <li>
+            <strong>Wireless range limitation</strong> added from product specifications —
+            868 MHz EasyWave range varies by building construction material.
+            <SourceFootnote sourceIds={["PROD-S03"]} />
+          </li>
+          <li>
+            <strong>Battery life and maintenance interval</strong> quantified from
+            product data sheet.
+            <SourceFootnote sourceIds={["PROD-S04", "PROD-S06"]} />
+          </li>
+          <li>
+            <strong>UNSPSC custom product group "Emergency Exit Door Alarm Guards"</strong>
+            confirmed as the correct classification — no standard UNSPSC commodity matches
+            the combined guard + alarm + wireless monitoring function.
+            <SourceFootnote sourceIds={["PROD-S02"]} />
+          </li>
+        </ul>
+
+        <hr />
+
+        {/* Sources list — Item 4/15/39 */}
+        <div id="prod-sources">
+          <SourceList sourceIds={SECTION_SOURCES} title="Sources — 01 Product Decomposition" />
+        </div>
+      </div>
+    </section>
+  );
+}

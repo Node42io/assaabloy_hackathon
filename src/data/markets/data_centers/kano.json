@@ -1,0 +1,57 @@
+{
+  "naicsCode": "518210",
+  "marketName": "Data Processing, Hosting, and Related Services",
+  "slug": "data_centers",
+  "features": [
+    {
+      "name": "Mechanical Handle Locking",
+      "kanoClass": "must_be",
+      "scores": { "time": 2, "cost": 3, "safety": 9, "reliability": 8, "skill": 4, "stress": 6, "pain": 5, "confidence": 7, "delight": 2 },
+      "overallFit": 5.11,
+      "rationale": "Table-stakes in DC restricted-zone context. Safety (9): prevents unauthorized entry into caged server zones. Reliability (8): no electrical failure mode during UPS events."
+    },
+    {
+      "name": "Audible Alarm Trigger",
+      "kanoClass": "must_be",
+      "scores": { "time": 2, "cost": 2, "safety": 7, "reliability": 5, "skill": 3, "stress": 5, "pain": 4, "confidence": 5, "delight": 2 },
+      "overallFit": 3.89,
+      "rationale": "Commodity baseline. In DC context, primary alert path is SIEM, not audible. Safety (7): on-site deterrent. Reliability (5): audible alarm alone is insufficient for compliance — no audit record."
+    },
+    {
+      "name": "Single-Motion Emergency Release",
+      "kanoClass": "must_be",
+      "scores": { "time": 3, "cost": 3, "safety": 9, "reliability": 7, "skill": 7, "stress": 5, "pain": 3, "confidence": 6, "delight": 1 },
+      "overallFit": 4.89,
+      "rationale": "Regulatory mandate — DIN EN 179/1125 compliance is non-discretionary. Safety (9): evacuation cannot be impeded even in high-security zones. Skill (7): untrained visitors can exit."
+    },
+    {
+      "name": "Key Override Bypass",
+      "kanoClass": "must_be",
+      "scores": { "time": 2, "cost": 3, "safety": 6, "reliability": 7, "skill": 5, "stress": 7, "pain": 7, "confidence": 5, "delight": 2 },
+      "overallFit": 4.89,
+      "rationale": "Expected for authorized maintenance access. Stress (7) / Pain (7): authorized engineers access without triggering SOC alert. Confidence (5): key override produces NO automatic SIEM log — the critical gap."
+    },
+    {
+      "name": "Battery-Powered Operation",
+      "kanoClass": "must_be",
+      "scores": { "time": 3, "cost": 6, "safety": 8, "reliability": 9, "skill": 7, "stress": 7, "pain": 6, "confidence": 8, "delight": 4 },
+      "overallFit": 6.44,
+      "rationale": "Highest-scoring feature in DC context. Power events (UPS switchover, generator start) are when monitoring is most critical. Reliability (9): no single point of failure. Safety (8): alarm fires during power events. Directly addresses E8 (imp=10, opp=14)."
+    },
+    {
+      "name": "Pre-Alarm Warning",
+      "kanoClass": "indifferent",
+      "scores": { "time": 1, "cost": 1, "safety": 2, "reliability": 3, "skill": 2, "stress": 2, "pain": 2, "confidence": 2, "delight": 1 },
+      "overallFit": 1.78,
+      "rationale": "Indifferent in DC context. In a restricted zone, any handle contact is a security event — pre-alarm grace period is counterproductive for DC security posture. Scores 1-3 throughout."
+    }
+  ],
+  "avgOverallFit": 4.50,
+  "productRelatedNeeds": [
+    "Minimize the likelihood of an integrity break in chain-of-custody between the EasyWave radio event and the IP gateway SIEM log payload",
+    "Minimize the likelihood of RF channel contention from concurrent 868 MHz broadcasts across a 50+ door deployment causing dropped alarm events",
+    "Minimize the time required to replace IoT module batteries across a 50+ door DC deployment without triggering accidental alarms",
+    "Minimize the time to verify firmware version and radio protocol configuration consistency across all deployed units via the central BUS gateway"
+  ],
+  "sources": []
+}

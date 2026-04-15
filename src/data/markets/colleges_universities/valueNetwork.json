@@ -1,0 +1,248 @@
+{
+  "naicsCode": "611310",
+  "marketName": "Colleges, Universities, and Professional Schools",
+  "slug": "colleges_universities",
+  "coreJobStatement": "Deliver accredited higher education programs and credentials to enrolled students within a safe, legally compliant, and research-capable campus environment",
+  "outputTypes": [],
+  "hierarchy": "Process VN only (L7 → L4). No Product BOM — output is an educational outcome and credential.",
+  "architectureDistance": 2,
+  "marketSize": "",
+  "l6Systems": [
+    {
+      "id": "L6a",
+      "name": "Admissions & Enrollment",
+      "type": "Core",
+      "jobFamily": "Recruit and matriculate qualified applicants into accredited degree programs",
+      "l5Units": []
+    },
+    {
+      "id": "L6b",
+      "name": "Academic Instruction & Curriculum Delivery",
+      "type": "Core",
+      "jobFamily": "Deliver accredited coursework and degree-program learning to enrolled students",
+      "l5Units": []
+    },
+    {
+      "id": "L6c",
+      "name": "Research & Scholarship",
+      "type": "Core",
+      "jobFamily": "Generate, validate, and disseminate new knowledge funded by grants and institutional resources",
+      "l5Units": []
+    },
+    {
+      "id": "L6d",
+      "name": "Student Support & Campus Life",
+      "type": "Core",
+      "jobFamily": "Sustain student retention, wellbeing, and social development throughout enrollment",
+      "l5Units": []
+    },
+    {
+      "id": "L6e",
+      "name": "Assessment, Credentialing & Graduation",
+      "type": "Core",
+      "jobFamily": "Evaluate academic performance and confer accredited degrees, certificates, and credentials",
+      "l5Units": []
+    },
+    {
+      "id": "L6-H1",
+      "name": "Campus Safety, Security & Emergency Management (H)",
+      "type": "Horizontal",
+      "jobFamily": "Protect all occupants and property across all campus operations while maintaining regulatory-compliant evacuation readiness at all times",
+      "l5Units": []
+    },
+    {
+      "id": "L6-H2",
+      "name": "Facilities & Physical Plant Management (H)",
+      "type": "Horizontal",
+      "jobFamily": "Maintain all campus buildings and infrastructure to code and operational readiness",
+      "l5Units": []
+    },
+    {
+      "id": "L6-H3",
+      "name": "IT & Digital Infrastructure (H)",
+      "type": "Horizontal",
+      "jobFamily": "Provide reliable network, device, software, and data infrastructure for all core steps",
+      "l5Units": []
+    },
+    {
+      "id": "L6-H4",
+      "name": "Administrative, Finance & Compliance (H)",
+      "type": "Horizontal",
+      "jobFamily": "Ensure legal, accreditation, financial, and HR compliance across all university operations",
+      "l5Units": []
+    }
+  ],
+  "vnUnits": [
+    {
+      "level": "L5",
+      "id": "L5.a.1",
+      "name": "Admissions CRM & Application Platform",
+      "functionalJob": "Manages prospective student pipeline from inquiry through enrollment decision. Integrates with Common App, coalition platforms, and institutional portals.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.a.2",
+      "name": "Student Information System (SIS)",
+      "functionalJob": "Central record of all enrolled students: academic standing, grades, financial aid, holds, registration. Required for federal IPEDS reporting.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.b.1",
+      "name": "Learning Management System (LMS)",
+      "functionalJob": "Hosts course content, assignments, discussions, and grading. Core instructional infrastructure post-pandemic.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.b.2",
+      "name": "Classroom AV & Active Learning Technology",
+      "functionalJob": "Interactive displays, projection, lecture capture, and distributed audio for face-to-face and hybrid instruction.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.b.3",
+      "name": "Laboratory Equipment & Research Infrastructure (Teaching Labs)",
+      "functionalJob": "Discipline-specific bench equipment used in undergraduate and graduate teaching laboratories.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.c.1",
+      "name": "Research Lab & Instrumentation",
+      "functionalJob": "Major equipment used in funded research programs. Vendor landscape is highly discipline-specific.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.c.2",
+      "name": "Research Administration & Compliance Platform",
+      "functionalJob": "Manages grant lifecycle, IRB/IACUC protocols, export controls, and sponsored programs accounting.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.d.1",
+      "name": "Residence Life & Housing Management",
+      "functionalJob": "Manages student housing assignments, contracts, maintenance requests, and residential programming.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.d.2",
+      "name": "Campus Health & Counseling System",
+      "functionalJob": "Electronic health records for student health services and counseling center case management.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.e.1",
+      "name": "Degree Audit & Academic Progress System",
+      "functionalJob": "Validates credit completion against degree requirements and generates graduation eligibility confirmation.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.e.2",
+      "name": "Exam Integrity & Assessment Platform",
+      "functionalJob": "Proctoring (remote and in-person), high-stakes assessment delivery, and academic integrity enforcement.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.h1.1",
+      "name": "Campus Access Control System",
+      "functionalJob": "Electronic and mechanical credential-based access management for buildings, labs, and restricted zones across the full campus.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.h1.2",
+      "name": "Emergency Exit Alarm Guards — **Türwächter Entry Point**",
+      "functionalJob": "Surface-mounted mechanical guard devices that prevent unauthorized use of emergency exit doors while maintaining EN 179 / EN 1125 single-motion escape capability and (in IoT variants) broadcasting door-open and alarm events to centralized campus monitoring. Installed on existing door handles — no structural modification required.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.h1.3",
+      "name": "Video Surveillance & CCTV",
+      "functionalJob": "IP camera networks providing continuous visual monitoring of campus perimeter, building entries, parking, and interior common areas. Integrated with Video Management Software (VMS) for recording, search, and AI-based analytics.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.h1.4",
+      "name": "Fire Detection & Alarm System",
+      "functionalJob": "Smoke, heat, and CO detection network with voice evacuation capability. Required by NFPA 72 and NFPA 101 for all educational occupancies. Triggers automatic door unlock on activated exits (overrides any access control hold).",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.h1.5",
+      "name": "Mass Notification & Emergency Communication System",
+      "functionalJob": "Multi-channel emergency alerting — Clery Act mandates timely warning to the campus community. Channels: text/email, outdoor siren, desktop alert, digital signage, PA, social media.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.h1.6",
+      "name": "Physical Security Management Platform (PSIM / GSOC)",
+      "functionalJob": "Unified software integrating access control, surveillance, fire alarm, and emergency communication event feeds into a single campus security operations view.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.h2.1",
+      "name": "Building Management System (BMS)",
+      "functionalJob": "Centralized HVAC, electrical, and building automation control. In larger universities, the BMS is also the integration hub for fire alarm and access control event feeds.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.h2.2",
+      "name": "Computerized Maintenance Management System (CMMS)",
+      "functionalJob": "Work order management, preventive maintenance scheduling, and asset lifecycle tracking for all campus buildings and infrastructure.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.h3.1",
+      "name": "Campus Network Infrastructure",
+      "functionalJob": "Wired and wireless LAN/WAN for all campus buildings. Backbone for access control, surveillance, BMS, and all instructional technologies.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.h3.2",
+      "name": "Identity & Access Management (IAM)",
+      "functionalJob": "Central directory and credential management for all students, staff, and faculty. Federated with physical access control credentialing.",
+      "description": "",
+      "dependencies": []
+    }
+  ],
+  "marquardtPosition": "",
+  "strategicPosition": null,
+  "sources": []
+}

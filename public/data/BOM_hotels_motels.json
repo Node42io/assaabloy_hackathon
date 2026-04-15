@@ -1,0 +1,1438 @@
+{
+  "id": "BOM_hotels_motels",
+  "title": "Product BOM Decomposition: GfS Türwächter IoT",
+  "type": "product_bom",
+  "market_slug": "hotels_motels",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Market Context: Hotels (except Casino Hotels) and Motels — NAICS 721110",
+      "content": "*BOM covers the physical product manufactured by GfS Rettungswegtechnik (Assa Abloy Group), NAICS 332321 (Metal Window and Door Manufacturing). Hotels market shapes variant selection and alternative prioritization. Source: 01_product_decomposition.md, 02_functional_promise.md, 03_constraints.md, 05_market_discovery.md.*\n\n---"
+    },
+    {
+      "title": "Routing Confirmation",
+      "content": "| Check | Result |\n|---|---|\n| Manufacturer NAICS | 332321 — Metal Window and Door Manufacturing (sector 33) ✓ BOM applies |\n| Output type | Emergency Exit Door Alarm Guard with IoT Monitoring |\n| Relevant variant | Exit Control 179 Pre-alarm + Radio (Art. 990140) — lever handle, wireless, IoT |\n| Process VN boundary | Process VN covers HOW the device is made (stamping, molding, assembly). BOM starts below L5 — at the subsystems inside the device the hotel buys. |\n| Hotel-specific constraint focus | C5 (surface-mount aesthetics), C6 (EasyWave protocol lock-in vs. hotel BMS), C4 (battery life) |\n\n---"
+    },
+    {
+      "title": "B.1 — L4 Subsystems",
+      "content": "```\nOUTPUT TYPE (L5 — Emergency Exit Door Alarm Guard with IoT)\n|\n+-- L4  Mechanical locking/release subsystem\n|       Spring-loaded guard arm physically blocks door handle in locked state.\n|       Swing-release (45°) activates alarm via mechanical linkage.\n|       PRIMARY FUNCTIONAL CORE.\n|\n+-- L4  Acoustic alarm subsystem\n|       Piezoelectric horn + resonance cavity produces 95 dB alarm on guard activation.\n|       Mechanical trigger linkage: operates at 0 V (no battery required).\n|       AUXILIARY FUNCTIONAL (regulatory-critical: must be power-independent).\n|\n+-- L4  IoT telemetry subsystem\n|       RF transceiver detects guard state, transmits events to wireless receiver.\n|       Battery supplies power to electronics only. Alarm is battery-independent.\n|       CONTROL / INTERFACE.\n|\n+-- L4  Enclosure/mounting subsystem\n        RAL 6029 housing contains and protects all components.\n        Surface-mount back plate attaches to existing door handle without drilling.\n        CONTAINMENT / STRUCTURAL.\n```\n\n**Augmentation check:** Does the product have a packaging subsystem? No — the device IS its own housing (the L4 enclosure is the final form). Does it have an energy system? Battery is part of the IoT subsystem, not a standalone subsystem, because the primary alarm function requires zero power.\n\n---"
+    },
+    {
+      "title": "B.2 + B.3 — Full Decomposition with Alternatives",
+      "content": "### L4: Mechanical locking/release subsystem\n\n**L4 Alternatives — Guard mechanism type**\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Spring-loaded swing-release guard (mechanical-primary) | ~65% | Stable | MEDIUM | Analyst estimate — dominant in EU emergency exit alarm guard category |\n| Electromagnetic detent + spring-release (powered hold) | ~20% | Growing | LOW | Analyst estimate; dormakaba SafeRoute, GEZE-class systems |\n| Magnetic latch with alarm trigger (no physical blocker) | ~10% | Stable | LOW | Analyst estimate |\n| Hydraulic/pneumatic resistance guard | ~5% | Declining | LOW | Analyst estimate; legacy industrial use |\n\n> **Hotel implication:** Spring-loaded mechanical-primary is preferred for hotels due to power-independence mandate (C2) and retrofit simplicity (C5).\n\n---\n\n#### L3: Guard arm mechanism\n\n**L3 Alternatives — Guard arm construction material**\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Zinc die-cast guard arm | ~55% | Stable | MEDIUM | Door hardware material data; zinc alloy dominant in volume segment |\n| Engineering polymer (PA66 / glass-filled nylon) | ~30% | Growing | MEDIUM | Lighter weight; cost reduction trend in security hardware |\n| Aluminum die-cast guard arm | ~15% | Stable | LOW | Analyst estimate; higher cost, premium segment |\n\n##### L2: Pivot/spring assembly\n\n**L2 Alternatives — Pivot spring configuration**\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Torsion spring (coiled, around pivot axis) | ~70% | Stable | LOW | Analyst estimate; standard for angular return mechanisms |\n| Leaf spring (flat, cantilever) | ~25% | Stable | LOW | Simpler tooling; used in lower-cost variants |\n| Compression spring + lever | ~5% | Declining | LOW | Analyst estimate |\n\n**L1 → L0: Torsion spring**\n\n| L0 Raw Material | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Spring steel (carbon steel, high-tensile) | ~90% | Stable | MEDIUM | Standard for small coil/torsion springs; cost-effective, reliable fatigue life |\n| Stainless steel (304/316) | ~10% | Stable | MEDIUM | IP45 outdoor / humid environments; corrosion-resistant premium |\n\n##### L2: Handle engagement bracket\n\n**L2 Alternatives — Handle interface method**\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Universal U-bracket (fits most lever handles) | ~65% | Stable | LOW | Analyst estimate; retrofit-friendly |\n| Lever-specific saddle bracket | ~25% | Stable | LOW | Better fit for standardized EN 179 lever geometries |\n| Custom OEM-profiled bracket | ~10% | Declining | LOW | Legacy purpose-built installations |\n\n**L1 → L0: Bracket material**\n\n| L0 Raw Material | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Zinc die-cast (ZA-8 or Zamak alloys) | ~55% | Stable | MEDIUM | Cost-effective; standard in door hardware fittings; ~69% of volume-based hardware uses zinc alloy (Grand View Research, Door Hardware Market 2024) |\n| Stainless steel (stamped, 304) | ~30% | Growing | MEDIUM | Corrosion resistance; premium segment; ~38% of global door hardware by material volume (Verified Market Research 2024) |\n| Carbon steel (zinc-plated) | ~15% | Declining | MEDIUM | Lowest cost; declining due to corrosion concerns |\n\n#### L3: Key override mechanism\n\n**L3 Alternatives — Override cylinder type**\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Profile half-cylinder (DIN EN 1303) | ~75% | Stable | MEDIUM | European standard; locksmith-compatible; standard on Türwächter |\n| Oval cylinder (Scandinavian / ANSI format) | ~15% | Stable | LOW | Analyst estimate; Nordic and US markets |\n| Cam lock / furniture cylinder | ~8% | Declining | LOW | Analyst estimate; low-security legacy applications |\n| No key override (alarm-only) | ~2% | Stable | LOW | Analyst estimate; lowest-cost mechanical variants |\n\n**L1 → L0: Cylinder housing material**\n\n| L0 Raw Material | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Brass (CuZn39Pb3) | ~65% | Stable | MEDIUM | Traditional key cylinder material; machinability, corrosion resistance |\n| Zinc alloy (die-cast) | ~25% | Stable | MEDIUM | Cost reduction; slightly lower durability |\n| Stainless steel | ~10% | Growing | LOW | Analyst estimate; high-security / corrosive environments |\n\n---\n\n### L4: Acoustic alarm subsystem\n\n**L4 Alternatives — Alarm transducer type**\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Piezoelectric alarm horn (electromechanical disc) | ~70% | Stable | MEDIUM | Dominant in door alarm hardware; low power, high SPL, wide temperature range; see Dataintelo Alarm Buzzer Market 2025 |\n| Electromagnetic buzzer/sounder | ~25% | Declining | MEDIUM | Electromagnetic buzzer global market $1.35B (2024); declining in safety-critical applications due to power dependence (Cognitive Market Research 2024) |\n| MEMS acoustic transducer | ~3% | Emerging | LOW | Commercially available but not yet scaled in safety hardware |\n| Mechanical striker/bell (fully passive) | ~2% | Declining | LOW | Analyst estimate; no longer meets 95 dB requirements cost-effectively |\n\n> **Critical constraint:** The alarm transducer must operate at 0 V (C2 — absolute constraint). This eliminates all alternatives that require continuous power. Only piezoelectric disc and mechanical striker pass this constraint. The 70% piezo dominance reflects regulatory selection pressure.\n\n#### L3: Alarm transducer module\n\n##### L2: Piezoelectric disc assembly\n\n**L1 → L0: Piezo disc element material**\n\n| L0 Raw Material | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| PZT ceramic (Lead Zirconate Titanate) | ~85% | Stable | MEDIUM | Industry standard piezo material; high piezoelectric coefficient; used in virtually all commercial alarm horns |\n| Lead-free BaTiO3 (Barium Titanate) ceramic | ~10% | Growing | MEDIUM | RoHS/REACH compliance push; lower coefficient but improving |\n| PVDF polymer film | ~5% | Niche | LOW | Analyst estimate; flexible, low voltage — used in thin transducers |\n\n**L1 → L0: Acoustic resonance chamber material**\n\n| L0 Raw Material | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| ABS polymer | ~70% | Stable | MEDIUM | Cost, moldability, acoustic properties; dominant in electronic housings |\n| PC/ABS blend | ~20% | Stable | MEDIUM | Better impact resistance; used in higher-grade devices |\n| Glass-filled nylon (PA66-GF) | ~10% | Growing | LOW | Analyst estimate; dimensional stability at temperature extremes |\n\n##### L2: Mechanical trigger linkage\n\n**L1 → L0: Trigger arm material**\n\n| L0 Raw Material | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Stainless steel (stamped, 304) | ~70% | Stable | MEDIUM | Corrosion resistance; fatigue-critical component in safety device |\n| Zinc-plated carbon steel | ~25% | Declining | MEDIUM | Cost reduction; corrosion risk in humid environments (hotel stairwells) |\n| Engineering polymer (POM / acetal) | ~5% | Growing | LOW | Analyst estimate; weight reduction; creep risk at elevated load |\n\n---\n\n### L4: IoT telemetry subsystem\n\n**L4 Alternatives — Wireless radio protocol**\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Proprietary sub-GHz (e.g., 868 MHz EasyWave) | ~35% | Declining | MEDIUM | Dominant in legacy installed base of European door alarm hardware; no open standard interoperability |\n| BLE (Bluetooth Low Energy, 2.4 GHz) | ~30% | Growing | MEDIUM | 4.8B devices powered by BLE in 2024; 60% of smart building/lighting automation providers adopting BLE mesh (IHS Markit Connectivity Report) |\n| Zigbee (IEEE 802.15.4, 2.4 GHz mesh) | ~15% | Stable | MEDIUM | 1.4B active Zigbee devices globally (2024); strong in building automation and access control (SkyQuest Zigbee Market 2025) |\n| LoRaWAN (Sub-GHz LPWAN) | ~12% | Growing | MEDIUM | $9.08B LoRa/LoRaWAN market (2025), growing rapidly for large-campus IoT (360iResearch 2026) |\n| Z-Wave (Sub-GHz mesh) | ~5% | Stable | LOW | Analyst estimate; niche in residential/small commercial; less common in hospitality |\n| Wi-Fi (802.11) | ~3% | Stable | LOW | Analyst estimate; high power draw; rarely used for door-mounted IoT |\n\n> **Hotel implication:** Hotels increasingly standardize on BACnet/IP or KNX BMS platforms. EasyWave's proprietary protocol creates C6 lock-in. BLE and Zigbee alternatives are gaining share in new hotel builds; LoRaWAN suits large resort/campus properties. GfS wireless BUS gateway partially bridges C6 but does not eliminate it.\n\n#### L3: Radio communication module\n\n##### L2: RF transceiver circuit assembly\n\n**L2 Alternatives — Antenna type**\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| PCB trace antenna (inverted-F or meander) | ~55% | Stable | MEDIUM | Lowest cost; adequate for 30 m range requirement; no additional components |\n| Ceramic chip antenna | ~30% | Growing | MEDIUM | Better radiation pattern in constrained enclosures; preferred for sub-GHz |\n| Whip/wire stub antenna | ~15% | Declining | MEDIUM | Better range but requires protrusion from housing; cosmetically undesirable in hotel context |\n\n**L1 → L0: PCB substrate**\n\n| L0 Raw Material | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| FR4 (epoxy resin + woven glass fiber) | ~85% | Stable | HIGH | Industry standard for IoT device PCBs; cost-effective, well-characterized |\n| Rogers/PTFE high-frequency laminate | ~10% | Stable | LOW | Analyst estimate; used only where RF performance is critical at high frequency |\n| Flexible polyimide (FPC) | ~5% | Growing | LOW | Analyst estimate; space-constrained folded assemblies |\n\n#### L3: State detection module\n\n**L3 Alternatives — Guard-position sensor technology**\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Reed switch + permanent magnet | ~60% | Stable | MEDIUM | Lowest cost, fully passive, proven in alarm hardware; sealed glass tube |\n| Hall-effect sensor (solid-state) | ~30% | Growing | MEDIUM | No moving parts; better vibration resistance; requires 0.1–5 mA standby |\n| Optical interrupt sensor | ~8% | Stable | LOW | Analyst estimate; used in precision applications; dust sensitivity |\n| Mechanical microswitch | ~2% | Declining | LOW | Analyst estimate; contact bounce, wear-limited |\n\n**L1 → L0: Permanent magnet (reed switch variant)**\n\n| L0 Raw Material | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| NdFeB (Neodymium Iron Boron, sintered) | ~75% | Stable | MEDIUM | Highest energy density; standard for small magnet applications in electronics |\n| Ferrite (BaFe12O19) | ~25% | Declining | MEDIUM | Lower energy density; cost advantage in price-sensitive applications |\n\n#### L3: Power supply module\n\n**L3 Alternatives — Primary battery chemistry**\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Alkaline 9V block (MnO2/Zn) | ~60% | Declining | MEDIUM | Market standard; alkaline held 63.5% of primary battery market in 2025 (Mordor Intelligence); but declining in IoT applications |\n| Lithium primary 9V (LiSO2 or LiMnO2) | ~30% | Growing | MEDIUM | 3× energy density vs. alkaline; better cold-temperature performance; preferred for critical safety devices; lithium primary CAGR 9.5% through 2031 (Mordor Intelligence Primary Battery Market) |\n| Lithium coin cell array (CR2032 × N) | ~8% | Stable | LOW | Analyst estimate; used in ultra-compact IoT sensors; capacity limited for alarm horn |\n| Rechargeable NiMH 9V | ~2% | Niche | LOW | Analyst estimate; self-discharge problematic for infrequently monitored doors |\n\n> **Hotel implication:** Lithium primary strongly preferred for hotels — better battery life at moderate traffic levels, wider temperature range (hotel stairwells can be cold), and higher predictive maintenance reliability (C4 mitigation).\n\n**L1 → L0: Alkaline 9V cell composition**\n\n| L0 Raw Material | Role | Notes |\n|---|---|---|\n| MnO2 (Manganese Dioxide) | Cathode active material | ~40% of cell mass |\n| Zinc powder (Zn) | Anode active material | ~25% |\n| KOH solution | Electrolyte | ~15% |\n| Carbon/graphite | Current collector | ~10% |\n| Steel/nickel | Cell casing | ~10% |\n\n*(No meaningful design-choice alternatives at L0 within alkaline chemistry — stop at L1 for alkaline.)*\n\n**L1 → L0: Lithium primary 9V cell**\n\n| L0 Raw Material | Role | Notes |\n|---|---|---|\n| LiMnO2 or LiSO2 active material | Cathode + anode | ~55% of cell energy |\n| Organic electrolyte (LiCF3SO3 / LiClO4) | Ion transport | ~20% |\n| Aluminum/steel casing | Housing | ~15% |\n| Carbon/graphite | Current collector | ~10% |\n\n---\n\n### L4: Enclosure/mounting subsystem\n\n**L4 Alternatives — Housing form factor**\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Surface-mounted polymer housing (snap-fit assembly) | ~70% | Stable | MEDIUM | Dominant in door alarm hardware; retrofit-ready, no drilling |\n| Surface-mounted die-cast metal housing | ~20% | Declining | MEDIUM | Heavier, higher cost; used in industrial/vandal-resistant applications |\n| Semi-recessed polymer housing (requires shallow door channel) | ~7% | Growing | LOW | Analyst estimate; emerging in premium hospitality to reduce protrusion (C5 mitigation) |\n| Flush-mount integrated housing (door modification required) | ~3% | Niche | LOW | Analyst estimate; architecturally invisible but violates retrofit constraint |\n\n> **Hotel implication:** Surface-mounted polymer housing is the standard. For 4–5-star hotels, C5 (visible protrusion) creates aesthetic friction. Semi-recessed alternatives are gaining share as premium hospitality increasingly specifies minimalist door hardware aesthetics.\n\n#### L3: Primary housing module\n\n**L3 Alternatives — Shell material**\n\n| Alternative | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| ABS (Acrylonitrile Butadiene Styrene) | ~40% | Stable | MEDIUM | Cost-effective, good impact resistance, easy to color (RAL 6029); dominant in electronic enclosures |\n| PC/ABS blend (Polycarbonate/ABS) | ~35% | Growing | MEDIUM | Better UV stability and impact resistance vs. pure ABS; preferred for exposed applications |\n| PA66-GF (Glass-filled Nylon, 30%) | ~15% | Growing | LOW | Analyst estimate; dimensional stability, higher stiffness; growing in precision hardware |\n| PP/ABS blend | ~10% | Declining | LOW | Analyst estimate; lower cost, reduced performance |\n\n**L1 → L0: Surface coating (RAL 6029 Safety Green)**\n\n| L0 Raw Material | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Polyurethane powder coat | ~70% | Stable | MEDIUM | Industry standard for safety-colored hardware; durable, scratch-resistant |\n| Liquid polyurethane paint (spray) | ~20% | Declining | MEDIUM | Lower tooling cost; less durability |\n| Integral pigmented polymer (co-injection/colored resin) | ~10% | Growing | LOW | Analyst estimate; no secondary coating step; color stability over UV exposure |\n\n#### L3: Mounting hardware module\n\n**L2: Door attachment assembly — Screw material**\n\n| L0 Raw Material | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Stainless steel (A2-70, 304) | ~60% | Growing | MEDIUM | Corrosion resistance; preferred for surface-mounted hardware in humid stairwells |\n| Zinc-plated carbon steel | ~35% | Declining | MEDIUM | Cost-effective; corrosion risk in hotel stairwell environments |\n| Polymer/nylon (for glass-frame variant) | ~5% | Stable | LOW | Analyst estimate; non-metallic for glass-panel doors |\n\n**L2: Glass-frame mounting plate (optional — Art. 991170)**\n\n| L0 Raw Material | Share | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Steel (stamped, powder-coated) | ~80% | Stable | LOW | Analyst estimate; standard adapter plate material |\n| Aluminum (extruded) | ~20% | Growing | LOW | Analyst estimate; lighter, architectural aesthetic |\n\n---"
+    },
+    {
+      "title": "B.4 — Component Category Map: Radio Protocol Position",
+      "content": "Most relevant for hotel market (C6 constraint).\n\n```\nCOMPONENT CATEGORY: Wireless Radio Transmitter\n\nPosition 1: L4 IoT telemetry subsystem > L3 Radio communication module > L2 RF transceiver circuit assembly\n            Function: Broadcasts guard state (locked/unlocked) and alarm events to wireless receiver ~30m\n            Safety-critical: NO (supervisory overlay; mechanical alarm functions independently)\n            Hotel-specific: Must eventually integrate with hotel BMS (BACnet/IP or KNX)\n            Alternatives at this position: EasyWave 868 MHz (35%), BLE (30%), Zigbee (15%), LoRaWAN (12%), Z-Wave (5%), Wi-Fi (3%)\n\nINSIGHT: The same \"wireless door status transmitter\" role is filled by radically\ndifferent competing protocol ecosystems. EasyWave competes against BLE on power\nconsumption and range; against Zigbee on mesh coverage for multi-floor hotels;\nagainst LoRaWAN for large resort campus applications. The Core Job is identical\n(broadcast door state without mains power), but protocol selection locks the\noperator into incompatible receiver/gateway ecosystems. Hotels evaluating this\nproduct face a gateway vendor decision, not just a device decision.\n```\n\n---"
+    },
+    {
+      "title": "Quality Checks",
+      "content": "| Check | Status |\n|---|---|\n| Every L4 subsystem decomposes to at least L2 | PASS — all 4 subsystems reach L1/L0 |\n| Every alternative set sums to 100% (±1%) | PASS |\n| Every alternative set has confidence + source | PASS |\n| Mechanical alarm operates independently of power at every level | PASS — alarm subsystem documented as 0V operational; battery only in IoT subsystem |\n| BOM vs. VN boundary maintained | PASS — no manufacturing process steps in BOM; all components end up IN the product |\n| Packaging subsystem | N/A — device is its own housing; L4 enclosure covers containment |\n| Raw materials (L0) identified where material choice matters | PASS — battery chemistry, piezo material, guard arm L0 documented |\n| CFJ traceability | PASS — each subsystem traces upward: IoT subsystem → Emergency Exit Door Alarm Guard → CFJ-1 (ensure emergency exit compliance while preventing unauthorized door use) |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"output_type\": \"Emergency Exit Door Alarm Guard with IoT Monitoring\",\n  \"naics_code\": \"332321\",\n  \"market_context\": \"721110 Hotels (except Casino Hotels) and Motels\",\n  \"relevant_variant\": \"Exit Control 179 Pre-alarm + Radio (Art. 990140)\",\n  \"bom_units\": [\n    {\n      \"name\": \"Mechanical locking/release subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"Spring-loaded guard arm physically blocks door handle; swing-release activates alarm via mechanical linkage at 0V\",\n      \"naics_code\": \"332321\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard with IoT Monitoring\",\n      \"children\": [\n        {\n          \"name\": \"Guard arm mechanism\",\n          \"level\": \"L3\",\n          \"description\": \"Structural arm that blocks handle and swings to release\",\n          \"children\": [\n            {\n              \"name\": \"Pivot/spring assembly\",\n              \"level\": \"L2\",\n              \"description\": \"Torsion spring + pivot axle enabling swing-release motion\",\n              \"children\": [\n                {\n                  \"name\": \"Torsion spring\",\n                  \"level\": \"L1\",\n                  \"description\": \"Coiled spring providing return force after guard release\"\n                },\n                {\n                  \"name\": \"Pivot axle\",\n                  \"level\": \"L1\",\n                  \"description\": \"Rotation axis for guard arm swing\"\n                }\n              ]\n            },\n            {\n              \"name\": \"Guard arm body\",\n              \"level\": \"L2\",\n              \"description\": \"Structural casting forming the physical handle blocker\"\n            }\n          ]\n        },\n        {\n          \"name\": \"Handle engagement bracket\",\n          \"level\": \"L3\",\n          \"description\": \"Bracket interface attaching guard to existing door lever handle\"\n        },\n        {\n          \"name\": \"Key override mechanism\",\n          \"level\": \"L3\",\n          \"description\": \"Profile half-cylinder lock enabling authorized bypass without alarm trigger\",\n          \"children\": [\n            {\n              \"name\": \"Lock cylinder receiver\",\n              \"level\": \"L2\",\n              \"description\": \"Housing accepting DIN EN 1303 profile cylinder\",\n              \"children\": [\n                {\n                  \"name\": \"Cylinder housing\",\n                  \"level\": \"L1\",\n                  \"description\": \"Machined housing for lock cylinder\"\n                },\n                {\n                  \"name\": \"Lock cam\",\n                  \"level\": \"L1\",\n                  \"description\": \"Cam element translating key rotation to guard release\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"Acoustic alarm subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"Piezoelectric horn + mechanical trigger producing 95 dB alarm; operates at 0V — no battery dependency\",\n      \"naics_code\": \"332321\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard with IoT Monitoring\",\n      \"children\": [\n        {\n          \"name\": \"Alarm transducer module\",\n          \"level\": \"L3\",\n          \"description\": \"Piezoelectric disc + resonance cavity producing audible output\",\n          \"children\": [\n            {\n              \"name\": \"Piezoelectric disc assembly\",\n              \"level\": \"L2\",\n              \"children\": [\n                { \"name\": \"Piezo disc element\", \"level\": \"L1\", \"description\": \"PZT ceramic disc — primary acoustic transducer\" },\n                { \"name\": \"Resonance chamber body\", \"level\": \"L1\", \"description\": \"ABS/PC enclosure amplifying piezo output\" }\n              ]\n            }\n          ]\n        },\n        {\n          \"name\": \"Mechanical trigger linkage\",\n          \"level\": \"L3\",\n          \"description\": \"Actuator arm + return spring coupling guard swing to alarm trigger\",\n          \"children\": [\n            {\n              \"name\": \"Trigger actuator assembly\",\n              \"level\": \"L2\",\n              \"children\": [\n                { \"name\": \"Trigger arm\", \"level\": \"L1\", \"description\": \"Stainless steel arm transmitting guard motion to piezo trigger\" },\n                { \"name\": \"Return spring\", \"level\": \"L1\", \"description\": \"Spring resetting trigger on guard close\" }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"IoT telemetry subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"RF transceiver broadcasts guard state and alarm events; battery powers electronics only\",\n      \"naics_code\": \"332321\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard with IoT Monitoring\",\n      \"children\": [\n        {\n          \"name\": \"Radio communication module\",\n          \"level\": \"L3\",\n          \"description\": \"868 MHz EasyWave transceiver transmitting to wireless receiver ≤30m\",\n          \"children\": [\n            {\n              \"name\": \"RF transceiver circuit assembly\",\n              \"level\": \"L2\",\n              \"children\": [\n                { \"name\": \"RF transceiver IC\", \"level\": \"L1\" },\n                { \"name\": \"PCB substrate\", \"level\": \"L1\" },\n                { \"name\": \"Antenna element\", \"level\": \"L1\" }\n              ]\n            }\n          ]\n        },\n        {\n          \"name\": \"State detection module\",\n          \"level\": \"L3\",\n          \"description\": \"Sensor detecting guard position (locked/unlocked) and triggering transmission\",\n          \"children\": [\n            {\n              \"name\": \"Guard-position sensor assembly\",\n              \"level\": \"L2\",\n              \"children\": [\n                { \"name\": \"Reed switch / Hall-effect sensor\", \"level\": \"L1\" },\n                { \"name\": \"Permanent magnet\", \"level\": \"L1\" }\n              ]\n            }\n          ]\n        },\n        {\n          \"name\": \"Power supply module\",\n          \"level\": \"L3\",\n          \"description\": \"9V block battery powering electronics; mechanical alarm is battery-independent\",\n          \"children\": [\n            {\n              \"name\": \"Primary battery assembly\",\n              \"level\": \"L2\",\n              \"children\": [\n                { \"name\": \"9V primary cell (alkaline or lithium)\", \"level\": \"L1\" },\n                { \"name\": \"Battery clip connector\", \"level\": \"L1\" }\n              ]\n            },\n            {\n              \"name\": \"Power regulation circuit\",\n              \"level\": \"L2\",\n              \"children\": [\n                { \"name\": \"Voltage regulator IC\", \"level\": \"L1\" },\n                { \"name\": \"Decoupling capacitors\", \"level\": \"L1\" }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"Enclosure/mounting subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"RAL 6029 polymer housing + surface-mount back plate; no-drill retrofit installation on existing door handle\",\n      \"naics_code\": \"332321\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard with IoT Monitoring\",\n      \"children\": [\n        {\n          \"name\": \"Primary housing module\",\n          \"level\": \"L3\",\n          \"children\": [\n            {\n              \"name\": \"Outer shell assembly\",\n              \"level\": \"L2\",\n              \"children\": [\n                { \"name\": \"Housing body\", \"level\": \"L1\" },\n                { \"name\": \"Housing cover/lid\", \"level\": \"L1\" }\n              ]\n            },\n            { \"name\": \"Surface coating (RAL 6029)\", \"level\": \"L2\" }\n          ]\n        },\n        {\n          \"name\": \"Mounting hardware module\",\n          \"level\": \"L3\",\n          \"children\": [\n            {\n              \"name\": \"Door attachment assembly\",\n              \"level\": \"L2\",\n              \"children\": [\n                { \"name\": \"Mounting screws\", \"level\": \"L1\" },\n                { \"name\": \"Back plate bracket\", \"level\": \"L1\" }\n              ]\n            },\n            { \"name\": \"Glass-frame mounting plate (optional, Art. 991170)\", \"level\": \"L2\" }\n          ]\n        }\n      ]\n    }\n  ],\n  \"bom_alternatives\": [\n    {\n      \"bom_position\": \"L4 Mechanical locking/release subsystem\",\n      \"alternatives\": [\n        { \"name\": \"Spring-loaded swing-release guard (mechanical-primary)\", \"market_share\": 65, \"trend\": \"Stable\", \"confidence\": \"MEDIUM\", \"source\": \"Analyst estimate — EU emergency exit alarm guard category\" },\n        { \"name\": \"Electromagnetic detent + spring-release (powered hold)\", \"market_share\": 20, \"trend\": \"Growing\", \"confidence\": \"LOW\", \"source\": \"Analyst estimate\" },\n        { \"name\": \"Magnetic latch with alarm trigger\", \"market_share\": 10, \"trend\": \"Stable\", \"confidence\": \"LOW\", \"source\": \"Analyst estimate\" },\n        { \"name\": \"Hydraulic/pneumatic resistance guard\", \"market_share\": 5, \"trend\": \"Declining\", \"confidence\": \"LOW\", \"source\": \"Analyst estimate\" }\n      ]\n    },\n    {\n      \"bom_position\": \"L4 IoT telemetry subsystem — radio protocol\",\n      \"alternatives\": [\n        { \"name\": \"Proprietary sub-GHz (868 MHz EasyWave)\", \"market_share\": 35, \"trend\": \"Declining\", \"confidence\": \"MEDIUM\", \"source\": \"Analyst estimate — European door alarm installed base\" },\n        { \"name\": \"BLE (Bluetooth Low Energy)\", \"market_share\": 30, \"trend\": \"Growing\", \"confidence\": \"MEDIUM\", \"source\": \"IHS Markit Connectivity Report; 4.8B BLE devices 2024\" },\n        { \"name\": \"Zigbee (IEEE 802.15.4)\", \"market_share\": 15, \"trend\": \"Stable\", \"confidence\": \"MEDIUM\", \"source\": \"SkyQuest Zigbee Market Report 2025; 1.4B active devices\" },\n        { \"name\": \"LoRaWAN\", \"market_share\": 12, \"trend\": \"Growing\", \"confidence\": \"MEDIUM\", \"source\": \"360iResearch LoRa/LoRaWAN IoT Market 2026; $9.08B market 2025\" },\n        { \"name\": \"Z-Wave\", \"market_share\": 5, \"trend\": \"Stable\", \"confidence\": \"LOW\", \"source\": \"Analyst estimate\" },\n        { \"name\": \"Wi-Fi (802.11)\", \"market_share\": 3, \"trend\": \"Stable\", \"confidence\": \"LOW\", \"source\": \"Analyst estimate\" }\n      ]\n    },\n    {\n      \"bom_position\": \"L4 Acoustic alarm subsystem — transducer type\",\n      \"alternatives\": [\n        { \"name\": \"Piezoelectric alarm horn\", \"market_share\": 70, \"trend\": \"Stable\", \"confidence\": \"MEDIUM\", \"source\": \"Dataintelo Alarm Buzzer Market 2025; dominant in safety hardware\" },\n        { \"name\": \"Electromagnetic buzzer/sounder\", \"market_share\": 25, \"trend\": \"Declining\", \"confidence\": \"MEDIUM\", \"source\": \"Cognitive Market Research Electromagnetic Buzzers Market 2024; $1.35B global\" },\n        { \"name\": \"MEMS acoustic transducer\", \"market_share\": 3, \"trend\": \"Emerging\", \"confidence\": \"LOW\", \"source\": \"Analyst estimate\" },\n        { \"name\": \"Mechanical striker/bell (fully passive)\", \"market_share\": 2, \"trend\": \"Declining\", \"confidence\": \"LOW\", \"source\": \"Analyst estimate\" }\n      ]\n    },\n    {\n      \"bom_position\": \"L3 Power supply module — battery chemistry\",\n      \"alternatives\": [\n        { \"name\": \"Alkaline 9V block (MnO2/Zn)\", \"market_share\": 60, \"trend\": \"Declining\", \"confidence\": \"MEDIUM\", \"source\": \"Mordor Intelligence Alkaline Battery Market 2025; 63.5% primary battery share\" },\n        { \"name\": \"Lithium primary 9V (LiSO2 or LiMnO2)\", \"market_share\": 30, \"trend\": \"Growing\", \"confidence\": \"MEDIUM\", \"source\": \"Mordor Intelligence Primary Battery Market; lithium primary CAGR 9.5% through 2031\" },\n        { \"name\": \"Lithium coin cell array (CR2032 × N)\", \"market_share\": 8, \"trend\": \"Stable\", \"confidence\": \"LOW\", \"source\": \"Analyst estimate\" },\n        { \"name\": \"Rechargeable NiMH 9V\", \"market_share\": 2, \"trend\": \"Niche\", \"confidence\": \"LOW\", \"source\": \"Analyst estimate\" }\n      ]\n    },\n    {\n      \"bom_position\": \"L4 Enclosure/mounting subsystem — housing form\",\n      \"alternatives\": [\n        { \"name\": \"Surface-mounted polymer housing\", \"market_share\": 70, \"trend\": \"Stable\", \"confidence\": \"MEDIUM\", \"source\": \"Analyst estimate — dominant in door alarm hardware\" },\n        { \"name\": \"Surface-mounted die-cast metal housing\", \"market_share\": 20, \"trend\": \"Declining\", \"confidence\": \"MEDIUM\", \"source\": \"Grand View Research Door Hardware Market 2024; metals 53% of door hardware but declining in alarm devices\" },\n        { \"name\": \"Semi-recessed polymer housing\", \"market_share\": 7, \"trend\": \"Growing\", \"confidence\": \"LOW\", \"source\": \"Analyst estimate — emerging in premium hospitality\" },\n        { \"name\": \"Flush-mount integrated housing\", \"market_share\": 3, \"trend\": \"Niche\", \"confidence\": \"LOW\", \"source\": \"Analyst estimate\" }\n      ]\n    }\n  ],\n  \"component_map\": [\n    {\n      \"component_category\": \"Wireless Radio Transmitter\",\n      \"positions\": [\n        {\n          \"bom_path\": \"L4 IoT telemetry subsystem > L3 Radio communication module > L2 RF transceiver circuit assembly\",\n          \"function\": \"Broadcasts guard state and alarm events to wireless receiver\",\n          \"safety_critical\": false,\n          \"alternatives\": [\"Proprietary sub-GHz (EasyWave)\", \"BLE\", \"Zigbee\", \"LoRaWAN\", \"Z-Wave\", \"Wi-Fi\"],\n          \"hotel_note\": \"Protocol selection determines BMS integration path; EasyWave requires GfS-specific gateway for BACnet/KNX hotel systems (C6)\"\n        }\n      ]\n    }\n  ]\n}\n```\n\n---\n\n*Sources used for market share estimates:*\n- *[Panic & Emergency Exit Hardware Market 2025–2033 (Mark Wide Research)](https://markwideresearch.com/panic-emergency-exit-hardware-market/)*\n- *[Electromagnetic Buzzers Market Report (Cognitive Market Research, 2024)](https://www.cognitivemarketresearch.com/electromagnetic-buzzers-market-report)*\n- *[Alarm Buzzer Market Report 2025–2033 (Dataintelo)](https://dataintelo.com/report/alarm-buzzer-market)*\n- *[IHS Markit — Connectivity Technology Competition Drivers and Influencers](https://cdn.ihs.com/www/pdf/IHS%20Markit%20-%20Connectivity%20Technology%20Competition%20Drivers%20and%20Influencers.pdf)*\n- *[ZigBee Market Size, Forecast 2025–2032 (SkyQuest)](https://www.skyquestt.com/report/zigbee-market)*\n- *[LoRa & LoRaWAN IoT Market (360iResearch)](https://www.360iresearch.com/library/intelligence/lora-lorawan-iot)*\n- *[Alkaline Battery Market (Mordor Intelligence)](https://www.mordorintelligence.com/industry-reports/alkaline-battery-market)*\n- *[Primary Battery Market (Mordor Intelligence)](https://www.mordorintelligence.com/industry-reports/global-primary-battery-market-industry)*\n- *[Door Hardware Market (Verified Market Research)](https://www.verifiedmarketresearch.com/product/door-hardware-market/)*\n- *[Door Handles Market (Grand View Research, 2024)](https://www.grandviewresearch.com/industry-analysis/door-handles-market)*"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Check",
+        "Result"
+      ],
+      "rows": [
+        {
+          "Check": "Manufacturer NAICS",
+          "Result": "332321 — Metal Window and Door Manufacturing (sector 33) ✓ BOM applies"
+        },
+        {
+          "Check": "Output type",
+          "Result": "Emergency Exit Door Alarm Guard with IoT Monitoring"
+        },
+        {
+          "Check": "Relevant variant",
+          "Result": "Exit Control 179 Pre-alarm + Radio (Art. 990140) — lever handle, wireless, IoT"
+        },
+        {
+          "Check": "Process VN boundary",
+          "Result": "Process VN covers HOW the device is made (stamping, molding, assembly). BOM starts below L5 — at the subsystems inside the device the hotel buys."
+        },
+        {
+          "Check": "Hotel-specific constraint focus",
+          "Result": "C5 (surface-mount aesthetics), C6 (EasyWave protocol lock-in vs. hotel BMS), C4 (battery life)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Spring-loaded swing-release guard (mechanical-primary)",
+          "Share": "~65%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Analyst estimate — dominant in EU emergency exit alarm guard category"
+        },
+        {
+          "Alternative": "Electromagnetic detent + spring-release (powered hold)",
+          "Share": "~20%",
+          "Trend": "Growing",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; dormakaba SafeRoute, GEZE-class systems"
+        },
+        {
+          "Alternative": "Magnetic latch with alarm trigger (no physical blocker)",
+          "Share": "~10%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate"
+        },
+        {
+          "Alternative": "Hydraulic/pneumatic resistance guard",
+          "Share": "~5%",
+          "Trend": "Declining",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; legacy industrial use"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Zinc die-cast guard arm",
+          "Share": "~55%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Door hardware material data; zinc alloy dominant in volume segment"
+        },
+        {
+          "Alternative": "Engineering polymer (PA66 / glass-filled nylon)",
+          "Share": "~30%",
+          "Trend": "Growing",
+          "Confidence": "MEDIUM",
+          "Source": "Lighter weight; cost reduction trend in security hardware"
+        },
+        {
+          "Alternative": "Aluminum die-cast guard arm",
+          "Share": "~15%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; higher cost, premium segment"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Torsion spring (coiled, around pivot axis)",
+          "Share": "~70%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; standard for angular return mechanisms"
+        },
+        {
+          "Alternative": "Leaf spring (flat, cantilever)",
+          "Share": "~25%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Simpler tooling; used in lower-cost variants"
+        },
+        {
+          "Alternative": "Compression spring + lever",
+          "Share": "~5%",
+          "Trend": "Declining",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L0 Raw Material",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L0 Raw Material": "Spring steel (carbon steel, high-tensile)",
+          "Share": "~90%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Standard for small coil/torsion springs; cost-effective, reliable fatigue life"
+        },
+        {
+          "L0 Raw Material": "Stainless steel (304/316)",
+          "Share": "~10%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "IP45 outdoor / humid environments; corrosion-resistant premium"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Universal U-bracket (fits most lever handles)",
+          "Share": "~65%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; retrofit-friendly"
+        },
+        {
+          "Alternative": "Lever-specific saddle bracket",
+          "Share": "~25%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Better fit for standardized EN 179 lever geometries"
+        },
+        {
+          "Alternative": "Custom OEM-profiled bracket",
+          "Share": "~10%",
+          "Trend": "Declining",
+          "Confidence": "LOW",
+          "Source": "Legacy purpose-built installations"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L0 Raw Material",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L0 Raw Material": "Zinc die-cast (ZA-8 or Zamak alloys)",
+          "Share": "~55%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Cost-effective; standard in door hardware fittings; ~69% of volume-based hardware uses zinc alloy (Grand View Research, Door Hardware Market 2024)"
+        },
+        {
+          "L0 Raw Material": "Stainless steel (stamped, 304)",
+          "Share": "~30%",
+          "Trend": "Growing",
+          "Confidence": "MEDIUM",
+          "Source": "Corrosion resistance; premium segment; ~38% of global door hardware by material volume (Verified Market Research 2024)"
+        },
+        {
+          "L0 Raw Material": "Carbon steel (zinc-plated)",
+          "Share": "~15%",
+          "Trend": "Declining",
+          "Confidence": "MEDIUM",
+          "Source": "Lowest cost; declining due to corrosion concerns"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Profile half-cylinder (DIN EN 1303)",
+          "Share": "~75%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "European standard; locksmith-compatible; standard on Türwächter"
+        },
+        {
+          "Alternative": "Oval cylinder (Scandinavian / ANSI format)",
+          "Share": "~15%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; Nordic and US markets"
+        },
+        {
+          "Alternative": "Cam lock / furniture cylinder",
+          "Share": "~8%",
+          "Trend": "Declining",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; low-security legacy applications"
+        },
+        {
+          "Alternative": "No key override (alarm-only)",
+          "Share": "~2%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; lowest-cost mechanical variants"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L0 Raw Material",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L0 Raw Material": "Brass (CuZn39Pb3)",
+          "Share": "~65%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Traditional key cylinder material; machinability, corrosion resistance"
+        },
+        {
+          "L0 Raw Material": "Zinc alloy (die-cast)",
+          "Share": "~25%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Cost reduction; slightly lower durability"
+        },
+        {
+          "L0 Raw Material": "Stainless steel",
+          "Share": "~10%",
+          "Trend": "Growing",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; high-security / corrosive environments"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Piezoelectric alarm horn (electromechanical disc)",
+          "Share": "~70%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Dominant in door alarm hardware; low power, high SPL, wide temperature range; see Dataintelo Alarm Buzzer Market 2025"
+        },
+        {
+          "Alternative": "Electromagnetic buzzer/sounder",
+          "Share": "~25%",
+          "Trend": "Declining",
+          "Confidence": "MEDIUM",
+          "Source": "Electromagnetic buzzer global market $1.35B (2024); declining in safety-critical applications due to power dependence (Cognitive Market Research 2024)"
+        },
+        {
+          "Alternative": "MEMS acoustic transducer",
+          "Share": "~3%",
+          "Trend": "Emerging",
+          "Confidence": "LOW",
+          "Source": "Commercially available but not yet scaled in safety hardware"
+        },
+        {
+          "Alternative": "Mechanical striker/bell (fully passive)",
+          "Share": "~2%",
+          "Trend": "Declining",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; no longer meets 95 dB requirements cost-effectively"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L0 Raw Material",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L0 Raw Material": "PZT ceramic (Lead Zirconate Titanate)",
+          "Share": "~85%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Industry standard piezo material; high piezoelectric coefficient; used in virtually all commercial alarm horns"
+        },
+        {
+          "L0 Raw Material": "Lead-free BaTiO3 (Barium Titanate) ceramic",
+          "Share": "~10%",
+          "Trend": "Growing",
+          "Confidence": "MEDIUM",
+          "Source": "RoHS/REACH compliance push; lower coefficient but improving"
+        },
+        {
+          "L0 Raw Material": "PVDF polymer film",
+          "Share": "~5%",
+          "Trend": "Niche",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; flexible, low voltage — used in thin transducers"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L0 Raw Material",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L0 Raw Material": "ABS polymer",
+          "Share": "~70%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Cost, moldability, acoustic properties; dominant in electronic housings"
+        },
+        {
+          "L0 Raw Material": "PC/ABS blend",
+          "Share": "~20%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Better impact resistance; used in higher-grade devices"
+        },
+        {
+          "L0 Raw Material": "Glass-filled nylon (PA66-GF)",
+          "Share": "~10%",
+          "Trend": "Growing",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; dimensional stability at temperature extremes"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L0 Raw Material",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L0 Raw Material": "Stainless steel (stamped, 304)",
+          "Share": "~70%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Corrosion resistance; fatigue-critical component in safety device"
+        },
+        {
+          "L0 Raw Material": "Zinc-plated carbon steel",
+          "Share": "~25%",
+          "Trend": "Declining",
+          "Confidence": "MEDIUM",
+          "Source": "Cost reduction; corrosion risk in humid environments (hotel stairwells)"
+        },
+        {
+          "L0 Raw Material": "Engineering polymer (POM / acetal)",
+          "Share": "~5%",
+          "Trend": "Growing",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; weight reduction; creep risk at elevated load"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Proprietary sub-GHz (e.g., 868 MHz EasyWave)",
+          "Share": "~35%",
+          "Trend": "Declining",
+          "Confidence": "MEDIUM",
+          "Source": "Dominant in legacy installed base of European door alarm hardware; no open standard interoperability"
+        },
+        {
+          "Alternative": "BLE (Bluetooth Low Energy, 2.4 GHz)",
+          "Share": "~30%",
+          "Trend": "Growing",
+          "Confidence": "MEDIUM",
+          "Source": "4.8B devices powered by BLE in 2024; 60% of smart building/lighting automation providers adopting BLE mesh (IHS Markit Connectivity Report)"
+        },
+        {
+          "Alternative": "Zigbee (IEEE 802.15.4, 2.4 GHz mesh)",
+          "Share": "~15%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "1.4B active Zigbee devices globally (2024); strong in building automation and access control (SkyQuest Zigbee Market 2025)"
+        },
+        {
+          "Alternative": "LoRaWAN (Sub-GHz LPWAN)",
+          "Share": "~12%",
+          "Trend": "Growing",
+          "Confidence": "MEDIUM",
+          "Source": "$9.08B LoRa/LoRaWAN market (2025), growing rapidly for large-campus IoT (360iResearch 2026)"
+        },
+        {
+          "Alternative": "Z-Wave (Sub-GHz mesh)",
+          "Share": "~5%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; niche in residential/small commercial; less common in hospitality"
+        },
+        {
+          "Alternative": "Wi-Fi (802.11)",
+          "Share": "~3%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; high power draw; rarely used for door-mounted IoT"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "PCB trace antenna (inverted-F or meander)",
+          "Share": "~55%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Lowest cost; adequate for 30 m range requirement; no additional components"
+        },
+        {
+          "Alternative": "Ceramic chip antenna",
+          "Share": "~30%",
+          "Trend": "Growing",
+          "Confidence": "MEDIUM",
+          "Source": "Better radiation pattern in constrained enclosures; preferred for sub-GHz"
+        },
+        {
+          "Alternative": "Whip/wire stub antenna",
+          "Share": "~15%",
+          "Trend": "Declining",
+          "Confidence": "MEDIUM",
+          "Source": "Better range but requires protrusion from housing; cosmetically undesirable in hotel context"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L0 Raw Material",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L0 Raw Material": "FR4 (epoxy resin + woven glass fiber)",
+          "Share": "~85%",
+          "Trend": "Stable",
+          "Confidence": "HIGH",
+          "Source": "Industry standard for IoT device PCBs; cost-effective, well-characterized"
+        },
+        {
+          "L0 Raw Material": "Rogers/PTFE high-frequency laminate",
+          "Share": "~10%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; used only where RF performance is critical at high frequency"
+        },
+        {
+          "L0 Raw Material": "Flexible polyimide (FPC)",
+          "Share": "~5%",
+          "Trend": "Growing",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; space-constrained folded assemblies"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Reed switch + permanent magnet",
+          "Share": "~60%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Lowest cost, fully passive, proven in alarm hardware; sealed glass tube"
+        },
+        {
+          "Alternative": "Hall-effect sensor (solid-state)",
+          "Share": "~30%",
+          "Trend": "Growing",
+          "Confidence": "MEDIUM",
+          "Source": "No moving parts; better vibration resistance; requires 0.1–5 mA standby"
+        },
+        {
+          "Alternative": "Optical interrupt sensor",
+          "Share": "~8%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; used in precision applications; dust sensitivity"
+        },
+        {
+          "Alternative": "Mechanical microswitch",
+          "Share": "~2%",
+          "Trend": "Declining",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; contact bounce, wear-limited"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L0 Raw Material",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L0 Raw Material": "NdFeB (Neodymium Iron Boron, sintered)",
+          "Share": "~75%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Highest energy density; standard for small magnet applications in electronics"
+        },
+        {
+          "L0 Raw Material": "Ferrite (BaFe12O19)",
+          "Share": "~25%",
+          "Trend": "Declining",
+          "Confidence": "MEDIUM",
+          "Source": "Lower energy density; cost advantage in price-sensitive applications"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Alkaline 9V block (MnO2/Zn)",
+          "Share": "~60%",
+          "Trend": "Declining",
+          "Confidence": "MEDIUM",
+          "Source": "Market standard; alkaline held 63.5% of primary battery market in 2025 (Mordor Intelligence); but declining in IoT applications"
+        },
+        {
+          "Alternative": "Lithium primary 9V (LiSO2 or LiMnO2)",
+          "Share": "~30%",
+          "Trend": "Growing",
+          "Confidence": "MEDIUM",
+          "Source": "3× energy density vs. alkaline; better cold-temperature performance; preferred for critical safety devices; lithium primary CAGR 9.5% through 2031 (Mordor Intelligence Primary Battery Market)"
+        },
+        {
+          "Alternative": "Lithium coin cell array (CR2032 × N)",
+          "Share": "~8%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; used in ultra-compact IoT sensors; capacity limited for alarm horn"
+        },
+        {
+          "Alternative": "Rechargeable NiMH 9V",
+          "Share": "~2%",
+          "Trend": "Niche",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; self-discharge problematic for infrequently monitored doors"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L0 Raw Material",
+        "Role",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "L0 Raw Material": "MnO2 (Manganese Dioxide)",
+          "Role": "Cathode active material",
+          "Notes": "~40% of cell mass"
+        },
+        {
+          "L0 Raw Material": "Zinc powder (Zn)",
+          "Role": "Anode active material",
+          "Notes": "~25%"
+        },
+        {
+          "L0 Raw Material": "KOH solution",
+          "Role": "Electrolyte",
+          "Notes": "~15%"
+        },
+        {
+          "L0 Raw Material": "Carbon/graphite",
+          "Role": "Current collector",
+          "Notes": "~10%"
+        },
+        {
+          "L0 Raw Material": "Steel/nickel",
+          "Role": "Cell casing",
+          "Notes": "~10%"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L0 Raw Material",
+        "Role",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "L0 Raw Material": "LiMnO2 or LiSO2 active material",
+          "Role": "Cathode + anode",
+          "Notes": "~55% of cell energy"
+        },
+        {
+          "L0 Raw Material": "Organic electrolyte (LiCF3SO3 / LiClO4)",
+          "Role": "Ion transport",
+          "Notes": "~20%"
+        },
+        {
+          "L0 Raw Material": "Aluminum/steel casing",
+          "Role": "Housing",
+          "Notes": "~15%"
+        },
+        {
+          "L0 Raw Material": "Carbon/graphite",
+          "Role": "Current collector",
+          "Notes": "~10%"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Surface-mounted polymer housing (snap-fit assembly)",
+          "Share": "~70%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Dominant in door alarm hardware; retrofit-ready, no drilling"
+        },
+        {
+          "Alternative": "Surface-mounted die-cast metal housing",
+          "Share": "~20%",
+          "Trend": "Declining",
+          "Confidence": "MEDIUM",
+          "Source": "Heavier, higher cost; used in industrial/vandal-resistant applications"
+        },
+        {
+          "Alternative": "Semi-recessed polymer housing (requires shallow door channel)",
+          "Share": "~7%",
+          "Trend": "Growing",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; emerging in premium hospitality to reduce protrusion (C5 mitigation)"
+        },
+        {
+          "Alternative": "Flush-mount integrated housing (door modification required)",
+          "Share": "~3%",
+          "Trend": "Niche",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; architecturally invisible but violates retrofit constraint"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "ABS (Acrylonitrile Butadiene Styrene)",
+          "Share": "~40%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Cost-effective, good impact resistance, easy to color (RAL 6029); dominant in electronic enclosures"
+        },
+        {
+          "Alternative": "PC/ABS blend (Polycarbonate/ABS)",
+          "Share": "~35%",
+          "Trend": "Growing",
+          "Confidence": "MEDIUM",
+          "Source": "Better UV stability and impact resistance vs. pure ABS; preferred for exposed applications"
+        },
+        {
+          "Alternative": "PA66-GF (Glass-filled Nylon, 30%)",
+          "Share": "~15%",
+          "Trend": "Growing",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; dimensional stability, higher stiffness; growing in precision hardware"
+        },
+        {
+          "Alternative": "PP/ABS blend",
+          "Share": "~10%",
+          "Trend": "Declining",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; lower cost, reduced performance"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L0 Raw Material",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L0 Raw Material": "Polyurethane powder coat",
+          "Share": "~70%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Industry standard for safety-colored hardware; durable, scratch-resistant"
+        },
+        {
+          "L0 Raw Material": "Liquid polyurethane paint (spray)",
+          "Share": "~20%",
+          "Trend": "Declining",
+          "Confidence": "MEDIUM",
+          "Source": "Lower tooling cost; less durability"
+        },
+        {
+          "L0 Raw Material": "Integral pigmented polymer (co-injection/colored resin)",
+          "Share": "~10%",
+          "Trend": "Growing",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; no secondary coating step; color stability over UV exposure"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L0 Raw Material",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L0 Raw Material": "Stainless steel (A2-70, 304)",
+          "Share": "~60%",
+          "Trend": "Growing",
+          "Confidence": "MEDIUM",
+          "Source": "Corrosion resistance; preferred for surface-mounted hardware in humid stairwells"
+        },
+        {
+          "L0 Raw Material": "Zinc-plated carbon steel",
+          "Share": "~35%",
+          "Trend": "Declining",
+          "Confidence": "MEDIUM",
+          "Source": "Cost-effective; corrosion risk in hotel stairwell environments"
+        },
+        {
+          "L0 Raw Material": "Polymer/nylon (for glass-frame variant)",
+          "Share": "~5%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; non-metallic for glass-panel doors"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L0 Raw Material",
+        "Share",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L0 Raw Material": "Steel (stamped, powder-coated)",
+          "Share": "~80%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; standard adapter plate material"
+        },
+        {
+          "L0 Raw Material": "Aluminum (extruded)",
+          "Share": "~20%",
+          "Trend": "Growing",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; lighter, architectural aesthetic"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Check",
+        "Status"
+      ],
+      "rows": [
+        {
+          "Check": "Every L4 subsystem decomposes to at least L2",
+          "Status": "PASS — all 4 subsystems reach L1/L0"
+        },
+        {
+          "Check": "Every alternative set sums to 100% (±1%)",
+          "Status": "PASS"
+        },
+        {
+          "Check": "Every alternative set has confidence + source",
+          "Status": "PASS"
+        },
+        {
+          "Check": "Mechanical alarm operates independently of power at every level",
+          "Status": "PASS — alarm subsystem documented as 0V operational; battery only in IoT subsystem"
+        },
+        {
+          "Check": "BOM vs. VN boundary maintained",
+          "Status": "PASS — no manufacturing process steps in BOM; all components end up IN the product"
+        },
+        {
+          "Check": "Packaging subsystem",
+          "Status": "N/A — device is its own housing; L4 enclosure covers containment"
+        },
+        {
+          "Check": "Raw materials (L0) identified where material choice matters",
+          "Status": "PASS — battery chemistry, piezo material, guard arm L0 documented"
+        },
+        {
+          "Check": "CFJ traceability",
+          "Status": "PASS — each subsystem traces upward: IoT subsystem → Emergency Exit Door Alarm Guard → CFJ-1 (ensure emergency exit compliance while preventing unauthorized door use)"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "output_type": "Emergency Exit Door Alarm Guard with IoT Monitoring",
+      "naics_code": "332321",
+      "market_context": "721110 Hotels (except Casino Hotels) and Motels",
+      "relevant_variant": "Exit Control 179 Pre-alarm + Radio (Art. 990140)",
+      "bom_units": [
+        {
+          "name": "Mechanical locking/release subsystem",
+          "level": "L4",
+          "description": "Spring-loaded guard arm physically blocks door handle; swing-release activates alarm via mechanical linkage at 0V",
+          "naics_code": "332321",
+          "output_type": "Emergency Exit Door Alarm Guard with IoT Monitoring",
+          "children": [
+            {
+              "name": "Guard arm mechanism",
+              "level": "L3",
+              "description": "Structural arm that blocks handle and swings to release",
+              "children": [
+                {
+                  "name": "Pivot/spring assembly",
+                  "level": "L2",
+                  "description": "Torsion spring + pivot axle enabling swing-release motion",
+                  "children": [
+                    {
+                      "name": "Torsion spring",
+                      "level": "L1",
+                      "description": "Coiled spring providing return force after guard release"
+                    },
+                    {
+                      "name": "Pivot axle",
+                      "level": "L1",
+                      "description": "Rotation axis for guard arm swing"
+                    }
+                  ]
+                },
+                {
+                  "name": "Guard arm body",
+                  "level": "L2",
+                  "description": "Structural casting forming the physical handle blocker"
+                }
+              ]
+            },
+            {
+              "name": "Handle engagement bracket",
+              "level": "L3",
+              "description": "Bracket interface attaching guard to existing door lever handle"
+            },
+            {
+              "name": "Key override mechanism",
+              "level": "L3",
+              "description": "Profile half-cylinder lock enabling authorized bypass without alarm trigger",
+              "children": [
+                {
+                  "name": "Lock cylinder receiver",
+                  "level": "L2",
+                  "description": "Housing accepting DIN EN 1303 profile cylinder",
+                  "children": [
+                    {
+                      "name": "Cylinder housing",
+                      "level": "L1",
+                      "description": "Machined housing for lock cylinder"
+                    },
+                    {
+                      "name": "Lock cam",
+                      "level": "L1",
+                      "description": "Cam element translating key rotation to guard release"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Acoustic alarm subsystem",
+          "level": "L4",
+          "description": "Piezoelectric horn + mechanical trigger producing 95 dB alarm; operates at 0V — no battery dependency",
+          "naics_code": "332321",
+          "output_type": "Emergency Exit Door Alarm Guard with IoT Monitoring",
+          "children": [
+            {
+              "name": "Alarm transducer module",
+              "level": "L3",
+              "description": "Piezoelectric disc + resonance cavity producing audible output",
+              "children": [
+                {
+                  "name": "Piezoelectric disc assembly",
+                  "level": "L2",
+                  "children": [
+                    {
+                      "name": "Piezo disc element",
+                      "level": "L1",
+                      "description": "PZT ceramic disc — primary acoustic transducer"
+                    },
+                    {
+                      "name": "Resonance chamber body",
+                      "level": "L1",
+                      "description": "ABS/PC enclosure amplifying piezo output"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Mechanical trigger linkage",
+              "level": "L3",
+              "description": "Actuator arm + return spring coupling guard swing to alarm trigger",
+              "children": [
+                {
+                  "name": "Trigger actuator assembly",
+                  "level": "L2",
+                  "children": [
+                    {
+                      "name": "Trigger arm",
+                      "level": "L1",
+                      "description": "Stainless steel arm transmitting guard motion to piezo trigger"
+                    },
+                    {
+                      "name": "Return spring",
+                      "level": "L1",
+                      "description": "Spring resetting trigger on guard close"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "IoT telemetry subsystem",
+          "level": "L4",
+          "description": "RF transceiver broadcasts guard state and alarm events; battery powers electronics only",
+          "naics_code": "332321",
+          "output_type": "Emergency Exit Door Alarm Guard with IoT Monitoring",
+          "children": [
+            {
+              "name": "Radio communication module",
+              "level": "L3",
+              "description": "868 MHz EasyWave transceiver transmitting to wireless receiver ≤30m",
+              "children": [
+                {
+                  "name": "RF transceiver circuit assembly",
+                  "level": "L2",
+                  "children": [
+                    {
+                      "name": "RF transceiver IC",
+                      "level": "L1"
+                    },
+                    {
+                      "name": "PCB substrate",
+                      "level": "L1"
+                    },
+                    {
+                      "name": "Antenna element",
+                      "level": "L1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "State detection module",
+              "level": "L3",
+              "description": "Sensor detecting guard position (locked/unlocked) and triggering transmission",
+              "children": [
+                {
+                  "name": "Guard-position sensor assembly",
+                  "level": "L2",
+                  "children": [
+                    {
+                      "name": "Reed switch / Hall-effect sensor",
+                      "level": "L1"
+                    },
+                    {
+                      "name": "Permanent magnet",
+                      "level": "L1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Power supply module",
+              "level": "L3",
+              "description": "9V block battery powering electronics; mechanical alarm is battery-independent",
+              "children": [
+                {
+                  "name": "Primary battery assembly",
+                  "level": "L2",
+                  "children": [
+                    {
+                      "name": "9V primary cell (alkaline or lithium)",
+                      "level": "L1"
+                    },
+                    {
+                      "name": "Battery clip connector",
+                      "level": "L1"
+                    }
+                  ]
+                },
+                {
+                  "name": "Power regulation circuit",
+                  "level": "L2",
+                  "children": [
+                    {
+                      "name": "Voltage regulator IC",
+                      "level": "L1"
+                    },
+                    {
+                      "name": "Decoupling capacitors",
+                      "level": "L1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Enclosure/mounting subsystem",
+          "level": "L4",
+          "description": "RAL 6029 polymer housing + surface-mount back plate; no-drill retrofit installation on existing door handle",
+          "naics_code": "332321",
+          "output_type": "Emergency Exit Door Alarm Guard with IoT Monitoring",
+          "children": [
+            {
+              "name": "Primary housing module",
+              "level": "L3",
+              "children": [
+                {
+                  "name": "Outer shell assembly",
+                  "level": "L2",
+                  "children": [
+                    {
+                      "name": "Housing body",
+                      "level": "L1"
+                    },
+                    {
+                      "name": "Housing cover/lid",
+                      "level": "L1"
+                    }
+                  ]
+                },
+                {
+                  "name": "Surface coating (RAL 6029)",
+                  "level": "L2"
+                }
+              ]
+            },
+            {
+              "name": "Mounting hardware module",
+              "level": "L3",
+              "children": [
+                {
+                  "name": "Door attachment assembly",
+                  "level": "L2",
+                  "children": [
+                    {
+                      "name": "Mounting screws",
+                      "level": "L1"
+                    },
+                    {
+                      "name": "Back plate bracket",
+                      "level": "L1"
+                    }
+                  ]
+                },
+                {
+                  "name": "Glass-frame mounting plate (optional, Art. 991170)",
+                  "level": "L2"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "bom_alternatives": [
+        {
+          "bom_position": "L4 Mechanical locking/release subsystem",
+          "alternatives": [
+            {
+              "name": "Spring-loaded swing-release guard (mechanical-primary)",
+              "market_share": 65,
+              "trend": "Stable",
+              "confidence": "MEDIUM",
+              "source": "Analyst estimate — EU emergency exit alarm guard category"
+            },
+            {
+              "name": "Electromagnetic detent + spring-release (powered hold)",
+              "market_share": 20,
+              "trend": "Growing",
+              "confidence": "LOW",
+              "source": "Analyst estimate"
+            },
+            {
+              "name": "Magnetic latch with alarm trigger",
+              "market_share": 10,
+              "trend": "Stable",
+              "confidence": "LOW",
+              "source": "Analyst estimate"
+            },
+            {
+              "name": "Hydraulic/pneumatic resistance guard",
+              "market_share": 5,
+              "trend": "Declining",
+              "confidence": "LOW",
+              "source": "Analyst estimate"
+            }
+          ]
+        },
+        {
+          "bom_position": "L4 IoT telemetry subsystem — radio protocol",
+          "alternatives": [
+            {
+              "name": "Proprietary sub-GHz (868 MHz EasyWave)",
+              "market_share": 35,
+              "trend": "Declining",
+              "confidence": "MEDIUM",
+              "source": "Analyst estimate — European door alarm installed base"
+            },
+            {
+              "name": "BLE (Bluetooth Low Energy)",
+              "market_share": 30,
+              "trend": "Growing",
+              "confidence": "MEDIUM",
+              "source": "IHS Markit Connectivity Report; 4.8B BLE devices 2024"
+            },
+            {
+              "name": "Zigbee (IEEE 802.15.4)",
+              "market_share": 15,
+              "trend": "Stable",
+              "confidence": "MEDIUM",
+              "source": "SkyQuest Zigbee Market Report 2025; 1.4B active devices"
+            },
+            {
+              "name": "LoRaWAN",
+              "market_share": 12,
+              "trend": "Growing",
+              "confidence": "MEDIUM",
+              "source": "360iResearch LoRa/LoRaWAN IoT Market 2026; $9.08B market 2025"
+            },
+            {
+              "name": "Z-Wave",
+              "market_share": 5,
+              "trend": "Stable",
+              "confidence": "LOW",
+              "source": "Analyst estimate"
+            },
+            {
+              "name": "Wi-Fi (802.11)",
+              "market_share": 3,
+              "trend": "Stable",
+              "confidence": "LOW",
+              "source": "Analyst estimate"
+            }
+          ]
+        },
+        {
+          "bom_position": "L4 Acoustic alarm subsystem — transducer type",
+          "alternatives": [
+            {
+              "name": "Piezoelectric alarm horn",
+              "market_share": 70,
+              "trend": "Stable",
+              "confidence": "MEDIUM",
+              "source": "Dataintelo Alarm Buzzer Market 2025; dominant in safety hardware"
+            },
+            {
+              "name": "Electromagnetic buzzer/sounder",
+              "market_share": 25,
+              "trend": "Declining",
+              "confidence": "MEDIUM",
+              "source": "Cognitive Market Research Electromagnetic Buzzers Market 2024; $1.35B global"
+            },
+            {
+              "name": "MEMS acoustic transducer",
+              "market_share": 3,
+              "trend": "Emerging",
+              "confidence": "LOW",
+              "source": "Analyst estimate"
+            },
+            {
+              "name": "Mechanical striker/bell (fully passive)",
+              "market_share": 2,
+              "trend": "Declining",
+              "confidence": "LOW",
+              "source": "Analyst estimate"
+            }
+          ]
+        },
+        {
+          "bom_position": "L3 Power supply module — battery chemistry",
+          "alternatives": [
+            {
+              "name": "Alkaline 9V block (MnO2/Zn)",
+              "market_share": 60,
+              "trend": "Declining",
+              "confidence": "MEDIUM",
+              "source": "Mordor Intelligence Alkaline Battery Market 2025; 63.5% primary battery share"
+            },
+            {
+              "name": "Lithium primary 9V (LiSO2 or LiMnO2)",
+              "market_share": 30,
+              "trend": "Growing",
+              "confidence": "MEDIUM",
+              "source": "Mordor Intelligence Primary Battery Market; lithium primary CAGR 9.5% through 2031"
+            },
+            {
+              "name": "Lithium coin cell array (CR2032 × N)",
+              "market_share": 8,
+              "trend": "Stable",
+              "confidence": "LOW",
+              "source": "Analyst estimate"
+            },
+            {
+              "name": "Rechargeable NiMH 9V",
+              "market_share": 2,
+              "trend": "Niche",
+              "confidence": "LOW",
+              "source": "Analyst estimate"
+            }
+          ]
+        },
+        {
+          "bom_position": "L4 Enclosure/mounting subsystem — housing form",
+          "alternatives": [
+            {
+              "name": "Surface-mounted polymer housing",
+              "market_share": 70,
+              "trend": "Stable",
+              "confidence": "MEDIUM",
+              "source": "Analyst estimate — dominant in door alarm hardware"
+            },
+            {
+              "name": "Surface-mounted die-cast metal housing",
+              "market_share": 20,
+              "trend": "Declining",
+              "confidence": "MEDIUM",
+              "source": "Grand View Research Door Hardware Market 2024; metals 53% of door hardware but declining in alarm devices"
+            },
+            {
+              "name": "Semi-recessed polymer housing",
+              "market_share": 7,
+              "trend": "Growing",
+              "confidence": "LOW",
+              "source": "Analyst estimate — emerging in premium hospitality"
+            },
+            {
+              "name": "Flush-mount integrated housing",
+              "market_share": 3,
+              "trend": "Niche",
+              "confidence": "LOW",
+              "source": "Analyst estimate"
+            }
+          ]
+        }
+      ],
+      "component_map": [
+        {
+          "component_category": "Wireless Radio Transmitter",
+          "positions": [
+            {
+              "bom_path": "L4 IoT telemetry subsystem > L3 Radio communication module > L2 RF transceiver circuit assembly",
+              "function": "Broadcasts guard state and alarm events to wireless receiver",
+              "safety_critical": false,
+              "alternatives": [
+                "Proprietary sub-GHz (EasyWave)",
+                "BLE",
+                "Zigbee",
+                "LoRaWAN",
+                "Z-Wave",
+                "Wi-Fi"
+              ],
+              "hotel_note": "Protocol selection determines BMS integration path; EasyWave requires GfS-specific gateway for BACnet/KNX hotel systems (C6)"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "has_bom": true,
+  "naics_sector_type": "non_manufacturing"
+}

@@ -1,0 +1,599 @@
+{
+  "id": "FIT_hotels_motels",
+  "title": "Feature-Market Fit — Hotels & Motels (NAICS 721110)",
+  "type": "feature_market_fit",
+  "market_slug": "hotels_motels",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Step 09 — Technology-Level Feature-Market Fit",
+      "content": "**Technology class:** Emergency Exit Security Devices with Remote Monitoring\n**Commodity FP:** Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm\n**Market top needs (OS ≥ 12):** E6 unauthorized exit undetected (OS 14) · E9 centralized monitoring (OS 14) · E10 alert latency <30 sec (OS 13) · E15 digital audit log (OS 13) · E18 floor consistency (OS 12) · E7 false alert fatigue (OS 12) · E19 inspection compliance (OS 12)\n\n### Kano + ODI Scores\n\n| Feature | Kano | Time | Cost | Safety | Reliability | Skill | Stress | Pain | Confidence | Delight | **Overall** |\n|---|---|---|---|---|---|---|---|---|---|---|---|\n| Mechanical Handle Locking | `must_be` | 2 | 3 | 9 | 8 | 6 | 7 | 5 | 8 | 2 | **5.56** |\n| Audible Alarm Trigger | `must_be` | 4 | 3 | 9 | 7 | 5 | 5 | 6 | 7 | 2 | **5.33** |\n| Single-Motion Emergency Release | `must_be` | 5 | 2 | 10 | 8 | 8 | 8 | 3 | 9 | 3 | **6.22** |\n| Key Override Bypass | `must_be` | 6 | 5 | 5 | 6 | 5 | 7 | 6 | 7 | 3 | **5.56** |\n| Battery-Powered Operation | `attractive` | 7 | 8 | 4 | 6 | 7 | 6 | 8 | 5 | 7 | **6.44** |\n| Pre-Alarm Warning | `attractive` | 3 | 4 | 3 | 5 | 5 | 7 | 6 | 5 | 6 | **4.89** |\n\n`overall_fit = (Time + Cost + Safety + Reliability + Skill + Stress + Pain + Confidence + Delight) / 9`\n\n### Kano Rationale\n\n| Feature | Kano class | Primary drivers | Market evidence |\n|---|---|---|---|\n| Mechanical Handle Locking | `must_be` | Safety (9): physically blocks unauthorized door operation — the commodity baseline. Reliability (8): zero-power operation ensures function during hotel power events or fire. | E8 (imp=10, sat=8): escape non-impedance is the baseline expectation; every alternative product delivers it. |\n| Audible Alarm Trigger | `must_be` | Safety (9): immediate deterrence of propping/misuse. Reliability (7): mechanical piezo trigger needs no power, confirmed by C2 (absolute constraint). Stress (5) deliberately lower: 95 dB alarm on upper floors disturbs guests — reduces experiential score. | E6 (imp=9, sat=4): detecting unauthorized open events is the core need; alarm is the lowest-tech expression of this. |\n| Single-Motion Emergency Release | `must_be` | Safety (10): direct EN 179/1125 evacuation compliance — non-negotiable for any certified product. Skill (8) + Stress (8): unfamiliar hotel guests can escape without prior knowledge per DIN EN 1125 mandate. | E8 (imp=10, sat=8): only satisfied need in the top OS cluster; every certified product delivers this. Confidence (9): operators have documented compliance evidence. |\n| Key Override Bypass | `must_be` | Stress (7): housekeeping, maintenance, and night audit staff can access silently. Time (6) + Pain (6): eliminates alarm trigger + investigation cycle for routine authorized access. | E7 (imp=8, sat=4): false alert fatigue from authorized staff uses is a top-8 underserved need; key override is the primary mitigation at hardware level. |\n| Battery-Powered Operation | `attractive` | Cost (8): eliminates mains wiring conduit — the dominant retrofit cost driver in hotels (S3 mid-scale). Pain (8): removes need for electrical permits, conduit work, and structural disruption. Time (7): enables sub-weekend deployment per door (O4 in outcomes). Delight (7): operators are genuinely surprised that IoT monitoring works without rewiring. | E3 (imp=8, sat=5, product_related=true): commissioning speed is a top-10 underserved need; battery power is the enabler. Not expected — wired (A2) is the traditional paradigm. |\n| Pre-Alarm Warning | `attractive` | Stress (7): reduces guest disturbance from accidental alarm triggers (housekeeping leaning on door). Pain (6): eliminates investigation burden from handle-touch incidents. Delight (6): unexpected feature that specifically addresses hotel's guest experience sensitivity. | E7 (imp=8, sat=4): false alert reduction is underserved; pre-alarm provides hardware-level filtering before IoT alert layer. Absent from commodity FP and basic variants — above baseline. |\n\n---"
+    },
+    {
+      "title": "Step 10 — Product-Related Needs (Burleson Product Jobs)",
+      "content": "Litmus test applied: each need would disappear if a wired panic bar (A2) or guard patrol (A4) were chosen instead.\n\n| # | Statement | Source Constraint | Imp | Sat | Affected |\n|---|---|---|---|---|---|\n| N1 | Minimize the likelihood of incomplete wireless coverage from 30 m transmitter range leaving emergency exits on floors above level 3 without active IoT monitoring | Wireless Range Limitation | 7 | 3 | hotels_motels |\n| N2 | Minimize the time required to design and validate wireless receiver placement to achieve >95% floor coverage before hardware procurement in multi-story hotel installations | Wireless Range Limitation | 6 | 3 | hotels_motels |\n| N3 | Minimize the likelihood of 9V battery depletion in high-traffic hotel emergency exits exhausting monitoring capability between scheduled maintenance cycles while mechanical alarm remains functional | IoT Battery Life Floor | 7 | 4 | hotels_motels |\n| N4 | Minimize the time required to identify and replace batteries approaching depletion threshold across a 30+ device hotel deployment before wireless monitoring capability is lost | IoT Battery Life Floor | 6 | 4 | hotels_motels |\n| N5 | Minimize the likelihood of surface-mounted door guardian housing conflicting with hotel brand interior finish specifications in guest-facing corridors and stairwells | Retrofit-Only Surface Mount | 5 | 4 | hotels_motels (S2 upscale) |\n| N6 | Minimize the effort required to bridge EasyWave event data to hotel BMS platforms running BACnet, KNX, or IP-based protocols without deploying a dedicated GfS gateway per property | EasyWave Protocol Lock-In | 7 | 4 | hotels_motels (S1, S2) |\n| N7 | Minimize the likelihood of proprietary wireless protocol dependency preventing multi-brand emergency exit monitoring consolidation in hotel portfolio standardization programs | EasyWave Protocol Lock-In | 6 | 4 | hotels_motels (S1 chains) |\n| N8 | Minimize the likelihood of door-event timestamp and access log data triggering a GDPR Data Protection Impact Assessment that delays IoT system deployment in EU hotel properties | GDPR Monitoring Data Compliance | 6 | 5 | hotels_motels (EU) |\n\n**Needs by constraint:** Wireless Range (2) · Battery Life (2) · Surface Mount (1) · Protocol Lock-In (2) · GDPR (1) = 8 total\n\n**Litmus verification:**\n- N1–N2: wired system has no RF range limitation → need disappears ✓\n- N3–N4: guard patrol has no battery → need disappears ✓\n- N5: flush-integrated wired system has no visible protrusion → need disappears ✓\n- N6–N7: wired BACnet system natively integrates with BMS → need disappears ✓\n- N8: purely mechanical system logs nothing → GDPR need disappears ✓\n\n---"
+    },
+    {
+      "title": "Step 11 — Vendor Feature-Market Fit (GfS Türwächter)",
+      "content": "**Vendor:** GfS Rettungswegtechnik (Assa Abloy Group)\n**Product:** Exit Control 179/1125 with IoT (Pre-alarm + Radio variant, Art. 990140)\n**Best incumbents per feature:** dormakaba SafeRoute (LON/BMS integrated) · GEZE SecuLogic (IP-based) · Allegion/Von Duprin (electrified panic hardware)\n\nAdvantage rule: superior = vendor > incumbent by >1 pt · parity = |gap| ≤ 1 · inferior = vendor < incumbent by >1 pt\n\n| Vendor Feature | Market | Kano | Vendor | Incumbent | Incumbent Ref | Advantage | Rationale |\n|---|---|---|---|---|---|---|---|\n| 868 MHz EasyWave Radio Transmission | hotels_motels | `one_dimensional` | 7 | 5 | Generic wireless door alarm / Allegion wireless | **superior** | GfS's 868 MHz EU-reserved band provides reliable low-interference transmission in dense hotel RF environments; purpose-built for exit alarm state events. Allegion/Von Duprin wireless monitoring uses higher-frequency BLE/Zigbee with shorter effective range and more interference sensitivity in concrete structures. Constraint C3 (30 m) limits multi-floor hotels but is addressable with repeaters unlike competitors that require per-floor wired drops. |\n| Wireless BUS Interface Integration | hotels_motels | `attractive` | 6 | 8 | dormakaba SafeRoute (LON bus) · GEZE SecuLogic (BACnet/IP) | **inferior** | dormakaba SafeRoute natively integrates with LON bus networks and provides centralized software dashboards with open BMS protocols. GEZE SecuLogic supports BACnet/IP directly. GfS BUS Interface is proprietary — hotels with existing BMS (S1 chains, S2 upscale) require additional GfS gateway hardware for protocol translation, adding integration cost and vendor dependency (C6). Full-service hotel chains explicitly require BACnet or KNX native support. |\n| Dual-Standard Variant Range (EN 179 + EN 1125) | hotels_motels | `one_dimensional` | 8 | 6 | dormakaba SafeRoute · GEZE SecuLogic | **superior** | GfS offers matched lever-handle (EN 179, Art. 990140) and panic-bar (EN 1125, Art. 994100) variants from the same product family with shared wireless infrastructure. Hotels have mixed hardware: stairwell ground-floor exits typically require EN 1125 (panic bar per public building code); upper-floor corridor exits use EN 179 lever. dormakaba and GEZE cover both standards but via separate product lines at higher cost/complexity, preventing single-vendor deployment with unified monitoring. |\n| IP45 Outdoor Variant | hotels_motels | `attractive` | 7 | 5 | Standard mechanical alarm guards (no published IP rating) | **superior** | GfS IP45 outdoor variant (Art. 990000-IP) enables monitoring of hotel perimeter exits — loading docks, external stairwells, covered parking exits — without a separate product selection. Best mechanical incumbent alternatives (40% of hotel deployments) carry no published IP rating, defaulting to indoor-only installation and excluding outdoor exits from monitoring coverage. Hotels with mixed indoor/outdoor emergency exits benefit from a single SKU family. |\n| Glass-Frame Mounting Plate | hotels_motels | `attractive` | 7 | 4 | Basic mechanical alarms (no glass-specific solution) | **superior** | GfS purpose-built mounting plate (Art. 991170) enables installation on glass-framed emergency doors without structural modification. Modern hotel lobby, meeting room, and conference space renovations increasingly use glass-frame doors. Basic mechanical alarm alternatives require custom fabrication or exclude glass-frame doors from monitoring. No equivalent purpose-built accessory exists in the competitor catalog at this price tier. |\n\n**Advantage distribution:** 4 superior · 0 parity · 1 inferior — review note: high superior rate reflects genuine product-category specialization (GfS purpose-built for this function). Inferior verdict on BUS integration is the key competitive gap for S1/S2 hotel segments.\n\n---"
+    },
+    {
+      "title": "Key Findings",
+      "content": "| Dimension | Finding |\n|---|---|\n| **Strongest tech features** | Battery-Powered Operation (6.44) and Single-Motion Emergency Release (6.22) — enable the two highest-value hotel outcomes: retrofit deployment without electricians + certified escape compliance |\n| **Must-be cluster** | Mechanical Handle Locking + Audible Alarm Trigger + Single-Motion Release + Key Override — four must_be features covering the commodity baseline; no differentiation here |\n| **Attractive cluster** | Battery-Powered Operation + Pre-Alarm Warning — above commodity baseline; Battery is the primary enabling feature for hotel ROI case |\n| **Top product-related need** | N1/N3 (wireless coverage gaps + battery depletion) — both are direct operational risks that hotel operators will probe during procurement evaluation |\n| **Vendor advantage** | Dual-standard coverage + outdoor variant + glass-frame mounting = strong for mixed-hardware hotel portfolios (S1 chains, S3 mid-scale retrofits) |\n| **Vendor gap** | BUS Interface integration (inferior vs. dormakaba/GEZE) — decisive blocker for S1 chains and S2 upscale with established BMS; mitigated by C6 gateway but adds cost |\n| **Constraint watch** | C6 (EasyWave) × N6 (BMS integration effort) × Wireless BUS inferior verdict — three aligned signals that protocol lock-in is the #1 product-related barrier in the hotel segment |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### Step 09 — TechFeatureFitEntry[]\n\n```json\n[\n  {\n    \"feature_name\": \"Mechanical Handle Locking\",\n    \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n    \"naics_code\": \"721110\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 2,\n    \"fit_score_cost\": 3,\n    \"fit_score_safety\": 9,\n    \"fit_score_reliability\": 8,\n    \"fit_score_skill\": 6,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 5,\n    \"fit_score_confidence\": 8,\n    \"fit_score_delight\": 2,\n    \"overall_fit\": 5.56,\n    \"rationale\": \"Must_be — every certified product in this commodity delivers physical handle blocking. Primary drivers: Safety (9) blocks unauthorized egress; Reliability (8) zero-power operation survives hotel power events. Stress (7): security officers know exits are mechanically secured. Grounded in E8 (imp=10, sat=8): escape compliance is the commodity baseline expectation.\"\n  },\n  {\n    \"feature_name\": \"Audible Alarm Trigger\",\n    \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n    \"naics_code\": \"721110\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 4,\n    \"fit_score_cost\": 3,\n    \"fit_score_safety\": 9,\n    \"fit_score_reliability\": 7,\n    \"fit_score_skill\": 5,\n    \"fit_score_stress\": 5,\n    \"fit_score_pain\": 6,\n    \"fit_score_confidence\": 7,\n    \"fit_score_delight\": 2,\n    \"overall_fit\": 5.33,\n    \"rationale\": \"Must_be — commodity-level baseline; no product variant ships without it. Safety (9): immediate deterrence; Reliability (7): C2-compliant mechanical trigger at 0V. Stress deliberately suppressed to 5: 95 dB alarm audible across hotel floors disturbs guests, reducing experiential value. Grounded in E6 (imp=9, sat=4) — detection is the need; this feature is the minimum-viable form.\"\n  },\n  {\n    \"feature_name\": \"Single-Motion Emergency Release\",\n    \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n    \"naics_code\": \"721110\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 5,\n    \"fit_score_cost\": 2,\n    \"fit_score_safety\": 10,\n    \"fit_score_reliability\": 8,\n    \"fit_score_skill\": 8,\n    \"fit_score_stress\": 8,\n    \"fit_score_pain\": 3,\n    \"fit_score_confidence\": 9,\n    \"fit_score_delight\": 3,\n    \"overall_fit\": 6.22,\n    \"rationale\": \"Must_be — DIN EN 179/1125 regulatory mandate; no certified product in any hotel can omit this. Safety (10): the single highest score — direct fire evacuation compliance. Skill (8) + Stress (8): unfamiliar hotel guests escape without prior knowledge, per EN 1125 mandate for public buildings. Confidence (9): certification provides documented legal compliance evidence for fire marshal audits. E8 (imp=10, sat=8) is the most-satisfied top need.\"\n  },\n  {\n    \"feature_name\": \"Key Override Bypass\",\n    \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n    \"naics_code\": \"721110\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 6,\n    \"fit_score_cost\": 5,\n    \"fit_score_safety\": 5,\n    \"fit_score_reliability\": 6,\n    \"fit_score_skill\": 5,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 6,\n    \"fit_score_confidence\": 7,\n    \"fit_score_delight\": 3,\n    \"overall_fit\": 5.56,\n    \"rationale\": \"Must_be — all standard variants include key override; hotel operators expect silent authorized access capability. Stress (7): housekeeping, maintenance, night audit staff can access without triggering guest-disturbing alarm. Time (6) + Pain (6): eliminates alarm-trigger + investigation cycle for routine operations. Primary market evidence: E7 (imp=8, sat=4) — false alert fatigue from authorized staff uses; key override is the hardware-level mitigation.\"\n  },\n  {\n    \"feature_name\": \"Battery-Powered Operation\",\n    \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n    \"naics_code\": \"721110\",\n    \"kano_class\": \"attractive\",\n    \"fit_score_time\": 7,\n    \"fit_score_cost\": 8,\n    \"fit_score_safety\": 4,\n    \"fit_score_reliability\": 6,\n    \"fit_score_skill\": 7,\n    \"fit_score_stress\": 6,\n    \"fit_score_pain\": 8,\n    \"fit_score_confidence\": 5,\n    \"fit_score_delight\": 7,\n    \"overall_fit\": 6.44,\n    \"rationale\": \"Attractive — exceeds commodity FP; wired systems (A2, 20% share) are the traditional paradigm; operators do not expect IoT monitoring without mains wiring. Cost (8): eliminates conduit installation as the dominant retrofit cost driver. Pain (8): removes electrical permits and structural disruption. Delight (7): facility managers are genuinely surprised that IoT monitoring works battery-only. Confidence slightly suppressed (5) due to C4 battery life uncertainty. Grounded in E3 (imp=8, sat=5, product_related=true): commissioning speed is a top-10 need; battery power is the enabler.\"\n  },\n  {\n    \"feature_name\": \"Pre-Alarm Warning\",\n    \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n    \"naics_code\": \"721110\",\n    \"kano_class\": \"attractive\",\n    \"fit_score_time\": 3,\n    \"fit_score_cost\": 4,\n    \"fit_score_safety\": 3,\n    \"fit_score_reliability\": 5,\n    \"fit_score_skill\": 5,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 6,\n    \"fit_score_confidence\": 5,\n    \"fit_score_delight\": 6,\n    \"overall_fit\": 4.89,\n    \"rationale\": \"Attractive — absent from commodity FP and basic variants; hotels specifically value guest disturbance reduction. Stress (7): reduces guest disruption from accidental handle contact by housekeeping or guests leaning on stairwell doors. Pain (6): eliminates false alarm investigation cycles from incidental touches. Delight (6): unexpected hardware-level false alarm filter. Grounded in E7 (imp=8, sat=4): false alert fatigue is underserved; pre-alarm is the physical-layer mitigation before IoT alert filtering.\"\n  }\n]\n```\n\n### Step 10 — ProductRelatedNeedEntry[]\n\n```json\n[\n  {\n    \"statement\": \"Minimize the likelihood of incomplete wireless coverage from 30 m transmitter range leaving emergency exits on floors above level 3 in multi-story hotel installations without active IoT monitoring\",\n    \"source_constraint\": \"Wireless Range Limitation\",\n    \"affected_markets\": [\"Hotels (except Casino Hotels) and Motels\"],\n    \"importance\": 7.0,\n    \"satisfaction_current\": 3.0\n  },\n  {\n    \"statement\": \"Minimize the time required to design and validate wireless receiver placement to achieve >95% floor coverage before hardware procurement in multi-story hotel installations\",\n    \"source_constraint\": \"Wireless Range Limitation\",\n    \"affected_markets\": [\"Hotels (except Casino Hotels) and Motels\"],\n    \"importance\": 6.0,\n    \"satisfaction_current\": 3.0\n  },\n  {\n    \"statement\": \"Minimize the likelihood of 9V battery depletion in high-traffic hotel emergency exits exhausting IoT monitoring capability between scheduled maintenance cycles while the mechanical alarm remains functional\",\n    \"source_constraint\": \"IoT Battery Life Floor\",\n    \"affected_markets\": [\"Hotels (except Casino Hotels) and Motels\"],\n    \"importance\": 7.0,\n    \"satisfaction_current\": 4.0\n  },\n  {\n    \"statement\": \"Minimize the time required to identify and replace batteries approaching depletion threshold across a 30+ device hotel deployment before wireless monitoring capability is lost\",\n    \"source_constraint\": \"IoT Battery Life Floor\",\n    \"affected_markets\": [\"Hotels (except Casino Hotels) and Motels\"],\n    \"importance\": 6.0,\n    \"satisfaction_current\": 4.0\n  },\n  {\n    \"statement\": \"Minimize the likelihood of surface-mounted door guardian housing conflicting with hotel brand interior finish specifications in guest-facing corridors and stairwells\",\n    \"source_constraint\": \"Retrofit-Only Surface Mount\",\n    \"affected_markets\": [\"Hotels (except Casino Hotels) and Motels\"],\n    \"importance\": 5.0,\n    \"satisfaction_current\": 4.0\n  },\n  {\n    \"statement\": \"Minimize the effort required to bridge EasyWave wireless event data to hotel BMS platforms running BACnet, KNX, or IP-based protocols without deploying a dedicated GfS-specific gateway per property\",\n    \"source_constraint\": \"EasyWave Protocol Lock-In\",\n    \"affected_markets\": [\"Hotels (except Casino Hotels) and Motels\"],\n    \"importance\": 7.0,\n    \"satisfaction_current\": 4.0\n  },\n  {\n    \"statement\": \"Minimize the likelihood of proprietary wireless protocol dependency preventing multi-brand emergency exit monitoring consolidation in hotel portfolio standardization programs\",\n    \"source_constraint\": \"EasyWave Protocol Lock-In\",\n    \"affected_markets\": [\"Hotels (except Casino Hotels) and Motels\"],\n    \"importance\": 6.0,\n    \"satisfaction_current\": 4.0\n  },\n  {\n    \"statement\": \"Minimize the likelihood of door-event timestamp and access log data triggering a GDPR Data Protection Impact Assessment that delays IoT system deployment in EU hotel properties\",\n    \"source_constraint\": \"GDPR Monitoring Data Compliance\",\n    \"affected_markets\": [\"Hotels (except Casino Hotels) and Motels\"],\n    \"importance\": 6.0,\n    \"satisfaction_current\": 5.0\n  }\n]\n```\n\n### Step 11 — VendorFeatureComparison[]\n\n```json\n[\n  {\n    \"feature_name\": \"EasyWave Radio Transmission\",\n    \"feature_description\": \"Transmit guard state and alarm events wirelessly to central receivers using 868 MHz EU-reserved low-power band\",\n    \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n    \"naics_code\": \"721110\",\n    \"vendor_score\": 7,\n    \"best_incumbent_score\": 5,\n    \"best_incumbent_technology\": \"Generic wireless door alarm / Allegion wireless exit monitoring\",\n    \"advantage\": \"superior\",\n    \"kano_class\": \"one_dimensional\",\n    \"rationale\": \"GfS 868 MHz EU-reserved band provides reliable low-interference transmission in dense hotel concrete structures; purpose-built state machine (guard-open, alarm, battery-low) vs. generic door contact sensors. Allegion wireless exit monitoring uses higher-frequency BLE/Zigbee with shorter effective range and higher interference susceptibility in multi-floor concrete hotels. Vendor limitation: 30 m per hop requires repeater planning in multi-story properties (C3).\"\n  },\n  {\n    \"feature_name\": \"Wireless BUS Interface Integration\",\n    \"feature_description\": \"Aggregate status messages from multiple door guardian units into a centralized monitoring point with external system connectivity\",\n    \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n    \"naics_code\": \"721110\",\n    \"vendor_score\": 6,\n    \"best_incumbent_score\": 8,\n    \"best_incumbent_technology\": \"dormakaba SafeRoute (LON bus) / GEZE SecuLogic (BACnet/IP)\",\n    \"advantage\": \"inferior\",\n    \"kano_class\": \"attractive\",\n    \"rationale\": \"dormakaba SafeRoute natively integrates with LON bus and provides centralized exit management software with open BMS protocols. GEZE SecuLogic supports BACnet/IP directly. GfS Wireless BUS Interface is proprietary EasyWave — hotels with existing BACnet/KNX BMS (S1 chains, S2 upscale) require an additional GfS-specific gateway for protocol translation, adding cost and long-term vendor dependency. This is the primary competitive gap for hotel BMS integration segments.\"\n  },\n  {\n    \"feature_name\": \"Dual-Standard Variant Range\",\n    \"feature_description\": \"Cover both EN 179 lever-handle and EN 1125 panic-bar emergency exit door types from a single unified product family with shared wireless infrastructure\",\n    \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n    \"naics_code\": \"721110\",\n    \"vendor_score\": 8,\n    \"best_incumbent_score\": 6,\n    \"best_incumbent_technology\": \"dormakaba SafeRoute / GEZE SecuLogic\",\n    \"advantage\": \"superior\",\n    \"kano_class\": \"one_dimensional\",\n    \"rationale\": \"GfS offers EN 179 (Art. 990140) and EN 1125 (Art. 994100) variants from the same product family sharing 868 MHz wireless infrastructure. Hotels have mixed hardware: ground-floor stairwell exits require EN 1125 panic bars (public building code); upper-floor corridor exits use EN 179 levers. dormakaba and GEZE offer both standards but via separate product lines at higher cost, preventing single-vendor unified monitoring. GfS enables hotel-wide standardization from one supplier with one gateway.\"\n  },\n  {\n    \"feature_name\": \"IP45 Outdoor Variant\",\n    \"feature_description\": \"Operate in outdoor and semi-exposed emergency exit installations with protection against water jets from any direction\",\n    \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n    \"naics_code\": \"721110\",\n    \"vendor_score\": 7,\n    \"best_incumbent_score\": 5,\n    \"best_incumbent_technology\": \"Standard mechanical alarm guards (no published IP rating)\",\n    \"advantage\": \"superior\",\n    \"kano_class\": \"attractive\",\n    \"rationale\": \"GfS IP45 variant (Art. 990000-IP) enables monitoring of hotel perimeter exits — loading docks, external stairwells, covered parking garage exits — without a separate product selection. The dominant alternative (mechanical alarms, ~45% share in hotels) carries no published IP rating and defaults to indoor-only installation, leaving outdoor exits unmonitored. Hotels with mixed indoor/outdoor emergency exit portfolios achieve single-SKU-family deployment.\"\n  },\n  {\n    \"feature_name\": \"Glass-Frame Mounting Plate\",\n    \"feature_description\": \"Install on glass-framed emergency exit doors without structural modification using a purpose-built surface mounting accessory\",\n    \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n    \"naics_code\": \"721110\",\n    \"vendor_score\": 7,\n    \"best_incumbent_score\": 4,\n    \"best_incumbent_technology\": \"Basic mechanical alarm guards (no glass-specific mounting solution)\",\n    \"advantage\": \"superior\",\n    \"kano_class\": \"attractive\",\n    \"rationale\": \"GfS purpose-built mounting plate (Art. 991170) enables installation on glass-frame doors without drilling or structural modification. Contemporary hotel lobby, meeting room, and conference floor renovations increasingly use glass-framed doors. Basic mechanical alarm alternatives require custom fabrication or exclude glass-frame doors from monitoring scope. No purpose-built glass-mounting accessory exists in competitor catalog at this price tier — forced workaround is bespoke metalwork or product exclusion.\"\n  }\n]\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Feature",
+        "Kano",
+        "Time",
+        "Cost",
+        "Safety",
+        "Reliability",
+        "Skill",
+        "Stress",
+        "Pain",
+        "Confidence",
+        "Delight",
+        "**Overall**"
+      ],
+      "rows": [
+        {
+          "Feature": "Mechanical Handle Locking",
+          "Kano": "`must_be`",
+          "Time": "2",
+          "Cost": "3",
+          "Safety": "9",
+          "Reliability": "8",
+          "Skill": "6",
+          "Stress": "7",
+          "Pain": "5",
+          "Confidence": "8",
+          "Delight": "2",
+          "**Overall**": "**5.56**"
+        },
+        {
+          "Feature": "Audible Alarm Trigger",
+          "Kano": "`must_be`",
+          "Time": "4",
+          "Cost": "3",
+          "Safety": "9",
+          "Reliability": "7",
+          "Skill": "5",
+          "Stress": "5",
+          "Pain": "6",
+          "Confidence": "7",
+          "Delight": "2",
+          "**Overall**": "**5.33**"
+        },
+        {
+          "Feature": "Single-Motion Emergency Release",
+          "Kano": "`must_be`",
+          "Time": "5",
+          "Cost": "2",
+          "Safety": "10",
+          "Reliability": "8",
+          "Skill": "8",
+          "Stress": "8",
+          "Pain": "3",
+          "Confidence": "9",
+          "Delight": "3",
+          "**Overall**": "**6.22**"
+        },
+        {
+          "Feature": "Key Override Bypass",
+          "Kano": "`must_be`",
+          "Time": "6",
+          "Cost": "5",
+          "Safety": "5",
+          "Reliability": "6",
+          "Skill": "5",
+          "Stress": "7",
+          "Pain": "6",
+          "Confidence": "7",
+          "Delight": "3",
+          "**Overall**": "**5.56**"
+        },
+        {
+          "Feature": "Battery-Powered Operation",
+          "Kano": "`attractive`",
+          "Time": "7",
+          "Cost": "8",
+          "Safety": "4",
+          "Reliability": "6",
+          "Skill": "7",
+          "Stress": "6",
+          "Pain": "8",
+          "Confidence": "5",
+          "Delight": "7",
+          "**Overall**": "**6.44**"
+        },
+        {
+          "Feature": "Pre-Alarm Warning",
+          "Kano": "`attractive`",
+          "Time": "3",
+          "Cost": "4",
+          "Safety": "3",
+          "Reliability": "5",
+          "Skill": "5",
+          "Stress": "7",
+          "Pain": "6",
+          "Confidence": "5",
+          "Delight": "6",
+          "**Overall**": "**4.89**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Feature",
+        "Kano class",
+        "Primary drivers",
+        "Market evidence"
+      ],
+      "rows": [
+        {
+          "Feature": "Mechanical Handle Locking",
+          "Kano class": "`must_be`",
+          "Primary drivers": "Safety (9): physically blocks unauthorized door operation — the commodity baseline. Reliability (8): zero-power operation ensures function during hotel power events or fire.",
+          "Market evidence": "E8 (imp=10, sat=8): escape non-impedance is the baseline expectation; every alternative product delivers it."
+        },
+        {
+          "Feature": "Audible Alarm Trigger",
+          "Kano class": "`must_be`",
+          "Primary drivers": "Safety (9): immediate deterrence of propping/misuse. Reliability (7): mechanical piezo trigger needs no power, confirmed by C2 (absolute constraint). Stress (5) deliberately lower: 95 dB alarm on upper floors disturbs guests — reduces experiential score.",
+          "Market evidence": "E6 (imp=9, sat=4): detecting unauthorized open events is the core need; alarm is the lowest-tech expression of this."
+        },
+        {
+          "Feature": "Single-Motion Emergency Release",
+          "Kano class": "`must_be`",
+          "Primary drivers": "Safety (10): direct EN 179/1125 evacuation compliance — non-negotiable for any certified product. Skill (8) + Stress (8): unfamiliar hotel guests can escape without prior knowledge per DIN EN 1125 mandate.",
+          "Market evidence": "E8 (imp=10, sat=8): only satisfied need in the top OS cluster; every certified product delivers this. Confidence (9): operators have documented compliance evidence."
+        },
+        {
+          "Feature": "Key Override Bypass",
+          "Kano class": "`must_be`",
+          "Primary drivers": "Stress (7): housekeeping, maintenance, and night audit staff can access silently. Time (6) + Pain (6): eliminates alarm trigger + investigation cycle for routine authorized access.",
+          "Market evidence": "E7 (imp=8, sat=4): false alert fatigue from authorized staff uses is a top-8 underserved need; key override is the primary mitigation at hardware level."
+        },
+        {
+          "Feature": "Battery-Powered Operation",
+          "Kano class": "`attractive`",
+          "Primary drivers": "Cost (8): eliminates mains wiring conduit — the dominant retrofit cost driver in hotels (S3 mid-scale). Pain (8): removes need for electrical permits, conduit work, and structural disruption. Time (7): enables sub-weekend deployment per door (O4 in outcomes). Delight (7): operators are genuinely surprised that IoT monitoring works without rewiring.",
+          "Market evidence": "E3 (imp=8, sat=5, product_related=true): commissioning speed is a top-10 underserved need; battery power is the enabler. Not expected — wired (A2) is the traditional paradigm."
+        },
+        {
+          "Feature": "Pre-Alarm Warning",
+          "Kano class": "`attractive`",
+          "Primary drivers": "Stress (7): reduces guest disturbance from accidental alarm triggers (housekeeping leaning on door). Pain (6): eliminates investigation burden from handle-touch incidents. Delight (6): unexpected feature that specifically addresses hotel's guest experience sensitivity.",
+          "Market evidence": "E7 (imp=8, sat=4): false alert reduction is underserved; pre-alarm provides hardware-level filtering before IoT alert layer. Absent from commodity FP and basic variants — above baseline."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Statement",
+        "Source Constraint",
+        "Imp",
+        "Sat",
+        "Affected"
+      ],
+      "rows": [
+        {
+          "#": "N1",
+          "Statement": "Minimize the likelihood of incomplete wireless coverage from 30 m transmitter range leaving emergency exits on floors above level 3 without active IoT monitoring",
+          "Source Constraint": "Wireless Range Limitation",
+          "Imp": "7",
+          "Sat": "3",
+          "Affected": "hotels_motels"
+        },
+        {
+          "#": "N2",
+          "Statement": "Minimize the time required to design and validate wireless receiver placement to achieve >95% floor coverage before hardware procurement in multi-story hotel installations",
+          "Source Constraint": "Wireless Range Limitation",
+          "Imp": "6",
+          "Sat": "3",
+          "Affected": "hotels_motels"
+        },
+        {
+          "#": "N3",
+          "Statement": "Minimize the likelihood of 9V battery depletion in high-traffic hotel emergency exits exhausting monitoring capability between scheduled maintenance cycles while mechanical alarm remains functional",
+          "Source Constraint": "IoT Battery Life Floor",
+          "Imp": "7",
+          "Sat": "4",
+          "Affected": "hotels_motels"
+        },
+        {
+          "#": "N4",
+          "Statement": "Minimize the time required to identify and replace batteries approaching depletion threshold across a 30+ device hotel deployment before wireless monitoring capability is lost",
+          "Source Constraint": "IoT Battery Life Floor",
+          "Imp": "6",
+          "Sat": "4",
+          "Affected": "hotels_motels"
+        },
+        {
+          "#": "N5",
+          "Statement": "Minimize the likelihood of surface-mounted door guardian housing conflicting with hotel brand interior finish specifications in guest-facing corridors and stairwells",
+          "Source Constraint": "Retrofit-Only Surface Mount",
+          "Imp": "5",
+          "Sat": "4",
+          "Affected": "hotels_motels (S2 upscale)"
+        },
+        {
+          "#": "N6",
+          "Statement": "Minimize the effort required to bridge EasyWave event data to hotel BMS platforms running BACnet, KNX, or IP-based protocols without deploying a dedicated GfS gateway per property",
+          "Source Constraint": "EasyWave Protocol Lock-In",
+          "Imp": "7",
+          "Sat": "4",
+          "Affected": "hotels_motels (S1, S2)"
+        },
+        {
+          "#": "N7",
+          "Statement": "Minimize the likelihood of proprietary wireless protocol dependency preventing multi-brand emergency exit monitoring consolidation in hotel portfolio standardization programs",
+          "Source Constraint": "EasyWave Protocol Lock-In",
+          "Imp": "6",
+          "Sat": "4",
+          "Affected": "hotels_motels (S1 chains)"
+        },
+        {
+          "#": "N8",
+          "Statement": "Minimize the likelihood of door-event timestamp and access log data triggering a GDPR Data Protection Impact Assessment that delays IoT system deployment in EU hotel properties",
+          "Source Constraint": "GDPR Monitoring Data Compliance",
+          "Imp": "6",
+          "Sat": "5",
+          "Affected": "hotels_motels (EU)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Vendor Feature",
+        "Market",
+        "Kano",
+        "Vendor",
+        "Incumbent",
+        "Incumbent Ref",
+        "Advantage",
+        "Rationale"
+      ],
+      "rows": [
+        {
+          "Vendor Feature": "868 MHz EasyWave Radio Transmission",
+          "Market": "hotels_motels",
+          "Kano": "`one_dimensional`",
+          "Vendor": "7",
+          "Incumbent": "5",
+          "Incumbent Ref": "Generic wireless door alarm / Allegion wireless",
+          "Advantage": "**superior**",
+          "Rationale": "GfS's 868 MHz EU-reserved band provides reliable low-interference transmission in dense hotel RF environments; purpose-built for exit alarm state events. Allegion/Von Duprin wireless monitoring uses higher-frequency BLE/Zigbee with shorter effective range and more interference sensitivity in concrete structures. Constraint C3 (30 m) limits multi-floor hotels but is addressable with repeaters unlike competitors that require per-floor wired drops."
+        },
+        {
+          "Vendor Feature": "Wireless BUS Interface Integration",
+          "Market": "hotels_motels",
+          "Kano": "`attractive`",
+          "Vendor": "6",
+          "Incumbent": "8",
+          "Incumbent Ref": "dormakaba SafeRoute (LON bus) · GEZE SecuLogic (BACnet/IP)",
+          "Advantage": "**inferior**",
+          "Rationale": "dormakaba SafeRoute natively integrates with LON bus networks and provides centralized software dashboards with open BMS protocols. GEZE SecuLogic supports BACnet/IP directly. GfS BUS Interface is proprietary — hotels with existing BMS (S1 chains, S2 upscale) require additional GfS gateway hardware for protocol translation, adding integration cost and vendor dependency (C6). Full-service hotel chains explicitly require BACnet or KNX native support."
+        },
+        {
+          "Vendor Feature": "Dual-Standard Variant Range (EN 179 + EN 1125)",
+          "Market": "hotels_motels",
+          "Kano": "`one_dimensional`",
+          "Vendor": "8",
+          "Incumbent": "6",
+          "Incumbent Ref": "dormakaba SafeRoute · GEZE SecuLogic",
+          "Advantage": "**superior**",
+          "Rationale": "GfS offers matched lever-handle (EN 179, Art. 990140) and panic-bar (EN 1125, Art. 994100) variants from the same product family with shared wireless infrastructure. Hotels have mixed hardware: stairwell ground-floor exits typically require EN 1125 (panic bar per public building code); upper-floor corridor exits use EN 179 lever. dormakaba and GEZE cover both standards but via separate product lines at higher cost/complexity, preventing single-vendor deployment with unified monitoring."
+        },
+        {
+          "Vendor Feature": "IP45 Outdoor Variant",
+          "Market": "hotels_motels",
+          "Kano": "`attractive`",
+          "Vendor": "7",
+          "Incumbent": "5",
+          "Incumbent Ref": "Standard mechanical alarm guards (no published IP rating)",
+          "Advantage": "**superior**",
+          "Rationale": "GfS IP45 outdoor variant (Art. 990000-IP) enables monitoring of hotel perimeter exits — loading docks, external stairwells, covered parking exits — without a separate product selection. Best mechanical incumbent alternatives (40% of hotel deployments) carry no published IP rating, defaulting to indoor-only installation and excluding outdoor exits from monitoring coverage. Hotels with mixed indoor/outdoor emergency exits benefit from a single SKU family."
+        },
+        {
+          "Vendor Feature": "Glass-Frame Mounting Plate",
+          "Market": "hotels_motels",
+          "Kano": "`attractive`",
+          "Vendor": "7",
+          "Incumbent": "4",
+          "Incumbent Ref": "Basic mechanical alarms (no glass-specific solution)",
+          "Advantage": "**superior**",
+          "Rationale": "GfS purpose-built mounting plate (Art. 991170) enables installation on glass-framed emergency doors without structural modification. Modern hotel lobby, meeting room, and conference space renovations increasingly use glass-frame doors. Basic mechanical alarm alternatives require custom fabrication or exclude glass-frame doors from monitoring. No equivalent purpose-built accessory exists in the competitor catalog at this price tier."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Dimension",
+        "Finding"
+      ],
+      "rows": [
+        {
+          "Dimension": "**Strongest tech features**",
+          "Finding": "Battery-Powered Operation (6.44) and Single-Motion Emergency Release (6.22) — enable the two highest-value hotel outcomes: retrofit deployment without electricians + certified escape compliance"
+        },
+        {
+          "Dimension": "**Must-be cluster**",
+          "Finding": "Mechanical Handle Locking + Audible Alarm Trigger + Single-Motion Release + Key Override — four must_be features covering the commodity baseline; no differentiation here"
+        },
+        {
+          "Dimension": "**Attractive cluster**",
+          "Finding": "Battery-Powered Operation + Pre-Alarm Warning — above commodity baseline; Battery is the primary enabling feature for hotel ROI case"
+        },
+        {
+          "Dimension": "**Top product-related need**",
+          "Finding": "N1/N3 (wireless coverage gaps + battery depletion) — both are direct operational risks that hotel operators will probe during procurement evaluation"
+        },
+        {
+          "Dimension": "**Vendor advantage**",
+          "Finding": "Dual-standard coverage + outdoor variant + glass-frame mounting = strong for mixed-hardware hotel portfolios (S1 chains, S3 mid-scale retrofits)"
+        },
+        {
+          "Dimension": "**Vendor gap**",
+          "Finding": "BUS Interface integration (inferior vs. dormakaba/GEZE) — decisive blocker for S1 chains and S2 upscale with established BMS; mitigated by C6 gateway but adds cost"
+        },
+        {
+          "Dimension": "**Constraint watch**",
+          "Finding": "C6 (EasyWave) × N6 (BMS integration effort) × Wireless BUS inferior verdict — three aligned signals that protocol lock-in is the #1 product-related barrier in the hotel segment"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    [
+      {
+        "feature_name": "Mechanical Handle Locking",
+        "market_name": "Hotels (except Casino Hotels) and Motels",
+        "naics_code": "721110",
+        "kano_class": "must_be",
+        "fit_score_time": 2,
+        "fit_score_cost": 3,
+        "fit_score_safety": 9,
+        "fit_score_reliability": 8,
+        "fit_score_skill": 6,
+        "fit_score_stress": 7,
+        "fit_score_pain": 5,
+        "fit_score_confidence": 8,
+        "fit_score_delight": 2,
+        "overall_fit": 5.56,
+        "rationale": "Must_be — every certified product in this commodity delivers physical handle blocking. Primary drivers: Safety (9) blocks unauthorized egress; Reliability (8) zero-power operation survives hotel power events. Stress (7): security officers know exits are mechanically secured. Grounded in E8 (imp=10, sat=8): escape compliance is the commodity baseline expectation."
+      },
+      {
+        "feature_name": "Audible Alarm Trigger",
+        "market_name": "Hotels (except Casino Hotels) and Motels",
+        "naics_code": "721110",
+        "kano_class": "must_be",
+        "fit_score_time": 4,
+        "fit_score_cost": 3,
+        "fit_score_safety": 9,
+        "fit_score_reliability": 7,
+        "fit_score_skill": 5,
+        "fit_score_stress": 5,
+        "fit_score_pain": 6,
+        "fit_score_confidence": 7,
+        "fit_score_delight": 2,
+        "overall_fit": 5.33,
+        "rationale": "Must_be — commodity-level baseline; no product variant ships without it. Safety (9): immediate deterrence; Reliability (7): C2-compliant mechanical trigger at 0V. Stress deliberately suppressed to 5: 95 dB alarm audible across hotel floors disturbs guests, reducing experiential value. Grounded in E6 (imp=9, sat=4) — detection is the need; this feature is the minimum-viable form."
+      },
+      {
+        "feature_name": "Single-Motion Emergency Release",
+        "market_name": "Hotels (except Casino Hotels) and Motels",
+        "naics_code": "721110",
+        "kano_class": "must_be",
+        "fit_score_time": 5,
+        "fit_score_cost": 2,
+        "fit_score_safety": 10,
+        "fit_score_reliability": 8,
+        "fit_score_skill": 8,
+        "fit_score_stress": 8,
+        "fit_score_pain": 3,
+        "fit_score_confidence": 9,
+        "fit_score_delight": 3,
+        "overall_fit": 6.22,
+        "rationale": "Must_be — DIN EN 179/1125 regulatory mandate; no certified product in any hotel can omit this. Safety (10): the single highest score — direct fire evacuation compliance. Skill (8) + Stress (8): unfamiliar hotel guests escape without prior knowledge, per EN 1125 mandate for public buildings. Confidence (9): certification provides documented legal compliance evidence for fire marshal audits. E8 (imp=10, sat=8) is the most-satisfied top need."
+      },
+      {
+        "feature_name": "Key Override Bypass",
+        "market_name": "Hotels (except Casino Hotels) and Motels",
+        "naics_code": "721110",
+        "kano_class": "must_be",
+        "fit_score_time": 6,
+        "fit_score_cost": 5,
+        "fit_score_safety": 5,
+        "fit_score_reliability": 6,
+        "fit_score_skill": 5,
+        "fit_score_stress": 7,
+        "fit_score_pain": 6,
+        "fit_score_confidence": 7,
+        "fit_score_delight": 3,
+        "overall_fit": 5.56,
+        "rationale": "Must_be — all standard variants include key override; hotel operators expect silent authorized access capability. Stress (7): housekeeping, maintenance, night audit staff can access without triggering guest-disturbing alarm. Time (6) + Pain (6): eliminates alarm-trigger + investigation cycle for routine operations. Primary market evidence: E7 (imp=8, sat=4) — false alert fatigue from authorized staff uses; key override is the hardware-level mitigation."
+      },
+      {
+        "feature_name": "Battery-Powered Operation",
+        "market_name": "Hotels (except Casino Hotels) and Motels",
+        "naics_code": "721110",
+        "kano_class": "attractive",
+        "fit_score_time": 7,
+        "fit_score_cost": 8,
+        "fit_score_safety": 4,
+        "fit_score_reliability": 6,
+        "fit_score_skill": 7,
+        "fit_score_stress": 6,
+        "fit_score_pain": 8,
+        "fit_score_confidence": 5,
+        "fit_score_delight": 7,
+        "overall_fit": 6.44,
+        "rationale": "Attractive — exceeds commodity FP; wired systems (A2, 20% share) are the traditional paradigm; operators do not expect IoT monitoring without mains wiring. Cost (8): eliminates conduit installation as the dominant retrofit cost driver. Pain (8): removes electrical permits and structural disruption. Delight (7): facility managers are genuinely surprised that IoT monitoring works battery-only. Confidence slightly suppressed (5) due to C4 battery life uncertainty. Grounded in E3 (imp=8, sat=5, product_related=true): commissioning speed is a top-10 need; battery power is the enabler."
+      },
+      {
+        "feature_name": "Pre-Alarm Warning",
+        "market_name": "Hotels (except Casino Hotels) and Motels",
+        "naics_code": "721110",
+        "kano_class": "attractive",
+        "fit_score_time": 3,
+        "fit_score_cost": 4,
+        "fit_score_safety": 3,
+        "fit_score_reliability": 5,
+        "fit_score_skill": 5,
+        "fit_score_stress": 7,
+        "fit_score_pain": 6,
+        "fit_score_confidence": 5,
+        "fit_score_delight": 6,
+        "overall_fit": 4.89,
+        "rationale": "Attractive — absent from commodity FP and basic variants; hotels specifically value guest disturbance reduction. Stress (7): reduces guest disruption from accidental handle contact by housekeeping or guests leaning on stairwell doors. Pain (6): eliminates false alarm investigation cycles from incidental touches. Delight (6): unexpected hardware-level false alarm filter. Grounded in E7 (imp=8, sat=4): false alert fatigue is underserved; pre-alarm is the physical-layer mitigation before IoT alert filtering."
+      }
+    ],
+    [
+      {
+        "statement": "Minimize the likelihood of incomplete wireless coverage from 30 m transmitter range leaving emergency exits on floors above level 3 in multi-story hotel installations without active IoT monitoring",
+        "source_constraint": "Wireless Range Limitation",
+        "affected_markets": [
+          "Hotels (except Casino Hotels) and Motels"
+        ],
+        "importance": 7.0,
+        "satisfaction_current": 3.0
+      },
+      {
+        "statement": "Minimize the time required to design and validate wireless receiver placement to achieve >95% floor coverage before hardware procurement in multi-story hotel installations",
+        "source_constraint": "Wireless Range Limitation",
+        "affected_markets": [
+          "Hotels (except Casino Hotels) and Motels"
+        ],
+        "importance": 6.0,
+        "satisfaction_current": 3.0
+      },
+      {
+        "statement": "Minimize the likelihood of 9V battery depletion in high-traffic hotel emergency exits exhausting IoT monitoring capability between scheduled maintenance cycles while the mechanical alarm remains functional",
+        "source_constraint": "IoT Battery Life Floor",
+        "affected_markets": [
+          "Hotels (except Casino Hotels) and Motels"
+        ],
+        "importance": 7.0,
+        "satisfaction_current": 4.0
+      },
+      {
+        "statement": "Minimize the time required to identify and replace batteries approaching depletion threshold across a 30+ device hotel deployment before wireless monitoring capability is lost",
+        "source_constraint": "IoT Battery Life Floor",
+        "affected_markets": [
+          "Hotels (except Casino Hotels) and Motels"
+        ],
+        "importance": 6.0,
+        "satisfaction_current": 4.0
+      },
+      {
+        "statement": "Minimize the likelihood of surface-mounted door guardian housing conflicting with hotel brand interior finish specifications in guest-facing corridors and stairwells",
+        "source_constraint": "Retrofit-Only Surface Mount",
+        "affected_markets": [
+          "Hotels (except Casino Hotels) and Motels"
+        ],
+        "importance": 5.0,
+        "satisfaction_current": 4.0
+      },
+      {
+        "statement": "Minimize the effort required to bridge EasyWave wireless event data to hotel BMS platforms running BACnet, KNX, or IP-based protocols without deploying a dedicated GfS-specific gateway per property",
+        "source_constraint": "EasyWave Protocol Lock-In",
+        "affected_markets": [
+          "Hotels (except Casino Hotels) and Motels"
+        ],
+        "importance": 7.0,
+        "satisfaction_current": 4.0
+      },
+      {
+        "statement": "Minimize the likelihood of proprietary wireless protocol dependency preventing multi-brand emergency exit monitoring consolidation in hotel portfolio standardization programs",
+        "source_constraint": "EasyWave Protocol Lock-In",
+        "affected_markets": [
+          "Hotels (except Casino Hotels) and Motels"
+        ],
+        "importance": 6.0,
+        "satisfaction_current": 4.0
+      },
+      {
+        "statement": "Minimize the likelihood of door-event timestamp and access log data triggering a GDPR Data Protection Impact Assessment that delays IoT system deployment in EU hotel properties",
+        "source_constraint": "GDPR Monitoring Data Compliance",
+        "affected_markets": [
+          "Hotels (except Casino Hotels) and Motels"
+        ],
+        "importance": 6.0,
+        "satisfaction_current": 5.0
+      }
+    ],
+    [
+      {
+        "feature_name": "EasyWave Radio Transmission",
+        "feature_description": "Transmit guard state and alarm events wirelessly to central receivers using 868 MHz EU-reserved low-power band",
+        "market_name": "Hotels (except Casino Hotels) and Motels",
+        "naics_code": "721110",
+        "vendor_score": 7,
+        "best_incumbent_score": 5,
+        "best_incumbent_technology": "Generic wireless door alarm / Allegion wireless exit monitoring",
+        "advantage": "superior",
+        "kano_class": "one_dimensional",
+        "rationale": "GfS 868 MHz EU-reserved band provides reliable low-interference transmission in dense hotel concrete structures; purpose-built state machine (guard-open, alarm, battery-low) vs. generic door contact sensors. Allegion wireless exit monitoring uses higher-frequency BLE/Zigbee with shorter effective range and higher interference susceptibility in multi-floor concrete hotels. Vendor limitation: 30 m per hop requires repeater planning in multi-story properties (C3)."
+      },
+      {
+        "feature_name": "Wireless BUS Interface Integration",
+        "feature_description": "Aggregate status messages from multiple door guardian units into a centralized monitoring point with external system connectivity",
+        "market_name": "Hotels (except Casino Hotels) and Motels",
+        "naics_code": "721110",
+        "vendor_score": 6,
+        "best_incumbent_score": 8,
+        "best_incumbent_technology": "dormakaba SafeRoute (LON bus) / GEZE SecuLogic (BACnet/IP)",
+        "advantage": "inferior",
+        "kano_class": "attractive",
+        "rationale": "dormakaba SafeRoute natively integrates with LON bus and provides centralized exit management software with open BMS protocols. GEZE SecuLogic supports BACnet/IP directly. GfS Wireless BUS Interface is proprietary EasyWave — hotels with existing BACnet/KNX BMS (S1 chains, S2 upscale) require an additional GfS-specific gateway for protocol translation, adding cost and long-term vendor dependency. This is the primary competitive gap for hotel BMS integration segments."
+      },
+      {
+        "feature_name": "Dual-Standard Variant Range",
+        "feature_description": "Cover both EN 179 lever-handle and EN 1125 panic-bar emergency exit door types from a single unified product family with shared wireless infrastructure",
+        "market_name": "Hotels (except Casino Hotels) and Motels",
+        "naics_code": "721110",
+        "vendor_score": 8,
+        "best_incumbent_score": 6,
+        "best_incumbent_technology": "dormakaba SafeRoute / GEZE SecuLogic",
+        "advantage": "superior",
+        "kano_class": "one_dimensional",
+        "rationale": "GfS offers EN 179 (Art. 990140) and EN 1125 (Art. 994100) variants from the same product family sharing 868 MHz wireless infrastructure. Hotels have mixed hardware: ground-floor stairwell exits require EN 1125 panic bars (public building code); upper-floor corridor exits use EN 179 levers. dormakaba and GEZE offer both standards but via separate product lines at higher cost, preventing single-vendor unified monitoring. GfS enables hotel-wide standardization from one supplier with one gateway."
+      },
+      {
+        "feature_name": "IP45 Outdoor Variant",
+        "feature_description": "Operate in outdoor and semi-exposed emergency exit installations with protection against water jets from any direction",
+        "market_name": "Hotels (except Casino Hotels) and Motels",
+        "naics_code": "721110",
+        "vendor_score": 7,
+        "best_incumbent_score": 5,
+        "best_incumbent_technology": "Standard mechanical alarm guards (no published IP rating)",
+        "advantage": "superior",
+        "kano_class": "attractive",
+        "rationale": "GfS IP45 variant (Art. 990000-IP) enables monitoring of hotel perimeter exits — loading docks, external stairwells, covered parking garage exits — without a separate product selection. The dominant alternative (mechanical alarms, ~45% share in hotels) carries no published IP rating and defaults to indoor-only installation, leaving outdoor exits unmonitored. Hotels with mixed indoor/outdoor emergency exit portfolios achieve single-SKU-family deployment."
+      },
+      {
+        "feature_name": "Glass-Frame Mounting Plate",
+        "feature_description": "Install on glass-framed emergency exit doors without structural modification using a purpose-built surface mounting accessory",
+        "market_name": "Hotels (except Casino Hotels) and Motels",
+        "naics_code": "721110",
+        "vendor_score": 7,
+        "best_incumbent_score": 4,
+        "best_incumbent_technology": "Basic mechanical alarm guards (no glass-specific mounting solution)",
+        "advantage": "superior",
+        "kano_class": "attractive",
+        "rationale": "GfS purpose-built mounting plate (Art. 991170) enables installation on glass-frame doors without drilling or structural modification. Contemporary hotel lobby, meeting room, and conference floor renovations increasingly use glass-framed doors. Basic mechanical alarm alternatives require custom fabrication or exclude glass-frame doors from monitoring scope. No purpose-built glass-mounting accessory exists in competitor catalog at this price tier — forced workaround is bespoke metalwork or product exclusion."
+      }
+    ]
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

@@ -1,0 +1,53 @@
+{
+  "productFP": {
+    "statement": "Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring — without mains power at the door",
+    "verb": "Secure",
+    "object": "emergency exit doors against unauthorized use",
+    "context": "in any building with mandated emergency exits, while simultaneously preserving unimpeded single-motion escape per EN 179 / EN 1125",
+    "differentiators": [
+      "Mechanical alarm operates independently of electrical power (fail-safe under all fault conditions)",
+      "Single-motion escape compliant with both EN 179 (lever handle) and EN 1125 (panic bar) — dual-standard coverage",
+      "Wireless status reporting without mains wiring at the door point — retrofit-ready installation"
+    ]
+  },
+  "commodityFP": {
+    "statement": "Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm",
+    "commodity": "Emergency Exit Door Alarm Guards",
+    "unspscCode": null,
+    "unspscTitle": null,
+    "customProductGroup": "Emergency Exit Door Alarm Guards",
+    "reasoning": "No 8-digit UNSPSC commodity precisely captures 'emergency exit door alarm guards with IoT monitoring.' Product sits at intersection of door hardware (46171500) and alarm/monitoring systems (46171600). Max confidence < 80% threshold. Custom product group selected using UNSPSC-style naming convention.",
+    "fpExtension": "Monitor distributed safety-critical hardware wirelessly, detecting activation events and battery status without mains wiring at the device point, and aggregating status to a centralized building management system",
+    "fpExtensionDomains": [
+      "Fire suppression hardware monitoring",
+      "Emergency lighting status aggregation",
+      "Industrial safety valve surveillance",
+      "Elevator escape hatch monitoring",
+      "Any fleet of distributed passive safety devices"
+    ]
+  },
+  "bomPosition": {
+    "level": "L2",
+    "position": "Building Safety Sub-system (door-leaf level)",
+    "parentSubsystem": "Emergency Exit Hardware",
+    "grandparentSystem": "Building Safety Systems"
+  },
+  "complements": [
+    { "name": "Emergency exit door (EN 179 / EN 1125 compliant)", "criticality": "Essential" },
+    { "name": "Door frame and handle hardware", "criticality": "Essential" },
+    { "name": "9V battery (replaceable)", "criticality": "Essential" },
+    { "name": "Wireless receiver unit", "criticality": "Essential (IoT value only)" },
+    { "name": "Wireless repeater(s)", "criticality": "Enhancing" },
+    { "name": "Wireless BUS interface / gateway", "criticality": "Enhancing" },
+    { "name": "Profile half-cylinder key", "criticality": "Enhancing" },
+    { "name": "Building Management System (BMS)", "criticality": "Optional" },
+    { "name": "Glass-frame mounting plate (Art. 991170)", "criticality": "Optional (contextual)" }
+  ],
+  "sources": [
+    { "id": "FP-S01", "label": "GfS Exit Control 179/1125 product page", "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/" },
+    { "id": "FP-S02", "label": "GfS Wireless Signal Transmission", "url": "https://www.gfs-online.com/en/Emergency-Exit-Solutions/GfS-Exit-Control-179-1125/GfS-Exit-Control-179-1125-with-external-signal-devices/" },
+    { "id": "FP-S03", "label": "DIN EN 179 — HOPPE", "url": "https://www.hoppe.com/in-en/contacts-service/standards/din-en-179/" },
+    { "id": "FP-S04", "label": "EN 1125 — Intertek", "url": "https://www.intertek.com/building/standards/en-1125/" },
+    { "id": "FP-S05", "label": "UNSPSC 46171500 — Locks and security hardware", "url": "https://usa.databasesets.com/unspsc/class/46171500" }
+  ]
+}

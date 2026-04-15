@@ -1,0 +1,762 @@
+{
+  "naicsCode": "518210",
+  "marketName": "Data Processing, Hosting, and Related Services",
+  "slug": "data_centers",
+  "coreJobStatement": "Deliver continuous, secure, and compliant compute, storage, and network capacity to tenants and end users at contracted uptime and performance levels.",
+  "outputTypes": [],
+  "hierarchy": "",
+  "architectureDistance": 3,
+  "marketSize": "",
+  "l6Systems": [
+    {
+      "id": "L6a",
+      "name": "Power Supply & Conditioning",
+      "type": "Core",
+      "jobFamily": "Transform and condition utility power to IT-grade uninterruptible supply at N+1 or 2N redundancy",
+      "l5Units": []
+    },
+    {
+      "id": "L6b",
+      "name": "Cooling & Thermal Management",
+      "type": "Core",
+      "jobFamily": "Maintain IT equipment within operating temperature and humidity limits across all load densities",
+      "l5Units": []
+    },
+    {
+      "id": "L6c",
+      "name": "Physical Infrastructure",
+      "type": "Core",
+      "jobFamily": "Provide secure, structured rack space, cabling, and floor systems for tenant equipment",
+      "l5Units": []
+    },
+    {
+      "id": "L6d",
+      "name": "Physical Security & Access Control",
+      "type": "Core",
+      "jobFamily": "Control, monitor, and log physical access to all facility zones (perimeter → cage → rack)",
+      "l5Units": []
+    },
+    {
+      "id": "L6e",
+      "name": "Network Connectivity & Cross-Connect",
+      "type": "Core",
+      "jobFamily": "Terminate diverse carrier connections; enable tenant-to-tenant and tenant-to-carrier cross-connects",
+      "l5Units": []
+    },
+    {
+      "id": "L6f",
+      "name": "IT Infrastructure Operations",
+      "type": "Core",
+      "jobFamily": "Deploy, operate, and monitor compute, storage, and network equipment for managed workloads",
+      "l5Units": []
+    }
+  ],
+  "vnUnits": [
+    {
+      "level": "L5",
+      "id": "L6a.1",
+      "name": "Medium Voltage Switchgear",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. AIS air-insulated (~60%) · 2. GIS gas-insulated (~30%) · 3. Ring main unit (~10%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Siemens/ABB DC power white papers",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6a.2",
+      "name": "Transformer",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Dry-type step-down (~60%) · 2. Oil-immersed (~30%) · 3. Cast resin (~10%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Electrical market surveys",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6a.3",
+      "name": "UPS System",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Static VRLA (~62%) · 2. Static Li-ion (~25%) · 3. Rotary/diesel UPS (~8%) · 4. Flywheel UPS (~5%)",
+          "sharePct": 0,
+          "confidence": "HIGH",
+          "source": "MarketsandMarkets 2025; Precedence Research [[SRC: VRLA 62% / Li-ion ~25% as of 2025; Li-ion CAGR 8.29%]]",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6a.4",
+      "name": "Emergency Diesel Generator",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Diesel reciprocating (~85%) · 2. Natural gas (~10%) · 3. HVO/biodiesel (~5% growing)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Generator industry reports 2025",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6a.5",
+      "name": "Automatic Transfer Switch",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Static ATS (~55%) · 2. Mechanical ATS (~35%) · 3. Bypass-isolation ATS (~10%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Eaton/Schneider market briefs",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6a.6",
+      "name": "Power Distribution Unit (PDU)",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Intelligent iPDU (~55%) · 2. Basic metered PDU (~30%) · 3. Overhead busway distribution (~15%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "MarketsandMarkets DC power 2025 [[SRC: UPS+PDU ≈60% of DC power revenue]]",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.1",
+      "name": "Chiller Plant",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Water-cooled centrifugal (~50%) · 2. Air-cooled chiller (~30%) · 3. Magnetic bearing centrifugal (~20%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Mordor Intelligence cooling 2025",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.2",
+      "name": "Cooling Tower / Dry Cooler",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Open evaporative cooling tower (~55%) · 2. Dry cooler/fluid cooler (~30%) · 3. Hybrid adiabatic (~15%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Arizton market report 2025",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.3",
+      "name": "Room Air Handler (CRAH/CRAC)",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. CRAH with chilled water (~55%) · 2. DX precision CRAC (~30%) · 3. In-row cooling (~15%)",
+          "sharePct": 0,
+          "confidence": "HIGH",
+          "source": "Air-based cooling ~40% share of DC thermal market in 2024 [[SRC: Precedence Research 2025]]",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.4",
+      "name": "Liquid Cooling System",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. CDU / direct-to-chip manifold (~40%) · 2. Rear-door heat exchanger (~38%) · 3. Full immersion tank (~22%)",
+          "sharePct": 0,
+          "confidence": "HIGH",
+          "source": "DLC ~38.4% of liquid cooling market in 2025 [[SRC: Straits Research 2025]]; fastest-growing segment",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.5",
+      "name": "Hot/Cold Aisle Containment",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Hot aisle containment (~45%) · 2. Cold aisle containment (~35%) · 3. Full chimney/cage containment (~20%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "ASHRAE DC cooling guidelines; industry reports",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.1",
+      "name": "Server Rack & Cabinet",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Standard 42U/45U open rack (~65%) · 2. Enclosed security cabinet (~25%) · 3. OCP Open Rack v3 (~10% growing)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Hyperscale DC deployment surveys",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.2",
+      "name": "Structured Cabling",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Multi-mode fiber OM4/OM5 (~35%) · 2. Single-mode fiber OS2 (~35%) · 3. Copper Cat 6A (~30%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "TIA-942 cabling standards; industry surveys",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.3",
+      "name": "Floor Infrastructure",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Raised floor system (~55%) · 2. Slab with overhead cable trays (~30%) · 3. Hybrid raised+overhead (~15%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Uptime Institute DC design survey",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.4",
+      "name": "Cage & Compartment Barrier",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Modular wire cage barriers (~60%) · 2. Solid panel partitions (~25%) · 3. Permanent concrete/drywall walls (~15%)",
+          "sharePct": 0,
+          "confidence": "LOW",
+          "source": "Expert inference from colo facility design practice",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.1",
+      "name": "Perimeter Security",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Anti-ram bollards + CCTV perimeter (~50%) · 2. Fenced perimeter + patrol (~30%) · 3. Integrated PIDS (perimeter intrusion detection) (~20%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Grand View Research physical security 2025",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.2",
+      "name": "Biometric Access Control",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Fingerprint/hand geometry readers (~55%) · 2. Facial recognition (~25%) · 3. Iris/vein biometrics (~20%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "MarketsandMarkets DC access control 2025 [[SRC: $1.55B→$2.53B market, CAGR 10.2%]]",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.3",
+      "name": "CCTV & Video Analytics",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. IP fixed camera + NVR (~50%) · 2. AI-analytics VSaaS (~30%) · 3. PTZ cameras + VMS (~20%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Data center physical security market surveys",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.4",
+      "name": "Security Mantrap / Interlock",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Motorized mantrap vestibule (~60%) · 2. Electronic airlocked vestibule (~30%) · 3. Staffed checkpoint (~10%)",
+          "sharePct": 0,
+          "confidence": "LOW",
+          "source": "Expert inference from DC security design standards",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.5",
+      "name": "Emergency Exit Door Monitoring ← Türwächter L5",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": true,
+      "alternatives": [
+        {
+          "name": "1. Wired electronic exit alarm, alarm-panel-integrated (~50%) · 2. Wireless IoT door alarm guard (~30%) ← Türwächter category · 3. Mechanical-only door prop/handle alarm (~20%)",
+          "sharePct": 0,
+          "confidence": "LOW",
+          "source": "No published DC-specific sub-segment data; inference from physical security market structure [[SRC: 05_market_discovery §Rank10]]",
+          "isPrimary": true
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.6",
+      "name": "Security Operations Center (SOC)",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. On-site guard station + console (~50%) · 2. Remote SOC managed service (~35%) · 3. Hybrid on-site + remote (~15%)",
+          "sharePct": 0,
+          "confidence": "LOW",
+          "source": "Industry practice; DC security RFP standards",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6e.1",
+      "name": "Carrier Fiber Termination",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6e",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Dark fiber (~40%) · 2. Wavelength/lit services (~35%) · 3. IP transit / MPLS (~25%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Carrier-neutral DC market reports",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6e.2",
+      "name": "Cross-Connect Infrastructure",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6e",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Fiber patch panel cross-connect (~60%) · 2. Virtual cross-connect (VC) (~25%) · 3. Copper cross-connect (~15%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Equinix, Digital Realty interconnection pricing structures",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6e.3",
+      "name": "DDoS & Traffic Scrubbing",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6e",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Upstream provider scrubbing (~50%) · 2. On-premise scrubbing appliance (~35%) · 3. BGP blackhole-only (~15%)",
+          "sharePct": 0,
+          "confidence": "LOW",
+          "source": "Expert inference",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6f.1",
+      "name": "Compute Servers",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6f",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Custom ODM/JDM (~55%) · 2. OEM branded (Dell, HPE, Lenovo) (~30%) · 3. ARM-based (~15% growing)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Hyperscale capex disclosures; IDC server market 2025",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6f.2",
+      "name": "Storage Arrays",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6f",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. All-flash NVMe (~50%) · 2. Hybrid flash/HDD (~30%) · 3. Object storage nodes (~20%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "IDC storage market 2025",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6f.3",
+      "name": "Network Switching",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6f",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Merchant silicon (Broadcom Tomahawk/Tofino) (~45%) · 2. Custom ASIC (Arista, Cisco NX-OS) (~40%) · 3. Incumbent OEM bundled (~15%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Ethernet Alliance; DC networking reports",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H1.1",
+      "name": "DCIM Software Platform",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6H1",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Schneider EcoStruxure IT (~30%) · 2. Vertiv Trellis (~20%) · 3. Niche DCIM SaaS (nlyte, Sunbird) (~30%) · 4. In-house custom (~20%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Gartner DCIM market 2025",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H1.2",
+      "name": "Environmental Sensor Array",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6H1",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. IP-addressed T/H sensors on BACnet/SNMP (~60%) · 2. Wireless sensor mesh (~25%) · 3. IPMI/BMC embedded sensors (~15%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "DC monitoring hardware market",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H1.3",
+      "name": "Power Monitoring System",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6H1",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Intelligent PDU telemetry (~60%) · 2. Panel-level power meters (~30%) · 3. Sub-rack power monitoring (~10%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "MarketsandMarkets DC power 2025",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H2.1",
+      "name": "CMMS Platform",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6H2",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. ServiceNow / ServiceMax (~40%) · 2. IBM Maximo (~25%) · 3. Purpose-built FM SaaS (Corrigo, Fiix) (~35%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "FM software market reports 2025",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H2.2",
+      "name": "Diagnostic & Test Equipment",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6H2",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Thermal imaging cameras (~40%) · 2. Power quality analyzers (~35%) · 3. Vibration sensors / alignment tools (~25%)",
+          "sharePct": 0,
+          "confidence": "LOW",
+          "source": "Expert inference",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H3.1",
+      "name": "SIEM & Audit Log Platform",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6H3",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Splunk Enterprise Security (~35%) · 2. IBM QRadar (~20%) · 3. Microsoft Sentinel (~30%) · 4. Open-source SIEM (~15%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "Gartner SIEM MQ 2025; SOC 2 CC7.2 requirement",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H3.2",
+      "name": "GRC / Compliance Platform",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6H3",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. ServiceNow GRC (~35%) · 2. Archer (~20%) · 3. Dedicated GRC SaaS (LogicGate, Vanta) (~30%) · 4. Manual spreadsheet (~15% declining)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "GRC market reports; ISO 27001 transition deadline Oct 2025 [[SRC: ISO 27001:2022 mandatory after Oct 2025]]",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H4.1",
+      "name": "Clean Agent Suppression",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6H4",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. FM-200 / HFC-227ea (~40%) · 2. Novec 1230 (~30%) · 3. Inergen / inert gas blend (~20%) · 4. CO₂ (legacy, declining) (~10%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "NFPA 2001; DC fire suppression market surveys",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H4.2",
+      "name": "Early Warning Smoke Detection",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6H4",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. VESDA aspirating (ASD) (~55%) · 2. Addressable ionization/optical detector (~35%) · 3. Beam detector (~10%)",
+          "sharePct": 0,
+          "confidence": "MEDIUM",
+          "source": "DC fire safety standards; Xtralis VESDA market position",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H4.3",
+      "name": "Sprinkler System",
+      "functionalJob": "",
+      "description": "",
+      "parentL6": "L6H4",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "1. Pre-action dry pipe (~60%) · 2. Wet pipe (non-server areas only) (~25%) · 3. Deluge (generator room) (~15%)",
+          "sharePct": 0,
+          "confidence": "HIGH",
+          "source": "NFPA 13 / FM Global data center sprinkler standards",
+          "isPrimary": false
+        }
+      ]
+    }
+  ],
+  "marquardtPosition": "",
+  "strategicPosition": null,
+  "sources": []
+}

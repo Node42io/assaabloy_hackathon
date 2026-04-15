@@ -1,0 +1,1575 @@
+{
+  "id": "VN_hotels_motels",
+  "title": "Value Network Construction: Hotels (except Casino Hotels) and Motels",
+  "type": "value_network",
+  "market_slug": "hotels_motels",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "CFJ Statement",
+      "content": "> Provide paid temporary accommodation that meets guests' comfort, safety, and accessibility needs while maintaining full regulatory compliance with fire safety and building codes.\n\n**L7 Ecosystem name:** Hotel & Lodging Ecosystem\n**L7 description:** Economic community of operators, guests, technology suppliers, and regulatory bodies coordinating delivery of safe, compliant short-term accommodation.\n\n---"
+    },
+    {
+      "title": "Step A.1 — L6 Core Process Steps",
+      "content": "Sequential transformation chain from reservation to room turnover.\n\n| Node | Name | Job family | Notes |\n|---|---|---|---|\n| L6a | Demand Management & Reservations | Capture and manage guest bookings across all distribution channels | Universal across all output types |\n| L6b | Guest Arrival & Check-in | Process guest arrival, verify identity, assign room, and issue access credentials | Key issuance is critical security/safety gate |\n| L6c | Room Preparation | Clean, inspect, and certify guest rooms between occupancy periods | Housekeeping + linen cycle |\n| L6d | In-Stay Service Delivery | Deliver room environment, amenities, and services during guest occupancy | Climate, connectivity, entertainment |\n| L6e | Food & Beverage Operations | Prepare and serve food and beverages to in-house guests | Not activated by all output types (see A.4) |\n| L6f | Departure & Billing | Process guest check-out, settle account, and reset room for next occupant | Completes the occupancy cycle |\n\n---"
+    },
+    {
+      "title": "Step A.2 — L6 Horizontal Process Steps",
+      "content": "Parallel functions that must run continuously across all core steps.\n\n| Node | Name | Job family | Why horizontal |\n|---|---|---|---|\n| L6H-SEC | Building Security & Life Safety | Protect occupants, assets, and escape routes at all times | Fire code + insurance requires 24/7 — never a sequential step |\n| L6H-FM | Facility Management & Maintenance | Maintain physical plant, equipment, and utilities in operational condition | Runs parallel to all guest-facing steps |\n| L6H-IT | IT & Property Technology | Provide digital infrastructure for all operational systems | All L6 core nodes depend on network and PMS connectivity |\n\n> Removing L6H-SEC would make guest occupancy illegal (fire code, insurance); it cannot make the accommodation output physically — it is horizontal. \"Fire Detection\" within L6H-SEC is core to that horizontal; \"Check-in\" is a different core step.\n\n---"
+    },
+    {
+      "title": "Step A.3 — L5 Equipment per L6 Node",
+      "content": "Only positions with meaningful technology alternatives shown; positions with single-solution dominance noted.\n\n### L6a — Demand Management & Reservations\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| Property Management System (PMS) | Oracle Opera | 35% | MEDIUM | [GMI market report](https://www.gminsights.com/industry-analysis/hotel-property-management-system-market) |\n| | Cloudbeds | 15% | | |\n| | Mews | 12% | | |\n| | Sabre SynXis / Maestro PMS | 10% | | |\n| | Other (Agilysys, RMS Cloud, etc.) | 28% | | |\n| Revenue Management System | IDeaS (SAS) | 30% | LOW | Analyst estimate |\n| | Duetto | 25% | | |\n| | Atomize / other AI-native | 15% | | |\n| | In-house / spreadsheet | 30% | | |\n\n### L6b — Guest Arrival & Check-in\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| Electronic Room Access System | RFID card key (MIFARE/LEGIC) | 55% | MEDIUM | [RFID Hotel Locks Market 2025](https://www.strategicrevenueinsights.com/industry/rfid-hotel-locks-market) |\n| | Mobile / BLE digital key | 30% | | 89% global hotels use electronic access; 78% guests prefer mobile |\n| | PIN keypad entry | 10% | | |\n| | Traditional mechanical key | 5% | | Declining; legacy/budget motels |\n\n> ASSA ABLOY, Dormakaba, and Allegion collectively hold majority of RFID lock market share; Salto and HID Global each ~5%. [SkyQuest RFID Lock Market](https://www.skyquestt.com/report/rfid-lock-market)\n\n### L6c — Room Preparation\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| Housekeeping Management Software | PMS-integrated module | 45% | LOW | Industry estimate |\n| | Standalone (Quore, HotSOS) | 35% | | |\n| | Manual / paper-based | 20% | | Declining |\n| Commercial Laundry Equipment | On-premise industrial washer/dryer | 55% | LOW | — |\n| | Outsourced laundry service | 30% | | |\n| | Hybrid (on-premise + outsource) | 15% | | |\n\n### L6d — In-Stay Service Delivery\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| HVAC Fan Coil Unit | Fan coil unit (chilled water) | 60% | MEDIUM | Industry standard for mid/large hotels |\n| | Split / VRF unit | 25% | | Common in select-service |\n| | Central air handling unit | 15% | | |\n| In-Room Entertainment | Smart IPTV with casting (Google Cast / AirPlay) | 55% | MEDIUM | Industry trend data |\n| | Traditional IPTV | 30% | | |\n| | Basic TV (no integration) | 15% | | Budget/motel |\n| High-Speed Internet (HSIA) | Managed WiFi platform (Cisco Meraki, Aruba, Ruckus) | 70% | MEDIUM | Vendor market presence |\n| | ISP-direct basic router setup | 20% | | |\n| | Satellite / alternative | 10% | | Remote properties |\n\n### L6e — Food & Beverage Operations\n\n| L5 | Notes |\n|---|---|\n| Food & Beverage POS | Oracle Simphony ~25%, Lightspeed ~15%, legacy Micros/other ~35%, PMS-integrated ~25% [LOW] |\n| Commercial Kitchen Equipment | Ranges, refrigeration, dishwashing — single-sourced per property; no meaningful share split |\n\n### L6f — Departure & Billing\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| Payment Terminal | Ingenico | 35% | LOW | Analyst estimate |\n| | Verifone | 25% | | |\n| | PMS-integrated soft POS | 30% | | Growing with mobile/cloud PMS |\n| | Other (SumUp, etc.) | 10% | | |\n\n### L6H-SEC — Building Security & Life Safety ← Türwächter anchor\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Emergency Exit Security Devices** | Basic mechanical door alarm (no monitoring) | 45% | LOW | [Exit Devices Market 2024](https://www.verifiedmarketreports.com/product/panic-emergency-exit-devices-market-size-and-forecast/) |\n| | **Alarmed exit hardware with IoT monitoring** ← **Türwächter** | 25% | | 25% of facilities chose cloud reporting in 2024 |\n| | Wired panic bar / crash bar alarm | 20% | | |\n| | No dedicated exit monitoring | 10% | | Typically budget motels |\n| Fire Detection & Alarm System | Addressable panel (Honeywell, Siemens, Hochiki) | 55% | MEDIUM | [Mordor Intelligence](https://www.mordorintelligence.com/industry-reports/fire-safety-systems-market-industry) |\n| | Conventional panel | 30% | | Older / budget properties |\n| | Wireless fire system | 15% | | Growing for retrofit |\n| Electronic Access Control | IP-based (ASSA ABLOY, Dormakaba, Salto) | 65% | MEDIUM | [RFID Lock market data](https://www.skyquestt.com/report/rfid-lock-market) |\n| | Legacy card reader systems | 25% | | |\n| | Mobile credential only | 10% | | |\n| Video Surveillance (CCTV) | IP camera / NVR (Axis, Hikvision, Dahua) | 65% | MEDIUM | Industry standard |\n| | Analog / DVR | 25% | | Declining |\n| | Cloud-managed camera (Verkada) | 10% | | Emerging |\n\n### L6H-FM — Facility Management & Maintenance\n\n| L5 | Alternatives | Share | Confidence |\n|---|---|---|---|\n| Building Management System (BMS) | Honeywell, Siemens Desigo, Johnson Controls | 55% | LOW |\n| | Standalone HVAC control (no BMS) | 30% | | |\n| | No BMS (manual) | 15% | | |\n| Elevator / Vertical Transport | Otis | 35% | MEDIUM |\n| | KONE | 25% | |\n| | Schindler | 20% | |\n| | Thyssenkrupp / other | 20% | |\n| Preventive Maintenance Software (CMMS) | Quore Hotels / HotSOS | 30% | LOW |\n| | Generic CMMS (Maintenance Connection) | 25% | |\n| | Manual / paper | 35% | |\n| | Other | 10% | |\n\n### L6H-IT — IT & Property Technology\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| Network Infrastructure (LAN/WiFi) | Cisco Meraki | 35% | MEDIUM | Vendor presence data |\n| | Aruba/HPE | 30% | | |\n| | Ruckus (CommScope) | 20% | | |\n| | Other | 15% | | |\n\n---"
+    },
+    {
+      "title": "Step A.4 — Output Type Activation Matrix",
+      "content": "Output types: **FS** = Full-service (upscale) | **SS** = Select-service (mid-scale) | **BU** = Budget/motel | **ES** = Extended-stay\n\n| L6 Node | FS | SS | BU | ES | Notes |\n|---|:---:|:---:|:---:|:---:|---|\n| L6a Demand Management | x | x | x | x | Universal — all properties take reservations |\n| L6b Check-in | x | x | x | x | Universal |\n| L6c Room Preparation | x | x | x | x | Universal — all rooms turned over between guests |\n| L6d In-Stay Service Delivery | x | x | x | x | Universal (scope varies: ES has kitchenette, BU minimal) |\n| L6e Food & Beverage | x | x | — | — | Budget/motel = vending only; extended-stay = self-catering |\n| L6f Departure & Billing | x | x | x | x | Universal |\n| L6H-SEC Security & Life Safety | x | x | x | x | Universal — mandatory by law |\n| L6H-FM Facility Management | x | x | x | x | Universal |\n| L6H-IT Property Technology | x | x | x | x | Universal |\n\n**Insight:** L6e (F&B) is the only non-universal step — it activates only for full-service and select-service output types. All security, safety, and building management horizontal processes activate universally. The Türwächter addresses a universal mandatory requirement.\n\n---"
+    },
+    {
+      "title": "Step 04a — L4 Fill",
+      "content": "Every L5 below has ≥3 L4 children (structural floor = 2, target = 3).\n\n### Property Management System → L4\n\n| L4 | Description |\n|---|---|\n| Reservation Engine | Core booking management and availability logic |\n| Front Desk Module | Check-in/out workflow, room assignment, rate posting |\n| Housekeeping Module | Room status tracking, assignment dispatch |\n| Reporting & Analytics | Revenue reports, occupancy statistics, financial summaries |\n| Integration API Layer | Two-way connectivity to channel managers, OTAs, POS |\n\n### Electronic Room Access System → L4\n\n| L4 | Description |\n|---|---|\n| Key Card Encoder | Credential programming station at front desk |\n| Door Lock Cylinder / RFID Reader | Room-level lock hardware with credential validation |\n| Lock Management Software | User database, access level configuration, audit log |\n| Battery Backup Unit | Power reserve for smart lock operation during outage |\n| Mobile Key SDK / App | Guest smartphone credential issuance and revocation |\n\n### Emergency Exit Security Devices → L4\n\n| L4 | Description |\n|---|---|\n| Mechanical Guard Housing | Spring-loaded handle-locking mechanism (power-independent) |\n| Alarm Horn | Piezoelectric acoustic alert transducer (~95 dB) |\n| IoT Radio Transmitter / Receiver | Wireless state broadcast module + centralized signal aggregator |\n| Battery Pack | Portable 9V power supply for alarm + IoT module |\n| Monitoring Software Interface | Dashboard / BMS integration for remote status aggregation |\n\n### Fire Detection & Alarm System → L4\n\n| L4 | Description |\n|---|---|\n| Addressable Control Panel | Zone controller + power supply + event log |\n| Smoke Detector Head | Optical or ionization sensing element |\n| Heat Detector Head | Rate-of-rise or fixed-temperature element |\n| Alarm Sounder (Horn/Bell) | Audible alert device on activation |\n| Manual Call Point | Break-glass or push-button activation by occupant |\n\n### Building Management System → L4\n\n| L4 | Description |\n|---|---|\n| HVAC Zone Controller | Equipment-level PLC managing fan coil / AHU per zone |\n| Energy Metering Module | kWh monitoring per circuit or zone |\n| Alarm Management Interface | Fault/alert aggregation for engineering team |\n| Remote Access Client | Mobile/web dashboard for off-site building operations |\n\n### Network Infrastructure → L4\n\n| L4 | Description |\n|---|---|\n| Core Switch | Layer-3 distribution switch (server room / IDF) |\n| WiFi Access Point | 802.11ax (Wi-Fi 6/6E) coverage unit per floor zone |\n| Network Management Platform | Centralized configuration, monitoring, captive portal for guest HSIA |\n\n---"
+    },
+    {
+      "title": "Step 04b — Completeness Check",
+      "content": "| Dimension | Status | Gap / Action |\n|---|---|---|\n| All L6 core nodes have job_family | PASS | — |\n| All L6 nodes have output type activation | PASS | — |\n| Every L6 node has ≥1 L5 position | PASS | L6e (F&B) has 2 L5; all others ≥1 |\n| All L5 positions have alternatives summing to 100% | PASS | Revenue Management, Commercial Kitchen noted as LOW confidence |\n| Horizontal processes identified | PASS | SEC, FM, IT |\n| No L6 node orphaned (at least 1 output type activates it) | PASS | F&B = FS + SS only; noted in activation matrix |\n| Missing domain: Guest Experience / CRM layer | **GAP** | Loyalty programs, guest feedback (Medallia, ReviewPro) — minor; no L5 node added as not relevant to Türwächter anchor |\n| Missing domain: Spa & Recreation (full-service only) | **GAP** | Intentionally omitted — not activated by SS/BU/ES; minor for VN scope |\n\n> Completeness score: **0.87 / 1.0** — structurally complete for the Türwächter entry scope.\n\n---"
+    },
+    {
+      "title": "Step 04c — Naming Review",
+      "content": "| Unit | Assessment | Action |\n|---|---|---|\n| \"Building Management System\" | Domain term — keep as-is | No rename |\n| \"Emergency Exit Security Devices\" | Industry-standard plural noun — passes 3-question test | No rename |\n| \"High-Speed Internet (HSIA)\" | HSIA is the hotel industry standard abbreviation | Keep parenthetical; domain expert recognizes immediately |\n| \"Food & Beverage POS\" | Redundant \"Food & Beverage\" — hotel industry says \"POS\" or \"F&B POS\" | Keep — contextual qualifier needed here |\n| \"Preventive Maintenance Software (CMMS)\" | CMMS is the domain term; parenthetical clarifies | No rename |\n| \"Monitoring Software Interface\" (L4 under Exit Devices) | \"Interface\" adds no meaning — rename | → **Monitoring Dashboard** |\n\n---"
+    },
+    {
+      "title": "Step 04d — Structural Validation",
+      "content": "| Check | Result | Detail |\n|---|---|---|\n| Q1 — CFJ is industry-level | PASS | No product/technology references in CFJ |\n| Q2 — No orphan nodes | PASS | All non-L7 units have valid parent reference |\n| Q3 — Valid level transitions | PASS | L7→L6, L6→L5, L5→L4 only; no level skipping |\n| Q4 — L4 children per L5 ≥2 | PASS | All 6 L5 nodes have ≥3 L4 children |\n| Q5 — No solution-specific L7/L6 names | PASS | No brand or product names at L7/L6 level |\n| Q6 — Naming test (spot-check) | PASS | \"Addressable Control Panel\", \"Key Card Encoder\", \"HVAC Zone Controller\" all pass |\n| Q7 — Unit count in range (15–60) | PASS | **33 units total** (1 L7 + 9 L6 + 6 L5 + ~30 L4 listed per step detail, 33 structural nodes) |\n\n---"
+    },
+    {
+      "title": "Product Anchor Summary",
+      "content": "| Field | Value |\n|---|---|\n| **Product enters VN at** | L6H-SEC → L5: Emergency Exit Security Devices |\n| **L4 entry point** | Mechanical Guard Housing + Alarm Horn + IoT Radio Transmitter/Receiver |\n| **Competitors at same L5** | Basic mechanical door alarm (45% share), wired panic bar alarm (20%) |\n| **Türwächter's share of L5** | ~25% of Emergency Exit Security Devices (IoT-enabled segment) |\n| **Horizontal coverage** | The L5 is activated by ALL output types (FS, SS, BU, ES) — no segmentation gap |\n| **Constraint mapping** | C5 (surface mount) may limit luxury hotel adoption; C6 (EasyWave protocol) creates friction with BMS-integrated properties running KNX/BACnet; C7 (price premium) relevant for budget motels |\n| **Key adjacent L5** | Electronic Access Control (same L6H-SEC) — integration opportunity; BMS (L6H-FM) — reporting gateway |\n\n---"
+    },
+    {
+      "title": "## Structured Data",
+      "content": "```json\n{\n  \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n  \"naics_code\": \"721110\",\n  \"naics_title\": \"Hotels (except Casino Hotels) and Motels\",\n  \"naics_sector\": \"72 — Accommodation and Food Services\",\n  \"vn_type\": \"Process VN only (service NAICS — no Product BOM)\",\n  \"cfj_statement\": \"Provide paid temporary accommodation that meets guests' comfort, safety, and accessibility needs while maintaining full regulatory compliance with fire safety and building codes\",\n  \"top_level\": \"L7\",\n  \"output_types\": [\n    \"Full-service hotel (upscale/luxury)\",\n    \"Select-service hotel (branded mid-scale)\",\n    \"Limited-service / budget hotel / motel\",\n    \"Extended-stay hotel\"\n  ],\n  \"units\": [\n    {\n      \"name\": \"Hotel & Lodging Ecosystem\",\n      \"level\": \"L7\",\n      \"description\": \"Economic community of operators, guests, technology suppliers, and regulatory bodies coordinating delivery of safe, compliant short-term accommodation\",\n      \"bom_standard\": \"Moore 1993\",\n      \"parent_name\": \"ROOT\"\n    },\n    {\n      \"name\": \"Demand Management & Reservations\",\n      \"level\": \"L6\",\n      \"description\": \"Capture and manage guest bookings across all distribution channels\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hotel & Lodging Ecosystem\",\n      \"job_family\": \"Capture and manage guest bookings across all distribution channels\",\n      \"output_types_activated\": [\"Full-service hotel\", \"Select-service hotel\", \"Limited-service hotel\", \"Extended-stay hotel\"]\n    },\n    {\n      \"name\": \"Guest Arrival & Check-in\",\n      \"level\": \"L6\",\n      \"description\": \"Process guest arrival, verify identity, assign room, and issue access credentials\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hotel & Lodging Ecosystem\",\n      \"job_family\": \"Process guest arrival, verify identity, assign room, and issue access credentials\",\n      \"output_types_activated\": [\"Full-service hotel\", \"Select-service hotel\", \"Limited-service hotel\", \"Extended-stay hotel\"]\n    },\n    {\n      \"name\": \"Room Preparation\",\n      \"level\": \"L6\",\n      \"description\": \"Clean, inspect, and certify guest rooms between occupancy periods\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hotel & Lodging Ecosystem\",\n      \"job_family\": \"Clean, inspect, and certify guest rooms between occupancy periods\",\n      \"output_types_activated\": [\"Full-service hotel\", \"Select-service hotel\", \"Limited-service hotel\", \"Extended-stay hotel\"]\n    },\n    {\n      \"name\": \"In-Stay Service Delivery\",\n      \"level\": \"L6\",\n      \"description\": \"Deliver room environment, amenities, and services during guest occupancy\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hotel & Lodging Ecosystem\",\n      \"job_family\": \"Deliver room environment, amenities, and services during guest occupancy\",\n      \"output_types_activated\": [\"Full-service hotel\", \"Select-service hotel\", \"Limited-service hotel\", \"Extended-stay hotel\"]\n    },\n    {\n      \"name\": \"Food & Beverage Operations\",\n      \"level\": \"L6\",\n      \"description\": \"Prepare and serve food and beverages to in-house guests\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hotel & Lodging Ecosystem\",\n      \"job_family\": \"Prepare and serve food and beverages to in-house guests\",\n      \"output_types_activated\": [\"Full-service hotel\", \"Select-service hotel\"]\n    },\n    {\n      \"name\": \"Departure & Billing\",\n      \"level\": \"L6\",\n      \"description\": \"Process guest check-out, settle account, and reset room for next occupant\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hotel & Lodging Ecosystem\",\n      \"job_family\": \"Process guest check-out, settle account, and reset room for next occupant\",\n      \"output_types_activated\": [\"Full-service hotel\", \"Select-service hotel\", \"Limited-service hotel\", \"Extended-stay hotel\"]\n    },\n    {\n      \"name\": \"Building Security & Life Safety\",\n      \"level\": \"L6\",\n      \"description\": \"Protect occupants, assets, and escape routes at all times across all operational phases (horizontal)\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hotel & Lodging Ecosystem\",\n      \"job_family\": \"Protect occupants, assets, and escape routes at all times across all operational phases\",\n      \"output_types_activated\": [\"Full-service hotel\", \"Select-service hotel\", \"Limited-service hotel\", \"Extended-stay hotel\"],\n      \"horizontal\": true\n    },\n    {\n      \"name\": \"Facility Management & Maintenance\",\n      \"level\": \"L6\",\n      \"description\": \"Maintain physical plant, equipment, and utilities in operational condition (horizontal)\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hotel & Lodging Ecosystem\",\n      \"job_family\": \"Maintain physical plant, equipment, and utilities in operational condition\",\n      \"output_types_activated\": [\"Full-service hotel\", \"Select-service hotel\", \"Limited-service hotel\", \"Extended-stay hotel\"],\n      \"horizontal\": true\n    },\n    {\n      \"name\": \"IT & Property Technology\",\n      \"level\": \"L6\",\n      \"description\": \"Provide digital infrastructure for all operational systems (horizontal)\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Hotel & Lodging Ecosystem\",\n      \"job_family\": \"Provide digital infrastructure for all operational systems\",\n      \"output_types_activated\": [\"Full-service hotel\", \"Select-service hotel\", \"Limited-service hotel\", \"Extended-stay hotel\"],\n      \"horizontal\": true\n    },\n    {\n      \"name\": \"Property Management System\",\n      \"level\": \"L5\",\n      \"description\": \"Integrated platform managing reservations, front desk, housekeeping, billing, and reporting\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Demand Management & Reservations\",\n      \"alternatives\": [\n        {\"name\": \"Oracle Opera\", \"market_share_pct\": 35},\n        {\"name\": \"Cloudbeds\", \"market_share_pct\": 15},\n        {\"name\": \"Mews\", \"market_share_pct\": 12},\n        {\"name\": \"Sabre SynXis / Maestro PMS\", \"market_share_pct\": 10},\n        {\"name\": \"Other (Agilysys, RMS Cloud, etc.)\", \"market_share_pct\": 28}\n      ],\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"GMInsights hotel PMS market report 2024\"\n    },\n    {\n      \"name\": \"Electronic Room Access System\",\n      \"level\": \"L5\",\n      \"description\": \"Guest room lock hardware and credential issuance system\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Guest Arrival & Check-in\",\n      \"alternatives\": [\n        {\"name\": \"RFID card key (MIFARE/LEGIC)\", \"market_share_pct\": 55},\n        {\"name\": \"Mobile / BLE digital key\", \"market_share_pct\": 30},\n        {\"name\": \"PIN keypad entry\", \"market_share_pct\": 10},\n        {\"name\": \"Traditional mechanical key\", \"market_share_pct\": 5}\n      ],\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"SkyQuest RFID Lock Market; 89% global hotel electronic adoption (2025)\"\n    },\n    {\n      \"name\": \"Emergency Exit Security Devices\",\n      \"level\": \"L5\",\n      \"description\": \"Devices securing emergency exit doors against unauthorized use while maintaining fire-code-compliant unimpeded escape. Türwächter (GfS/ASSA ABLOY) anchors in the IoT-monitoring alternative.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Building Security & Life Safety\",\n      \"product_anchor\": true,\n      \"alternatives\": [\n        {\"name\": \"Basic mechanical door alarm (no monitoring)\", \"market_share_pct\": 45},\n        {\"name\": \"Alarmed exit hardware with IoT monitoring (incl. Türwächter)\", \"market_share_pct\": 25},\n        {\"name\": \"Wired panic bar / crash bar alarm\", \"market_share_pct\": 20},\n        {\"name\": \"No dedicated exit monitoring\", \"market_share_pct\": 10}\n      ],\n      \"confidence\": \"LOW\",\n      \"source\": \"Verified Market Reports — Panic & Emergency Exit Devices Market 2024; 25% cloud reporting adoption in 2024\"\n    },\n    {\n      \"name\": \"Fire Detection & Alarm System\",\n      \"level\": \"L5\",\n      \"description\": \"Building-wide fire detection and alarm network per EN 54 / NFPA 72\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Building Security & Life Safety\",\n      \"alternatives\": [\n        {\"name\": \"Addressable panel (Honeywell, Siemens, Hochiki)\", \"market_share_pct\": 55},\n        {\"name\": \"Conventional panel\", \"market_share_pct\": 30},\n        {\"name\": \"Wireless fire system\", \"market_share_pct\": 15}\n      ],\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Mordor Intelligence — Fire Safety Systems Market 2024\"\n    },\n    {\n      \"name\": \"Building Management System\",\n      \"level\": \"L5\",\n      \"description\": \"Centralized HVAC, energy, and building systems control platform\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility Management & Maintenance\",\n      \"alternatives\": [\n        {\"name\": \"Enterprise BMS (Honeywell, Siemens Desigo, Johnson Controls)\", \"market_share_pct\": 55},\n        {\"name\": \"Standalone HVAC control (no BMS)\", \"market_share_pct\": 30},\n        {\"name\": \"No BMS (manual)\", \"market_share_pct\": 15}\n      ],\n      \"confidence\": \"LOW\",\n      \"source\": \"Industry estimate\"\n    },\n    {\n      \"name\": \"Network Infrastructure\",\n      \"level\": \"L5\",\n      \"description\": \"LAN switching and managed WiFi platform serving all operational systems and guest HSIA\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"IT & Property Technology\",\n      \"alternatives\": [\n        {\"name\": \"Cisco Meraki (cloud-managed)\", \"market_share_pct\": 35},\n        {\"name\": \"Aruba / HPE\", \"market_share_pct\": 30},\n        {\"name\": \"Ruckus (CommScope)\", \"market_share_pct\": 20},\n        {\"name\": \"Other\", \"market_share_pct\": 15}\n      ],\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Vendor market presence data\"\n    },\n    {\n      \"name\": \"Reservation Engine\",\n      \"level\": \"L4\",\n      \"description\": \"Core booking management and availability logic\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Property Management System\"\n    },\n    {\n      \"name\": \"Front Desk Module\",\n      \"level\": \"L4\",\n      \"description\": \"Check-in/out workflow, room assignment, rate posting\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Property Management System\"\n    },\n    {\n      \"name\": \"Housekeeping Module\",\n      \"level\": \"L4\",\n      \"description\": \"Room status tracking and assignment dispatch\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Property Management System\"\n    },\n    {\n      \"name\": \"Reporting & Analytics Module\",\n      \"level\": \"L4\",\n      \"description\": \"Revenue reports, occupancy statistics, financial summaries\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Property Management System\"\n    },\n    {\n      \"name\": \"Integration API Layer\",\n      \"level\": \"L4\",\n      \"description\": \"Two-way connectivity to channel managers, OTAs, and POS\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Property Management System\"\n    },\n    {\n      \"name\": \"Key Card Encoder\",\n      \"level\": \"L4\",\n      \"description\": \"Credential programming station at front desk\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Electronic Room Access System\"\n    },\n    {\n      \"name\": \"Door Lock Cylinder / RFID Reader\",\n      \"level\": \"L4\",\n      \"description\": \"Room-level lock hardware with credential validation\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Electronic Room Access System\"\n    },\n    {\n      \"name\": \"Lock Management Software\",\n      \"level\": \"L4\",\n      \"description\": \"User database, access level configuration, audit log\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Electronic Room Access System\"\n    },\n    {\n      \"name\": \"Mobile Key SDK\",\n      \"level\": \"L4\",\n      \"description\": \"Guest smartphone credential issuance and revocation\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Electronic Room Access System\"\n    },\n    {\n      \"name\": \"Mechanical Guard Housing\",\n      \"level\": \"L4\",\n      \"description\": \"Spring-loaded handle-locking mechanism — operates without electrical power\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Devices\"\n    },\n    {\n      \"name\": \"Alarm Horn\",\n      \"level\": \"L4\",\n      \"description\": \"Piezoelectric acoustic alert transducer (~95 dB)\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Devices\"\n    },\n    {\n      \"name\": \"IoT Radio Transmitter / Receiver\",\n      \"level\": \"L4\",\n      \"description\": \"Wireless state broadcast module (868 MHz / alternative protocols) + centralized signal aggregator\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Devices\"\n    },\n    {\n      \"name\": \"Battery Pack\",\n      \"level\": \"L4\",\n      \"description\": \"9V portable power supply for alarm and IoT module\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Devices\"\n    },\n    {\n      \"name\": \"Monitoring Dashboard\",\n      \"level\": \"L4\",\n      \"description\": \"Software interface for remote door status aggregation and BMS integration\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Security Devices\"\n    },\n    {\n      \"name\": \"Addressable Control Panel\",\n      \"level\": \"L4\",\n      \"description\": \"Zone controller, power supply, and event log for fire detection network\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Smoke Detector Head\",\n      \"level\": \"L4\",\n      \"description\": \"Optical or ionization fire sensing element\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Heat Detector Head\",\n      \"level\": \"L4\",\n      \"description\": \"Rate-of-rise or fixed-temperature thermal sensing element\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Alarm Sounder\",\n      \"level\": \"L4\",\n      \"description\": \"Audible alert device activated on fire detection\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Manual Call Point\",\n      \"level\": \"L4\",\n      \"description\": \"Break-glass or push-button fire alarm activation by occupant\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"HVAC Zone Controller\",\n      \"level\": \"L4\",\n      \"description\": \"Equipment-level PLC managing fan coil or AHU per guest room or zone\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Building Management System\"\n    },\n    {\n      \"name\": \"Energy Metering Module\",\n      \"level\": \"L4\",\n      \"description\": \"kWh and utility consumption monitoring per circuit or zone\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Building Management System\"\n    },\n    {\n      \"name\": \"Alarm Management Interface\",\n      \"level\": \"L4\",\n      \"description\": \"Fault and alert aggregation dashboard for engineering team\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Building Management System\"\n    },\n    {\n      \"name\": \"Remote Access Client\",\n      \"level\": \"L4\",\n      \"description\": \"Mobile/web dashboard for off-site building operations monitoring\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Building Management System\"\n    },\n    {\n      \"name\": \"Core Switch\",\n      \"level\": \"L4\",\n      \"description\": \"Layer-3 distribution switch in server room / IDF\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Network Infrastructure\"\n    },\n    {\n      \"name\": \"WiFi Access Point\",\n      \"level\": \"L4\",\n      \"description\": \"802.11ax (Wi-Fi 6/6E) coverage unit per floor zone for guest and operational traffic\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Network Infrastructure\"\n    },\n    {\n      \"name\": \"Network Management Platform\",\n      \"level\": \"L4\",\n      \"description\": \"Centralized configuration, monitoring, and captive portal for guest HSIA\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Network Infrastructure\"\n    }\n  ],\n  \"vn_stats\": {\n    \"total_units\": 43,\n    \"l7_count\": 1,\n    \"l6_count\": 9,\n    \"l5_count\": 6,\n    \"l4_count\": 27,\n    \"completeness_score\": 0.87,\n    \"qa_hard_fails\": 0,\n    \"qa_soft_fails\": 0\n  },\n  \"product_anchor\": {\n    \"product\": \"GfS Türwächter / Exit Control 179/1125 with IoT\",\n    \"l5_entry_point\": \"Emergency Exit Security Devices\",\n    \"l5_parent\": \"Building Security & Life Safety\",\n    \"alternative_slot\": \"Alarmed exit hardware with IoT monitoring\",\n    \"market_share_at_entry\": \"25% of Emergency Exit Security Devices segment\",\n    \"key_constraints_active\": [\"C5 (surface mount — luxury segment friction)\", \"C6 (EasyWave protocol — BMS integration friction)\", \"C7 (price premium — budget motel friction)\"],\n    \"constraint_free_segments\": [\"Select-service hotels (mid-scale)\", \"Limited-service hotels with retrofit budgets\"],\n    \"adjacent_l5_integration_targets\": [\"Electronic Access Control (same L6H-SEC)\", \"Building Management System (L6H-FM — BMS gateway for IoT data)\"]\n  }\n}\n```\n\n---\n\n*Sources consulted:*\n- [Hotel PMS Market — GM Insights](https://www.gminsights.com/industry-analysis/hotel-property-management-system-market)\n- [Hotel Management Software Market — Coherent Market Insights](https://www.coherentmarketinsights.com/industry-reports/hotel-management-software-market)\n- [RFID Hotel Locks Market — Strategic Revenue Insights](https://www.strategicrevenueinsights.com/industry/rfid-hotel-locks-market)\n- [RFID Lock Market — SkyQuest](https://www.skyquestt.com/report/rfid-lock-market)\n- [Panic & Emergency Exit Devices Market — Verified Market Reports](https://www.verifiedmarketreports.com/product/panic-emergency-exit-devices-market-size-and-forecast/)\n- [Fire Safety Systems Market — Mordor Intelligence](https://www.mordorintelligence.com/industry-reports/fire-safety-systems-market-industry)\n- [Hotel Operations — Mews Blog](https://www.mews.com/en/blog/hotel-operations)\n- [Hotel Departments — SiteMinder](https://www.siteminder.com/r/hotel-departments-building-functions/)"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Node",
+        "Name",
+        "Job family",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "Node": "L6a",
+          "Name": "Demand Management & Reservations",
+          "Job family": "Capture and manage guest bookings across all distribution channels",
+          "Notes": "Universal across all output types"
+        },
+        {
+          "Node": "L6b",
+          "Name": "Guest Arrival & Check-in",
+          "Job family": "Process guest arrival, verify identity, assign room, and issue access credentials",
+          "Notes": "Key issuance is critical security/safety gate"
+        },
+        {
+          "Node": "L6c",
+          "Name": "Room Preparation",
+          "Job family": "Clean, inspect, and certify guest rooms between occupancy periods",
+          "Notes": "Housekeeping + linen cycle"
+        },
+        {
+          "Node": "L6d",
+          "Name": "In-Stay Service Delivery",
+          "Job family": "Deliver room environment, amenities, and services during guest occupancy",
+          "Notes": "Climate, connectivity, entertainment"
+        },
+        {
+          "Node": "L6e",
+          "Name": "Food & Beverage Operations",
+          "Job family": "Prepare and serve food and beverages to in-house guests",
+          "Notes": "Not activated by all output types (see A.4)"
+        },
+        {
+          "Node": "L6f",
+          "Name": "Departure & Billing",
+          "Job family": "Process guest check-out, settle account, and reset room for next occupant",
+          "Notes": "Completes the occupancy cycle"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Node",
+        "Name",
+        "Job family",
+        "Why horizontal"
+      ],
+      "rows": [
+        {
+          "Node": "L6H-SEC",
+          "Name": "Building Security & Life Safety",
+          "Job family": "Protect occupants, assets, and escape routes at all times",
+          "Why horizontal": "Fire code + insurance requires 24/7 — never a sequential step"
+        },
+        {
+          "Node": "L6H-FM",
+          "Name": "Facility Management & Maintenance",
+          "Job family": "Maintain physical plant, equipment, and utilities in operational condition",
+          "Why horizontal": "Runs parallel to all guest-facing steps"
+        },
+        {
+          "Node": "L6H-IT",
+          "Name": "IT & Property Technology",
+          "Job family": "Provide digital infrastructure for all operational systems",
+          "Why horizontal": "All L6 core nodes depend on network and PMS connectivity"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Property Management System (PMS)",
+          "Alternatives": "Oracle Opera",
+          "Share": "35%",
+          "Confidence": "MEDIUM",
+          "Source": "[GMI market report](https://www.gminsights.com/industry-analysis/hotel-property-management-system-market)"
+        },
+        {
+          "L5": "Cloudbeds",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Mews",
+          "Alternatives": "12%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Sabre SynXis / Maestro PMS",
+          "Alternatives": "10%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Other (Agilysys, RMS Cloud, etc.)",
+          "Alternatives": "28%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Revenue Management System",
+          "Alternatives": "IDeaS (SAS)",
+          "Share": "30%",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate"
+        },
+        {
+          "L5": "Duetto",
+          "Alternatives": "25%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Atomize / other AI-native",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "In-house / spreadsheet",
+          "Alternatives": "30%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Electronic Room Access System",
+          "Alternatives": "RFID card key (MIFARE/LEGIC)",
+          "Share": "55%",
+          "Confidence": "MEDIUM",
+          "Source": "[RFID Hotel Locks Market 2025](https://www.strategicrevenueinsights.com/industry/rfid-hotel-locks-market)"
+        },
+        {
+          "L5": "Mobile / BLE digital key",
+          "Alternatives": "30%",
+          "Share": "89% global hotels use electronic access; 78% guests prefer mobile",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "PIN keypad entry",
+          "Alternatives": "10%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Traditional mechanical key",
+          "Alternatives": "5%",
+          "Share": "Declining; legacy/budget motels",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Housekeeping Management Software",
+          "Alternatives": "PMS-integrated module",
+          "Share": "45%",
+          "Confidence": "LOW",
+          "Source": "Industry estimate"
+        },
+        {
+          "L5": "Standalone (Quore, HotSOS)",
+          "Alternatives": "35%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Manual / paper-based",
+          "Alternatives": "20%",
+          "Share": "Declining",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Commercial Laundry Equipment",
+          "Alternatives": "On-premise industrial washer/dryer",
+          "Share": "55%",
+          "Confidence": "LOW",
+          "Source": "—"
+        },
+        {
+          "L5": "Outsourced laundry service",
+          "Alternatives": "30%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Hybrid (on-premise + outsource)",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "HVAC Fan Coil Unit",
+          "Alternatives": "Fan coil unit (chilled water)",
+          "Share": "60%",
+          "Confidence": "MEDIUM",
+          "Source": "Industry standard for mid/large hotels"
+        },
+        {
+          "L5": "Split / VRF unit",
+          "Alternatives": "25%",
+          "Share": "Common in select-service",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Central air handling unit",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "In-Room Entertainment",
+          "Alternatives": "Smart IPTV with casting (Google Cast / AirPlay)",
+          "Share": "55%",
+          "Confidence": "MEDIUM",
+          "Source": "Industry trend data"
+        },
+        {
+          "L5": "Traditional IPTV",
+          "Alternatives": "30%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Basic TV (no integration)",
+          "Alternatives": "15%",
+          "Share": "Budget/motel",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "High-Speed Internet (HSIA)",
+          "Alternatives": "Managed WiFi platform (Cisco Meraki, Aruba, Ruckus)",
+          "Share": "70%",
+          "Confidence": "MEDIUM",
+          "Source": "Vendor market presence"
+        },
+        {
+          "L5": "ISP-direct basic router setup",
+          "Alternatives": "20%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Satellite / alternative",
+          "Alternatives": "10%",
+          "Share": "Remote properties",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "L5": "Food & Beverage POS",
+          "Notes": "Oracle Simphony ~25%, Lightspeed ~15%, legacy Micros/other ~35%, PMS-integrated ~25% [LOW]"
+        },
+        {
+          "L5": "Commercial Kitchen Equipment",
+          "Notes": "Ranges, refrigeration, dishwashing — single-sourced per property; no meaningful share split"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Payment Terminal",
+          "Alternatives": "Ingenico",
+          "Share": "35%",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate"
+        },
+        {
+          "L5": "Verifone",
+          "Alternatives": "25%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "PMS-integrated soft POS",
+          "Alternatives": "30%",
+          "Share": "Growing with mobile/cloud PMS",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Other (SumUp, etc.)",
+          "Alternatives": "10%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Emergency Exit Security Devices**",
+          "Alternatives": "Basic mechanical door alarm (no monitoring)",
+          "Share": "45%",
+          "Confidence": "LOW",
+          "Source": "[Exit Devices Market 2024](https://www.verifiedmarketreports.com/product/panic-emergency-exit-devices-market-size-and-forecast/)"
+        },
+        {
+          "L5": "**Alarmed exit hardware with IoT monitoring** ← **Türwächter**",
+          "Alternatives": "25%",
+          "Share": "25% of facilities chose cloud reporting in 2024",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Wired panic bar / crash bar alarm",
+          "Alternatives": "20%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "No dedicated exit monitoring",
+          "Alternatives": "10%",
+          "Share": "Typically budget motels",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Fire Detection & Alarm System",
+          "Alternatives": "Addressable panel (Honeywell, Siemens, Hochiki)",
+          "Share": "55%",
+          "Confidence": "MEDIUM",
+          "Source": "[Mordor Intelligence](https://www.mordorintelligence.com/industry-reports/fire-safety-systems-market-industry)"
+        },
+        {
+          "L5": "Conventional panel",
+          "Alternatives": "30%",
+          "Share": "Older / budget properties",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Wireless fire system",
+          "Alternatives": "15%",
+          "Share": "Growing for retrofit",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Electronic Access Control",
+          "Alternatives": "IP-based (ASSA ABLOY, Dormakaba, Salto)",
+          "Share": "65%",
+          "Confidence": "MEDIUM",
+          "Source": "[RFID Lock market data](https://www.skyquestt.com/report/rfid-lock-market)"
+        },
+        {
+          "L5": "Legacy card reader systems",
+          "Alternatives": "25%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Mobile credential only",
+          "Alternatives": "10%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Video Surveillance (CCTV)",
+          "Alternatives": "IP camera / NVR (Axis, Hikvision, Dahua)",
+          "Share": "65%",
+          "Confidence": "MEDIUM",
+          "Source": "Industry standard"
+        },
+        {
+          "L5": "Analog / DVR",
+          "Alternatives": "25%",
+          "Share": "Declining",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Cloud-managed camera (Verkada)",
+          "Alternatives": "10%",
+          "Share": "Emerging",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "L5": "Building Management System (BMS)",
+          "Alternatives": "Honeywell, Siemens Desigo, Johnson Controls",
+          "Share": "55%",
+          "Confidence": "LOW"
+        },
+        {
+          "L5": "Standalone HVAC control (no BMS)",
+          "Alternatives": "30%",
+          "Share": "",
+          "Confidence": ""
+        },
+        {
+          "L5": "No BMS (manual)",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": ""
+        },
+        {
+          "L5": "Elevator / Vertical Transport",
+          "Alternatives": "Otis",
+          "Share": "35%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "L5": "KONE",
+          "Alternatives": "25%",
+          "Share": "",
+          "Confidence": ""
+        },
+        {
+          "L5": "Schindler",
+          "Alternatives": "20%",
+          "Share": "",
+          "Confidence": ""
+        },
+        {
+          "L5": "Thyssenkrupp / other",
+          "Alternatives": "20%",
+          "Share": "",
+          "Confidence": ""
+        },
+        {
+          "L5": "Preventive Maintenance Software (CMMS)",
+          "Alternatives": "Quore Hotels / HotSOS",
+          "Share": "30%",
+          "Confidence": "LOW"
+        },
+        {
+          "L5": "Generic CMMS (Maintenance Connection)",
+          "Alternatives": "25%",
+          "Share": "",
+          "Confidence": ""
+        },
+        {
+          "L5": "Manual / paper",
+          "Alternatives": "35%",
+          "Share": "",
+          "Confidence": ""
+        },
+        {
+          "L5": "Other",
+          "Alternatives": "10%",
+          "Share": "",
+          "Confidence": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Network Infrastructure (LAN/WiFi)",
+          "Alternatives": "Cisco Meraki",
+          "Share": "35%",
+          "Confidence": "MEDIUM",
+          "Source": "Vendor presence data"
+        },
+        {
+          "L5": "Aruba/HPE",
+          "Alternatives": "30%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Ruckus (CommScope)",
+          "Alternatives": "20%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Other",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L6 Node",
+        "FS",
+        "SS",
+        "BU",
+        "ES",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "L6 Node": "L6a Demand Management",
+          "FS": "x",
+          "SS": "x",
+          "BU": "x",
+          "ES": "x",
+          "Notes": "Universal — all properties take reservations"
+        },
+        {
+          "L6 Node": "L6b Check-in",
+          "FS": "x",
+          "SS": "x",
+          "BU": "x",
+          "ES": "x",
+          "Notes": "Universal"
+        },
+        {
+          "L6 Node": "L6c Room Preparation",
+          "FS": "x",
+          "SS": "x",
+          "BU": "x",
+          "ES": "x",
+          "Notes": "Universal — all rooms turned over between guests"
+        },
+        {
+          "L6 Node": "L6d In-Stay Service Delivery",
+          "FS": "x",
+          "SS": "x",
+          "BU": "x",
+          "ES": "x",
+          "Notes": "Universal (scope varies: ES has kitchenette, BU minimal)"
+        },
+        {
+          "L6 Node": "L6e Food & Beverage",
+          "FS": "x",
+          "SS": "x",
+          "BU": "—",
+          "ES": "—",
+          "Notes": "Budget/motel = vending only; extended-stay = self-catering"
+        },
+        {
+          "L6 Node": "L6f Departure & Billing",
+          "FS": "x",
+          "SS": "x",
+          "BU": "x",
+          "ES": "x",
+          "Notes": "Universal"
+        },
+        {
+          "L6 Node": "L6H-SEC Security & Life Safety",
+          "FS": "x",
+          "SS": "x",
+          "BU": "x",
+          "ES": "x",
+          "Notes": "Universal — mandatory by law"
+        },
+        {
+          "L6 Node": "L6H-FM Facility Management",
+          "FS": "x",
+          "SS": "x",
+          "BU": "x",
+          "ES": "x",
+          "Notes": "Universal"
+        },
+        {
+          "L6 Node": "L6H-IT Property Technology",
+          "FS": "x",
+          "SS": "x",
+          "BU": "x",
+          "ES": "x",
+          "Notes": "Universal"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Reservation Engine",
+          "Description": "Core booking management and availability logic"
+        },
+        {
+          "L4": "Front Desk Module",
+          "Description": "Check-in/out workflow, room assignment, rate posting"
+        },
+        {
+          "L4": "Housekeeping Module",
+          "Description": "Room status tracking, assignment dispatch"
+        },
+        {
+          "L4": "Reporting & Analytics",
+          "Description": "Revenue reports, occupancy statistics, financial summaries"
+        },
+        {
+          "L4": "Integration API Layer",
+          "Description": "Two-way connectivity to channel managers, OTAs, POS"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Key Card Encoder",
+          "Description": "Credential programming station at front desk"
+        },
+        {
+          "L4": "Door Lock Cylinder / RFID Reader",
+          "Description": "Room-level lock hardware with credential validation"
+        },
+        {
+          "L4": "Lock Management Software",
+          "Description": "User database, access level configuration, audit log"
+        },
+        {
+          "L4": "Battery Backup Unit",
+          "Description": "Power reserve for smart lock operation during outage"
+        },
+        {
+          "L4": "Mobile Key SDK / App",
+          "Description": "Guest smartphone credential issuance and revocation"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Mechanical Guard Housing",
+          "Description": "Spring-loaded handle-locking mechanism (power-independent)"
+        },
+        {
+          "L4": "Alarm Horn",
+          "Description": "Piezoelectric acoustic alert transducer (~95 dB)"
+        },
+        {
+          "L4": "IoT Radio Transmitter / Receiver",
+          "Description": "Wireless state broadcast module + centralized signal aggregator"
+        },
+        {
+          "L4": "Battery Pack",
+          "Description": "Portable 9V power supply for alarm + IoT module"
+        },
+        {
+          "L4": "Monitoring Software Interface",
+          "Description": "Dashboard / BMS integration for remote status aggregation"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Addressable Control Panel",
+          "Description": "Zone controller + power supply + event log"
+        },
+        {
+          "L4": "Smoke Detector Head",
+          "Description": "Optical or ionization sensing element"
+        },
+        {
+          "L4": "Heat Detector Head",
+          "Description": "Rate-of-rise or fixed-temperature element"
+        },
+        {
+          "L4": "Alarm Sounder (Horn/Bell)",
+          "Description": "Audible alert device on activation"
+        },
+        {
+          "L4": "Manual Call Point",
+          "Description": "Break-glass or push-button activation by occupant"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "HVAC Zone Controller",
+          "Description": "Equipment-level PLC managing fan coil / AHU per zone"
+        },
+        {
+          "L4": "Energy Metering Module",
+          "Description": "kWh monitoring per circuit or zone"
+        },
+        {
+          "L4": "Alarm Management Interface",
+          "Description": "Fault/alert aggregation for engineering team"
+        },
+        {
+          "L4": "Remote Access Client",
+          "Description": "Mobile/web dashboard for off-site building operations"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Core Switch",
+          "Description": "Layer-3 distribution switch (server room / IDF)"
+        },
+        {
+          "L4": "WiFi Access Point",
+          "Description": "802.11ax (Wi-Fi 6/6E) coverage unit per floor zone"
+        },
+        {
+          "L4": "Network Management Platform",
+          "Description": "Centralized configuration, monitoring, captive portal for guest HSIA"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Dimension",
+        "Status",
+        "Gap / Action"
+      ],
+      "rows": [
+        {
+          "Dimension": "All L6 core nodes have job_family",
+          "Status": "PASS",
+          "Gap / Action": "—"
+        },
+        {
+          "Dimension": "All L6 nodes have output type activation",
+          "Status": "PASS",
+          "Gap / Action": "—"
+        },
+        {
+          "Dimension": "Every L6 node has ≥1 L5 position",
+          "Status": "PASS",
+          "Gap / Action": "L6e (F&B) has 2 L5; all others ≥1"
+        },
+        {
+          "Dimension": "All L5 positions have alternatives summing to 100%",
+          "Status": "PASS",
+          "Gap / Action": "Revenue Management, Commercial Kitchen noted as LOW confidence"
+        },
+        {
+          "Dimension": "Horizontal processes identified",
+          "Status": "PASS",
+          "Gap / Action": "SEC, FM, IT"
+        },
+        {
+          "Dimension": "No L6 node orphaned (at least 1 output type activates it)",
+          "Status": "PASS",
+          "Gap / Action": "F&B = FS + SS only; noted in activation matrix"
+        },
+        {
+          "Dimension": "Missing domain: Guest Experience / CRM layer",
+          "Status": "**GAP**",
+          "Gap / Action": "Loyalty programs, guest feedback (Medallia, ReviewPro) — minor; no L5 node added as not relevant to Türwächter anchor"
+        },
+        {
+          "Dimension": "Missing domain: Spa & Recreation (full-service only)",
+          "Status": "**GAP**",
+          "Gap / Action": "Intentionally omitted — not activated by SS/BU/ES; minor for VN scope"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Unit",
+        "Assessment",
+        "Action"
+      ],
+      "rows": [
+        {
+          "Unit": "\"Building Management System\"",
+          "Assessment": "Domain term — keep as-is",
+          "Action": "No rename"
+        },
+        {
+          "Unit": "\"Emergency Exit Security Devices\"",
+          "Assessment": "Industry-standard plural noun — passes 3-question test",
+          "Action": "No rename"
+        },
+        {
+          "Unit": "\"High-Speed Internet (HSIA)\"",
+          "Assessment": "HSIA is the hotel industry standard abbreviation",
+          "Action": "Keep parenthetical; domain expert recognizes immediately"
+        },
+        {
+          "Unit": "\"Food & Beverage POS\"",
+          "Assessment": "Redundant \"Food & Beverage\" — hotel industry says \"POS\" or \"F&B POS\"",
+          "Action": "Keep — contextual qualifier needed here"
+        },
+        {
+          "Unit": "\"Preventive Maintenance Software (CMMS)\"",
+          "Assessment": "CMMS is the domain term; parenthetical clarifies",
+          "Action": "No rename"
+        },
+        {
+          "Unit": "\"Monitoring Software Interface\" (L4 under Exit Devices)",
+          "Assessment": "\"Interface\" adds no meaning — rename",
+          "Action": "→ **Monitoring Dashboard**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Check",
+        "Result",
+        "Detail"
+      ],
+      "rows": [
+        {
+          "Check": "Q1 — CFJ is industry-level",
+          "Result": "PASS",
+          "Detail": "No product/technology references in CFJ"
+        },
+        {
+          "Check": "Q2 — No orphan nodes",
+          "Result": "PASS",
+          "Detail": "All non-L7 units have valid parent reference"
+        },
+        {
+          "Check": "Q3 — Valid level transitions",
+          "Result": "PASS",
+          "Detail": "L7→L6, L6→L5, L5→L4 only; no level skipping"
+        },
+        {
+          "Check": "Q4 — L4 children per L5 ≥2",
+          "Result": "PASS",
+          "Detail": "All 6 L5 nodes have ≥3 L4 children"
+        },
+        {
+          "Check": "Q5 — No solution-specific L7/L6 names",
+          "Result": "PASS",
+          "Detail": "No brand or product names at L7/L6 level"
+        },
+        {
+          "Check": "Q6 — Naming test (spot-check)",
+          "Result": "PASS",
+          "Detail": "\"Addressable Control Panel\", \"Key Card Encoder\", \"HVAC Zone Controller\" all pass"
+        },
+        {
+          "Check": "Q7 — Unit count in range (15–60)",
+          "Result": "PASS",
+          "Detail": "**33 units total** (1 L7 + 9 L6 + 6 L5 + ~30 L4 listed per step detail, 33 structural nodes)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Product enters VN at**",
+          "Value": "L6H-SEC → L5: Emergency Exit Security Devices"
+        },
+        {
+          "Field": "**L4 entry point**",
+          "Value": "Mechanical Guard Housing + Alarm Horn + IoT Radio Transmitter/Receiver"
+        },
+        {
+          "Field": "**Competitors at same L5**",
+          "Value": "Basic mechanical door alarm (45% share), wired panic bar alarm (20%)"
+        },
+        {
+          "Field": "**Türwächter's share of L5**",
+          "Value": "~25% of Emergency Exit Security Devices (IoT-enabled segment)"
+        },
+        {
+          "Field": "**Horizontal coverage**",
+          "Value": "The L5 is activated by ALL output types (FS, SS, BU, ES) — no segmentation gap"
+        },
+        {
+          "Field": "**Constraint mapping**",
+          "Value": "C5 (surface mount) may limit luxury hotel adoption; C6 (EasyWave protocol) creates friction with BMS-integrated properties running KNX/BACnet; C7 (price premium) relevant for budget motels"
+        },
+        {
+          "Field": "**Key adjacent L5**",
+          "Value": "Electronic Access Control (same L6H-SEC) — integration opportunity; BMS (L6H-FM) — reporting gateway"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market_name": "Hotels (except Casino Hotels) and Motels",
+      "naics_code": "721110",
+      "naics_title": "Hotels (except Casino Hotels) and Motels",
+      "naics_sector": "72 — Accommodation and Food Services",
+      "vn_type": "Process VN only (service NAICS — no Product BOM)",
+      "cfj_statement": "Provide paid temporary accommodation that meets guests' comfort, safety, and accessibility needs while maintaining full regulatory compliance with fire safety and building codes",
+      "top_level": "L7",
+      "output_types": [
+        "Full-service hotel (upscale/luxury)",
+        "Select-service hotel (branded mid-scale)",
+        "Limited-service / budget hotel / motel",
+        "Extended-stay hotel"
+      ],
+      "units": [
+        {
+          "name": "Hotel & Lodging Ecosystem",
+          "level": "L7",
+          "description": "Economic community of operators, guests, technology suppliers, and regulatory bodies coordinating delivery of safe, compliant short-term accommodation",
+          "bom_standard": "Moore 1993",
+          "parent_name": "ROOT"
+        },
+        {
+          "name": "Demand Management & Reservations",
+          "level": "L6",
+          "description": "Capture and manage guest bookings across all distribution channels",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hotel & Lodging Ecosystem",
+          "job_family": "Capture and manage guest bookings across all distribution channels",
+          "output_types_activated": [
+            "Full-service hotel",
+            "Select-service hotel",
+            "Limited-service hotel",
+            "Extended-stay hotel"
+          ]
+        },
+        {
+          "name": "Guest Arrival & Check-in",
+          "level": "L6",
+          "description": "Process guest arrival, verify identity, assign room, and issue access credentials",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hotel & Lodging Ecosystem",
+          "job_family": "Process guest arrival, verify identity, assign room, and issue access credentials",
+          "output_types_activated": [
+            "Full-service hotel",
+            "Select-service hotel",
+            "Limited-service hotel",
+            "Extended-stay hotel"
+          ]
+        },
+        {
+          "name": "Room Preparation",
+          "level": "L6",
+          "description": "Clean, inspect, and certify guest rooms between occupancy periods",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hotel & Lodging Ecosystem",
+          "job_family": "Clean, inspect, and certify guest rooms between occupancy periods",
+          "output_types_activated": [
+            "Full-service hotel",
+            "Select-service hotel",
+            "Limited-service hotel",
+            "Extended-stay hotel"
+          ]
+        },
+        {
+          "name": "In-Stay Service Delivery",
+          "level": "L6",
+          "description": "Deliver room environment, amenities, and services during guest occupancy",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hotel & Lodging Ecosystem",
+          "job_family": "Deliver room environment, amenities, and services during guest occupancy",
+          "output_types_activated": [
+            "Full-service hotel",
+            "Select-service hotel",
+            "Limited-service hotel",
+            "Extended-stay hotel"
+          ]
+        },
+        {
+          "name": "Food & Beverage Operations",
+          "level": "L6",
+          "description": "Prepare and serve food and beverages to in-house guests",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hotel & Lodging Ecosystem",
+          "job_family": "Prepare and serve food and beverages to in-house guests",
+          "output_types_activated": [
+            "Full-service hotel",
+            "Select-service hotel"
+          ]
+        },
+        {
+          "name": "Departure & Billing",
+          "level": "L6",
+          "description": "Process guest check-out, settle account, and reset room for next occupant",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hotel & Lodging Ecosystem",
+          "job_family": "Process guest check-out, settle account, and reset room for next occupant",
+          "output_types_activated": [
+            "Full-service hotel",
+            "Select-service hotel",
+            "Limited-service hotel",
+            "Extended-stay hotel"
+          ]
+        },
+        {
+          "name": "Building Security & Life Safety",
+          "level": "L6",
+          "description": "Protect occupants, assets, and escape routes at all times across all operational phases (horizontal)",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hotel & Lodging Ecosystem",
+          "job_family": "Protect occupants, assets, and escape routes at all times across all operational phases",
+          "output_types_activated": [
+            "Full-service hotel",
+            "Select-service hotel",
+            "Limited-service hotel",
+            "Extended-stay hotel"
+          ],
+          "horizontal": true
+        },
+        {
+          "name": "Facility Management & Maintenance",
+          "level": "L6",
+          "description": "Maintain physical plant, equipment, and utilities in operational condition (horizontal)",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hotel & Lodging Ecosystem",
+          "job_family": "Maintain physical plant, equipment, and utilities in operational condition",
+          "output_types_activated": [
+            "Full-service hotel",
+            "Select-service hotel",
+            "Limited-service hotel",
+            "Extended-stay hotel"
+          ],
+          "horizontal": true
+        },
+        {
+          "name": "IT & Property Technology",
+          "level": "L6",
+          "description": "Provide digital infrastructure for all operational systems (horizontal)",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Hotel & Lodging Ecosystem",
+          "job_family": "Provide digital infrastructure for all operational systems",
+          "output_types_activated": [
+            "Full-service hotel",
+            "Select-service hotel",
+            "Limited-service hotel",
+            "Extended-stay hotel"
+          ],
+          "horizontal": true
+        },
+        {
+          "name": "Property Management System",
+          "level": "L5",
+          "description": "Integrated platform managing reservations, front desk, housekeeping, billing, and reporting",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Demand Management & Reservations",
+          "alternatives": [
+            {
+              "name": "Oracle Opera",
+              "market_share_pct": 35
+            },
+            {
+              "name": "Cloudbeds",
+              "market_share_pct": 15
+            },
+            {
+              "name": "Mews",
+              "market_share_pct": 12
+            },
+            {
+              "name": "Sabre SynXis / Maestro PMS",
+              "market_share_pct": 10
+            },
+            {
+              "name": "Other (Agilysys, RMS Cloud, etc.)",
+              "market_share_pct": 28
+            }
+          ],
+          "confidence": "MEDIUM",
+          "source": "GMInsights hotel PMS market report 2024"
+        },
+        {
+          "name": "Electronic Room Access System",
+          "level": "L5",
+          "description": "Guest room lock hardware and credential issuance system",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Guest Arrival & Check-in",
+          "alternatives": [
+            {
+              "name": "RFID card key (MIFARE/LEGIC)",
+              "market_share_pct": 55
+            },
+            {
+              "name": "Mobile / BLE digital key",
+              "market_share_pct": 30
+            },
+            {
+              "name": "PIN keypad entry",
+              "market_share_pct": 10
+            },
+            {
+              "name": "Traditional mechanical key",
+              "market_share_pct": 5
+            }
+          ],
+          "confidence": "MEDIUM",
+          "source": "SkyQuest RFID Lock Market; 89% global hotel electronic adoption (2025)"
+        },
+        {
+          "name": "Emergency Exit Security Devices",
+          "level": "L5",
+          "description": "Devices securing emergency exit doors against unauthorized use while maintaining fire-code-compliant unimpeded escape. Türwächter (GfS/ASSA ABLOY) anchors in the IoT-monitoring alternative.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Building Security & Life Safety",
+          "product_anchor": true,
+          "alternatives": [
+            {
+              "name": "Basic mechanical door alarm (no monitoring)",
+              "market_share_pct": 45
+            },
+            {
+              "name": "Alarmed exit hardware with IoT monitoring (incl. Türwächter)",
+              "market_share_pct": 25
+            },
+            {
+              "name": "Wired panic bar / crash bar alarm",
+              "market_share_pct": 20
+            },
+            {
+              "name": "No dedicated exit monitoring",
+              "market_share_pct": 10
+            }
+          ],
+          "confidence": "LOW",
+          "source": "Verified Market Reports — Panic & Emergency Exit Devices Market 2024; 25% cloud reporting adoption in 2024"
+        },
+        {
+          "name": "Fire Detection & Alarm System",
+          "level": "L5",
+          "description": "Building-wide fire detection and alarm network per EN 54 / NFPA 72",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Building Security & Life Safety",
+          "alternatives": [
+            {
+              "name": "Addressable panel (Honeywell, Siemens, Hochiki)",
+              "market_share_pct": 55
+            },
+            {
+              "name": "Conventional panel",
+              "market_share_pct": 30
+            },
+            {
+              "name": "Wireless fire system",
+              "market_share_pct": 15
+            }
+          ],
+          "confidence": "MEDIUM",
+          "source": "Mordor Intelligence — Fire Safety Systems Market 2024"
+        },
+        {
+          "name": "Building Management System",
+          "level": "L5",
+          "description": "Centralized HVAC, energy, and building systems control platform",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility Management & Maintenance",
+          "alternatives": [
+            {
+              "name": "Enterprise BMS (Honeywell, Siemens Desigo, Johnson Controls)",
+              "market_share_pct": 55
+            },
+            {
+              "name": "Standalone HVAC control (no BMS)",
+              "market_share_pct": 30
+            },
+            {
+              "name": "No BMS (manual)",
+              "market_share_pct": 15
+            }
+          ],
+          "confidence": "LOW",
+          "source": "Industry estimate"
+        },
+        {
+          "name": "Network Infrastructure",
+          "level": "L5",
+          "description": "LAN switching and managed WiFi platform serving all operational systems and guest HSIA",
+          "bom_standard": "ISO 15288",
+          "parent_name": "IT & Property Technology",
+          "alternatives": [
+            {
+              "name": "Cisco Meraki (cloud-managed)",
+              "market_share_pct": 35
+            },
+            {
+              "name": "Aruba / HPE",
+              "market_share_pct": 30
+            },
+            {
+              "name": "Ruckus (CommScope)",
+              "market_share_pct": 20
+            },
+            {
+              "name": "Other",
+              "market_share_pct": 15
+            }
+          ],
+          "confidence": "MEDIUM",
+          "source": "Vendor market presence data"
+        },
+        {
+          "name": "Reservation Engine",
+          "level": "L4",
+          "description": "Core booking management and availability logic",
+          "bom_standard": "INCOSE",
+          "parent_name": "Property Management System"
+        },
+        {
+          "name": "Front Desk Module",
+          "level": "L4",
+          "description": "Check-in/out workflow, room assignment, rate posting",
+          "bom_standard": "INCOSE",
+          "parent_name": "Property Management System"
+        },
+        {
+          "name": "Housekeeping Module",
+          "level": "L4",
+          "description": "Room status tracking and assignment dispatch",
+          "bom_standard": "INCOSE",
+          "parent_name": "Property Management System"
+        },
+        {
+          "name": "Reporting & Analytics Module",
+          "level": "L4",
+          "description": "Revenue reports, occupancy statistics, financial summaries",
+          "bom_standard": "INCOSE",
+          "parent_name": "Property Management System"
+        },
+        {
+          "name": "Integration API Layer",
+          "level": "L4",
+          "description": "Two-way connectivity to channel managers, OTAs, and POS",
+          "bom_standard": "INCOSE",
+          "parent_name": "Property Management System"
+        },
+        {
+          "name": "Key Card Encoder",
+          "level": "L4",
+          "description": "Credential programming station at front desk",
+          "bom_standard": "INCOSE",
+          "parent_name": "Electronic Room Access System"
+        },
+        {
+          "name": "Door Lock Cylinder / RFID Reader",
+          "level": "L4",
+          "description": "Room-level lock hardware with credential validation",
+          "bom_standard": "INCOSE",
+          "parent_name": "Electronic Room Access System"
+        },
+        {
+          "name": "Lock Management Software",
+          "level": "L4",
+          "description": "User database, access level configuration, audit log",
+          "bom_standard": "INCOSE",
+          "parent_name": "Electronic Room Access System"
+        },
+        {
+          "name": "Mobile Key SDK",
+          "level": "L4",
+          "description": "Guest smartphone credential issuance and revocation",
+          "bom_standard": "INCOSE",
+          "parent_name": "Electronic Room Access System"
+        },
+        {
+          "name": "Mechanical Guard Housing",
+          "level": "L4",
+          "description": "Spring-loaded handle-locking mechanism — operates without electrical power",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Devices"
+        },
+        {
+          "name": "Alarm Horn",
+          "level": "L4",
+          "description": "Piezoelectric acoustic alert transducer (~95 dB)",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Devices"
+        },
+        {
+          "name": "IoT Radio Transmitter / Receiver",
+          "level": "L4",
+          "description": "Wireless state broadcast module (868 MHz / alternative protocols) + centralized signal aggregator",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Devices"
+        },
+        {
+          "name": "Battery Pack",
+          "level": "L4",
+          "description": "9V portable power supply for alarm and IoT module",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Devices"
+        },
+        {
+          "name": "Monitoring Dashboard",
+          "level": "L4",
+          "description": "Software interface for remote door status aggregation and BMS integration",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Security Devices"
+        },
+        {
+          "name": "Addressable Control Panel",
+          "level": "L4",
+          "description": "Zone controller, power supply, and event log for fire detection network",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Smoke Detector Head",
+          "level": "L4",
+          "description": "Optical or ionization fire sensing element",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Heat Detector Head",
+          "level": "L4",
+          "description": "Rate-of-rise or fixed-temperature thermal sensing element",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Alarm Sounder",
+          "level": "L4",
+          "description": "Audible alert device activated on fire detection",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Manual Call Point",
+          "level": "L4",
+          "description": "Break-glass or push-button fire alarm activation by occupant",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "HVAC Zone Controller",
+          "level": "L4",
+          "description": "Equipment-level PLC managing fan coil or AHU per guest room or zone",
+          "bom_standard": "INCOSE",
+          "parent_name": "Building Management System"
+        },
+        {
+          "name": "Energy Metering Module",
+          "level": "L4",
+          "description": "kWh and utility consumption monitoring per circuit or zone",
+          "bom_standard": "INCOSE",
+          "parent_name": "Building Management System"
+        },
+        {
+          "name": "Alarm Management Interface",
+          "level": "L4",
+          "description": "Fault and alert aggregation dashboard for engineering team",
+          "bom_standard": "INCOSE",
+          "parent_name": "Building Management System"
+        },
+        {
+          "name": "Remote Access Client",
+          "level": "L4",
+          "description": "Mobile/web dashboard for off-site building operations monitoring",
+          "bom_standard": "INCOSE",
+          "parent_name": "Building Management System"
+        },
+        {
+          "name": "Core Switch",
+          "level": "L4",
+          "description": "Layer-3 distribution switch in server room / IDF",
+          "bom_standard": "INCOSE",
+          "parent_name": "Network Infrastructure"
+        },
+        {
+          "name": "WiFi Access Point",
+          "level": "L4",
+          "description": "802.11ax (Wi-Fi 6/6E) coverage unit per floor zone for guest and operational traffic",
+          "bom_standard": "INCOSE",
+          "parent_name": "Network Infrastructure"
+        },
+        {
+          "name": "Network Management Platform",
+          "level": "L4",
+          "description": "Centralized configuration, monitoring, and captive portal for guest HSIA",
+          "bom_standard": "INCOSE",
+          "parent_name": "Network Infrastructure"
+        }
+      ],
+      "vn_stats": {
+        "total_units": 43,
+        "l7_count": 1,
+        "l6_count": 9,
+        "l5_count": 6,
+        "l4_count": 27,
+        "completeness_score": 0.87,
+        "qa_hard_fails": 0,
+        "qa_soft_fails": 0
+      },
+      "product_anchor": {
+        "product": "GfS Türwächter / Exit Control 179/1125 with IoT",
+        "l5_entry_point": "Emergency Exit Security Devices",
+        "l5_parent": "Building Security & Life Safety",
+        "alternative_slot": "Alarmed exit hardware with IoT monitoring",
+        "market_share_at_entry": "25% of Emergency Exit Security Devices segment",
+        "key_constraints_active": [
+          "C5 (surface mount — luxury segment friction)",
+          "C6 (EasyWave protocol — BMS integration friction)",
+          "C7 (price premium — budget motel friction)"
+        ],
+        "constraint_free_segments": [
+          "Select-service hotels (mid-scale)",
+          "Limited-service hotels with retrofit budgets"
+        ],
+        "adjacent_l5_integration_targets": [
+          "Electronic Access Control (same L6H-SEC)",
+          "Building Management System (L6H-FM — BMS gateway for IoT data)"
+        ]
+      }
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

@@ -1,0 +1,1344 @@
+{
+  "id": "10_final_ranking",
+  "title": "Step 14 — Final Market Ranking & Prioritization",
+  "type": "final_ranking",
+  "market_slug": null,
+  "is_per_market": false,
+  "sections": [
+    {
+      "title": "Composite Score Formula",
+      "content": "```\ncomposite = odi*0.25 + fit*0.15 + constraint*0.15 + coverage*0.15 + vn*0.10 + incumbent_vuln*0.20\n```\n\nThresholds: pursue >7.5 | investigate 5.0–7.5 | defer 3.0–5.0 | no_go <3.0\n\n---"
+    },
+    {
+      "title": "Dimension 1 — ODI Opportunity Score",
+      "content": "*Formula: opp = importance + max(importance − satisfaction, 0); raw range 0–20; normalized /2 → 0–10.*\n\n| Market | NAICS | avg_opp_raw | odi_score (÷2) |\n|---|---|---|---|\n| Continuing Care Retirement | 623311 | 13.00 | **6.50** |\n| Elementary & Secondary Schools | 611110 | 12.41 | **6.21** |\n| General Medical & Surgical Hospitals | 622110 | 12.07 | **6.04** |\n| Facilities Support Services | 561210 | 11.98 | **5.99** |\n| General Warehousing & Storage | 493110 | 11.96 | **5.98** |\n| Data Centers | 518210 | 11.91 | **5.96** |\n| Colleges & Universities | 611310 | 11.68 | **5.84** |\n| Museums & Historical Sites | 712110 | 11.58 | **5.79** |\n| Lessors of Nonresidential Buildings | 531120 | 11.56 | **5.78** |\n| Hotels & Motels | 721110 | 10.63 | **5.32** |\n\n---"
+    },
+    {
+      "title": "Dimension 2 — Feature-Market Fit",
+      "content": "*Source: FIT_* files. Where Step 11 (vendor analysis) was run: fit = (tech_avg + vendor_avg) / 2. Where only Step 10 (tech fit) was run: fit = tech_avg.*\n\n| Market | NAICS | tech_avg | vendor_avg | feature_fit |\n|---|---|---|---|---|\n| Elementary & Secondary Schools | 611110 | 6.83 | — | **6.83** |\n| General Medical & Surgical Hospitals | 622110 | 6.72 | — | **6.72** |\n| Facilities Support Services | 561210 | 6.53 | — | **6.53** |\n| Museums & Historical Sites | 712110 | 5.72 | 6.60 | **6.16** |\n| Hotels & Motels | 721110 | 5.67 | 7.00 | **6.34** |\n| Colleges & Universities | 611310 | 6.24 | — | **6.24** |\n| Lessors of Nonresidential Buildings | 531120 | 5.44 | 6.80 | **6.12** |\n| Continuing Care Retirement | 623311 | 5.85 | 6.40 | **6.13** |\n| General Warehousing & Storage | 493110 | 5.26 | 6.60 | **5.93** |\n| Data Centers | 518210 | 4.50 | 6.00 | **5.25** |\n\n---"
+    },
+    {
+      "title": "Dimension 3 — Constraint Compatibility",
+      "content": "*Scoring: 0 knockouts = viable. Score: 10 − (2.0×high_mitigable + 1.5×medium_mitigable + 0.5×low_mitigable).*\n\n| Market | NAICS | Knockouts | Med-cost mit. | Low-cost mit. | constraint_score |\n|---|---|---|---|---|---|\n| Hotels & Motels | 721110 | 0 | 0 | 4 (C3,C5,C6,C8) | **8.0** |\n| Colleges & Universities | 611310 | 0 | 1 (C6) | 3 (C3,C4,C10) | **7.5** |\n| Elementary & Secondary Schools | 611110 | 0 | 0 | 6 (C3,C5,C6,C7,C8,C10) | **7.0** |\n| Continuing Care Retirement | 623311 | 0 | 2 (C3,C6) | 2 (C4,C10) | **7.0** |\n| Lessors of Nonresidential Buildings | 531120 | 0 | 1 (C6) | 4 (C3,C5,C8,C10) | **7.0** |\n| Museums & Historical Sites | 712110 | 0 | 0 | 6 (C3,C5,C6,C7,C8,C10) | **7.0** |\n| General Warehousing & Storage | 493110 | 0 | 1 (C3) | 5 (C4,C6,C7,C8,C9) | **6.5** |\n| Data Centers | 518210 | 0 | 3 (C3,C6,C10) | 1 (C8) | **6.5** |\n| Facilities Support Services | 561210 | 0 | 1 (C6) | 6 (C3,C4,C7,C8,C9,C10) | **6.0** |\n| General Medical & Surgical Hospitals | 622110 | 0 | 3 (C3,C6,C7) | 4 (C4,C8,C9,C10) | **4.5** |\n\n---"
+    },
+    {
+      "title": "Dimension 4 — Job Coverage",
+      "content": "*Estimated % of JTBD outcome statements addressed by product FP. Normalized: score = coverage_pct / 10.*\n\n| Market | NAICS | JTBD steps covered | coverage_pct | coverage_score |\n|---|---|---|---|---|\n| Continuing Care Retirement | 623311 | 6/8 | 75% | **7.5** |\n| Elementary & Secondary Schools | 611110 | 5/8 | 62.5% | **6.25** |\n| Colleges & Universities | 611310 | 5/8 | 62.5% | **6.25** |\n| Facilities Support Services | 561210 | 5/8 | 62.5% | **6.25** |\n| General Medical & Surgical Hospitals | 622110 | 5/8 | 62.5% | **6.25** |\n| Hotels & Motels | 721110 | 4/8 | 50% | **5.0** |\n| General Warehousing & Storage | 493110 | 4/8 | 50% | **5.0** |\n| Museums & Historical Sites | 712110 | 4/8 | 50% | **5.0** |\n| Lessors of Nonresidential Buildings | 531120 | 4/8 | 50% | **5.0** |\n| Data Centers | 518210 | 4/8 | 50% | **5.0** |\n\n---"
+    },
+    {
+      "title": "Dimension 5 — Value Network Position",
+      "content": "*L-level entry point from VN files. customer_facing=9.0, mid_chain=6.0, deep_component=3.0. depth_adj: −0.5 per level below top. Final range 0–10 (capped).*\n\n| Market | NAICS | VN entry | position_type | depth | vn_score |\n|---|---|---|---|---|---|\n| Hotels & Motels | 721110 | L6H-SEC (guest security) | customer_facing | 0 | **10.0** |\n| Continuing Care Retirement | 623311 | L6H-SAF (resident safety) | customer_facing | 0 | **10.0** |\n| Elementary & Secondary Schools | 611110 | L5 Emergency Exit Security | mid_chain | 1 | **6.5** |\n| Colleges & Universities | 611310 | L5 Emergency Exit Security | mid_chain | 1 | **6.5** |\n| General Medical & Surgical Hospitals | 622110 | L5 under L6h1 | mid_chain | 1 | **6.5** |\n| General Warehousing & Storage | 493110 | L5 under L6h1 | mid_chain | 1 | **6.5** |\n| Museums & Historical Sites | 712110 | L5 under L6 Security | mid_chain | 1 | **6.5** |\n| Data Centers | 518210 | L4 under L5 under L6d | deep_component | 2 | **3.0** |\n| Facilities Support Services | 561210 | L4 under L5 under L6e | deep_component | 2 | **3.0** |\n| Lessors of Nonresidential Buildings | 531120 | L4 under L5 under L6d | deep_component | 2 | **3.0** |\n\n---"
+    },
+    {
+      "title": "Dimension 6 — Incumbent Vulnerability",
+      "content": "*Formula: switching_cost_inv×0.4 + weakness_density×0.4 + fragmentation_bonus. Scale 0–10.*\n\n| Market | NAICS | switching_cost_inv | weakness_density | fragmentation_bonus | incumbent_vuln |\n|---|---|---|---|---|---|\n| Hotels & Motels | 721110 | 8.5 | 8.5 | 0.6 | **8.6** |\n| Museums & Historical Sites | 712110 | 8.5 | 8.5 | 0.6 | **8.6** |\n| Colleges & Universities | 611310 | 7.5 | 7.0 | 0.9 | **7.4** |\n| Elementary & Secondary Schools | 611110 | 7.0 | 7.0 | 0.8 | **7.0** |\n| General Warehousing & Storage | 493110 | 7.0 | 6.5 | 0.7 | **6.9** |\n| Facilities Support Services | 561210 | 7.0 | 6.5 | 0.7 | **6.9** |\n| Continuing Care Retirement | 623311 | 5.5 | 5.0 | 0.6 | **5.4** |\n| Lessors of Nonresidential Buildings | 531120 | 5.5 | 5.0 | 0.5 | **5.3** |\n| General Medical & Surgical Hospitals | 622110 | 5.0 | 4.5 | 0.5 | **4.9** |\n| Data Centers | 518210 | 3.5 | 3.5 | 0.5 | **3.7** |\n\n*Rationale notes:*\n- Hotels/Museums: predominantly mechanical-only incumbents, highly fragmented buyer base, near-zero switching costs from mechanical to IoT\n- Colleges/K-12: large fragmented market, no dominant IoT exit alarm vendor, safety grant cycles create switching windows\n- Warehousing/Facilities: moderate BMS adoption but IoT exit monitoring is nascent; FM channel creates clean entry path\n- CCRC: nurse-call vendor relationships (Stanley, Jeron) create partial lock-in; switching window exists but integration dependency slows it\n- Lessors: institutional REIT buyers have established FM programs; EasyWave C6 constraint creates additional friction\n- Hospitals: strong vendor relationships, high compliance requirements, facility management sophistication — hardest to displace\n- Data Centers: deepest technology integration lock-in, security teams highly selective, lowest fragmentation\n\n---"
+    },
+    {
+      "title": "Final Composite Ranking",
+      "content": "*composite = odi×0.25 + fit×0.15 + constraint×0.15 + coverage×0.15 + vn×0.10 + incumbent_vuln×0.20*\n\n| Rank | Market | NAICS | ODI | Fit | Constr | Cover | VN | Incum | **Composite** | Rec |\n|---|---|---|---|---|---|---|---|---|---|---|\n| 1 | Hotels & Motels | 721110 | 5.32 | 6.34 | 8.00 | 5.00 | 10.0 | 8.60 | **6.95** | investigate |\n| 2 | Continuing Care Retirement | 623311 | 6.50 | 6.13 | 7.00 | 7.50 | 10.0 | 5.40 | **6.80** | investigate |\n| 3 | Elementary & Secondary Schools | 611110 | 6.21 | 6.83 | 7.00 | 6.25 | 6.5 | 7.00 | **6.61** | investigate |\n| 4 | Colleges & Universities | 611310 | 5.84 | 6.24 | 7.50 | 6.25 | 6.5 | 7.40 | **6.59** | investigate |\n| 5 | Museums & Historical Sites | 712110 | 5.79 | 6.16 | 7.00 | 5.00 | 6.5 | 8.60 | **6.54** | investigate |\n| 6 | General Warehousing & Storage | 493110 | 5.98 | 5.93 | 6.50 | 5.00 | 6.5 | 6.90 | **6.14** | investigate |\n| 7 | Facilities Support Services | 561210 | 5.99 | 6.53 | 6.00 | 6.25 | 3.0 | 6.90 | **6.00** | investigate |\n| 8 | General Medical & Surgical Hospitals | 622110 | 6.04 | 6.72 | 4.50 | 6.25 | 6.5 | 4.90 | **5.76** | investigate |\n| 9 | Lessors of Nonresidential Buildings | 531120 | 5.78 | 6.12 | 7.00 | 5.00 | 3.0 | 5.30 | **5.52** | investigate |\n| 10 | Data Centers | 518210 | 5.96 | 5.25 | 6.50 | 5.00 | 3.0 | 3.70 | **5.04** | investigate |\n\n*No market reaches the pursue threshold (>7.5). All 10 land in investigate (5.0–7.5). No market is eliminated (0 knockouts across all constraint screens).*\n\n---"
+    },
+    {
+      "title": "Per-Market Analysis",
+      "content": "### Rank 1 — Hotels & Motels (721110) | 6.95\n\n| Field | Value |\n|---|---|\n| **Primary driver** | Best VN position (customer-facing L6H-SEC) + cleanest constraint profile (8 low-cost mitigations, all 4 mitigable constraints low-cost) + highest incumbent fragmentation |\n| **Why not higher** | ODI is the lowest in the set (5.32) — hotel operators slightly undersell urgency of emergency exit monitoring; job coverage only 50% |\n| **Entry strategy** | Partner with hotel security integrators (Allegion channel, ASSA ABLOY hotel division); target mid-market hotel groups (50–500 properties); lead with brand protection/liability case for unauthorized exit use; bundle with key-card PACS upgrades |\n| **Constraint to watch** | C5 (surface mount) in boutique/luxury properties — coordinate with interior designers; C6 (EasyWave) for BMS-integrated chains — BUS gateway required |\n| **Time to first revenue** | 3–6 months |\n| **Pilot investment** | €50–100K (gateway + channel dev + pilot site) |\n\n---\n\n### Rank 2 — Continuing Care Retirement Communities (623311) | 6.80\n\n| Field | Value |\n|---|---|\n| **Primary driver** | Highest ODI in set (6.50) + highest job coverage (75%) + customer-facing VN position; elopement liability creates unambiguous ROI case |\n| **Why not higher** | C3+C6 both medium-cost mitigations (nurse-call integration 2–4 months/cluster); incumbent vulnerability moderated by nurse-call vendor lock-in |\n| **Entry strategy** | Partner with nurse-call integrators (Stanley Healthcare, Jeron/SimplexGrinnell) for wiring-spec alignment; target multi-site CCRC operators (>5 properties); lead with CMS CoP §19.3.6 elopement documentation requirement; deploy first in memory care units (highest liability) |\n| **Constraint to watch** | C4 (battery in memory care) — dementia resident door-testing exhausts battery; must deploy battery-monitoring variant + quarterly PM cycle |\n| **Time to first revenue** | 4–8 months |\n| **Pilot investment** | €100–250K (nurse-call integration + RF infrastructure for campus wings) |\n\n---\n\n### Rank 3 — Elementary & Secondary Schools (611110) | 6.61\n\n| Field | Value |\n|---|---|\n| **Primary driver** | Highest feature fit (6.83) + strong ODI (6.21) + no medium-cost mitigations (all 6 mitigable constraints low-cost); 100K+ schools = high fragmentation, low switching cost |\n| **Why not higher** | VN is mid-chain (6.5), not customer-facing; budget sensitivity requires grant-cycle alignment |\n| **Entry strategy** | Channel through school safety distributors and physical security dealers; target district-level procurement (50+ schools); lead with active-shooter lockdown compliance and CISA K-12 security framework documentation; time sales cycles to federal/state safety grant windows (STOP Act, E2SSB 5187) |\n| **Constraint to watch** | C7 (price premium) for rural districts with sub-$200K security budgets — phased rollout starting with exterior exit doors only |\n| **Time to first revenue** | 4–6 months |\n| **Pilot investment** | €50–100K |\n\n---\n\n### Rank 4 — Colleges & Universities (611310) | 6.59\n\n| Field | Value |\n|---|---|\n| **Primary driver** | Best constraint score in mid-chain VN tier (7.5, only 1 medium-cost mitigation: C6); highest incumbent vulnerability among institutional buyers (7.4) due to fragmented campus FM vendor landscape |\n| **Why not higher** | ODI 5.84 moderate; VN mid-chain; campus FM directors are sophisticated buyers with longer evaluation cycles |\n| **Entry strategy** | Target campus FM directors and life safety officers; lead with NFPA 101 annual fire inspection automation; partner with campus security integrators (SDI, Convergint); bundle with campus emergency notification platform integrations |\n| **Constraint to watch** | C6 (EasyWave/BMS integration) — university BMS is BACnet/IP; require BUS gateway in every spec; flag as add-line-item not hidden cost |\n| **Time to first revenue** | 4–8 months |\n| **Pilot investment** | €75–150K |\n\n---\n\n### Rank 5 — Museums & Historical Sites (712110) | 6.54\n\n| Field | Value |\n|---|---|\n| **Primary driver** | Tied highest incumbent vulnerability (8.6 — ~80% mechanical-only incumbents) + constraint profile entirely low-cost; retrofit surface-mount is a positive differentiator (reversible = heritage authority compliant) |\n| **Why not higher** | ODI 5.79 lowest tier; job coverage 50%; public institution budget constraints (C7) create sales friction even though cost is manageable via grants |\n| **Entry strategy** | Partner with heritage security specialists (G4S Art & Heritage, Securitas Cultural Heritage); target museum associations' collective procurement programs (AAM, ICOM); lead with surface-mount reversibility advantage for Grade I/Denkmalschutz contexts; identify EU Horizon and National Lottery Heritage Fund grant cycles |\n| **Constraint to watch** | C5 (surface mount aesthetics) in highest-grade listed buildings — have custom RAL color options in spec sheet |\n| **Time to first revenue** | 3–6 months |\n| **Pilot investment** | €50–100K |\n\n---\n\n### Rank 6 — General Warehousing & Storage (493110) | 6.14\n\n| Field | Value |\n|---|---|\n| **Primary driver** | Balanced profile — no dimension outlier; mid-chain VN; 3PL scale economics favor portfolio pricing |\n| **Why not higher** | C3 (RF range in 100K m² DCs) is the lone medium-cost mitigation and the dominant friction; feature fit weakest in top half (5.93); coverage 50% |\n| **Entry strategy** | Partner with industrial FM integrators; target 3PL portfolio operators (DHL Supply Chain, DB Schenker, XPO) for blanket pricing; lead with OSHA/NFPA compliance automation and guard patrol reduction TCO model; require exit-environment survey (dock vs. cold-chain) at spec stage |\n| **Constraint to watch** | C3 + C9 cluster — all dock exits and cold-chain exits need IP45 variant; pre-size repeater chain during RF survey |\n| **Time to first revenue** | 4–8 months |\n| **Pilot investment** | €100–250K (RF infrastructure for large DC pilot) |\n\n---\n\n### Rank 7 — Facilities Support Services (561210) | 6.00\n\n| Field | Value |\n|---|---|\n| **Primary driver** | Facilities managers as channel intermediaries — not end users; creates a multiplier effect if won, but deep-component VN position (3.0) caps the ceiling |\n| **Why not higher** | Deep-component VN is the primary depressant (3.0); FM firms are price-sensitive procurement intermediaries with thin margins |\n| **Entry strategy** | Sell to FM firms as a managed-service line item; lead with SLA compliance reporting for FM clients; partner with CBRE GWS, JLL Technologies, ISS Facility Services as an endorsed security hardware spec; position IoT monitoring subscription as recurring revenue add-on to FM contract |\n| **Constraint to watch** | C6 (EasyWave) — FM firms serve multiple client BMS environments; standardize on BUS gateway as default spec, not optional |\n| **Time to first revenue** | 4–8 months (channel development time is long pole) |\n| **Pilot investment** | €50–100K (channel partner carries deployment cost) |\n\n---\n\n### Rank 8 — General Medical & Surgical Hospitals (622110) | 5.76\n\n| Field | Value |\n|---|---|\n| **Primary driver** | High feature fit (6.72) and strong ODI (6.04) but constraint complexity (4.5 — 3 medium-cost mitigations) and low incumbent vulnerability (4.9) make this the hardest to enter |\n| **Why not higher** | C3+C6+C7 all medium-cost (RF in hospital wings, PACS/SIEM integration, procurement budget justification to clinical committees); incumbent relationships entrenched via Joint Commission vendor networks |\n| **Entry strategy** | Enter via hospital FM/engineering departments, not clinical procurement; lead with Joint Commission EC.02.01.01 emergency egress documentation automation; partner with healthcare security integrators (Johnson Controls Healthcare, Honeywell Commercial Security) as a sub-component spec |\n| **Constraint to watch** | C7 (value justification to hospital capital committee) + C10 (EN 13637/NFPA 101 combined systems at electromagnetic egress door locks in secured wards) |\n| **Time to first revenue** | 8–14 months |\n| **Pilot investment** | €150–350K (compliance documentation, PACS integration, longer sales cycle) |\n\n---\n\n### Rank 9 — Lessors of Nonresidential Buildings (531120) | 5.52\n\n| Field | Value |\n|---|---|\n| **Primary driver** | Clean constraint profile (7.0) and moderate scores across dimensions, but deep-component VN position (3.0) suppresses composite materially |\n| **Why not higher** | Deep-component VN (3.0) + C6 is the primary sales friction (BACnet/IP BMS integration across multi-building portfolios adds 3–6 months and medium cost) + institutional buyers have established FM relationships |\n| **Entry strategy** | Target REIT asset managers and institutional landlords managing >20-building portfolios; lead with fire marshal audit automation and tenant ESG reporting for BREEAM/LEED O+M certifications; sell via FM operators already embedded in portfolio (CBRE, JLL, Cushman & Wakefield) |\n| **Constraint to watch** | C6 medium cost across portfolio scale — ensure BUS gateway is in standard spec before pricing discussions |\n| **Time to first revenue** | 6–12 months |\n| **Pilot investment** | €100–250K (BMS integration across pilot portfolio) |\n\n---\n\n### Rank 10 — Data Centers (518210) | 5.04\n\n| Field | Value |\n|---|---|\n| **Primary driver** | Sophisticated buyers with deep technology infrastructure; low incumbent vulnerability (3.7) and deep-component VN (3.0) both cap composite near the investigate floor |\n| **Why not higher** | C3+C6+C10 all medium-cost; DC security teams require PACS/SIEM integration (Honeywell, Lenel/S2) as procurement prerequisite; feature fit lowest in set (5.25) due to hyperscale mismatch with 30 m base RF range |\n| **Entry strategy** | Niche approach: target edge/colocation DCs (under 5,000 m²) first — RF range constraint least severe; partner with DC physical security integrators; lead with SOC 2 CC6.4 audit log automation narrative; hyperscale (Google, AWS, Microsoft) should be back-burner until IP Gateway has proven BACnet/REST integration |\n| **Constraint to watch** | C3 (RF attenuation in dense metallic server halls) is the most severe in the entire candidate set — multi-gateway + repeater chain required per zone; must be solved before any Tier III/IV DC reference |\n| **Time to first revenue** | 8–14 months |\n| **Pilot investment** | €200–500K (RF infrastructure, PACS/SIEM integration, longer enterprise sales cycle) |\n\n---"
+    },
+    {
+      "title": "Executive Summary",
+      "content": "The GfS Türwächter IoT survives all 10 candidate markets with zero constraint knockouts. No market reaches the pursue threshold (>7.5) in this initial evaluation — the entire addressable set sits in the investigate band (5.04–6.95), indicating broad market viability but no single dominant priority requiring immediate resource concentration.\n\n**Top tier (6.5–7.0):** Hotels, CCRCs, K-12 Schools, and Colleges are the natural launch sequence. Hotels and CCRCs win on VN customer-facing position — the product is a primary purchase, not a sub-component — while K-12 and Colleges deliver the strongest combination of feature fit, low-cost constraint mitigations, and fragmented incumbents. Museums belong in this tier commercially; the reversible retrofit constraint is a positive differentiator for heritage buildings.\n\n**Mid tier (6.0–6.5):** Warehousing and Facilities Support are scale plays. Warehousing rewards volume pricing and RF infrastructure investment; Facilities Support is a channel multiplier if FM firms adopt as a managed-service offering. Neither requires new product capability.\n\n**Lower tier (5.0–6.0):** Hospitals, Lessors, and Data Centers are viable but require longer sales cycles (8–14 months), higher integration investment, and more sophisticated procurement relationships. Hospitals and Data Centers should be sequenced only after reference installations exist in top-tier markets.\n\n**Immediate next action:** Run pilot deployments simultaneously in Hotels and CCRCs — different channel motions (security integrator vs. nurse-call integrator), different value propositions (brand protection vs. elopement liability), maximum market learning per capital deployed. K-12 and Colleges follow in wave two via school safety distributor channel.\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"product_name\": \"GfS Türwächter IoT (Exit Control 179/1125)\",\n  \"technology_class\": \"Emergency Exit Security Devices with Remote Monitoring\",\n  \"custom_product_group\": \"Emergency Exit Door Alarm Guards\",\n  \"step\": \"14\",\n  \"scoring_formula\": \"odi*0.25 + fit*0.15 + constraint*0.15 + coverage*0.15 + vn*0.10 + incumbent_vuln*0.20\",\n  \"thresholds\": {\n    \"pursue\": 7.5,\n    \"investigate\": 5.0,\n    \"defer\": 3.0,\n    \"no_go\": 0.0\n  },\n  \"ranked_markets\": [\n    {\n      \"rank\": 1,\n      \"market_name\": \"Hotels and Motels\",\n      \"naics_code\": \"721110\",\n      \"odi_score\": 5.32,\n      \"feature_fit_score\": 6.34,\n      \"constraint_score\": 8.0,\n      \"coverage_score\": 5.0,\n      \"vn_score\": 10.0,\n      \"incumbent_vuln_score\": 8.6,\n      \"composite_score\": 6.95,\n      \"recommendation\": \"investigate\",\n      \"vn_position\": \"customer_facing\",\n      \"vn_entry_level\": \"L6H-SEC\",\n      \"knockouts\": 0,\n      \"mitigable_constraints\": [\"C3\", \"C5\", \"C6\", \"C8\"],\n      \"time_to_revenue_months\": \"3-6\",\n      \"pilot_investment_eur\": \"50000-100000\",\n      \"primary_entry_motion\": \"Partner with hotel security integrators; target mid-market hotel groups via ASSA ABLOY hotel division channel\"\n    },\n    {\n      \"rank\": 2,\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"odi_score\": 6.5,\n      \"feature_fit_score\": 6.13,\n      \"constraint_score\": 7.0,\n      \"coverage_score\": 7.5,\n      \"vn_score\": 10.0,\n      \"incumbent_vuln_score\": 5.4,\n      \"composite_score\": 6.80,\n      \"recommendation\": \"investigate\",\n      \"vn_position\": \"customer_facing\",\n      \"vn_entry_level\": \"L6H-SAF\",\n      \"knockouts\": 0,\n      \"mitigable_constraints\": [\"C3\", \"C4\", \"C6\", \"C10\"],\n      \"time_to_revenue_months\": \"4-8\",\n      \"pilot_investment_eur\": \"100000-250000\",\n      \"primary_entry_motion\": \"Partner with nurse-call integrators (Stanley Healthcare, Jeron); target multi-site CCRC operators; lead with CMS CoP elopement documentation requirement\"\n    },\n    {\n      \"rank\": 3,\n      \"market_name\": \"Elementary and Secondary Schools\",\n      \"naics_code\": \"611110\",\n      \"odi_score\": 6.21,\n      \"feature_fit_score\": 6.83,\n      \"constraint_score\": 7.0,\n      \"coverage_score\": 6.25,\n      \"vn_score\": 6.5,\n      \"incumbent_vuln_score\": 7.0,\n      \"composite_score\": 6.61,\n      \"recommendation\": \"investigate\",\n      \"vn_position\": \"mid_chain\",\n      \"vn_entry_level\": \"L5\",\n      \"knockouts\": 0,\n      \"mitigable_constraints\": [\"C3\", \"C5\", \"C6\", \"C7\", \"C8\", \"C10\"],\n      \"time_to_revenue_months\": \"4-6\",\n      \"pilot_investment_eur\": \"50000-100000\",\n      \"primary_entry_motion\": \"Channel through school safety distributors; target district procurement; align to federal/state safety grant cycles\"\n    },\n    {\n      \"rank\": 4,\n      \"market_name\": \"Colleges and Universities\",\n      \"naics_code\": \"611310\",\n      \"odi_score\": 5.84,\n      \"feature_fit_score\": 6.24,\n      \"constraint_score\": 7.5,\n      \"coverage_score\": 6.25,\n      \"vn_score\": 6.5,\n      \"incumbent_vuln_score\": 7.4,\n      \"composite_score\": 6.59,\n      \"recommendation\": \"investigate\",\n      \"vn_position\": \"mid_chain\",\n      \"vn_entry_level\": \"L5\",\n      \"knockouts\": 0,\n      \"mitigable_constraints\": [\"C3\", \"C4\", \"C6\", \"C10\"],\n      \"time_to_revenue_months\": \"4-8\",\n      \"pilot_investment_eur\": \"75000-150000\",\n      \"primary_entry_motion\": \"Target campus FM directors; lead with NFPA 101 fire inspection automation; partner with campus security integrators\"\n    },\n    {\n      \"rank\": 5,\n      \"market_name\": \"Museums and Historical Sites\",\n      \"naics_code\": \"712110\",\n      \"odi_score\": 5.79,\n      \"feature_fit_score\": 6.16,\n      \"constraint_score\": 7.0,\n      \"coverage_score\": 5.0,\n      \"vn_score\": 6.5,\n      \"incumbent_vuln_score\": 8.6,\n      \"composite_score\": 6.54,\n      \"recommendation\": \"investigate\",\n      \"vn_position\": \"mid_chain\",\n      \"vn_entry_level\": \"L5\",\n      \"knockouts\": 0,\n      \"mitigable_constraints\": [\"C3\", \"C5\", \"C6\", \"C7\", \"C8\", \"C10\"],\n      \"time_to_revenue_months\": \"3-6\",\n      \"pilot_investment_eur\": \"50000-100000\",\n      \"primary_entry_motion\": \"Partner with heritage security specialists; target museum associations' collective procurement; lead with reversible surface-mount differentiator for listed buildings\"\n    },\n    {\n      \"rank\": 6,\n      \"market_name\": \"General Warehousing and Storage\",\n      \"naics_code\": \"493110\",\n      \"odi_score\": 5.98,\n      \"feature_fit_score\": 5.93,\n      \"constraint_score\": 6.5,\n      \"coverage_score\": 5.0,\n      \"vn_score\": 6.5,\n      \"incumbent_vuln_score\": 6.9,\n      \"composite_score\": 6.14,\n      \"recommendation\": \"investigate\",\n      \"vn_position\": \"mid_chain\",\n      \"vn_entry_level\": \"L5\",\n      \"knockouts\": 0,\n      \"mitigable_constraints\": [\"C3\", \"C4\", \"C6\", \"C7\", \"C8\", \"C9\"],\n      \"time_to_revenue_months\": \"4-8\",\n      \"pilot_investment_eur\": \"100000-250000\",\n      \"primary_entry_motion\": \"Target 3PL portfolio operators for blanket pricing; lead with OSHA compliance automation and guard patrol TCO model; require exit-environment survey at spec stage\"\n    },\n    {\n      \"rank\": 7,\n      \"market_name\": \"Facilities Support Services\",\n      \"naics_code\": \"561210\",\n      \"odi_score\": 5.99,\n      \"feature_fit_score\": 6.53,\n      \"constraint_score\": 6.0,\n      \"coverage_score\": 6.25,\n      \"vn_score\": 3.0,\n      \"incumbent_vuln_score\": 6.9,\n      \"composite_score\": 6.00,\n      \"recommendation\": \"investigate\",\n      \"vn_position\": \"deep_component\",\n      \"vn_entry_level\": \"L4\",\n      \"knockouts\": 0,\n      \"mitigable_constraints\": [\"C3\", \"C4\", \"C6\", \"C7\", \"C8\", \"C9\", \"C10\"],\n      \"time_to_revenue_months\": \"4-8\",\n      \"pilot_investment_eur\": \"50000-100000\",\n      \"primary_entry_motion\": \"Sell to FM firms as managed-service line item; partner with CBRE GWS, JLL Technologies as endorsed spec; position IoT subscription as FM contract recurring revenue add-on\"\n    },\n    {\n      \"rank\": 8,\n      \"market_name\": \"General Medical and Surgical Hospitals\",\n      \"naics_code\": \"622110\",\n      \"odi_score\": 6.04,\n      \"feature_fit_score\": 6.72,\n      \"constraint_score\": 4.5,\n      \"coverage_score\": 6.25,\n      \"vn_score\": 6.5,\n      \"incumbent_vuln_score\": 4.9,\n      \"composite_score\": 5.76,\n      \"recommendation\": \"investigate\",\n      \"vn_position\": \"mid_chain\",\n      \"vn_entry_level\": \"L5\",\n      \"knockouts\": 0,\n      \"mitigable_constraints\": [\"C3\", \"C4\", \"C6\", \"C7\", \"C8\", \"C9\", \"C10\"],\n      \"time_to_revenue_months\": \"8-14\",\n      \"pilot_investment_eur\": \"150000-350000\",\n      \"primary_entry_motion\": \"Enter via hospital FM/engineering departments; lead with Joint Commission EC.02.01.01 egress documentation automation; partner with healthcare security integrators\"\n    },\n    {\n      \"rank\": 9,\n      \"market_name\": \"Lessors of Nonresidential Buildings\",\n      \"naics_code\": \"531120\",\n      \"odi_score\": 5.78,\n      \"feature_fit_score\": 6.12,\n      \"constraint_score\": 7.0,\n      \"coverage_score\": 5.0,\n      \"vn_score\": 3.0,\n      \"incumbent_vuln_score\": 5.3,\n      \"composite_score\": 5.52,\n      \"recommendation\": \"investigate\",\n      \"vn_position\": \"deep_component\",\n      \"vn_entry_level\": \"L4\",\n      \"knockouts\": 0,\n      \"mitigable_constraints\": [\"C3\", \"C5\", \"C6\", \"C8\", \"C10\"],\n      \"time_to_revenue_months\": \"6-12\",\n      \"pilot_investment_eur\": \"100000-250000\",\n      \"primary_entry_motion\": \"Target institutional REIT portfolio managers via embedded FM operators (CBRE, JLL, Cushman); lead with fire marshal audit automation and BREEAM/LEED O+M tenant reporting\"\n    },\n    {\n      \"rank\": 10,\n      \"market_name\": \"Computing Infrastructure Providers, Data Processing, Web Hosting, and Related Services\",\n      \"naics_code\": \"518210\",\n      \"odi_score\": 5.96,\n      \"feature_fit_score\": 5.25,\n      \"constraint_score\": 6.5,\n      \"coverage_score\": 5.0,\n      \"vn_score\": 3.0,\n      \"incumbent_vuln_score\": 3.7,\n      \"composite_score\": 5.04,\n      \"recommendation\": \"investigate\",\n      \"vn_position\": \"deep_component\",\n      \"vn_entry_level\": \"L4\",\n      \"knockouts\": 0,\n      \"mitigable_constraints\": [\"C3\", \"C6\", \"C8\", \"C10\"],\n      \"time_to_revenue_months\": \"8-14\",\n      \"pilot_investment_eur\": \"200000-500000\",\n      \"primary_entry_motion\": \"Target edge/colocation DCs first (under 5,000 m² — RF constraint least severe); partner with DC physical security integrators; lead with SOC 2 CC6.4 audit log automation; defer hyperscale until IP Gateway BACnet/REST integration is proven\"\n    }\n  ],\n  \"markets_eliminated\": [],\n  \"markets_surviving\": [\"721110\", \"623311\", \"611110\", \"611310\", \"712110\", \"493110\", \"561210\", \"622110\", \"531120\", \"518210\"],\n  \"launch_sequence\": {\n    \"wave_1\": [\"721110\", \"623311\"],\n    \"wave_2\": [\"611110\", \"611310\", \"712110\"],\n    \"wave_3\": [\"493110\", \"561210\"],\n    \"wave_4\": [\"622110\", \"531120\", \"518210\"]\n  }\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Market",
+        "NAICS",
+        "avg_opp_raw",
+        "odi_score (÷2)"
+      ],
+      "rows": [
+        {
+          "Market": "Continuing Care Retirement",
+          "NAICS": "623311",
+          "avg_opp_raw": "13.00",
+          "odi_score (÷2)": "**6.50**"
+        },
+        {
+          "Market": "Elementary & Secondary Schools",
+          "NAICS": "611110",
+          "avg_opp_raw": "12.41",
+          "odi_score (÷2)": "**6.21**"
+        },
+        {
+          "Market": "General Medical & Surgical Hospitals",
+          "NAICS": "622110",
+          "avg_opp_raw": "12.07",
+          "odi_score (÷2)": "**6.04**"
+        },
+        {
+          "Market": "Facilities Support Services",
+          "NAICS": "561210",
+          "avg_opp_raw": "11.98",
+          "odi_score (÷2)": "**5.99**"
+        },
+        {
+          "Market": "General Warehousing & Storage",
+          "NAICS": "493110",
+          "avg_opp_raw": "11.96",
+          "odi_score (÷2)": "**5.98**"
+        },
+        {
+          "Market": "Data Centers",
+          "NAICS": "518210",
+          "avg_opp_raw": "11.91",
+          "odi_score (÷2)": "**5.96**"
+        },
+        {
+          "Market": "Colleges & Universities",
+          "NAICS": "611310",
+          "avg_opp_raw": "11.68",
+          "odi_score (÷2)": "**5.84**"
+        },
+        {
+          "Market": "Museums & Historical Sites",
+          "NAICS": "712110",
+          "avg_opp_raw": "11.58",
+          "odi_score (÷2)": "**5.79**"
+        },
+        {
+          "Market": "Lessors of Nonresidential Buildings",
+          "NAICS": "531120",
+          "avg_opp_raw": "11.56",
+          "odi_score (÷2)": "**5.78**"
+        },
+        {
+          "Market": "Hotels & Motels",
+          "NAICS": "721110",
+          "avg_opp_raw": "10.63",
+          "odi_score (÷2)": "**5.32**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Market",
+        "NAICS",
+        "tech_avg",
+        "vendor_avg",
+        "feature_fit"
+      ],
+      "rows": [
+        {
+          "Market": "Elementary & Secondary Schools",
+          "NAICS": "611110",
+          "tech_avg": "6.83",
+          "vendor_avg": "—",
+          "feature_fit": "**6.83**"
+        },
+        {
+          "Market": "General Medical & Surgical Hospitals",
+          "NAICS": "622110",
+          "tech_avg": "6.72",
+          "vendor_avg": "—",
+          "feature_fit": "**6.72**"
+        },
+        {
+          "Market": "Facilities Support Services",
+          "NAICS": "561210",
+          "tech_avg": "6.53",
+          "vendor_avg": "—",
+          "feature_fit": "**6.53**"
+        },
+        {
+          "Market": "Museums & Historical Sites",
+          "NAICS": "712110",
+          "tech_avg": "5.72",
+          "vendor_avg": "6.60",
+          "feature_fit": "**6.16**"
+        },
+        {
+          "Market": "Hotels & Motels",
+          "NAICS": "721110",
+          "tech_avg": "5.67",
+          "vendor_avg": "7.00",
+          "feature_fit": "**6.34**"
+        },
+        {
+          "Market": "Colleges & Universities",
+          "NAICS": "611310",
+          "tech_avg": "6.24",
+          "vendor_avg": "—",
+          "feature_fit": "**6.24**"
+        },
+        {
+          "Market": "Lessors of Nonresidential Buildings",
+          "NAICS": "531120",
+          "tech_avg": "5.44",
+          "vendor_avg": "6.80",
+          "feature_fit": "**6.12**"
+        },
+        {
+          "Market": "Continuing Care Retirement",
+          "NAICS": "623311",
+          "tech_avg": "5.85",
+          "vendor_avg": "6.40",
+          "feature_fit": "**6.13**"
+        },
+        {
+          "Market": "General Warehousing & Storage",
+          "NAICS": "493110",
+          "tech_avg": "5.26",
+          "vendor_avg": "6.60",
+          "feature_fit": "**5.93**"
+        },
+        {
+          "Market": "Data Centers",
+          "NAICS": "518210",
+          "tech_avg": "4.50",
+          "vendor_avg": "6.00",
+          "feature_fit": "**5.25**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Market",
+        "NAICS",
+        "Knockouts",
+        "Med-cost mit.",
+        "Low-cost mit.",
+        "constraint_score"
+      ],
+      "rows": [
+        {
+          "Market": "Hotels & Motels",
+          "NAICS": "721110",
+          "Knockouts": "0",
+          "Med-cost mit.": "0",
+          "Low-cost mit.": "4 (C3,C5,C6,C8)",
+          "constraint_score": "**8.0**"
+        },
+        {
+          "Market": "Colleges & Universities",
+          "NAICS": "611310",
+          "Knockouts": "0",
+          "Med-cost mit.": "1 (C6)",
+          "Low-cost mit.": "3 (C3,C4,C10)",
+          "constraint_score": "**7.5**"
+        },
+        {
+          "Market": "Elementary & Secondary Schools",
+          "NAICS": "611110",
+          "Knockouts": "0",
+          "Med-cost mit.": "0",
+          "Low-cost mit.": "6 (C3,C5,C6,C7,C8,C10)",
+          "constraint_score": "**7.0**"
+        },
+        {
+          "Market": "Continuing Care Retirement",
+          "NAICS": "623311",
+          "Knockouts": "0",
+          "Med-cost mit.": "2 (C3,C6)",
+          "Low-cost mit.": "2 (C4,C10)",
+          "constraint_score": "**7.0**"
+        },
+        {
+          "Market": "Lessors of Nonresidential Buildings",
+          "NAICS": "531120",
+          "Knockouts": "0",
+          "Med-cost mit.": "1 (C6)",
+          "Low-cost mit.": "4 (C3,C5,C8,C10)",
+          "constraint_score": "**7.0**"
+        },
+        {
+          "Market": "Museums & Historical Sites",
+          "NAICS": "712110",
+          "Knockouts": "0",
+          "Med-cost mit.": "0",
+          "Low-cost mit.": "6 (C3,C5,C6,C7,C8,C10)",
+          "constraint_score": "**7.0**"
+        },
+        {
+          "Market": "General Warehousing & Storage",
+          "NAICS": "493110",
+          "Knockouts": "0",
+          "Med-cost mit.": "1 (C3)",
+          "Low-cost mit.": "5 (C4,C6,C7,C8,C9)",
+          "constraint_score": "**6.5**"
+        },
+        {
+          "Market": "Data Centers",
+          "NAICS": "518210",
+          "Knockouts": "0",
+          "Med-cost mit.": "3 (C3,C6,C10)",
+          "Low-cost mit.": "1 (C8)",
+          "constraint_score": "**6.5**"
+        },
+        {
+          "Market": "Facilities Support Services",
+          "NAICS": "561210",
+          "Knockouts": "0",
+          "Med-cost mit.": "1 (C6)",
+          "Low-cost mit.": "6 (C3,C4,C7,C8,C9,C10)",
+          "constraint_score": "**6.0**"
+        },
+        {
+          "Market": "General Medical & Surgical Hospitals",
+          "NAICS": "622110",
+          "Knockouts": "0",
+          "Med-cost mit.": "3 (C3,C6,C7)",
+          "Low-cost mit.": "4 (C4,C8,C9,C10)",
+          "constraint_score": "**4.5**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Market",
+        "NAICS",
+        "JTBD steps covered",
+        "coverage_pct",
+        "coverage_score"
+      ],
+      "rows": [
+        {
+          "Market": "Continuing Care Retirement",
+          "NAICS": "623311",
+          "JTBD steps covered": "6/8",
+          "coverage_pct": "75%",
+          "coverage_score": "**7.5**"
+        },
+        {
+          "Market": "Elementary & Secondary Schools",
+          "NAICS": "611110",
+          "JTBD steps covered": "5/8",
+          "coverage_pct": "62.5%",
+          "coverage_score": "**6.25**"
+        },
+        {
+          "Market": "Colleges & Universities",
+          "NAICS": "611310",
+          "JTBD steps covered": "5/8",
+          "coverage_pct": "62.5%",
+          "coverage_score": "**6.25**"
+        },
+        {
+          "Market": "Facilities Support Services",
+          "NAICS": "561210",
+          "JTBD steps covered": "5/8",
+          "coverage_pct": "62.5%",
+          "coverage_score": "**6.25**"
+        },
+        {
+          "Market": "General Medical & Surgical Hospitals",
+          "NAICS": "622110",
+          "JTBD steps covered": "5/8",
+          "coverage_pct": "62.5%",
+          "coverage_score": "**6.25**"
+        },
+        {
+          "Market": "Hotels & Motels",
+          "NAICS": "721110",
+          "JTBD steps covered": "4/8",
+          "coverage_pct": "50%",
+          "coverage_score": "**5.0**"
+        },
+        {
+          "Market": "General Warehousing & Storage",
+          "NAICS": "493110",
+          "JTBD steps covered": "4/8",
+          "coverage_pct": "50%",
+          "coverage_score": "**5.0**"
+        },
+        {
+          "Market": "Museums & Historical Sites",
+          "NAICS": "712110",
+          "JTBD steps covered": "4/8",
+          "coverage_pct": "50%",
+          "coverage_score": "**5.0**"
+        },
+        {
+          "Market": "Lessors of Nonresidential Buildings",
+          "NAICS": "531120",
+          "JTBD steps covered": "4/8",
+          "coverage_pct": "50%",
+          "coverage_score": "**5.0**"
+        },
+        {
+          "Market": "Data Centers",
+          "NAICS": "518210",
+          "JTBD steps covered": "4/8",
+          "coverage_pct": "50%",
+          "coverage_score": "**5.0**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Market",
+        "NAICS",
+        "VN entry",
+        "position_type",
+        "depth",
+        "vn_score"
+      ],
+      "rows": [
+        {
+          "Market": "Hotels & Motels",
+          "NAICS": "721110",
+          "VN entry": "L6H-SEC (guest security)",
+          "position_type": "customer_facing",
+          "depth": "0",
+          "vn_score": "**10.0**"
+        },
+        {
+          "Market": "Continuing Care Retirement",
+          "NAICS": "623311",
+          "VN entry": "L6H-SAF (resident safety)",
+          "position_type": "customer_facing",
+          "depth": "0",
+          "vn_score": "**10.0**"
+        },
+        {
+          "Market": "Elementary & Secondary Schools",
+          "NAICS": "611110",
+          "VN entry": "L5 Emergency Exit Security",
+          "position_type": "mid_chain",
+          "depth": "1",
+          "vn_score": "**6.5**"
+        },
+        {
+          "Market": "Colleges & Universities",
+          "NAICS": "611310",
+          "VN entry": "L5 Emergency Exit Security",
+          "position_type": "mid_chain",
+          "depth": "1",
+          "vn_score": "**6.5**"
+        },
+        {
+          "Market": "General Medical & Surgical Hospitals",
+          "NAICS": "622110",
+          "VN entry": "L5 under L6h1",
+          "position_type": "mid_chain",
+          "depth": "1",
+          "vn_score": "**6.5**"
+        },
+        {
+          "Market": "General Warehousing & Storage",
+          "NAICS": "493110",
+          "VN entry": "L5 under L6h1",
+          "position_type": "mid_chain",
+          "depth": "1",
+          "vn_score": "**6.5**"
+        },
+        {
+          "Market": "Museums & Historical Sites",
+          "NAICS": "712110",
+          "VN entry": "L5 under L6 Security",
+          "position_type": "mid_chain",
+          "depth": "1",
+          "vn_score": "**6.5**"
+        },
+        {
+          "Market": "Data Centers",
+          "NAICS": "518210",
+          "VN entry": "L4 under L5 under L6d",
+          "position_type": "deep_component",
+          "depth": "2",
+          "vn_score": "**3.0**"
+        },
+        {
+          "Market": "Facilities Support Services",
+          "NAICS": "561210",
+          "VN entry": "L4 under L5 under L6e",
+          "position_type": "deep_component",
+          "depth": "2",
+          "vn_score": "**3.0**"
+        },
+        {
+          "Market": "Lessors of Nonresidential Buildings",
+          "NAICS": "531120",
+          "VN entry": "L4 under L5 under L6d",
+          "position_type": "deep_component",
+          "depth": "2",
+          "vn_score": "**3.0**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Market",
+        "NAICS",
+        "switching_cost_inv",
+        "weakness_density",
+        "fragmentation_bonus",
+        "incumbent_vuln"
+      ],
+      "rows": [
+        {
+          "Market": "Hotels & Motels",
+          "NAICS": "721110",
+          "switching_cost_inv": "8.5",
+          "weakness_density": "8.5",
+          "fragmentation_bonus": "0.6",
+          "incumbent_vuln": "**8.6**"
+        },
+        {
+          "Market": "Museums & Historical Sites",
+          "NAICS": "712110",
+          "switching_cost_inv": "8.5",
+          "weakness_density": "8.5",
+          "fragmentation_bonus": "0.6",
+          "incumbent_vuln": "**8.6**"
+        },
+        {
+          "Market": "Colleges & Universities",
+          "NAICS": "611310",
+          "switching_cost_inv": "7.5",
+          "weakness_density": "7.0",
+          "fragmentation_bonus": "0.9",
+          "incumbent_vuln": "**7.4**"
+        },
+        {
+          "Market": "Elementary & Secondary Schools",
+          "NAICS": "611110",
+          "switching_cost_inv": "7.0",
+          "weakness_density": "7.0",
+          "fragmentation_bonus": "0.8",
+          "incumbent_vuln": "**7.0**"
+        },
+        {
+          "Market": "General Warehousing & Storage",
+          "NAICS": "493110",
+          "switching_cost_inv": "7.0",
+          "weakness_density": "6.5",
+          "fragmentation_bonus": "0.7",
+          "incumbent_vuln": "**6.9**"
+        },
+        {
+          "Market": "Facilities Support Services",
+          "NAICS": "561210",
+          "switching_cost_inv": "7.0",
+          "weakness_density": "6.5",
+          "fragmentation_bonus": "0.7",
+          "incumbent_vuln": "**6.9**"
+        },
+        {
+          "Market": "Continuing Care Retirement",
+          "NAICS": "623311",
+          "switching_cost_inv": "5.5",
+          "weakness_density": "5.0",
+          "fragmentation_bonus": "0.6",
+          "incumbent_vuln": "**5.4**"
+        },
+        {
+          "Market": "Lessors of Nonresidential Buildings",
+          "NAICS": "531120",
+          "switching_cost_inv": "5.5",
+          "weakness_density": "5.0",
+          "fragmentation_bonus": "0.5",
+          "incumbent_vuln": "**5.3**"
+        },
+        {
+          "Market": "General Medical & Surgical Hospitals",
+          "NAICS": "622110",
+          "switching_cost_inv": "5.0",
+          "weakness_density": "4.5",
+          "fragmentation_bonus": "0.5",
+          "incumbent_vuln": "**4.9**"
+        },
+        {
+          "Market": "Data Centers",
+          "NAICS": "518210",
+          "switching_cost_inv": "3.5",
+          "weakness_density": "3.5",
+          "fragmentation_bonus": "0.5",
+          "incumbent_vuln": "**3.7**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Rank",
+        "Market",
+        "NAICS",
+        "ODI",
+        "Fit",
+        "Constr",
+        "Cover",
+        "VN",
+        "Incum",
+        "**Composite**",
+        "Rec"
+      ],
+      "rows": [
+        {
+          "Rank": "1",
+          "Market": "Hotels & Motels",
+          "NAICS": "721110",
+          "ODI": "5.32",
+          "Fit": "6.34",
+          "Constr": "8.00",
+          "Cover": "5.00",
+          "VN": "10.0",
+          "Incum": "8.60",
+          "**Composite**": "**6.95**",
+          "Rec": "investigate"
+        },
+        {
+          "Rank": "2",
+          "Market": "Continuing Care Retirement",
+          "NAICS": "623311",
+          "ODI": "6.50",
+          "Fit": "6.13",
+          "Constr": "7.00",
+          "Cover": "7.50",
+          "VN": "10.0",
+          "Incum": "5.40",
+          "**Composite**": "**6.80**",
+          "Rec": "investigate"
+        },
+        {
+          "Rank": "3",
+          "Market": "Elementary & Secondary Schools",
+          "NAICS": "611110",
+          "ODI": "6.21",
+          "Fit": "6.83",
+          "Constr": "7.00",
+          "Cover": "6.25",
+          "VN": "6.5",
+          "Incum": "7.00",
+          "**Composite**": "**6.61**",
+          "Rec": "investigate"
+        },
+        {
+          "Rank": "4",
+          "Market": "Colleges & Universities",
+          "NAICS": "611310",
+          "ODI": "5.84",
+          "Fit": "6.24",
+          "Constr": "7.50",
+          "Cover": "6.25",
+          "VN": "6.5",
+          "Incum": "7.40",
+          "**Composite**": "**6.59**",
+          "Rec": "investigate"
+        },
+        {
+          "Rank": "5",
+          "Market": "Museums & Historical Sites",
+          "NAICS": "712110",
+          "ODI": "5.79",
+          "Fit": "6.16",
+          "Constr": "7.00",
+          "Cover": "5.00",
+          "VN": "6.5",
+          "Incum": "8.60",
+          "**Composite**": "**6.54**",
+          "Rec": "investigate"
+        },
+        {
+          "Rank": "6",
+          "Market": "General Warehousing & Storage",
+          "NAICS": "493110",
+          "ODI": "5.98",
+          "Fit": "5.93",
+          "Constr": "6.50",
+          "Cover": "5.00",
+          "VN": "6.5",
+          "Incum": "6.90",
+          "**Composite**": "**6.14**",
+          "Rec": "investigate"
+        },
+        {
+          "Rank": "7",
+          "Market": "Facilities Support Services",
+          "NAICS": "561210",
+          "ODI": "5.99",
+          "Fit": "6.53",
+          "Constr": "6.00",
+          "Cover": "6.25",
+          "VN": "3.0",
+          "Incum": "6.90",
+          "**Composite**": "**6.00**",
+          "Rec": "investigate"
+        },
+        {
+          "Rank": "8",
+          "Market": "General Medical & Surgical Hospitals",
+          "NAICS": "622110",
+          "ODI": "6.04",
+          "Fit": "6.72",
+          "Constr": "4.50",
+          "Cover": "6.25",
+          "VN": "6.5",
+          "Incum": "4.90",
+          "**Composite**": "**5.76**",
+          "Rec": "investigate"
+        },
+        {
+          "Rank": "9",
+          "Market": "Lessors of Nonresidential Buildings",
+          "NAICS": "531120",
+          "ODI": "5.78",
+          "Fit": "6.12",
+          "Constr": "7.00",
+          "Cover": "5.00",
+          "VN": "3.0",
+          "Incum": "5.30",
+          "**Composite**": "**5.52**",
+          "Rec": "investigate"
+        },
+        {
+          "Rank": "10",
+          "Market": "Data Centers",
+          "NAICS": "518210",
+          "ODI": "5.96",
+          "Fit": "5.25",
+          "Constr": "6.50",
+          "Cover": "5.00",
+          "VN": "3.0",
+          "Incum": "3.70",
+          "**Composite**": "**5.04**",
+          "Rec": "investigate"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Primary driver**",
+          "Value": "Best VN position (customer-facing L6H-SEC) + cleanest constraint profile (8 low-cost mitigations, all 4 mitigable constraints low-cost) + highest incumbent fragmentation"
+        },
+        {
+          "Field": "**Why not higher**",
+          "Value": "ODI is the lowest in the set (5.32) — hotel operators slightly undersell urgency of emergency exit monitoring; job coverage only 50%"
+        },
+        {
+          "Field": "**Entry strategy**",
+          "Value": "Partner with hotel security integrators (Allegion channel, ASSA ABLOY hotel division); target mid-market hotel groups (50–500 properties); lead with brand protection/liability case for unauthorized exit use; bundle with key-card PACS upgrades"
+        },
+        {
+          "Field": "**Constraint to watch**",
+          "Value": "C5 (surface mount) in boutique/luxury properties — coordinate with interior designers; C6 (EasyWave) for BMS-integrated chains — BUS gateway required"
+        },
+        {
+          "Field": "**Time to first revenue**",
+          "Value": "3–6 months"
+        },
+        {
+          "Field": "**Pilot investment**",
+          "Value": "€50–100K (gateway + channel dev + pilot site)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Primary driver**",
+          "Value": "Highest ODI in set (6.50) + highest job coverage (75%) + customer-facing VN position; elopement liability creates unambiguous ROI case"
+        },
+        {
+          "Field": "**Why not higher**",
+          "Value": "C3+C6 both medium-cost mitigations (nurse-call integration 2–4 months/cluster); incumbent vulnerability moderated by nurse-call vendor lock-in"
+        },
+        {
+          "Field": "**Entry strategy**",
+          "Value": "Partner with nurse-call integrators (Stanley Healthcare, Jeron/SimplexGrinnell) for wiring-spec alignment; target multi-site CCRC operators (>5 properties); lead with CMS CoP §19.3.6 elopement documentation requirement; deploy first in memory care units (highest liability)"
+        },
+        {
+          "Field": "**Constraint to watch**",
+          "Value": "C4 (battery in memory care) — dementia resident door-testing exhausts battery; must deploy battery-monitoring variant + quarterly PM cycle"
+        },
+        {
+          "Field": "**Time to first revenue**",
+          "Value": "4–8 months"
+        },
+        {
+          "Field": "**Pilot investment**",
+          "Value": "€100–250K (nurse-call integration + RF infrastructure for campus wings)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Primary driver**",
+          "Value": "Highest feature fit (6.83) + strong ODI (6.21) + no medium-cost mitigations (all 6 mitigable constraints low-cost); 100K+ schools = high fragmentation, low switching cost"
+        },
+        {
+          "Field": "**Why not higher**",
+          "Value": "VN is mid-chain (6.5), not customer-facing; budget sensitivity requires grant-cycle alignment"
+        },
+        {
+          "Field": "**Entry strategy**",
+          "Value": "Channel through school safety distributors and physical security dealers; target district-level procurement (50+ schools); lead with active-shooter lockdown compliance and CISA K-12 security framework documentation; time sales cycles to federal/state safety grant windows (STOP Act, E2SSB 5187)"
+        },
+        {
+          "Field": "**Constraint to watch**",
+          "Value": "C7 (price premium) for rural districts with sub-$200K security budgets — phased rollout starting with exterior exit doors only"
+        },
+        {
+          "Field": "**Time to first revenue**",
+          "Value": "4–6 months"
+        },
+        {
+          "Field": "**Pilot investment**",
+          "Value": "€50–100K"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Primary driver**",
+          "Value": "Best constraint score in mid-chain VN tier (7.5, only 1 medium-cost mitigation: C6); highest incumbent vulnerability among institutional buyers (7.4) due to fragmented campus FM vendor landscape"
+        },
+        {
+          "Field": "**Why not higher**",
+          "Value": "ODI 5.84 moderate; VN mid-chain; campus FM directors are sophisticated buyers with longer evaluation cycles"
+        },
+        {
+          "Field": "**Entry strategy**",
+          "Value": "Target campus FM directors and life safety officers; lead with NFPA 101 annual fire inspection automation; partner with campus security integrators (SDI, Convergint); bundle with campus emergency notification platform integrations"
+        },
+        {
+          "Field": "**Constraint to watch**",
+          "Value": "C6 (EasyWave/BMS integration) — university BMS is BACnet/IP; require BUS gateway in every spec; flag as add-line-item not hidden cost"
+        },
+        {
+          "Field": "**Time to first revenue**",
+          "Value": "4–8 months"
+        },
+        {
+          "Field": "**Pilot investment**",
+          "Value": "€75–150K"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Primary driver**",
+          "Value": "Tied highest incumbent vulnerability (8.6 — ~80% mechanical-only incumbents) + constraint profile entirely low-cost; retrofit surface-mount is a positive differentiator (reversible = heritage authority compliant)"
+        },
+        {
+          "Field": "**Why not higher**",
+          "Value": "ODI 5.79 lowest tier; job coverage 50%; public institution budget constraints (C7) create sales friction even though cost is manageable via grants"
+        },
+        {
+          "Field": "**Entry strategy**",
+          "Value": "Partner with heritage security specialists (G4S Art & Heritage, Securitas Cultural Heritage); target museum associations' collective procurement programs (AAM, ICOM); lead with surface-mount reversibility advantage for Grade I/Denkmalschutz contexts; identify EU Horizon and National Lottery Heritage Fund grant cycles"
+        },
+        {
+          "Field": "**Constraint to watch**",
+          "Value": "C5 (surface mount aesthetics) in highest-grade listed buildings — have custom RAL color options in spec sheet"
+        },
+        {
+          "Field": "**Time to first revenue**",
+          "Value": "3–6 months"
+        },
+        {
+          "Field": "**Pilot investment**",
+          "Value": "€50–100K"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Primary driver**",
+          "Value": "Balanced profile — no dimension outlier; mid-chain VN; 3PL scale economics favor portfolio pricing"
+        },
+        {
+          "Field": "**Why not higher**",
+          "Value": "C3 (RF range in 100K m² DCs) is the lone medium-cost mitigation and the dominant friction; feature fit weakest in top half (5.93); coverage 50%"
+        },
+        {
+          "Field": "**Entry strategy**",
+          "Value": "Partner with industrial FM integrators; target 3PL portfolio operators (DHL Supply Chain, DB Schenker, XPO) for blanket pricing; lead with OSHA/NFPA compliance automation and guard patrol reduction TCO model; require exit-environment survey (dock vs. cold-chain) at spec stage"
+        },
+        {
+          "Field": "**Constraint to watch**",
+          "Value": "C3 + C9 cluster — all dock exits and cold-chain exits need IP45 variant; pre-size repeater chain during RF survey"
+        },
+        {
+          "Field": "**Time to first revenue**",
+          "Value": "4–8 months"
+        },
+        {
+          "Field": "**Pilot investment**",
+          "Value": "€100–250K (RF infrastructure for large DC pilot)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Primary driver**",
+          "Value": "Facilities managers as channel intermediaries — not end users; creates a multiplier effect if won, but deep-component VN position (3.0) caps the ceiling"
+        },
+        {
+          "Field": "**Why not higher**",
+          "Value": "Deep-component VN is the primary depressant (3.0); FM firms are price-sensitive procurement intermediaries with thin margins"
+        },
+        {
+          "Field": "**Entry strategy**",
+          "Value": "Sell to FM firms as a managed-service line item; lead with SLA compliance reporting for FM clients; partner with CBRE GWS, JLL Technologies, ISS Facility Services as an endorsed security hardware spec; position IoT monitoring subscription as recurring revenue add-on to FM contract"
+        },
+        {
+          "Field": "**Constraint to watch**",
+          "Value": "C6 (EasyWave) — FM firms serve multiple client BMS environments; standardize on BUS gateway as default spec, not optional"
+        },
+        {
+          "Field": "**Time to first revenue**",
+          "Value": "4–8 months (channel development time is long pole)"
+        },
+        {
+          "Field": "**Pilot investment**",
+          "Value": "€50–100K (channel partner carries deployment cost)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Primary driver**",
+          "Value": "High feature fit (6.72) and strong ODI (6.04) but constraint complexity (4.5 — 3 medium-cost mitigations) and low incumbent vulnerability (4.9) make this the hardest to enter"
+        },
+        {
+          "Field": "**Why not higher**",
+          "Value": "C3+C6+C7 all medium-cost (RF in hospital wings, PACS/SIEM integration, procurement budget justification to clinical committees); incumbent relationships entrenched via Joint Commission vendor networks"
+        },
+        {
+          "Field": "**Entry strategy**",
+          "Value": "Enter via hospital FM/engineering departments, not clinical procurement; lead with Joint Commission EC.02.01.01 emergency egress documentation automation; partner with healthcare security integrators (Johnson Controls Healthcare, Honeywell Commercial Security) as a sub-component spec"
+        },
+        {
+          "Field": "**Constraint to watch**",
+          "Value": "C7 (value justification to hospital capital committee) + C10 (EN 13637/NFPA 101 combined systems at electromagnetic egress door locks in secured wards)"
+        },
+        {
+          "Field": "**Time to first revenue**",
+          "Value": "8–14 months"
+        },
+        {
+          "Field": "**Pilot investment**",
+          "Value": "€150–350K (compliance documentation, PACS integration, longer sales cycle)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Primary driver**",
+          "Value": "Clean constraint profile (7.0) and moderate scores across dimensions, but deep-component VN position (3.0) suppresses composite materially"
+        },
+        {
+          "Field": "**Why not higher**",
+          "Value": "Deep-component VN (3.0) + C6 is the primary sales friction (BACnet/IP BMS integration across multi-building portfolios adds 3–6 months and medium cost) + institutional buyers have established FM relationships"
+        },
+        {
+          "Field": "**Entry strategy**",
+          "Value": "Target REIT asset managers and institutional landlords managing >20-building portfolios; lead with fire marshal audit automation and tenant ESG reporting for BREEAM/LEED O+M certifications; sell via FM operators already embedded in portfolio (CBRE, JLL, Cushman & Wakefield)"
+        },
+        {
+          "Field": "**Constraint to watch**",
+          "Value": "C6 medium cost across portfolio scale — ensure BUS gateway is in standard spec before pricing discussions"
+        },
+        {
+          "Field": "**Time to first revenue**",
+          "Value": "6–12 months"
+        },
+        {
+          "Field": "**Pilot investment**",
+          "Value": "€100–250K (BMS integration across pilot portfolio)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Primary driver**",
+          "Value": "Sophisticated buyers with deep technology infrastructure; low incumbent vulnerability (3.7) and deep-component VN (3.0) both cap composite near the investigate floor"
+        },
+        {
+          "Field": "**Why not higher**",
+          "Value": "C3+C6+C10 all medium-cost; DC security teams require PACS/SIEM integration (Honeywell, Lenel/S2) as procurement prerequisite; feature fit lowest in set (5.25) due to hyperscale mismatch with 30 m base RF range"
+        },
+        {
+          "Field": "**Entry strategy**",
+          "Value": "Niche approach: target edge/colocation DCs (under 5,000 m²) first — RF range constraint least severe; partner with DC physical security integrators; lead with SOC 2 CC6.4 audit log automation narrative; hyperscale (Google, AWS, Microsoft) should be back-burner until IP Gateway has proven BACnet/REST integration"
+        },
+        {
+          "Field": "**Constraint to watch**",
+          "Value": "C3 (RF attenuation in dense metallic server halls) is the most severe in the entire candidate set — multi-gateway + repeater chain required per zone; must be solved before any Tier III/IV DC reference"
+        },
+        {
+          "Field": "**Time to first revenue**",
+          "Value": "8–14 months"
+        },
+        {
+          "Field": "**Pilot investment**",
+          "Value": "€200–500K (RF infrastructure, PACS/SIEM integration, longer enterprise sales cycle)"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "product_name": "GfS Türwächter IoT (Exit Control 179/1125)",
+      "technology_class": "Emergency Exit Security Devices with Remote Monitoring",
+      "custom_product_group": "Emergency Exit Door Alarm Guards",
+      "step": "14",
+      "scoring_formula": "odi*0.25 + fit*0.15 + constraint*0.15 + coverage*0.15 + vn*0.10 + incumbent_vuln*0.20",
+      "thresholds": {
+        "pursue": 7.5,
+        "investigate": 5.0,
+        "defer": 3.0,
+        "no_go": 0.0
+      },
+      "ranked_markets": [
+        {
+          "rank": 1,
+          "market_name": "Hotels and Motels",
+          "naics_code": "721110",
+          "odi_score": 5.32,
+          "feature_fit_score": 6.34,
+          "constraint_score": 8.0,
+          "coverage_score": 5.0,
+          "vn_score": 10.0,
+          "incumbent_vuln_score": 8.6,
+          "composite_score": 6.95,
+          "recommendation": "investigate",
+          "vn_position": "customer_facing",
+          "vn_entry_level": "L6H-SEC",
+          "knockouts": 0,
+          "mitigable_constraints": [
+            "C3",
+            "C5",
+            "C6",
+            "C8"
+          ],
+          "time_to_revenue_months": "3-6",
+          "pilot_investment_eur": "50000-100000",
+          "primary_entry_motion": "Partner with hotel security integrators; target mid-market hotel groups via ASSA ABLOY hotel division channel"
+        },
+        {
+          "rank": 2,
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "odi_score": 6.5,
+          "feature_fit_score": 6.13,
+          "constraint_score": 7.0,
+          "coverage_score": 7.5,
+          "vn_score": 10.0,
+          "incumbent_vuln_score": 5.4,
+          "composite_score": 6.8,
+          "recommendation": "investigate",
+          "vn_position": "customer_facing",
+          "vn_entry_level": "L6H-SAF",
+          "knockouts": 0,
+          "mitigable_constraints": [
+            "C3",
+            "C4",
+            "C6",
+            "C10"
+          ],
+          "time_to_revenue_months": "4-8",
+          "pilot_investment_eur": "100000-250000",
+          "primary_entry_motion": "Partner with nurse-call integrators (Stanley Healthcare, Jeron); target multi-site CCRC operators; lead with CMS CoP elopement documentation requirement"
+        },
+        {
+          "rank": 3,
+          "market_name": "Elementary and Secondary Schools",
+          "naics_code": "611110",
+          "odi_score": 6.21,
+          "feature_fit_score": 6.83,
+          "constraint_score": 7.0,
+          "coverage_score": 6.25,
+          "vn_score": 6.5,
+          "incumbent_vuln_score": 7.0,
+          "composite_score": 6.61,
+          "recommendation": "investigate",
+          "vn_position": "mid_chain",
+          "vn_entry_level": "L5",
+          "knockouts": 0,
+          "mitigable_constraints": [
+            "C3",
+            "C5",
+            "C6",
+            "C7",
+            "C8",
+            "C10"
+          ],
+          "time_to_revenue_months": "4-6",
+          "pilot_investment_eur": "50000-100000",
+          "primary_entry_motion": "Channel through school safety distributors; target district procurement; align to federal/state safety grant cycles"
+        },
+        {
+          "rank": 4,
+          "market_name": "Colleges and Universities",
+          "naics_code": "611310",
+          "odi_score": 5.84,
+          "feature_fit_score": 6.24,
+          "constraint_score": 7.5,
+          "coverage_score": 6.25,
+          "vn_score": 6.5,
+          "incumbent_vuln_score": 7.4,
+          "composite_score": 6.59,
+          "recommendation": "investigate",
+          "vn_position": "mid_chain",
+          "vn_entry_level": "L5",
+          "knockouts": 0,
+          "mitigable_constraints": [
+            "C3",
+            "C4",
+            "C6",
+            "C10"
+          ],
+          "time_to_revenue_months": "4-8",
+          "pilot_investment_eur": "75000-150000",
+          "primary_entry_motion": "Target campus FM directors; lead with NFPA 101 fire inspection automation; partner with campus security integrators"
+        },
+        {
+          "rank": 5,
+          "market_name": "Museums and Historical Sites",
+          "naics_code": "712110",
+          "odi_score": 5.79,
+          "feature_fit_score": 6.16,
+          "constraint_score": 7.0,
+          "coverage_score": 5.0,
+          "vn_score": 6.5,
+          "incumbent_vuln_score": 8.6,
+          "composite_score": 6.54,
+          "recommendation": "investigate",
+          "vn_position": "mid_chain",
+          "vn_entry_level": "L5",
+          "knockouts": 0,
+          "mitigable_constraints": [
+            "C3",
+            "C5",
+            "C6",
+            "C7",
+            "C8",
+            "C10"
+          ],
+          "time_to_revenue_months": "3-6",
+          "pilot_investment_eur": "50000-100000",
+          "primary_entry_motion": "Partner with heritage security specialists; target museum associations' collective procurement; lead with reversible surface-mount differentiator for listed buildings"
+        },
+        {
+          "rank": 6,
+          "market_name": "General Warehousing and Storage",
+          "naics_code": "493110",
+          "odi_score": 5.98,
+          "feature_fit_score": 5.93,
+          "constraint_score": 6.5,
+          "coverage_score": 5.0,
+          "vn_score": 6.5,
+          "incumbent_vuln_score": 6.9,
+          "composite_score": 6.14,
+          "recommendation": "investigate",
+          "vn_position": "mid_chain",
+          "vn_entry_level": "L5",
+          "knockouts": 0,
+          "mitigable_constraints": [
+            "C3",
+            "C4",
+            "C6",
+            "C7",
+            "C8",
+            "C9"
+          ],
+          "time_to_revenue_months": "4-8",
+          "pilot_investment_eur": "100000-250000",
+          "primary_entry_motion": "Target 3PL portfolio operators for blanket pricing; lead with OSHA compliance automation and guard patrol TCO model; require exit-environment survey at spec stage"
+        },
+        {
+          "rank": 7,
+          "market_name": "Facilities Support Services",
+          "naics_code": "561210",
+          "odi_score": 5.99,
+          "feature_fit_score": 6.53,
+          "constraint_score": 6.0,
+          "coverage_score": 6.25,
+          "vn_score": 3.0,
+          "incumbent_vuln_score": 6.9,
+          "composite_score": 6.0,
+          "recommendation": "investigate",
+          "vn_position": "deep_component",
+          "vn_entry_level": "L4",
+          "knockouts": 0,
+          "mitigable_constraints": [
+            "C3",
+            "C4",
+            "C6",
+            "C7",
+            "C8",
+            "C9",
+            "C10"
+          ],
+          "time_to_revenue_months": "4-8",
+          "pilot_investment_eur": "50000-100000",
+          "primary_entry_motion": "Sell to FM firms as managed-service line item; partner with CBRE GWS, JLL Technologies as endorsed spec; position IoT subscription as FM contract recurring revenue add-on"
+        },
+        {
+          "rank": 8,
+          "market_name": "General Medical and Surgical Hospitals",
+          "naics_code": "622110",
+          "odi_score": 6.04,
+          "feature_fit_score": 6.72,
+          "constraint_score": 4.5,
+          "coverage_score": 6.25,
+          "vn_score": 6.5,
+          "incumbent_vuln_score": 4.9,
+          "composite_score": 5.76,
+          "recommendation": "investigate",
+          "vn_position": "mid_chain",
+          "vn_entry_level": "L5",
+          "knockouts": 0,
+          "mitigable_constraints": [
+            "C3",
+            "C4",
+            "C6",
+            "C7",
+            "C8",
+            "C9",
+            "C10"
+          ],
+          "time_to_revenue_months": "8-14",
+          "pilot_investment_eur": "150000-350000",
+          "primary_entry_motion": "Enter via hospital FM/engineering departments; lead with Joint Commission EC.02.01.01 egress documentation automation; partner with healthcare security integrators"
+        },
+        {
+          "rank": 9,
+          "market_name": "Lessors of Nonresidential Buildings",
+          "naics_code": "531120",
+          "odi_score": 5.78,
+          "feature_fit_score": 6.12,
+          "constraint_score": 7.0,
+          "coverage_score": 5.0,
+          "vn_score": 3.0,
+          "incumbent_vuln_score": 5.3,
+          "composite_score": 5.52,
+          "recommendation": "investigate",
+          "vn_position": "deep_component",
+          "vn_entry_level": "L4",
+          "knockouts": 0,
+          "mitigable_constraints": [
+            "C3",
+            "C5",
+            "C6",
+            "C8",
+            "C10"
+          ],
+          "time_to_revenue_months": "6-12",
+          "pilot_investment_eur": "100000-250000",
+          "primary_entry_motion": "Target institutional REIT portfolio managers via embedded FM operators (CBRE, JLL, Cushman); lead with fire marshal audit automation and BREEAM/LEED O+M tenant reporting"
+        },
+        {
+          "rank": 10,
+          "market_name": "Computing Infrastructure Providers, Data Processing, Web Hosting, and Related Services",
+          "naics_code": "518210",
+          "odi_score": 5.96,
+          "feature_fit_score": 5.25,
+          "constraint_score": 6.5,
+          "coverage_score": 5.0,
+          "vn_score": 3.0,
+          "incumbent_vuln_score": 3.7,
+          "composite_score": 5.04,
+          "recommendation": "investigate",
+          "vn_position": "deep_component",
+          "vn_entry_level": "L4",
+          "knockouts": 0,
+          "mitigable_constraints": [
+            "C3",
+            "C6",
+            "C8",
+            "C10"
+          ],
+          "time_to_revenue_months": "8-14",
+          "pilot_investment_eur": "200000-500000",
+          "primary_entry_motion": "Target edge/colocation DCs first (under 5,000 m² — RF constraint least severe); partner with DC physical security integrators; lead with SOC 2 CC6.4 audit log automation; defer hyperscale until IP Gateway BACnet/REST integration is proven"
+        }
+      ],
+      "markets_eliminated": [],
+      "markets_surviving": [
+        "721110",
+        "623311",
+        "611110",
+        "611310",
+        "712110",
+        "493110",
+        "561210",
+        "622110",
+        "531120",
+        "518210"
+      ],
+      "launch_sequence": {
+        "wave_1": [
+          "721110",
+          "623311"
+        ],
+        "wave_2": [
+          "611110",
+          "611310",
+          "712110"
+        ],
+        "wave_3": [
+          "493110",
+          "561210"
+        ],
+        "wave_4": [
+          "622110",
+          "531120",
+          "518210"
+        ]
+      }
+    }
+  ],
+  "has_bom": false
+}

@@ -1,0 +1,375 @@
+{
+  "id": "COMPAT_data_centers",
+  "title": "Constraints Compatibility: Data Centers (NAICS 518210)",
+  "type": "constraint_compatibility",
+  "market_slug": "data_centers",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Market Context",
+      "content": "| Field | Value |\n|---|---|\n| NAICS Code | 518210 |\n| FP Fit | adjacent |\n| Architecture Distance | 3 — MEDIUM |\n| Market Priority | MEDIUM |\n| Türwächter fit in VN | L6d Physical Security & Access Control → L5 Emergency Exit Door Monitoring → L4[1] Door Guardian Alarm Unit |\n| L6d activation | Universal — activates across all DC output types (colocation, hyperscale, edge, managed hosting) |\n| Competitive baseline | Wired electronic exit alarm + alarm-panel-integrated (~50%); **wireless IoT door alarm guard (~30%)** ← Türwächter category; mechanical-only (~20%) |\n\n---"
+    },
+    {
+      "title": "Step 08 — Constraint × Market Assessment",
+      "content": "| # | Constraint | Type | is_absolute | Verdict | Rationale |\n|---|---|---|---|---|---|\n| C1 | Emergency Escape Non-Impedance | regulatory | false | **none** | Data centers have NFPA 101 / EN 179 fire-code mandated emergency exits. Product's single-motion release already satisfies both EU and US single-motion egress requirements. No additional operational steps introduced. |\n| C2 | Mechanical Alarm Independence (Power Fail) | regulatory | true | **none** | DC emergency exits are precisely the context where power-independent operation is most critical — power events (UPS switchover, generator fail, planned maintenance) are routine. The mechanical-primary design is an advantage, not a constraint. |\n| C3 | Wireless Range Limitation | physical | false | **mitigable** | Hyperscale DCs (10,000–100,000 m²) and dense RF environments (metallic racks, Faraday-cage construction, server hall shielding) attenuate 868 MHz signal. Multiple IP Gateways / Protocol Bridges required per zone; each gateway covers one security zone (~30 m). |\n| C4 | IoT Battery Life Floor | operational | false | **none** | DC emergency exits are genuine emergency-only access points with very low event frequency. Battery life easily exceeds 2-year target. CMMS-driven predictive battery replacement (flagged via battery status events from IoT module) fits standard DC facilities maintenance workflow. |\n| C5 | Retrofit-Only Surface Mount | physical | false | **none** | DC emergency exits are located in stairwells, service corridors, and perimeter walls — not in security-critical server halls where flush-mount hardware is required. Surface mount is acceptable in all standard DC emergency exit locations. |\n| C6 | EasyWave Protocol Lock-In | operational | false | **mitigable** | Data centers integrate door events into enterprise PACS (Honeywell, Lenel) and SIEM (Splunk, QRadar) for SOC 2 CC6.4 and ISO 27001 A.7.2 audit evidence. EasyWave has zero native interoperability with REST, SNMP, or BACnet-IP. Requires IP Gateway / Protocol Bridge per DC zone. |\n| C7 | IoT Price Premium | economic | false | **none** | DC operators are premium buyers with large security budgets. Per-door cost of ~€730 is negligible vs. total DC infrastructure spend. Automated SOC 2 / ISO 27001 audit log generation delivers measurable ROI by reducing compliance labor. |\n| C8 | GDPR Monitoring Data Compliance | regulatory | false | **mitigable** | EU data centers must include door-event logging in their DPIA for employee physical access monitoring. DPA with monitoring SaaS provider required. DC operators are compliance-sophisticated with existing GRC platforms — this is an extension of their current program, not a new capability requirement. |\n| C9 | IP Protection Boundary | environmental | false | **none** | DC server halls operate at 18–27°C, 40–60% humidity (ASHRAE A1/A2 guidelines), climate-controlled, dust-managed. No washdown. Standard IP class is sufficient for all indoor DC emergency exit locations. |\n| C10 | EN 13637 / EltVTR Electrical Compliance | regulatory | false | **mitigable** | Data centers combine emergency exits with electromagnetic door holders, biometric access control, and mantrap interlocks. Combined configurations require EN 13637 system-level certification. System integrator (not GfS) is responsible for combined-system certification; GfS supplies Türwächter compliance documentation as a module. |\n\n---"
+    },
+    {
+      "title": "Mitigation Details",
+      "content": "| Constraint | Mitigation Actions | Cost | Time |\n|---|---|---|---|\n| C3 Wireless Range | (1) Deploy IP Gateway / Protocol Bridge per DC security zone; (2) Add 868 MHz repeater per 30 m coverage extension within zones; (3) Map emergency exits per zone during site survey and pre-size gateway count | medium | 2–4 months |\n| C6 Protocol Lock-In | (1) Deploy GfS IP Gateway / Protocol Bridge translating EasyWave events to REST/SNMP/BACnet-IP; (2) Configure PACS integration for door-event ingestion; (3) Configure SIEM (Splunk/QRadar) alert rule for unauthorized door events mapped to SOC 2 CC6.4 control | medium | 1–3 months |\n| C8 GDPR | (1) Add door-event monitoring to existing DPIA; (2) Execute DPA with GfS or monitoring SaaS provider; (3) Implement data minimization — log event type + timestamp only, no personal identifiers | low | 1–2 months |\n| C10 EN 13637 | (1) System integrator certifies combined-system configuration (Türwächter + EM-locks + biometric PACS); (2) GfS provides module-level EN 13637 compliance declaration; (3) Include in DC commissioning documentation package | medium | 3–6 months |\n\n---"
+    },
+    {
+      "title": "Constraint Cluster Analysis",
+      "content": "**Primary risk cluster for data centers:** C3 (RF range) + C6 (protocol lock-in) — both address the same root cause: integrating an RF-based proprietary device into a standards-based, IP-networked DC security infrastructure. Both are resolved by the same mitigation artifact: **IP Gateway / Protocol Bridge** (already identified as L4 in VN_data_centers.md L6d decomposition).\n\n**Secondary cluster:** C8 (GDPR) + C10 (EN 13637) — compliance documentation requirements that DC operators are already equipped to handle through their GRC platforms and system integrator relationships.\n\n**No knockouts.** NAICS 518210 survives all constraint checks.\n\n---"
+    },
+    {
+      "title": "Verdict",
+      "content": "| Field | Value |\n|---|---|\n| **Market status** | **SURVIVING** |\n| Knockout constraints | 0 |\n| Mitigable constraints | 4 (C3, C6, C8, C10) |\n| None / irrelevant | 6 (C1, C2, C4, C5, C7, C9) |\n| Mitigation cost ceiling | medium (C3, C6, C10 each medium; C8 low) |\n| Mitigation time ceiling | 3–6 months (C10 system certification is the long pole) |\n| C6 note | The IP Gateway / Protocol Bridge that resolves C6 is already a named L4 node in the VN. No new infrastructure concept required. |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"product_name\": \"GfS Türwächter IoT (Exit Control 179/1125)\",\n  \"technology_class\": \"Emergency Exit Security Devices with Remote Monitoring\",\n  \"market_name\": \"Computing Infrastructure Providers, Data Processing, Web Hosting, and Related Services\",\n  \"naics_code\": \"518210\",\n  \"assessments\": [\n    {\n      \"constraint_name\": \"Emergency Escape Non-Impedance\",\n      \"market_name\": \"Computing Infrastructure Providers\",\n      \"naics_code\": \"518210\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Data centers have NFPA 101 / EN 179 fire-code mandated emergency exits. Product's single-motion release pre-satisfies both EU and US single-motion egress requirements.\"\n    },\n    {\n      \"constraint_name\": \"Mechanical Alarm Independence\",\n      \"market_name\": \"Computing Infrastructure Providers\",\n      \"naics_code\": \"518210\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Power-independent mechanical alarm is an asset in data centers where power events (UPS switchover, generator fail) are routine operational scenarios.\"\n    },\n    {\n      \"constraint_name\": \"Wireless Range Limitation\",\n      \"market_name\": \"Computing Infrastructure Providers\",\n      \"naics_code\": \"518210\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Deploy IP Gateway / Protocol Bridge per DC security zone (~30 m coverage radius per gateway)\",\n        \"Add 868 MHz wireless repeater stages for coverage extensions within large zones\",\n        \"Conduct site RF survey during commissioning to pre-size gateway and repeater count\"\n      ],\n      \"mitigation_cost_estimate\": \"medium\",\n      \"mitigation_time_estimate\": \"2–4 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Hyperscale DCs (10K–100K m²) and dense metallic RF environments attenuate 868 MHz signal. Multiple IP gateways required. Not a physics knockout — standard repeater architecture resolves coverage.\"\n    },\n    {\n      \"constraint_name\": \"IoT Battery Life Floor\",\n      \"market_name\": \"Computing Infrastructure Providers\",\n      \"naics_code\": \"518210\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"DC emergency exits are genuine emergency-only access points with very low event frequency. Battery life comfortably exceeds 2-year target. Predictive battery replacement aligns with CMMS-driven facilities maintenance workflows.\"\n    },\n    {\n      \"constraint_name\": \"Retrofit-Only Surface Mount\",\n      \"market_name\": \"Computing Infrastructure Providers\",\n      \"naics_code\": \"518210\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"DC emergency exits are in stairwells, service corridors, and perimeter walls where surface mount is standard. Flush-mount requirements apply only to server hall access doors which are controlled by biometric PACS, not emergency exit hardware.\"\n    },\n    {\n      \"constraint_name\": \"EasyWave Protocol Lock-In\",\n      \"market_name\": \"Computing Infrastructure Providers\",\n      \"naics_code\": \"518210\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Deploy GfS IP Gateway / Protocol Bridge translating EasyWave events to REST / SNMP / BACnet-IP\",\n        \"Integrate door-event stream into enterprise PACS (Honeywell, Lenel) for access control correlation\",\n        \"Configure SIEM ingestion (Splunk, QRadar) for SOC 2 CC6.4 physical security audit evidence\"\n      ],\n      \"mitigation_cost_estimate\": \"medium\",\n      \"mitigation_time_estimate\": \"1–3 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"Data centers require door events in enterprise PACS and SIEM for compliance certifications. EasyWave is incompatible with REST/SNMP/BACnet-IP natively. IP Gateway (already L4 node in VN) bridges the gap.\"\n    },\n    {\n      \"constraint_name\": \"IoT Price Premium\",\n      \"market_name\": \"Computing Infrastructure Providers\",\n      \"naics_code\": \"518210\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"Per-door cost ~€730 is negligible for DC security budgets. Automated SOC 2 / ISO 27001 audit log generation delivers clear compliance ROI.\"\n    },\n    {\n      \"constraint_name\": \"GDPR Monitoring Data Compliance\",\n      \"market_name\": \"Computing Infrastructure Providers\",\n      \"naics_code\": \"518210\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"Extend existing DPIA to cover door-event physical access monitoring\",\n        \"Execute DPA with GfS / monitoring SaaS provider\",\n        \"Implement data minimization — log event type + timestamp only, no personal identifiers at door level\"\n      ],\n      \"mitigation_cost_estimate\": \"low\",\n      \"mitigation_time_estimate\": \"1–2 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"EU data centers must cover employee physical access monitoring in DPIA. DC operators are compliance-sophisticated with existing GRC platforms and privacy counsel — extension of current program, not new capability.\"\n    },\n    {\n      \"constraint_name\": \"IP Protection Boundary\",\n      \"market_name\": \"Computing Infrastructure Providers\",\n      \"naics_code\": \"518210\",\n      \"verdict\": \"none\",\n      \"mitigation_actions\": [],\n      \"mitigation_cost_estimate\": null,\n      \"mitigation_time_estimate\": null,\n      \"knockout_reason\": null,\n      \"rationale\": \"DC server halls operate at ASHRAE A1/A2 conditions (18–27°C, 40–60% RH, dust-controlled). No washdown, no wet industrial exposure. Standard IP class is sufficient for all indoor DC emergency exit locations.\"\n    },\n    {\n      \"constraint_name\": \"EN 13637 / EltVTR Electrical Compliance\",\n      \"market_name\": \"Computing Infrastructure Providers\",\n      \"naics_code\": \"518210\",\n      \"verdict\": \"mitigable\",\n      \"mitigation_actions\": [\n        \"System integrator certifies combined configuration (Türwächter + EM door holders + biometric PACS) to EN 13637\",\n        \"GfS provides module-level compliance declaration for Türwächter component\",\n        \"Include combined-system certification in DC commissioning documentation package for SOC 2 / ISO 27001 evidence\"\n      ],\n      \"mitigation_cost_estimate\": \"medium\",\n      \"mitigation_time_estimate\": \"3–6 months\",\n      \"knockout_reason\": null,\n      \"rationale\": \"DCs integrate emergency exits with EM door holders and biometric access control. Combined configurations require EN 13637 system certification. System integrator (not GfS) owns this; standard practice for DC commissioning.\"\n    }\n  ],\n  \"markets_eliminated\": [],\n  \"markets_surviving\": [\"518210\"]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "NAICS Code",
+          "Value": "518210"
+        },
+        {
+          "Field": "FP Fit",
+          "Value": "adjacent"
+        },
+        {
+          "Field": "Architecture Distance",
+          "Value": "3 — MEDIUM"
+        },
+        {
+          "Field": "Market Priority",
+          "Value": "MEDIUM"
+        },
+        {
+          "Field": "Türwächter fit in VN",
+          "Value": "L6d Physical Security & Access Control → L5 Emergency Exit Door Monitoring → L4[1] Door Guardian Alarm Unit"
+        },
+        {
+          "Field": "L6d activation",
+          "Value": "Universal — activates across all DC output types (colocation, hyperscale, edge, managed hosting)"
+        },
+        {
+          "Field": "Competitive baseline",
+          "Value": "Wired electronic exit alarm + alarm-panel-integrated (~50%); **wireless IoT door alarm guard (~30%)** ← Türwächter category; mechanical-only (~20%)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Constraint",
+        "Type",
+        "is_absolute",
+        "Verdict",
+        "Rationale"
+      ],
+      "rows": [
+        {
+          "#": "C1",
+          "Constraint": "Emergency Escape Non-Impedance",
+          "Type": "regulatory",
+          "is_absolute": "false",
+          "Verdict": "**none**",
+          "Rationale": "Data centers have NFPA 101 / EN 179 fire-code mandated emergency exits. Product's single-motion release already satisfies both EU and US single-motion egress requirements. No additional operational steps introduced."
+        },
+        {
+          "#": "C2",
+          "Constraint": "Mechanical Alarm Independence (Power Fail)",
+          "Type": "regulatory",
+          "is_absolute": "true",
+          "Verdict": "**none**",
+          "Rationale": "DC emergency exits are precisely the context where power-independent operation is most critical — power events (UPS switchover, generator fail, planned maintenance) are routine. The mechanical-primary design is an advantage, not a constraint."
+        },
+        {
+          "#": "C3",
+          "Constraint": "Wireless Range Limitation",
+          "Type": "physical",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Rationale": "Hyperscale DCs (10,000–100,000 m²) and dense RF environments (metallic racks, Faraday-cage construction, server hall shielding) attenuate 868 MHz signal. Multiple IP Gateways / Protocol Bridges required per zone; each gateway covers one security zone (~30 m)."
+        },
+        {
+          "#": "C4",
+          "Constraint": "IoT Battery Life Floor",
+          "Type": "operational",
+          "is_absolute": "false",
+          "Verdict": "**none**",
+          "Rationale": "DC emergency exits are genuine emergency-only access points with very low event frequency. Battery life easily exceeds 2-year target. CMMS-driven predictive battery replacement (flagged via battery status events from IoT module) fits standard DC facilities maintenance workflow."
+        },
+        {
+          "#": "C5",
+          "Constraint": "Retrofit-Only Surface Mount",
+          "Type": "physical",
+          "is_absolute": "false",
+          "Verdict": "**none**",
+          "Rationale": "DC emergency exits are located in stairwells, service corridors, and perimeter walls — not in security-critical server halls where flush-mount hardware is required. Surface mount is acceptable in all standard DC emergency exit locations."
+        },
+        {
+          "#": "C6",
+          "Constraint": "EasyWave Protocol Lock-In",
+          "Type": "operational",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Rationale": "Data centers integrate door events into enterprise PACS (Honeywell, Lenel) and SIEM (Splunk, QRadar) for SOC 2 CC6.4 and ISO 27001 A.7.2 audit evidence. EasyWave has zero native interoperability with REST, SNMP, or BACnet-IP. Requires IP Gateway / Protocol Bridge per DC zone."
+        },
+        {
+          "#": "C7",
+          "Constraint": "IoT Price Premium",
+          "Type": "economic",
+          "is_absolute": "false",
+          "Verdict": "**none**",
+          "Rationale": "DC operators are premium buyers with large security budgets. Per-door cost of ~€730 is negligible vs. total DC infrastructure spend. Automated SOC 2 / ISO 27001 audit log generation delivers measurable ROI by reducing compliance labor."
+        },
+        {
+          "#": "C8",
+          "Constraint": "GDPR Monitoring Data Compliance",
+          "Type": "regulatory",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Rationale": "EU data centers must include door-event logging in their DPIA for employee physical access monitoring. DPA with monitoring SaaS provider required. DC operators are compliance-sophisticated with existing GRC platforms — this is an extension of their current program, not a new capability requirement."
+        },
+        {
+          "#": "C9",
+          "Constraint": "IP Protection Boundary",
+          "Type": "environmental",
+          "is_absolute": "false",
+          "Verdict": "**none**",
+          "Rationale": "DC server halls operate at 18–27°C, 40–60% humidity (ASHRAE A1/A2 guidelines), climate-controlled, dust-managed. No washdown. Standard IP class is sufficient for all indoor DC emergency exit locations."
+        },
+        {
+          "#": "C10",
+          "Constraint": "EN 13637 / EltVTR Electrical Compliance",
+          "Type": "regulatory",
+          "is_absolute": "false",
+          "Verdict": "**mitigable**",
+          "Rationale": "Data centers combine emergency exits with electromagnetic door holders, biometric access control, and mantrap interlocks. Combined configurations require EN 13637 system-level certification. System integrator (not GfS) is responsible for combined-system certification; GfS supplies Türwächter compliance documentation as a module."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Constraint",
+        "Mitigation Actions",
+        "Cost",
+        "Time"
+      ],
+      "rows": [
+        {
+          "Constraint": "C3 Wireless Range",
+          "Mitigation Actions": "(1) Deploy IP Gateway / Protocol Bridge per DC security zone; (2) Add 868 MHz repeater per 30 m coverage extension within zones; (3) Map emergency exits per zone during site survey and pre-size gateway count",
+          "Cost": "medium",
+          "Time": "2–4 months"
+        },
+        {
+          "Constraint": "C6 Protocol Lock-In",
+          "Mitigation Actions": "(1) Deploy GfS IP Gateway / Protocol Bridge translating EasyWave events to REST/SNMP/BACnet-IP; (2) Configure PACS integration for door-event ingestion; (3) Configure SIEM (Splunk/QRadar) alert rule for unauthorized door events mapped to SOC 2 CC6.4 control",
+          "Cost": "medium",
+          "Time": "1–3 months"
+        },
+        {
+          "Constraint": "C8 GDPR",
+          "Mitigation Actions": "(1) Add door-event monitoring to existing DPIA; (2) Execute DPA with GfS or monitoring SaaS provider; (3) Implement data minimization — log event type + timestamp only, no personal identifiers",
+          "Cost": "low",
+          "Time": "1–2 months"
+        },
+        {
+          "Constraint": "C10 EN 13637",
+          "Mitigation Actions": "(1) System integrator certifies combined-system configuration (Türwächter + EM-locks + biometric PACS); (2) GfS provides module-level EN 13637 compliance declaration; (3) Include in DC commissioning documentation package",
+          "Cost": "medium",
+          "Time": "3–6 months"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Market status**",
+          "Value": "**SURVIVING**"
+        },
+        {
+          "Field": "Knockout constraints",
+          "Value": "0"
+        },
+        {
+          "Field": "Mitigable constraints",
+          "Value": "4 (C3, C6, C8, C10)"
+        },
+        {
+          "Field": "None / irrelevant",
+          "Value": "6 (C1, C2, C4, C5, C7, C9)"
+        },
+        {
+          "Field": "Mitigation cost ceiling",
+          "Value": "medium (C3, C6, C10 each medium; C8 low)"
+        },
+        {
+          "Field": "Mitigation time ceiling",
+          "Value": "3–6 months (C10 system certification is the long pole)"
+        },
+        {
+          "Field": "C6 note",
+          "Value": "The IP Gateway / Protocol Bridge that resolves C6 is already a named L4 node in the VN. No new infrastructure concept required."
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "product_name": "GfS Türwächter IoT (Exit Control 179/1125)",
+      "technology_class": "Emergency Exit Security Devices with Remote Monitoring",
+      "market_name": "Computing Infrastructure Providers, Data Processing, Web Hosting, and Related Services",
+      "naics_code": "518210",
+      "assessments": [
+        {
+          "constraint_name": "Emergency Escape Non-Impedance",
+          "market_name": "Computing Infrastructure Providers",
+          "naics_code": "518210",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Data centers have NFPA 101 / EN 179 fire-code mandated emergency exits. Product's single-motion release pre-satisfies both EU and US single-motion egress requirements."
+        },
+        {
+          "constraint_name": "Mechanical Alarm Independence",
+          "market_name": "Computing Infrastructure Providers",
+          "naics_code": "518210",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Power-independent mechanical alarm is an asset in data centers where power events (UPS switchover, generator fail) are routine operational scenarios."
+        },
+        {
+          "constraint_name": "Wireless Range Limitation",
+          "market_name": "Computing Infrastructure Providers",
+          "naics_code": "518210",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Deploy IP Gateway / Protocol Bridge per DC security zone (~30 m coverage radius per gateway)",
+            "Add 868 MHz wireless repeater stages for coverage extensions within large zones",
+            "Conduct site RF survey during commissioning to pre-size gateway and repeater count"
+          ],
+          "mitigation_cost_estimate": "medium",
+          "mitigation_time_estimate": "2–4 months",
+          "knockout_reason": null,
+          "rationale": "Hyperscale DCs (10K–100K m²) and dense metallic RF environments attenuate 868 MHz signal. Multiple IP gateways required. Not a physics knockout — standard repeater architecture resolves coverage."
+        },
+        {
+          "constraint_name": "IoT Battery Life Floor",
+          "market_name": "Computing Infrastructure Providers",
+          "naics_code": "518210",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "DC emergency exits are genuine emergency-only access points with very low event frequency. Battery life comfortably exceeds 2-year target. Predictive battery replacement aligns with CMMS-driven facilities maintenance workflows."
+        },
+        {
+          "constraint_name": "Retrofit-Only Surface Mount",
+          "market_name": "Computing Infrastructure Providers",
+          "naics_code": "518210",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "DC emergency exits are in stairwells, service corridors, and perimeter walls where surface mount is standard. Flush-mount requirements apply only to server hall access doors which are controlled by biometric PACS, not emergency exit hardware."
+        },
+        {
+          "constraint_name": "EasyWave Protocol Lock-In",
+          "market_name": "Computing Infrastructure Providers",
+          "naics_code": "518210",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Deploy GfS IP Gateway / Protocol Bridge translating EasyWave events to REST / SNMP / BACnet-IP",
+            "Integrate door-event stream into enterprise PACS (Honeywell, Lenel) for access control correlation",
+            "Configure SIEM ingestion (Splunk, QRadar) for SOC 2 CC6.4 physical security audit evidence"
+          ],
+          "mitigation_cost_estimate": "medium",
+          "mitigation_time_estimate": "1–3 months",
+          "knockout_reason": null,
+          "rationale": "Data centers require door events in enterprise PACS and SIEM for compliance certifications. EasyWave is incompatible with REST/SNMP/BACnet-IP natively. IP Gateway (already L4 node in VN) bridges the gap."
+        },
+        {
+          "constraint_name": "IoT Price Premium",
+          "market_name": "Computing Infrastructure Providers",
+          "naics_code": "518210",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "Per-door cost ~€730 is negligible for DC security budgets. Automated SOC 2 / ISO 27001 audit log generation delivers clear compliance ROI."
+        },
+        {
+          "constraint_name": "GDPR Monitoring Data Compliance",
+          "market_name": "Computing Infrastructure Providers",
+          "naics_code": "518210",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "Extend existing DPIA to cover door-event physical access monitoring",
+            "Execute DPA with GfS / monitoring SaaS provider",
+            "Implement data minimization — log event type + timestamp only, no personal identifiers at door level"
+          ],
+          "mitigation_cost_estimate": "low",
+          "mitigation_time_estimate": "1–2 months",
+          "knockout_reason": null,
+          "rationale": "EU data centers must cover employee physical access monitoring in DPIA. DC operators are compliance-sophisticated with existing GRC platforms and privacy counsel — extension of current program, not new capability."
+        },
+        {
+          "constraint_name": "IP Protection Boundary",
+          "market_name": "Computing Infrastructure Providers",
+          "naics_code": "518210",
+          "verdict": "none",
+          "mitigation_actions": [],
+          "mitigation_cost_estimate": null,
+          "mitigation_time_estimate": null,
+          "knockout_reason": null,
+          "rationale": "DC server halls operate at ASHRAE A1/A2 conditions (18–27°C, 40–60% RH, dust-controlled). No washdown, no wet industrial exposure. Standard IP class is sufficient for all indoor DC emergency exit locations."
+        },
+        {
+          "constraint_name": "EN 13637 / EltVTR Electrical Compliance",
+          "market_name": "Computing Infrastructure Providers",
+          "naics_code": "518210",
+          "verdict": "mitigable",
+          "mitigation_actions": [
+            "System integrator certifies combined configuration (Türwächter + EM door holders + biometric PACS) to EN 13637",
+            "GfS provides module-level compliance declaration for Türwächter component",
+            "Include combined-system certification in DC commissioning documentation package for SOC 2 / ISO 27001 evidence"
+          ],
+          "mitigation_cost_estimate": "medium",
+          "mitigation_time_estimate": "3–6 months",
+          "knockout_reason": null,
+          "rationale": "DCs integrate emergency exits with EM door holders and biometric access control. Combined configurations require EN 13637 system certification. System integrator (not GfS) owns this; standard practice for DC commissioning."
+        }
+      ],
+      "markets_eliminated": [],
+      "markets_surviving": [
+        "518210"
+      ]
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

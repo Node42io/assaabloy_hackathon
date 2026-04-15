@@ -1,0 +1,428 @@
+{
+  "id": "02_functional_promise",
+  "title": "Functional Promise: GfS Türwächter (Exit Control 179/1125 with IoT)",
+  "type": "functional_promise",
+  "market_slug": null,
+  "is_per_market": false,
+  "sections": [
+    {
+      "title": "Step 01 — Underlying Mechanism",
+      "content": "| Field | Value | Source |\n|---|---|---|\n| **Mechanism statement** | Spring-loaded mechanical door-handle guard with piezoelectric alarm horn (95 dB) + 868 MHz EasyWave radio transmitter that broadcasts guard-state and alarm events to centralized receivers and BUS interfaces | [SRC] Step 01, §1.2 |\n| **Technology class** | Emergency Exit Security Devices with Remote Monitoring | [SRC] Step 01, §1.7 |\n| **Why mechanism-primary matters** | Regulatory frameworks (DIN EN 179, DIN EN 1125, EltVTR) mandate that emergency escape must never depend on electrical power. The mechanical alarm is the primary system; IoT is a supervisory overlay only. | [SRC] Step 01, §1.2.2 |\n\n---"
+    },
+    {
+      "title": "Step 02 — Product FP",
+      "content": "**Mechanism-free test applied.** Statement contains zero technology-specific terms (no \"piezo\", \"EasyWave\", \"868 MHz\", \"spring-loaded\"). Passes the swap test: the same statement holds if the mechanism is replaced with an electromagnetic lock + BLE sensor or an alarmed push bar + LoRaWAN.\n\n| Field | Value |\n|---|---|\n| **Statement** | Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring — without mains power at the door |\n| **Verb** | Secure |\n| **Object** | emergency exit doors against unauthorized use |\n| **Context** | in any building with mandated emergency exits, while simultaneously preserving unimpeded single-motion escape per safety regulations |\n| **Differentiator 1** | Mechanical alarm operates independently of electrical power (fail-safe under all fault conditions) [SRC] |\n| **Differentiator 2** | Single-motion escape compliant with both EN 179 (lever handle) and EN 1125 (panic bar) — dual-standard coverage [SRC] |\n| **Differentiator 3** | Wireless status reporting without mains wiring at the door point — retrofit-ready installation [SRC] |\n\n---"
+    },
+    {
+      "title": "Step 03 — UNSPSC Classification",
+      "content": "| Rank | Code | Label | Confidence | Decision |\n|---|---|---|---|---|\n| 1 | 46171501 | Padlocks | 25% | Rejected — wrong product type |\n| 2 | 46171500 | Locks and security hardware (class) | 55% | Too broad; class not commodity |\n| 3 | 46171610 | Security cameras | 15% | Rejected — surveillance, not door hardware |\n\n**Assessment [SRC]:** No 8-digit UNSPSC commodity precisely captures \"emergency exit door alarm guards with IoT monitoring.\" Product sits at intersection of door hardware (46171500) and alarm/monitoring systems (46171600). Max confidence < 80% threshold.\n\n**Custom Product Group selected:**\n\n| Field | Value |\n|---|---|\n| **custom_product_group** | Emergency Exit Door Alarm Guards |\n| **Rationale** | UNSPSC-style naming (plural nouns, no brand, no marketing language). Accurately describes the category: door-mounted devices that combine physical handle-locking with alarm triggering and optional wireless monitoring. |\n\n---"
+    },
+    {
+      "title": "Step 04 — Commodity FP",
+      "content": "Applies to ALL products in the \"Emergency Exit Door Alarm Guards\" group — from purely mechanical door guardians (GfS Basic) to full electronic exit control systems (dormakaba SafeRoute, GEZE SecuLogic).\n\n| Field | Value |\n|---|---|\n| **Commodity / Group** | Emergency Exit Door Alarm Guards |\n| **Functional Promise** | Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm |\n| **Reasoning** | All products in this category share a dual mandate: (1) deter misuse of emergency exits, (2) never impede escape. The audible alarm is universal. Remote monitoring is an optional but increasingly standard capability that the Commodity FP intentionally excludes as it is not present in purely mechanical variants. |\n\n---"
+    },
+    {
+      "title": "Step 04a — FP Extension Assessment",
+      "content": "| Question | Assessment |\n|---|---|\n| Is the underlying capability broader than the \"Emergency Exit Door Alarm Guards\" commodity? | **Yes — partially.** The IoT monitoring layer (wireless event reporting, centralized status dashboards, predictive maintenance) is not unique to emergency exits. The same architecture applies to any distributed safety-critical hardware: fire extinguishers, emergency lighting, smoke detectors, gas valves. |\n| Primary Commodity FP scope | Anchored to emergency exit doors — correct. |\n| FP Extension | The wireless IoT supervisory layer applies to monitoring any passive safety-critical device that must operate mechanically independent of power. Cross-domain applications: fire suppression hardware monitoring, emergency lighting status, industrial safety valve surveillance, elevator escape hatch monitoring. |\n\n**FP Extension statement:** \"Monitor distributed safety-critical hardware wirelessly, detecting activation events and battery status without mains wiring at the device point, and aggregating status to a centralized building management system.\"\n\nThis extension drives secondary market discovery in Phase 02a: industries that manage fleets of distributed passive safety devices (fire safety, industrial safety, building operations).\n\n---"
+    },
+    {
+      "title": "Step 05 — VN / BOM Position",
+      "content": "| Field | Value |\n|---|---|\n| **Value network position** | L2 — Building Safety Sub-system within Building Infrastructure (not a standalone product, not a raw component) |\n| **BOM position** | Mounted sub-assembly at door-leaf level: comprises (a) mechanical guard housing, (b) piezo alarm horn, (c) IoT radio module, (d) battery pack. Attaches to existing door hardware — does NOT replace door frame, door leaf, or lock set. |\n| **Hierarchy** | Building → Safety Systems → Emergency Exit Hardware → [Exit Control 179/1125 with IoT] |\n| **FP context implication** | Position as sub-system means the FP must account for integration with the broader escape route system (signage, emergency lighting, fire alarm panels). The product cannot fulfill its promise in isolation. |\n\nSource: [SRC] Step 01, §1.2 (mechanism), §1.12 (constraints), §1.13 (competitive landscape)\n\n---"
+    },
+    {
+      "title": "Step 06 — Required Complements",
+      "content": "| Complement | Criticality | Description | Source |\n|---|---|---|---|\n| Emergency exit door (EN 179 or EN 1125 compliant) | Essential | Product mounts on existing door hardware; requires a door fitted with a lever handle (EN 179) or panic bar (EN 1125). Cannot function without a compliant door. | [SRC] §1.1.2 |\n| Door frame and handle hardware | Essential | Surface-mounted installation requires existing handle or panic bar as mounting base. | [SRC] §1.1.3 |\n| 9V battery (replaceable) | Essential | Power source for alarm horn and IoT radio module. Without battery the IoT module is inoperative; mechanical alarm still functions. | [SRC] §1.1.2 |\n| Wireless receiver unit | Essential (IoT value only) | Without a receiver, radio transmissions are lost. Required to relay events to BMS or monitoring dashboard. Sold separately. | [SRC] §1.1.3 |\n| Wireless repeater(s) | Enhancing | Required when distance from door to receiver exceeds ~30 m or structural obstructions attenuate signal. Each repeater extends range by ~30 m. | [SRC] §1.1.3 |\n| Wireless BUS interface / gateway | Enhancing | Aggregates status from multiple units; enables BMS/SCADA integration. Required for building-scale deployments. | [SRC] §1.1.3 |\n| Building Management System (BMS) | Optional | Upstream integration for centralized dashboard, alerting, and maintenance workflows. Not required for standalone alarm function. | [ASM] |\n| Mounting plate (glass-frame variant) | Optional (contextual) | Required for glass-framed doors. Available as accessory (Art. 991170). | [SRC] §1.1.3 |\n| Profile half-cylinder key | Enhancing | Key override for authorized bypass without triggering alarm. Standard on most variants but must be provisioned per building. | [SRC] §1.1.2 |\n\n---"
+    },
+    {
+      "title": "How This Feeds Market Discovery",
+      "content": "| Phase | Input from this step | Discovery question |\n|---|---|---|\n| Phase A — Primary (NAICS discovery) | Commodity FP | \"What industries need to prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability?\" |\n| Phase A — Secondary (cross-domain) | FP Extension | \"What industries manage distributed passive safety-critical devices requiring wireless monitoring without mains power?\" |\n| Phase B — Architecture distance | Product FP + differentiators | \"How close is this market's use case to the Türwächter's specific capabilities (power-independent, dual-standard, retrofit wireless)?\" |\n\n---"
+    },
+    {
+      "title": "QA Self-Check",
+      "content": "| # | Check | Status |\n|---|---|---|\n| 1 | Product FP present with statement, verb, object, context, differentiators | PASS |\n| 2 | Product FP passes mechanism-free test | PASS — no \"piezo\", \"EasyWave\", \"868 MHz\", \"spring-loaded\" in statement |\n| 3 | Commodity FP present and vendor-agnostic | PASS — no brand or product names |\n| 4 | UNSPSC commodity or custom product group identified | PASS — custom group \"Emergency Exit Door Alarm Guards\" with rationale |\n| 5 | VN / BOM position mapped | PASS — L2 sub-system, door-leaf level |\n| 6 | Required complements listed with criticality | PASS — 9 complements classified |\n| 7 | Source tags on all factual claims | PASS — [SRC] / [ASM] throughout |\n| 8 | FP Extension assessed | PASS — present; IoT layer extends to broader distributed safety hardware monitoring |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### FunctionalPromise (Product scope)\n\n```json\n{\n  \"scope\": \"product\",\n  \"name\": \"Türwächter Exit Control — Product FP\",\n  \"statement\": \"Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring — without mains power at the door\",\n  \"verb\": \"Secure\",\n  \"object\": \"emergency exit doors against unauthorized use\",\n  \"context\": \"in any building with mandated emergency exits, while simultaneously preserving unimpeded single-motion escape per EN 179 / EN 1125\",\n  \"differentiators\": [\n    \"Mechanical alarm operates independently of electrical power (fail-safe under all fault conditions)\",\n    \"Single-motion escape compliant with both EN 179 (lever handle) and EN 1125 (panic bar) — dual-standard coverage\",\n    \"Wireless status reporting without mains wiring at the door point — retrofit-ready installation\"\n  ],\n  \"fp_extension\": \"Monitor distributed safety-critical hardware wirelessly, detecting activation events and battery status without mains wiring at the device point, and aggregating status to a centralized building management system\"\n}\n```\n\n### FunctionalPromise (Commodity scope)\n\n```json\n{\n  \"scope\": \"commodity\",\n  \"name\": \"Emergency Exit Door Alarm Guards — Commodity FP\",\n  \"commodity_or_group\": \"Emergency Exit Door Alarm Guards\",\n  \"functional_promise\": \"Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm\",\n  \"fp_extension\": \"Monitor distributed safety-critical hardware wirelessly, detecting activation events and battery status without mains wiring at the device point, and aggregating status to a centralized building management system\",\n  \"reasoning\": \"All products in this category share a dual mandate: (1) deter misuse of emergency exits, (2) never impede escape. The audible alarm is universal across purely mechanical and IoT-enhanced variants. Remote monitoring is excluded from the Commodity FP as it is absent in basic mechanical variants.\"\n}\n```\n\n### Complement[]\n\n```json\n[\n  { \"name\": \"Emergency exit door (EN 179 / EN 1125 compliant)\", \"criticality\": \"Essential\" },\n  { \"name\": \"Door frame and handle hardware\", \"criticality\": \"Essential\" },\n  { \"name\": \"9V battery (replaceable)\", \"criticality\": \"Essential\" },\n  { \"name\": \"Wireless receiver unit\", \"criticality\": \"Essential (IoT value only)\" },\n  { \"name\": \"Wireless repeater(s)\", \"criticality\": \"Enhancing\" },\n  { \"name\": \"Wireless BUS interface / gateway\", \"criticality\": \"Enhancing\" },\n  { \"name\": \"Profile half-cylinder key\", \"criticality\": \"Enhancing\" },\n  { \"name\": \"Building Management System (BMS)\", \"criticality\": \"Optional\" },\n  { \"name\": \"Glass-frame mounting plate (Art. 991170)\", \"criticality\": \"Optional (contextual)\" }\n]\n```\n\n### Mechanism\n\n```json\n{\n  \"statement\": \"Spring-loaded mechanical door-handle guard with piezoelectric alarm horn (95 dB) + 868 MHz EasyWave radio transmitter that broadcasts guard-state and alarm events to centralized receivers and BUS interfaces\",\n  \"technology_class\": \"Emergency Exit Security Devices with Remote Monitoring\",\n  \"regulatory_constraint\": \"Mechanical alarm must function without electrical power per DIN EN 179, DIN EN 1125, and EltVTR\"\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Field": "**Mechanism statement**",
+          "Value": "Spring-loaded mechanical door-handle guard with piezoelectric alarm horn (95 dB) + 868 MHz EasyWave radio transmitter that broadcasts guard-state and alarm events to centralized receivers and BUS interfaces",
+          "Source": "[SRC] Step 01, §1.2"
+        },
+        {
+          "Field": "**Technology class**",
+          "Value": "Emergency Exit Security Devices with Remote Monitoring",
+          "Source": "[SRC] Step 01, §1.7"
+        },
+        {
+          "Field": "**Why mechanism-primary matters**",
+          "Value": "Regulatory frameworks (DIN EN 179, DIN EN 1125, EltVTR) mandate that emergency escape must never depend on electrical power. The mechanical alarm is the primary system; IoT is a supervisory overlay only.",
+          "Source": "[SRC] Step 01, §1.2.2"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Statement**",
+          "Value": "Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring — without mains power at the door"
+        },
+        {
+          "Field": "**Verb**",
+          "Value": "Secure"
+        },
+        {
+          "Field": "**Object**",
+          "Value": "emergency exit doors against unauthorized use"
+        },
+        {
+          "Field": "**Context**",
+          "Value": "in any building with mandated emergency exits, while simultaneously preserving unimpeded single-motion escape per safety regulations"
+        },
+        {
+          "Field": "**Differentiator 1**",
+          "Value": "Mechanical alarm operates independently of electrical power (fail-safe under all fault conditions) [SRC]"
+        },
+        {
+          "Field": "**Differentiator 2**",
+          "Value": "Single-motion escape compliant with both EN 179 (lever handle) and EN 1125 (panic bar) — dual-standard coverage [SRC]"
+        },
+        {
+          "Field": "**Differentiator 3**",
+          "Value": "Wireless status reporting without mains wiring at the door point — retrofit-ready installation [SRC]"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Rank",
+        "Code",
+        "Label",
+        "Confidence",
+        "Decision"
+      ],
+      "rows": [
+        {
+          "Rank": "1",
+          "Code": "46171501",
+          "Label": "Padlocks",
+          "Confidence": "25%",
+          "Decision": "Rejected — wrong product type"
+        },
+        {
+          "Rank": "2",
+          "Code": "46171500",
+          "Label": "Locks and security hardware (class)",
+          "Confidence": "55%",
+          "Decision": "Too broad; class not commodity"
+        },
+        {
+          "Rank": "3",
+          "Code": "46171610",
+          "Label": "Security cameras",
+          "Confidence": "15%",
+          "Decision": "Rejected — surveillance, not door hardware"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**custom_product_group**",
+          "Value": "Emergency Exit Door Alarm Guards"
+        },
+        {
+          "Field": "**Rationale**",
+          "Value": "UNSPSC-style naming (plural nouns, no brand, no marketing language). Accurately describes the category: door-mounted devices that combine physical handle-locking with alarm triggering and optional wireless monitoring."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Commodity / Group**",
+          "Value": "Emergency Exit Door Alarm Guards"
+        },
+        {
+          "Field": "**Functional Promise**",
+          "Value": "Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm"
+        },
+        {
+          "Field": "**Reasoning**",
+          "Value": "All products in this category share a dual mandate: (1) deter misuse of emergency exits, (2) never impede escape. The audible alarm is universal. Remote monitoring is an optional but increasingly standard capability that the Commodity FP intentionally excludes as it is not present in purely mechanical variants."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Question",
+        "Assessment"
+      ],
+      "rows": [
+        {
+          "Question": "Is the underlying capability broader than the \"Emergency Exit Door Alarm Guards\" commodity?",
+          "Assessment": "**Yes — partially.** The IoT monitoring layer (wireless event reporting, centralized status dashboards, predictive maintenance) is not unique to emergency exits. The same architecture applies to any distributed safety-critical hardware: fire extinguishers, emergency lighting, smoke detectors, gas valves."
+        },
+        {
+          "Question": "Primary Commodity FP scope",
+          "Assessment": "Anchored to emergency exit doors — correct."
+        },
+        {
+          "Question": "FP Extension",
+          "Assessment": "The wireless IoT supervisory layer applies to monitoring any passive safety-critical device that must operate mechanically independent of power. Cross-domain applications: fire suppression hardware monitoring, emergency lighting status, industrial safety valve surveillance, elevator escape hatch monitoring."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Value network position**",
+          "Value": "L2 — Building Safety Sub-system within Building Infrastructure (not a standalone product, not a raw component)"
+        },
+        {
+          "Field": "**BOM position**",
+          "Value": "Mounted sub-assembly at door-leaf level: comprises (a) mechanical guard housing, (b) piezo alarm horn, (c) IoT radio module, (d) battery pack. Attaches to existing door hardware — does NOT replace door frame, door leaf, or lock set."
+        },
+        {
+          "Field": "**Hierarchy**",
+          "Value": "Building → Safety Systems → Emergency Exit Hardware → [Exit Control 179/1125 with IoT]"
+        },
+        {
+          "Field": "**FP context implication**",
+          "Value": "Position as sub-system means the FP must account for integration with the broader escape route system (signage, emergency lighting, fire alarm panels). The product cannot fulfill its promise in isolation."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Complement",
+        "Criticality",
+        "Description",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Complement": "Emergency exit door (EN 179 or EN 1125 compliant)",
+          "Criticality": "Essential",
+          "Description": "Product mounts on existing door hardware; requires a door fitted with a lever handle (EN 179) or panic bar (EN 1125). Cannot function without a compliant door.",
+          "Source": "[SRC] §1.1.2"
+        },
+        {
+          "Complement": "Door frame and handle hardware",
+          "Criticality": "Essential",
+          "Description": "Surface-mounted installation requires existing handle or panic bar as mounting base.",
+          "Source": "[SRC] §1.1.3"
+        },
+        {
+          "Complement": "9V battery (replaceable)",
+          "Criticality": "Essential",
+          "Description": "Power source for alarm horn and IoT radio module. Without battery the IoT module is inoperative; mechanical alarm still functions.",
+          "Source": "[SRC] §1.1.2"
+        },
+        {
+          "Complement": "Wireless receiver unit",
+          "Criticality": "Essential (IoT value only)",
+          "Description": "Without a receiver, radio transmissions are lost. Required to relay events to BMS or monitoring dashboard. Sold separately.",
+          "Source": "[SRC] §1.1.3"
+        },
+        {
+          "Complement": "Wireless repeater(s)",
+          "Criticality": "Enhancing",
+          "Description": "Required when distance from door to receiver exceeds ~30 m or structural obstructions attenuate signal. Each repeater extends range by ~30 m.",
+          "Source": "[SRC] §1.1.3"
+        },
+        {
+          "Complement": "Wireless BUS interface / gateway",
+          "Criticality": "Enhancing",
+          "Description": "Aggregates status from multiple units; enables BMS/SCADA integration. Required for building-scale deployments.",
+          "Source": "[SRC] §1.1.3"
+        },
+        {
+          "Complement": "Building Management System (BMS)",
+          "Criticality": "Optional",
+          "Description": "Upstream integration for centralized dashboard, alerting, and maintenance workflows. Not required for standalone alarm function.",
+          "Source": "[ASM]"
+        },
+        {
+          "Complement": "Mounting plate (glass-frame variant)",
+          "Criticality": "Optional (contextual)",
+          "Description": "Required for glass-framed doors. Available as accessory (Art. 991170).",
+          "Source": "[SRC] §1.1.3"
+        },
+        {
+          "Complement": "Profile half-cylinder key",
+          "Criticality": "Enhancing",
+          "Description": "Key override for authorized bypass without triggering alarm. Standard on most variants but must be provisioned per building.",
+          "Source": "[SRC] §1.1.2"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Phase",
+        "Input from this step",
+        "Discovery question"
+      ],
+      "rows": [
+        {
+          "Phase": "Phase A — Primary (NAICS discovery)",
+          "Input from this step": "Commodity FP",
+          "Discovery question": "\"What industries need to prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability?\""
+        },
+        {
+          "Phase": "Phase A — Secondary (cross-domain)",
+          "Input from this step": "FP Extension",
+          "Discovery question": "\"What industries manage distributed passive safety-critical devices requiring wireless monitoring without mains power?\""
+        },
+        {
+          "Phase": "Phase B — Architecture distance",
+          "Input from this step": "Product FP + differentiators",
+          "Discovery question": "\"How close is this market's use case to the Türwächter's specific capabilities (power-independent, dual-standard, retrofit wireless)?\""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Check",
+        "Status"
+      ],
+      "rows": [
+        {
+          "#": "1",
+          "Check": "Product FP present with statement, verb, object, context, differentiators",
+          "Status": "PASS"
+        },
+        {
+          "#": "2",
+          "Check": "Product FP passes mechanism-free test",
+          "Status": "PASS — no \"piezo\", \"EasyWave\", \"868 MHz\", \"spring-loaded\" in statement"
+        },
+        {
+          "#": "3",
+          "Check": "Commodity FP present and vendor-agnostic",
+          "Status": "PASS — no brand or product names"
+        },
+        {
+          "#": "4",
+          "Check": "UNSPSC commodity or custom product group identified",
+          "Status": "PASS — custom group \"Emergency Exit Door Alarm Guards\" with rationale"
+        },
+        {
+          "#": "5",
+          "Check": "VN / BOM position mapped",
+          "Status": "PASS — L2 sub-system, door-leaf level"
+        },
+        {
+          "#": "6",
+          "Check": "Required complements listed with criticality",
+          "Status": "PASS — 9 complements classified"
+        },
+        {
+          "#": "7",
+          "Check": "Source tags on all factual claims",
+          "Status": "PASS — [SRC] / [ASM] throughout"
+        },
+        {
+          "#": "8",
+          "Check": "FP Extension assessed",
+          "Status": "PASS — present; IoT layer extends to broader distributed safety hardware monitoring"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "scope": "product",
+      "name": "Türwächter Exit Control — Product FP",
+      "statement": "Secure emergency exit doors against unauthorized use while preserving unimpeded single-motion escape capability and reporting door status events to centralized monitoring — without mains power at the door",
+      "verb": "Secure",
+      "object": "emergency exit doors against unauthorized use",
+      "context": "in any building with mandated emergency exits, while simultaneously preserving unimpeded single-motion escape per EN 179 / EN 1125",
+      "differentiators": [
+        "Mechanical alarm operates independently of electrical power (fail-safe under all fault conditions)",
+        "Single-motion escape compliant with both EN 179 (lever handle) and EN 1125 (panic bar) — dual-standard coverage",
+        "Wireless status reporting without mains wiring at the door point — retrofit-ready installation"
+      ],
+      "fp_extension": "Monitor distributed safety-critical hardware wirelessly, detecting activation events and battery status without mains wiring at the device point, and aggregating status to a centralized building management system"
+    },
+    {
+      "scope": "commodity",
+      "name": "Emergency Exit Door Alarm Guards — Commodity FP",
+      "commodity_or_group": "Emergency Exit Door Alarm Guards",
+      "functional_promise": "Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm",
+      "fp_extension": "Monitor distributed safety-critical hardware wirelessly, detecting activation events and battery status without mains wiring at the device point, and aggregating status to a centralized building management system",
+      "reasoning": "All products in this category share a dual mandate: (1) deter misuse of emergency exits, (2) never impede escape. The audible alarm is universal across purely mechanical and IoT-enhanced variants. Remote monitoring is excluded from the Commodity FP as it is absent in basic mechanical variants."
+    },
+    [
+      {
+        "name": "Emergency exit door (EN 179 / EN 1125 compliant)",
+        "criticality": "Essential"
+      },
+      {
+        "name": "Door frame and handle hardware",
+        "criticality": "Essential"
+      },
+      {
+        "name": "9V battery (replaceable)",
+        "criticality": "Essential"
+      },
+      {
+        "name": "Wireless receiver unit",
+        "criticality": "Essential (IoT value only)"
+      },
+      {
+        "name": "Wireless repeater(s)",
+        "criticality": "Enhancing"
+      },
+      {
+        "name": "Wireless BUS interface / gateway",
+        "criticality": "Enhancing"
+      },
+      {
+        "name": "Profile half-cylinder key",
+        "criticality": "Enhancing"
+      },
+      {
+        "name": "Building Management System (BMS)",
+        "criticality": "Optional"
+      },
+      {
+        "name": "Glass-frame mounting plate (Art. 991170)",
+        "criticality": "Optional (contextual)"
+      }
+    ],
+    {
+      "statement": "Spring-loaded mechanical door-handle guard with piezoelectric alarm horn (95 dB) + 868 MHz EasyWave radio transmitter that broadcasts guard-state and alarm events to centralized receivers and BUS interfaces",
+      "technology_class": "Emergency Exit Security Devices with Remote Monitoring",
+      "regulatory_constraint": "Mechanical alarm must function without electrical power per DIN EN 179, DIN EN 1125, and EltVTR"
+    }
+  ],
+  "has_bom": false
+}

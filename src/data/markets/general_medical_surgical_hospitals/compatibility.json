@@ -1,0 +1,28 @@
+{
+  "naicsCode": "622110",
+  "marketName": "General Medical and Surgical Hospitals",
+  "slug": "general_medical_surgical_hospitals",
+  "operatingMedium": "",
+  "architectureDistance": 0,
+  "assessments": [
+    { "constraintName": "Emergency Escape Non-Impedance", "constraintType": "", "threshold": "", "verdict": "none", "rationale": "Product is certified to EN 179 and EN 1125. Hospital fire codes (NFPA 101) require identical single-motion escape standard. No gap.", "mitigation": "", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "Mechanical Alarm Independence", "constraintType": "", "threshold": "", "verdict": "none", "rationale": "Product satisfies this absolute constraint by design. Mechanical trigger operates at 0V; battery depletion disables only the IoT module.", "mitigation": "", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "Wireless Range Limitation", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "Large multi-wing hospital buildings frequently exceed 30m between exits and gateway. Reinforced concrete and lead-lined radiology rooms attenuate 868 MHz signals. Repeater infrastructure resolves this.", "mitigation": "Deploy wireless repeater network (one per 30m span); Conduct RF site survey to identify attenuation zones; Install additional gateway units per floor/wing cluster", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "IoT Battery Life Floor", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "High door-event frequency in ED, ICU corridors, and psychiatric ward exits can deplete 9V battery below 2-year target. Structured maintenance schedule and monitoring alerts resolve this.", "mitigation": "Activate IoT dashboard battery-status alerts; Classify doors by traffic tier: quarterly vs. annual replacement; Configure low-power TX mode during overnight low-activity periods", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "Retrofit-Only Surface Mount", "constraintType": "", "threshold": "", "verdict": "none", "rationale": "Hospital emergency exit doors are predominantly standard fire-rated steel doors where surface mounting is accepted practice. Visible device provides active deterrent in elopement-prevention contexts.", "mitigation": "", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "EasyWave Protocol Lock-In", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "Hospital BMS platforms operate on BACnet/IP; nurse-call systems on proprietary protocols. EasyWave has no native interoperability. GfS BUS Interface bridges to BACnet with integration development.", "mitigation": "Deploy GfS wireless BUS Interface as BACnet/IP bridge; Develop API connector between GfS monitoring software and hospital CMMS; Provide BMS integration schema for JCI/JCAHO audits", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "IoT Price Premium", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "100-150 door hospital deployment at ~730 EUR/door = EUR 73K-110K. Within healthcare capital budget thresholds but requires structured procurement case. Cost is never a knockout.", "mitigation": "Develop formal ROI model quantifying patrol labor elimination and compliance savings; Negotiate volume pricing for whole-hospital deployment contracts; Structure phased rollout starting with highest-risk zones", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "GDPR Monitoring Data Compliance", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "Door-event logs in psychiatric, oncology, and pediatric zones may constitute personal data under GDPR if attributable to identifiable patients. Both GDPR and HIPAA compliance paths are well-established.", "mitigation": "Implement data minimization: store event type + timestamp + door ID only; Execute DPA with cloud monitoring provider; Complete DPIA for EU sites; execute HIPAA BAA for US sites", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "IP Protection Boundary", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "Standard hospital areas are dry and IP45 is sufficient. Wet areas (sluice rooms, decontamination zones) require IP65+. Specifying IP45 as hospital minimum eliminates this gap for most doors.", "mitigation": "Specify IP45 variant as minimum for all hospital installations; Identify IP65/IP67 variant for wet-area installations; Confirm IoT module EMC immunity compliance for co-existence with medical imaging RF", "mitigationCost": "", "mitigationTime": "" },
+    { "constraintName": "EN 13637 / EltVTR Electrical Compliance", "constraintType": "", "threshold": "", "verdict": "mitigable", "rationale": "Hospitals combine electronic access control with emergency exit functionality in psychiatric wards, pharmacies, and ICU. Combined configurations require EN 13637 system-level compliance.", "mitigation": "Define wiring specification isolating Türwächter from powered lock control paths; Require certified system integrator for EN 13637 combined-system compliance; Classify doors by type: standalone vs. combined requiring integrator sign-off", "mitigationCost": "", "mitigationTime": "" }
+  ],
+  "result": {
+    "knockouts": 0,
+    "mitigable": 7,
+    "none": 3,
+    "marketStatus": "SURVIVING",
+    "totalMitigationCost": "",
+    "totalMitigationTime": ""
+  },
+  "sources": []
+}

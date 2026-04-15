@@ -1,0 +1,65 @@
+{
+  "naicsCode": "611110",
+  "marketName": "Elementary and Secondary Schools",
+  "slug": "elementary_secondary_schools",
+  "features": [
+    {
+      "name": "Mechanical Alarm Trigger",
+      "kanoClass": "must_be",
+      "scores": { "time": 8, "cost": 5, "safety": 9, "reliability": 8, "skill": 7, "stress": 7, "pain": 6, "confidence": 8, "delight": 3 },
+      "overallFit": 6.78,
+      "rationale": "Must_be: audible alarm on activation is regulatory table-stakes. Safety (9) — 95 dB alarm directly serves E08 OS=16. Confidence (8): mechanical trigger cannot fail silently under power loss."
+    },
+    {
+      "name": "Key Override",
+      "kanoClass": "must_be",
+      "scores": { "time": 5, "cost": 3, "safety": 5, "reliability": 6, "skill": 7, "stress": 7, "pain": 7, "confidence": 5, "delight": 2 },
+      "overallFit": 5.22,
+      "rationale": "Must_be: mandatory for operational use. Custodians and PE staff must access exits daily without triggering alarms. Skill (7) + Stress (7): reduces daily operational burden. Pain (7): eliminates false alarm disruption."
+    },
+    {
+      "name": "IoT Connectivity",
+      "kanoClass": "one_dimensional",
+      "scores": { "time": 8, "cost": 6, "safety": 7, "reliability": 7, "skill": 5, "stress": 7, "pain": 8, "confidence": 7, "delight": 6 },
+      "overallFit": 6.78,
+      "rationale": "One_dimensional: schools choosing wireless IoT over mechanical-only specifically for remote event capture. Pain (8): transforms security coordinator from patroller to dashboard monitor. Time (8): remote alert eliminates discovery-by-inspection delay."
+    },
+    {
+      "name": "Remote Monitoring Dashboard",
+      "kanoClass": "attractive",
+      "scores": { "time": 8, "cost": 7, "safety": 7, "reliability": 6, "skill": 6, "stress": 8, "pain": 8, "confidence": 8, "delight": 8 },
+      "overallFit": 7.33,
+      "rationale": "Attractive: portfolio dashboard is genuinely unexpected in this procurement category. Stress (8): real-time certainty about all exit states. Pain (8): eliminates campus walk-around. Delight (8): administrators discover they can view all doors from a tablet."
+    },
+    {
+      "name": "Predictive Maintenance",
+      "kanoClass": "attractive",
+      "scores": { "time": 7, "cost": 7, "safety": 6, "reliability": 9, "skill": 5, "stress": 7, "pain": 7, "confidence": 8, "delight": 6 },
+      "overallFit": 6.89,
+      "rationale": "Attractive: battery depletion is the dominant failure mode in schools (5-15 activations/day). Reliability (9): directly addresses E13 OS=15 and E14 OS=15. Confidence (8): coordinator knows no door is monitoring-dark."
+    },
+    {
+      "name": "Regulatory Compliance Documentation",
+      "kanoClass": "attractive",
+      "scores": { "time": 9, "cost": 8, "safety": 8, "reliability": 7, "skill": 7, "stress": 8, "pain": 9, "confidence": 9, "delight": 7 },
+      "overallFit": 8.00,
+      "rationale": "Attractive: post-Uvalde legislation in 32+ US states makes auditable exit logs an explicit purchasing driver. Pain (9) + Time (9): eliminates manual log assembly before state inspections. Confidence (9): continuous documentation eliminates compliance audit findings."
+    },
+    {
+      "name": "Retrofit Capability",
+      "kanoClass": "one_dimensional",
+      "scores": { "time": 9, "cost": 9, "safety": 3, "reliability": 5, "skill": 9, "stress": 7, "pain": 8, "confidence": 5, "delight": 6 },
+      "overallFit": 6.78,
+      "rationale": "One_dimensional: all 49-year-average-age school buildings lack conduit to secondary exits. Cost (9): eliminates electrician labor; 50-door school saves ~$30,000-50,000 vs. wired. Skill (9): facilities crew installs without electrical license."
+    }
+  ],
+  "avgOverallFit": 6.83,
+  "productRelatedNeeds": [
+    "Minimize the likelihood of wireless monitoring coverage gaps in reinforced concrete school buildings where 868 MHz signal attenuation reduces transmission reliability",
+    "Minimize the likelihood of undetected alarm monitoring failure at high-traffic exits where daily activation frequency exhausts a 9V battery before the 2-year maintenance target",
+    "Minimize the time required to schedule and execute battery replacement across all wireless exit alarm units distributed across a multi-building school campus",
+    "Minimize the integration effort required to relay EasyWave alarm events into district-standard access control or BMS platforms standardized on BACnet, KNX, or IP-based protocols",
+    "Minimize the likelihood of deliberate removal or displacement of surface-mounted exit alarm housing units by unsupervised student populations"
+  ],
+  "sources": []
+}

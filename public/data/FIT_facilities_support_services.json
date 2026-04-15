@@ -1,0 +1,585 @@
+{
+  "id": "FIT_facilities_support_services",
+  "title": "Feature-Market Fit: Facilities Support Services (NAICS 561210)",
+  "type": "feature_market_fit",
+  "market_slug": "facilities_support_services",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Context",
+      "content": "| Field | Value |\n|---|---|\n| Market | Facilities Support Services |\n| NAICS | 561210 |\n| Product Job | Help Door & Exit Monitoring System detect unauthorized emergency exit door activations and produce audit-ready event logs for FM compliance workflows — without wired infrastructure or on-site inspection rounds |\n| Technology class | Emergency Exit Security Devices with Remote Monitoring |\n| Commodity FP | Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm |\n| Constraints in play | C3 (range), C4 (battery life), C6 (protocol lock-in), C7 (price premium), C8 (GDPR) |\n\nTop underserved needs (score ≥ 14): N04 (16), N08 (16), N14 (16), N02 (15), N13 (15), N03 (14), N05 (14), N17 (14)\n\n---"
+    },
+    {
+      "title": "Step 09 — Technology-Level Feature-Market Fit",
+      "content": "### 09a — Kano Classification + ODI Scoring\n\n| # | Feature | Kano | Time | Cost | Safety | Reliability | Skill | Stress | Pain | Confidence | Delight | **Overall** |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| F1 | Mechanical Alarm Trigger | must_be | 4 | 4 | 9 | 8 | 5 | 6 | 4 | 8 | 2 | **5.56** |\n| F2 | Key Override | must_be | 5 | 3 | 5 | 4 | 6 | 6 | 5 | 5 | 2 | **4.56** |\n| F3 | IoT Connectivity | one_dimensional | 8 | 6 | 7 | 7 | 5 | 7 | 8 | 7 | 6 | **6.78** |\n| F4 | Remote Monitoring Dashboard | attractive | 8 | 7 | 6 | 6 | 6 | 8 | 9 | 8 | 8 | **7.33** |\n| F5 | Predictive Maintenance | attractive | 7 | 7 | 6 | 8 | 5 | 7 | 7 | 7 | 6 | **6.67** |\n| F6 | Regulatory Compliance Documentation | attractive | 9 | 8 | 7 | 7 | 7 | 8 | 9 | 9 | 7 | **7.89** |\n| F7 | Retrofit Capability | one_dimensional | 8 | 9 | 4 | 5 | 8 | 6 | 9 | 6 | 7 | **6.89** |\n\n`overall_fit = (Time + Cost + Safety + Reliability + Skill + Stress + Pain + Confidence + Delight) / 9`\n\n### 09b — Rationale per Feature\n\n| Feature | Kano rationale | Primary ODI drivers | Market evidence |\n|---|---|---|---|\n| **F1 Mechanical Alarm Trigger** | `must_be`: Every exit monitoring solution must produce an audible alarm; mechanical power-independence is expected once fire codes are known. Absence causes disqualification; presence is taken for granted. | Safety (9) — fail-safe under zero-voltage directly addresses N07; Confidence (8) — FM tech trusts mechanical trigger won't fail under battery depletion. | N07: \"Minimize alarm failure rate under power-loss test\" (Imp=10, Sat=7). |\n| **F2 Key Override** | `must_be`: FM field technicians must access doors routinely without triggering monitored alarms. All FM-grade alternatives offer this. Absence would block FM deployment entirely. | Skill (6) + Stress (6): reduces protocol overhead during routine maintenance visits. | P1 Maintenance scenario: FM tech conducts battery replacement — key override prevents false-alarm event from polluting compliance logs. |\n| **F3 IoT Connectivity** | `one_dimensional`: More reliable and lower-latency wireless reporting scales proportionally to FM value. FM operators choosing between mechanical-only (Alt C, 20% share, declining) and wireless specifically because of this capability. | Pain (8) — eliminates conduit wiring runs (N02, score 15); Time (8) — real-time alerts vs. manual rounds (N06); Stress (7) — FM tech confident every event is captured (N22). | N02 (score=15 UNDERSERVED): wired installation labor is the dominant cost friction in FM retrofit. N08 (score=16 UNDERSERVED): undetected activations. |\n| **F4 Remote Monitoring Dashboard** | `attractive`: FM operators currently use manual inspection rounds or per-building wired panels. Portfolio-level real-time visibility is not available with any mechanical or single-site alternative. Absence does not block core alarm function but blocks the FM service differentiation model. | Pain (9) — directly eliminates manual compliance certificate compilation (N13, score=15); Delight (8) — FM manager presents live dashboard to client; Stress (8) — no undiscovered coverage gaps (N22). | N13 (score=15 UNDERSERVED): \"labor-hours to compile audit-ready certificates.\" N15/N21: portfolio dashboard is FM's client-facing value-add. |\n| **F5 Predictive Maintenance** | `attractive`: Battery-powered wireless devices create a unique maintenance burden (Alt B, P1 Maintenance) not shared by hardwired alternatives. Proactive battery alerts transform this from a reactive emergency callout risk into a scheduled CMMS work order. | Reliability (8) — N03 directly: battery depletion events that reach critical failure before CMMS alert (score=14 UNDERSERVED); Cost (7) — eliminates emergency dispatch cost premium. | N03 (score=14 UNDERSERVED): \"minimize battery depletion events reaching critical failure without CMMS alert.\" N10 targets critical depletion ratio → 0. |\n| **F6 Regulatory Compliance Documentation** | `attractive`: Automated timestamped event logs are the highest-value FM differentiator. Manual log assembly is the dominant compliance labor cost. Automated documentation directly addresses two of the three top-scoring underserved needs. | Time (9) + Pain (9) — N13: eliminates manual compilation hours; Confidence (9) — N14: tamper-evident logs as primary audit evidence; Stress (8) — FM engineer never surprised at unannounced inspection (N22). | N14 (score=16 UNDERSERVED): \"minimize event log gaps that cause audit failure.\" N13 (score=15): \"minimize FM labor hours to compile inspection certificates.\" N20: tamper-evident log = P3 Role identity for FM compliance engineer. |\n| **F7 Retrofit Capability** | `one_dimensional`: FM contracts are predominantly retrofit (existing buildings). More retrofit-friendly = proportionally lower installation cost per door. Direct competitor axis vs. hardwired Alt A (45% share) where cable cost + electrician sign-off determines project economics. | Cost (9) — N02: eliminates conduit cost entirely; Pain (9) — removes the single most painful step in FM emergency exit deployments; Time (8) + Skill (8) — N01: 0.5-1 hr/door vs. 2-4 hr for hardwired; no electrician required. | N02 (score=15 UNDERSERVED): hardwired cable install cost is the primary barrier to switching from Alt E (do nothing) or upgrading from Alt C to IoT monitoring. N01: installation labor per door directly determines FM margin. |\n\n### 09c — Feature-Need Coverage Map\n\n| Need | Score | F1 | F2 | F3 | F4 | F5 | F6 | F7 |\n|---|---|---|---|---|---|---|---|---|\n| N04 — commissioning devices that fail under real conditions | 16 | ● | | ◐ | | | | |\n| N08 — undetected door openings | 16 | | | ● | ◐ | | | |\n| N14 — audit-failing log gaps | 16 | | | ◐ | ◐ | | ● | |\n| N02 — hardwired cable cost in retrofit | 15 | | | ◐ | | | | ● |\n| N13 — manual compliance certificate compilation | 15 | | | | ◐ | | ● | |\n| N03 — battery depletion without CMMS alert | 14 | | | ◐ | | ● | | |\n| N05 — non-compliant escape route configuration | 14 | ● | | | | | | |\n| N17 — total cost-per-door at portfolio scale | 14 | | | ◐ | ◐ | ◐ | ◐ | ● |\n\n● = primary contributor | ◐ = partial contributor\n\n---"
+    },
+    {
+      "title": "Step 10 — Product-Related Needs (Burleson Product Jobs)",
+      "content": "Needs that arise FROM this mechanism — would disappear if a LoRaWAN native device, BACnet-integrated wired system, or IP69K-rated device were chosen.\n\n| ID | Statement | Source Constraint | Affected Markets | Importance | Satisfaction |\n|---|---|---|---|---|---|\n| PR1 | Minimize the likelihood of wireless monitoring coverage gaps in large-footprint FM client buildings caused by 868 MHz EasyWave signal attenuation through reinforced concrete and steel structures — requiring repeater chain planning that adds per-door infrastructure cost | Wireless Range Limitation (C3) | Facilities Support Services, General Warehousing, Airports | 7.0 | 3.0 |\n| PR2 | Minimize the likelihood of EasyWave radio module battery depletion below monitoring threshold between scheduled FM maintenance visits in high-traffic emergency exit deployments where door activation frequency exceeds 5 events per day | IoT Battery Life Floor (C4) | Facilities Support Services, Hospitals, Schools | 8.0 | 4.0 |\n| PR3 | Minimize the integration rework required to relay EasyWave-protocol alarm events to client BMS systems standardized on BACnet or KNX — caused by the absence of native open-protocol output on the wireless transmitter requiring a GfS-proprietary BUS gateway intermediary | EasyWave Protocol Lock-In (C6) | Facilities Support Services, Hotels, Hospitals, Smart Office | 7.5 | 3.5 |\n| PR4 | Minimize the likelihood of FM contract specification rejection in premium-specification client buildings due to surface-mounted door guardian housing protrusion being unacceptable under interior design or heritage conservation rules | Retrofit-Only Surface Mount (C5) | Facilities Support Services, Hotels, Museums | 5.0 | 5.0 |\n\n**Litmus test applied:**\n- PR1: A LoRaWAN or wired system has different range physics → disappears ✓\n- PR2: A wired or larger-battery device has no 9V depletion problem → disappears ✓\n- PR3: A BACnet-native or KNX-native device has no gateway intermediary step → disappears ✓\n- PR4: A flush-integrated or wired device has no surface protrusion → disappears ✓\n\n---"
+    },
+    {
+      "title": "Strategic Summary",
+      "content": "| Layer | Finding |\n|---|---|\n| Highest-fit features | F6 (7.89) and F4 (7.33) — both `attractive`; together address all three top-scoring underserved needs (N04/N08/N14) |\n| Primary displacement lever | F7 (6.89, `one_dimensional`) + F3 (6.78) — the retrofit+wireless combination is the direct cost argument against hardwired Alt A (45% share) |\n| Must-be baseline | F1 + F2 — table stakes; low overall fit because FM market takes them for granted; absence causes disqualification |\n| Critical product-related risk | PR2 (battery at high-traffic doors, Imp=8.0, Sat=4.0) — the Türwächter's own maintenance burden (Alt B P1 Maintenance) is the single biggest barrier in high-frequency FM deployments |\n| Key development gap | N04 (score=16): commissioning-passing devices that fail under real conditions — not fully addressed by any feature; requires commissioning validation tooling beyond device hardware |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### TechFeatureFitEntry[]\n\n```json\n[\n  {\n    \"feature_name\": \"Mechanical Alarm Trigger\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 4,\n    \"fit_score_cost\": 4,\n    \"fit_score_safety\": 9,\n    \"fit_score_reliability\": 8,\n    \"fit_score_skill\": 5,\n    \"fit_score_stress\": 6,\n    \"fit_score_pain\": 4,\n    \"fit_score_confidence\": 8,\n    \"fit_score_delight\": 2,\n    \"overall_fit\": 5.56,\n    \"rationale\": \"Must_be in FM market: every exit monitoring solution triggers an audible alarm; mechanical power-independence is assumed once fire codes apply. Primary drivers: Safety (9) — fail-safe at 0V directly addresses N07 (alarm failure under power loss, Imp=10); Confidence (8) — FM tech trusts mechanical trigger won't fail silently. Low delight because this is table stakes.\"\n  },\n  {\n    \"feature_name\": \"Key Override\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 5,\n    \"fit_score_cost\": 3,\n    \"fit_score_safety\": 5,\n    \"fit_score_reliability\": 4,\n    \"fit_score_skill\": 6,\n    \"fit_score_stress\": 6,\n    \"fit_score_pain\": 5,\n    \"fit_score_confidence\": 5,\n    \"fit_score_delight\": 2,\n    \"overall_fit\": 4.56,\n    \"rationale\": \"Must_be: FM technicians perform routine battery replacement and device checks — authorized bypass without triggering a logged alarm event is non-negotiable. Primary drivers: Skill (6) and Stress (6) — reduces protocol overhead during P1 Maintenance lifecycle stage. Low overall fit because all FM-grade alternatives offer this capability.\"\n  },\n  {\n    \"feature_name\": \"IoT Connectivity\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"kano_class\": \"one_dimensional\",\n    \"fit_score_time\": 8,\n    \"fit_score_cost\": 6,\n    \"fit_score_safety\": 7,\n    \"fit_score_reliability\": 7,\n    \"fit_score_skill\": 5,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 8,\n    \"fit_score_confidence\": 7,\n    \"fit_score_delight\": 6,\n    \"overall_fit\": 6.78,\n    \"rationale\": \"One_dimensional: FM operators explicitly choosing wireless over mechanical-only (Alt C declining) because real-time event capture scales linearly with compliance value. Primary drivers: Pain (8) — eliminates conduit wiring runs (N02 score=15 UNDERSERVED); Time (8) — real-time alert latency vs. manual inspection rounds (N06, Imp=9). Reliability penalized to 7 due to C3 range attenuation in large FM client buildings (PR1).\"\n  },\n  {\n    \"feature_name\": \"Remote Monitoring Dashboard\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"kano_class\": \"attractive\",\n    \"fit_score_time\": 8,\n    \"fit_score_cost\": 7,\n    \"fit_score_safety\": 6,\n    \"fit_score_reliability\": 6,\n    \"fit_score_skill\": 6,\n    \"fit_score_stress\": 8,\n    \"fit_score_pain\": 9,\n    \"fit_score_confidence\": 8,\n    \"fit_score_delight\": 8,\n    \"overall_fit\": 7.33,\n    \"rationale\": \"Attractive: FM operators currently use per-building panels or manual rounds; portfolio-level real-time visibility across all client sites is not available in any incumbent alternative. Primary drivers: Pain (9) — eliminates manual compliance certificate compilation (N13 score=15 UNDERSERVED); Stress (8) — removes anxiety about undiscovered coverage gaps (N22); Delight (8) — FM manager can present live portfolio dashboard to building owner clients (N21).\"\n  },\n  {\n    \"feature_name\": \"Predictive Maintenance\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"kano_class\": \"attractive\",\n    \"fit_score_time\": 7,\n    \"fit_score_cost\": 7,\n    \"fit_score_safety\": 6,\n    \"fit_score_reliability\": 8,\n    \"fit_score_skill\": 5,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 7,\n    \"fit_score_confidence\": 7,\n    \"fit_score_delight\": 6,\n    \"overall_fit\": 6.67,\n    \"rationale\": \"Attractive: battery-powered wireless creates a unique P1 Maintenance burden absent in hardwired Alt A. Proactive CMMS-integrated battery alerts transform emergency callouts into scheduled work orders. Primary drivers: Reliability (8) — directly addresses N03 (battery depletion without CMMS alert, score=14 UNDERSERVED); Cost (7) — eliminates emergency dispatch premium; Stress (7) — FM tech not surprised by silent monitoring gap. Attractive not one_dimensional because FM operators do not currently expect this from any door guardian product.\"\n  },\n  {\n    \"feature_name\": \"Regulatory Compliance Documentation\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"kano_class\": \"attractive\",\n    \"fit_score_time\": 9,\n    \"fit_score_cost\": 8,\n    \"fit_score_safety\": 7,\n    \"fit_score_reliability\": 7,\n    \"fit_score_skill\": 7,\n    \"fit_score_stress\": 8,\n    \"fit_score_pain\": 9,\n    \"fit_score_confidence\": 9,\n    \"fit_score_delight\": 7,\n    \"overall_fit\": 7.89,\n    \"rationale\": \"Attractive and highest-fit feature in this market. FM compliance engineers currently assemble inspection certificates manually from paper logs or disparate data sources. Automated timestamped event logs directly address two of the three top-scoring underserved needs. Primary drivers: Time (9) + Pain (9) — N13 (score=15 UNDERSERVED): eliminates manual compilation hours per building; Confidence (9) — N14 (score=16 UNDERSERVED): tamper-evident continuous logs as primary regulatory evidence; N20: directly fulfills P3 Role identity of FM compliance engineer ('audit documentation accepted without question').\"\n  },\n  {\n    \"feature_name\": \"Retrofit Capability\",\n    \"market_name\": \"Facilities Support Services\",\n    \"naics_code\": \"561210\",\n    \"kano_class\": \"one_dimensional\",\n    \"fit_score_time\": 8,\n    \"fit_score_cost\": 9,\n    \"fit_score_safety\": 4,\n    \"fit_score_reliability\": 5,\n    \"fit_score_skill\": 8,\n    \"fit_score_stress\": 6,\n    \"fit_score_pain\": 9,\n    \"fit_score_confidence\": 6,\n    \"fit_score_delight\": 7,\n    \"overall_fit\": 6.89,\n    \"rationale\": \"One_dimensional: FM contracts are predominantly retrofit across existing occupied building stock. More retrofit-friendly = proportionally lower installation cost per door = larger addressable contract base. Primary drivers: Cost (9) — N02 (score=15 UNDERSERVED): eliminates conduit routing entirely vs. hardwired Alt A; Pain (9) — removes the single most disruptive installation step in occupied FM buildings; Skill (8) — 0.5-1 hr/door with no electrician required vs. 2-4 hr for hardwired (N01). Safety low (4) — surface mount creates no safety improvement and slight tamper-vulnerability vs. recessed hardware.\"\n  }\n]\n```\n\n### ProductRelatedNeedEntry[]\n\n```json\n[\n  {\n    \"statement\": \"Minimize the likelihood of wireless monitoring coverage gaps in large-footprint FM client buildings caused by 868 MHz EasyWave signal attenuation through reinforced concrete and steel structures — requiring repeater chain planning that adds per-door infrastructure cost\",\n    \"source_constraint\": \"Wireless Range Limitation\",\n    \"affected_markets\": [\n      \"Facilities Support Services\",\n      \"General Warehousing and Storage\",\n      \"Other Airport Operations\"\n    ],\n    \"importance\": 7.0,\n    \"satisfaction_current\": 3.0\n  },\n  {\n    \"statement\": \"Minimize the likelihood of EasyWave radio module battery depletion below monitoring threshold between scheduled FM maintenance visits in high-traffic emergency exit deployments where door activation frequency exceeds 5 events per day\",\n    \"source_constraint\": \"IoT Battery Life Floor\",\n    \"affected_markets\": [\n      \"Facilities Support Services\",\n      \"General Medical and Surgical Hospitals\",\n      \"Elementary and Secondary Schools\"\n    ],\n    \"importance\": 8.0,\n    \"satisfaction_current\": 4.0\n  },\n  {\n    \"statement\": \"Minimize the integration rework required to relay EasyWave-protocol alarm events to client BMS systems standardized on BACnet or KNX — caused by the absence of native open-protocol output on the wireless transmitter requiring a GfS-proprietary BUS gateway intermediary\",\n    \"source_constraint\": \"EasyWave Protocol Lock-In\",\n    \"affected_markets\": [\n      \"Facilities Support Services\",\n      \"Hotels (except Casino Hotels) and Motels\",\n      \"General Medical and Surgical Hospitals\"\n    ],\n    \"importance\": 7.5,\n    \"satisfaction_current\": 3.5\n  },\n  {\n    \"statement\": \"Minimize the likelihood of FM contract specification rejection in premium-specification client buildings due to surface-mounted door guardian housing protrusion being unacceptable under interior design or heritage conservation requirements\",\n    \"source_constraint\": \"Retrofit-Only Surface Mount\",\n    \"affected_markets\": [\n      \"Facilities Support Services\",\n      \"Hotels (except Casino Hotels) and Motels\",\n      \"Museums, Historical Sites, and Similar Institutions\"\n    ],\n    \"importance\": 5.0,\n    \"satisfaction_current\": 5.0\n  }\n]\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "Market",
+          "Value": "Facilities Support Services"
+        },
+        {
+          "Field": "NAICS",
+          "Value": "561210"
+        },
+        {
+          "Field": "Product Job",
+          "Value": "Help Door & Exit Monitoring System detect unauthorized emergency exit door activations and produce audit-ready event logs for FM compliance workflows — without wired infrastructure or on-site inspection rounds"
+        },
+        {
+          "Field": "Technology class",
+          "Value": "Emergency Exit Security Devices with Remote Monitoring"
+        },
+        {
+          "Field": "Commodity FP",
+          "Value": "Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm"
+        },
+        {
+          "Field": "Constraints in play",
+          "Value": "C3 (range), C4 (battery life), C6 (protocol lock-in), C7 (price premium), C8 (GDPR)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Feature",
+        "Kano",
+        "Time",
+        "Cost",
+        "Safety",
+        "Reliability",
+        "Skill",
+        "Stress",
+        "Pain",
+        "Confidence",
+        "Delight",
+        "**Overall**"
+      ],
+      "rows": [
+        {
+          "#": "F1",
+          "Feature": "Mechanical Alarm Trigger",
+          "Kano": "must_be",
+          "Time": "4",
+          "Cost": "4",
+          "Safety": "9",
+          "Reliability": "8",
+          "Skill": "5",
+          "Stress": "6",
+          "Pain": "4",
+          "Confidence": "8",
+          "Delight": "2",
+          "**Overall**": "**5.56**"
+        },
+        {
+          "#": "F2",
+          "Feature": "Key Override",
+          "Kano": "must_be",
+          "Time": "5",
+          "Cost": "3",
+          "Safety": "5",
+          "Reliability": "4",
+          "Skill": "6",
+          "Stress": "6",
+          "Pain": "5",
+          "Confidence": "5",
+          "Delight": "2",
+          "**Overall**": "**4.56**"
+        },
+        {
+          "#": "F3",
+          "Feature": "IoT Connectivity",
+          "Kano": "one_dimensional",
+          "Time": "8",
+          "Cost": "6",
+          "Safety": "7",
+          "Reliability": "7",
+          "Skill": "5",
+          "Stress": "7",
+          "Pain": "8",
+          "Confidence": "7",
+          "Delight": "6",
+          "**Overall**": "**6.78**"
+        },
+        {
+          "#": "F4",
+          "Feature": "Remote Monitoring Dashboard",
+          "Kano": "attractive",
+          "Time": "8",
+          "Cost": "7",
+          "Safety": "6",
+          "Reliability": "6",
+          "Skill": "6",
+          "Stress": "8",
+          "Pain": "9",
+          "Confidence": "8",
+          "Delight": "8",
+          "**Overall**": "**7.33**"
+        },
+        {
+          "#": "F5",
+          "Feature": "Predictive Maintenance",
+          "Kano": "attractive",
+          "Time": "7",
+          "Cost": "7",
+          "Safety": "6",
+          "Reliability": "8",
+          "Skill": "5",
+          "Stress": "7",
+          "Pain": "7",
+          "Confidence": "7",
+          "Delight": "6",
+          "**Overall**": "**6.67**"
+        },
+        {
+          "#": "F6",
+          "Feature": "Regulatory Compliance Documentation",
+          "Kano": "attractive",
+          "Time": "9",
+          "Cost": "8",
+          "Safety": "7",
+          "Reliability": "7",
+          "Skill": "7",
+          "Stress": "8",
+          "Pain": "9",
+          "Confidence": "9",
+          "Delight": "7",
+          "**Overall**": "**7.89**"
+        },
+        {
+          "#": "F7",
+          "Feature": "Retrofit Capability",
+          "Kano": "one_dimensional",
+          "Time": "8",
+          "Cost": "9",
+          "Safety": "4",
+          "Reliability": "5",
+          "Skill": "8",
+          "Stress": "6",
+          "Pain": "9",
+          "Confidence": "6",
+          "Delight": "7",
+          "**Overall**": "**6.89**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Feature",
+        "Kano rationale",
+        "Primary ODI drivers",
+        "Market evidence"
+      ],
+      "rows": [
+        {
+          "Feature": "**F1 Mechanical Alarm Trigger**",
+          "Kano rationale": "`must_be`: Every exit monitoring solution must produce an audible alarm; mechanical power-independence is expected once fire codes are known. Absence causes disqualification; presence is taken for granted.",
+          "Primary ODI drivers": "Safety (9) — fail-safe under zero-voltage directly addresses N07; Confidence (8) — FM tech trusts mechanical trigger won't fail under battery depletion.",
+          "Market evidence": "N07: \"Minimize alarm failure rate under power-loss test\" (Imp=10, Sat=7)."
+        },
+        {
+          "Feature": "**F2 Key Override**",
+          "Kano rationale": "`must_be`: FM field technicians must access doors routinely without triggering monitored alarms. All FM-grade alternatives offer this. Absence would block FM deployment entirely.",
+          "Primary ODI drivers": "Skill (6) + Stress (6): reduces protocol overhead during routine maintenance visits.",
+          "Market evidence": "P1 Maintenance scenario: FM tech conducts battery replacement — key override prevents false-alarm event from polluting compliance logs."
+        },
+        {
+          "Feature": "**F3 IoT Connectivity**",
+          "Kano rationale": "`one_dimensional`: More reliable and lower-latency wireless reporting scales proportionally to FM value. FM operators choosing between mechanical-only (Alt C, 20% share, declining) and wireless specifically because of this capability.",
+          "Primary ODI drivers": "Pain (8) — eliminates conduit wiring runs (N02, score 15); Time (8) — real-time alerts vs. manual rounds (N06); Stress (7) — FM tech confident every event is captured (N22).",
+          "Market evidence": "N02 (score=15 UNDERSERVED): wired installation labor is the dominant cost friction in FM retrofit. N08 (score=16 UNDERSERVED): undetected activations."
+        },
+        {
+          "Feature": "**F4 Remote Monitoring Dashboard**",
+          "Kano rationale": "`attractive`: FM operators currently use manual inspection rounds or per-building wired panels. Portfolio-level real-time visibility is not available with any mechanical or single-site alternative. Absence does not block core alarm function but blocks the FM service differentiation model.",
+          "Primary ODI drivers": "Pain (9) — directly eliminates manual compliance certificate compilation (N13, score=15); Delight (8) — FM manager presents live dashboard to client; Stress (8) — no undiscovered coverage gaps (N22).",
+          "Market evidence": "N13 (score=15 UNDERSERVED): \"labor-hours to compile audit-ready certificates.\" N15/N21: portfolio dashboard is FM's client-facing value-add."
+        },
+        {
+          "Feature": "**F5 Predictive Maintenance**",
+          "Kano rationale": "`attractive`: Battery-powered wireless devices create a unique maintenance burden (Alt B, P1 Maintenance) not shared by hardwired alternatives. Proactive battery alerts transform this from a reactive emergency callout risk into a scheduled CMMS work order.",
+          "Primary ODI drivers": "Reliability (8) — N03 directly: battery depletion events that reach critical failure before CMMS alert (score=14 UNDERSERVED); Cost (7) — eliminates emergency dispatch cost premium.",
+          "Market evidence": "N03 (score=14 UNDERSERVED): \"minimize battery depletion events reaching critical failure without CMMS alert.\" N10 targets critical depletion ratio → 0."
+        },
+        {
+          "Feature": "**F6 Regulatory Compliance Documentation**",
+          "Kano rationale": "`attractive`: Automated timestamped event logs are the highest-value FM differentiator. Manual log assembly is the dominant compliance labor cost. Automated documentation directly addresses two of the three top-scoring underserved needs.",
+          "Primary ODI drivers": "Time (9) + Pain (9) — N13: eliminates manual compilation hours; Confidence (9) — N14: tamper-evident logs as primary audit evidence; Stress (8) — FM engineer never surprised at unannounced inspection (N22).",
+          "Market evidence": "N14 (score=16 UNDERSERVED): \"minimize event log gaps that cause audit failure.\" N13 (score=15): \"minimize FM labor hours to compile inspection certificates.\" N20: tamper-evident log = P3 Role identity for FM compliance engineer."
+        },
+        {
+          "Feature": "**F7 Retrofit Capability**",
+          "Kano rationale": "`one_dimensional`: FM contracts are predominantly retrofit (existing buildings). More retrofit-friendly = proportionally lower installation cost per door. Direct competitor axis vs. hardwired Alt A (45% share) where cable cost + electrician sign-off determines project economics.",
+          "Primary ODI drivers": "Cost (9) — N02: eliminates conduit cost entirely; Pain (9) — removes the single most painful step in FM emergency exit deployments; Time (8) + Skill (8) — N01: 0.5-1 hr/door vs. 2-4 hr for hardwired; no electrician required.",
+          "Market evidence": "N02 (score=15 UNDERSERVED): hardwired cable install cost is the primary barrier to switching from Alt E (do nothing) or upgrading from Alt C to IoT monitoring. N01: installation labor per door directly determines FM margin."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Need",
+        "Score",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7"
+      ],
+      "rows": [
+        {
+          "Need": "N04 — commissioning devices that fail under real conditions",
+          "Score": "16",
+          "F1": "●",
+          "F2": "◐",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "N08 — undetected door openings",
+          "Score": "16",
+          "F1": "●",
+          "F2": "◐",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "N14 — audit-failing log gaps",
+          "Score": "16",
+          "F1": "◐",
+          "F2": "◐",
+          "F3": "●",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "N02 — hardwired cable cost in retrofit",
+          "Score": "15",
+          "F1": "◐",
+          "F2": "●",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "N13 — manual compliance certificate compilation",
+          "Score": "15",
+          "F1": "◐",
+          "F2": "●",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "N03 — battery depletion without CMMS alert",
+          "Score": "14",
+          "F1": "◐",
+          "F2": "●",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "N05 — non-compliant escape route configuration",
+          "Score": "14",
+          "F1": "●",
+          "F2": "",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "N17 — total cost-per-door at portfolio scale",
+          "Score": "14",
+          "F1": "◐",
+          "F2": "◐",
+          "F3": "◐",
+          "F4": "◐",
+          "F5": "●",
+          "F6": "",
+          "F7": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Statement",
+        "Source Constraint",
+        "Affected Markets",
+        "Importance",
+        "Satisfaction"
+      ],
+      "rows": [
+        {
+          "ID": "PR1",
+          "Statement": "Minimize the likelihood of wireless monitoring coverage gaps in large-footprint FM client buildings caused by 868 MHz EasyWave signal attenuation through reinforced concrete and steel structures — requiring repeater chain planning that adds per-door infrastructure cost",
+          "Source Constraint": "Wireless Range Limitation (C3)",
+          "Affected Markets": "Facilities Support Services, General Warehousing, Airports",
+          "Importance": "7.0",
+          "Satisfaction": "3.0"
+        },
+        {
+          "ID": "PR2",
+          "Statement": "Minimize the likelihood of EasyWave radio module battery depletion below monitoring threshold between scheduled FM maintenance visits in high-traffic emergency exit deployments where door activation frequency exceeds 5 events per day",
+          "Source Constraint": "IoT Battery Life Floor (C4)",
+          "Affected Markets": "Facilities Support Services, Hospitals, Schools",
+          "Importance": "8.0",
+          "Satisfaction": "4.0"
+        },
+        {
+          "ID": "PR3",
+          "Statement": "Minimize the integration rework required to relay EasyWave-protocol alarm events to client BMS systems standardized on BACnet or KNX — caused by the absence of native open-protocol output on the wireless transmitter requiring a GfS-proprietary BUS gateway intermediary",
+          "Source Constraint": "EasyWave Protocol Lock-In (C6)",
+          "Affected Markets": "Facilities Support Services, Hotels, Hospitals, Smart Office",
+          "Importance": "7.5",
+          "Satisfaction": "3.5"
+        },
+        {
+          "ID": "PR4",
+          "Statement": "Minimize the likelihood of FM contract specification rejection in premium-specification client buildings due to surface-mounted door guardian housing protrusion being unacceptable under interior design or heritage conservation rules",
+          "Source Constraint": "Retrofit-Only Surface Mount (C5)",
+          "Affected Markets": "Facilities Support Services, Hotels, Museums",
+          "Importance": "5.0",
+          "Satisfaction": "5.0"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Layer",
+        "Finding"
+      ],
+      "rows": [
+        {
+          "Layer": "Highest-fit features",
+          "Finding": "F6 (7.89) and F4 (7.33) — both `attractive`; together address all three top-scoring underserved needs (N04/N08/N14)"
+        },
+        {
+          "Layer": "Primary displacement lever",
+          "Finding": "F7 (6.89, `one_dimensional`) + F3 (6.78) — the retrofit+wireless combination is the direct cost argument against hardwired Alt A (45% share)"
+        },
+        {
+          "Layer": "Must-be baseline",
+          "Finding": "F1 + F2 — table stakes; low overall fit because FM market takes them for granted; absence causes disqualification"
+        },
+        {
+          "Layer": "Critical product-related risk",
+          "Finding": "PR2 (battery at high-traffic doors, Imp=8.0, Sat=4.0) — the Türwächter's own maintenance burden (Alt B P1 Maintenance) is the single biggest barrier in high-frequency FM deployments"
+        },
+        {
+          "Layer": "Key development gap",
+          "Finding": "N04 (score=16): commissioning-passing devices that fail under real conditions — not fully addressed by any feature; requires commissioning validation tooling beyond device hardware"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    [
+      {
+        "feature_name": "Mechanical Alarm Trigger",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "kano_class": "must_be",
+        "fit_score_time": 4,
+        "fit_score_cost": 4,
+        "fit_score_safety": 9,
+        "fit_score_reliability": 8,
+        "fit_score_skill": 5,
+        "fit_score_stress": 6,
+        "fit_score_pain": 4,
+        "fit_score_confidence": 8,
+        "fit_score_delight": 2,
+        "overall_fit": 5.56,
+        "rationale": "Must_be in FM market: every exit monitoring solution triggers an audible alarm; mechanical power-independence is assumed once fire codes apply. Primary drivers: Safety (9) — fail-safe at 0V directly addresses N07 (alarm failure under power loss, Imp=10); Confidence (8) — FM tech trusts mechanical trigger won't fail silently. Low delight because this is table stakes."
+      },
+      {
+        "feature_name": "Key Override",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "kano_class": "must_be",
+        "fit_score_time": 5,
+        "fit_score_cost": 3,
+        "fit_score_safety": 5,
+        "fit_score_reliability": 4,
+        "fit_score_skill": 6,
+        "fit_score_stress": 6,
+        "fit_score_pain": 5,
+        "fit_score_confidence": 5,
+        "fit_score_delight": 2,
+        "overall_fit": 4.56,
+        "rationale": "Must_be: FM technicians perform routine battery replacement and device checks — authorized bypass without triggering a logged alarm event is non-negotiable. Primary drivers: Skill (6) and Stress (6) — reduces protocol overhead during P1 Maintenance lifecycle stage. Low overall fit because all FM-grade alternatives offer this capability."
+      },
+      {
+        "feature_name": "IoT Connectivity",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "kano_class": "one_dimensional",
+        "fit_score_time": 8,
+        "fit_score_cost": 6,
+        "fit_score_safety": 7,
+        "fit_score_reliability": 7,
+        "fit_score_skill": 5,
+        "fit_score_stress": 7,
+        "fit_score_pain": 8,
+        "fit_score_confidence": 7,
+        "fit_score_delight": 6,
+        "overall_fit": 6.78,
+        "rationale": "One_dimensional: FM operators explicitly choosing wireless over mechanical-only (Alt C declining) because real-time event capture scales linearly with compliance value. Primary drivers: Pain (8) — eliminates conduit wiring runs (N02 score=15 UNDERSERVED); Time (8) — real-time alert latency vs. manual inspection rounds (N06, Imp=9). Reliability penalized to 7 due to C3 range attenuation in large FM client buildings (PR1)."
+      },
+      {
+        "feature_name": "Remote Monitoring Dashboard",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "kano_class": "attractive",
+        "fit_score_time": 8,
+        "fit_score_cost": 7,
+        "fit_score_safety": 6,
+        "fit_score_reliability": 6,
+        "fit_score_skill": 6,
+        "fit_score_stress": 8,
+        "fit_score_pain": 9,
+        "fit_score_confidence": 8,
+        "fit_score_delight": 8,
+        "overall_fit": 7.33,
+        "rationale": "Attractive: FM operators currently use per-building panels or manual rounds; portfolio-level real-time visibility across all client sites is not available in any incumbent alternative. Primary drivers: Pain (9) — eliminates manual compliance certificate compilation (N13 score=15 UNDERSERVED); Stress (8) — removes anxiety about undiscovered coverage gaps (N22); Delight (8) — FM manager can present live portfolio dashboard to building owner clients (N21)."
+      },
+      {
+        "feature_name": "Predictive Maintenance",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "kano_class": "attractive",
+        "fit_score_time": 7,
+        "fit_score_cost": 7,
+        "fit_score_safety": 6,
+        "fit_score_reliability": 8,
+        "fit_score_skill": 5,
+        "fit_score_stress": 7,
+        "fit_score_pain": 7,
+        "fit_score_confidence": 7,
+        "fit_score_delight": 6,
+        "overall_fit": 6.67,
+        "rationale": "Attractive: battery-powered wireless creates a unique P1 Maintenance burden absent in hardwired Alt A. Proactive CMMS-integrated battery alerts transform emergency callouts into scheduled work orders. Primary drivers: Reliability (8) — directly addresses N03 (battery depletion without CMMS alert, score=14 UNDERSERVED); Cost (7) — eliminates emergency dispatch premium; Stress (7) — FM tech not surprised by silent monitoring gap. Attractive not one_dimensional because FM operators do not currently expect this from any door guardian product."
+      },
+      {
+        "feature_name": "Regulatory Compliance Documentation",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "kano_class": "attractive",
+        "fit_score_time": 9,
+        "fit_score_cost": 8,
+        "fit_score_safety": 7,
+        "fit_score_reliability": 7,
+        "fit_score_skill": 7,
+        "fit_score_stress": 8,
+        "fit_score_pain": 9,
+        "fit_score_confidence": 9,
+        "fit_score_delight": 7,
+        "overall_fit": 7.89,
+        "rationale": "Attractive and highest-fit feature in this market. FM compliance engineers currently assemble inspection certificates manually from paper logs or disparate data sources. Automated timestamped event logs directly address two of the three top-scoring underserved needs. Primary drivers: Time (9) + Pain (9) — N13 (score=15 UNDERSERVED): eliminates manual compilation hours per building; Confidence (9) — N14 (score=16 UNDERSERVED): tamper-evident continuous logs as primary regulatory evidence; N20: directly fulfills P3 Role identity of FM compliance engineer ('audit documentation accepted without question')."
+      },
+      {
+        "feature_name": "Retrofit Capability",
+        "market_name": "Facilities Support Services",
+        "naics_code": "561210",
+        "kano_class": "one_dimensional",
+        "fit_score_time": 8,
+        "fit_score_cost": 9,
+        "fit_score_safety": 4,
+        "fit_score_reliability": 5,
+        "fit_score_skill": 8,
+        "fit_score_stress": 6,
+        "fit_score_pain": 9,
+        "fit_score_confidence": 6,
+        "fit_score_delight": 7,
+        "overall_fit": 6.89,
+        "rationale": "One_dimensional: FM contracts are predominantly retrofit across existing occupied building stock. More retrofit-friendly = proportionally lower installation cost per door = larger addressable contract base. Primary drivers: Cost (9) — N02 (score=15 UNDERSERVED): eliminates conduit routing entirely vs. hardwired Alt A; Pain (9) — removes the single most disruptive installation step in occupied FM buildings; Skill (8) — 0.5-1 hr/door with no electrician required vs. 2-4 hr for hardwired (N01). Safety low (4) — surface mount creates no safety improvement and slight tamper-vulnerability vs. recessed hardware."
+      }
+    ],
+    [
+      {
+        "statement": "Minimize the likelihood of wireless monitoring coverage gaps in large-footprint FM client buildings caused by 868 MHz EasyWave signal attenuation through reinforced concrete and steel structures — requiring repeater chain planning that adds per-door infrastructure cost",
+        "source_constraint": "Wireless Range Limitation",
+        "affected_markets": [
+          "Facilities Support Services",
+          "General Warehousing and Storage",
+          "Other Airport Operations"
+        ],
+        "importance": 7.0,
+        "satisfaction_current": 3.0
+      },
+      {
+        "statement": "Minimize the likelihood of EasyWave radio module battery depletion below monitoring threshold between scheduled FM maintenance visits in high-traffic emergency exit deployments where door activation frequency exceeds 5 events per day",
+        "source_constraint": "IoT Battery Life Floor",
+        "affected_markets": [
+          "Facilities Support Services",
+          "General Medical and Surgical Hospitals",
+          "Elementary and Secondary Schools"
+        ],
+        "importance": 8.0,
+        "satisfaction_current": 4.0
+      },
+      {
+        "statement": "Minimize the integration rework required to relay EasyWave-protocol alarm events to client BMS systems standardized on BACnet or KNX — caused by the absence of native open-protocol output on the wireless transmitter requiring a GfS-proprietary BUS gateway intermediary",
+        "source_constraint": "EasyWave Protocol Lock-In",
+        "affected_markets": [
+          "Facilities Support Services",
+          "Hotels (except Casino Hotels) and Motels",
+          "General Medical and Surgical Hospitals"
+        ],
+        "importance": 7.5,
+        "satisfaction_current": 3.5
+      },
+      {
+        "statement": "Minimize the likelihood of FM contract specification rejection in premium-specification client buildings due to surface-mounted door guardian housing protrusion being unacceptable under interior design or heritage conservation requirements",
+        "source_constraint": "Retrofit-Only Surface Mount",
+        "affected_markets": [
+          "Facilities Support Services",
+          "Hotels (except Casino Hotels) and Motels",
+          "Museums, Historical Sites, and Similar Institutions"
+        ],
+        "importance": 5.0,
+        "satisfaction_current": 5.0
+      }
+    ]
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

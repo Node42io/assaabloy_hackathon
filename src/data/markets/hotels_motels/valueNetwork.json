@@ -1,0 +1,734 @@
+{
+  "naicsCode": "721110",
+  "marketName": "Hotels (except Casino Hotels) and Motels",
+  "slug": "hotels_motels",
+  "coreJobStatement": "Provide paid temporary accommodation that meets guests' comfort, safety, and accessibility needs while maintaining full regulatory compliance with fire safety and building codes.",
+  "outputTypes": [
+    "Full-service (upscale)",
+    "Select-service (mid-scale)",
+    "Budget/motel",
+    "Extended-stay"
+  ],
+  "hierarchy": "",
+  "architectureDistance": 0,
+  "marketSize": "",
+  "l6Systems": [
+    {
+      "id": "L6a",
+      "name": "Demand Management & Reservations",
+      "type": "Core",
+      "jobFamily": "Capture and manage guest bookings across all distribution channels",
+      "l5Units": []
+    },
+    {
+      "id": "L6b",
+      "name": "Guest Arrival & Check-in",
+      "type": "Core",
+      "jobFamily": "Process guest arrival, verify identity, assign room, and issue access credentials",
+      "l5Units": []
+    },
+    {
+      "id": "L6c",
+      "name": "Room Preparation",
+      "type": "Core",
+      "jobFamily": "Clean, inspect, and certify guest rooms between occupancy periods",
+      "l5Units": []
+    },
+    {
+      "id": "L6d",
+      "name": "In-Stay Service Delivery",
+      "type": "Core",
+      "jobFamily": "Deliver room environment, amenities, and services during guest occupancy",
+      "l5Units": []
+    },
+    {
+      "id": "L6e",
+      "name": "Food & Beverage Operations",
+      "type": "Core",
+      "jobFamily": "Prepare and serve food and beverages to in-house guests",
+      "l5Units": []
+    },
+    {
+      "id": "L6f",
+      "name": "Departure & Billing",
+      "type": "Core",
+      "jobFamily": "Process guest check-out, settle account, and reset room for next occupant",
+      "l5Units": []
+    },
+    {
+      "id": "L6H-SEC",
+      "name": "Building Security & Life Safety",
+      "type": "Horizontal",
+      "jobFamily": "Protect occupants, assets, and escape routes at all times",
+      "isHorizontal": true,
+      "l5Units": []
+    },
+    {
+      "id": "L6H-FM",
+      "name": "Facility Management & Maintenance",
+      "type": "Horizontal",
+      "jobFamily": "Maintain physical plant, equipment, and utilities in operational condition",
+      "isHorizontal": true,
+      "l5Units": []
+    },
+    {
+      "id": "L6H-IT",
+      "name": "IT & Property Technology",
+      "type": "Horizontal",
+      "jobFamily": "Provide digital infrastructure for all operational systems",
+      "isHorizontal": true,
+      "l5Units": []
+    }
+  ],
+  "vnUnits": [
+    {
+      "level": "L5",
+      "id": "L6a.1",
+      "name": "Property Management System (PMS)",
+      "functionalJob": "Integrated platform managing reservations, front desk, housekeeping, billing, and reporting",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Oracle Opera",
+          "sharePct": 35,
+          "confidence": "MEDIUM",
+          "source": "GMI market report",
+          "isPrimary": false
+        },
+        {
+          "name": "Cloudbeds",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Mews",
+          "sharePct": 12,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Sabre SynXis / Maestro PMS",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Other (Agilysys, RMS Cloud, etc.)",
+          "sharePct": 28,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6a.2",
+      "name": "Revenue Management System",
+      "functionalJob": "Optimize room pricing and inventory allocation across distribution channels to maximize revenue per available room",
+      "description": "",
+      "parentL6": "L6a",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "IDeaS (SAS)",
+          "sharePct": 30,
+          "confidence": "LOW",
+          "source": "Analyst estimate",
+          "isPrimary": false
+        },
+        {
+          "name": "Duetto",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Atomize / other AI-native",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "In-house / spreadsheet",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6b.1",
+      "name": "Electronic Room Access System",
+      "functionalJob": "Guest room lock hardware and credential issuance system",
+      "description": "",
+      "parentL6": "L6b",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "RFID card key (MIFARE/LEGIC)",
+          "sharePct": 55,
+          "confidence": "MEDIUM",
+          "source": "RFID Hotel Locks Market 2025",
+          "isPrimary": false
+        },
+        {
+          "name": "Mobile / BLE digital key",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "89% global hotels use electronic access; 78% guests prefer mobile",
+          "isPrimary": false
+        },
+        {
+          "name": "PIN keypad entry",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Traditional mechanical key",
+          "sharePct": 5,
+          "confidence": "",
+          "source": "Declining; legacy/budget motels",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.1",
+      "name": "Housekeeping Management Software",
+      "functionalJob": "Track room cleaning status, assign housekeeping tasks, and coordinate room turnover between occupancy periods",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "PMS-integrated module",
+          "sharePct": 45,
+          "confidence": "LOW",
+          "source": "Industry estimate",
+          "isPrimary": false
+        },
+        {
+          "name": "Standalone (Quore, HotSOS)",
+          "sharePct": 35,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Manual / paper-based",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "Declining",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6c.2",
+      "name": "Commercial Laundry Equipment",
+      "functionalJob": "Wash, dry, and process guest linens and towels to maintain room readiness between stays",
+      "description": "",
+      "parentL6": "L6c",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "On-premise industrial washer/dryer",
+          "sharePct": 55,
+          "confidence": "LOW",
+          "source": "—",
+          "isPrimary": false
+        },
+        {
+          "name": "Outsourced laundry service",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Hybrid (on-premise + outsource)",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.1",
+      "name": "HVAC Fan Coil Unit",
+      "functionalJob": "Regulate individual guest room temperature and air quality for occupant comfort during stay",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Fan coil unit (chilled water)",
+          "sharePct": 60,
+          "confidence": "MEDIUM",
+          "source": "Industry standard for mid/large hotels",
+          "isPrimary": false
+        },
+        {
+          "name": "Split / VRF unit",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "Common in select-service",
+          "isPrimary": false
+        },
+        {
+          "name": "Central air handling unit",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.2",
+      "name": "In-Room Entertainment",
+      "functionalJob": "Deliver television, streaming, and media content to guests during room occupancy",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Smart IPTV with casting (Google Cast / AirPlay)",
+          "sharePct": 55,
+          "confidence": "MEDIUM",
+          "source": "Industry trend data",
+          "isPrimary": false
+        },
+        {
+          "name": "Traditional IPTV",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Basic TV (no integration)",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "Budget/motel",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6d.3",
+      "name": "High-Speed Internet (HSIA)",
+      "functionalJob": "Provide reliable wireless and wired internet connectivity to guests and operational systems throughout the property",
+      "description": "",
+      "parentL6": "L6d",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Managed WiFi platform (Cisco Meraki, Aruba, Ruckus)",
+          "sharePct": 70,
+          "confidence": "MEDIUM",
+          "source": "Vendor market presence",
+          "isPrimary": false
+        },
+        {
+          "name": "ISP-direct basic router setup",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Satellite / alternative",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "Remote properties",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6e.1",
+      "name": "Food & Beverage POS",
+      "functionalJob": "Process food and beverage orders, payments, and inventory for on-site restaurant and bar operations",
+      "description": "",
+      "parentL6": "L6e",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": []
+    },
+    {
+      "level": "L5",
+      "id": "L6e.2",
+      "name": "Commercial Kitchen Equipment",
+      "functionalJob": "Prepare and cook food for on-site restaurant and room service operations",
+      "description": "",
+      "parentL6": "L6e",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": []
+    },
+    {
+      "level": "L5",
+      "id": "L6f.1",
+      "name": "Payment Terminal",
+      "functionalJob": "Process guest payment transactions at check-out and point-of-sale locations",
+      "description": "",
+      "parentL6": "L6f",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Ingenico",
+          "sharePct": 35,
+          "confidence": "LOW",
+          "source": "Analyst estimate",
+          "isPrimary": false
+        },
+        {
+          "name": "Verifone",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "PMS-integrated soft POS",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "Growing with mobile/cloud PMS",
+          "isPrimary": false
+        },
+        {
+          "name": "Other (SumUp, etc.)",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-SEC.1",
+      "name": "Emergency Exit Security Devices",
+      "functionalJob": "Devices securing emergency exit doors against unauthorized use while maintaining fire-code-compliant unimpeded escape",
+      "description": "",
+      "parentL6": "L6H-SEC",
+      "dependencies": [],
+      "isPrimaryPosition": true,
+      "alternatives": [
+        {
+          "name": "Basic mechanical door alarm (no monitoring)",
+          "sharePct": 45,
+          "confidence": "LOW",
+          "source": "Exit Devices Market 2024",
+          "isPrimary": false
+        },
+        {
+          "name": "Alarmed exit hardware with IoT monitoring ← Türwächter",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "25% of facilities chose cloud reporting in 2024",
+          "isPrimary": true
+        },
+        {
+          "name": "Wired panic bar / crash bar alarm",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "No dedicated exit monitoring",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "Typically budget motels",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-SEC.2",
+      "name": "Fire Detection & Alarm System",
+      "functionalJob": "Building-wide fire detection and alarm network per EN 54 / NFPA 72",
+      "description": "",
+      "parentL6": "L6H-SEC",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Addressable panel (Honeywell, Siemens, Hochiki)",
+          "sharePct": 55,
+          "confidence": "MEDIUM",
+          "source": "Mordor Intelligence",
+          "isPrimary": false
+        },
+        {
+          "name": "Conventional panel",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "Older / budget properties",
+          "isPrimary": false
+        },
+        {
+          "name": "Wireless fire system",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "Growing for retrofit",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-SEC.3",
+      "name": "Electronic Access Control",
+      "functionalJob": "Control and log credential-based entry to staff areas, back-of-house zones, and building perimeter",
+      "description": "",
+      "parentL6": "L6H-SEC",
+      "dependencies": [],
+      "isPrimaryPosition": true,
+      "alternatives": [
+        {
+          "name": "IP-based (ASSA ABLOY, Dormakaba, Salto)",
+          "sharePct": 65,
+          "confidence": "MEDIUM",
+          "source": "RFID Lock market data",
+          "isPrimary": true
+        },
+        {
+          "name": "Legacy card reader systems",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Mobile credential only",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-SEC.4",
+      "name": "Video Surveillance (CCTV)",
+      "functionalJob": "Monitor and record activity across public areas, perimeter, and back-of-house for security and incident investigation",
+      "description": "",
+      "parentL6": "L6H-SEC",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "IP camera / NVR (Axis, Hikvision, Dahua)",
+          "sharePct": 65,
+          "confidence": "MEDIUM",
+          "source": "Industry standard",
+          "isPrimary": false
+        },
+        {
+          "name": "Analog / DVR",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "Declining",
+          "isPrimary": false
+        },
+        {
+          "name": "Cloud-managed camera (Verkada)",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "Emerging",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-FM.1",
+      "name": "Building Management System (BMS)",
+      "functionalJob": "Centralized HVAC, energy, and building systems control platform",
+      "description": "",
+      "parentL6": "L6H-FM",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Honeywell, Siemens Desigo, Johnson Controls",
+          "sharePct": 55,
+          "confidence": "LOW",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Standalone HVAC control (no BMS)",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "No BMS (manual)",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-FM.2",
+      "name": "Elevator / Vertical Transport",
+      "functionalJob": "Move guests, staff, and goods between building floors safely and efficiently",
+      "description": "",
+      "parentL6": "L6H-FM",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Otis",
+          "sharePct": 35,
+          "confidence": "MEDIUM",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "KONE",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Schindler",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Thyssenkrupp / other",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-FM.3",
+      "name": "Preventive Maintenance Software (CMMS)",
+      "functionalJob": "Schedule, track, and document preventive and corrective maintenance tasks across building equipment and systems",
+      "description": "",
+      "parentL6": "L6H-FM",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Quore Hotels / HotSOS",
+          "sharePct": 30,
+          "confidence": "LOW",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Generic CMMS (Maintenance Connection)",
+          "sharePct": 25,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Manual / paper",
+          "sharePct": 35,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Other",
+          "sharePct": 10,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    },
+    {
+      "level": "L5",
+      "id": "L6H-IT.1",
+      "name": "Network Infrastructure (LAN/WiFi)",
+      "functionalJob": "LAN switching and managed WiFi platform serving all operational systems and guest HSIA",
+      "description": "",
+      "parentL6": "L6H-IT",
+      "dependencies": [],
+      "isPrimaryPosition": false,
+      "alternatives": [
+        {
+          "name": "Cisco Meraki",
+          "sharePct": 35,
+          "confidence": "MEDIUM",
+          "source": "Vendor presence data",
+          "isPrimary": false
+        },
+        {
+          "name": "Aruba/HPE",
+          "sharePct": 30,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Ruckus (CommScope)",
+          "sharePct": 20,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        },
+        {
+          "name": "Other",
+          "sharePct": 15,
+          "confidence": "",
+          "source": "",
+          "isPrimary": false
+        }
+      ]
+    }
+  ],
+  "marquardtPosition": "",
+  "strategicPosition": null,
+  "sources": []
+}

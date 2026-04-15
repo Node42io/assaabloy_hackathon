@@ -1,0 +1,1829 @@
+{
+  "id": "VN_colleges_universities",
+  "title": "Value Network — Colleges, Universities, and Professional Schools (NAICS 611310)",
+  "type": "value_network",
+  "market_slug": "colleges_universities",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Header",
+      "content": "| Field | Value |\n|---|---|\n| **NAICS code** | 611310 — Colleges, Universities, and Professional Schools |\n| **CFJ** | Deliver accredited higher education programs and credentials to enrolled students within a safe, legally compliant, and research-capable campus environment |\n| **Output types** | Research University (Carnegie R1/R2 — doctoral, extensive research); Teaching-Focused University (M1/M2 — master's, mixed teaching/research); Liberal Arts College (Bac — undergraduate-only); Community / Junior College (associate degrees, certificates); Professional / Technical School (law, medicine, engineering, vocational) |\n| **Hierarchy** | Process VN only (L7 → L4). No Product BOM — output is an educational outcome and credential. |\n| **Scale** | ~5,300 colleges and universities in the US; ~19.7M students enrolled; 1/3 of buildings are 50+ years old; national deferred maintenance backlog >$100B (growing at 6–8% annually) |\n| **Key operators** | Public research universities (Big Ten, UC System), private liberal arts colleges (NESCAC, LAC networks), community college districts, for-profit professional schools (Strayer, DeVry) |\n| **Security market size** | Global school/campus security: USD 4.2B (2025). Higher education segment ~35% of total. Access control global market: USD 10.62B (2025), CAGR 8.3%. Panic & Emergency Exit Devices globally: USD 3.9B (2025). University building age (avg. 50+ years) is the primary retrofit demand driver. |\n| **Architecture distance** | 2 (Rank 8 of 15 markets) — product fits standard campus doors without hardware modification; adaptations limited to campus security platform integration and range for large buildings |\n| **Market priority** | HIGH |\n\n---"
+    },
+    {
+      "title": "L7 — Ecosystem",
+      "content": "### L7: Higher Education Delivery Ecosystem\n\nThe complete ecosystem of universities, colleges, accreditation bodies (HLC, SACSCOC, WASC), federal regulators (DOE, OCR, OSHA, NFPA), state education boards, research funders (NSF, NIH, DoD), facilities operators, security vendors, housing services, technology suppliers, and community stakeholders that co-produce academic credentials, research output, and workforce development for students. The ecosystem operates under dual mandate: fire and life-safety code compliance (NFPA 101 Life Safety Code, IBC Chapter 10 means of egress, Clery Act) AND academic accreditation standards that require documented quality of physical environment. Aging building stock (over one-third of campus buildings exceed 50 years) creates sustained retrofit demand for security, HVAC, and life-safety systems — with >$100B in deferred maintenance nationally, growing at 6–8% annually.\n\n---"
+    },
+    {
+      "title": "L6 — System-of-Systems Decomposition",
+      "content": "Nine L6 nodes cover the full operational process for higher education delivery. Five are core (sequential service delivery chain); four are horizontal (run in parallel across all core steps).\n\n| L6 ID | Type | Name | Job Family | Description |\n|---|---|---|---|---|\n| **L6a** | Core | Admissions & Enrollment | Recruit and matriculate qualified applicants into accredited degree programs | Prospecting, application review, financial aid packaging, enrollment confirmation, student record creation, cohort planning |\n| **L6b** | Core | Academic Instruction & Curriculum Delivery | Deliver accredited coursework and degree-program learning to enrolled students | Classroom instruction, seminars, online/hybrid delivery, laboratory sessions, studio and clinical instruction, academic advising |\n| **L6c** | Core | Research & Scholarship | Generate, validate, and disseminate new knowledge funded by grants and institutional resources | Grant-funded lab research, publication, IP development, graduate training, research compliance (IRB, IACUC) |\n| **L6d** | Core | Student Support & Campus Life | Sustain student retention, wellbeing, and social development throughout enrollment | Residence life, counseling, health services, career advising, disability services, dining, recreational facilities |\n| **L6e** | Core | Assessment, Credentialing & Graduation | Evaluate academic performance and confer accredited degrees, certificates, and credentials | Grading, degree audit, registrar services, commencement, transcript issuance, alumni records |\n| **L6-H1** | Horizontal | Campus Safety, Security & Emergency Management (H) | Protect all occupants and property across all campus operations while maintaining regulatory-compliant evacuation readiness at all times | Access control, emergency exit monitoring, surveillance, fire detection, mass notification, lockdown systems, Clery Act compliance documentation |\n| **L6-H2** | Horizontal | Facilities & Physical Plant Management (H) | Maintain all campus buildings and infrastructure to code and operational readiness | HVAC, electrical, plumbing, custodial, grounds, deferred maintenance programs, ADA compliance, energy management |\n| **L6-H3** | Horizontal | IT & Digital Infrastructure (H) | Provide reliable network, device, software, and data infrastructure for all core steps | Campus LAN/WiFi, data centers, identity management, ERP, cybersecurity, LMS and SIS platforms |\n| **L6-H4** | Horizontal | Administrative, Finance & Compliance (H) | Ensure legal, accreditation, financial, and HR compliance across all university operations | HR/payroll, budget management, accreditation reporting, legal affairs, board governance, insurance, Title IX compliance |\n\n---"
+    },
+    {
+      "title": "L6a — Admissions & Enrollment",
+      "content": "### L5 Systems under L6a\n\n#### L5.a.1: Admissions CRM & Application Platform\n\nManages prospective student pipeline from inquiry through enrollment decision. Integrates with Common App, coalition platforms, and institutional portals.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Slate (Technolutions) | ~55% | MEDIUM |\n| Salesforce Education Cloud | ~20% | MEDIUM |\n| TargetX / Campus Management | ~12% | MEDIUM |\n| Hobsons / Liaison | ~8% | MEDIUM |\n| In-house / other | ~5% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Application Review Engine | Holistic review workflow, rubric scoring, committee routing |\n| Prospect & Inquiry Tracker | Lead capture, communication cadences, yield prediction |\n| Financial Aid Packaging Module | Institutional aid calculation, federal aid integration (FAFSA/CPS) |\n| Enrollment Confirmation Portal | Deposit collection, housing intent, orientation sign-up |\n\n---\n\n#### L5.a.2: Student Information System (SIS)\n\nCentral record of all enrolled students: academic standing, grades, financial aid, holds, registration. Required for federal IPEDS reporting.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Ellucian Banner | ~35% | MEDIUM |\n| Oracle PeopleSoft Campus Solutions | ~20% | MEDIUM |\n| Workday Student | ~15% | MEDIUM |\n| Ellucian Colleague | ~15% | MEDIUM |\n| Unit4 Student / Other | ~15% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Academic Records & Registration | Course registration, grade posting, transcript generation |\n| Financial Aid & Billing | Aid disbursement, billing, payment plan management |\n| IPEDS / Federal Reporting Feed | Annual federal reporting, enrollment census, completion stats |\n| Degree Progress Tracker | Cumulative credit audit, graduation eligibility |\n\n---"
+    },
+    {
+      "title": "L6b — Academic Instruction & Curriculum Delivery",
+      "content": "### L5 Systems under L6b\n\n#### L5.b.1: Learning Management System (LMS)\n\nHosts course content, assignments, discussions, and grading. Core instructional infrastructure post-pandemic.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Canvas (Instructure) | ~37% | MEDIUM |\n| Blackboard / Anthology | ~28% | MEDIUM |\n| Moodle | ~18% | MEDIUM |\n| D2L Brightspace | ~12% | MEDIUM |\n| Other | ~5% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Course Content Repository | Syllabi, readings, video lectures, module sequencing |\n| Assessment & Gradebook Engine | Quizzes, assignments, rubric grading, grade sync to SIS |\n| Collaborative & Discussion Tools | Forums, group workspaces, peer review, live virtual classrooms |\n| Analytics & Engagement Tracker | Early alert flags, login frequency, assignment completion rates |\n\n---\n\n#### L5.b.2: Classroom AV & Active Learning Technology\n\nInteractive displays, projection, lecture capture, and distributed audio for face-to-face and hybrid instruction.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Crestron (AV control + display) | ~30% | MEDIUM |\n| Extron (AV routing + display) | ~25% | MEDIUM |\n| SMART / Cisco interactive display | ~25% | MEDIUM |\n| Projector-based (Epson, Panasonic) | ~15% | MEDIUM |\n| Other / legacy | ~5% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Display Panel / Projector | 75–110\" interactive flat panel or ceiling projector |\n| AV Control Interface | Touch panel for room switching, volume, source selection |\n| Lecture Capture Unit | Camera + mic array for automatic recording and streaming |\n| Distributed Audio | Ceiling speakers, hearing loop (ADA compliance) |\n\n---\n\n#### L5.b.3: Laboratory Equipment & Research Infrastructure (Teaching Labs)\n\nDiscipline-specific bench equipment used in undergraduate and graduate teaching laboratories.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Thermo Fisher (life sciences, chemistry) | ~30% | MEDIUM |\n| Agilent / Waters (analytical instruments) | ~20% | MEDIUM |\n| Specialty/discipline vendors (physics, engineering) | ~35% | LOW |\n| Simulation software (MATLAB, Ansys) | ~15% | MEDIUM |\n\n| L4 Subsystem | Description |\n|---|---|\n| Analytical Instrument | Spectrometers, centrifuges, PCR machines, microscopes |\n| Fume Hood / Safety Cabinet | Chemical containment, biological safety cabinets (BSL-II) |\n| Lab Data Acquisition | Sensors, DAQ boards, oscilloscopes, LabVIEW systems |\n| Emergency Safety Equipment | Eyewash stations, emergency shower, fire extinguisher (lab-specific) |\n\n---"
+    },
+    {
+      "title": "L6c — Research & Scholarship",
+      "content": "*Activated primarily for Research Universities (R1/R2) and some Teaching Universities (M1). Minimal activation for Liberal Arts Colleges, Community Colleges, and Professional Schools.*\n\n### L5 Systems under L6c\n\n#### L5.c.1: Research Lab & Instrumentation\n\nMajor equipment used in funded research programs. Vendor landscape is highly discipline-specific.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Thermo Fisher Scientific | ~25% | LOW |\n| MilliporeSigma / Merck | ~20% | LOW |\n| Agilent / Waters / Bruker | ~20% | LOW |\n| Specialty/custom-built equipment | ~35% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Primary Research Instrument | MRI, electron microscope, mass spectrometer, wind tunnel (domain-specific) |\n| Sample / Materials Handling | Freezers (-80°C), liquid nitrogen dewars, clean room equipment |\n| Environmental Controls | Temperature, humidity, vibration isolation for instrument integrity |\n| Lab Safety & Emergency Monitoring | Fume extraction, gas detection, emergency shutoff |\n\n---\n\n#### L5.c.2: Research Administration & Compliance Platform\n\nManages grant lifecycle, IRB/IACUC protocols, export controls, and sponsored programs accounting.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Kuali Research | ~25% | MEDIUM |\n| Huron / Click Commerce | ~20% | MEDIUM |\n| InfoEd Global | ~20% | MEDIUM |\n| Cayuse | ~15% | MEDIUM |\n| In-house / other | ~20% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Pre-Award Proposal Management | Budget templates, sponsor portal submission, routing/approval |\n| IRB / IACUC Protocol Tracking | Protocol submission, review board routing, compliance logging |\n| Post-Award Financial Tracking | Grant accounting, effort reporting, indirect cost recovery |\n| Export Control Screening | OFAC/EAR/ITAR screening for foreign national access to research areas |\n\n---"
+    },
+    {
+      "title": "L6d — Student Support & Campus Life",
+      "content": "### L5 Systems under L6d\n\n#### L5.d.1: Residence Life & Housing Management\n\nManages student housing assignments, contracts, maintenance requests, and residential programming.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| StarRez | ~35% | MEDIUM |\n| Adirondack Solutions | ~20% | MEDIUM |\n| eRezLife | ~15% | MEDIUM |\n| Oracle / Ellucian housing module | ~15% | MEDIUM |\n| Other | ~15% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Room Assignment Engine | Preference matching, lottery, contract workflow |\n| Maintenance Request Module | Work order submission, tracking, resolution logging |\n| Residential Access Integration | Door access credentials linked to room assignment |\n| Community Standards & Incident Logging | Conduct case management, RA reporting |\n\n---\n\n#### L5.d.2: Campus Health & Counseling System\n\nElectronic health records for student health services and counseling center case management.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Medicat | ~35% | MEDIUM |\n| Point and Click Solutions | ~20% | MEDIUM |\n| Titanium Schedule (counseling) | ~20% | MEDIUM |\n| Other EHR | ~25% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Electronic Health Record | SOAP notes, immunization records, prescription management |\n| Appointment Scheduling | Provider calendars, self-service booking portal |\n| Counseling Case Management | Session notes, treatment plans, crisis flags, referral tracking |\n| Insurance & Billing | Student health insurance verification, claims management |\n\n---"
+    },
+    {
+      "title": "L6e — Assessment, Credentialing & Graduation",
+      "content": "### L5 Systems under L6e\n\n#### L5.e.1: Degree Audit & Academic Progress System\n\nValidates credit completion against degree requirements and generates graduation eligibility confirmation.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Ellucian Degree Works | ~45% | MEDIUM |\n| Stellic | ~15% | MEDIUM |\n| Registered.com / Ad Astra | ~10% | MEDIUM |\n| SIS-native module | ~30% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Degree Requirements Engine | Requirement blocks, exception workflow, transfer credit mapping |\n| What-If / Course Planner | Student-facing scenario planning for major changes |\n| Graduation Application Processing | Intent to graduate form, diploma name verification, commencement registration |\n\n---\n\n#### L5.e.2: Exam Integrity & Assessment Platform\n\nProctoring (remote and in-person), high-stakes assessment delivery, and academic integrity enforcement.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Respondus LockDown Browser | ~40% | MEDIUM |\n| ExamSoft | ~20% | MEDIUM |\n| Honorlock / Proctorio | ~20% | MEDIUM |\n| In-person proctoring only | ~20% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Remote Proctoring Engine | Live or AI-based video monitoring, browser lockdown |\n| Plagiarism Detection | Turnitin, iThenticate — submission comparison against source corpus |\n| Secure Browser / Kiosk | Exam terminal lockdown for in-person computer-based testing |\n\n---"
+    },
+    {
+      "title": "L6-H1 — Campus Safety, Security & Emergency Management (H)",
+      "content": "*Horizontal: runs across ALL core L6 steps. Every process step depends on a safe, legally compliant, continuously monitored physical environment. NFPA 101 Life Safety Code and IBC Chapter 10 (means of egress) apply universally. Clery Act requires annual security reporting. **Türwächter entry point is at L5.h1.2 Emergency Exit Alarm Guards.***\n\n### L5 Systems under L6-H1\n\n#### L5.h1.1: Campus Access Control System\n\nElectronic and mechanical credential-based access management for buildings, labs, and restricted zones across the full campus.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| ASSA ABLOY (Aperio, Sargent) | ~25% | MEDIUM |\n| Allegion / Schlage (AD-series, NDE) | ~22% | MEDIUM |\n| dormakaba (Saflok, Ambiance) | ~18% | MEDIUM |\n| Lenel / HID Global (ProAccess) | ~15% | MEDIUM |\n| Johnson Controls (Tyco C-CURE) | ~12% | MEDIUM |\n| Other / legacy | ~8% | LOW |\n\n*Source: [Campus Safety Magazine 2024 Access Control Survey](https://www.campussafetymagazine.com/insights/2025-access-control-predictions/164974/); [ASSA ABLOY DSS Campus Security](https://www.assaabloydss.com/en/solutions/solutions-by-market/education/securing-your-college-campus)*\n\n| L4 Subsystem | Description |\n|---|---|\n| Electronic Lock Hardware | Electric strikes, magnetic locks, electromechanical mortise locks; door hardware for each access point |\n| Card / Mobile Credential Reader | Proximity card (125 kHz / 13.56 MHz), mobile BLE credential, biometric reader |\n| Door Controller / Panel | Embedded controller managing request-to-exit, lock/unlock scheduling, audit log |\n| Access Control Management Software | Credential database, zone provisioning, real-time event log, badge issuance |\n\n---\n\n#### L5.h1.2: Emergency Exit Alarm Guards — **Türwächter Entry Point**\n\nSurface-mounted mechanical guard devices that prevent unauthorized use of emergency exit doors while maintaining EN 179 / EN 1125 single-motion escape capability and (in IoT variants) broadcasting door-open and alarm events to centralized campus monitoring. Installed on existing door handles — no structural modification required.\n\n**Product fit:** GfS Türwächter (Exit Control 179/1125 with IoT) competes at this L5 position. Architecture distance = 2 (standard campus doors, standard fire codes, retrofit-compatible).\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| GfS Exit Control 179/1125 (mechanical + IoT) | ~35% | LOW |\n| dormakaba SafeRoute / PaniRoute (exit alarm) | ~25% | LOW |\n| GEZE SecuLogic (electronic exit control) | ~15% | LOW |\n| Allegion Precision / Von Duprin (alarmed exit) | ~15% | LOW |\n| Basic door prop alarms (Detex, Seco-Larm) | ~10% | LOW |\n\n*Source: Expert inference — no published market share exists for this product sub-category. Confidence LOW. Shares are best-estimate placeholders.*\n\n| L4 Subsystem | Description |\n|---|---|\n| Mechanical Guard Housing | Spring-loaded enclosure mounted over door handle; physically blocks handle depression in locked state |\n| Alarm Horn | Piezoelectric 95 dB horn mechanically triggered on guard swing — no electrical power required for activation |\n| Wireless Transmitter | 868.3 MHz EasyWave radio module; broadcasts guard-state, alarm, and battery events to receivers up to 30 m (with repeater: 60 m) |\n| Battery & Power Management | 9V replaceable block battery; battery status monitoring (optional variant); IoT module draws 9–35 mA during TX |\n| Key Override Cylinder | Profile half-cylinder for authorized bypass without alarm trigger |\n\n---\n\n#### L5.h1.3: Video Surveillance & CCTV\n\nIP camera networks providing continuous visual monitoring of campus perimeter, building entries, parking, and interior common areas. Integrated with Video Management Software (VMS) for recording, search, and AI-based analytics.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Genetec Security Center VMS | ~28% | MEDIUM |\n| Milestone Systems XProtect | ~22% | MEDIUM |\n| Axis Communications (cameras + VMS) | ~20% | MEDIUM |\n| Avigilon (Motorola Solutions) | ~15% | MEDIUM |\n| Hanwha Vision | ~10% | MEDIUM |\n| Other | ~5% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| IP Camera (Fixed / PTZ) | Indoor dome, outdoor varifocal, license plate capture, fisheye panoramic |\n| Network Video Recorder (NVR) | On-premise storage; typically 30–90 day retention per campus policy |\n| Video Management Software | Live view, motion detection zones, event-triggered playback, VN/access system correlation |\n| AI Video Analytics Engine | Person detection, object loitering, crowd density, face recognition (where permissible) |\n\n---\n\n#### L5.h1.4: Fire Detection & Alarm System\n\nSmoke, heat, and CO detection network with voice evacuation capability. Required by NFPA 72 and NFPA 101 for all educational occupancies. Triggers automatic door unlock on activated exits (overrides any access control hold).\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Notifier / Honeywell Life Safety | ~28% | MEDIUM |\n| Siemens (Cerberus / Desigo Fire) | ~22% | MEDIUM |\n| Johnson Controls (Simplex) | ~20% | MEDIUM |\n| EST / GE / UTC (legacy) | ~15% | MEDIUM |\n| Bosch Fire Alarm Systems | ~10% | MEDIUM |\n| Other | ~5% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Smoke / Heat Detector | Addressable photoelectric, ionization, or heat-of-rate-rise detector per room/zone |\n| Pull Station / Manual Call Point | Wall-mounted manual trigger; tested annually per NFPA 72 |\n| Fire Alarm Control Panel (FACP) | Central processor; zone mapping, event logging, monitoring center relay |\n| Voice Evacuation Amplifier | Intelligible emergency voice instructions per IBC and NFPA 72 |\n\n---\n\n#### L5.h1.5: Mass Notification & Emergency Communication System\n\nMulti-channel emergency alerting — Clery Act mandates timely warning to the campus community. Channels: text/email, outdoor siren, desktop alert, digital signage, PA, social media.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Rave Mobile Safety | ~30% | MEDIUM |\n| Motorola Solutions (Noggin / Resolver) | ~20% | MEDIUM |\n| Omnilert / AlertMedia | ~20% | MEDIUM |\n| Federal Signal (outdoor siren) | ~15% | MEDIUM |\n| Other | ~15% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Outdoor Warning Siren | 360° speaker array; tested monthly; covers outdoor assembly areas |\n| Opt-In Alert Database | Student/staff contact records; segmentation by building/zone/cohort |\n| Digital Signage Override Interface | Emergency message injection to all campus displays |\n| Emergency Operations Center (EOC) Console | Incident command interface; multi-channel activation dashboard |\n\n---\n\n#### L5.h1.6: Physical Security Management Platform (PSIM / GSOC)\n\nUnified software integrating access control, surveillance, fire alarm, and emergency communication event feeds into a single campus security operations view.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Lenel OnGuard | ~28% | MEDIUM |\n| Genetec Security Center | ~25% | MEDIUM |\n| Software House C•CURE 9000 | ~18% | MEDIUM |\n| Avigilon Control Center | ~15% | MEDIUM |\n| Milestone XProtect (VMS-led PSIM) | ~10% | MEDIUM |\n| Other | ~4% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Unified Event Feed | Aggregated alarm log from access control, fire, CCTV, and emergency exit monitors |\n| GIS / Campus Map Interface | Building floor plans with real-time device status overlay |\n| Incident Case Management | Clery Act incident logging, investigation notes, reporting workflow |\n| API Integration Layer | REST/SOAP bridges to BMS, emergency notification, IT ticketing |\n\n---"
+    },
+    {
+      "title": "L6-H2 — Facilities & Physical Plant Management (H)",
+      "content": "### L5 Systems under L6-H2\n\n#### L5.h2.1: Building Management System (BMS)\n\nCentralized HVAC, electrical, and building automation control. In larger universities, the BMS is also the integration hub for fire alarm and access control event feeds.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Siemens Desigo CC | ~25% | MEDIUM |\n| Johnson Controls Metasys | ~22% | MEDIUM |\n| Honeywell Building Suite | ~20% | MEDIUM |\n| Schneider Electric EcoStruxure | ~15% | MEDIUM |\n| Delta Controls / other | ~18% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| HVAC Automation Controller | VAV, AHU, chiller/boiler sequencing; zone temperature setpoints |\n| Lighting & Occupancy Control | Daylight harvesting, occupancy-triggered lighting, energy scheduling |\n| Utility Metering | Submetering for electricity, steam, chilled water, gas per building |\n| BMS-to-Access Integration | Door unlock relay from BMS on fire alarm; occupancy data from access control |\n\n---\n\n#### L5.h2.2: Computerized Maintenance Management System (CMMS)\n\nWork order management, preventive maintenance scheduling, and asset lifecycle tracking for all campus buildings and infrastructure.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| IBM Maximo | ~25% | MEDIUM |\n| Famis360 / Accruent | ~20% | MEDIUM |\n| ArchiBus / ARCHIBUS | ~18% | MEDIUM |\n| Planon | ~15% | MEDIUM |\n| Infor EAM / Other | ~22% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Work Order Engine | Reactive and preventive work orders; technician dispatch; labor tracking |\n| Asset Registry | Equipment nameplate data, warranty, inspection history, depreciation |\n| Preventive Maintenance Scheduler | Time-based and meter-based PM triggers; NFPA 101 inspection reminders |\n| Space Management Module | Room inventory, occupancy tracking, lease management |\n\n---"
+    },
+    {
+      "title": "L6-H3 — IT & Digital Infrastructure (H)",
+      "content": "### L5 Systems under L6-H3\n\n#### L5.h3.1: Campus Network Infrastructure\n\nWired and wireless LAN/WAN for all campus buildings. Backbone for access control, surveillance, BMS, and all instructional technologies.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Cisco (Catalyst / Meraki) | ~40% | MEDIUM |\n| HPE Aruba | ~28% | MEDIUM |\n| Juniper Networks | ~15% | MEDIUM |\n| Extreme Networks | ~10% | MEDIUM |\n| Other | ~7% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Core / Distribution Switch | Layer 3 routing; redundant uplinks; VLAN segmentation for security OT |\n| WiFi Access Point | 802.11ax (Wi-Fi 6/6E); building coverage for mobile credentials and IoT devices |\n| Network Access Control (NAC) | Device registration, 802.1X, guest network isolation |\n| SD-WAN / WAN Gateway | Inter-campus connectivity; cloud breakout for SaaS platforms |\n\n---\n\n#### L5.h3.2: Identity & Access Management (IAM)\n\nCentral directory and credential management for all students, staff, and faculty. Federated with physical access control credentialing.\n\n| Alternative | Market Share | Confidence |\n|---|---|---|\n| Microsoft Entra ID (Azure AD) | ~50% | MEDIUM |\n| Google Workspace for Education | ~28% | MEDIUM |\n| Okta | ~12% | MEDIUM |\n| Shibboleth (InCommon federation) | ~8% | MEDIUM |\n| Other | ~2% | LOW |\n\n| L4 Subsystem | Description |\n|---|---|\n| Directory Service | Centralized user provisioning; LDAP / SCIM sync to building access control |\n| Single Sign-On (SSO) Engine | SAML/OIDC federation across LMS, SIS, ERP, and campus portals |\n| Multi-Factor Authentication (MFA) | Required for staff and faculty; opt-in for students; FIDO2 passkey adoption growing |\n| Lifecycle Management | Automated deprovisioning on graduation/departure; access revocation |\n\n---"
+    },
+    {
+      "title": "Output Type Activation Matrix",
+      "content": "| L6 Node | Research Univ. (R1/R2) | Teaching Univ. (M1/M2) | Liberal Arts College | Community College | Professional School |\n|---|---|---|---|---|---|\n| **L6a Admissions & Enrollment** | ✓ | ✓ | ✓ | ✓ | ✓ |\n| **L6b Academic Instruction** | ✓ | ✓ | ✓ | ✓ | ✓ |\n| **L6c Research & Scholarship** | ✓ | ✓ (limited) | — | — | ✓ (limited) |\n| **L6d Student Support & Campus Life** | ✓ | ✓ | ✓ | ✓ (limited) | ✓ (limited) |\n| **L6e Assessment & Credentialing** | ✓ | ✓ | ✓ | ✓ | ✓ |\n| **L6-H1 Campus Safety (H)** | ✓ | ✓ | ✓ | ✓ | ✓ |\n| **L6-H2 Facilities & Physical Plant (H)** | ✓ | ✓ | ✓ | ✓ | ✓ |\n| **L6-H3 IT & Digital Infrastructure (H)** | ✓ | ✓ | ✓ | ✓ | ✓ |\n| **L6-H4 Administrative & Compliance (H)** | ✓ | ✓ | ✓ | ✓ | ✓ |\n\n**Read a column:** Community Colleges skip L6c (Research) and have limited L6d activation (fewer residential students). **Read a row:** L6-H1 Campus Safety is universal — every output type is subject to NFPA 101 means of egress requirements and IBC Chapter 10 exit standards, regardless of institution size or type.\n\n---"
+    },
+    {
+      "title": "Product Fit: Türwächter in the University VN",
+      "content": "| Field | Value |\n|---|---|\n| **VN entry level** | L5 |\n| **Entry node** | Emergency Exit Alarm Guards (L5.h1.2 under L6-H1) |\n| **Architecture distance** | 2 |\n| **Already used in market** | true |\n| **Türwächter L4 anchor** | Mechanical Guard Housing, Alarm Horn, Wireless Transmitter, Battery & Power Management, Key Override Cylinder |\n| **Applicable standards** | NFPA 101 (Life Safety Code) — means of egress; IBC Chapter 10; Clery Act (campus security reporting); EN 179 / EN 1125 (product certifications) |\n| **Key constraint fit** | Retrofit-only surface mount (C5) is a STRENGTH in university market: 1/3 of campus buildings are 50+ years old; no-drill installation avoids costly renovation permits. EasyWave protocol lock-in (C6) is the primary friction: campus security platforms (Lenel, Genetec) expect IP-native integration. |\n| **Buyer profile** | Director of Public Safety / Campus Security; Facilities Director; Procurement through state or institutional bidding process (public universities: competitive bid required for purchases >$25K threshold) |\n| **Sales motion** | Specify-and-install via campus security integrator; or direct to facilities department for pilot (20–50 door retrofit in one building) |\n| **Unique advantage** | No-drill surface mount preserves historic building fabric; battery-powered operation avoids conduit runs through 50-year-old walls; 95 dB alarm triggers on guardian swing without power — satisfies NFPA 101 fail-safe requirements |\n| **Gap to close** | Campus PSIM integration (Lenel / Genetec gateway required); campus-scale wireless coverage for large lecture/research buildings (repeater chain); US market entry (product currently CE-certified; UL listing needed for US campus procurement) |\n\n---"
+    },
+    {
+      "title": "QA Self-Check",
+      "content": "| # | Check | Status |\n|---|---|---|\n| Q1 | CFJ is industry-level — no product or technology reference | PASS — CFJ describes higher education delivery broadly |\n| Q2 | No orphan nodes — all units have valid parent references | PASS |\n| Q3 | Valid level transitions — L7→L6, L6→L5, L5→L4 throughout | PASS |\n| Q4 | L4 children per L5 ≥ 2 | PASS — all L5 nodes have 3–5 L4 subsystems |\n| Q5 | No solution-specific L7 or L6 names | PASS — L7 and L6 are sector-level descriptions, not technology-specific |\n| Q6 | Three-question naming test (spot-check: \"Alarm Horn\", \"Degree Audit Engine\", \"Network Video Recorder\", \"Grant Management Platform\") | PASS — all are industry-standard terms; \"system\" wrapper removed where not domain term |\n| Q7 | Unit count in range (15–60) | PASS — 36 named units across L7/L6/L5/L4 levels; within 20–40 target range |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"naics_code\": \"611310\",\n  \"naics_title\": \"Colleges, Universities, and Professional Schools\",\n  \"cfj_statement\": \"Deliver accredited higher education programs and credentials to enrolled students within a safe, legally compliant, and research-capable campus environment\",\n  \"top_level\": \"L7\",\n  \"l7_solution\": \"Higher Education Delivery Ecosystem\",\n  \"product_fit\": {\n    \"entry_level\": \"L5\",\n    \"entry_node\": \"Emergency Exit Alarm Guards\",\n    \"parent_l6\": \"L6-H1 — Campus Safety, Security & Emergency Management (H)\",\n    \"product_architecture_distance\": 2,\n    \"already_uses_technology\": true,\n    \"market_priority\": \"HIGH\",\n    \"l4_anchor_subsystems\": [\n      \"Mechanical Guard Housing\",\n      \"Alarm Horn\",\n      \"Wireless Transmitter\",\n      \"Battery & Power Management\",\n      \"Key Override Cylinder\"\n    ]\n  },\n  \"output_types\": [\n    \"Research University (R1/R2 — doctoral, extensive research)\",\n    \"Teaching-Focused University (M1/M2 — master's, mixed)\",\n    \"Liberal Arts College (Bac — undergraduate-only)\",\n    \"Community / Junior College (associate degrees, certificates)\",\n    \"Professional / Technical School (law, medicine, engineering, vocational)\"\n  ],\n  \"units\": [\n    { \"name\": \"Higher Education Delivery Ecosystem\", \"level\": \"L7\", \"bom_standard\": \"Moore 1993\", \"parent_name\": \"ROOT\" },\n    { \"name\": \"Admissions & Enrollment\", \"level\": \"L6\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Higher Education Delivery Ecosystem\" },\n    { \"name\": \"Academic Instruction & Curriculum Delivery\", \"level\": \"L6\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Higher Education Delivery Ecosystem\" },\n    { \"name\": \"Research & Scholarship\", \"level\": \"L6\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Higher Education Delivery Ecosystem\" },\n    { \"name\": \"Student Support & Campus Life\", \"level\": \"L6\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Higher Education Delivery Ecosystem\" },\n    { \"name\": \"Assessment, Credentialing & Graduation\", \"level\": \"L6\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Higher Education Delivery Ecosystem\" },\n    { \"name\": \"Campus Safety, Security & Emergency Management\", \"level\": \"L6\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Higher Education Delivery Ecosystem\" },\n    { \"name\": \"Facilities & Physical Plant Management\", \"level\": \"L6\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Higher Education Delivery Ecosystem\" },\n    { \"name\": \"IT & Digital Infrastructure\", \"level\": \"L6\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Higher Education Delivery Ecosystem\" },\n    { \"name\": \"Administrative, Finance & Compliance\", \"level\": \"L6\", \"bom_standard\": \"Maier 1998\", \"parent_name\": \"Higher Education Delivery Ecosystem\" },\n    { \"name\": \"Admissions CRM & Application Platform\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Admissions & Enrollment\" },\n    { \"name\": \"Student Information System\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Admissions & Enrollment\" },\n    { \"name\": \"Learning Management System\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Academic Instruction & Curriculum Delivery\" },\n    { \"name\": \"Classroom AV & Active Learning Technology\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Academic Instruction & Curriculum Delivery\" },\n    { \"name\": \"Laboratory Equipment & Research Infrastructure\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Academic Instruction & Curriculum Delivery\" },\n    { \"name\": \"Research Lab & Instrumentation\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Research & Scholarship\" },\n    { \"name\": \"Research Administration & Compliance Platform\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Research & Scholarship\" },\n    { \"name\": \"Residence Life & Housing Management\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Student Support & Campus Life\" },\n    { \"name\": \"Campus Health & Counseling System\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Student Support & Campus Life\" },\n    { \"name\": \"Degree Audit & Academic Progress System\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Assessment, Credentialing & Graduation\" },\n    { \"name\": \"Exam Integrity & Assessment Platform\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Assessment, Credentialing & Graduation\" },\n    { \"name\": \"Campus Access Control System\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Campus Safety, Security & Emergency Management\" },\n    { \"name\": \"Emergency Exit Alarm Guards\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Campus Safety, Security & Emergency Management\" },\n    { \"name\": \"Video Surveillance & CCTV\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Campus Safety, Security & Emergency Management\" },\n    { \"name\": \"Fire Detection & Alarm System\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Campus Safety, Security & Emergency Management\" },\n    { \"name\": \"Mass Notification & Emergency Communication System\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Campus Safety, Security & Emergency Management\" },\n    { \"name\": \"Physical Security Management Platform\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Campus Safety, Security & Emergency Management\" },\n    { \"name\": \"Building Management System\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Facilities & Physical Plant Management\" },\n    { \"name\": \"Computerized Maintenance Management System\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"Facilities & Physical Plant Management\" },\n    { \"name\": \"Campus Network Infrastructure\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"IT & Digital Infrastructure\" },\n    { \"name\": \"Identity & Access Management\", \"level\": \"L5\", \"bom_standard\": \"ISO 15288\", \"parent_name\": \"IT & Digital Infrastructure\" },\n    { \"name\": \"Mechanical Guard Housing\", \"level\": \"L4\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Emergency Exit Alarm Guards\" },\n    { \"name\": \"Alarm Horn\", \"level\": \"L4\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Emergency Exit Alarm Guards\" },\n    { \"name\": \"Wireless Transmitter\", \"level\": \"L4\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Emergency Exit Alarm Guards\" },\n    { \"name\": \"Battery & Power Management\", \"level\": \"L4\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Emergency Exit Alarm Guards\" },\n    { \"name\": \"Key Override Cylinder\", \"level\": \"L4\", \"bom_standard\": \"INCOSE\", \"parent_name\": \"Emergency Exit Alarm Guards\" }\n  ]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**NAICS code**",
+          "Value": "611310 — Colleges, Universities, and Professional Schools"
+        },
+        {
+          "Field": "**CFJ**",
+          "Value": "Deliver accredited higher education programs and credentials to enrolled students within a safe, legally compliant, and research-capable campus environment"
+        },
+        {
+          "Field": "**Output types**",
+          "Value": "Research University (Carnegie R1/R2 — doctoral, extensive research); Teaching-Focused University (M1/M2 — master's, mixed teaching/research); Liberal Arts College (Bac — undergraduate-only); Community / Junior College (associate degrees, certificates); Professional / Technical School (law, medicine, engineering, vocational)"
+        },
+        {
+          "Field": "**Hierarchy**",
+          "Value": "Process VN only (L7 → L4). No Product BOM — output is an educational outcome and credential."
+        },
+        {
+          "Field": "**Scale**",
+          "Value": "~5,300 colleges and universities in the US; ~19.7M students enrolled; 1/3 of buildings are 50+ years old; national deferred maintenance backlog >$100B (growing at 6–8% annually)"
+        },
+        {
+          "Field": "**Key operators**",
+          "Value": "Public research universities (Big Ten, UC System), private liberal arts colleges (NESCAC, LAC networks), community college districts, for-profit professional schools (Strayer, DeVry)"
+        },
+        {
+          "Field": "**Security market size**",
+          "Value": "Global school/campus security: USD 4.2B (2025). Higher education segment ~35% of total. Access control global market: USD 10.62B (2025), CAGR 8.3%. Panic & Emergency Exit Devices globally: USD 3.9B (2025). University building age (avg. 50+ years) is the primary retrofit demand driver."
+        },
+        {
+          "Field": "**Architecture distance**",
+          "Value": "2 (Rank 8 of 15 markets) — product fits standard campus doors without hardware modification; adaptations limited to campus security platform integration and range for large buildings"
+        },
+        {
+          "Field": "**Market priority**",
+          "Value": "HIGH"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L6 ID",
+        "Type",
+        "Name",
+        "Job Family",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L6 ID": "**L6a**",
+          "Type": "Core",
+          "Name": "Admissions & Enrollment",
+          "Job Family": "Recruit and matriculate qualified applicants into accredited degree programs",
+          "Description": "Prospecting, application review, financial aid packaging, enrollment confirmation, student record creation, cohort planning"
+        },
+        {
+          "L6 ID": "**L6b**",
+          "Type": "Core",
+          "Name": "Academic Instruction & Curriculum Delivery",
+          "Job Family": "Deliver accredited coursework and degree-program learning to enrolled students",
+          "Description": "Classroom instruction, seminars, online/hybrid delivery, laboratory sessions, studio and clinical instruction, academic advising"
+        },
+        {
+          "L6 ID": "**L6c**",
+          "Type": "Core",
+          "Name": "Research & Scholarship",
+          "Job Family": "Generate, validate, and disseminate new knowledge funded by grants and institutional resources",
+          "Description": "Grant-funded lab research, publication, IP development, graduate training, research compliance (IRB, IACUC)"
+        },
+        {
+          "L6 ID": "**L6d**",
+          "Type": "Core",
+          "Name": "Student Support & Campus Life",
+          "Job Family": "Sustain student retention, wellbeing, and social development throughout enrollment",
+          "Description": "Residence life, counseling, health services, career advising, disability services, dining, recreational facilities"
+        },
+        {
+          "L6 ID": "**L6e**",
+          "Type": "Core",
+          "Name": "Assessment, Credentialing & Graduation",
+          "Job Family": "Evaluate academic performance and confer accredited degrees, certificates, and credentials",
+          "Description": "Grading, degree audit, registrar services, commencement, transcript issuance, alumni records"
+        },
+        {
+          "L6 ID": "**L6-H1**",
+          "Type": "Horizontal",
+          "Name": "Campus Safety, Security & Emergency Management (H)",
+          "Job Family": "Protect all occupants and property across all campus operations while maintaining regulatory-compliant evacuation readiness at all times",
+          "Description": "Access control, emergency exit monitoring, surveillance, fire detection, mass notification, lockdown systems, Clery Act compliance documentation"
+        },
+        {
+          "L6 ID": "**L6-H2**",
+          "Type": "Horizontal",
+          "Name": "Facilities & Physical Plant Management (H)",
+          "Job Family": "Maintain all campus buildings and infrastructure to code and operational readiness",
+          "Description": "HVAC, electrical, plumbing, custodial, grounds, deferred maintenance programs, ADA compliance, energy management"
+        },
+        {
+          "L6 ID": "**L6-H3**",
+          "Type": "Horizontal",
+          "Name": "IT & Digital Infrastructure (H)",
+          "Job Family": "Provide reliable network, device, software, and data infrastructure for all core steps",
+          "Description": "Campus LAN/WiFi, data centers, identity management, ERP, cybersecurity, LMS and SIS platforms"
+        },
+        {
+          "L6 ID": "**L6-H4**",
+          "Type": "Horizontal",
+          "Name": "Administrative, Finance & Compliance (H)",
+          "Job Family": "Ensure legal, accreditation, financial, and HR compliance across all university operations",
+          "Description": "HR/payroll, budget management, accreditation reporting, legal affairs, board governance, insurance, Title IX compliance"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Slate (Technolutions)",
+          "Market Share": "~55%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Salesforce Education Cloud",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "TargetX / Campus Management",
+          "Market Share": "~12%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Hobsons / Liaison",
+          "Market Share": "~8%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "In-house / other",
+          "Market Share": "~5%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Application Review Engine",
+          "Description": "Holistic review workflow, rubric scoring, committee routing"
+        },
+        {
+          "L4 Subsystem": "Prospect & Inquiry Tracker",
+          "Description": "Lead capture, communication cadences, yield prediction"
+        },
+        {
+          "L4 Subsystem": "Financial Aid Packaging Module",
+          "Description": "Institutional aid calculation, federal aid integration (FAFSA/CPS)"
+        },
+        {
+          "L4 Subsystem": "Enrollment Confirmation Portal",
+          "Description": "Deposit collection, housing intent, orientation sign-up"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Ellucian Banner",
+          "Market Share": "~35%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Oracle PeopleSoft Campus Solutions",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Workday Student",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Ellucian Colleague",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Unit4 Student / Other",
+          "Market Share": "~15%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Academic Records & Registration",
+          "Description": "Course registration, grade posting, transcript generation"
+        },
+        {
+          "L4 Subsystem": "Financial Aid & Billing",
+          "Description": "Aid disbursement, billing, payment plan management"
+        },
+        {
+          "L4 Subsystem": "IPEDS / Federal Reporting Feed",
+          "Description": "Annual federal reporting, enrollment census, completion stats"
+        },
+        {
+          "L4 Subsystem": "Degree Progress Tracker",
+          "Description": "Cumulative credit audit, graduation eligibility"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Canvas (Instructure)",
+          "Market Share": "~37%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Blackboard / Anthology",
+          "Market Share": "~28%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Moodle",
+          "Market Share": "~18%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "D2L Brightspace",
+          "Market Share": "~12%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Other",
+          "Market Share": "~5%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Course Content Repository",
+          "Description": "Syllabi, readings, video lectures, module sequencing"
+        },
+        {
+          "L4 Subsystem": "Assessment & Gradebook Engine",
+          "Description": "Quizzes, assignments, rubric grading, grade sync to SIS"
+        },
+        {
+          "L4 Subsystem": "Collaborative & Discussion Tools",
+          "Description": "Forums, group workspaces, peer review, live virtual classrooms"
+        },
+        {
+          "L4 Subsystem": "Analytics & Engagement Tracker",
+          "Description": "Early alert flags, login frequency, assignment completion rates"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Crestron (AV control + display)",
+          "Market Share": "~30%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Extron (AV routing + display)",
+          "Market Share": "~25%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "SMART / Cisco interactive display",
+          "Market Share": "~25%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Projector-based (Epson, Panasonic)",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Other / legacy",
+          "Market Share": "~5%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Display Panel / Projector",
+          "Description": "75–110\" interactive flat panel or ceiling projector"
+        },
+        {
+          "L4 Subsystem": "AV Control Interface",
+          "Description": "Touch panel for room switching, volume, source selection"
+        },
+        {
+          "L4 Subsystem": "Lecture Capture Unit",
+          "Description": "Camera + mic array for automatic recording and streaming"
+        },
+        {
+          "L4 Subsystem": "Distributed Audio",
+          "Description": "Ceiling speakers, hearing loop (ADA compliance)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Thermo Fisher (life sciences, chemistry)",
+          "Market Share": "~30%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Agilent / Waters (analytical instruments)",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Specialty/discipline vendors (physics, engineering)",
+          "Market Share": "~35%",
+          "Confidence": "LOW"
+        },
+        {
+          "Alternative": "Simulation software (MATLAB, Ansys)",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Analytical Instrument",
+          "Description": "Spectrometers, centrifuges, PCR machines, microscopes"
+        },
+        {
+          "L4 Subsystem": "Fume Hood / Safety Cabinet",
+          "Description": "Chemical containment, biological safety cabinets (BSL-II)"
+        },
+        {
+          "L4 Subsystem": "Lab Data Acquisition",
+          "Description": "Sensors, DAQ boards, oscilloscopes, LabVIEW systems"
+        },
+        {
+          "L4 Subsystem": "Emergency Safety Equipment",
+          "Description": "Eyewash stations, emergency shower, fire extinguisher (lab-specific)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Thermo Fisher Scientific",
+          "Market Share": "~25%",
+          "Confidence": "LOW"
+        },
+        {
+          "Alternative": "MilliporeSigma / Merck",
+          "Market Share": "~20%",
+          "Confidence": "LOW"
+        },
+        {
+          "Alternative": "Agilent / Waters / Bruker",
+          "Market Share": "~20%",
+          "Confidence": "LOW"
+        },
+        {
+          "Alternative": "Specialty/custom-built equipment",
+          "Market Share": "~35%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Primary Research Instrument",
+          "Description": "MRI, electron microscope, mass spectrometer, wind tunnel (domain-specific)"
+        },
+        {
+          "L4 Subsystem": "Sample / Materials Handling",
+          "Description": "Freezers (-80°C), liquid nitrogen dewars, clean room equipment"
+        },
+        {
+          "L4 Subsystem": "Environmental Controls",
+          "Description": "Temperature, humidity, vibration isolation for instrument integrity"
+        },
+        {
+          "L4 Subsystem": "Lab Safety & Emergency Monitoring",
+          "Description": "Fume extraction, gas detection, emergency shutoff"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Kuali Research",
+          "Market Share": "~25%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Huron / Click Commerce",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "InfoEd Global",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Cayuse",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "In-house / other",
+          "Market Share": "~20%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Pre-Award Proposal Management",
+          "Description": "Budget templates, sponsor portal submission, routing/approval"
+        },
+        {
+          "L4 Subsystem": "IRB / IACUC Protocol Tracking",
+          "Description": "Protocol submission, review board routing, compliance logging"
+        },
+        {
+          "L4 Subsystem": "Post-Award Financial Tracking",
+          "Description": "Grant accounting, effort reporting, indirect cost recovery"
+        },
+        {
+          "L4 Subsystem": "Export Control Screening",
+          "Description": "OFAC/EAR/ITAR screening for foreign national access to research areas"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "StarRez",
+          "Market Share": "~35%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Adirondack Solutions",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "eRezLife",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Oracle / Ellucian housing module",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Other",
+          "Market Share": "~15%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Room Assignment Engine",
+          "Description": "Preference matching, lottery, contract workflow"
+        },
+        {
+          "L4 Subsystem": "Maintenance Request Module",
+          "Description": "Work order submission, tracking, resolution logging"
+        },
+        {
+          "L4 Subsystem": "Residential Access Integration",
+          "Description": "Door access credentials linked to room assignment"
+        },
+        {
+          "L4 Subsystem": "Community Standards & Incident Logging",
+          "Description": "Conduct case management, RA reporting"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Medicat",
+          "Market Share": "~35%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Point and Click Solutions",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Titanium Schedule (counseling)",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Other EHR",
+          "Market Share": "~25%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Electronic Health Record",
+          "Description": "SOAP notes, immunization records, prescription management"
+        },
+        {
+          "L4 Subsystem": "Appointment Scheduling",
+          "Description": "Provider calendars, self-service booking portal"
+        },
+        {
+          "L4 Subsystem": "Counseling Case Management",
+          "Description": "Session notes, treatment plans, crisis flags, referral tracking"
+        },
+        {
+          "L4 Subsystem": "Insurance & Billing",
+          "Description": "Student health insurance verification, claims management"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Ellucian Degree Works",
+          "Market Share": "~45%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Stellic",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Registered.com / Ad Astra",
+          "Market Share": "~10%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "SIS-native module",
+          "Market Share": "~30%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Degree Requirements Engine",
+          "Description": "Requirement blocks, exception workflow, transfer credit mapping"
+        },
+        {
+          "L4 Subsystem": "What-If / Course Planner",
+          "Description": "Student-facing scenario planning for major changes"
+        },
+        {
+          "L4 Subsystem": "Graduation Application Processing",
+          "Description": "Intent to graduate form, diploma name verification, commencement registration"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Respondus LockDown Browser",
+          "Market Share": "~40%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "ExamSoft",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Honorlock / Proctorio",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "In-person proctoring only",
+          "Market Share": "~20%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Remote Proctoring Engine",
+          "Description": "Live or AI-based video monitoring, browser lockdown"
+        },
+        {
+          "L4 Subsystem": "Plagiarism Detection",
+          "Description": "Turnitin, iThenticate — submission comparison against source corpus"
+        },
+        {
+          "L4 Subsystem": "Secure Browser / Kiosk",
+          "Description": "Exam terminal lockdown for in-person computer-based testing"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "ASSA ABLOY (Aperio, Sargent)",
+          "Market Share": "~25%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Allegion / Schlage (AD-series, NDE)",
+          "Market Share": "~22%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "dormakaba (Saflok, Ambiance)",
+          "Market Share": "~18%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Lenel / HID Global (ProAccess)",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Johnson Controls (Tyco C-CURE)",
+          "Market Share": "~12%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Other / legacy",
+          "Market Share": "~8%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Electronic Lock Hardware",
+          "Description": "Electric strikes, magnetic locks, electromechanical mortise locks; door hardware for each access point"
+        },
+        {
+          "L4 Subsystem": "Card / Mobile Credential Reader",
+          "Description": "Proximity card (125 kHz / 13.56 MHz), mobile BLE credential, biometric reader"
+        },
+        {
+          "L4 Subsystem": "Door Controller / Panel",
+          "Description": "Embedded controller managing request-to-exit, lock/unlock scheduling, audit log"
+        },
+        {
+          "L4 Subsystem": "Access Control Management Software",
+          "Description": "Credential database, zone provisioning, real-time event log, badge issuance"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "GfS Exit Control 179/1125 (mechanical + IoT)",
+          "Market Share": "~35%",
+          "Confidence": "LOW"
+        },
+        {
+          "Alternative": "dormakaba SafeRoute / PaniRoute (exit alarm)",
+          "Market Share": "~25%",
+          "Confidence": "LOW"
+        },
+        {
+          "Alternative": "GEZE SecuLogic (electronic exit control)",
+          "Market Share": "~15%",
+          "Confidence": "LOW"
+        },
+        {
+          "Alternative": "Allegion Precision / Von Duprin (alarmed exit)",
+          "Market Share": "~15%",
+          "Confidence": "LOW"
+        },
+        {
+          "Alternative": "Basic door prop alarms (Detex, Seco-Larm)",
+          "Market Share": "~10%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Mechanical Guard Housing",
+          "Description": "Spring-loaded enclosure mounted over door handle; physically blocks handle depression in locked state"
+        },
+        {
+          "L4 Subsystem": "Alarm Horn",
+          "Description": "Piezoelectric 95 dB horn mechanically triggered on guard swing — no electrical power required for activation"
+        },
+        {
+          "L4 Subsystem": "Wireless Transmitter",
+          "Description": "868.3 MHz EasyWave radio module; broadcasts guard-state, alarm, and battery events to receivers up to 30 m (with repeater: 60 m)"
+        },
+        {
+          "L4 Subsystem": "Battery & Power Management",
+          "Description": "9V replaceable block battery; battery status monitoring (optional variant); IoT module draws 9–35 mA during TX"
+        },
+        {
+          "L4 Subsystem": "Key Override Cylinder",
+          "Description": "Profile half-cylinder for authorized bypass without alarm trigger"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Genetec Security Center VMS",
+          "Market Share": "~28%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Milestone Systems XProtect",
+          "Market Share": "~22%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Axis Communications (cameras + VMS)",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Avigilon (Motorola Solutions)",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Hanwha Vision",
+          "Market Share": "~10%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Other",
+          "Market Share": "~5%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "IP Camera (Fixed / PTZ)",
+          "Description": "Indoor dome, outdoor varifocal, license plate capture, fisheye panoramic"
+        },
+        {
+          "L4 Subsystem": "Network Video Recorder (NVR)",
+          "Description": "On-premise storage; typically 30–90 day retention per campus policy"
+        },
+        {
+          "L4 Subsystem": "Video Management Software",
+          "Description": "Live view, motion detection zones, event-triggered playback, VN/access system correlation"
+        },
+        {
+          "L4 Subsystem": "AI Video Analytics Engine",
+          "Description": "Person detection, object loitering, crowd density, face recognition (where permissible)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Notifier / Honeywell Life Safety",
+          "Market Share": "~28%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Siemens (Cerberus / Desigo Fire)",
+          "Market Share": "~22%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Johnson Controls (Simplex)",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "EST / GE / UTC (legacy)",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Bosch Fire Alarm Systems",
+          "Market Share": "~10%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Other",
+          "Market Share": "~5%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Smoke / Heat Detector",
+          "Description": "Addressable photoelectric, ionization, or heat-of-rate-rise detector per room/zone"
+        },
+        {
+          "L4 Subsystem": "Pull Station / Manual Call Point",
+          "Description": "Wall-mounted manual trigger; tested annually per NFPA 72"
+        },
+        {
+          "L4 Subsystem": "Fire Alarm Control Panel (FACP)",
+          "Description": "Central processor; zone mapping, event logging, monitoring center relay"
+        },
+        {
+          "L4 Subsystem": "Voice Evacuation Amplifier",
+          "Description": "Intelligible emergency voice instructions per IBC and NFPA 72"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Rave Mobile Safety",
+          "Market Share": "~30%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Motorola Solutions (Noggin / Resolver)",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Omnilert / AlertMedia",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Federal Signal (outdoor siren)",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Other",
+          "Market Share": "~15%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Outdoor Warning Siren",
+          "Description": "360° speaker array; tested monthly; covers outdoor assembly areas"
+        },
+        {
+          "L4 Subsystem": "Opt-In Alert Database",
+          "Description": "Student/staff contact records; segmentation by building/zone/cohort"
+        },
+        {
+          "L4 Subsystem": "Digital Signage Override Interface",
+          "Description": "Emergency message injection to all campus displays"
+        },
+        {
+          "L4 Subsystem": "Emergency Operations Center (EOC) Console",
+          "Description": "Incident command interface; multi-channel activation dashboard"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Lenel OnGuard",
+          "Market Share": "~28%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Genetec Security Center",
+          "Market Share": "~25%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Software House C•CURE 9000",
+          "Market Share": "~18%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Avigilon Control Center",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Milestone XProtect (VMS-led PSIM)",
+          "Market Share": "~10%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Other",
+          "Market Share": "~4%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Unified Event Feed",
+          "Description": "Aggregated alarm log from access control, fire, CCTV, and emergency exit monitors"
+        },
+        {
+          "L4 Subsystem": "GIS / Campus Map Interface",
+          "Description": "Building floor plans with real-time device status overlay"
+        },
+        {
+          "L4 Subsystem": "Incident Case Management",
+          "Description": "Clery Act incident logging, investigation notes, reporting workflow"
+        },
+        {
+          "L4 Subsystem": "API Integration Layer",
+          "Description": "REST/SOAP bridges to BMS, emergency notification, IT ticketing"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Siemens Desigo CC",
+          "Market Share": "~25%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Johnson Controls Metasys",
+          "Market Share": "~22%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Honeywell Building Suite",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Schneider Electric EcoStruxure",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Delta Controls / other",
+          "Market Share": "~18%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "HVAC Automation Controller",
+          "Description": "VAV, AHU, chiller/boiler sequencing; zone temperature setpoints"
+        },
+        {
+          "L4 Subsystem": "Lighting & Occupancy Control",
+          "Description": "Daylight harvesting, occupancy-triggered lighting, energy scheduling"
+        },
+        {
+          "L4 Subsystem": "Utility Metering",
+          "Description": "Submetering for electricity, steam, chilled water, gas per building"
+        },
+        {
+          "L4 Subsystem": "BMS-to-Access Integration",
+          "Description": "Door unlock relay from BMS on fire alarm; occupancy data from access control"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "IBM Maximo",
+          "Market Share": "~25%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Famis360 / Accruent",
+          "Market Share": "~20%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "ArchiBus / ARCHIBUS",
+          "Market Share": "~18%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Planon",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Infor EAM / Other",
+          "Market Share": "~22%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Work Order Engine",
+          "Description": "Reactive and preventive work orders; technician dispatch; labor tracking"
+        },
+        {
+          "L4 Subsystem": "Asset Registry",
+          "Description": "Equipment nameplate data, warranty, inspection history, depreciation"
+        },
+        {
+          "L4 Subsystem": "Preventive Maintenance Scheduler",
+          "Description": "Time-based and meter-based PM triggers; NFPA 101 inspection reminders"
+        },
+        {
+          "L4 Subsystem": "Space Management Module",
+          "Description": "Room inventory, occupancy tracking, lease management"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Cisco (Catalyst / Meraki)",
+          "Market Share": "~40%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "HPE Aruba",
+          "Market Share": "~28%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Juniper Networks",
+          "Market Share": "~15%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Extreme Networks",
+          "Market Share": "~10%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Other",
+          "Market Share": "~7%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Core / Distribution Switch",
+          "Description": "Layer 3 routing; redundant uplinks; VLAN segmentation for security OT"
+        },
+        {
+          "L4 Subsystem": "WiFi Access Point",
+          "Description": "802.11ax (Wi-Fi 6/6E); building coverage for mobile credentials and IoT devices"
+        },
+        {
+          "L4 Subsystem": "Network Access Control (NAC)",
+          "Description": "Device registration, 802.1X, guest network isolation"
+        },
+        {
+          "L4 Subsystem": "SD-WAN / WAN Gateway",
+          "Description": "Inter-campus connectivity; cloud breakout for SaaS platforms"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Market Share",
+        "Confidence"
+      ],
+      "rows": [
+        {
+          "Alternative": "Microsoft Entra ID (Azure AD)",
+          "Market Share": "~50%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Google Workspace for Education",
+          "Market Share": "~28%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Okta",
+          "Market Share": "~12%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Shibboleth (InCommon federation)",
+          "Market Share": "~8%",
+          "Confidence": "MEDIUM"
+        },
+        {
+          "Alternative": "Other",
+          "Market Share": "~2%",
+          "Confidence": "LOW"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4 Subsystem",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4 Subsystem": "Directory Service",
+          "Description": "Centralized user provisioning; LDAP / SCIM sync to building access control"
+        },
+        {
+          "L4 Subsystem": "Single Sign-On (SSO) Engine",
+          "Description": "SAML/OIDC federation across LMS, SIS, ERP, and campus portals"
+        },
+        {
+          "L4 Subsystem": "Multi-Factor Authentication (MFA)",
+          "Description": "Required for staff and faculty; opt-in for students; FIDO2 passkey adoption growing"
+        },
+        {
+          "L4 Subsystem": "Lifecycle Management",
+          "Description": "Automated deprovisioning on graduation/departure; access revocation"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L6 Node",
+        "Research Univ. (R1/R2)",
+        "Teaching Univ. (M1/M2)",
+        "Liberal Arts College",
+        "Community College",
+        "Professional School"
+      ],
+      "rows": [
+        {
+          "L6 Node": "**L6a Admissions & Enrollment**",
+          "Research Univ. (R1/R2)": "✓",
+          "Teaching Univ. (M1/M2)": "✓",
+          "Liberal Arts College": "✓",
+          "Community College": "✓",
+          "Professional School": "✓"
+        },
+        {
+          "L6 Node": "**L6b Academic Instruction**",
+          "Research Univ. (R1/R2)": "✓",
+          "Teaching Univ. (M1/M2)": "✓",
+          "Liberal Arts College": "✓",
+          "Community College": "✓",
+          "Professional School": "✓"
+        },
+        {
+          "L6 Node": "**L6c Research & Scholarship**",
+          "Research Univ. (R1/R2)": "✓",
+          "Teaching Univ. (M1/M2)": "✓ (limited)",
+          "Liberal Arts College": "—",
+          "Community College": "—",
+          "Professional School": "✓ (limited)"
+        },
+        {
+          "L6 Node": "**L6d Student Support & Campus Life**",
+          "Research Univ. (R1/R2)": "✓",
+          "Teaching Univ. (M1/M2)": "✓",
+          "Liberal Arts College": "✓",
+          "Community College": "✓ (limited)",
+          "Professional School": "✓ (limited)"
+        },
+        {
+          "L6 Node": "**L6e Assessment & Credentialing**",
+          "Research Univ. (R1/R2)": "✓",
+          "Teaching Univ. (M1/M2)": "✓",
+          "Liberal Arts College": "✓",
+          "Community College": "✓",
+          "Professional School": "✓"
+        },
+        {
+          "L6 Node": "**L6-H1 Campus Safety (H)**",
+          "Research Univ. (R1/R2)": "✓",
+          "Teaching Univ. (M1/M2)": "✓",
+          "Liberal Arts College": "✓",
+          "Community College": "✓",
+          "Professional School": "✓"
+        },
+        {
+          "L6 Node": "**L6-H2 Facilities & Physical Plant (H)**",
+          "Research Univ. (R1/R2)": "✓",
+          "Teaching Univ. (M1/M2)": "✓",
+          "Liberal Arts College": "✓",
+          "Community College": "✓",
+          "Professional School": "✓"
+        },
+        {
+          "L6 Node": "**L6-H3 IT & Digital Infrastructure (H)**",
+          "Research Univ. (R1/R2)": "✓",
+          "Teaching Univ. (M1/M2)": "✓",
+          "Liberal Arts College": "✓",
+          "Community College": "✓",
+          "Professional School": "✓"
+        },
+        {
+          "L6 Node": "**L6-H4 Administrative & Compliance (H)**",
+          "Research Univ. (R1/R2)": "✓",
+          "Teaching Univ. (M1/M2)": "✓",
+          "Liberal Arts College": "✓",
+          "Community College": "✓",
+          "Professional School": "✓"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**VN entry level**",
+          "Value": "L5"
+        },
+        {
+          "Field": "**Entry node**",
+          "Value": "Emergency Exit Alarm Guards (L5.h1.2 under L6-H1)"
+        },
+        {
+          "Field": "**Architecture distance**",
+          "Value": "2"
+        },
+        {
+          "Field": "**Already used in market**",
+          "Value": "true"
+        },
+        {
+          "Field": "**Türwächter L4 anchor**",
+          "Value": "Mechanical Guard Housing, Alarm Horn, Wireless Transmitter, Battery & Power Management, Key Override Cylinder"
+        },
+        {
+          "Field": "**Applicable standards**",
+          "Value": "NFPA 101 (Life Safety Code) — means of egress; IBC Chapter 10; Clery Act (campus security reporting); EN 179 / EN 1125 (product certifications)"
+        },
+        {
+          "Field": "**Key constraint fit**",
+          "Value": "Retrofit-only surface mount (C5) is a STRENGTH in university market: 1/3 of campus buildings are 50+ years old; no-drill installation avoids costly renovation permits. EasyWave protocol lock-in (C6) is the primary friction: campus security platforms (Lenel, Genetec) expect IP-native integration."
+        },
+        {
+          "Field": "**Buyer profile**",
+          "Value": "Director of Public Safety / Campus Security; Facilities Director; Procurement through state or institutional bidding process (public universities: competitive bid required for purchases >$25K threshold)"
+        },
+        {
+          "Field": "**Sales motion**",
+          "Value": "Specify-and-install via campus security integrator; or direct to facilities department for pilot (20–50 door retrofit in one building)"
+        },
+        {
+          "Field": "**Unique advantage**",
+          "Value": "No-drill surface mount preserves historic building fabric; battery-powered operation avoids conduit runs through 50-year-old walls; 95 dB alarm triggers on guardian swing without power — satisfies NFPA 101 fail-safe requirements"
+        },
+        {
+          "Field": "**Gap to close**",
+          "Value": "Campus PSIM integration (Lenel / Genetec gateway required); campus-scale wireless coverage for large lecture/research buildings (repeater chain); US market entry (product currently CE-certified; UL listing needed for US campus procurement)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Check",
+        "Status"
+      ],
+      "rows": [
+        {
+          "#": "Q1",
+          "Check": "CFJ is industry-level — no product or technology reference",
+          "Status": "PASS — CFJ describes higher education delivery broadly"
+        },
+        {
+          "#": "Q2",
+          "Check": "No orphan nodes — all units have valid parent references",
+          "Status": "PASS"
+        },
+        {
+          "#": "Q3",
+          "Check": "Valid level transitions — L7→L6, L6→L5, L5→L4 throughout",
+          "Status": "PASS"
+        },
+        {
+          "#": "Q4",
+          "Check": "L4 children per L5 ≥ 2",
+          "Status": "PASS — all L5 nodes have 3–5 L4 subsystems"
+        },
+        {
+          "#": "Q5",
+          "Check": "No solution-specific L7 or L6 names",
+          "Status": "PASS — L7 and L6 are sector-level descriptions, not technology-specific"
+        },
+        {
+          "#": "Q6",
+          "Check": "Three-question naming test (spot-check: \"Alarm Horn\", \"Degree Audit Engine\", \"Network Video Recorder\", \"Grant Management Platform\")",
+          "Status": "PASS — all are industry-standard terms; \"system\" wrapper removed where not domain term"
+        },
+        {
+          "#": "Q7",
+          "Check": "Unit count in range (15–60)",
+          "Status": "PASS — 36 named units across L7/L6/L5/L4 levels; within 20–40 target range"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "naics_code": "611310",
+      "naics_title": "Colleges, Universities, and Professional Schools",
+      "cfj_statement": "Deliver accredited higher education programs and credentials to enrolled students within a safe, legally compliant, and research-capable campus environment",
+      "top_level": "L7",
+      "l7_solution": "Higher Education Delivery Ecosystem",
+      "product_fit": {
+        "entry_level": "L5",
+        "entry_node": "Emergency Exit Alarm Guards",
+        "parent_l6": "L6-H1 — Campus Safety, Security & Emergency Management (H)",
+        "product_architecture_distance": 2,
+        "already_uses_technology": true,
+        "market_priority": "HIGH",
+        "l4_anchor_subsystems": [
+          "Mechanical Guard Housing",
+          "Alarm Horn",
+          "Wireless Transmitter",
+          "Battery & Power Management",
+          "Key Override Cylinder"
+        ]
+      },
+      "output_types": [
+        "Research University (R1/R2 — doctoral, extensive research)",
+        "Teaching-Focused University (M1/M2 — master's, mixed)",
+        "Liberal Arts College (Bac — undergraduate-only)",
+        "Community / Junior College (associate degrees, certificates)",
+        "Professional / Technical School (law, medicine, engineering, vocational)"
+      ],
+      "units": [
+        {
+          "name": "Higher Education Delivery Ecosystem",
+          "level": "L7",
+          "bom_standard": "Moore 1993",
+          "parent_name": "ROOT"
+        },
+        {
+          "name": "Admissions & Enrollment",
+          "level": "L6",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Higher Education Delivery Ecosystem"
+        },
+        {
+          "name": "Academic Instruction & Curriculum Delivery",
+          "level": "L6",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Higher Education Delivery Ecosystem"
+        },
+        {
+          "name": "Research & Scholarship",
+          "level": "L6",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Higher Education Delivery Ecosystem"
+        },
+        {
+          "name": "Student Support & Campus Life",
+          "level": "L6",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Higher Education Delivery Ecosystem"
+        },
+        {
+          "name": "Assessment, Credentialing & Graduation",
+          "level": "L6",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Higher Education Delivery Ecosystem"
+        },
+        {
+          "name": "Campus Safety, Security & Emergency Management",
+          "level": "L6",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Higher Education Delivery Ecosystem"
+        },
+        {
+          "name": "Facilities & Physical Plant Management",
+          "level": "L6",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Higher Education Delivery Ecosystem"
+        },
+        {
+          "name": "IT & Digital Infrastructure",
+          "level": "L6",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Higher Education Delivery Ecosystem"
+        },
+        {
+          "name": "Administrative, Finance & Compliance",
+          "level": "L6",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Higher Education Delivery Ecosystem"
+        },
+        {
+          "name": "Admissions CRM & Application Platform",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Admissions & Enrollment"
+        },
+        {
+          "name": "Student Information System",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Admissions & Enrollment"
+        },
+        {
+          "name": "Learning Management System",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Academic Instruction & Curriculum Delivery"
+        },
+        {
+          "name": "Classroom AV & Active Learning Technology",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Academic Instruction & Curriculum Delivery"
+        },
+        {
+          "name": "Laboratory Equipment & Research Infrastructure",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Academic Instruction & Curriculum Delivery"
+        },
+        {
+          "name": "Research Lab & Instrumentation",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Research & Scholarship"
+        },
+        {
+          "name": "Research Administration & Compliance Platform",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Research & Scholarship"
+        },
+        {
+          "name": "Residence Life & Housing Management",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Student Support & Campus Life"
+        },
+        {
+          "name": "Campus Health & Counseling System",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Student Support & Campus Life"
+        },
+        {
+          "name": "Degree Audit & Academic Progress System",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Assessment, Credentialing & Graduation"
+        },
+        {
+          "name": "Exam Integrity & Assessment Platform",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Assessment, Credentialing & Graduation"
+        },
+        {
+          "name": "Campus Access Control System",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Campus Safety, Security & Emergency Management"
+        },
+        {
+          "name": "Emergency Exit Alarm Guards",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Campus Safety, Security & Emergency Management"
+        },
+        {
+          "name": "Video Surveillance & CCTV",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Campus Safety, Security & Emergency Management"
+        },
+        {
+          "name": "Fire Detection & Alarm System",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Campus Safety, Security & Emergency Management"
+        },
+        {
+          "name": "Mass Notification & Emergency Communication System",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Campus Safety, Security & Emergency Management"
+        },
+        {
+          "name": "Physical Security Management Platform",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Campus Safety, Security & Emergency Management"
+        },
+        {
+          "name": "Building Management System",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facilities & Physical Plant Management"
+        },
+        {
+          "name": "Computerized Maintenance Management System",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facilities & Physical Plant Management"
+        },
+        {
+          "name": "Campus Network Infrastructure",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "IT & Digital Infrastructure"
+        },
+        {
+          "name": "Identity & Access Management",
+          "level": "L5",
+          "bom_standard": "ISO 15288",
+          "parent_name": "IT & Digital Infrastructure"
+        },
+        {
+          "name": "Mechanical Guard Housing",
+          "level": "L4",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Alarm Guards"
+        },
+        {
+          "name": "Alarm Horn",
+          "level": "L4",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Alarm Guards"
+        },
+        {
+          "name": "Wireless Transmitter",
+          "level": "L4",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Alarm Guards"
+        },
+        {
+          "name": "Battery & Power Management",
+          "level": "L4",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Alarm Guards"
+        },
+        {
+          "name": "Key Override Cylinder",
+          "level": "L4",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Alarm Guards"
+        }
+      ]
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

@@ -1,0 +1,222 @@
+{
+  "productName": "GfS Türwächter IoT (Exit Control 179/1125)",
+  "vendorName": "GfS Rettungswegtechnik GmbH (Assa Abloy Group)",
+  "technologyClass": "Emergency Exit Security Devices with Remote Monitoring",
+  "customProductGroup": "Emergency Exit Door Alarm Guards",
+  "unspscCode": "",
+  "unspscTitle": "",
+  "commodityFunctionalPromise": "Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm",
+  "totalMarketsEvaluated": 10,
+  "marketsEliminatedByConstraints": 0,
+  "weights": {
+    "odi_opportunity": 0.25,
+    "feature_fit": 0.15,
+    "constraint_compatibility": 0.15,
+    "job_coverage": 0.15,
+    "vn_hierarchy": 0.10,
+    "incumbent_vulnerability": 0.20
+  },
+  "executiveSummary": "All 10 surviving markets fall in the investigate band (5.0–7.5 composite). Hotels & Motels rank #1 (6.95) due to customer-facing VN position and cleanest constraint profile. Continuing Care Retirement Communities rank #2 (6.80) driven by highest ODI opportunity and elopement liability ROI. Elementary & Secondary Schools rank #3 (6.61) with the strongest feature-market fit. No market reaches pursue (>7.5) without pilot validation, and no market is eliminated — zero knockouts across all constraint screens.",
+  "rankedMarkets": [
+    {
+      "rank": 1,
+      "slug": "hotels_motels",
+      "marketName": "Hotels and Motels",
+      "naicsCode": "721110",
+      "scores": {
+        "odi": 5.32,
+        "featureFit": 6.34,
+        "constraintCompatibility": 8,
+        "jobCoverage": 5,
+        "vnHierarchy": 10,
+        "incumbentVulnerability": 8.6,
+        "composite": 6.95
+      },
+      "recommendation": "investigate",
+      "rationale": "Best VN position (customer-facing L6H-SEC) combined with cleanest constraint profile (all 4 mitigable constraints low-cost) and highest incumbent fragmentation. Predominantly mechanical-only incumbents with near-zero switching costs. ODI is the lowest in the set (5.32) because hotel operators slightly undersell urgency of exit monitoring, and job coverage is only 50%. Entry via ASSA ABLOY hotel division channel de-risks go-to-market.",
+      "entryStrategy": "Partner with hotel security integrators; target mid-market hotel groups via ASSA ABLOY hotel division channel",
+      "estimatedTimeToEntry": "3-6 months",
+      "estimatedInvestment": "€50000-100000"
+    },
+    {
+      "rank": 2,
+      "slug": "continuing_care_retirement",
+      "marketName": "Continuing Care Retirement Communities",
+      "naicsCode": "623311",
+      "scores": {
+        "odi": 6.5,
+        "featureFit": 6.13,
+        "constraintCompatibility": 7,
+        "jobCoverage": 7.5,
+        "vnHierarchy": 10,
+        "incumbentVulnerability": 5.4,
+        "composite": 6.8
+      },
+      "recommendation": "investigate",
+      "rationale": "Highest ODI opportunity score (6.50) and highest job coverage (75%) in the set, driven by elopement liability creating unambiguous ROI. Customer-facing VN position in resident safety. Moderated by nurse-call vendor lock-in (Stanley Healthcare, Jeron) creating integration dependency — C3+C6 both medium-cost mitigations. Best market for regulatory-driven demand: CMS CoP §19.3.6 elopement documentation is a compliance mandate.",
+      "entryStrategy": "Partner with nurse-call integrators (Stanley Healthcare, Jeron); target multi-site CCRC operators; lead with CMS CoP elopement documentation requirement",
+      "estimatedTimeToEntry": "4-8 months",
+      "estimatedInvestment": "€100000-250000"
+    },
+    {
+      "rank": 3,
+      "slug": "elementary_secondary_schools",
+      "marketName": "Elementary and Secondary Schools",
+      "naicsCode": "611110",
+      "scores": {
+        "odi": 6.21,
+        "featureFit": 6.83,
+        "constraintCompatibility": 7,
+        "jobCoverage": 6.25,
+        "vnHierarchy": 6.5,
+        "incumbentVulnerability": 7,
+        "composite": 6.61
+      },
+      "recommendation": "investigate",
+      "rationale": "Highest feature-market fit (6.83) of all markets — the dual mandate (fire safety + intruder prevention) maps directly to the product's functional promise. 100K+ schools create massive fragmentation with low switching costs. No medium-cost mitigations (all 6 constraints low-cost). VN is mid-chain rather than customer-facing, and budget sensitivity requires alignment to federal/state safety grant cycles (STOP Act, E2SSB 5187).",
+      "entryStrategy": "Channel through school safety distributors; target district procurement; align to federal/state safety grant cycles",
+      "estimatedTimeToEntry": "4-6 months",
+      "estimatedInvestment": "€50000-100000"
+    },
+    {
+      "rank": 4,
+      "slug": "colleges_universities",
+      "marketName": "Colleges and Universities",
+      "naicsCode": "611310",
+      "scores": {
+        "odi": 5.84,
+        "featureFit": 6.24,
+        "constraintCompatibility": 7.5,
+        "jobCoverage": 6.25,
+        "vnHierarchy": 6.5,
+        "incumbentVulnerability": 7.4,
+        "composite": 6.59
+      },
+      "recommendation": "investigate",
+      "rationale": "Best constraint compatibility (7.5) — only 1 medium-cost mitigation (C6 protocol) vs. 3 low-cost. Large fragmented market with no dominant IoT exit alarm vendor. Distributed aging building stock makes wireless retrofit especially valuable. Campus FM directors are the procurement gateway; Clery Act compliance documentation creates pull. Slightly lower feature fit than K-12 schools due to open-campus culture reducing security urgency.",
+      "entryStrategy": "Target campus FM directors; lead with NFPA 101 fire inspection automation; partner with campus security integrators",
+      "estimatedTimeToEntry": "4-8 months",
+      "estimatedInvestment": "€75000-150000"
+    },
+    {
+      "rank": 5,
+      "slug": "museums_historical_sites",
+      "marketName": "Museums and Historical Sites",
+      "naicsCode": "712110",
+      "scores": {
+        "odi": 5.79,
+        "featureFit": 6.16,
+        "constraintCompatibility": 7,
+        "jobCoverage": 5,
+        "vnHierarchy": 6.5,
+        "incumbentVulnerability": 8.6,
+        "composite": 6.54
+      },
+      "recommendation": "investigate",
+      "rationale": "Highest incumbent vulnerability tied with hotels (8.6) — museums use predominantly guard patrols and basic mechanical alarms with near-zero switching costs. Heritage building constraints (no structural modification allowed) uniquely favor the surface-mount, non-invasive retrofit design. ODI and job coverage are moderate (5.79 / 50%) reflecting that museum exit monitoring is important but not the top priority for cultural institutions.",
+      "entryStrategy": "Partner with heritage security specialists; target museum associations' collective procurement; lead with reversible surface-mount differentiator for listed buildings",
+      "estimatedTimeToEntry": "3-6 months",
+      "estimatedInvestment": "€50000-100000"
+    },
+    {
+      "rank": 6,
+      "slug": "general_warehousing_storage",
+      "marketName": "General Warehousing and Storage",
+      "naicsCode": "493110",
+      "scores": {
+        "odi": 5.98,
+        "featureFit": 5.93,
+        "constraintCompatibility": 6.5,
+        "jobCoverage": 5,
+        "vnHierarchy": 6.5,
+        "incumbentVulnerability": 6.9,
+        "composite": 6.14
+      },
+      "recommendation": "investigate",
+      "rationale": "Good mid-range opportunity driven by warehouse-specific pain point: emergency exits frequently propped open by workers across 3-shift operations, far from management offices. C3 wireless range is a medium-cost mitigation in expansive warehouse layouts (>10,000 m²), and price sensitivity creates friction for large-scale deployments. The FM channel (CBRE, JLL) creates a clean entry path; OSHA compliance documentation is the procurement trigger.",
+      "entryStrategy": "Target 3PL portfolio operators for blanket pricing; lead with OSHA compliance automation and guard patrol TCO model; require exit-environment survey at spec stage",
+      "estimatedTimeToEntry": "4-8 months",
+      "estimatedInvestment": "€100000-250000"
+    },
+    {
+      "rank": 7,
+      "slug": "facilities_support_services",
+      "marketName": "Facilities Support Services",
+      "naicsCode": "561210",
+      "scores": {
+        "odi": 5.99,
+        "featureFit": 6.53,
+        "constraintCompatibility": 6,
+        "jobCoverage": 6.25,
+        "vnHierarchy": 3,
+        "incumbentVulnerability": 6.9,
+        "composite": 6
+      },
+      "recommendation": "investigate",
+      "rationale": "Strong feature fit (6.53) and good job coverage (6.25%), reflecting that FM companies need exactly this type of standardized, low-maintenance monitoring across diverse client portfolios. However, VN position is deep (3.0 — deep component level) meaning the product is buried in the FM service stack rather than customer-facing. The FM channel is an amplifier, not an end market: FM firms specify and maintain but tenants/owners are ultimate buyers.",
+      "entryStrategy": "Sell to FM firms as managed-service line item; partner with CBRE GWS, JLL Technologies as endorsed spec; position IoT subscription as FM contract recurring revenue add-on",
+      "estimatedTimeToEntry": "4-8 months",
+      "estimatedInvestment": "€50000-100000"
+    },
+    {
+      "rank": 8,
+      "slug": "general_medical_surgical_hospitals",
+      "marketName": "General Medical and Surgical Hospitals",
+      "naicsCode": "622110",
+      "scores": {
+        "odi": 6.04,
+        "featureFit": 6.72,
+        "constraintCompatibility": 4.5,
+        "jobCoverage": 6.25,
+        "vnHierarchy": 6.5,
+        "incumbentVulnerability": 4.9,
+        "composite": 5.76
+      },
+      "recommendation": "investigate",
+      "rationale": "Second-highest feature fit (6.72) but dramatically penalized by constraint compatibility (4.5 — lowest in set). Three medium-cost mitigations (C3 range in large hospitals, C6 protocol lock-in vs. hospital BMS, C7 price for 50-200+ doors) plus four low-cost mitigations. Incumbent vulnerability is low (4.9) — hospitals have strong vendor relationships with sophisticated security integrators. Highest-reward but highest-effort market requiring 8-14 month entry timeline.",
+      "entryStrategy": "Enter via hospital FM/engineering departments; lead with Joint Commission EC.02.01.01 egress documentation automation; partner with healthcare security integrators",
+      "estimatedTimeToEntry": "8-14 months",
+      "estimatedInvestment": "€150000-350000"
+    },
+    {
+      "rank": 9,
+      "slug": "lessors_nonresidential_buildings",
+      "marketName": "Lessors of Nonresidential Buildings",
+      "naicsCode": "531120",
+      "scores": {
+        "odi": 5.78,
+        "featureFit": 6.12,
+        "constraintCompatibility": 7,
+        "jobCoverage": 5,
+        "vnHierarchy": 3,
+        "incumbentVulnerability": 5.3,
+        "composite": 5.52
+      },
+      "recommendation": "investigate",
+      "rationale": "Despite near-identical use case to the product's design intent (architecture distance = 1), the composite score is dragged down by deep VN position (3.0) and moderate incumbent vulnerability (5.3). Institutional REIT buyers have established FM programs and existing vendor relationships. The EasyWave C6 constraint creates additional friction for buildings already standardized on BACnet/KNX. Best approached as a pull-through from the FM channel (Rank 7) rather than direct.",
+      "entryStrategy": "Target institutional REIT portfolio managers via embedded FM operators (CBRE, JLL, Cushman); lead with fire marshal audit automation and BREEAM/LEED O+M tenant reporting",
+      "estimatedTimeToEntry": "6-12 months",
+      "estimatedInvestment": "€100000-250000"
+    },
+    {
+      "rank": 10,
+      "slug": "data_centers",
+      "marketName": "Computing Infrastructure Providers, Data Processing, Web Hosting, and Related Services",
+      "naicsCode": "518210",
+      "scores": {
+        "odi": 5.96,
+        "featureFit": 5.25,
+        "constraintCompatibility": 6.5,
+        "jobCoverage": 5,
+        "vnHierarchy": 3,
+        "incumbentVulnerability": 3.7,
+        "composite": 5.04
+      },
+      "recommendation": "investigate",
+      "rationale": "Lowest composite score driven by lowest incumbent vulnerability (3.7) and lowest feature fit (5.25). Data centers have the deepest technology integration lock-in (enterprise access control by Honeywell, Lenel), most sophisticated security teams, and lowest market fragmentation. Three medium-cost mitigations (C3 range in Faraday-cage construction, C6 protocol vs. enterprise BMS, C10 combined access + emergency exit). SOC 2 audit log automation is a compelling use case but insufficient to overcome the constraint burden. Best deferred to edge/colocation DCs until IP Gateway BACnet/REST integration is proven.",
+      "entryStrategy": "Target edge/colocation DCs first (under 5,000 m² — RF constraint least severe); partner with DC physical security integrators; lead with SOC 2 CC6.4 audit log automation; defer hyperscale until IP Gateway BACnet/REST integration is proven",
+      "estimatedTimeToEntry": "8-14 months",
+      "estimatedInvestment": "€200000-500000"
+    }
+  ]
+}

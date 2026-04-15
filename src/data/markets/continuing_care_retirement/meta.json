@@ -1,0 +1,21 @@
+{
+  "slug": "continuing_care_retirement",
+  "name": "Continuing Care Retirement Communities",
+  "naicsCode": "623311",
+  "isReference": false,
+  "rank": 2,
+  "scores": {
+    "odi": 6.5,
+    "featureFit": 6.13,
+    "constraintCompatibility": 7,
+    "jobCoverage": 7.5,
+    "vnHierarchy": 10,
+    "incumbentVulnerability": 5.4,
+    "composite": 6.8
+  },
+  "recommendation": "investigate",
+  "rationale": "",
+  "entryStrategy": "Partner with nurse-call integrators (Stanley Healthcare, Jeron); target multi-site CCRC operators; lead with CMS CoP elopement documentation requirement",
+  "estimatedTimeToEntry": "4-8 months",
+  "estimatedInvestment": "€100000-250000"
+}

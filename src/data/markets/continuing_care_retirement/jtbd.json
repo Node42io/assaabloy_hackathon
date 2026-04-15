@@ -1,0 +1,526 @@
+{
+  "naicsCode": "623311",
+  "marketName": "Continuing Care Retirement Communities",
+  "slug": "continuing_care_retirement",
+  "coreJobStatement": "Provide safe, integrated residential accommodation and healthcare services across a continuum of care levels to older adults, enabling aging in place with progressively intensive clinical support as functional needs evolve",
+  "productJobStatement": "Help Facility Safety & Emergency Management to secure all emergency exit doors against unauthorized use while maintaining fire-code-compliant single-motion evacuation capability and providing real-time door status visibility to operations staff — without mains power at each door point",
+  "anchorLevel": "L5",
+  "lPath": "L7 Ecosystem > L6H-SAF Facility Safety & Emergency Management > L5 Emergency Exit Door Alarm Guards",
+  "segments": [
+    {
+      "segmentNumber": 1,
+      "name": "Memory Care Unit",
+      "qualifier": "Highest urgency — primary Türwächter segment",
+      "characteristics": "Residents with dementia/cognitive impairment; 60% at elopement risk; ~1–2% elope annually; 32–40% of elopements fatal within 24 h",
+      "isTargetable": true,
+      "targetabilityReason": "Wander management (RFID tags) dominates; exits must be secured against resident-initiated actuation while remaining fire-code compliant",
+      "circumstance": "Residents with dementia/cognitive impairment; 60% at elopement risk; ~1–2% elope annually; 32–40% of elopements fatal within 24 h",
+      "alternativesDiffer": "Yes — RFID wander management dominates; exits must be secured against resident-initiated actuation while remaining fire-code compliant"
+    },
+    {
+      "segmentNumber": 2,
+      "name": "Independent + Assisted Living",
+      "qualifier": "",
+      "characteristics": "Functionally capable residents; no resident-initiated elopement risk; standard fire exit compliance",
+      "isTargetable": false,
+      "targetabilityReason": "Simpler alternatives hired: basic mechanical alarms, wired panels; lower urgency",
+      "circumstance": "Functionally capable residents; no resident-initiated elopement risk; standard fire exit compliance",
+      "alternativesDiffer": "No — simpler alternatives hired: basic mechanical alarms, wired panels; lower urgency"
+    },
+    {
+      "segmentNumber": 3,
+      "name": "Skilled Nursing Facility (SNF)",
+      "qualifier": "Compliance documentation imperative",
+      "characteristics": "24-h clinical care; highest CMS regulatory scrutiny; annual Life Safety survey; Immediate Jeopardy penalties >$10,000/day for elopement gaps",
+      "isTargetable": true,
+      "targetabilityReason": "Compliance documentation and audit-trail quality are the primary buying criteria",
+      "circumstance": "24-h clinical care; highest CMS regulatory scrutiny; annual Life Safety survey; Immediate Jeopardy penalties >$10,000/day for elopement gaps",
+      "alternativesDiffer": "Yes — compliance documentation and audit-trail quality are the primary buying criteria"
+    },
+    {
+      "segmentNumber": 4,
+      "name": "Post-Acute Rehabilitation",
+      "qualifier": "",
+      "characteristics": "Short-stay, high resident throughput; fire safety primary; low elopement risk",
+      "isTargetable": false,
+      "targetabilityReason": "Simpler exit monitoring acceptable; false-alarm tolerance higher than MC",
+      "circumstance": "Short-stay, high resident throughput; fire safety primary; low elopement risk",
+      "alternativesDiffer": "No — simpler exit monitoring acceptable; false-alarm tolerance higher than MC"
+    },
+    {
+      "segmentNumber": 5,
+      "name": "Multi-Facility Portfolio Operator",
+      "qualifier": "",
+      "characteristics": "Manages many campuses; procurement is portfolio-level; needs centralized dashboard across properties",
+      "isTargetable": false,
+      "targetabilityReason": "Different alternatives hired: enterprise wander-management platforms vs. per-door retrofit devices",
+      "circumstance": "Manages many campuses; procurement is portfolio-level; needs centralized dashboard across properties",
+      "alternativesDiffer": "Yes — different alternatives hired: enterprise wander-management platforms vs. per-door retrofit devices"
+    }
+  ],
+  "alternatives": [
+    {
+      "name": "RFID/BLE Wander Management (Stanley WanderGuard, CenTrak)",
+      "unspsc": "46191700",
+      "tradeoffs": "Per-resident wristband required — fails if resident removes it; requires ceiling-mounted door antennas; cannot independently satisfy NFPA 101 single-motion escape requirements; $250K–$600K+ full facility deployment; 9,000+ facility installed base"
+    },
+    {
+      "name": "Electromagnetic Delayed-Egress Locks (Assa Abloy, dormakaba)",
+      "unspsc": "46171600",
+      "tradeoffs": "Power-dependent — must have battery backup for fire-safe operation; NFPA 101 §7.2.1.6 limits delay to max 30 s; licensed electrician required for installation and wiring; disruptive retrofit in existing buildings"
+    },
+    {
+      "name": "IoT Emergency Exit Alarm Guards (GfS Türwächter) — this product",
+      "unspsc": "46171600",
+      "tradeoffs": "Alarms but does not delay exit — cannot physically prevent elopement in the way a delayed-egress lock can; EasyWave protocol not native BACnet/KNX; ~€730 per door; pre-alarm false-trigger risk in high-traffic zones"
+    },
+    {
+      "name": "Coded Keypad Exits",
+      "unspsc": "46171600",
+      "tradeoffs": "No monitoring capability; NFPA 101 requires single-motion escape — keypad entry adds a step and may require AHJ approval; staff must memorize codes; codes expire or are shared"
+    },
+    {
+      "name": "Manual staff monitoring / do nothing",
+      "unspsc": "",
+      "tradeoffs": "Zero hardware cost; zero false alarms; inadequate overnight/weekend coverage; CMS F-tag immediate jeopardy exposure when elopement is documented; average elopement claim = $360,000"
+    }
+  ],
+  "jobSteps": [
+    {
+      "stepNumber": 1,
+      "verb": "Define",
+      "description": "Identify which exits require monitored coverage; specify alarm behavior per zone (MC vs IL/AL/SNF)",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Identify which exits require monitored coverage; specify alarm behavior per zone (MC vs IL/AL/SNF)",
+      "rawStatement": "",
+      "jobStep": "DEFINE",
+      "relevant": true,
+      "rationale": "Identify which exits require monitored coverage; specify alarm behavior per zone (MC vs IL/AL/SNF)"
+    },
+    {
+      "stepNumber": 2,
+      "verb": "Locate",
+      "description": "Door locations are fixed building infrastructure",
+      "isSensorRelevant": false,
+      "sensorDependencyRationale": "Door locations are fixed building infrastructure",
+      "rawStatement": "",
+      "jobStep": "LOCATE",
+      "relevant": false,
+      "rationale": "Door locations are fixed building infrastructure"
+    },
+    {
+      "stepNumber": 3,
+      "verb": "Prepare",
+      "description": "Install, configure, commission alarm guards and receivers",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Install, configure, commission alarm guards and receivers",
+      "rawStatement": "",
+      "jobStep": "PREPARE",
+      "relevant": true,
+      "rationale": "Install, configure, commission alarm guards and receivers"
+    },
+    {
+      "stepNumber": 4,
+      "verb": "Confirm",
+      "description": "Verify armed state, battery charge, wireless link before each shift",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Verify armed state, battery charge, wireless link before each shift",
+      "rawStatement": "",
+      "jobStep": "CONFIRM",
+      "relevant": true,
+      "rationale": "Verify armed state, battery charge, wireless link before each shift"
+    },
+    {
+      "stepNumber": 5,
+      "verb": "Execute",
+      "description": "Core function: secure handle, trigger alarm, transmit event to monitoring system",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Core function: secure handle, trigger alarm, transmit event to monitoring system",
+      "rawStatement": "",
+      "jobStep": "EXECUTE",
+      "relevant": true,
+      "rationale": "Core function: secure handle, trigger alarm, transmit event to monitoring system"
+    },
+    {
+      "stepNumber": 6,
+      "verb": "Monitor",
+      "description": "Real-time door status and alarm event visibility across all exits and all shifts",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Real-time door status and alarm event visibility across all exits and all shifts",
+      "rawStatement": "",
+      "jobStep": "MONITOR",
+      "relevant": true,
+      "rationale": "Real-time door status and alarm event visibility across all exits and all shifts"
+    },
+    {
+      "stepNumber": 7,
+      "verb": "Modify",
+      "description": "Alarm response, guard reset after activation, proactive battery replacement",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Alarm response, guard reset after activation, proactive battery replacement",
+      "rawStatement": "",
+      "jobStep": "MODIFY",
+      "relevant": true,
+      "rationale": "Alarm response, guard reset after activation, proactive battery replacement"
+    },
+    {
+      "stepNumber": 8,
+      "verb": "Conclude",
+      "description": "Compliance event logging, CMS Life Safety Code documentation, inspection archive",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Compliance event logging, CMS Life Safety Code documentation, inspection archive",
+      "rawStatement": "",
+      "jobStep": "CONCLUDE",
+      "relevant": true,
+      "rationale": "Compliance event logging, CMS Life Safety Code documentation, inspection archive"
+    }
+  ],
+  "stakeholders": [
+    {
+      "role": "Job Beneficiary",
+      "who": "Memory care / dementia residents",
+      "pyramidLevels": "P2, P5"
+    },
+    {
+      "role": "Job Executor",
+      "who": "Facility safety staff, CNAs on unit floor",
+      "pyramidLevels": "P1, P2, P3, P4, P5"
+    },
+    {
+      "role": "Job Overseer",
+      "who": "Director of Nursing, Facility Administrator",
+      "pyramidLevels": "P2, P3, P4"
+    },
+    {
+      "role": "Lifecycle Support",
+      "who": "Maintenance Technician (install, battery, firmware)",
+      "pyramidLevels": "P1: Acquisition, Preparation, Maintenance"
+    },
+    {
+      "role": "Purchase Executor",
+      "who": "CFO / VP Operations",
+      "pyramidLevels": "P1: Acquisition"
+    },
+    {
+      "role": "Purchase Influencer",
+      "who": "CMS State Surveyor, Insurance Risk Manager",
+      "pyramidLevels": "P2, P4"
+    }
+  ],
+  "needs": [
+    {
+      "id": "N01",
+      "statement": "Minimize the likelihood of emergency exit doors in memory care perimeter zones being excluded from alarm guard coverage, resulting in uncovered exits identified during a CMS Life Safety Code survey",
+      "jobStep": "DEFINE",
+      "errorType": "ACCURACY",
+      "importance": 9,
+      "satisfaction": 5,
+      "opportunity": 13,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.90
+    },
+    {
+      "id": "N02",
+      "statement": "Increase the ability to determine complete alarm guard coverage requirements across a multi-level care campus in a single assessment without engaging a licensed engineer or fire protection consultant",
+      "jobStep": "DEFINE",
+      "errorType": "EFFORT",
+      "importance": 5,
+      "satisfaction": 6,
+      "opportunity": 5,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.70
+    },
+    {
+      "id": "N03",
+      "statement": "Minimize the installation and commissioning time per door for emergency exit alarm monitoring systems across a 100-bed memory care unit without requiring mains electrical work at each door",
+      "jobStep": "PREPARE",
+      "errorType": "EFFORT",
+      "importance": 7,
+      "satisfaction": 5,
+      "opportunity": 9,
+      "impactCategory": "time",
+      "productRelated": true,
+      "confidence": 0.85
+    },
+    {
+      "id": "N04",
+      "statement": "Minimize the likelihood of incorrect pre-alarm sensitivity configuration causing false alarm activations exceeding 2 incidents per door per month during normal staff passage in a memory care corridor",
+      "jobStep": "PREPARE",
+      "errorType": "ACCURACY",
+      "importance": 7,
+      "satisfaction": 5,
+      "opportunity": 9,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.80
+    },
+    {
+      "id": "N05",
+      "statement": "Increase the ability to detect a de-armed or non-functional emergency exit alarm guard before the condition is identified during a CMS inspection, with detection lag under 4 hours",
+      "jobStep": "CONFIRM",
+      "errorType": "DETECTION",
+      "importance": 9,
+      "satisfaction": 3,
+      "opportunity": 15,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "N06",
+      "statement": "Minimize the likelihood of a door alarm guard displaying armed status in the monitoring dashboard while the mechanical guard is physically disabled or in the open position",
+      "jobStep": "CONFIRM",
+      "errorType": "ACCURACY",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "safety",
+      "productRelated": true,
+      "confidence": 0.80
+    },
+    {
+      "id": "N07",
+      "statement": "Minimize failures of emergency exit alarm activation during facility-wide power outage conditions lasting more than 8 hours",
+      "jobStep": "EXECUTE",
+      "errorType": "ROBUSTNESS",
+      "importance": 10,
+      "satisfaction": 6,
+      "opportunity": 14,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.92
+    },
+    {
+      "id": "N08",
+      "statement": "Minimize the likelihood of the exit alarm triggering due to environmental vibration or thermal cycling rather than intentional guard actuation in memory care zones where false alarms prompt immediate staff emergency response",
+      "jobStep": "EXECUTE",
+      "errorType": "ACCURACY",
+      "importance": 7,
+      "satisfaction": 5,
+      "opportunity": 9,
+      "impactCategory": "reliability",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "N09",
+      "statement": "Increase the ability to deploy monitored alarm coverage across all emergency exits in a 200-bed CCRC campus from a single centralized receiver without requiring per-door electrical infrastructure",
+      "jobStep": "EXECUTE",
+      "errorType": "THROUGHPUT",
+      "importance": 6,
+      "satisfaction": 5,
+      "opportunity": 7,
+      "impactCategory": "cost",
+      "productRelated": true,
+      "confidence": 0.75
+    },
+    {
+      "id": "N10",
+      "statement": "Minimize the time from unauthorized emergency exit door activation to staff notification across all care levels and shifts, including overnight and weekend periods",
+      "jobStep": "MONITOR",
+      "errorType": "DETECTION",
+      "importance": 9,
+      "satisfaction": 4,
+      "opportunity": 14,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.88
+    },
+    {
+      "id": "N11",
+      "statement": "Minimize variability in alarm event delivery reliability across structurally diverse building zones including basement corridors, reinforced concrete wings, and exterior stairwells",
+      "jobStep": "MONITOR",
+      "errorType": "CONSISTENCY",
+      "importance": 7,
+      "satisfaction": 4,
+      "opportunity": 10,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.80
+    },
+    {
+      "id": "N12",
+      "statement": "Increase the ability to view live armed/unarmed status of all emergency exits across all care levels from a single monitoring interface without logging into multiple vendor platforms",
+      "jobStep": "MONITOR",
+      "errorType": "THROUGHPUT",
+      "importance": 6,
+      "satisfaction": 3,
+      "opportunity": 9,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.75
+    },
+    {
+      "id": "N13",
+      "statement": "Minimize the number of IoT module battery depletion events per year that go undetected until monitoring coverage is lost on an active exit door",
+      "jobStep": "MONITOR",
+      "errorType": "DETECTION",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "safety",
+      "productRelated": true,
+      "confidence": 0.85
+    },
+    {
+      "id": "N14",
+      "statement": "Minimize the total time to restore alarm guard coverage at a door following a battery replacement event, from detection of depletion to confirmed wireless re-connection",
+      "jobStep": "MODIFY",
+      "errorType": "RECOVERY",
+      "importance": 6,
+      "satisfaction": 5,
+      "opportunity": 7,
+      "impactCategory": "time",
+      "productRelated": true,
+      "confidence": 0.75
+    },
+    {
+      "id": "N15",
+      "statement": "Increase the ability of a single night-shift CNA to manage simultaneous door alarm events across a 60-bed memory care floor while maintaining resident monitoring duties without requiring supervisor escalation for each event",
+      "jobStep": "MODIFY",
+      "errorType": "EFFORT",
+      "importance": 7,
+      "satisfaction": 4,
+      "opportunity": 10,
+      "impactCategory": "skill",
+      "productRelated": false,
+      "confidence": 0.70
+    },
+    {
+      "id": "N16",
+      "statement": "Minimize failures in alarm guard reset capability following a valid elopement activation where the triggering resident may have applied force to the guard mechanism during the exit attempt",
+      "jobStep": "MODIFY",
+      "errorType": "ROBUSTNESS",
+      "importance": 6,
+      "satisfaction": 5,
+      "opportunity": 7,
+      "impactCategory": "reliability",
+      "productRelated": false,
+      "confidence": 0.65
+    },
+    {
+      "id": "N17",
+      "statement": "Increase the ability to produce audit-ready CMS Life Safety Code compliance documentation covering all emergency exit events without manual log consolidation by facility staff",
+      "jobStep": "CONCLUDE",
+      "errorType": "EFFORT",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "N18",
+      "statement": "Minimize the likelihood of incomplete or missing emergency exit event records at annual CMS survey time due to gaps in manual event logging across shifts",
+      "jobStep": "CONCLUDE",
+      "errorType": "ACCURACY",
+      "importance": 9,
+      "satisfaction": 3,
+      "opportunity": 15,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.88
+    },
+    {
+      "id": "N19",
+      "statement": "Minimize variability in emergency exit event record completeness across different shifts and staff members, ensuring documentation meets CMS survey standards regardless of which staff member was on duty",
+      "jobStep": "CONCLUDE",
+      "errorType": "CONSISTENCY",
+      "importance": 7,
+      "satisfaction": 3,
+      "opportunity": 11,
+      "impactCategory": "reliability",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "N20",
+      "statement": "Maximize the ability to document zero unmonitored emergency exit events per quarter as evidence of proactive Life Safety compliance posture to CMS, resident families, and insurance underwriters",
+      "jobStep": "CONCLUDE",
+      "errorType": "P3_ROLE_IDENTITY",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "N21",
+      "statement": "Minimize the risk of a CMS Immediate Jeopardy citation arising from a documented elopement through an exit door that lacked active monitoring at the time of the incident",
+      "jobStep": "EXECUTE",
+      "errorType": "P4_IMAGE_IDENTITY",
+      "importance": 10,
+      "satisfaction": 5,
+      "opportunity": 15,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.90
+    },
+    {
+      "id": "N22",
+      "statement": "Minimize the likelihood of on-duty memory care staff remaining unaware of a resident's emergency exit activation for more than 30 seconds after the event",
+      "jobStep": "MONITOR",
+      "errorType": "P5_EMOTIONAL",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.75
+    }
+  ],
+  "sources": [
+    {
+      "id": "S01",
+      "label": "Shocking Elopement Statistics — Tangram Insurance",
+      "url": "https://tangramins.com/news-insights/shocking-elopement-statistics-how-to-keep-wandering-residents-safe/",
+      "prefixedId": "JTBD-CONTINUING_CARE_RETIREMENT-S01"
+    },
+    {
+      "id": "S02",
+      "label": "CMS Life Safety Code Requirements",
+      "url": "https://www.cms.gov/medicare/health-safety-standards/certification-compliance/life-safety-code-health-care-facilities-code-requirements",
+      "prefixedId": "JTBD-CONTINUING_CARE_RETIREMENT-S02"
+    },
+    {
+      "id": "S03",
+      "label": "AHCA Door Locking Provisions (NFPA 101 § delayed egress)",
+      "url": "https://www.ahcancal.org/Survey-Regulatory-Legal/Documents/LSC%20Door%20Locking%20Provisions.21.pdf",
+      "prefixedId": "JTBD-CONTINUING_CARE_RETIREMENT-S03"
+    },
+    {
+      "id": "S04",
+      "label": "Decoded: Deterring Elopement in Health Care Facilities — I Dig Hardware",
+      "url": "https://idighardware.com/2018/07/decoded-deterring-egress-in-health-care-facilities/",
+      "prefixedId": "JTBD-CONTINUING_CARE_RETIREMENT-S04"
+    },
+    {
+      "id": "S05",
+      "label": "WanderGuard System Cost Breakdown — BEC Integrated",
+      "url": "https://becintegrated.com/wander-guard-system-cost-breakdown-and-pricing",
+      "prefixedId": "JTBD-CONTINUING_CARE_RETIREMENT-S05"
+    },
+    {
+      "id": "S06",
+      "label": "WanderGuard BLUE — Securitas Healthcare",
+      "url": "https://www.securitashealthcare.com/solutions/wander-management",
+      "prefixedId": "JTBD-CONTINUING_CARE_RETIREMENT-S06"
+    },
+    {
+      "id": "S07",
+      "label": "ECRI: Preventing Harm — Emerging Technologies for Wandering and Elopement",
+      "url": "https://home.ecri.org/blogs/ecri-blog/preventing-harm-in-aging-services-emerging-technologies-to-mitigate-hazardous-wandering-and-elopement",
+      "prefixedId": "JTBD-CONTINUING_CARE_RETIREMENT-S07"
+    },
+    {
+      "id": "S08",
+      "label": "Wikipedia: Continuing Care Retirement Communities in the United States",
+      "url": "https://en.wikipedia.org/wiki/Continuing_care_retirement_communities_in_the_United_States",
+      "prefixedId": "JTBD-CONTINUING_CARE_RETIREMENT-S08"
+    }
+  ]
+}

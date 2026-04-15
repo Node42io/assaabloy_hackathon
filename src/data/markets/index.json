@@ -1,0 +1,72 @@
+[
+  {
+    "slug": "colleges_universities",
+    "name": "Colleges, Universities, and Professional Schools",
+    "naics": "611310",
+    "isReference": false,
+    "sourceFile": "colleges_universities"
+  },
+  {
+    "slug": "continuing_care_retirement",
+    "name": "Continuing Care Retirement Communities",
+    "naics": "623311",
+    "isReference": false,
+    "sourceFile": "continuing_care_retirement"
+  },
+  {
+    "slug": "data_centers",
+    "name": "Data Processing, Hosting, and Related Services",
+    "naics": "518210",
+    "isReference": false,
+    "sourceFile": "data_centers"
+  },
+  {
+    "slug": "elementary_secondary_schools",
+    "name": "Elementary and Secondary Schools",
+    "naics": "611110",
+    "isReference": false,
+    "sourceFile": "elementary_secondary_schools"
+  },
+  {
+    "slug": "facilities_support_services",
+    "name": "Facilities Support Services",
+    "naics": "561210",
+    "isReference": false,
+    "sourceFile": "facilities_support_services"
+  },
+  {
+    "slug": "general_medical_surgical_hospitals",
+    "name": "General Medical and Surgical Hospitals",
+    "naics": "622110",
+    "isReference": false,
+    "sourceFile": "general_medical_surgical_hospitals"
+  },
+  {
+    "slug": "general_warehousing_storage",
+    "name": "General Warehousing and Storage",
+    "naics": "493110",
+    "isReference": false,
+    "sourceFile": "general_warehousing_storage"
+  },
+  {
+    "slug": "hotels_motels",
+    "name": "Hotels (except Casino Hotels) and Motels",
+    "naics": "721110",
+    "isReference": false,
+    "sourceFile": "hotels_motels"
+  },
+  {
+    "slug": "lessors_nonresidential_buildings",
+    "name": "Lessors of Nonresidential Buildings (except Miniwarehouses)",
+    "naics": "531120",
+    "isReference": false,
+    "sourceFile": "lessors_nonresidential_buildings"
+  },
+  {
+    "slug": "museums_historical_sites",
+    "name": "Museums, Historical Sites, and Similar Institutions",
+    "naics": "712110",
+    "isReference": false,
+    "sourceFile": "museums_historical_sites"
+  }
+]

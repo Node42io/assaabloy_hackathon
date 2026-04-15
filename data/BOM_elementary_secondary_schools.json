@@ -1,0 +1,661 @@
+{
+  "id": "BOM_elementary_secondary_schools",
+  "title": "Product BOM Decomposition: Türwächter IoT — Elementary & Secondary Schools",
+  "type": "product_bom",
+  "market_slug": "elementary_secondary_schools",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "NAICS 611110 | Output Type: Emergency Exit Door Alarm Guard (IoT Variant)",
+      "content": "*Follows component spec: product-bom-decomposition.html (substeps B.1–B.4). Input: 01_product_decomposition.md, 02_functional_promise.md, 03_constraints.md, 05_market_discovery.md.*\n\n---"
+    },
+    {
+      "title": "Routing Check",
+      "content": "| Field | Value |\n|---|---|\n| **NAICS** | 611110 — Elementary and Secondary Schools |\n| **Sector** | Educational Services (61) — service output |\n| **BOM applies?** | **YES** — BOM is of the *product sold into this market* (Türwächter IoT), not of the school. Physical device with full compositional structure. |\n| **Output type** | Emergency Exit Door Alarm Guard — IoT variant (Art. 990140) |\n| **Applicable variant** | Exit Control 179 Pre-alarm + Radio (battery-operated, surface-mount, 868 MHz EasyWave) |\n\n---"
+    },
+    {
+      "title": "B.1 — L4 Subsystems",
+      "content": "Four subsystems apply. No control/interface subsystem is separate — wireless communication is embedded in the IoT module alongside the primary functional core.\n\n| ID | Subsystem (L4) | Pattern category | School-context relevance |\n|---|---|---|---|\n| S1 | **Mechanical Guard Subsystem** | Primary functional core | Blocks door handle; single-motion release per EN 179. Non-negotiable under C2 (power-independent). |\n| S2 | **Acoustic Alarm Subsystem** | Primary functional (secondary) | 95 dB alert on activation. Mechanical trigger — zero power required. Fire code mandated. |\n| S3 | **Wireless Communication Subsystem** | Control / interface | IoT monitoring layer. Key value driver for facility managers. C6 (protocol lock-in) is primary school risk. |\n| S4 | **Power Supply Subsystem** | Auxiliary / support | 9V battery. C4 (battery life) elevated in schools — high door-use frequency in corridors and gym exits. |\n| S5 | **Enclosure & Mounting Subsystem** | Containment / packaging | Surface-mounted housing. Vandal-resistance concern in schools (C5 surface-mount limitation). |\n\n---"
+    },
+    {
+      "title": "B.2 — Full Decomposition (L4 → L0)",
+      "content": "```\nL5  Türwächter IoT (Exit Control 179/1125 with IoT)  [Art. 990140]\n│\n├── S1  Mechanical Guard Subsystem (L4)\n│   ├── L3  Guard pivot mechanism\n│   │   ├── L2  Spring-return pivot assembly\n│   │   │   ├── L1  Torsion spring  ←— ALTERNATIVES EXIST (see B.3)\n│   │   │   │   └── L0  Spring steel\n│   │   │   ├── L1  Pivot pin\n│   │   │   │   └── L0  Stainless steel (303 or 304)\n│   │   │   └── L1  Guard arm / lever body  ←— ALTERNATIVES EXIST (polymer vs. metal)\n│   │   │       └── L0  ABS or zinc alloy die-cast  ←— ALTERNATIVES EXIST\n│   │   └── L2  Handle-blocking element\n│   │       ├── L1  Guard face plate (blocking surface)\n│   │       └── L1  Stop detent / locking catch\n│   └── L3  Key override mechanism  ←— ALTERNATIVES EXIST\n│       └── L2  Profile half-cylinder lock assembly\n│           ├── L1  Cylinder housing\n│           │   └── L0  Brass / zinc alloy\n│           └── L1  Key pin set (tumbler)\n│               └── L0  Hardened brass\n│\n├── S2  Acoustic Alarm Subsystem (L4)\n│   ├── L3  Sound generation module  ←— ALTERNATIVES EXIST (transducer type)\n│   │   ├── L2  Piezoelectric buzzer assembly  ←— DOMINANT\n│   │   │   ├── L1  Piezo disc element\n│   │   │   │   └── L0  PZT ceramic (lead zirconate titanate) + brass disc\n│   │   │   └── L1  Oscillator / driver PCB\n│   │   │       └── L0  FR4 fibreglass laminate + copper traces\n│   │   └── L2  Acoustic resonance cavity\n│   │       └── L1  Horn/chamber shell\n│   │           └── L0  ABS polymer\n│   └── L3  Pre-alarm detection assembly (variant: 990100 / 990140 only)\n│       └── L2  Handle-touch contact\n│           ├── L1  Contact spring\n│           │   └── L0  Phosphor bronze\n│           └── L1  Actuator pad\n│               └── L0  ABS polymer\n│\n├── S3  Wireless Communication Subsystem (L4)\n│   ├── L3  RF transmitter module  ←— ALTERNATIVES EXIST (protocol)\n│   │   └── L2  868 MHz EasyWave RF PCB assembly  [current]\n│   │       ├── L1  RF transceiver IC (868.3 MHz)\n│   │       │   └── L0  Silicon semiconductor\n│   │       ├── L1  Antenna (PCB trace or wire)\n│   │       │   └── L0  Copper\n│   │       └── L1  Passive components (caps, resistors, inductors)\n│   │           └── L0  Ceramic / tantalum\n│   ├── L3  Microcontroller / logic board\n│   │   └── L2  MCU assembly\n│   │       ├── L1  MCU IC\n│   │       │   └── L0  Silicon semiconductor\n│   │       └── L1  Flash memory (firmware)\n│   │           └── L0  Silicon\n│   └── L3  State detection interface\n│       └── L2  Guard-position sensor\n│           └── L1  Reed contact or Hall-effect sensor\n│               └── L0  Magnetic material / silicon\n│\n├── S4  Power Supply Subsystem (L4)\n│   ├── L3  Primary cell battery  ←— ALTERNATIVES EXIST (chemistry)\n│   │   └── L1  9V block battery (user-replaceable)  ←— ALTERNATIVES EXIST\n│   │       └── L0  Electrochemical cell stack  ←— ALTERNATIVES EXIST\n│   └── L3  Battery holder / power interface\n│       └── L2  Battery contact assembly\n│           ├── L1  Spring contacts\n│           │   └── L0  Nickel-plated steel\n│           ├── L1  Battery holder housing\n│           │   └── L0  ABS polymer\n│           └── L1  Voltage regulator / protection circuit\n│               └── L0  Silicon IC + PCB (FR4)\n│\n└── S5  Enclosure & Mounting Subsystem (L4)\n    ├── L3  Main housing module\n    │   └── L2  Guard body assembly  ←— ALTERNATIVES EXIST (polymer type)\n    │       ├── L1  Outer shell (injection-molded)\n    │       │   └── L0  ABS or PC/ABS blend  ←— ALTERNATIVES EXIST\n    │       └── L1  Colour coat (RAL 6029 safety green)\n    │           └── L0  Powder coat or spray lacquer\n    ├── L3  Mounting hardware module\n    │   └── L2  Rear mounting plate assembly\n    │       ├── L1  Backplate\n    │       │   └── L0  ABS or zinc alloy\n    │       └── L1  Mounting screws (M4/M5)\n    │           └── L0  Stainless steel\n    └── L3  Weatherproof seal module (IP45 variant only)\n        └── L2  Gasket / seal assembly\n            ├── L1  O-ring or foam gasket\n            │   └── L0  EPDM rubber / polyurethane foam\n            └── L1  Sealed cable gland (if applicable)\n                └── L0  Polyamide (PA66)\n```\n\n---"
+    },
+    {
+      "title": "B.3 — Alternatives at Every Level",
+      "content": "### S1 — Mechanical Guard Subsystem\n\n#### L3: Key Override Mechanism\n\n| Alternative | Share | Trend | School relevance |\n|---|---|---|---|\n| Profile half-cylinder (EN 1303) | 55% | Stable | Standard; familiar to facilities staff |\n| Cam lock (tubular) | 25% | Stable | Lower cost; less secure |\n| Electronic / RFID key override | 15% | Growing | Audit trail; preferred in newer school access programs |\n| No override (manual reset only) | 5% | Declining | Eliminates bypass risk; operationally impractical |\n\n**Confidence:** LOW | **Source:** Analyst estimate; no published split for door alarm override mechanisms\n\n#### L1: Guard Arm / Lever Body Material → L0 Polymer\n\n| Alternative | Share | Trend | Notes |\n|---|---|---|---|\n| ABS (injection-molded) | 40% | Stable | Cost-effective; good impact absorption; indoor standard |\n| PC/ABS blend | 35% | Growing | Flame-retardant grades (UL94 V-0); stronger; preferred where IK vandal ratings matter |\n| Zinc alloy die-cast | 15% | Stable | Higher strength; heavier; weather-resistant |\n| Aluminium alloy | 10% | Declining | Premium; high cost; rarely justified at this product level |\n\n**Confidence:** MEDIUM | **Source:** PC/ABS market data (Credence Research 2024); Polycase material comparison [polycase.com]\n\n---\n\n### S2 — Acoustic Alarm Subsystem\n\n#### L3: Sound Generation Module — Transducer Type\n\n| Alternative | Share | Trend | Notes |\n|---|---|---|---|\n| Piezoelectric (active piezo element) | ~62% | Stable | Dominant. Low power draw; self-contained oscillator; operates without mains. |\n| Electromagnetic buzzer | ~28% | Declining | Coil-based; louder at low frequencies; higher current draw — less compatible with battery-primary constraint C2. |\n| Speaker + class-D amplifier | ~10% | Growing | Enables configurable tones/voice alerts; significantly higher power; rare in battery-primary devices. |\n\n**Confidence:** MEDIUM | **Source:** Straits Research Buzzer Market 2024; Cognitive Market Research Electromagnetic Buzzers 2024 [cognitivemarketresearch.com]. Piezo at ≥62% corroborated by two independent sources.\n\n**School-market note:** Piezo is the only option compatible with C2 (mechanical alarm at 0 V). Electromagnetic and speaker variants require continuous power for full volume.\n\n---\n\n### S3 — Wireless Communication Subsystem\n\n#### L3: RF Transmitter Module — Wireless Protocol\n\nThis is the most strategically significant design choice for the schools market. C6 (EasyWave protocol lock-in) directly constrains integration with school BMS and access control systems.\n\n| Alternative | Share | Trend | School fit |\n|---|---|---|---|\n| Proprietary sub-1GHz (433/868 MHz, e.g. EasyWave) | ~45% | Declining | Dominant in legacy alarm systems; no native BMS interop; GfS BUS gateway required. |\n| BLE 5.x (Bluetooth Mesh) | ~22% | Growing | Short range (~30m); native iOS/Android app; no hub required for small deployments. Good for single-school use. |\n| Zigbee / Thread | ~15% | Stable | Mesh topology; used in building automation; requires coordinator hub. |\n| LoRaWAN | ~10% | Growing | Long range (4–6 floors through concrete); growing in campus deployments; requires LoRaWAN gateway. Best fit for large school campuses. |\n| Wi-Fi (802.11 b/g/n) | ~5% | Stable | Easy IT integration; high power draw; battery life concern (C4). |\n| NB-IoT / LTE-M | ~3% | Emerging | Carrier-grade reliability; subscription cost per device; limited to high-security or national chains. |\n\n**Confidence:** LOW | **Source:** Analyst estimate. LoRaWAN market context: Fortune Business Insights 2025 ($7.7B market). No published protocol-split for door alarm devices specifically.\n\n**School-market note:** LoRaWAN is the best architectural fit for multi-building school campuses (penetrates 4–6 concrete floors). BLE is lowest-friction for single-building retrofits. Current EasyWave protocol creates long-term vendor lock-in risk with school district IT procurement policies.\n\n---\n\n### S4 — Power Supply Subsystem\n\n#### L1: 9V Block Battery — Electrochemical Technology (L0)\n\nHigh-traffic school corridors elevate battery replacement frequency. C4 (battery life floor) is a primary operational concern for school facilities directors.\n\n| Alternative | Share (IoT door devices) | Trend | Battery life estimate (high-use door) | School fit |\n|---|---|---|---|---|\n| Alkaline (e.g. Duracell MN1604) | ~52% | Stable | 12–18 months at moderate use | Universally available; low upfront cost; shorter life under high frequency |\n| Lithium primary (e.g. Energizer L522) | ~31% | Growing | 24–36 months at same use | 2–3× life; higher upfront; best choice for hard-to-access doors and gym exits |\n| NiMH rechargeable (9V) | ~12% | Stable | Requires recharge every 6–12 months | Reduces waste; operationally intensive; not recommended for unattended locations |\n| Proprietary rechargeable pack | ~5% | Emerging | Manufacturer-managed; USB-C or wireless charge | Emerging in premium IoT devices; not available in current GfS product line |\n\n**Confidence:** MEDIUM | **Source:** Mordor Intelligence Primary Battery Market 2025; IoT Battery Market report (Straits Research 2024). 47% of industrial IoT sensors use lithium primary for extended life.\n\n**School-market note:** Lithium primary is strongly recommended for school deployments. At 9–35 mA draw (GfS spec), alkaline 9V cells (~550 mAh) exhaust faster under high door-event frequency (gym exits, main corridor exits during class changes). Lithium 9V cells offer ~1,200 mAh — more than 2× the life.\n\n---\n\n### S5 — Enclosure & Mounting Subsystem\n\n#### L0: Housing Shell Polymer\n\n| Alternative | Share (security device housings) | Trend | Notes |\n|---|---|---|---|\n| ABS (standard / FR grade) | ~40% | Stable | Most cost-effective; good impact absorption; flame-retardant grades (UL94 V-0) available |\n| PC/ABS blend | ~35% | Growing | Best combination of impact strength + flame retardance; preferred where IK07+ vandal ratings required |\n| Flame-retardant polycarbonate (PC) | ~15% | Stable | Higher temperature resistance; transparent-capable variants for LED indicator windows |\n| Zinc alloy die-cast | ~10% | Declining | Metal alternative; heavier; corrosion-resistant; rare at this product tier |\n\n**Confidence:** MEDIUM | **Source:** Credence Research PC/ABS Market 2024 ($4.67B); over 58% of electronic enclosures now require UL94 flame-retardant grades (Business Research Insights 2024).\n\n**School-market note:** Schools may require IK07 or IK08 vandal-resistance ratings for devices in student-accessible corridors. PC/ABS blend is the recommended specification for school deployments; standard ABS is acceptable only for staff-only or locked areas.\n\n---"
+    },
+    {
+      "title": "B.4 — Component Category Map: Wireless Sensor Module",
+      "content": "The wireless radio module appears at one BOM position but faces different competitors depending on the school deployment context.\n\n| Position | BOM path | Function | Safety-critical | Key competitor alternatives |\n|---|---|---|---|---|\n| P1: Single-door standalone | S3 → L3 RF Transmitter → L2 EasyWave PCB | Alarm event to standalone receiver | No | BLE 5.x (direct phone notification), Z-Wave |\n| P2: Multi-door school network | S3 → L3 RF Transmitter → L2 EasyWave PCB | Alarm events aggregated via BUS gateway to BMS | No | LoRaWAN (campus range), Zigbee mesh |\n| P3: District-wide platform | S3 → L3 RF Transmitter → L2 EasyWave PCB | Events to cloud SaaS monitoring dashboard | No | LTE-M/NB-IoT (carrier-based, no gateway), cloud-native BLE gateways |\n\n**Insight:** The same hardware slot faces entirely different integration requirements at each deployment scale. A 5-door primary school (P1) tolerates EasyWave. A 200-door district-wide rollout (P3) cannot — IT procurement policies and district BMS standardization override the local alarm functionality requirement.\n\n---"
+    },
+    {
+      "title": "Key Findings for Schools Market",
+      "content": "| Finding | Implication |\n|---|---|\n| **Protocol lock-in (C6) is the #1 BOM risk** | EasyWave's ~45% legacy share is declining. School IT departments standardizing on LoRaWAN or BLE-based platforms will reject GfS unless a gateway integration path is documented upfront. |\n| **Lithium primary battery is operationally superior** | Gym exits + corridor exits in schools are high-frequency doors. Specifying lithium 9V at time of sale reduces year-2 maintenance callbacks and improves C4 compliance. |\n| **PC/ABS or IK-rated housing required for corridors** | ABS is adequate for staff-only areas. Vandal-exposed doors (student corridors, locker room exits) require IK07+ rating. GfS should confirm IK rating or specify PC/ABS variant. |\n| **Piezo transducer is the only C2-compliant alarm technology** | Electromagnetic and speaker alternatives are incompatible with the mechanical-alarm-at-0V absolute constraint. No substitution is possible without violating fire code. |\n| **School security market growing at 11–13% CAGR** | $3B+ US+EU market in 2024; 48% of US districts upgraded access/alarm systems in the past year. Timing is favorable for retrofit-friendly, battery-operated solution. |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"market\": {\n    \"naics_code\": \"611110\",\n    \"naics_title\": \"Elementary and Secondary Schools\",\n    \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n    \"product_l5\": \"GfS Türwächter Exit Control 179/1125 with IoT (Art. 990140)\"\n  },\n  \"bom_units\": [\n    {\n      \"name\": \"Mechanical Guard Subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"Spring-loaded physical guard that blocks door handle depression in locked state; 45° rotation releases handle and triggers alarm via mechanical linkage. Zero electrical power required.\",\n      \"naics_code\": \"611110\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Acoustic Alarm Subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"95 dB audible alarm triggered mechanically on guard rotation. Piezoelectric transducer driven by oscillator circuit. Operates without electrical power (purely mechanical trigger).\",\n      \"naics_code\": \"611110\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Wireless Communication Subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"868.3 MHz EasyWave radio transmitter broadcasting guard state and alarm events to receivers and BUS interfaces. IoT supervisory layer — does not affect escape route compliance.\",\n      \"naics_code\": \"611110\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Power Supply Subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"9V replaceable block battery powering IoT radio module and pre-alarm circuit. Mechanical alarm requires no power. Battery life target: >2 years at typical door event frequency.\",\n      \"naics_code\": \"611110\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Enclosure and Mounting Subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"Injection-molded housing in RAL 6029 safety green; surface-mounted to existing door handle with rear mounting plate. IP45 variant available for outdoor use.\",\n      \"naics_code\": \"611110\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Guard Pivot Mechanism\",\n      \"level\": \"L3\",\n      \"description\": \"Spring-return pivot assembly and handle-blocking element forming the mechanical locking action.\",\n      \"naics_code\": \"611110\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Key Override Mechanism\",\n      \"level\": \"L3\",\n      \"description\": \"Profile half-cylinder lock allowing authorized bypass without triggering alarm.\",\n      \"naics_code\": \"611110\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Sound Generation Module\",\n      \"level\": \"L3\",\n      \"description\": \"Piezoelectric transducer assembly producing 95 dB alarm on guard activation.\",\n      \"naics_code\": \"611110\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"RF Transmitter Module\",\n      \"level\": \"L3\",\n      \"description\": \"868 MHz EasyWave radio module transmitting guard-state and alarm events wirelessly to receivers up to 30m.\",\n      \"naics_code\": \"611110\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    },\n    {\n      \"name\": \"Primary Cell Battery\",\n      \"level\": \"L3\",\n      \"description\": \"9V block battery (user-replaceable). Chemistry is a design choice with major operational impact for schools.\",\n      \"naics_code\": \"611110\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\"\n    }\n  ],\n  \"bom_alternatives\": [\n    {\n      \"name\": \"Profile half-cylinder (EN 1303)\",\n      \"parent_bom_name\": \"Key Override Mechanism\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 55,\n      \"trend\": \"Stable\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate — no published split\"\n    },\n    {\n      \"name\": \"Cam lock (tubular)\",\n      \"parent_bom_name\": \"Key Override Mechanism\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 25,\n      \"trend\": \"Stable\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\"\n    },\n    {\n      \"name\": \"Electronic / RFID key override\",\n      \"parent_bom_name\": \"Key Override Mechanism\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 15,\n      \"trend\": \"Growing\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\"\n    },\n    {\n      \"name\": \"No override (manual reset only)\",\n      \"parent_bom_name\": \"Key Override Mechanism\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 5,\n      \"trend\": \"Declining\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\"\n    },\n    {\n      \"name\": \"Piezoelectric (active piezo element)\",\n      \"parent_bom_name\": \"Sound Generation Module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 62,\n      \"trend\": \"Stable\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Straits Research Buzzer Market 2024; Cognitive Market Research 2024\"\n    },\n    {\n      \"name\": \"Electromagnetic buzzer\",\n      \"parent_bom_name\": \"Sound Generation Module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 28,\n      \"trend\": \"Declining\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Cognitive Market Research Electromagnetic Buzzers 2024\"\n    },\n    {\n      \"name\": \"Speaker + class-D amplifier\",\n      \"parent_bom_name\": \"Sound Generation Module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 10,\n      \"trend\": \"Growing\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Analyst estimate from buzzer market residual\"\n    },\n    {\n      \"name\": \"Proprietary sub-1GHz (EasyWave / 433-868 MHz)\",\n      \"parent_bom_name\": \"RF Transmitter Module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 45,\n      \"trend\": \"Declining\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate — no published door-alarm protocol split\"\n    },\n    {\n      \"name\": \"BLE 5.x (Bluetooth Mesh)\",\n      \"parent_bom_name\": \"RF Transmitter Module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 22,\n      \"trend\": \"Growing\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate — LoRaWAN market context: Fortune Business Insights 2025\"\n    },\n    {\n      \"name\": \"Zigbee / Thread\",\n      \"parent_bom_name\": \"RF Transmitter Module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 15,\n      \"trend\": \"Stable\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\"\n    },\n    {\n      \"name\": \"LoRaWAN\",\n      \"parent_bom_name\": \"RF Transmitter Module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 10,\n      \"trend\": \"Growing\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Fortune Business Insights LoRaWAN IoT Market 2025 ($7.7B)\"\n    },\n    {\n      \"name\": \"Wi-Fi (802.11)\",\n      \"parent_bom_name\": \"RF Transmitter Module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 5,\n      \"trend\": \"Stable\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\"\n    },\n    {\n      \"name\": \"NB-IoT / LTE-M\",\n      \"parent_bom_name\": \"RF Transmitter Module\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 3,\n      \"trend\": \"Emerging\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\"\n    },\n    {\n      \"name\": \"Alkaline 9V (e.g. Duracell MN1604)\",\n      \"parent_bom_name\": \"Primary Cell Battery\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 52,\n      \"trend\": \"Stable\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Mordor Intelligence Primary Battery Market 2025 — alkaline 52% volume share\"\n    },\n    {\n      \"name\": \"Lithium primary 9V (e.g. Energizer L522)\",\n      \"parent_bom_name\": \"Primary Cell Battery\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 31,\n      \"trend\": \"Growing\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Mordor Intelligence / Straits Research IoT Battery Market 2024 — 47% of industrial IoT sensors use lithium primary\"\n    },\n    {\n      \"name\": \"NiMH rechargeable 9V\",\n      \"parent_bom_name\": \"Primary Cell Battery\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 12,\n      \"trend\": \"Stable\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Analyst estimate from primary battery market residual\"\n    },\n    {\n      \"name\": \"Proprietary rechargeable pack\",\n      \"parent_bom_name\": \"Primary Cell Battery\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 5,\n      \"trend\": \"Emerging\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\"\n    },\n    {\n      \"name\": \"ABS (standard or FR grade)\",\n      \"parent_bom_name\": \"Enclosure and Mounting Subsystem\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 40,\n      \"trend\": \"Stable\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Credence Research PC/ABS Market 2024; Polycase material guide\"\n    },\n    {\n      \"name\": \"PC/ABS blend\",\n      \"parent_bom_name\": \"Enclosure and Mounting Subsystem\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 35,\n      \"trend\": \"Growing\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Business Research Insights — 58% of electronic enclosures require UL94 FR grade 2024\"\n    },\n    {\n      \"name\": \"Flame-retardant polycarbonate (PC)\",\n      \"parent_bom_name\": \"Enclosure and Mounting Subsystem\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 15,\n      \"trend\": \"Stable\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Analyst estimate from plastics market residual\"\n    },\n    {\n      \"name\": \"Zinc alloy die-cast\",\n      \"parent_bom_name\": \"Enclosure and Mounting Subsystem\",\n      \"output_type\": \"Emergency Exit Door Alarm Guard (IoT Variant)\",\n      \"market_share\": 10,\n      \"trend\": \"Declining\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Analyst estimate\"\n    }\n  ]\n}\n```\n\n---\n\n*Sources: [Straits Research Buzzer Market](https://straitsresearch.com/report/buzzer-market) · [Cognitive Market Research Electromagnetic Buzzers](https://www.cognitivemarketresearch.com/electromagnetic-buzzers-market-report) · [Fortune Business Insights LoRaWAN IoT Market](https://www.fortunebusinessinsights.com/lora-and-lorawan-iot-market-112213) · [Mordor Intelligence Primary Battery Market](https://www.mordorintelligence.com/industry-reports/global-primary-battery-market-industry) · [Straits Research IoT Battery Market](https://straitsresearch.com/report/iot-battery-market) · [Credence Research PC/ABS Market](https://www.credenceresearch.com/report/pc-abs-market) · [Business Research Insights PC/ABS](https://www.businessresearchinsights.com/market-reports/pc-abs-market-122697) · [IMARC School and Campus Security Market](https://www.imarcgroup.com/school-campus-security-market) · [Security Industry Association K-12 Assessment](https://www.securityindustry.org/report/physical-security-vertical-market-assessment-k12-school-security/)*"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**NAICS**",
+          "Value": "611110 — Elementary and Secondary Schools"
+        },
+        {
+          "Field": "**Sector**",
+          "Value": "Educational Services (61) — service output"
+        },
+        {
+          "Field": "**BOM applies?**",
+          "Value": "**YES** — BOM is of the *product sold into this market* (Türwächter IoT), not of the school. Physical device with full compositional structure."
+        },
+        {
+          "Field": "**Output type**",
+          "Value": "Emergency Exit Door Alarm Guard — IoT variant (Art. 990140)"
+        },
+        {
+          "Field": "**Applicable variant**",
+          "Value": "Exit Control 179 Pre-alarm + Radio (battery-operated, surface-mount, 868 MHz EasyWave)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Subsystem (L4)",
+        "Pattern category",
+        "School-context relevance"
+      ],
+      "rows": [
+        {
+          "ID": "S1",
+          "Subsystem (L4)": "**Mechanical Guard Subsystem**",
+          "Pattern category": "Primary functional core",
+          "School-context relevance": "Blocks door handle; single-motion release per EN 179. Non-negotiable under C2 (power-independent)."
+        },
+        {
+          "ID": "S2",
+          "Subsystem (L4)": "**Acoustic Alarm Subsystem**",
+          "Pattern category": "Primary functional (secondary)",
+          "School-context relevance": "95 dB alert on activation. Mechanical trigger — zero power required. Fire code mandated."
+        },
+        {
+          "ID": "S3",
+          "Subsystem (L4)": "**Wireless Communication Subsystem**",
+          "Pattern category": "Control / interface",
+          "School-context relevance": "IoT monitoring layer. Key value driver for facility managers. C6 (protocol lock-in) is primary school risk."
+        },
+        {
+          "ID": "S4",
+          "Subsystem (L4)": "**Power Supply Subsystem**",
+          "Pattern category": "Auxiliary / support",
+          "School-context relevance": "9V battery. C4 (battery life) elevated in schools — high door-use frequency in corridors and gym exits."
+        },
+        {
+          "ID": "S5",
+          "Subsystem (L4)": "**Enclosure & Mounting Subsystem**",
+          "Pattern category": "Containment / packaging",
+          "School-context relevance": "Surface-mounted housing. Vandal-resistance concern in schools (C5 surface-mount limitation)."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "School relevance"
+      ],
+      "rows": [
+        {
+          "Alternative": "Profile half-cylinder (EN 1303)",
+          "Share": "55%",
+          "Trend": "Stable",
+          "School relevance": "Standard; familiar to facilities staff"
+        },
+        {
+          "Alternative": "Cam lock (tubular)",
+          "Share": "25%",
+          "Trend": "Stable",
+          "School relevance": "Lower cost; less secure"
+        },
+        {
+          "Alternative": "Electronic / RFID key override",
+          "Share": "15%",
+          "Trend": "Growing",
+          "School relevance": "Audit trail; preferred in newer school access programs"
+        },
+        {
+          "Alternative": "No override (manual reset only)",
+          "Share": "5%",
+          "Trend": "Declining",
+          "School relevance": "Eliminates bypass risk; operationally impractical"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "Alternative": "ABS (injection-molded)",
+          "Share": "40%",
+          "Trend": "Stable",
+          "Notes": "Cost-effective; good impact absorption; indoor standard"
+        },
+        {
+          "Alternative": "PC/ABS blend",
+          "Share": "35%",
+          "Trend": "Growing",
+          "Notes": "Flame-retardant grades (UL94 V-0); stronger; preferred where IK vandal ratings matter"
+        },
+        {
+          "Alternative": "Zinc alloy die-cast",
+          "Share": "15%",
+          "Trend": "Stable",
+          "Notes": "Higher strength; heavier; weather-resistant"
+        },
+        {
+          "Alternative": "Aluminium alloy",
+          "Share": "10%",
+          "Trend": "Declining",
+          "Notes": "Premium; high cost; rarely justified at this product level"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "Alternative": "Piezoelectric (active piezo element)",
+          "Share": "~62%",
+          "Trend": "Stable",
+          "Notes": "Dominant. Low power draw; self-contained oscillator; operates without mains."
+        },
+        {
+          "Alternative": "Electromagnetic buzzer",
+          "Share": "~28%",
+          "Trend": "Declining",
+          "Notes": "Coil-based; louder at low frequencies; higher current draw — less compatible with battery-primary constraint C2."
+        },
+        {
+          "Alternative": "Speaker + class-D amplifier",
+          "Share": "~10%",
+          "Trend": "Growing",
+          "Notes": "Enables configurable tones/voice alerts; significantly higher power; rare in battery-primary devices."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share",
+        "Trend",
+        "School fit"
+      ],
+      "rows": [
+        {
+          "Alternative": "Proprietary sub-1GHz (433/868 MHz, e.g. EasyWave)",
+          "Share": "~45%",
+          "Trend": "Declining",
+          "School fit": "Dominant in legacy alarm systems; no native BMS interop; GfS BUS gateway required."
+        },
+        {
+          "Alternative": "BLE 5.x (Bluetooth Mesh)",
+          "Share": "~22%",
+          "Trend": "Growing",
+          "School fit": "Short range (~30m); native iOS/Android app; no hub required for small deployments. Good for single-school use."
+        },
+        {
+          "Alternative": "Zigbee / Thread",
+          "Share": "~15%",
+          "Trend": "Stable",
+          "School fit": "Mesh topology; used in building automation; requires coordinator hub."
+        },
+        {
+          "Alternative": "LoRaWAN",
+          "Share": "~10%",
+          "Trend": "Growing",
+          "School fit": "Long range (4–6 floors through concrete); growing in campus deployments; requires LoRaWAN gateway. Best fit for large school campuses."
+        },
+        {
+          "Alternative": "Wi-Fi (802.11 b/g/n)",
+          "Share": "~5%",
+          "Trend": "Stable",
+          "School fit": "Easy IT integration; high power draw; battery life concern (C4)."
+        },
+        {
+          "Alternative": "NB-IoT / LTE-M",
+          "Share": "~3%",
+          "Trend": "Emerging",
+          "School fit": "Carrier-grade reliability; subscription cost per device; limited to high-security or national chains."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share (IoT door devices)",
+        "Trend",
+        "Battery life estimate (high-use door)",
+        "School fit"
+      ],
+      "rows": [
+        {
+          "Alternative": "Alkaline (e.g. Duracell MN1604)",
+          "Share (IoT door devices)": "~52%",
+          "Trend": "Stable",
+          "Battery life estimate (high-use door)": "12–18 months at moderate use",
+          "School fit": "Universally available; low upfront cost; shorter life under high frequency"
+        },
+        {
+          "Alternative": "Lithium primary (e.g. Energizer L522)",
+          "Share (IoT door devices)": "~31%",
+          "Trend": "Growing",
+          "Battery life estimate (high-use door)": "24–36 months at same use",
+          "School fit": "2–3× life; higher upfront; best choice for hard-to-access doors and gym exits"
+        },
+        {
+          "Alternative": "NiMH rechargeable (9V)",
+          "Share (IoT door devices)": "~12%",
+          "Trend": "Stable",
+          "Battery life estimate (high-use door)": "Requires recharge every 6–12 months",
+          "School fit": "Reduces waste; operationally intensive; not recommended for unattended locations"
+        },
+        {
+          "Alternative": "Proprietary rechargeable pack",
+          "Share (IoT door devices)": "~5%",
+          "Trend": "Emerging",
+          "Battery life estimate (high-use door)": "Manufacturer-managed; USB-C or wireless charge",
+          "School fit": "Emerging in premium IoT devices; not available in current GfS product line"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share (security device housings)",
+        "Trend",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "Alternative": "ABS (standard / FR grade)",
+          "Share (security device housings)": "~40%",
+          "Trend": "Stable",
+          "Notes": "Most cost-effective; good impact absorption; flame-retardant grades (UL94 V-0) available"
+        },
+        {
+          "Alternative": "PC/ABS blend",
+          "Share (security device housings)": "~35%",
+          "Trend": "Growing",
+          "Notes": "Best combination of impact strength + flame retardance; preferred where IK07+ vandal ratings required"
+        },
+        {
+          "Alternative": "Flame-retardant polycarbonate (PC)",
+          "Share (security device housings)": "~15%",
+          "Trend": "Stable",
+          "Notes": "Higher temperature resistance; transparent-capable variants for LED indicator windows"
+        },
+        {
+          "Alternative": "Zinc alloy die-cast",
+          "Share (security device housings)": "~10%",
+          "Trend": "Declining",
+          "Notes": "Metal alternative; heavier; corrosion-resistant; rare at this product tier"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Position",
+        "BOM path",
+        "Function",
+        "Safety-critical",
+        "Key competitor alternatives"
+      ],
+      "rows": [
+        {
+          "Position": "P1: Single-door standalone",
+          "BOM path": "S3 → L3 RF Transmitter → L2 EasyWave PCB",
+          "Function": "Alarm event to standalone receiver",
+          "Safety-critical": "No",
+          "Key competitor alternatives": "BLE 5.x (direct phone notification), Z-Wave"
+        },
+        {
+          "Position": "P2: Multi-door school network",
+          "BOM path": "S3 → L3 RF Transmitter → L2 EasyWave PCB",
+          "Function": "Alarm events aggregated via BUS gateway to BMS",
+          "Safety-critical": "No",
+          "Key competitor alternatives": "LoRaWAN (campus range), Zigbee mesh"
+        },
+        {
+          "Position": "P3: District-wide platform",
+          "BOM path": "S3 → L3 RF Transmitter → L2 EasyWave PCB",
+          "Function": "Events to cloud SaaS monitoring dashboard",
+          "Safety-critical": "No",
+          "Key competitor alternatives": "LTE-M/NB-IoT (carrier-based, no gateway), cloud-native BLE gateways"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Finding",
+        "Implication"
+      ],
+      "rows": [
+        {
+          "Finding": "**Protocol lock-in (C6) is the #1 BOM risk**",
+          "Implication": "EasyWave's ~45% legacy share is declining. School IT departments standardizing on LoRaWAN or BLE-based platforms will reject GfS unless a gateway integration path is documented upfront."
+        },
+        {
+          "Finding": "**Lithium primary battery is operationally superior**",
+          "Implication": "Gym exits + corridor exits in schools are high-frequency doors. Specifying lithium 9V at time of sale reduces year-2 maintenance callbacks and improves C4 compliance."
+        },
+        {
+          "Finding": "**PC/ABS or IK-rated housing required for corridors**",
+          "Implication": "ABS is adequate for staff-only areas. Vandal-exposed doors (student corridors, locker room exits) require IK07+ rating. GfS should confirm IK rating or specify PC/ABS variant."
+        },
+        {
+          "Finding": "**Piezo transducer is the only C2-compliant alarm technology**",
+          "Implication": "Electromagnetic and speaker alternatives are incompatible with the mechanical-alarm-at-0V absolute constraint. No substitution is possible without violating fire code."
+        },
+        {
+          "Finding": "**School security market growing at 11–13% CAGR**",
+          "Implication": "$3B+ US+EU market in 2024; 48% of US districts upgraded access/alarm systems in the past year. Timing is favorable for retrofit-friendly, battery-operated solution."
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market": {
+        "naics_code": "611110",
+        "naics_title": "Elementary and Secondary Schools",
+        "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+        "product_l5": "GfS Türwächter Exit Control 179/1125 with IoT (Art. 990140)"
+      },
+      "bom_units": [
+        {
+          "name": "Mechanical Guard Subsystem",
+          "level": "L4",
+          "description": "Spring-loaded physical guard that blocks door handle depression in locked state; 45° rotation releases handle and triggers alarm via mechanical linkage. Zero electrical power required.",
+          "naics_code": "611110",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Acoustic Alarm Subsystem",
+          "level": "L4",
+          "description": "95 dB audible alarm triggered mechanically on guard rotation. Piezoelectric transducer driven by oscillator circuit. Operates without electrical power (purely mechanical trigger).",
+          "naics_code": "611110",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Wireless Communication Subsystem",
+          "level": "L4",
+          "description": "868.3 MHz EasyWave radio transmitter broadcasting guard state and alarm events to receivers and BUS interfaces. IoT supervisory layer — does not affect escape route compliance.",
+          "naics_code": "611110",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Power Supply Subsystem",
+          "level": "L4",
+          "description": "9V replaceable block battery powering IoT radio module and pre-alarm circuit. Mechanical alarm requires no power. Battery life target: >2 years at typical door event frequency.",
+          "naics_code": "611110",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Enclosure and Mounting Subsystem",
+          "level": "L4",
+          "description": "Injection-molded housing in RAL 6029 safety green; surface-mounted to existing door handle with rear mounting plate. IP45 variant available for outdoor use.",
+          "naics_code": "611110",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Guard Pivot Mechanism",
+          "level": "L3",
+          "description": "Spring-return pivot assembly and handle-blocking element forming the mechanical locking action.",
+          "naics_code": "611110",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Key Override Mechanism",
+          "level": "L3",
+          "description": "Profile half-cylinder lock allowing authorized bypass without triggering alarm.",
+          "naics_code": "611110",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Sound Generation Module",
+          "level": "L3",
+          "description": "Piezoelectric transducer assembly producing 95 dB alarm on guard activation.",
+          "naics_code": "611110",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "RF Transmitter Module",
+          "level": "L3",
+          "description": "868 MHz EasyWave radio module transmitting guard-state and alarm events wirelessly to receivers up to 30m.",
+          "naics_code": "611110",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        },
+        {
+          "name": "Primary Cell Battery",
+          "level": "L3",
+          "description": "9V block battery (user-replaceable). Chemistry is a design choice with major operational impact for schools.",
+          "naics_code": "611110",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)"
+        }
+      ],
+      "bom_alternatives": [
+        {
+          "name": "Profile half-cylinder (EN 1303)",
+          "parent_bom_name": "Key Override Mechanism",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 55,
+          "trend": "Stable",
+          "confidence": "LOW",
+          "source": "Analyst estimate — no published split"
+        },
+        {
+          "name": "Cam lock (tubular)",
+          "parent_bom_name": "Key Override Mechanism",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 25,
+          "trend": "Stable",
+          "confidence": "LOW",
+          "source": "Analyst estimate"
+        },
+        {
+          "name": "Electronic / RFID key override",
+          "parent_bom_name": "Key Override Mechanism",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 15,
+          "trend": "Growing",
+          "confidence": "LOW",
+          "source": "Analyst estimate"
+        },
+        {
+          "name": "No override (manual reset only)",
+          "parent_bom_name": "Key Override Mechanism",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 5,
+          "trend": "Declining",
+          "confidence": "LOW",
+          "source": "Analyst estimate"
+        },
+        {
+          "name": "Piezoelectric (active piezo element)",
+          "parent_bom_name": "Sound Generation Module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 62,
+          "trend": "Stable",
+          "confidence": "MEDIUM",
+          "source": "Straits Research Buzzer Market 2024; Cognitive Market Research 2024"
+        },
+        {
+          "name": "Electromagnetic buzzer",
+          "parent_bom_name": "Sound Generation Module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 28,
+          "trend": "Declining",
+          "confidence": "MEDIUM",
+          "source": "Cognitive Market Research Electromagnetic Buzzers 2024"
+        },
+        {
+          "name": "Speaker + class-D amplifier",
+          "parent_bom_name": "Sound Generation Module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 10,
+          "trend": "Growing",
+          "confidence": "MEDIUM",
+          "source": "Analyst estimate from buzzer market residual"
+        },
+        {
+          "name": "Proprietary sub-1GHz (EasyWave / 433-868 MHz)",
+          "parent_bom_name": "RF Transmitter Module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 45,
+          "trend": "Declining",
+          "confidence": "LOW",
+          "source": "Analyst estimate — no published door-alarm protocol split"
+        },
+        {
+          "name": "BLE 5.x (Bluetooth Mesh)",
+          "parent_bom_name": "RF Transmitter Module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 22,
+          "trend": "Growing",
+          "confidence": "LOW",
+          "source": "Analyst estimate — LoRaWAN market context: Fortune Business Insights 2025"
+        },
+        {
+          "name": "Zigbee / Thread",
+          "parent_bom_name": "RF Transmitter Module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 15,
+          "trend": "Stable",
+          "confidence": "LOW",
+          "source": "Analyst estimate"
+        },
+        {
+          "name": "LoRaWAN",
+          "parent_bom_name": "RF Transmitter Module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 10,
+          "trend": "Growing",
+          "confidence": "LOW",
+          "source": "Fortune Business Insights LoRaWAN IoT Market 2025 ($7.7B)"
+        },
+        {
+          "name": "Wi-Fi (802.11)",
+          "parent_bom_name": "RF Transmitter Module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 5,
+          "trend": "Stable",
+          "confidence": "LOW",
+          "source": "Analyst estimate"
+        },
+        {
+          "name": "NB-IoT / LTE-M",
+          "parent_bom_name": "RF Transmitter Module",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 3,
+          "trend": "Emerging",
+          "confidence": "LOW",
+          "source": "Analyst estimate"
+        },
+        {
+          "name": "Alkaline 9V (e.g. Duracell MN1604)",
+          "parent_bom_name": "Primary Cell Battery",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 52,
+          "trend": "Stable",
+          "confidence": "MEDIUM",
+          "source": "Mordor Intelligence Primary Battery Market 2025 — alkaline 52% volume share"
+        },
+        {
+          "name": "Lithium primary 9V (e.g. Energizer L522)",
+          "parent_bom_name": "Primary Cell Battery",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 31,
+          "trend": "Growing",
+          "confidence": "MEDIUM",
+          "source": "Mordor Intelligence / Straits Research IoT Battery Market 2024 — 47% of industrial IoT sensors use lithium primary"
+        },
+        {
+          "name": "NiMH rechargeable 9V",
+          "parent_bom_name": "Primary Cell Battery",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 12,
+          "trend": "Stable",
+          "confidence": "MEDIUM",
+          "source": "Analyst estimate from primary battery market residual"
+        },
+        {
+          "name": "Proprietary rechargeable pack",
+          "parent_bom_name": "Primary Cell Battery",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 5,
+          "trend": "Emerging",
+          "confidence": "LOW",
+          "source": "Analyst estimate"
+        },
+        {
+          "name": "ABS (standard or FR grade)",
+          "parent_bom_name": "Enclosure and Mounting Subsystem",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 40,
+          "trend": "Stable",
+          "confidence": "MEDIUM",
+          "source": "Credence Research PC/ABS Market 2024; Polycase material guide"
+        },
+        {
+          "name": "PC/ABS blend",
+          "parent_bom_name": "Enclosure and Mounting Subsystem",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 35,
+          "trend": "Growing",
+          "confidence": "MEDIUM",
+          "source": "Business Research Insights — 58% of electronic enclosures require UL94 FR grade 2024"
+        },
+        {
+          "name": "Flame-retardant polycarbonate (PC)",
+          "parent_bom_name": "Enclosure and Mounting Subsystem",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 15,
+          "trend": "Stable",
+          "confidence": "MEDIUM",
+          "source": "Analyst estimate from plastics market residual"
+        },
+        {
+          "name": "Zinc alloy die-cast",
+          "parent_bom_name": "Enclosure and Mounting Subsystem",
+          "output_type": "Emergency Exit Door Alarm Guard (IoT Variant)",
+          "market_share": 10,
+          "trend": "Declining",
+          "confidence": "MEDIUM",
+          "source": "Analyst estimate"
+        }
+      ]
+    }
+  ],
+  "has_bom": true,
+  "naics_sector_type": "non_manufacturing"
+}

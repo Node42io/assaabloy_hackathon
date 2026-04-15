@@ -1,0 +1,637 @@
+{
+  "id": "FIT_elementary_secondary_schools",
+  "title": "Feature-Market Fit: Elementary and Secondary Schools (NAICS 611110)",
+  "type": "feature_market_fit",
+  "market_slug": "elementary_secondary_schools",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Context",
+      "content": "| Field | Value |\n|---|---|\n| Market | Elementary and Secondary Schools |\n| NAICS | 611110 |\n| Product Job | Help Campus Safety, Security & Emergency Management to monitor and secure all emergency exit doors against unauthorized use during occupied school hours while ensuring instant single-motion evacuation capability per IBC / NFPA 101 and generating auditable compliance documentation |\n| Technology class | Emergency Exit Security Devices with Remote Monitoring |\n| Commodity FP | Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm |\n| Constraints in play | C3 (wireless range), C4 (battery life), C5 (surface mount tamper), C6 (protocol lock-in) |\n\nTop underserved needs (OS ≥ 14): E08 (16), E06 (15), E13 (15), E14 (15), E17 (15), E20 (15), E19 (14), E23 (14)\n\n---"
+    },
+    {
+      "title": "Step 09 — Technology-Level Feature-Market Fit",
+      "content": "### 09a — Kano Classification + ODI Scoring\n\n| # | Feature | Kano | Time | Cost | Safety | Reliability | Skill | Stress | Pain | Confidence | Delight | **Overall** |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| F1 | Mechanical Alarm Trigger | must_be | 8 | 5 | 9 | 8 | 7 | 7 | 6 | 8 | 3 | **6.78** |\n| F2 | Key Override | must_be | 5 | 3 | 5 | 6 | 7 | 7 | 7 | 5 | 2 | **5.22** |\n| F3 | IoT Connectivity | one_dimensional | 8 | 6 | 7 | 7 | 5 | 7 | 8 | 7 | 6 | **6.78** |\n| F4 | Remote Monitoring Dashboard | attractive | 8 | 7 | 7 | 6 | 6 | 8 | 8 | 8 | 8 | **7.33** |\n| F5 | Predictive Maintenance | attractive | 7 | 7 | 6 | 9 | 5 | 7 | 7 | 8 | 6 | **6.89** |\n| F6 | Regulatory Compliance Documentation | attractive | 9 | 8 | 8 | 7 | 7 | 8 | 9 | 9 | 7 | **8.00** |\n| F7 | Retrofit Capability | one_dimensional | 9 | 9 | 3 | 5 | 9 | 7 | 8 | 5 | 6 | **6.78** |\n\n`overall_fit = (Time + Cost + Safety + Reliability + Skill + Stress + Pain + Confidence + Delight) / 9`\n\n### 09b — Rationale per Feature\n\n| Feature | Kano rationale | Primary ODI drivers | Market evidence |\n|---|---|---|---|\n| **F1 Mechanical Alarm Trigger** | `must_be`: Every exit alarm solution in this category must produce an audible alarm on activation — its absence constitutes non-compliance with fire codes; presence is taken for granted by every buyer. 95 dB is expected table-stakes, not a differentiator. | Safety (9) — 95 dB alarm is the primary breach notification mechanism; directly addresses E08 OS=16 (detection time). Confidence (8) — mechanical trigger cannot fail silently under power loss, eliminating E06 (undetected device failures). | E08 OS=16: \"Minimize time elapsed between unauthorized exit activation and first staff notification.\" E06 OS=15: \"Minimize device failures undetected until an alarm event occurs.\" |\n| **F2 Key Override** | `must_be`: Mandatory for operational use — custodians, PE teachers, and delivery staff must access exits daily without triggering alarms. Absence would create unacceptable false alarm frequency and disqualify deployment. | Skill (7) + Stress (7): reduces the operational burden of authorized daily exit events. Pain (7) — eliminates alarm disruption during PE class transitions, deliveries, and after-school activities. | P1 Maintenance and Use scenarios: authorized bypass is required multiple times per day in any occupied school; false alarms desensitize staff (cry-wolf risk). |\n| **F3 IoT Connectivity** | `one_dimensional`: Schools choosing wireless IoT over mechanical-only (30% market share) specifically for remote event capture. More reliable wireless transmission scales proportionally to security coordinator value — each additional door covered via wireless eliminates one manual patrol route. | Pain (8) — transforms security coordinator from door-patroller to dashboard monitor (E08 OS=16). Time (8) — remote alert eliminates discovery-by-physical-inspection delay. Confidence (7) — every activation event wirelessly logged prevents silent gaps (E13 OS=15). | E08 OS=16: wireless transmission is the mechanism enabling sub-second staff notification. E13 OS=15: wireless device-status reporting enables battery health monitoring. |\n| **F4 Remote Monitoring Dashboard** | `attractive`: Schools currently use mechanical-only alarms or wired panels — a portfolio dashboard is genuinely unexpected in this procurement category. Absence does not prevent alarm function, but absence means multi-building campuses rely on radio calls and walking checks. | Stress (8) — coordinator has real-time certainty about all exit states; directly addresses E24 OS=13 (uncertainty about exits being secured). Pain (8) — eliminates campus walk-around; E15 OS=13 (identify failing unit across campus). Delight (8) — district administrators discover they can view 50+ doors from a single tablet screen post-Uvalde. | E10 OS=13: event-type distinction (propped vs. alarm vs. override). E15 OS=13: multi-building failure identification. E23 OS=14 (P4 image): dashboard provides evidence of secured exits before any external party discovers a breach. |\n| **F5 Predictive Maintenance** | `attractive`: Battery depletion is the dominant failure mode for wireless IoT in schools (C4 — gym exits, cafeteria doors: 5–15 activations/day). Most alternatives do not proactively report device health. Absence creates reactive failure discovery after monitoring is already lost. | Reliability (9) — directly addresses E13 OS=15 and E14 OS=15, the joint 2nd-highest underserved needs: both concern battery depletion coverage gaps. Confidence (8) — coordinator knows no door is monitoring-dark due to unannounced battery failure. | E13 OS=15: \"Minimize monitoring gaps caused by undetected battery depletion.\" E14 OS=15: \"Increase ability to receive advance warning of battery degradation at individual door units.\" |\n| **F6 Regulatory Compliance Documentation** | `attractive`: Post-Uvalde legislation in 32+ US states has made auditable exit monitoring logs an explicit purchasing driver — not a nice-to-have. Automated documentation directly addresses the highest-value need cluster in the CONCLUDE and MODIFY steps. | Pain (9) + Time (9) — eliminates manual log assembly labor before state inspections (E19 OS=14). Confidence (9) — E20 OS=15: continuous documentation eliminates compliance audit findings. Safety (8) — E17 OS=15: alarm silencing events are automatically logged; no gap in audit trail. | E17 OS=15: \"Minimize likelihood of alarm-silencing without audit log entry.\" E19 OS=14: \"Minimize labor to compile door event logs into audit format.\" E20 OS=15: \"Minimize compliance audit findings from monitoring documentation gaps.\" E22 OS=13 (P3): \"Present auditable compliance records demonstrating post-Uvalde requirements continuously met.\" |\n| **F7 Retrofit Capability** | `one_dimensional`: All 49-year-average-age buildings in this market either lack conduit to secondary exits or face cost-prohibitive electrical retrofit. More retrofit-friendly = proportionally lower total project cost. Direct competitive axis vs. wired panel (55% market share at $150–250/hr electrician labor). | Cost (9) + Time (9) — eliminates electrician labor entirely; 50-door school deployment saves ~$30,000–50,000 vs. wired; E02 OS=13 is the primary cost barrier. Skill (9) — facilities crew install without electrical license; addresses E02 directly. Pain (8) — removes the single most painful barrier for budget-constrained aging-stock districts. | E02 OS=13: \"Minimize total electrician labor hours required to install exit alarm monitoring systems.\" E03: \"Minimize likelihood installation requires structural modification to door frame.\" |\n\n### 09c — Feature-Need Coverage Map\n\n| Need | OS | F1 | F2 | F3 | F4 | F5 | F6 | F7 |\n|---|---|---|---|---|---|---|---|---|\n| E08 — detection time: unauthorized activation → staff alert | 16 | ● | | ◐ | ◐ | | | |\n| E06 — undetected device failures before school day | 15 | ● | | | ◐ | ◐ | | |\n| E13 — monitoring gaps from undetected battery depletion | 15 | | | ◐ | | ● | | |\n| E14 — advance battery degradation warning | 15 | | | ◐ | | ● | | |\n| E17 — alarm silenced without audit log entry | 15 | | | | | | ● | |\n| E20 — compliance audit findings from documentation gaps | 15 | | | | | | ● | |\n| E19 — labor to compile door event logs for audits | 14 | | | | | | ● | |\n| E23 — unsecured exit visible to outsiders before staff notified | 14 | | | ◐ | ● | | | |\n| E02 — electrician labor hours for installation | 13 | | | | | | | ● |\n| E05 — time to verify all units operational each morning | 13 | | | | ◐ | ● | | |\n| E10 — distinguish event types on monitoring dashboard | 13 | | | ◐ | ● | | | |\n| E15 — identify failing unit across multi-building campus | 13 | | | ◐ | ● | | | |\n| E22 — present auditable post-Uvalde compliance records | 13 | | | | | | ● | |\n| E24 — uncertainty about all exits being secured | 13 | | | ◐ | ● | | | |\n\n● = primary contributor | ◐ = partial contributor\n\n---"
+    },
+    {
+      "title": "Step 10 — Product-Related Needs (Burleson Product Jobs)",
+      "content": "Needs that arise FROM this mechanism — would disappear if a wired panel, LoRaWAN native device, or flush-integrated IP69K-rated system were chosen.\n\n| ID | Statement | Source Constraint | Affected Markets | Importance | Satisfaction |\n|---|---|---|---|---|---|\n| PR1 | Minimize the likelihood of wireless monitoring coverage gaps at emergency exit doors in reinforced concrete school buildings where 868 MHz EasyWave signal attenuation reduces transmission reliability below the 30 m single-hop threshold, requiring repeater chain infrastructure that increases per-door deployment cost | Wireless Range Limitation (C3) | Elementary and Secondary Schools, General Warehousing, Hospitals | 7.0 | 4.0 |\n| PR2 | Minimize the likelihood of undetected alarm monitoring failure at high-traffic emergency exit doors — gymnasium exits, cafeteria doors, sports facility perimeter exits — where daily activation frequency (5–15 events/day) exhausts a 9V block battery before the 2-year scheduled maintenance target | IoT Battery Life Floor (C4) | Elementary and Secondary Schools, Hospitals, Facilities Support Services | 8.0 | 3.0 |\n| PR3 | Minimize the time required to schedule and execute battery replacement across all wireless exit alarm units distributed across a multi-building school campus before individual unit monitoring capability is interrupted — a recurring maintenance burden absent in wired alternatives | IoT Battery Life Floor (C4) | Elementary and Secondary Schools, Hotels, Facilities Support Services | 7.0 | 4.0 |\n| PR4 | Minimize the integration effort required to relay EasyWave alarm events into district-standard access control or building management platforms standardized on BACnet, KNX, or IP-based protocols — caused by the absence of native open-protocol output on the 868 MHz transmitter, requiring a GfS-proprietary BUS gateway intermediary | EasyWave Protocol Lock-In (C6) | Elementary and Secondary Schools, Hotels, Hospitals, Smart Office Buildings | 7.0 | 3.0 |\n| PR5 | Minimize the likelihood of deliberate removal or physical displacement of surface-mounted exit alarm housing units by unsupervised student populations in middle and high school corridors where the external mounting profile is accessible at door-handle height without tools | Retrofit-Only Surface Mount (C5) | Elementary and Secondary Schools | 7.0 | 4.0 |\n\n**Litmus test applied:**\n- PR1: A wired panel or LoRaWAN device has different propagation physics → disappears ✓\n- PR2: A wired/mains-powered or large-battery device has no 9V depletion problem → disappears ✓\n- PR3: A wired device requires no battery scheduling → disappears ✓\n- PR4: A BACnet-native or open-protocol device would integrate without gateway → disappears ✓\n- PR5: A flush-integrated or tamper-proof door hardware solution is not physically accessible → disappears ✓\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### TechFeatureFitEntry[]\n\n```json\n[\n  {\n    \"feature_name\": \"Mechanical Alarm Trigger\",\n    \"market_name\": \"Elementary and Secondary Schools\",\n    \"naics_code\": \"611110\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 8,\n    \"fit_score_cost\": 5,\n    \"fit_score_safety\": 9,\n    \"fit_score_reliability\": 8,\n    \"fit_score_skill\": 7,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 6,\n    \"fit_score_confidence\": 8,\n    \"fit_score_delight\": 3,\n    \"overall_fit\": 6.78,\n    \"rationale\": \"must_be: audible alarm on activation is regulatory table-stakes; absence = non-compliance. Safety (9): 95 dB alarm directly serves E08 OS=16 (detection time). Confidence (8): mechanical trigger cannot fail silently under power loss, eliminating E06 (undetected device failures). Delight (3): expected — not a differentiator.\"\n  },\n  {\n    \"feature_name\": \"Key Override\",\n    \"market_name\": \"Elementary and Secondary Schools\",\n    \"naics_code\": \"611110\",\n    \"kano_class\": \"must_be\",\n    \"fit_score_time\": 5,\n    \"fit_score_cost\": 3,\n    \"fit_score_safety\": 5,\n    \"fit_score_reliability\": 6,\n    \"fit_score_skill\": 7,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 7,\n    \"fit_score_confidence\": 5,\n    \"fit_score_delight\": 2,\n    \"overall_fit\": 5.22,\n    \"rationale\": \"must_be: mandatory for operational use; custodians and PE staff must access exits daily without triggering alarms. Skill (7) + Stress (7): reduces daily operational burden. Pain (7): eliminates false alarm disruption during PE transitions and deliveries. Delight (2): expected standard feature.\"\n  },\n  {\n    \"feature_name\": \"IoT Connectivity\",\n    \"market_name\": \"Elementary and Secondary Schools\",\n    \"naics_code\": \"611110\",\n    \"kano_class\": \"one_dimensional\",\n    \"fit_score_time\": 8,\n    \"fit_score_cost\": 6,\n    \"fit_score_safety\": 7,\n    \"fit_score_reliability\": 7,\n    \"fit_score_skill\": 5,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 8,\n    \"fit_score_confidence\": 7,\n    \"fit_score_delight\": 6,\n    \"overall_fit\": 6.78,\n    \"rationale\": \"one_dimensional: schools choosing wireless IoT over mechanical-only (30% market) specifically for remote event capture; more reliable wireless coverage proportionally eliminates more manual patrol rounds. Pain (8): transforms security coordinator from patroller to dashboard monitor, directly serving E08. Time (8): remote alert replaces physical discovery delay. Confidence (7): every activation event wirelessly logged prevents silent coverage gaps (E13 OS=15).\"\n  },\n  {\n    \"feature_name\": \"Remote Monitoring Dashboard\",\n    \"market_name\": \"Elementary and Secondary Schools\",\n    \"naics_code\": \"611110\",\n    \"kano_class\": \"attractive\",\n    \"fit_score_time\": 8,\n    \"fit_score_cost\": 7,\n    \"fit_score_safety\": 7,\n    \"fit_score_reliability\": 6,\n    \"fit_score_skill\": 6,\n    \"fit_score_stress\": 8,\n    \"fit_score_pain\": 8,\n    \"fit_score_confidence\": 8,\n    \"fit_score_delight\": 8,\n    \"overall_fit\": 7.33,\n    \"rationale\": \"attractive: portfolio-level real-time visibility is genuinely unexpected in this procurement category — schools currently rely on radio calls and physical patrol. Stress (8): real-time certainty about all exits addresses E24 OS=13. Pain (8): eliminates multi-building walk-around; E15 OS=13 (identify failing unit). Delight (8): district administrators who have used clipboards discover they can view all 50+ doors from a tablet — high delight especially post-Uvalde.\"\n  },\n  {\n    \"feature_name\": \"Predictive Maintenance\",\n    \"market_name\": \"Elementary and Secondary Schools\",\n    \"naics_code\": \"611110\",\n    \"kano_class\": \"attractive\",\n    \"fit_score_time\": 7,\n    \"fit_score_cost\": 7,\n    \"fit_score_safety\": 6,\n    \"fit_score_reliability\": 9,\n    \"fit_score_skill\": 5,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 7,\n    \"fit_score_confidence\": 8,\n    \"fit_score_delight\": 6,\n    \"overall_fit\": 6.89,\n    \"rationale\": \"attractive: battery depletion is the dominant IoT failure mode in schools (gym exits: 5–15 activations/day; C4 dominant). Proactive alerts are not expected from any alternative in the market. Reliability (9): directly addresses E13 OS=15 and E14 OS=15 — joint 2nd highest underserved needs; both are battery coverage gap needs. Confidence (8): coordinator knows no door is monitoring-dark before the next maintenance visit.\"\n  },\n  {\n    \"feature_name\": \"Regulatory Compliance Documentation\",\n    \"market_name\": \"Elementary and Secondary Schools\",\n    \"naics_code\": \"611110\",\n    \"kano_class\": \"attractive\",\n    \"fit_score_time\": 9,\n    \"fit_score_cost\": 8,\n    \"fit_score_safety\": 8,\n    \"fit_score_reliability\": 7,\n    \"fit_score_skill\": 7,\n    \"fit_score_stress\": 8,\n    \"fit_score_pain\": 9,\n    \"fit_score_confidence\": 9,\n    \"fit_score_delight\": 7,\n    \"overall_fit\": 8.00,\n    \"rationale\": \"attractive: post-Uvalde legislation in 32+ US states makes auditable exit monitoring logs an explicit purchasing driver. Automated documentation directly addresses the highest-value underserved need cluster. Pain (9) + Time (9): eliminates manual log assembly before state inspections (E19 OS=14). Confidence (9): E20 OS=15 — continuous records eliminate compliance audit findings. Safety (8): E17 OS=15 — alarm-silencing actions auto-logged; no audit trail gap. Highest overall_fit of all features: 8.00.\"\n  },\n  {\n    \"feature_name\": \"Retrofit Capability\",\n    \"market_name\": \"Elementary and Secondary Schools\",\n    \"naics_code\": \"611110\",\n    \"kano_class\": \"one_dimensional\",\n    \"fit_score_time\": 9,\n    \"fit_score_cost\": 9,\n    \"fit_score_safety\": 3,\n    \"fit_score_reliability\": 5,\n    \"fit_score_skill\": 9,\n    \"fit_score_stress\": 7,\n    \"fit_score_pain\": 8,\n    \"fit_score_confidence\": 5,\n    \"fit_score_delight\": 6,\n    \"overall_fit\": 6.78,\n    \"rationale\": \"one_dimensional: all 49-year-average-age school buildings lack conduit to secondary exits; more retrofit-friendly proportionally reduces total project cost. Cost (9): eliminates electrician labor ($150–250/hr); 50-door school saves ~$30,000–50,000 vs. wired; E02 OS=13. Skill (9): facilities crew install without electrical license. Safety (3): installation ease does not affect post-deployment safety outcomes.\"\n  }\n]\n```\n\n### ProductRelatedNeedEntry[]\n\n```json\n[\n  {\n    \"statement\": \"Minimize the likelihood of wireless monitoring coverage gaps at emergency exit doors in reinforced concrete school buildings where 868 MHz EasyWave signal attenuation reduces transmission reliability below the 30 m single-hop threshold — requiring repeater chain infrastructure that increases per-door deployment cost\",\n    \"source_constraint\": \"Wireless Range Limitation\",\n    \"affected_markets\": [\"Elementary and Secondary Schools\", \"General Warehousing and Storage\", \"General Medical and Surgical Hospitals\"],\n    \"importance\": 7.0,\n    \"satisfaction_current\": 4.0\n  },\n  {\n    \"statement\": \"Minimize the likelihood of undetected alarm monitoring failure at high-traffic emergency exit doors — gymnasium exits, cafeteria doors, sports facility perimeter exits — where daily activation frequency (5–15 events/day) exhausts a 9V block battery before the 2-year scheduled maintenance target\",\n    \"source_constraint\": \"IoT Battery Life Floor\",\n    \"affected_markets\": [\"Elementary and Secondary Schools\", \"General Medical and Surgical Hospitals\", \"Facilities Support Services\"],\n    \"importance\": 8.0,\n    \"satisfaction_current\": 3.0\n  },\n  {\n    \"statement\": \"Minimize the time required to schedule and execute battery replacement across all wireless exit alarm units distributed across a multi-building school campus before individual unit monitoring capability is interrupted\",\n    \"source_constraint\": \"IoT Battery Life Floor\",\n    \"affected_markets\": [\"Elementary and Secondary Schools\", \"Hotels (except Casino Hotels) and Motels\", \"Facilities Support Services\"],\n    \"importance\": 7.0,\n    \"satisfaction_current\": 4.0\n  },\n  {\n    \"statement\": \"Minimize the integration effort required to relay EasyWave alarm events into district-standard access control or building management platforms standardized on BACnet, KNX, or IP-based protocols — caused by the absence of native open-protocol output on the 868 MHz transmitter, requiring a GfS-proprietary BUS gateway intermediary\",\n    \"source_constraint\": \"EasyWave Protocol Lock-In\",\n    \"affected_markets\": [\"Elementary and Secondary Schools\", \"Hotels (except Casino Hotels) and Motels\", \"General Medical and Surgical Hospitals\", \"Lessors of Nonresidential Buildings\"],\n    \"importance\": 7.0,\n    \"satisfaction_current\": 3.0\n  },\n  {\n    \"statement\": \"Minimize the likelihood of deliberate removal or physical displacement of surface-mounted exit alarm housing units by unsupervised student populations in middle and high school corridors where the external mounting profile is accessible at door-handle height without tools\",\n    \"source_constraint\": \"Retrofit-Only Surface Mount\",\n    \"affected_markets\": [\"Elementary and Secondary Schools\"],\n    \"importance\": 7.0,\n    \"satisfaction_current\": 4.0\n  }\n]\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "Market",
+          "Value": "Elementary and Secondary Schools"
+        },
+        {
+          "Field": "NAICS",
+          "Value": "611110"
+        },
+        {
+          "Field": "Product Job",
+          "Value": "Help Campus Safety, Security & Emergency Management to monitor and secure all emergency exit doors against unauthorized use during occupied school hours while ensuring instant single-motion evacuation capability per IBC / NFPA 101 and generating auditable compliance documentation"
+        },
+        {
+          "Field": "Technology class",
+          "Value": "Emergency Exit Security Devices with Remote Monitoring"
+        },
+        {
+          "Field": "Commodity FP",
+          "Value": "Prevent unauthorized use of emergency exit doors while maintaining unimpeded escape capability and alerting to door activation via audible alarm"
+        },
+        {
+          "Field": "Constraints in play",
+          "Value": "C3 (wireless range), C4 (battery life), C5 (surface mount tamper), C6 (protocol lock-in)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "#",
+        "Feature",
+        "Kano",
+        "Time",
+        "Cost",
+        "Safety",
+        "Reliability",
+        "Skill",
+        "Stress",
+        "Pain",
+        "Confidence",
+        "Delight",
+        "**Overall**"
+      ],
+      "rows": [
+        {
+          "#": "F1",
+          "Feature": "Mechanical Alarm Trigger",
+          "Kano": "must_be",
+          "Time": "8",
+          "Cost": "5",
+          "Safety": "9",
+          "Reliability": "8",
+          "Skill": "7",
+          "Stress": "7",
+          "Pain": "6",
+          "Confidence": "8",
+          "Delight": "3",
+          "**Overall**": "**6.78**"
+        },
+        {
+          "#": "F2",
+          "Feature": "Key Override",
+          "Kano": "must_be",
+          "Time": "5",
+          "Cost": "3",
+          "Safety": "5",
+          "Reliability": "6",
+          "Skill": "7",
+          "Stress": "7",
+          "Pain": "7",
+          "Confidence": "5",
+          "Delight": "2",
+          "**Overall**": "**5.22**"
+        },
+        {
+          "#": "F3",
+          "Feature": "IoT Connectivity",
+          "Kano": "one_dimensional",
+          "Time": "8",
+          "Cost": "6",
+          "Safety": "7",
+          "Reliability": "7",
+          "Skill": "5",
+          "Stress": "7",
+          "Pain": "8",
+          "Confidence": "7",
+          "Delight": "6",
+          "**Overall**": "**6.78**"
+        },
+        {
+          "#": "F4",
+          "Feature": "Remote Monitoring Dashboard",
+          "Kano": "attractive",
+          "Time": "8",
+          "Cost": "7",
+          "Safety": "7",
+          "Reliability": "6",
+          "Skill": "6",
+          "Stress": "8",
+          "Pain": "8",
+          "Confidence": "8",
+          "Delight": "8",
+          "**Overall**": "**7.33**"
+        },
+        {
+          "#": "F5",
+          "Feature": "Predictive Maintenance",
+          "Kano": "attractive",
+          "Time": "7",
+          "Cost": "7",
+          "Safety": "6",
+          "Reliability": "9",
+          "Skill": "5",
+          "Stress": "7",
+          "Pain": "7",
+          "Confidence": "8",
+          "Delight": "6",
+          "**Overall**": "**6.89**"
+        },
+        {
+          "#": "F6",
+          "Feature": "Regulatory Compliance Documentation",
+          "Kano": "attractive",
+          "Time": "9",
+          "Cost": "8",
+          "Safety": "8",
+          "Reliability": "7",
+          "Skill": "7",
+          "Stress": "8",
+          "Pain": "9",
+          "Confidence": "9",
+          "Delight": "7",
+          "**Overall**": "**8.00**"
+        },
+        {
+          "#": "F7",
+          "Feature": "Retrofit Capability",
+          "Kano": "one_dimensional",
+          "Time": "9",
+          "Cost": "9",
+          "Safety": "3",
+          "Reliability": "5",
+          "Skill": "9",
+          "Stress": "7",
+          "Pain": "8",
+          "Confidence": "5",
+          "Delight": "6",
+          "**Overall**": "**6.78**"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Feature",
+        "Kano rationale",
+        "Primary ODI drivers",
+        "Market evidence"
+      ],
+      "rows": [
+        {
+          "Feature": "**F1 Mechanical Alarm Trigger**",
+          "Kano rationale": "`must_be`: Every exit alarm solution in this category must produce an audible alarm on activation — its absence constitutes non-compliance with fire codes; presence is taken for granted by every buyer. 95 dB is expected table-stakes, not a differentiator.",
+          "Primary ODI drivers": "Safety (9) — 95 dB alarm is the primary breach notification mechanism; directly addresses E08 OS=16 (detection time). Confidence (8) — mechanical trigger cannot fail silently under power loss, eliminating E06 (undetected device failures).",
+          "Market evidence": "E08 OS=16: \"Minimize time elapsed between unauthorized exit activation and first staff notification.\" E06 OS=15: \"Minimize device failures undetected until an alarm event occurs.\""
+        },
+        {
+          "Feature": "**F2 Key Override**",
+          "Kano rationale": "`must_be`: Mandatory for operational use — custodians, PE teachers, and delivery staff must access exits daily without triggering alarms. Absence would create unacceptable false alarm frequency and disqualify deployment.",
+          "Primary ODI drivers": "Skill (7) + Stress (7): reduces the operational burden of authorized daily exit events. Pain (7) — eliminates alarm disruption during PE class transitions, deliveries, and after-school activities.",
+          "Market evidence": "P1 Maintenance and Use scenarios: authorized bypass is required multiple times per day in any occupied school; false alarms desensitize staff (cry-wolf risk)."
+        },
+        {
+          "Feature": "**F3 IoT Connectivity**",
+          "Kano rationale": "`one_dimensional`: Schools choosing wireless IoT over mechanical-only (30% market share) specifically for remote event capture. More reliable wireless transmission scales proportionally to security coordinator value — each additional door covered via wireless eliminates one manual patrol route.",
+          "Primary ODI drivers": "Pain (8) — transforms security coordinator from door-patroller to dashboard monitor (E08 OS=16). Time (8) — remote alert eliminates discovery-by-physical-inspection delay. Confidence (7) — every activation event wirelessly logged prevents silent gaps (E13 OS=15).",
+          "Market evidence": "E08 OS=16: wireless transmission is the mechanism enabling sub-second staff notification. E13 OS=15: wireless device-status reporting enables battery health monitoring."
+        },
+        {
+          "Feature": "**F4 Remote Monitoring Dashboard**",
+          "Kano rationale": "`attractive`: Schools currently use mechanical-only alarms or wired panels — a portfolio dashboard is genuinely unexpected in this procurement category. Absence does not prevent alarm function, but absence means multi-building campuses rely on radio calls and walking checks.",
+          "Primary ODI drivers": "Stress (8) — coordinator has real-time certainty about all exit states; directly addresses E24 OS=13 (uncertainty about exits being secured). Pain (8) — eliminates campus walk-around; E15 OS=13 (identify failing unit across campus). Delight (8) — district administrators discover they can view 50+ doors from a single tablet screen post-Uvalde.",
+          "Market evidence": "E10 OS=13: event-type distinction (propped vs. alarm vs. override). E15 OS=13: multi-building failure identification. E23 OS=14 (P4 image): dashboard provides evidence of secured exits before any external party discovers a breach."
+        },
+        {
+          "Feature": "**F5 Predictive Maintenance**",
+          "Kano rationale": "`attractive`: Battery depletion is the dominant failure mode for wireless IoT in schools (C4 — gym exits, cafeteria doors: 5–15 activations/day). Most alternatives do not proactively report device health. Absence creates reactive failure discovery after monitoring is already lost.",
+          "Primary ODI drivers": "Reliability (9) — directly addresses E13 OS=15 and E14 OS=15, the joint 2nd-highest underserved needs: both concern battery depletion coverage gaps. Confidence (8) — coordinator knows no door is monitoring-dark due to unannounced battery failure.",
+          "Market evidence": "E13 OS=15: \"Minimize monitoring gaps caused by undetected battery depletion.\" E14 OS=15: \"Increase ability to receive advance warning of battery degradation at individual door units.\""
+        },
+        {
+          "Feature": "**F6 Regulatory Compliance Documentation**",
+          "Kano rationale": "`attractive`: Post-Uvalde legislation in 32+ US states has made auditable exit monitoring logs an explicit purchasing driver — not a nice-to-have. Automated documentation directly addresses the highest-value need cluster in the CONCLUDE and MODIFY steps.",
+          "Primary ODI drivers": "Pain (9) + Time (9) — eliminates manual log assembly labor before state inspections (E19 OS=14). Confidence (9) — E20 OS=15: continuous documentation eliminates compliance audit findings. Safety (8) — E17 OS=15: alarm silencing events are automatically logged; no gap in audit trail.",
+          "Market evidence": "E17 OS=15: \"Minimize likelihood of alarm-silencing without audit log entry.\" E19 OS=14: \"Minimize labor to compile door event logs into audit format.\" E20 OS=15: \"Minimize compliance audit findings from monitoring documentation gaps.\" E22 OS=13 (P3): \"Present auditable compliance records demonstrating post-Uvalde requirements continuously met.\""
+        },
+        {
+          "Feature": "**F7 Retrofit Capability**",
+          "Kano rationale": "`one_dimensional`: All 49-year-average-age buildings in this market either lack conduit to secondary exits or face cost-prohibitive electrical retrofit. More retrofit-friendly = proportionally lower total project cost. Direct competitive axis vs. wired panel (55% market share at $150–250/hr electrician labor).",
+          "Primary ODI drivers": "Cost (9) + Time (9) — eliminates electrician labor entirely; 50-door school deployment saves ~$30,000–50,000 vs. wired; E02 OS=13 is the primary cost barrier. Skill (9) — facilities crew install without electrical license; addresses E02 directly. Pain (8) — removes the single most painful barrier for budget-constrained aging-stock districts.",
+          "Market evidence": "E02 OS=13: \"Minimize total electrician labor hours required to install exit alarm monitoring systems.\" E03: \"Minimize likelihood installation requires structural modification to door frame.\""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Need",
+        "OS",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7"
+      ],
+      "rows": [
+        {
+          "Need": "E08 — detection time: unauthorized activation → staff alert",
+          "OS": "16",
+          "F1": "●",
+          "F2": "◐",
+          "F3": "◐",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "E06 — undetected device failures before school day",
+          "OS": "15",
+          "F1": "●",
+          "F2": "◐",
+          "F3": "◐",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "E13 — monitoring gaps from undetected battery depletion",
+          "OS": "15",
+          "F1": "◐",
+          "F2": "●",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "E14 — advance battery degradation warning",
+          "OS": "15",
+          "F1": "◐",
+          "F2": "●",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "E17 — alarm silenced without audit log entry",
+          "OS": "15",
+          "F1": "●",
+          "F2": "",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "E20 — compliance audit findings from documentation gaps",
+          "OS": "15",
+          "F1": "●",
+          "F2": "",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "E19 — labor to compile door event logs for audits",
+          "OS": "14",
+          "F1": "●",
+          "F2": "",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "E23 — unsecured exit visible to outsiders before staff notified",
+          "OS": "14",
+          "F1": "◐",
+          "F2": "●",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "E02 — electrician labor hours for installation",
+          "OS": "13",
+          "F1": "●",
+          "F2": "",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "E05 — time to verify all units operational each morning",
+          "OS": "13",
+          "F1": "◐",
+          "F2": "●",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "E10 — distinguish event types on monitoring dashboard",
+          "OS": "13",
+          "F1": "◐",
+          "F2": "●",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "E15 — identify failing unit across multi-building campus",
+          "OS": "13",
+          "F1": "◐",
+          "F2": "●",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "E22 — present auditable post-Uvalde compliance records",
+          "OS": "13",
+          "F1": "●",
+          "F2": "",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        },
+        {
+          "Need": "E24 — uncertainty about all exits being secured",
+          "OS": "13",
+          "F1": "◐",
+          "F2": "●",
+          "F3": "",
+          "F4": "",
+          "F5": "",
+          "F6": "",
+          "F7": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Statement",
+        "Source Constraint",
+        "Affected Markets",
+        "Importance",
+        "Satisfaction"
+      ],
+      "rows": [
+        {
+          "ID": "PR1",
+          "Statement": "Minimize the likelihood of wireless monitoring coverage gaps at emergency exit doors in reinforced concrete school buildings where 868 MHz EasyWave signal attenuation reduces transmission reliability below the 30 m single-hop threshold, requiring repeater chain infrastructure that increases per-door deployment cost",
+          "Source Constraint": "Wireless Range Limitation (C3)",
+          "Affected Markets": "Elementary and Secondary Schools, General Warehousing, Hospitals",
+          "Importance": "7.0",
+          "Satisfaction": "4.0"
+        },
+        {
+          "ID": "PR2",
+          "Statement": "Minimize the likelihood of undetected alarm monitoring failure at high-traffic emergency exit doors — gymnasium exits, cafeteria doors, sports facility perimeter exits — where daily activation frequency (5–15 events/day) exhausts a 9V block battery before the 2-year scheduled maintenance target",
+          "Source Constraint": "IoT Battery Life Floor (C4)",
+          "Affected Markets": "Elementary and Secondary Schools, Hospitals, Facilities Support Services",
+          "Importance": "8.0",
+          "Satisfaction": "3.0"
+        },
+        {
+          "ID": "PR3",
+          "Statement": "Minimize the time required to schedule and execute battery replacement across all wireless exit alarm units distributed across a multi-building school campus before individual unit monitoring capability is interrupted — a recurring maintenance burden absent in wired alternatives",
+          "Source Constraint": "IoT Battery Life Floor (C4)",
+          "Affected Markets": "Elementary and Secondary Schools, Hotels, Facilities Support Services",
+          "Importance": "7.0",
+          "Satisfaction": "4.0"
+        },
+        {
+          "ID": "PR4",
+          "Statement": "Minimize the integration effort required to relay EasyWave alarm events into district-standard access control or building management platforms standardized on BACnet, KNX, or IP-based protocols — caused by the absence of native open-protocol output on the 868 MHz transmitter, requiring a GfS-proprietary BUS gateway intermediary",
+          "Source Constraint": "EasyWave Protocol Lock-In (C6)",
+          "Affected Markets": "Elementary and Secondary Schools, Hotels, Hospitals, Smart Office Buildings",
+          "Importance": "7.0",
+          "Satisfaction": "3.0"
+        },
+        {
+          "ID": "PR5",
+          "Statement": "Minimize the likelihood of deliberate removal or physical displacement of surface-mounted exit alarm housing units by unsupervised student populations in middle and high school corridors where the external mounting profile is accessible at door-handle height without tools",
+          "Source Constraint": "Retrofit-Only Surface Mount (C5)",
+          "Affected Markets": "Elementary and Secondary Schools",
+          "Importance": "7.0",
+          "Satisfaction": "4.0"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    [
+      {
+        "feature_name": "Mechanical Alarm Trigger",
+        "market_name": "Elementary and Secondary Schools",
+        "naics_code": "611110",
+        "kano_class": "must_be",
+        "fit_score_time": 8,
+        "fit_score_cost": 5,
+        "fit_score_safety": 9,
+        "fit_score_reliability": 8,
+        "fit_score_skill": 7,
+        "fit_score_stress": 7,
+        "fit_score_pain": 6,
+        "fit_score_confidence": 8,
+        "fit_score_delight": 3,
+        "overall_fit": 6.78,
+        "rationale": "must_be: audible alarm on activation is regulatory table-stakes; absence = non-compliance. Safety (9): 95 dB alarm directly serves E08 OS=16 (detection time). Confidence (8): mechanical trigger cannot fail silently under power loss, eliminating E06 (undetected device failures). Delight (3): expected — not a differentiator."
+      },
+      {
+        "feature_name": "Key Override",
+        "market_name": "Elementary and Secondary Schools",
+        "naics_code": "611110",
+        "kano_class": "must_be",
+        "fit_score_time": 5,
+        "fit_score_cost": 3,
+        "fit_score_safety": 5,
+        "fit_score_reliability": 6,
+        "fit_score_skill": 7,
+        "fit_score_stress": 7,
+        "fit_score_pain": 7,
+        "fit_score_confidence": 5,
+        "fit_score_delight": 2,
+        "overall_fit": 5.22,
+        "rationale": "must_be: mandatory for operational use; custodians and PE staff must access exits daily without triggering alarms. Skill (7) + Stress (7): reduces daily operational burden. Pain (7): eliminates false alarm disruption during PE transitions and deliveries. Delight (2): expected standard feature."
+      },
+      {
+        "feature_name": "IoT Connectivity",
+        "market_name": "Elementary and Secondary Schools",
+        "naics_code": "611110",
+        "kano_class": "one_dimensional",
+        "fit_score_time": 8,
+        "fit_score_cost": 6,
+        "fit_score_safety": 7,
+        "fit_score_reliability": 7,
+        "fit_score_skill": 5,
+        "fit_score_stress": 7,
+        "fit_score_pain": 8,
+        "fit_score_confidence": 7,
+        "fit_score_delight": 6,
+        "overall_fit": 6.78,
+        "rationale": "one_dimensional: schools choosing wireless IoT over mechanical-only (30% market) specifically for remote event capture; more reliable wireless coverage proportionally eliminates more manual patrol rounds. Pain (8): transforms security coordinator from patroller to dashboard monitor, directly serving E08. Time (8): remote alert replaces physical discovery delay. Confidence (7): every activation event wirelessly logged prevents silent coverage gaps (E13 OS=15)."
+      },
+      {
+        "feature_name": "Remote Monitoring Dashboard",
+        "market_name": "Elementary and Secondary Schools",
+        "naics_code": "611110",
+        "kano_class": "attractive",
+        "fit_score_time": 8,
+        "fit_score_cost": 7,
+        "fit_score_safety": 7,
+        "fit_score_reliability": 6,
+        "fit_score_skill": 6,
+        "fit_score_stress": 8,
+        "fit_score_pain": 8,
+        "fit_score_confidence": 8,
+        "fit_score_delight": 8,
+        "overall_fit": 7.33,
+        "rationale": "attractive: portfolio-level real-time visibility is genuinely unexpected in this procurement category — schools currently rely on radio calls and physical patrol. Stress (8): real-time certainty about all exits addresses E24 OS=13. Pain (8): eliminates multi-building walk-around; E15 OS=13 (identify failing unit). Delight (8): district administrators who have used clipboards discover they can view all 50+ doors from a tablet — high delight especially post-Uvalde."
+      },
+      {
+        "feature_name": "Predictive Maintenance",
+        "market_name": "Elementary and Secondary Schools",
+        "naics_code": "611110",
+        "kano_class": "attractive",
+        "fit_score_time": 7,
+        "fit_score_cost": 7,
+        "fit_score_safety": 6,
+        "fit_score_reliability": 9,
+        "fit_score_skill": 5,
+        "fit_score_stress": 7,
+        "fit_score_pain": 7,
+        "fit_score_confidence": 8,
+        "fit_score_delight": 6,
+        "overall_fit": 6.89,
+        "rationale": "attractive: battery depletion is the dominant IoT failure mode in schools (gym exits: 5–15 activations/day; C4 dominant). Proactive alerts are not expected from any alternative in the market. Reliability (9): directly addresses E13 OS=15 and E14 OS=15 — joint 2nd highest underserved needs; both are battery coverage gap needs. Confidence (8): coordinator knows no door is monitoring-dark before the next maintenance visit."
+      },
+      {
+        "feature_name": "Regulatory Compliance Documentation",
+        "market_name": "Elementary and Secondary Schools",
+        "naics_code": "611110",
+        "kano_class": "attractive",
+        "fit_score_time": 9,
+        "fit_score_cost": 8,
+        "fit_score_safety": 8,
+        "fit_score_reliability": 7,
+        "fit_score_skill": 7,
+        "fit_score_stress": 8,
+        "fit_score_pain": 9,
+        "fit_score_confidence": 9,
+        "fit_score_delight": 7,
+        "overall_fit": 8.0,
+        "rationale": "attractive: post-Uvalde legislation in 32+ US states makes auditable exit monitoring logs an explicit purchasing driver. Automated documentation directly addresses the highest-value underserved need cluster. Pain (9) + Time (9): eliminates manual log assembly before state inspections (E19 OS=14). Confidence (9): E20 OS=15 — continuous records eliminate compliance audit findings. Safety (8): E17 OS=15 — alarm-silencing actions auto-logged; no audit trail gap. Highest overall_fit of all features: 8.00."
+      },
+      {
+        "feature_name": "Retrofit Capability",
+        "market_name": "Elementary and Secondary Schools",
+        "naics_code": "611110",
+        "kano_class": "one_dimensional",
+        "fit_score_time": 9,
+        "fit_score_cost": 9,
+        "fit_score_safety": 3,
+        "fit_score_reliability": 5,
+        "fit_score_skill": 9,
+        "fit_score_stress": 7,
+        "fit_score_pain": 8,
+        "fit_score_confidence": 5,
+        "fit_score_delight": 6,
+        "overall_fit": 6.78,
+        "rationale": "one_dimensional: all 49-year-average-age school buildings lack conduit to secondary exits; more retrofit-friendly proportionally reduces total project cost. Cost (9): eliminates electrician labor ($150–250/hr); 50-door school saves ~$30,000–50,000 vs. wired; E02 OS=13. Skill (9): facilities crew install without electrical license. Safety (3): installation ease does not affect post-deployment safety outcomes."
+      }
+    ],
+    [
+      {
+        "statement": "Minimize the likelihood of wireless monitoring coverage gaps at emergency exit doors in reinforced concrete school buildings where 868 MHz EasyWave signal attenuation reduces transmission reliability below the 30 m single-hop threshold — requiring repeater chain infrastructure that increases per-door deployment cost",
+        "source_constraint": "Wireless Range Limitation",
+        "affected_markets": [
+          "Elementary and Secondary Schools",
+          "General Warehousing and Storage",
+          "General Medical and Surgical Hospitals"
+        ],
+        "importance": 7.0,
+        "satisfaction_current": 4.0
+      },
+      {
+        "statement": "Minimize the likelihood of undetected alarm monitoring failure at high-traffic emergency exit doors — gymnasium exits, cafeteria doors, sports facility perimeter exits — where daily activation frequency (5–15 events/day) exhausts a 9V block battery before the 2-year scheduled maintenance target",
+        "source_constraint": "IoT Battery Life Floor",
+        "affected_markets": [
+          "Elementary and Secondary Schools",
+          "General Medical and Surgical Hospitals",
+          "Facilities Support Services"
+        ],
+        "importance": 8.0,
+        "satisfaction_current": 3.0
+      },
+      {
+        "statement": "Minimize the time required to schedule and execute battery replacement across all wireless exit alarm units distributed across a multi-building school campus before individual unit monitoring capability is interrupted",
+        "source_constraint": "IoT Battery Life Floor",
+        "affected_markets": [
+          "Elementary and Secondary Schools",
+          "Hotels (except Casino Hotels) and Motels",
+          "Facilities Support Services"
+        ],
+        "importance": 7.0,
+        "satisfaction_current": 4.0
+      },
+      {
+        "statement": "Minimize the integration effort required to relay EasyWave alarm events into district-standard access control or building management platforms standardized on BACnet, KNX, or IP-based protocols — caused by the absence of native open-protocol output on the 868 MHz transmitter, requiring a GfS-proprietary BUS gateway intermediary",
+        "source_constraint": "EasyWave Protocol Lock-In",
+        "affected_markets": [
+          "Elementary and Secondary Schools",
+          "Hotels (except Casino Hotels) and Motels",
+          "General Medical and Surgical Hospitals",
+          "Lessors of Nonresidential Buildings"
+        ],
+        "importance": 7.0,
+        "satisfaction_current": 3.0
+      },
+      {
+        "statement": "Minimize the likelihood of deliberate removal or physical displacement of surface-mounted exit alarm housing units by unsupervised student populations in middle and high school corridors where the external mounting profile is accessible at door-handle height without tools",
+        "source_constraint": "Retrofit-Only Surface Mount",
+        "affected_markets": [
+          "Elementary and Secondary Schools"
+        ],
+        "importance": 7.0,
+        "satisfaction_current": 4.0
+      }
+    ]
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

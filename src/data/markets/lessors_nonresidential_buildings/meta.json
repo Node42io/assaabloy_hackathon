@@ -1,0 +1,21 @@
+{
+  "slug": "lessors_nonresidential_buildings",
+  "name": "Lessors of Nonresidential Buildings (except Miniwarehouses)",
+  "naicsCode": "531120",
+  "isReference": false,
+  "rank": 9,
+  "scores": {
+    "odi": 5.78,
+    "featureFit": 6.12,
+    "constraintCompatibility": 7,
+    "jobCoverage": 5,
+    "vnHierarchy": 3,
+    "incumbentVulnerability": 5.3,
+    "composite": 5.52
+  },
+  "recommendation": "investigate",
+  "rationale": "",
+  "entryStrategy": "Target institutional REIT portfolio managers via embedded FM operators (CBRE, JLL, Cushman); lead with fire marshal audit automation and BREEAM/LEED O+M tenant reporting",
+  "estimatedTimeToEntry": "6-12 months",
+  "estimatedInvestment": "€100000-250000"
+}

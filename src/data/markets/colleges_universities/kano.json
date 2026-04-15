@@ -1,0 +1,73 @@
+{
+  "naicsCode": "611310",
+  "marketName": "Colleges, Universities, and Professional Schools",
+  "slug": "colleges_universities",
+  "features": [
+    {
+      "name": "Mechanical Alarm Trigger",
+      "kanoClass": "must_be",
+      "scores": { "time": 7, "cost": 4, "safety": 8, "reliability": 8, "skill": 6, "stress": 6, "pain": 5, "confidence": 8, "delight": 2 },
+      "overallFit": 6.00,
+      "rationale": "Table-stakes per NFPA 101, IBC Chapter 10. Safety (8): 95 dB deterrent addresses N10 OS=14. Reliability (8): mechanical fail-safe at 0V. Confidence (8): eliminates dead-alarm scenario."
+    },
+    {
+      "name": "Key Override Mechanism",
+      "kanoClass": "must_be",
+      "scores": { "time": 5, "cost": 4, "safety": 5, "reliability": 6, "skill": 6, "stress": 7, "pain": 6, "confidence": 6, "delight": 2 },
+      "overallFit": 5.22,
+      "rationale": "Mandatory for operational use — facilities maintenance, lab managers, security staff require authorized silent access daily. Stress (7): eliminates alarm-trigger anxiety during routine authorized access."
+    },
+    {
+      "name": "Pre-Alarm Warning Tone",
+      "kanoClass": "attractive",
+      "scores": { "time": 3, "cost": 5, "safety": 3, "reliability": 4, "skill": 3, "stress": 8, "pain": 7, "confidence": 5, "delight": 7 },
+      "overallFit": 5.00,
+      "rationale": "Absent from basic prop alarms. Campus environments have high incidental door-contact rates. Stress (8): dramatically reduces alarm desensitization risk. Pain (7): eliminates alarm disruption. Delight (7): genuinely unexpected."
+    },
+    {
+      "name": "Wireless State Transmitter",
+      "kanoClass": "one_dimensional",
+      "scores": { "time": 8, "cost": 5, "safety": 7, "reliability": 5, "skill": 5, "stress": 8, "pain": 7, "confidence": 7, "delight": 5 },
+      "overallFit": 6.33,
+      "rationale": "More reliable coverage proportionally eliminates more patrol burden. Time (8): real-time alert replaces patrol delay. Stress (8): overnight security officer confidence. Reliability capped at 5: C3 30m limit creates dead zones."
+    },
+    {
+      "name": "Battery Power Supply",
+      "kanoClass": "must_be",
+      "scores": { "time": 4, "cost": 9, "safety": 5, "reliability": 6, "skill": 8, "stress": 6, "pain": 8, "confidence": 6, "delight": 3 },
+      "overallFit": 6.11,
+      "rationale": "Defining characteristic of this commodity class. >75% of campus buildings exceed 40 years old with no wiring to secondary exits. Cost (9): eliminates electrician labor. Skill (8): facilities crew installs without trades."
+    },
+    {
+      "name": "Remote Battery Status Reporting",
+      "kanoClass": "attractive",
+      "scores": { "time": 5, "cost": 6, "safety": 6, "reliability": 7, "skill": 6, "stress": 8, "pain": 8, "confidence": 8, "delight": 7 },
+      "overallFit": 6.78,
+      "rationale": "Zero remote battery visibility in all mechanical alternatives. Stress (8): eliminates overnight anxiety about dead batteries at dormitory exits. Pain (8): replaces manual battery-check rounds. Confidence (8): proactive replacement enables Clery Act coverage continuity."
+    },
+    {
+      "name": "Retrofit Surface Mount Installation",
+      "kanoClass": "one_dimensional",
+      "scores": { "time": 7, "cost": 9, "safety": 3, "reliability": 5, "skill": 9, "stress": 7, "pain": 9, "confidence": 5, "delight": 6 },
+      "overallFit": 6.67,
+      "rationale": "More retrofit-friendly = proportionally lower deployment cost. Cost (9): zero electrician cost. Skill (9): facilities technician installs in <30 min/door. Pain (9): removes dominant adoption barrier for legacy-building campuses."
+    },
+    {
+      "name": "Automated Event Log Generation",
+      "kanoClass": "attractive",
+      "scores": { "time": 8, "cost": 8, "safety": 7, "reliability": 6, "skill": 7, "stress": 9, "pain": 9, "confidence": 9, "delight": 7 },
+      "overallFit": 7.78,
+      "rationale": "Highest scoring feature. Clery Act compliance documentation is top underserved need cluster (N18 OS=15, N19 OS=15). Stress (9): eliminates pre-inspection documentation scramble. Pain (9): replaces manual compilation. Confidence (9): 12-month digital audit trail on demand."
+    }
+  ],
+  "avgOverallFit": 6.24,
+  "productRelatedNeeds": [
+    "Minimize the likelihood of wireless signal attenuation in reinforced-concrete campus buildings exceeding the 30 m EasyWave transmitter range",
+    "Minimize the likelihood of coverage gaps discovered only after campus-wide deployment requiring unplanned repeater infrastructure",
+    "Minimize the likelihood of IoT battery exhaustion on dormitory exits where 24/7 student occupancy depletes batteries before the 2-year maintenance cycle",
+    "Minimize the integration effort to relay EasyWave alarm events into campus PSIM or BAS standardized on BACnet, KNX, or IP-based protocols",
+    "Minimize FERPA or GDPR compliance exposure from door-event timestamps attributable to resident students in dormitory buildings",
+    "Minimize the likelihood of surface-mounted exit alarm housings being tampered with by students in unsupervised dormitory corridors"
+  ],
+  "sources": []
+}

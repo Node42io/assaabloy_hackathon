@@ -1,0 +1,506 @@
+{
+  "naicsCode": "611110",
+  "marketName": "Elementary and Secondary Schools",
+  "slug": "elementary_secondary_schools",
+  "coreJobStatement": "Deliver structured K-12 academic instruction to enrolled students within a safe, legally compliant, and supervised facility environment",
+  "productJobStatement": "Help Campus Safety, Security & Emergency Management to monitor and secure all emergency exit doors against unauthorized use during occupied school hours while ensuring instant single-motion evacuation capability per IBC / NFPA 101 and generating auditable compliance documentation",
+  "anchorLevel": "L5",
+  "lPath": "L5.d.2 — Emergency Exit Alarm & Monitoring Systems → L6d — Campus Safety, Security & Emergency Management",
+  "segments": [
+    {
+      "segmentNumber": 1,
+      "name": "Aging-stock district",
+      "qualifier": "",
+      "characteristics": "Average building age 49 years; no conduit to secondary exits; wiring retrofit cost-prohibitive",
+      "isTargetable": true,
+      "targetabilityReason": "Wireless-only path; strong ROI on avoiding electrical work",
+      "circumstance": "Average building age 49 years; no conduit to secondary exits; wiring retrofit cost-prohibitive",
+      "alternativesDiffer": "Yes — wireless-only path; strong ROI on avoiding electrical work"
+    },
+    {
+      "segmentNumber": 2,
+      "name": "Post-Uvalde compliance mandate",
+      "qualifier": "",
+      "characteristics": "School in 32+ US states with new door-security legislation; procurement driven by law not discretion",
+      "isTargetable": true,
+      "targetabilityReason": "Safety budget unlocked; compliance deadline creates urgency",
+      "circumstance": "School in 32+ US states with new door-security legislation; procurement driven by law not discretion",
+      "alternativesDiffer": "Yes — safety budget unlocked; compliance deadline creates urgency"
+    },
+    {
+      "segmentNumber": 3,
+      "name": "Multi-campus district portfolio",
+      "qualifier": "",
+      "characteristics": "10+ schools under single facilities director; centralized monitoring is the value driver, not per-door cost",
+      "isTargetable": true,
+      "targetabilityReason": "Dashboard/aggregation value dominates; per-unit economics secondary",
+      "circumstance": "10+ schools under single facilities director; centralized monitoring is the value driver, not per-door cost",
+      "alternativesDiffer": "Yes — dashboard/aggregation value dominates; per-unit economics secondary"
+    },
+    {
+      "segmentNumber": 4,
+      "name": "High-traffic perimeter zone",
+      "qualifier": "",
+      "characteristics": "Schools with gyms, cafeterias, or sports fields accessed via secondary exits multiple times daily",
+      "isTargetable": true,
+      "targetabilityReason": "Battery life constraint (C4) dominant; false alarm management critical",
+      "circumstance": "Schools with gyms, cafeterias, or sports fields accessed via secondary exits multiple times daily",
+      "alternativesDiffer": "Yes — battery life constraint (C4) dominant; false alarm management critical"
+    },
+    {
+      "segmentNumber": 5,
+      "name": "Private / charter school",
+      "qualifier": "",
+      "characteristics": "Independent procurement authority; can act without LEA approval cycle; often tighter budgets",
+      "isTargetable": true,
+      "targetabilityReason": "Faster sales cycle; price sensitivity higher; IoT ROI must be self-evident",
+      "circumstance": "Independent procurement authority; can act without LEA approval cycle; often tighter budgets",
+      "alternativesDiffer": "Yes — faster sales cycle; price sensitivity higher; IoT ROI must be self-evident"
+    }
+  ],
+  "alternatives": [
+    {
+      "name": "Wired panic hardware + alarm panel integration",
+      "unspsc": "46191501",
+      "tradeoffs": "High installation labor; conduit to each door; retrofit disruption in 49-yr-old buildings; ongoing panel maintenance; certified integrator required. ~55% market share."
+    },
+    {
+      "name": "Mechanical-only door alarms (no monitoring)",
+      "unspsc": "46171600",
+      "tradeoffs": "Zero monitoring: staff learn of events only by physical discovery or triggered alarm heard locally; no compliance log; no remote visibility. ~30% market share."
+    },
+    {
+      "name": "Wireless IoT alarmed exit guards (Tuerwachter category)",
+      "unspsc": "46171600",
+      "tradeoffs": "Battery management overhead; wireless range limited in concrete (C3/C4); proprietary protocol (C6); no native integration with BACnet/KNX. ~15% market share."
+    },
+    {
+      "name": "Security personnel stationed / patrolling exits",
+      "unspsc": "",
+      "tradeoffs": "High recurring labor cost; coverage gaps during breaks/shifts; human error; no automated log; scales poorly to multi-building campuses. <5% market share."
+    },
+    {
+      "name": "Do nothing / accept risk",
+      "unspsc": "",
+      "tradeoffs": "Zero P1 burden; compliance violation risk; insurance liability; state audit findings; zero monitoring of unauthorized entry through fire exits. Most common current state in budget-constrained districts."
+    }
+  ],
+  "jobSteps": [
+    {
+      "stepNumber": 1,
+      "verb": "Define",
+      "description": "Determine which exit doors require monitoring, what alarm parameters apply, and what coverage zone each receiver must serve",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Coverage gaps in the scoping decision propagate to unmonitored doors",
+      "rawStatement": "Determine which exit doors require monitoring, what alarm parameters apply, and what coverage zone each receiver must serve",
+      "jobStep": "DEFINE",
+      "relevant": true,
+      "rationale": "Every deployment starts with a scoping decision; gaps here cause missed coverage"
+    },
+    {
+      "stepNumber": 2,
+      "verb": "Locate",
+      "description": "Locate available infrastructure paths, power sources, and network access points for receiver and gateway placement",
+      "isSensorRelevant": false,
+      "sensorDependencyRationale": "Wireless IoT minimizes this step; receiver placement still requires assessment but is not the primary pain point",
+      "rawStatement": "Locate available power sources, network drops, and structural paths for any infrastructure components",
+      "jobStep": "LOCATE",
+      "relevant": false,
+      "rationale": "Wireless IoT minimizes this step, but receiver placement still requires assessment"
+    },
+    {
+      "stepNumber": 3,
+      "verb": "Prepare",
+      "description": "Install door alarm units and supporting infrastructure (receivers, gateways, repeaters); configure system for monitoring operation",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Installation burden is the primary procurement barrier for aging buildings",
+      "rawStatement": "Install door alarm units and infrastructure (receivers, gateways); configure system for monitoring",
+      "jobStep": "PREPARE",
+      "relevant": true,
+      "rationale": "Installation burden is the primary procurement barrier for aging buildings"
+    },
+    {
+      "stepNumber": 4,
+      "verb": "Confirm",
+      "description": "Verify all door alarm units are functional and monitoring is active before occupied school hours begin",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Daily pre-check; undetected device faults accumulate here",
+      "rawStatement": "Verify all door units are functional before occupied school hours begin",
+      "jobStep": "CONFIRM",
+      "relevant": true,
+      "rationale": "Daily pre-check; failure-to-confirm is where undetected device faults accumulate"
+    },
+    {
+      "stepNumber": 5,
+      "verb": "Execute",
+      "description": "Monitor all designated exit doors in real time during occupied school hours; generate staff alerts on activation events",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Core safety function; primary value delivered here",
+      "rawStatement": "Monitor all exit doors in real time during occupied school hours; generate alerts on activation events",
+      "jobStep": "EXECUTE",
+      "relevant": true,
+      "rationale": "Core function; primary safety value delivered here"
+    },
+    {
+      "stepNumber": 6,
+      "verb": "Monitor",
+      "description": "Track device health (battery level, signal strength) and detect coverage drift before it causes monitoring failures",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Battery depletion is the dominant reliability failure mode for wireless IoT",
+      "rawStatement": "Track device health (battery, signal strength, firmware); detect coverage drift",
+      "jobStep": "MONITOR",
+      "relevant": true,
+      "rationale": "Battery depletion is the dominant reliability failure mode for wireless IoT"
+    },
+    {
+      "stepNumber": 7,
+      "verb": "Modify",
+      "description": "Respond to alarm events; silence confirmed alarms; re-arm doors; update device configuration as needed",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "False alarm management and re-arm speed determine operational acceptance",
+      "rawStatement": "Respond to alarm events; silence confirmed alarms; re-arm doors; update configuration",
+      "jobStep": "MODIFY",
+      "relevant": true,
+      "rationale": "False alarm management and re-arm speed determine operational acceptance"
+    },
+    {
+      "stepNumber": 8,
+      "verb": "Conclude",
+      "description": "Log all door events; generate compliance documentation for fire marshal inspections and state school safety audits",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Post-Uvalde compliance documentation is a named purchasing driver in 32+ US states",
+      "rawStatement": "Log all door events; generate compliance reports; prepare audit evidence for fire marshal / state safety inspection",
+      "jobStep": "CONCLUDE",
+      "relevant": true,
+      "rationale": "Post-Uvalde compliance documentation is a named purchasing driver"
+    }
+  ],
+  "stakeholders": [
+    {
+      "role": "Job Executor",
+      "who": "Campus security coordinator / head custodian",
+      "pyramidLevels": "P1 ALL, P2, P3, P4, P5"
+    },
+    {
+      "role": "Job Overseer",
+      "who": "School principal / district safety director",
+      "pyramidLevels": "P1 (own), P2, P4"
+    },
+    {
+      "role": "Job Beneficiary",
+      "who": "Students and teachers",
+      "pyramidLevels": "P2, P5"
+    },
+    {
+      "role": "Lifecycle Support — Installer",
+      "who": "Security integrator / facilities crew",
+      "pyramidLevels": "P1 Preparation only"
+    },
+    {
+      "role": "Lifecycle Support — Maintainer",
+      "who": "Custodial / maintenance staff",
+      "pyramidLevels": "P1 Maintenance only"
+    },
+    {
+      "role": "Purchase Executor",
+      "who": "District procurement officer / school board",
+      "pyramidLevels": "P1 Acquisition"
+    },
+    {
+      "role": "Purchase Influencer",
+      "who": "State safety auditor, fire marshal, insurance broker",
+      "pyramidLevels": "P2, P4"
+    }
+  ],
+  "needs": [
+    {
+      "id": "E01",
+      "statement": "Minimize the likelihood of critical emergency exit points being omitted from the monitoring plan due to incomplete site assessment",
+      "jobStep": "DEFINE",
+      "errorType": "ACCURACY",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "E02",
+      "statement": "Minimize the total electrician labor hours required to install exit alarm monitoring systems at secondary and perimeter doors",
+      "jobStep": "PREPARE",
+      "errorType": "EFFORT",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "cost",
+      "productRelated": false,
+      "confidence": 0.90
+    },
+    {
+      "id": "E03",
+      "statement": "Minimize the likelihood that installation of exit alarm units requires structural modification to existing door frame or door hardware",
+      "jobStep": "PREPARE",
+      "errorType": "ROBUSTNESS",
+      "importance": 8,
+      "satisfaction": 5,
+      "opportunity": 11,
+      "impactCategory": "cost",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "E04",
+      "statement": "Minimize the number of additional receiver and repeater infrastructure units required to achieve full wireless coverage across all exit points in a multi-story school building",
+      "jobStep": "PREPARE",
+      "errorType": "EFFORT",
+      "importance": 7,
+      "satisfaction": 4,
+      "opportunity": 10,
+      "impactCategory": "cost",
+      "productRelated": true,
+      "confidence": 0.75
+    },
+    {
+      "id": "E05",
+      "statement": "Minimize the time required to verify that all exit alarm units are operational at the start of each school day",
+      "jobStep": "CONFIRM",
+      "errorType": "EFFORT",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "E06",
+      "statement": "Minimize the likelihood of device failures that remain undetected until an alarm event occurs during occupied school hours",
+      "jobStep": "CONFIRM",
+      "errorType": "ACCURACY",
+      "importance": 9,
+      "satisfaction": 3,
+      "opportunity": 15,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.90
+    },
+    {
+      "id": "E07",
+      "statement": "Minimize the integration complexity required to connect exit door monitoring events to the district's existing access control or building management platform",
+      "jobStep": "CONFIRM",
+      "errorType": "EFFORT",
+      "importance": 7,
+      "satisfaction": 3,
+      "opportunity": 11,
+      "impactCategory": "cost",
+      "productRelated": true,
+      "confidence": 0.75
+    },
+    {
+      "id": "E08",
+      "statement": "Minimize the time elapsed between an unauthorized exit door activation and first staff notification during occupied school hours",
+      "jobStep": "EXECUTE",
+      "errorType": "DETECTION",
+      "importance": 10,
+      "satisfaction": 4,
+      "opportunity": 16,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.95
+    },
+    {
+      "id": "E09",
+      "statement": "Minimize the frequency of false alarm events triggered by thermal door expansion, wind pressure, or incidental handle contact",
+      "jobStep": "EXECUTE",
+      "errorType": "CONSISTENCY",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "reliability",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "E10",
+      "statement": "Increase the ability to distinguish between a propped-open event, an alarm-triggered exit, and an authorized bypass activation on the monitoring dashboard",
+      "jobStep": "EXECUTE",
+      "errorType": "ACCURACY",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "E11",
+      "statement": "Minimize the degradation of alarm transmission coverage in building areas with reinforced concrete construction or metallic structural elements",
+      "jobStep": "EXECUTE",
+      "errorType": "ROBUSTNESS",
+      "importance": 7,
+      "satisfaction": 4,
+      "opportunity": 10,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.70
+    },
+    {
+      "id": "E12",
+      "statement": "Minimize the likelihood of missed alarm transmissions caused by radio frequency interference from co-located wireless networks in the school building",
+      "jobStep": "EXECUTE",
+      "errorType": "ROBUSTNESS",
+      "importance": 7,
+      "satisfaction": 5,
+      "opportunity": 9,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.65
+    },
+    {
+      "id": "E13",
+      "statement": "Minimize the number of monitoring coverage gaps caused by undetected battery depletion before door alarm operation is affected",
+      "jobStep": "MONITOR",
+      "errorType": "DETECTION",
+      "importance": 9,
+      "satisfaction": 3,
+      "opportunity": 15,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.90
+    },
+    {
+      "id": "E14",
+      "statement": "Increase the ability to receive advance warning of battery status degradation at individual door units before monitoring capability is lost",
+      "jobStep": "MONITOR",
+      "errorType": "THROUGHPUT",
+      "importance": 9,
+      "satisfaction": 3,
+      "opportunity": 15,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.90
+    },
+    {
+      "id": "E15",
+      "statement": "Minimize the time required to identify which specific door unit is experiencing a monitoring failure across a multi-building campus",
+      "jobStep": "MONITOR",
+      "errorType": "DETECTION",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "E16",
+      "statement": "Minimize the effort required to re-arm a door alarm unit after an authorized exit event without specialized tools or access credentials",
+      "jobStep": "MODIFY",
+      "errorType": "EFFORT",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "skill",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "E17",
+      "statement": "Minimize the likelihood of an alarm-silencing action occurring without generating a corresponding audit log entry for compliance records",
+      "jobStep": "MODIFY",
+      "errorType": "ACCURACY",
+      "importance": 9,
+      "satisfaction": 3,
+      "opportunity": 15,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "E18",
+      "statement": "Minimize the effort required to register a replacement door alarm unit with the existing receiver network without installer software access",
+      "jobStep": "MODIFY",
+      "errorType": "EFFORT",
+      "importance": 7,
+      "satisfaction": 4,
+      "opportunity": 10,
+      "impactCategory": "skill",
+      "productRelated": true,
+      "confidence": 0.70
+    },
+    {
+      "id": "E19",
+      "statement": "Minimize the labor time required to compile door event logs into a format acceptable for state fire safety and school security audits",
+      "jobStep": "CONCLUDE",
+      "errorType": "EFFORT",
+      "importance": 8,
+      "satisfaction": 2,
+      "opportunity": 14,
+      "impactCategory": "cost",
+      "productRelated": false,
+      "confidence": 0.90
+    },
+    {
+      "id": "E20",
+      "statement": "Minimize the likelihood of compliance audit findings related to gaps in exit monitoring documentation during annual fire marshal inspections",
+      "jobStep": "CONCLUDE",
+      "errorType": "ACCURACY",
+      "importance": 9,
+      "satisfaction": 3,
+      "opportunity": 15,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.90
+    },
+    {
+      "id": "E21",
+      "statement": "Increase the ability to present real-time exit monitoring compliance status to district administrators, school board members, or state inspectors without manual record assembly",
+      "jobStep": "CONCLUDE",
+      "errorType": "THROUGHPUT",
+      "importance": 7,
+      "satisfaction": 3,
+      "opportunity": 11,
+      "impactCategory": "cost",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "E22",
+      "statement": "Increase the ability to present auditable exit compliance records demonstrating that post-Uvalde legislative requirements were continuously met without incident",
+      "jobStep": "ROLE IDENTITY",
+      "errorType": "P3",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "E23",
+      "statement": "Minimize the likelihood that an unsecured emergency exit is visible to media, parents, or state officials before campus staff have received notification",
+      "jobStep": "IMAGE IDENTITY",
+      "errorType": "P4",
+      "importance": 9,
+      "satisfaction": 4,
+      "opportunity": 14,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.65
+    },
+    {
+      "id": "E24",
+      "statement": "Minimize the duration of uncertainty about whether all emergency exits in the building are currently secured during occupied school hours",
+      "jobStep": "EMOTIONAL",
+      "errorType": "P5",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.65
+    }
+  ],
+  "sources": []
+}

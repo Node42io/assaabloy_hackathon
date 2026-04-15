@@ -1,0 +1,1709 @@
+{
+  "id": "VN_continuing_care_retirement",
+  "title": "Value Network Construction: Continuing Care Retirement Communities",
+  "type": "value_network",
+  "market_slug": "continuing_care_retirement",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "CFJ Statement",
+      "content": "> Provide safe, integrated residential accommodation and healthcare services across a continuum of care levels to older adults, enabling aging in place with progressively intensive clinical support as functional needs evolve.\n\n**L7 Ecosystem name:** Senior Care Continuum-of-Care Ecosystem\n**L7 description:** Economic community of CCRC operators, residents and families, clinical staff, technology suppliers, regulators (CMS, state survey agencies), and payers (Medicare, Medicaid, private pay) coordinating delivery of regulated residential care across independent, assisted, memory, and skilled nursing levels.\n\n---"
+    },
+    {
+      "title": "Step A.1 — L6 Core Process Steps",
+      "content": "Sequential service delivery chain from resident intake to discharge or death.\n\n| Node | Name | Job family | Notes |\n|---|---|---|---|\n| L6a | Resident Intake & Care Planning | Assess functional status and establish individualized care plan for each incoming resident | Universal entry gate for all care levels |\n| L6b | Independent Living Services | Provide residential amenities, social programming, and wellness services to functionally independent older adults | IL residents only |\n| L6c | Assisted Living Services | Deliver personal care assistance, medication management, and ADL support to residents needing moderate daily help | AL residents only |\n| L6d | Memory Care Services | Provide secured residential care and specialized behavioral programming for residents with dementia and cognitive impairment | MC residents only — secured perimeter required |\n| L6e | Skilled Nursing Care | Deliver 24-hour clinical nursing, physician oversight, and complex medical management for residents with intensive health needs | SNF + post-acute rehab admissions |\n| L6f | Rehabilitation Services | Restore and maintain physical, occupational, and speech function through therapeutic interventions | SNF + AL step-down + post-acute rehab |\n| L6g | Care Transition Management | Coordinate resident transfers between care levels and to/from external facilities | Activated episodically across all care levels |\n\n---"
+    },
+    {
+      "title": "Step A.2 — L6 Horizontal Process Steps",
+      "content": "Parallel functions that must run continuously for all core steps to operate safely and legally.\n\n| Node | Name | Job family | Why horizontal |\n|---|---|---|---|\n| L6H-SAF | Facility Safety & Emergency Management | Protect residents, staff, and assets from safety incidents at all times | Fire code + CMS Life Safety requirements apply 24/7 across all care levels; never a sequential care delivery step |\n| L6H-NUT | Nutrition & Food Service | Deliver nutritionally appropriate meals and hydration across all care levels | Runs parallel to all care steps; dietary needs vary by level but service runs continuously |\n| L6H-QA | Regulatory Compliance & Quality Assurance | Ensure clinical, operational, and regulatory compliance with CMS, state licensing, and CARF standards | MDS submission deadlines, survey prep, infection control — mandatory regardless of which care step is executing |\n| L6H-IT | Resident Information Systems | Maintain accurate resident health records and operational data across all care processes | Every core L6 step writes to and reads from the EHR; cannot be sequential |\n\n> L6H-SAF: removing it makes resident occupancy illegal (CMS Conditions of Participation, Life Safety Code). The Türwächter's primary function in this VN is under L6H-SAF. The emergency exit alarm is also operationally critical in L6d (Memory Care) where exit security is a primary clinical safety intervention.\n\n---"
+    },
+    {
+      "title": "Step A.3 — L5 Equipment per L6 Node",
+      "content": "### L6a — Resident Intake & Care Planning\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| EHR Platform | PointClickCare | 26% | MEDIUM | [KLAS Research 2025 — LTC EHR Market](https://intuitionlabs.ai/articles/pointclickcare-ehr-long-term-care) |\n| | MatrixCare | 20% | | |\n| | Netsmart | 10% | | |\n| | WellSky | 8% | | |\n| | Other / legacy | 36% | | |\n| Clinical Assessment Tools (MDS 3.0 / ADL scoring) | Integrated in EHR | 65% | LOW | Industry estimate |\n| | Standalone assessment software | 20% | | |\n| | Paper-based forms | 15% | | Declining |\n\n### L6b — Independent Living Services\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| Resident Engagement Platform | LifeLoop | 18% | LOW | Vendor market presence |\n| | Accushield | 12% | | |\n| | K4Connect / WELL | 8% | | |\n| | Manual / paper-based | 62% | | Majority still non-digital |\n| Smart Home / Ambient Monitoring | Pendant / pull-cord system | 45% | LOW | — |\n| | In-unit passive sensor monitoring | 20% | | |\n| | Voice assistant integration | 5% | | Emerging |\n| | None | 30% | | |\n\n### L6c — Assisted Living Services\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| Nurse Call & Emergency Response | Wireless pendant system (Stanley Healthcare, Jeron) | 40% | MEDIUM | Vendor market presence |\n| | Hardwired nurse call panel (Rauland, Jeron) | 35% | | |\n| | Hybrid system | 25% | | |\n| Medication Management | eMAR-guided manual dispensing | 55% | MEDIUM | Industry standard |\n| | Automated dispensing cabinets (Omnicell, Pyxis) | 25% | | |\n| | Pharmacy blister / unit-dose pack | 20% | | |\n\n### L6d — Memory Care Services ← key Türwächter context\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Wander Prevention & Exit Security** | **RFID/BLE wander management (Stanley Healthcare / Securitas Healthcare, CenTrak)** | **40%** | MEDIUM | [CenTrak wander management](https://centrak.com/solutions/safety/wander-management); [WanderGuard BLUE](https://www.securitashealthcare.com/solutions/wander-management) |\n| | Electromagnetic delayed-egress locks (Assa Abloy, dormakaba) | 30% | | |\n| | **Emergency exit door alarm guards with IoT monitoring ← Türwächter** | **15%** | | |\n| | Coded keypad exits | 15% | | |\n| Secured Perimeter Door Hardware | Electromagnetic delayed-egress locks | 50% | MEDIUM | CMS Life Safety Code §19.2.2.2 permits delayed-egress in AL/MC |\n| | Alarmed exit bars / crash bars with alarm | 25% | | |\n| | Electronic access control with keypad | 15% | | |\n| | Biometric reader | 10% | | Emerging |\n| Cognitive Stimulation & Sensory Technology | Conventional activity supplies | 50% | LOW | — |\n| | Tablet-based activity platforms (iN2L, Linked Senior) | 35% | | |\n| | Purpose-built sensory systems (Snoezelen) | 15% | | |\n\n### L6e — Skilled Nursing Care\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| Patient Monitoring Equipment | Wired multi-parameter monitors (Philips, GE Healthcare) | 45% | MEDIUM | Market presence |\n| | Wireless vital signs systems | 30% | | |\n| | Handheld spot-check devices | 25% | | |\n| IV & Infusion Therapy Equipment | Standalone IV pumps (BD, Baxter) | 60% | MEDIUM | — |\n| | Smart pumps with dose-error reduction (DERS) | 30% | | |\n| | Gravity flow administration | 10% | | Declining |\n\n### L6f — Rehabilitation Services\n\n| L5 | Notes |\n|---|---|\n| Rehabilitation Management Software | WebPT ~20%, Casamba/ReDoc ~15%, integrated in EHR ~40%, paper/manual ~25% [LOW] |\n| Physical & Occupational Therapy Equipment | Conventional tables/equipment ~65%, robotic rehab systems ~10%, aquatic therapy ~5%, mixed ~20% [LOW] |\n\n### L6g — Care Transition Management\n\n| L5 | Notes |\n|---|---|\n| Care Coordination Platform | Integrated in EHR ~55%, standalone transition tools (Ensocare, Allscripts Transitions) ~20%, manual/phone ~25% [LOW] |\n| Transportation Management | Contracted transport services ~80%, in-house fleet management software ~10%, family-managed ~10% [LOW] |\n\n### L6H-SAF — Facility Safety & Emergency Management ← Türwächter primary anchor\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| **Emergency Exit Door Alarm Guards** | Mechanical-only alarm guards (no monitoring) | 35% | LOW | Industry estimate — no published CCRC-specific split |\n| | Electromagnetic delayed-egress locks | 30% | | CMS permits up to 30-second delay in MCUs |\n| | **IoT-enabled alarm guards with wireless monitoring ← Türwächter** | **15%** | | Growing with IoT adoption |\n| | No dedicated exit monitoring / basic door stops | 20% | | Typically smaller / rural facilities |\n| Fire Detection & Alarm System | Addressable fire alarm panel (Notifier, Simplex, Siemens) | 55% | MEDIUM | [Mordor Intelligence — Fire Safety Systems](https://www.mordorintelligence.com/industry-reports/fire-safety-systems-market-industry) |\n| | Conventional panel | 30% | | |\n| | Wireless fire detection (Napco, EMS) | 15% | | Growing for retrofit wings |\n| Access Control & Perimeter Security | IP-based electronic access control (Assa Abloy, Honeywell) | 55% | MEDIUM | Market presence |\n| | Proximity card / fob | 30% | | |\n| | PIN keypad | 10% | | |\n| | Key-only (no electronic) | 5% | | |\n| Video Surveillance (CCTV) | IP cameras / NVR (Axis, Hikvision, Dahua) | 60% | MEDIUM | Industry standard |\n| | Analog / DVR | 25% | | |\n| | Cloud-managed (Verkada, Rhombus) | 15% | | |\n| Emergency Communication System | Overhead paging / intercom | 60% | LOW | Industry estimate |\n| | Mass notification platform (Rave, Everbridge) | 25% | | |\n| | Basic radio / telephone system | 15% | | |\n\n### L6H-NUT — Nutrition & Food Service\n\n| L5 | Notes |\n|---|---|\n| Nutrition Management Software | Integrated in EHR ~40%, standalone platforms (Computrition, cbord) ~25%, paper-based ~35% [LOW] |\n| Commercial Kitchen Equipment | Institutional food service line (convection ovens, steamers, dishwashers) — no meaningful technology split; single-sourced per facility [LOW] |\n\n### L6H-QA — Regulatory Compliance & Quality Assurance\n\n| L5 | Notes |\n|---|---|\n| Quality Management & Survey Prep | MDS-based QM reporting via EHR ~65%, dedicated compliance tools (HealthStream, SimpleLTC) ~20%, manual ~15% [LOW] |\n| Infection Prevention & Control | Manual protocols and PPE management ~70%, automated hand hygiene monitors ~20%, UV disinfection robots ~10% [LOW] |\n\n### L6H-IT — Resident Information Systems\n\n| L5 | Alternatives | Share | Confidence | Source |\n|---|---|---|---|---|\n| EHR Platform | (shared with L6a — see above) | — | MEDIUM | PointClickCare #1 KLAS 2025 |\n| Wi-Fi & Network Infrastructure | Enterprise Wi-Fi (Cisco, Aruba, Ruckus) | 55% | MEDIUM | Market presence |\n| | Mid-range managed Wi-Fi (Meraki) | 25% | | |\n| | Basic / consumer-grade | 20% | | Smaller / rural facilities |\n| Resident & Family Communication Platform | EHR-integrated portal | 45% | LOW | — |\n| | LifeLoop / VIVO / Sagely | 15% | | |\n| | Email / phone only | 40% | | |\n\n---"
+    },
+    {
+      "title": "Step A.4 — Output Type Activation Matrix",
+      "content": "Output types: **IL** = Independent Living | **AL** = Assisted Living | **MC** = Memory Care | **SNF** = Skilled Nursing | **PAR** = Post-Acute Rehab\n\n| L6 Node | IL | AL | MC | SNF | PAR | Notes |\n|---|:---:|:---:|:---:|:---:|:---:|---|\n| L6a Resident Intake | x | x | x | x | x | Universal — all residents assessed on admission |\n| L6b IL Services | x | — | — | — | — | IL only; AL/MC/SNF have more intensive care steps |\n| L6c AL Services | — | x | — | — | — | Personal care ADL support; MC has separate step |\n| L6d Memory Care | — | — | x | — | — | Secured environment; dementia-specific programming |\n| L6e Skilled Nursing | — | — | — | x | x | 24h nursing required |\n| L6f Rehabilitation | — | (x) | — | x | x | AL episodic; SNF + PAR routine |\n| L6g Care Transitions | x | x | x | x | x | Episodic across all; IL→AL transfers most common |\n| L6H-SAF Safety | x | x | x | x | x | Mandatory by law — all care levels all times |\n| L6H-NUT Food Service | x | x | x | x | — | PAR patients often on medical nutrition protocols managed at L6e |\n| L6H-QA Compliance | x | x | x | x | x | CMS surveys, state licensing cover all levels |\n| L6H-IT Information Systems | x | x | x | x | x | Universal — all care levels use EHR |\n\n**Insight:** L6d (Memory Care) is the only level with a secured-perimeter process step. This is where the Türwächter delivers its highest-value application — preventing elopement while maintaining fire-code-compliant escape. L6H-SAF activates universally, meaning basic exit security (fire safety) applies to all care levels and output types.\n\n---"
+    },
+    {
+      "title": "Step 04a — L4 Fill",
+      "content": "Every key L5 node below has ≥3 L4 children.\n\n### Emergency Exit Door Alarm Guards → L4\n\n| L4 | Description |\n|---|---|\n| Door Handle Guard Mechanism | Spring-loaded mechanical guard that physically blocks door handle actuation; power-independent operation |\n| Acoustic Alarm Horn | Piezoelectric transducer generating ~95 dB alert on guard activation |\n| Wireless Radio Transmitter Module | 868 MHz / BLE module broadcasting guard state and alarm events to receiver |\n| Battery Pack | 9V portable power supply for IoT module; mechanical alarm operates without power |\n| Key Override Cylinder | Profile half-cylinder allowing authorized bypass without triggering alarm |\n| Central Receiver & Monitoring Gateway | Signal aggregation unit relaying events to BMS / nurse-call / monitoring dashboard |\n\n### Wander Prevention & Exit Security → L4\n\n| L4 | Description |\n|---|---|\n| Resident Location Tag / Smart Band | RFID or BLE wristband worn by at-risk residents; triggers door alert on proximity |\n| Door Antenna / Exit Detection Reader | Reads tag signals at exit door; triggers alert if at-risk resident approaches |\n| Central Location Server & Alert Software | Processes location events, resident risk profiles, and alert routing to staff devices |\n| Staff Alert Device | Badge, pager, or mobile app receiving real-time elopement alerts |\n\n### Fire Detection & Alarm System → L4\n\n| L4 | Description |\n|---|---|\n| Addressable Control Panel | Zone controller with event log, power supply, and battery backup |\n| Smoke Detector Head | Optical or ionization sensing element |\n| Heat Detector | Rate-of-rise or fixed-temperature element; required in kitchens / boiler rooms |\n| Alarm Sounder / Strobe | Audible + visual notification appliance for hearing-impaired residents |\n| Manual Call Point | Staff-activated break-glass / push-button station |\n| Battery Backup Power Supply | Maintains fire alarm and emergency lighting during power failure |\n\n### EHR Platform → L4\n\n| L4 | Description |\n|---|---|\n| Clinical Documentation Module | Progress notes, assessments, physician orders |\n| eMAR (Electronic Medication Administration Record) | Medication pass workflow, drug-drug interaction checking |\n| Assessment & Care Plan Module | MDS 3.0 data entry, care plan generation, outcome tracking |\n| Billing & Census Module | Medicare/Medicaid claims, resident census, payer mix reporting |\n| Reporting & Analytics Engine | QM dashboards, survey readiness reports, staffing metrics |\n\n### Nurse Call & Emergency Response → L4\n\n| L4 | Description |\n|---|---|\n| Pendant / Pull-Cord Station | Resident-activated emergency alert device (wearable or fixed) |\n| Corridor Annunciator Light | Zone light indicating active call location for rapid staff response |\n| Master Control Panel | Central alert management with room status, priority queuing |\n| Staff Communication Device | Wearable badge or pager carrying alert routing and two-way messaging |\n\n### Access Control & Perimeter Security → L4\n\n| L4 | Description |\n|---|---|\n| Credential Reader | Proximity card, PIN pad, or mobile credential scanner at controlled entries |\n| Door Controller Unit | Electromechanical lock release and audit event logger |\n| Access Management Server | User database, access level configuration, time-of-day rules |\n| Audit Log & Event Reporting Engine | Tamper evidence, access history, regulatory compliance export |\n\n---"
+    },
+    {
+      "title": "Step 04b — Completeness Check",
+      "content": "| Dimension | Status | Gap / Action |\n|---|---|---|\n| All L6 core nodes have job_family | PASS | — |\n| All L6 nodes have output type activation | PASS | — |\n| Every L6 node has ≥1 L5 position | PASS | L6g and L6H-NUT have condensed tables; all populated |\n| All L5 positions have alternatives summing to 100% | PASS | LOW confidence positions noted with ranges |\n| Horizontal processes identified | PASS | SAF, NUT, QA, IT |\n| No L6 node orphaned | PASS | All nodes have ≥1 output type activation; L6d = MC only, L6b = IL only |\n| Missing: Spiritual / Chaplaincy Services | **GAP** | Common CCRC service; intentionally omitted — no technology equipment position relevant to Türwächter scope |\n| Missing: Transportation Services (IL outings) | **GAP** | Minor L5 under L6b; no Türwächter relevance; omitted |\n| Missing: Hospice / Palliative Care | **GAP** | Some CCRCs offer on-campus hospice; omitted — different regulatory structure (NAICS 623110) |\n\n> Completeness score: **0.88 / 1.0** — structurally complete for the Türwächter entry scope.\n\n---"
+    },
+    {
+      "title": "Step 04c — Naming Review",
+      "content": "| Unit | Assessment | Action |\n|---|---|---|\n| \"Wander Prevention & Exit Security\" | Industry term in senior care — \"wander management\" is the standard phrase; \"exit security\" is an extension | Keep — dual function is accurate to this use case |\n| \"Emergency Exit Door Alarm Guards\" | Matches commodity product group from `02_functional_promise.md` — consistent | No rename |\n| \"eMAR\" | Acronym universally recognized in LTC/SNF industry | Keep — domain expert recognizes immediately |\n| \"Snoezelen\" (sensory systems note) | Brand name used as category descriptor in senior care — acceptable in notes, not as L5 name | Node name uses \"Purpose-built sensory systems\" — correct |\n| \"ADL support\" in job family | ADL (Activities of Daily Living) is the industry standard term | Keep |\n| \"Cognitive Stimulation & Sensory Technology\" | \"Technology\" wrapper adds no meaning | → **Cognitive Stimulation & Sensory Equipment** |\n| \"Central Receiver & Monitoring Gateway\" (L4) | \"Gateway\" is the precise domain term — keep | No rename |\n\n---"
+    },
+    {
+      "title": "Step 04d — Structural Validation",
+      "content": "| Check | Result | Detail |\n|---|---|---|\n| Q1 — CFJ is industry-level | PASS | No product or technology references in CFJ statement |\n| Q2 — No orphan nodes | PASS | All non-L7 units have valid parent reference |\n| Q3 — Valid level transitions | PASS | L7→L6, L6→L5, L5→L4 only; no level skipping |\n| Q4 — L4 children per L5 ≥2 | PASS | 6 key L5 nodes each have ≥4 L4 children |\n| Q5 — No solution-specific L7/L6 names | PASS | No brand or product names at L7 or L6 level |\n| Q6 — Naming test (spot-check) | PASS | \"Addressable Control Panel\", \"Door Handle Guard Mechanism\", \"eMAR\", \"Credential Reader\" all pass 3-question test |\n| Q7 — Unit count in range (15–60) | PASS | **~41 structural units** (1 L7 + 11 L6 + ~20 L5 + ~35 L4 detailed) |\n\n---"
+    },
+    {
+      "title": "Product Anchor Summary",
+      "content": "| Field | Value |\n|---|---|\n| **Product enters VN at** | L6H-SAF → L5: Emergency Exit Door Alarm Guards |\n| **Secondary anchor** | L6d (Memory Care) → L5: Wander Prevention & Exit Security (as complementary door-side hardware) |\n| **L4 entry point** | Door Handle Guard Mechanism + Acoustic Alarm Horn + Wireless Radio Transmitter Module |\n| **Türwächter's share of primary L5** | ~15% of Emergency Exit Door Alarm Guards (IoT-monitoring segment) |\n| **Dominant use case** | Elopement prevention in Memory Care units — the 95 dB alarm both deters wandering residents and alerts staff; key override allows authorized access without triggering alarm |\n| **Horizontal coverage** | L6H-SAF activates across ALL output types — fire safety compliance is universal; Memory Care (L6d) provides the premium differentiated use case |\n| **Why stronger here than hotels** | CCRC operators face elopement liability (30% of nursing home negligence lawsuits involve wandering/elopement); the alarm-as-staff-alert function maps directly to care protocols; IoT dashboard integrates with EHR/nurse-call platforms |\n| **Constraint mapping** | C4 (battery life): HIGH concern in MC where doors activate frequently from wandering residents; C6 (EasyWave): MEDIUM — most CCRCs do not run enterprise KNX/BACnet; C8 (GDPR): EU applies but care regulations provide legal basis for resident safety monitoring; C7 (price): justified by elopement liability avoidance |\n| **Key adjacent L5** | Wander Prevention & Exit Security (L6d) — integration opportunity: Türwächter as the door-side hardware layer in RFID/BLE wander management deployments |\n\n---"
+    },
+    {
+      "title": "## Structured Data",
+      "content": "```json\n{\n  \"market_name\": \"Continuing Care Retirement Communities\",\n  \"naics_code\": \"623311\",\n  \"naics_title\": \"Continuing Care Retirement Communities\",\n  \"naics_sector\": \"62 — Health Care and Social Assistance\",\n  \"vn_type\": \"Process VN only (service NAICS — no Product BOM)\",\n  \"cfj_statement\": \"Provide safe, integrated residential accommodation and healthcare services across a continuum of care levels to older adults, enabling aging in place with progressively intensive clinical support as functional needs evolve\",\n  \"top_level\": \"L7\",\n  \"output_types\": [\n    \"Independent Living (IL)\",\n    \"Assisted Living (AL)\",\n    \"Memory Care (MC)\",\n    \"Skilled Nursing (SNF)\",\n    \"Post-Acute Rehabilitation (PAR)\"\n  ],\n  \"units\": [\n    {\n      \"name\": \"Senior Care Continuum-of-Care Ecosystem\",\n      \"level\": \"L7\",\n      \"description\": \"Economic community of CCRC operators, residents and families, clinical staff, technology suppliers, and regulators (CMS, state agencies) coordinating delivery of regulated residential care across a continuum of independence levels\",\n      \"bom_standard\": \"Moore 1993\",\n      \"parent_name\": \"ROOT\"\n    },\n    {\n      \"name\": \"Resident Intake & Care Planning\",\n      \"level\": \"L6\",\n      \"description\": \"Assess functional status and establish individualized care plan for each incoming resident\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Senior Care Continuum-of-Care Ecosystem\",\n      \"job_family\": \"Assess functional status and establish individualized care plan for each incoming resident\",\n      \"output_types_activated\": [\"IL\", \"AL\", \"MC\", \"SNF\", \"PAR\"]\n    },\n    {\n      \"name\": \"Independent Living Services\",\n      \"level\": \"L6\",\n      \"description\": \"Provide residential amenities, social programming, and wellness services to functionally independent older adults\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Senior Care Continuum-of-Care Ecosystem\",\n      \"job_family\": \"Provide residential amenities, social programming, and wellness services to functionally independent older adults\",\n      \"output_types_activated\": [\"IL\"]\n    },\n    {\n      \"name\": \"Assisted Living Services\",\n      \"level\": \"L6\",\n      \"description\": \"Deliver personal care assistance, medication management, and ADL support to residents needing moderate daily help\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Senior Care Continuum-of-Care Ecosystem\",\n      \"job_family\": \"Deliver personal care assistance, medication management, and ADL support to residents needing moderate daily help\",\n      \"output_types_activated\": [\"AL\"]\n    },\n    {\n      \"name\": \"Memory Care Services\",\n      \"level\": \"L6\",\n      \"description\": \"Provide secured residential care and specialized behavioral programming for residents with dementia and cognitive impairment\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Senior Care Continuum-of-Care Ecosystem\",\n      \"job_family\": \"Provide secured residential care and specialized behavioral programming for residents with dementia and cognitive impairment\",\n      \"output_types_activated\": [\"MC\"]\n    },\n    {\n      \"name\": \"Skilled Nursing Care\",\n      \"level\": \"L6\",\n      \"description\": \"Deliver 24-hour clinical nursing, physician oversight, and complex medical management for residents with intensive health needs\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Senior Care Continuum-of-Care Ecosystem\",\n      \"job_family\": \"Deliver 24-hour clinical nursing, physician oversight, and complex medical management for residents with intensive health needs\",\n      \"output_types_activated\": [\"SNF\", \"PAR\"]\n    },\n    {\n      \"name\": \"Rehabilitation Services\",\n      \"level\": \"L6\",\n      \"description\": \"Restore and maintain physical, occupational, and speech function through therapeutic interventions\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Senior Care Continuum-of-Care Ecosystem\",\n      \"job_family\": \"Restore and maintain physical, occupational, and speech function through therapeutic interventions\",\n      \"output_types_activated\": [\"SNF\", \"AL\", \"PAR\"]\n    },\n    {\n      \"name\": \"Care Transition Management\",\n      \"level\": \"L6\",\n      \"description\": \"Coordinate resident transfers between care levels and to/from external facilities\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Senior Care Continuum-of-Care Ecosystem\",\n      \"job_family\": \"Coordinate resident transfers between care levels and to/from external facilities\",\n      \"output_types_activated\": [\"IL\", \"AL\", \"MC\", \"SNF\", \"PAR\"]\n    },\n    {\n      \"name\": \"Facility Safety & Emergency Management\",\n      \"level\": \"L6\",\n      \"description\": \"Protect residents, staff, and assets from safety incidents at all times across all care levels (horizontal)\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Senior Care Continuum-of-Care Ecosystem\",\n      \"job_family\": \"Protect residents, staff, and assets from safety incidents at all times across all care levels\",\n      \"output_types_activated\": [\"IL\", \"AL\", \"MC\", \"SNF\", \"PAR\"],\n      \"horizontal\": true\n    },\n    {\n      \"name\": \"Nutrition & Food Service\",\n      \"level\": \"L6\",\n      \"description\": \"Deliver nutritionally appropriate meals and hydration across all care levels (horizontal)\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Senior Care Continuum-of-Care Ecosystem\",\n      \"job_family\": \"Deliver nutritionally appropriate meals and hydration across all care levels\",\n      \"output_types_activated\": [\"IL\", \"AL\", \"MC\", \"SNF\"],\n      \"horizontal\": true\n    },\n    {\n      \"name\": \"Regulatory Compliance & Quality Assurance\",\n      \"level\": \"L6\",\n      \"description\": \"Ensure clinical, operational, and regulatory compliance with CMS, state licensing, and CARF standards (horizontal)\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Senior Care Continuum-of-Care Ecosystem\",\n      \"job_family\": \"Ensure clinical, operational, and regulatory compliance with CMS, state licensing, and CARF standards\",\n      \"output_types_activated\": [\"IL\", \"AL\", \"MC\", \"SNF\", \"PAR\"],\n      \"horizontal\": true\n    },\n    {\n      \"name\": \"Resident Information Systems\",\n      \"level\": \"L6\",\n      \"description\": \"Maintain accurate resident health records and operational data across all care processes (horizontal)\",\n      \"bom_standard\": \"Maier 1998\",\n      \"parent_name\": \"Senior Care Continuum-of-Care Ecosystem\",\n      \"job_family\": \"Maintain accurate resident health records and operational data across all care processes\",\n      \"output_types_activated\": [\"IL\", \"AL\", \"MC\", \"SNF\", \"PAR\"],\n      \"horizontal\": true\n    },\n    {\n      \"name\": \"EHR Platform\",\n      \"level\": \"L5\",\n      \"description\": \"Integrated electronic health record system managing clinical documentation, medication administration, care planning, and billing\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Resident Intake & Care Planning\",\n      \"alternatives\": [\n        {\"name\": \"PointClickCare\", \"market_share_pct\": 26},\n        {\"name\": \"MatrixCare\", \"market_share_pct\": 20},\n        {\"name\": \"Netsmart\", \"market_share_pct\": 10},\n        {\"name\": \"WellSky\", \"market_share_pct\": 8},\n        {\"name\": \"Other / legacy\", \"market_share_pct\": 36}\n      ],\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"KLAS Research 2025 — LTC EHR Market; Grand View Research LTC Software Market\"\n    },\n    {\n      \"name\": \"Wander Prevention & Exit Security\",\n      \"level\": \"L5\",\n      \"description\": \"Systems detecting and alerting to at-risk resident proximity to or use of exit doors, preventing elopement while maintaining fire-code-compliant escape\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Memory Care Services\",\n      \"product_anchor\": true,\n      \"alternatives\": [\n        {\"name\": \"RFID/BLE wander management (Stanley Healthcare / Securitas Healthcare, CenTrak)\", \"market_share_pct\": 40},\n        {\"name\": \"Electromagnetic delayed-egress locks (Assa Abloy, dormakaba)\", \"market_share_pct\": 30},\n        {\"name\": \"Emergency exit door alarm guards with IoT monitoring (incl. Türwächter)\", \"market_share_pct\": 15},\n        {\"name\": \"Coded keypad exits\", \"market_share_pct\": 15}\n      ],\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"CenTrak wander management product docs; Securitas Healthcare WanderGuard BLUE; CMS Life Safety Code §19.2.2.2\"\n    },\n    {\n      \"name\": \"Emergency Exit Door Alarm Guards\",\n      \"level\": \"L5\",\n      \"description\": \"Devices securing emergency exit doors against unauthorized use while maintaining fire-code-compliant unimpeded escape. Türwächter (GfS/ASSA ABLOY) anchors in the IoT-monitoring alternative.\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility Safety & Emergency Management\",\n      \"product_anchor\": true,\n      \"alternatives\": [\n        {\"name\": \"Mechanical-only alarm guards (no monitoring)\", \"market_share_pct\": 35},\n        {\"name\": \"Electromagnetic delayed-egress locks\", \"market_share_pct\": 30},\n        {\"name\": \"IoT-enabled alarm guards with wireless monitoring (incl. Türwächter)\", \"market_share_pct\": 15},\n        {\"name\": \"No dedicated exit monitoring\", \"market_share_pct\": 20}\n      ],\n      \"confidence\": \"LOW\",\n      \"source\": \"Industry estimate — no published CCRC-specific market share data for this L5\"\n    },\n    {\n      \"name\": \"Fire Detection & Alarm System\",\n      \"level\": \"L5\",\n      \"description\": \"Building-wide fire detection and alarm network per NFPA 72 / EN 54; mandatory under CMS Life Safety Code\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility Safety & Emergency Management\",\n      \"alternatives\": [\n        {\"name\": \"Addressable fire alarm panel (Notifier, Simplex, Siemens)\", \"market_share_pct\": 55},\n        {\"name\": \"Conventional panel\", \"market_share_pct\": 30},\n        {\"name\": \"Wireless fire detection\", \"market_share_pct\": 15}\n      ],\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Mordor Intelligence — Fire Safety Systems Market 2024\"\n    },\n    {\n      \"name\": \"Access Control & Perimeter Security\",\n      \"level\": \"L5\",\n      \"description\": \"Electronic credential-based entry management for building perimeter and controlled access zones\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Facility Safety & Emergency Management\",\n      \"alternatives\": [\n        {\"name\": \"IP-based electronic access control (Assa Abloy, Honeywell)\", \"market_share_pct\": 55},\n        {\"name\": \"Proximity card / fob\", \"market_share_pct\": 30},\n        {\"name\": \"PIN keypad\", \"market_share_pct\": 10},\n        {\"name\": \"Key-only (no electronic)\", \"market_share_pct\": 5}\n      ],\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Market presence estimate\"\n    },\n    {\n      \"name\": \"Nurse Call & Emergency Response\",\n      \"level\": \"L5\",\n      \"description\": \"Resident-activated alert system enabling rapid staff response to emergencies across care areas\",\n      \"bom_standard\": \"ISO 15288\",\n      \"parent_name\": \"Assisted Living Services\",\n      \"alternatives\": [\n        {\"name\": \"Wireless pendant system (Stanley Healthcare, Jeron)\", \"market_share_pct\": 40},\n        {\"name\": \"Hardwired nurse call panel (Rauland, Jeron)\", \"market_share_pct\": 35},\n        {\"name\": \"Hybrid system\", \"market_share_pct\": 25}\n      ],\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Vendor market presence; healthcare security market reports\"\n    }\n  ],\n  \"l4_units\": [\n    {\n      \"name\": \"Door Handle Guard Mechanism\",\n      \"level\": \"L4\",\n      \"description\": \"Spring-loaded mechanical guard that physically blocks door handle actuation; power-independent operation\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Door Alarm Guards\"\n    },\n    {\n      \"name\": \"Acoustic Alarm Horn\",\n      \"level\": \"L4\",\n      \"description\": \"Piezoelectric transducer generating ~95 dB alert on guard activation\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Door Alarm Guards\"\n    },\n    {\n      \"name\": \"Wireless Radio Transmitter Module\",\n      \"level\": \"L4\",\n      \"description\": \"868 MHz / BLE module broadcasting guard state and alarm events to central receiver\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Door Alarm Guards\"\n    },\n    {\n      \"name\": \"Battery Pack\",\n      \"level\": \"L4\",\n      \"description\": \"9V portable power supply for IoT module; mechanical alarm operates without power\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Door Alarm Guards\"\n    },\n    {\n      \"name\": \"Key Override Cylinder\",\n      \"level\": \"L4\",\n      \"description\": \"Profile half-cylinder allowing authorized bypass without triggering alarm\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Door Alarm Guards\"\n    },\n    {\n      \"name\": \"Central Receiver & Monitoring Gateway\",\n      \"level\": \"L4\",\n      \"description\": \"Signal aggregation unit relaying door events to BMS, nurse-call panel, or monitoring dashboard\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Emergency Exit Door Alarm Guards\"\n    },\n    {\n      \"name\": \"Resident Location Tag / Smart Band\",\n      \"level\": \"L4\",\n      \"description\": \"RFID or BLE wristband worn by at-risk residents; triggers door alert on proximity to exit\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Wander Prevention & Exit Security\"\n    },\n    {\n      \"name\": \"Door Antenna / Exit Detection Reader\",\n      \"level\": \"L4\",\n      \"description\": \"Reads tag signals at exit door; triggers alert if at-risk resident approaches or crosses threshold\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Wander Prevention & Exit Security\"\n    },\n    {\n      \"name\": \"Central Location Server & Alert Software\",\n      \"level\": \"L4\",\n      \"description\": \"Processes location events, resident risk profiles, and alert routing logic to staff devices\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Wander Prevention & Exit Security\"\n    },\n    {\n      \"name\": \"Staff Alert Device\",\n      \"level\": \"L4\",\n      \"description\": \"Wearable badge, pager, or mobile app receiving real-time elopement and emergency alerts\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Wander Prevention & Exit Security\"\n    },\n    {\n      \"name\": \"Addressable Control Panel\",\n      \"level\": \"L4\",\n      \"description\": \"Zone controller with event log, power supply, and battery backup for fire alarm system\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Smoke Detector Head\",\n      \"level\": \"L4\",\n      \"description\": \"Optical or ionization sensing element on addressable loop\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Heat Detector\",\n      \"level\": \"L4\",\n      \"description\": \"Rate-of-rise or fixed-temperature element; required in kitchens and mechanical rooms\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Alarm Sounder / Strobe\",\n      \"level\": \"L4\",\n      \"description\": \"Audible and visual notification appliance; strobe required for hearing-impaired residents per ADA\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Battery Backup Power Supply\",\n      \"level\": \"L4\",\n      \"description\": \"Maintains fire alarm and emergency lighting during mains power failure\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Fire Detection & Alarm System\"\n    },\n    {\n      \"name\": \"Clinical Documentation Module\",\n      \"level\": \"L4\",\n      \"description\": \"Progress notes, assessments, and physician orders within the EHR\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"EHR Platform\"\n    },\n    {\n      \"name\": \"eMAR\",\n      \"level\": \"L4\",\n      \"description\": \"Electronic Medication Administration Record: medication pass workflow with drug-drug interaction checking\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"EHR Platform\"\n    },\n    {\n      \"name\": \"Assessment & Care Plan Module\",\n      \"level\": \"L4\",\n      \"description\": \"MDS 3.0 data entry, care plan generation, and outcome tracking\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"EHR Platform\"\n    },\n    {\n      \"name\": \"Billing & Census Module\",\n      \"level\": \"L4\",\n      \"description\": \"Medicare/Medicaid claims processing, resident census, and payer mix reporting\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"EHR Platform\"\n    },\n    {\n      \"name\": \"Pendant / Pull-Cord Station\",\n      \"level\": \"L4\",\n      \"description\": \"Resident-activated emergency alert device — wearable pendant or fixed bathroom pull-cord\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Nurse Call & Emergency Response\"\n    },\n    {\n      \"name\": \"Corridor Annunciator Light\",\n      \"level\": \"L4\",\n      \"description\": \"Zone indicator light showing active call location for rapid staff navigation\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Nurse Call & Emergency Response\"\n    },\n    {\n      \"name\": \"Master Control Panel\",\n      \"level\": \"L4\",\n      \"description\": \"Central alert management console with room status display, priority queuing, and call logging\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Nurse Call & Emergency Response\"\n    },\n    {\n      \"name\": \"Credential Reader\",\n      \"level\": \"L4\",\n      \"description\": \"Proximity card, PIN pad, or mobile credential scanner at controlled building entries\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Access Control & Perimeter Security\"\n    },\n    {\n      \"name\": \"Door Controller Unit\",\n      \"level\": \"L4\",\n      \"description\": \"Electromechanical lock release triggered by valid credential; logs every access event\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Access Control & Perimeter Security\"\n    },\n    {\n      \"name\": \"Access Management Server\",\n      \"level\": \"L4\",\n      \"description\": \"User database, access level configuration, and time-of-day rule engine\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Access Control & Perimeter Security\"\n    },\n    {\n      \"name\": \"Audit Log & Event Reporting Engine\",\n      \"level\": \"L4\",\n      \"description\": \"Tamper evidence record and access history export for regulatory compliance and elopement investigation\",\n      \"bom_standard\": \"INCOSE\",\n      \"parent_name\": \"Access Control & Perimeter Security\"\n    }\n  ]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Node",
+        "Name",
+        "Job family",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "Node": "L6a",
+          "Name": "Resident Intake & Care Planning",
+          "Job family": "Assess functional status and establish individualized care plan for each incoming resident",
+          "Notes": "Universal entry gate for all care levels"
+        },
+        {
+          "Node": "L6b",
+          "Name": "Independent Living Services",
+          "Job family": "Provide residential amenities, social programming, and wellness services to functionally independent older adults",
+          "Notes": "IL residents only"
+        },
+        {
+          "Node": "L6c",
+          "Name": "Assisted Living Services",
+          "Job family": "Deliver personal care assistance, medication management, and ADL support to residents needing moderate daily help",
+          "Notes": "AL residents only"
+        },
+        {
+          "Node": "L6d",
+          "Name": "Memory Care Services",
+          "Job family": "Provide secured residential care and specialized behavioral programming for residents with dementia and cognitive impairment",
+          "Notes": "MC residents only — secured perimeter required"
+        },
+        {
+          "Node": "L6e",
+          "Name": "Skilled Nursing Care",
+          "Job family": "Deliver 24-hour clinical nursing, physician oversight, and complex medical management for residents with intensive health needs",
+          "Notes": "SNF + post-acute rehab admissions"
+        },
+        {
+          "Node": "L6f",
+          "Name": "Rehabilitation Services",
+          "Job family": "Restore and maintain physical, occupational, and speech function through therapeutic interventions",
+          "Notes": "SNF + AL step-down + post-acute rehab"
+        },
+        {
+          "Node": "L6g",
+          "Name": "Care Transition Management",
+          "Job family": "Coordinate resident transfers between care levels and to/from external facilities",
+          "Notes": "Activated episodically across all care levels"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Node",
+        "Name",
+        "Job family",
+        "Why horizontal"
+      ],
+      "rows": [
+        {
+          "Node": "L6H-SAF",
+          "Name": "Facility Safety & Emergency Management",
+          "Job family": "Protect residents, staff, and assets from safety incidents at all times",
+          "Why horizontal": "Fire code + CMS Life Safety requirements apply 24/7 across all care levels; never a sequential care delivery step"
+        },
+        {
+          "Node": "L6H-NUT",
+          "Name": "Nutrition & Food Service",
+          "Job family": "Deliver nutritionally appropriate meals and hydration across all care levels",
+          "Why horizontal": "Runs parallel to all care steps; dietary needs vary by level but service runs continuously"
+        },
+        {
+          "Node": "L6H-QA",
+          "Name": "Regulatory Compliance & Quality Assurance",
+          "Job family": "Ensure clinical, operational, and regulatory compliance with CMS, state licensing, and CARF standards",
+          "Why horizontal": "MDS submission deadlines, survey prep, infection control — mandatory regardless of which care step is executing"
+        },
+        {
+          "Node": "L6H-IT",
+          "Name": "Resident Information Systems",
+          "Job family": "Maintain accurate resident health records and operational data across all care processes",
+          "Why horizontal": "Every core L6 step writes to and reads from the EHR; cannot be sequential"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "EHR Platform",
+          "Alternatives": "PointClickCare",
+          "Share": "26%",
+          "Confidence": "MEDIUM",
+          "Source": "[KLAS Research 2025 — LTC EHR Market](https://intuitionlabs.ai/articles/pointclickcare-ehr-long-term-care)"
+        },
+        {
+          "L5": "MatrixCare",
+          "Alternatives": "20%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Netsmart",
+          "Alternatives": "10%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "WellSky",
+          "Alternatives": "8%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Other / legacy",
+          "Alternatives": "36%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Clinical Assessment Tools (MDS 3.0 / ADL scoring)",
+          "Alternatives": "Integrated in EHR",
+          "Share": "65%",
+          "Confidence": "LOW",
+          "Source": "Industry estimate"
+        },
+        {
+          "L5": "Standalone assessment software",
+          "Alternatives": "20%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Paper-based forms",
+          "Alternatives": "15%",
+          "Share": "Declining",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Resident Engagement Platform",
+          "Alternatives": "LifeLoop",
+          "Share": "18%",
+          "Confidence": "LOW",
+          "Source": "Vendor market presence"
+        },
+        {
+          "L5": "Accushield",
+          "Alternatives": "12%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "K4Connect / WELL",
+          "Alternatives": "8%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Manual / paper-based",
+          "Alternatives": "62%",
+          "Share": "Majority still non-digital",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Smart Home / Ambient Monitoring",
+          "Alternatives": "Pendant / pull-cord system",
+          "Share": "45%",
+          "Confidence": "LOW",
+          "Source": "—"
+        },
+        {
+          "L5": "In-unit passive sensor monitoring",
+          "Alternatives": "20%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Voice assistant integration",
+          "Alternatives": "5%",
+          "Share": "Emerging",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "None",
+          "Alternatives": "30%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Nurse Call & Emergency Response",
+          "Alternatives": "Wireless pendant system (Stanley Healthcare, Jeron)",
+          "Share": "40%",
+          "Confidence": "MEDIUM",
+          "Source": "Vendor market presence"
+        },
+        {
+          "L5": "Hardwired nurse call panel (Rauland, Jeron)",
+          "Alternatives": "35%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Hybrid system",
+          "Alternatives": "25%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Medication Management",
+          "Alternatives": "eMAR-guided manual dispensing",
+          "Share": "55%",
+          "Confidence": "MEDIUM",
+          "Source": "Industry standard"
+        },
+        {
+          "L5": "Automated dispensing cabinets (Omnicell, Pyxis)",
+          "Alternatives": "25%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Pharmacy blister / unit-dose pack",
+          "Alternatives": "20%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Wander Prevention & Exit Security**",
+          "Alternatives": "**RFID/BLE wander management (Stanley Healthcare / Securitas Healthcare, CenTrak)**",
+          "Share": "**40%**",
+          "Confidence": "MEDIUM",
+          "Source": "[CenTrak wander management](https://centrak.com/solutions/safety/wander-management); [WanderGuard BLUE](https://www.securitashealthcare.com/solutions/wander-management)"
+        },
+        {
+          "L5": "Electromagnetic delayed-egress locks (Assa Abloy, dormakaba)",
+          "Alternatives": "30%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "**Emergency exit door alarm guards with IoT monitoring ← Türwächter**",
+          "Alternatives": "**15%**",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Coded keypad exits",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Secured Perimeter Door Hardware",
+          "Alternatives": "Electromagnetic delayed-egress locks",
+          "Share": "50%",
+          "Confidence": "MEDIUM",
+          "Source": "CMS Life Safety Code §19.2.2.2 permits delayed-egress in AL/MC"
+        },
+        {
+          "L5": "Alarmed exit bars / crash bars with alarm",
+          "Alternatives": "25%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Electronic access control with keypad",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Biometric reader",
+          "Alternatives": "10%",
+          "Share": "Emerging",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Cognitive Stimulation & Sensory Technology",
+          "Alternatives": "Conventional activity supplies",
+          "Share": "50%",
+          "Confidence": "LOW",
+          "Source": "—"
+        },
+        {
+          "L5": "Tablet-based activity platforms (iN2L, Linked Senior)",
+          "Alternatives": "35%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Purpose-built sensory systems (Snoezelen)",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "Patient Monitoring Equipment",
+          "Alternatives": "Wired multi-parameter monitors (Philips, GE Healthcare)",
+          "Share": "45%",
+          "Confidence": "MEDIUM",
+          "Source": "Market presence"
+        },
+        {
+          "L5": "Wireless vital signs systems",
+          "Alternatives": "30%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Handheld spot-check devices",
+          "Alternatives": "25%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "IV & Infusion Therapy Equipment",
+          "Alternatives": "Standalone IV pumps (BD, Baxter)",
+          "Share": "60%",
+          "Confidence": "MEDIUM",
+          "Source": "—"
+        },
+        {
+          "L5": "Smart pumps with dose-error reduction (DERS)",
+          "Alternatives": "30%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Gravity flow administration",
+          "Alternatives": "10%",
+          "Share": "Declining",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "L5": "Rehabilitation Management Software",
+          "Notes": "WebPT ~20%, Casamba/ReDoc ~15%, integrated in EHR ~40%, paper/manual ~25% [LOW]"
+        },
+        {
+          "L5": "Physical & Occupational Therapy Equipment",
+          "Notes": "Conventional tables/equipment ~65%, robotic rehab systems ~10%, aquatic therapy ~5%, mixed ~20% [LOW]"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "L5": "Care Coordination Platform",
+          "Notes": "Integrated in EHR ~55%, standalone transition tools (Ensocare, Allscripts Transitions) ~20%, manual/phone ~25% [LOW]"
+        },
+        {
+          "L5": "Transportation Management",
+          "Notes": "Contracted transport services ~80%, in-house fleet management software ~10%, family-managed ~10% [LOW]"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "**Emergency Exit Door Alarm Guards**",
+          "Alternatives": "Mechanical-only alarm guards (no monitoring)",
+          "Share": "35%",
+          "Confidence": "LOW",
+          "Source": "Industry estimate — no published CCRC-specific split"
+        },
+        {
+          "L5": "Electromagnetic delayed-egress locks",
+          "Alternatives": "30%",
+          "Share": "CMS permits up to 30-second delay in MCUs",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "**IoT-enabled alarm guards with wireless monitoring ← Türwächter**",
+          "Alternatives": "**15%**",
+          "Share": "Growing with IoT adoption",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "No dedicated exit monitoring / basic door stops",
+          "Alternatives": "20%",
+          "Share": "Typically smaller / rural facilities",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Fire Detection & Alarm System",
+          "Alternatives": "Addressable fire alarm panel (Notifier, Simplex, Siemens)",
+          "Share": "55%",
+          "Confidence": "MEDIUM",
+          "Source": "[Mordor Intelligence — Fire Safety Systems](https://www.mordorintelligence.com/industry-reports/fire-safety-systems-market-industry)"
+        },
+        {
+          "L5": "Conventional panel",
+          "Alternatives": "30%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Wireless fire detection (Napco, EMS)",
+          "Alternatives": "15%",
+          "Share": "Growing for retrofit wings",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Access Control & Perimeter Security",
+          "Alternatives": "IP-based electronic access control (Assa Abloy, Honeywell)",
+          "Share": "55%",
+          "Confidence": "MEDIUM",
+          "Source": "Market presence"
+        },
+        {
+          "L5": "Proximity card / fob",
+          "Alternatives": "30%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "PIN keypad",
+          "Alternatives": "10%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Key-only (no electronic)",
+          "Alternatives": "5%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Video Surveillance (CCTV)",
+          "Alternatives": "IP cameras / NVR (Axis, Hikvision, Dahua)",
+          "Share": "60%",
+          "Confidence": "MEDIUM",
+          "Source": "Industry standard"
+        },
+        {
+          "L5": "Analog / DVR",
+          "Alternatives": "25%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Cloud-managed (Verkada, Rhombus)",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Emergency Communication System",
+          "Alternatives": "Overhead paging / intercom",
+          "Share": "60%",
+          "Confidence": "LOW",
+          "Source": "Industry estimate"
+        },
+        {
+          "L5": "Mass notification platform (Rave, Everbridge)",
+          "Alternatives": "25%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Basic radio / telephone system",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "L5": "Nutrition Management Software",
+          "Notes": "Integrated in EHR ~40%, standalone platforms (Computrition, cbord) ~25%, paper-based ~35% [LOW]"
+        },
+        {
+          "L5": "Commercial Kitchen Equipment",
+          "Notes": "Institutional food service line (convection ovens, steamers, dishwashers) — no meaningful technology split; single-sourced per facility [LOW]"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "L5": "Quality Management & Survey Prep",
+          "Notes": "MDS-based QM reporting via EHR ~65%, dedicated compliance tools (HealthStream, SimpleLTC) ~20%, manual ~15% [LOW]"
+        },
+        {
+          "L5": "Infection Prevention & Control",
+          "Notes": "Manual protocols and PPE management ~70%, automated hand hygiene monitors ~20%, UV disinfection robots ~10% [LOW]"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L5",
+        "Alternatives",
+        "Share",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "L5": "EHR Platform",
+          "Alternatives": "(shared with L6a — see above)",
+          "Share": "—",
+          "Confidence": "MEDIUM",
+          "Source": "PointClickCare #1 KLAS 2025"
+        },
+        {
+          "L5": "Wi-Fi & Network Infrastructure",
+          "Alternatives": "Enterprise Wi-Fi (Cisco, Aruba, Ruckus)",
+          "Share": "55%",
+          "Confidence": "MEDIUM",
+          "Source": "Market presence"
+        },
+        {
+          "L5": "Mid-range managed Wi-Fi (Meraki)",
+          "Alternatives": "25%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Basic / consumer-grade",
+          "Alternatives": "20%",
+          "Share": "Smaller / rural facilities",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Resident & Family Communication Platform",
+          "Alternatives": "EHR-integrated portal",
+          "Share": "45%",
+          "Confidence": "LOW",
+          "Source": "—"
+        },
+        {
+          "L5": "LifeLoop / VIVO / Sagely",
+          "Alternatives": "15%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        },
+        {
+          "L5": "Email / phone only",
+          "Alternatives": "40%",
+          "Share": "",
+          "Confidence": "",
+          "Source": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L6 Node",
+        "IL",
+        "AL",
+        "MC",
+        "SNF",
+        "PAR",
+        "Notes"
+      ],
+      "rows": [
+        {
+          "L6 Node": "L6a Resident Intake",
+          "IL": "x",
+          "AL": "x",
+          "MC": "x",
+          "SNF": "x",
+          "PAR": "x",
+          "Notes": "Universal — all residents assessed on admission"
+        },
+        {
+          "L6 Node": "L6b IL Services",
+          "IL": "x",
+          "AL": "—",
+          "MC": "—",
+          "SNF": "—",
+          "PAR": "—",
+          "Notes": "IL only; AL/MC/SNF have more intensive care steps"
+        },
+        {
+          "L6 Node": "L6c AL Services",
+          "IL": "—",
+          "AL": "x",
+          "MC": "—",
+          "SNF": "—",
+          "PAR": "—",
+          "Notes": "Personal care ADL support; MC has separate step"
+        },
+        {
+          "L6 Node": "L6d Memory Care",
+          "IL": "—",
+          "AL": "—",
+          "MC": "x",
+          "SNF": "—",
+          "PAR": "—",
+          "Notes": "Secured environment; dementia-specific programming"
+        },
+        {
+          "L6 Node": "L6e Skilled Nursing",
+          "IL": "—",
+          "AL": "—",
+          "MC": "—",
+          "SNF": "x",
+          "PAR": "x",
+          "Notes": "24h nursing required"
+        },
+        {
+          "L6 Node": "L6f Rehabilitation",
+          "IL": "—",
+          "AL": "(x)",
+          "MC": "—",
+          "SNF": "x",
+          "PAR": "x",
+          "Notes": "AL episodic; SNF + PAR routine"
+        },
+        {
+          "L6 Node": "L6g Care Transitions",
+          "IL": "x",
+          "AL": "x",
+          "MC": "x",
+          "SNF": "x",
+          "PAR": "x",
+          "Notes": "Episodic across all; IL→AL transfers most common"
+        },
+        {
+          "L6 Node": "L6H-SAF Safety",
+          "IL": "x",
+          "AL": "x",
+          "MC": "x",
+          "SNF": "x",
+          "PAR": "x",
+          "Notes": "Mandatory by law — all care levels all times"
+        },
+        {
+          "L6 Node": "L6H-NUT Food Service",
+          "IL": "x",
+          "AL": "x",
+          "MC": "x",
+          "SNF": "x",
+          "PAR": "—",
+          "Notes": "PAR patients often on medical nutrition protocols managed at L6e"
+        },
+        {
+          "L6 Node": "L6H-QA Compliance",
+          "IL": "x",
+          "AL": "x",
+          "MC": "x",
+          "SNF": "x",
+          "PAR": "x",
+          "Notes": "CMS surveys, state licensing cover all levels"
+        },
+        {
+          "L6 Node": "L6H-IT Information Systems",
+          "IL": "x",
+          "AL": "x",
+          "MC": "x",
+          "SNF": "x",
+          "PAR": "x",
+          "Notes": "Universal — all care levels use EHR"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Door Handle Guard Mechanism",
+          "Description": "Spring-loaded mechanical guard that physically blocks door handle actuation; power-independent operation"
+        },
+        {
+          "L4": "Acoustic Alarm Horn",
+          "Description": "Piezoelectric transducer generating ~95 dB alert on guard activation"
+        },
+        {
+          "L4": "Wireless Radio Transmitter Module",
+          "Description": "868 MHz / BLE module broadcasting guard state and alarm events to receiver"
+        },
+        {
+          "L4": "Battery Pack",
+          "Description": "9V portable power supply for IoT module; mechanical alarm operates without power"
+        },
+        {
+          "L4": "Key Override Cylinder",
+          "Description": "Profile half-cylinder allowing authorized bypass without triggering alarm"
+        },
+        {
+          "L4": "Central Receiver & Monitoring Gateway",
+          "Description": "Signal aggregation unit relaying events to BMS / nurse-call / monitoring dashboard"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Resident Location Tag / Smart Band",
+          "Description": "RFID or BLE wristband worn by at-risk residents; triggers door alert on proximity"
+        },
+        {
+          "L4": "Door Antenna / Exit Detection Reader",
+          "Description": "Reads tag signals at exit door; triggers alert if at-risk resident approaches"
+        },
+        {
+          "L4": "Central Location Server & Alert Software",
+          "Description": "Processes location events, resident risk profiles, and alert routing to staff devices"
+        },
+        {
+          "L4": "Staff Alert Device",
+          "Description": "Badge, pager, or mobile app receiving real-time elopement alerts"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Addressable Control Panel",
+          "Description": "Zone controller with event log, power supply, and battery backup"
+        },
+        {
+          "L4": "Smoke Detector Head",
+          "Description": "Optical or ionization sensing element"
+        },
+        {
+          "L4": "Heat Detector",
+          "Description": "Rate-of-rise or fixed-temperature element; required in kitchens / boiler rooms"
+        },
+        {
+          "L4": "Alarm Sounder / Strobe",
+          "Description": "Audible + visual notification appliance for hearing-impaired residents"
+        },
+        {
+          "L4": "Manual Call Point",
+          "Description": "Staff-activated break-glass / push-button station"
+        },
+        {
+          "L4": "Battery Backup Power Supply",
+          "Description": "Maintains fire alarm and emergency lighting during power failure"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Clinical Documentation Module",
+          "Description": "Progress notes, assessments, physician orders"
+        },
+        {
+          "L4": "eMAR (Electronic Medication Administration Record)",
+          "Description": "Medication pass workflow, drug-drug interaction checking"
+        },
+        {
+          "L4": "Assessment & Care Plan Module",
+          "Description": "MDS 3.0 data entry, care plan generation, outcome tracking"
+        },
+        {
+          "L4": "Billing & Census Module",
+          "Description": "Medicare/Medicaid claims, resident census, payer mix reporting"
+        },
+        {
+          "L4": "Reporting & Analytics Engine",
+          "Description": "QM dashboards, survey readiness reports, staffing metrics"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Pendant / Pull-Cord Station",
+          "Description": "Resident-activated emergency alert device (wearable or fixed)"
+        },
+        {
+          "L4": "Corridor Annunciator Light",
+          "Description": "Zone light indicating active call location for rapid staff response"
+        },
+        {
+          "L4": "Master Control Panel",
+          "Description": "Central alert management with room status, priority queuing"
+        },
+        {
+          "L4": "Staff Communication Device",
+          "Description": "Wearable badge or pager carrying alert routing and two-way messaging"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Description"
+      ],
+      "rows": [
+        {
+          "L4": "Credential Reader",
+          "Description": "Proximity card, PIN pad, or mobile credential scanner at controlled entries"
+        },
+        {
+          "L4": "Door Controller Unit",
+          "Description": "Electromechanical lock release and audit event logger"
+        },
+        {
+          "L4": "Access Management Server",
+          "Description": "User database, access level configuration, time-of-day rules"
+        },
+        {
+          "L4": "Audit Log & Event Reporting Engine",
+          "Description": "Tamper evidence, access history, regulatory compliance export"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Dimension",
+        "Status",
+        "Gap / Action"
+      ],
+      "rows": [
+        {
+          "Dimension": "All L6 core nodes have job_family",
+          "Status": "PASS",
+          "Gap / Action": "—"
+        },
+        {
+          "Dimension": "All L6 nodes have output type activation",
+          "Status": "PASS",
+          "Gap / Action": "—"
+        },
+        {
+          "Dimension": "Every L6 node has ≥1 L5 position",
+          "Status": "PASS",
+          "Gap / Action": "L6g and L6H-NUT have condensed tables; all populated"
+        },
+        {
+          "Dimension": "All L5 positions have alternatives summing to 100%",
+          "Status": "PASS",
+          "Gap / Action": "LOW confidence positions noted with ranges"
+        },
+        {
+          "Dimension": "Horizontal processes identified",
+          "Status": "PASS",
+          "Gap / Action": "SAF, NUT, QA, IT"
+        },
+        {
+          "Dimension": "No L6 node orphaned",
+          "Status": "PASS",
+          "Gap / Action": "All nodes have ≥1 output type activation; L6d = MC only, L6b = IL only"
+        },
+        {
+          "Dimension": "Missing: Spiritual / Chaplaincy Services",
+          "Status": "**GAP**",
+          "Gap / Action": "Common CCRC service; intentionally omitted — no technology equipment position relevant to Türwächter scope"
+        },
+        {
+          "Dimension": "Missing: Transportation Services (IL outings)",
+          "Status": "**GAP**",
+          "Gap / Action": "Minor L5 under L6b; no Türwächter relevance; omitted"
+        },
+        {
+          "Dimension": "Missing: Hospice / Palliative Care",
+          "Status": "**GAP**",
+          "Gap / Action": "Some CCRCs offer on-campus hospice; omitted — different regulatory structure (NAICS 623110)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Unit",
+        "Assessment",
+        "Action"
+      ],
+      "rows": [
+        {
+          "Unit": "\"Wander Prevention & Exit Security\"",
+          "Assessment": "Industry term in senior care — \"wander management\" is the standard phrase; \"exit security\" is an extension",
+          "Action": "Keep — dual function is accurate to this use case"
+        },
+        {
+          "Unit": "\"Emergency Exit Door Alarm Guards\"",
+          "Assessment": "Matches commodity product group from `02_functional_promise.md` — consistent",
+          "Action": "No rename"
+        },
+        {
+          "Unit": "\"eMAR\"",
+          "Assessment": "Acronym universally recognized in LTC/SNF industry",
+          "Action": "Keep — domain expert recognizes immediately"
+        },
+        {
+          "Unit": "\"Snoezelen\" (sensory systems note)",
+          "Assessment": "Brand name used as category descriptor in senior care — acceptable in notes, not as L5 name",
+          "Action": "Node name uses \"Purpose-built sensory systems\" — correct"
+        },
+        {
+          "Unit": "\"ADL support\" in job family",
+          "Assessment": "ADL (Activities of Daily Living) is the industry standard term",
+          "Action": "Keep"
+        },
+        {
+          "Unit": "\"Cognitive Stimulation & Sensory Technology\"",
+          "Assessment": "\"Technology\" wrapper adds no meaning",
+          "Action": "→ **Cognitive Stimulation & Sensory Equipment**"
+        },
+        {
+          "Unit": "\"Central Receiver & Monitoring Gateway\" (L4)",
+          "Assessment": "\"Gateway\" is the precise domain term — keep",
+          "Action": "No rename"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Check",
+        "Result",
+        "Detail"
+      ],
+      "rows": [
+        {
+          "Check": "Q1 — CFJ is industry-level",
+          "Result": "PASS",
+          "Detail": "No product or technology references in CFJ statement"
+        },
+        {
+          "Check": "Q2 — No orphan nodes",
+          "Result": "PASS",
+          "Detail": "All non-L7 units have valid parent reference"
+        },
+        {
+          "Check": "Q3 — Valid level transitions",
+          "Result": "PASS",
+          "Detail": "L7→L6, L6→L5, L5→L4 only; no level skipping"
+        },
+        {
+          "Check": "Q4 — L4 children per L5 ≥2",
+          "Result": "PASS",
+          "Detail": "6 key L5 nodes each have ≥4 L4 children"
+        },
+        {
+          "Check": "Q5 — No solution-specific L7/L6 names",
+          "Result": "PASS",
+          "Detail": "No brand or product names at L7 or L6 level"
+        },
+        {
+          "Check": "Q6 — Naming test (spot-check)",
+          "Result": "PASS",
+          "Detail": "\"Addressable Control Panel\", \"Door Handle Guard Mechanism\", \"eMAR\", \"Credential Reader\" all pass 3-question test"
+        },
+        {
+          "Check": "Q7 — Unit count in range (15–60)",
+          "Result": "PASS",
+          "Detail": "**~41 structural units** (1 L7 + 11 L6 + ~20 L5 + ~35 L4 detailed)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Product enters VN at**",
+          "Value": "L6H-SAF → L5: Emergency Exit Door Alarm Guards"
+        },
+        {
+          "Field": "**Secondary anchor**",
+          "Value": "L6d (Memory Care) → L5: Wander Prevention & Exit Security (as complementary door-side hardware)"
+        },
+        {
+          "Field": "**L4 entry point**",
+          "Value": "Door Handle Guard Mechanism + Acoustic Alarm Horn + Wireless Radio Transmitter Module"
+        },
+        {
+          "Field": "**Türwächter's share of primary L5**",
+          "Value": "~15% of Emergency Exit Door Alarm Guards (IoT-monitoring segment)"
+        },
+        {
+          "Field": "**Dominant use case**",
+          "Value": "Elopement prevention in Memory Care units — the 95 dB alarm both deters wandering residents and alerts staff; key override allows authorized access without triggering alarm"
+        },
+        {
+          "Field": "**Horizontal coverage**",
+          "Value": "L6H-SAF activates across ALL output types — fire safety compliance is universal; Memory Care (L6d) provides the premium differentiated use case"
+        },
+        {
+          "Field": "**Why stronger here than hotels**",
+          "Value": "CCRC operators face elopement liability (30% of nursing home negligence lawsuits involve wandering/elopement); the alarm-as-staff-alert function maps directly to care protocols; IoT dashboard integrates with EHR/nurse-call platforms"
+        },
+        {
+          "Field": "**Constraint mapping**",
+          "Value": "C4 (battery life): HIGH concern in MC where doors activate frequently from wandering residents; C6 (EasyWave): MEDIUM — most CCRCs do not run enterprise KNX/BACnet; C8 (GDPR): EU applies but care regulations provide legal basis for resident safety monitoring; C7 (price): justified by elopement liability avoidance"
+        },
+        {
+          "Field": "**Key adjacent L5**",
+          "Value": "Wander Prevention & Exit Security (L6d) — integration opportunity: Türwächter as the door-side hardware layer in RFID/BLE wander management deployments"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "market_name": "Continuing Care Retirement Communities",
+      "naics_code": "623311",
+      "naics_title": "Continuing Care Retirement Communities",
+      "naics_sector": "62 — Health Care and Social Assistance",
+      "vn_type": "Process VN only (service NAICS — no Product BOM)",
+      "cfj_statement": "Provide safe, integrated residential accommodation and healthcare services across a continuum of care levels to older adults, enabling aging in place with progressively intensive clinical support as functional needs evolve",
+      "top_level": "L7",
+      "output_types": [
+        "Independent Living (IL)",
+        "Assisted Living (AL)",
+        "Memory Care (MC)",
+        "Skilled Nursing (SNF)",
+        "Post-Acute Rehabilitation (PAR)"
+      ],
+      "units": [
+        {
+          "name": "Senior Care Continuum-of-Care Ecosystem",
+          "level": "L7",
+          "description": "Economic community of CCRC operators, residents and families, clinical staff, technology suppliers, and regulators (CMS, state agencies) coordinating delivery of regulated residential care across a continuum of independence levels",
+          "bom_standard": "Moore 1993",
+          "parent_name": "ROOT"
+        },
+        {
+          "name": "Resident Intake & Care Planning",
+          "level": "L6",
+          "description": "Assess functional status and establish individualized care plan for each incoming resident",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Senior Care Continuum-of-Care Ecosystem",
+          "job_family": "Assess functional status and establish individualized care plan for each incoming resident",
+          "output_types_activated": [
+            "IL",
+            "AL",
+            "MC",
+            "SNF",
+            "PAR"
+          ]
+        },
+        {
+          "name": "Independent Living Services",
+          "level": "L6",
+          "description": "Provide residential amenities, social programming, and wellness services to functionally independent older adults",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Senior Care Continuum-of-Care Ecosystem",
+          "job_family": "Provide residential amenities, social programming, and wellness services to functionally independent older adults",
+          "output_types_activated": [
+            "IL"
+          ]
+        },
+        {
+          "name": "Assisted Living Services",
+          "level": "L6",
+          "description": "Deliver personal care assistance, medication management, and ADL support to residents needing moderate daily help",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Senior Care Continuum-of-Care Ecosystem",
+          "job_family": "Deliver personal care assistance, medication management, and ADL support to residents needing moderate daily help",
+          "output_types_activated": [
+            "AL"
+          ]
+        },
+        {
+          "name": "Memory Care Services",
+          "level": "L6",
+          "description": "Provide secured residential care and specialized behavioral programming for residents with dementia and cognitive impairment",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Senior Care Continuum-of-Care Ecosystem",
+          "job_family": "Provide secured residential care and specialized behavioral programming for residents with dementia and cognitive impairment",
+          "output_types_activated": [
+            "MC"
+          ]
+        },
+        {
+          "name": "Skilled Nursing Care",
+          "level": "L6",
+          "description": "Deliver 24-hour clinical nursing, physician oversight, and complex medical management for residents with intensive health needs",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Senior Care Continuum-of-Care Ecosystem",
+          "job_family": "Deliver 24-hour clinical nursing, physician oversight, and complex medical management for residents with intensive health needs",
+          "output_types_activated": [
+            "SNF",
+            "PAR"
+          ]
+        },
+        {
+          "name": "Rehabilitation Services",
+          "level": "L6",
+          "description": "Restore and maintain physical, occupational, and speech function through therapeutic interventions",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Senior Care Continuum-of-Care Ecosystem",
+          "job_family": "Restore and maintain physical, occupational, and speech function through therapeutic interventions",
+          "output_types_activated": [
+            "SNF",
+            "AL",
+            "PAR"
+          ]
+        },
+        {
+          "name": "Care Transition Management",
+          "level": "L6",
+          "description": "Coordinate resident transfers between care levels and to/from external facilities",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Senior Care Continuum-of-Care Ecosystem",
+          "job_family": "Coordinate resident transfers between care levels and to/from external facilities",
+          "output_types_activated": [
+            "IL",
+            "AL",
+            "MC",
+            "SNF",
+            "PAR"
+          ]
+        },
+        {
+          "name": "Facility Safety & Emergency Management",
+          "level": "L6",
+          "description": "Protect residents, staff, and assets from safety incidents at all times across all care levels (horizontal)",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Senior Care Continuum-of-Care Ecosystem",
+          "job_family": "Protect residents, staff, and assets from safety incidents at all times across all care levels",
+          "output_types_activated": [
+            "IL",
+            "AL",
+            "MC",
+            "SNF",
+            "PAR"
+          ],
+          "horizontal": true
+        },
+        {
+          "name": "Nutrition & Food Service",
+          "level": "L6",
+          "description": "Deliver nutritionally appropriate meals and hydration across all care levels (horizontal)",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Senior Care Continuum-of-Care Ecosystem",
+          "job_family": "Deliver nutritionally appropriate meals and hydration across all care levels",
+          "output_types_activated": [
+            "IL",
+            "AL",
+            "MC",
+            "SNF"
+          ],
+          "horizontal": true
+        },
+        {
+          "name": "Regulatory Compliance & Quality Assurance",
+          "level": "L6",
+          "description": "Ensure clinical, operational, and regulatory compliance with CMS, state licensing, and CARF standards (horizontal)",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Senior Care Continuum-of-Care Ecosystem",
+          "job_family": "Ensure clinical, operational, and regulatory compliance with CMS, state licensing, and CARF standards",
+          "output_types_activated": [
+            "IL",
+            "AL",
+            "MC",
+            "SNF",
+            "PAR"
+          ],
+          "horizontal": true
+        },
+        {
+          "name": "Resident Information Systems",
+          "level": "L6",
+          "description": "Maintain accurate resident health records and operational data across all care processes (horizontal)",
+          "bom_standard": "Maier 1998",
+          "parent_name": "Senior Care Continuum-of-Care Ecosystem",
+          "job_family": "Maintain accurate resident health records and operational data across all care processes",
+          "output_types_activated": [
+            "IL",
+            "AL",
+            "MC",
+            "SNF",
+            "PAR"
+          ],
+          "horizontal": true
+        },
+        {
+          "name": "EHR Platform",
+          "level": "L5",
+          "description": "Integrated electronic health record system managing clinical documentation, medication administration, care planning, and billing",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Resident Intake & Care Planning",
+          "alternatives": [
+            {
+              "name": "PointClickCare",
+              "market_share_pct": 26
+            },
+            {
+              "name": "MatrixCare",
+              "market_share_pct": 20
+            },
+            {
+              "name": "Netsmart",
+              "market_share_pct": 10
+            },
+            {
+              "name": "WellSky",
+              "market_share_pct": 8
+            },
+            {
+              "name": "Other / legacy",
+              "market_share_pct": 36
+            }
+          ],
+          "confidence": "MEDIUM",
+          "source": "KLAS Research 2025 — LTC EHR Market; Grand View Research LTC Software Market"
+        },
+        {
+          "name": "Wander Prevention & Exit Security",
+          "level": "L5",
+          "description": "Systems detecting and alerting to at-risk resident proximity to or use of exit doors, preventing elopement while maintaining fire-code-compliant escape",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Memory Care Services",
+          "product_anchor": true,
+          "alternatives": [
+            {
+              "name": "RFID/BLE wander management (Stanley Healthcare / Securitas Healthcare, CenTrak)",
+              "market_share_pct": 40
+            },
+            {
+              "name": "Electromagnetic delayed-egress locks (Assa Abloy, dormakaba)",
+              "market_share_pct": 30
+            },
+            {
+              "name": "Emergency exit door alarm guards with IoT monitoring (incl. Türwächter)",
+              "market_share_pct": 15
+            },
+            {
+              "name": "Coded keypad exits",
+              "market_share_pct": 15
+            }
+          ],
+          "confidence": "MEDIUM",
+          "source": "CenTrak wander management product docs; Securitas Healthcare WanderGuard BLUE; CMS Life Safety Code §19.2.2.2"
+        },
+        {
+          "name": "Emergency Exit Door Alarm Guards",
+          "level": "L5",
+          "description": "Devices securing emergency exit doors against unauthorized use while maintaining fire-code-compliant unimpeded escape. Türwächter (GfS/ASSA ABLOY) anchors in the IoT-monitoring alternative.",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility Safety & Emergency Management",
+          "product_anchor": true,
+          "alternatives": [
+            {
+              "name": "Mechanical-only alarm guards (no monitoring)",
+              "market_share_pct": 35
+            },
+            {
+              "name": "Electromagnetic delayed-egress locks",
+              "market_share_pct": 30
+            },
+            {
+              "name": "IoT-enabled alarm guards with wireless monitoring (incl. Türwächter)",
+              "market_share_pct": 15
+            },
+            {
+              "name": "No dedicated exit monitoring",
+              "market_share_pct": 20
+            }
+          ],
+          "confidence": "LOW",
+          "source": "Industry estimate — no published CCRC-specific market share data for this L5"
+        },
+        {
+          "name": "Fire Detection & Alarm System",
+          "level": "L5",
+          "description": "Building-wide fire detection and alarm network per NFPA 72 / EN 54; mandatory under CMS Life Safety Code",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility Safety & Emergency Management",
+          "alternatives": [
+            {
+              "name": "Addressable fire alarm panel (Notifier, Simplex, Siemens)",
+              "market_share_pct": 55
+            },
+            {
+              "name": "Conventional panel",
+              "market_share_pct": 30
+            },
+            {
+              "name": "Wireless fire detection",
+              "market_share_pct": 15
+            }
+          ],
+          "confidence": "MEDIUM",
+          "source": "Mordor Intelligence — Fire Safety Systems Market 2024"
+        },
+        {
+          "name": "Access Control & Perimeter Security",
+          "level": "L5",
+          "description": "Electronic credential-based entry management for building perimeter and controlled access zones",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Facility Safety & Emergency Management",
+          "alternatives": [
+            {
+              "name": "IP-based electronic access control (Assa Abloy, Honeywell)",
+              "market_share_pct": 55
+            },
+            {
+              "name": "Proximity card / fob",
+              "market_share_pct": 30
+            },
+            {
+              "name": "PIN keypad",
+              "market_share_pct": 10
+            },
+            {
+              "name": "Key-only (no electronic)",
+              "market_share_pct": 5
+            }
+          ],
+          "confidence": "MEDIUM",
+          "source": "Market presence estimate"
+        },
+        {
+          "name": "Nurse Call & Emergency Response",
+          "level": "L5",
+          "description": "Resident-activated alert system enabling rapid staff response to emergencies across care areas",
+          "bom_standard": "ISO 15288",
+          "parent_name": "Assisted Living Services",
+          "alternatives": [
+            {
+              "name": "Wireless pendant system (Stanley Healthcare, Jeron)",
+              "market_share_pct": 40
+            },
+            {
+              "name": "Hardwired nurse call panel (Rauland, Jeron)",
+              "market_share_pct": 35
+            },
+            {
+              "name": "Hybrid system",
+              "market_share_pct": 25
+            }
+          ],
+          "confidence": "MEDIUM",
+          "source": "Vendor market presence; healthcare security market reports"
+        }
+      ],
+      "l4_units": [
+        {
+          "name": "Door Handle Guard Mechanism",
+          "level": "L4",
+          "description": "Spring-loaded mechanical guard that physically blocks door handle actuation; power-independent operation",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Door Alarm Guards"
+        },
+        {
+          "name": "Acoustic Alarm Horn",
+          "level": "L4",
+          "description": "Piezoelectric transducer generating ~95 dB alert on guard activation",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Door Alarm Guards"
+        },
+        {
+          "name": "Wireless Radio Transmitter Module",
+          "level": "L4",
+          "description": "868 MHz / BLE module broadcasting guard state and alarm events to central receiver",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Door Alarm Guards"
+        },
+        {
+          "name": "Battery Pack",
+          "level": "L4",
+          "description": "9V portable power supply for IoT module; mechanical alarm operates without power",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Door Alarm Guards"
+        },
+        {
+          "name": "Key Override Cylinder",
+          "level": "L4",
+          "description": "Profile half-cylinder allowing authorized bypass without triggering alarm",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Door Alarm Guards"
+        },
+        {
+          "name": "Central Receiver & Monitoring Gateway",
+          "level": "L4",
+          "description": "Signal aggregation unit relaying door events to BMS, nurse-call panel, or monitoring dashboard",
+          "bom_standard": "INCOSE",
+          "parent_name": "Emergency Exit Door Alarm Guards"
+        },
+        {
+          "name": "Resident Location Tag / Smart Band",
+          "level": "L4",
+          "description": "RFID or BLE wristband worn by at-risk residents; triggers door alert on proximity to exit",
+          "bom_standard": "INCOSE",
+          "parent_name": "Wander Prevention & Exit Security"
+        },
+        {
+          "name": "Door Antenna / Exit Detection Reader",
+          "level": "L4",
+          "description": "Reads tag signals at exit door; triggers alert if at-risk resident approaches or crosses threshold",
+          "bom_standard": "INCOSE",
+          "parent_name": "Wander Prevention & Exit Security"
+        },
+        {
+          "name": "Central Location Server & Alert Software",
+          "level": "L4",
+          "description": "Processes location events, resident risk profiles, and alert routing logic to staff devices",
+          "bom_standard": "INCOSE",
+          "parent_name": "Wander Prevention & Exit Security"
+        },
+        {
+          "name": "Staff Alert Device",
+          "level": "L4",
+          "description": "Wearable badge, pager, or mobile app receiving real-time elopement and emergency alerts",
+          "bom_standard": "INCOSE",
+          "parent_name": "Wander Prevention & Exit Security"
+        },
+        {
+          "name": "Addressable Control Panel",
+          "level": "L4",
+          "description": "Zone controller with event log, power supply, and battery backup for fire alarm system",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Smoke Detector Head",
+          "level": "L4",
+          "description": "Optical or ionization sensing element on addressable loop",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Heat Detector",
+          "level": "L4",
+          "description": "Rate-of-rise or fixed-temperature element; required in kitchens and mechanical rooms",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Alarm Sounder / Strobe",
+          "level": "L4",
+          "description": "Audible and visual notification appliance; strobe required for hearing-impaired residents per ADA",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Battery Backup Power Supply",
+          "level": "L4",
+          "description": "Maintains fire alarm and emergency lighting during mains power failure",
+          "bom_standard": "INCOSE",
+          "parent_name": "Fire Detection & Alarm System"
+        },
+        {
+          "name": "Clinical Documentation Module",
+          "level": "L4",
+          "description": "Progress notes, assessments, and physician orders within the EHR",
+          "bom_standard": "INCOSE",
+          "parent_name": "EHR Platform"
+        },
+        {
+          "name": "eMAR",
+          "level": "L4",
+          "description": "Electronic Medication Administration Record: medication pass workflow with drug-drug interaction checking",
+          "bom_standard": "INCOSE",
+          "parent_name": "EHR Platform"
+        },
+        {
+          "name": "Assessment & Care Plan Module",
+          "level": "L4",
+          "description": "MDS 3.0 data entry, care plan generation, and outcome tracking",
+          "bom_standard": "INCOSE",
+          "parent_name": "EHR Platform"
+        },
+        {
+          "name": "Billing & Census Module",
+          "level": "L4",
+          "description": "Medicare/Medicaid claims processing, resident census, and payer mix reporting",
+          "bom_standard": "INCOSE",
+          "parent_name": "EHR Platform"
+        },
+        {
+          "name": "Pendant / Pull-Cord Station",
+          "level": "L4",
+          "description": "Resident-activated emergency alert device — wearable pendant or fixed bathroom pull-cord",
+          "bom_standard": "INCOSE",
+          "parent_name": "Nurse Call & Emergency Response"
+        },
+        {
+          "name": "Corridor Annunciator Light",
+          "level": "L4",
+          "description": "Zone indicator light showing active call location for rapid staff navigation",
+          "bom_standard": "INCOSE",
+          "parent_name": "Nurse Call & Emergency Response"
+        },
+        {
+          "name": "Master Control Panel",
+          "level": "L4",
+          "description": "Central alert management console with room status display, priority queuing, and call logging",
+          "bom_standard": "INCOSE",
+          "parent_name": "Nurse Call & Emergency Response"
+        },
+        {
+          "name": "Credential Reader",
+          "level": "L4",
+          "description": "Proximity card, PIN pad, or mobile credential scanner at controlled building entries",
+          "bom_standard": "INCOSE",
+          "parent_name": "Access Control & Perimeter Security"
+        },
+        {
+          "name": "Door Controller Unit",
+          "level": "L4",
+          "description": "Electromechanical lock release triggered by valid credential; logs every access event",
+          "bom_standard": "INCOSE",
+          "parent_name": "Access Control & Perimeter Security"
+        },
+        {
+          "name": "Access Management Server",
+          "level": "L4",
+          "description": "User database, access level configuration, and time-of-day rule engine",
+          "bom_standard": "INCOSE",
+          "parent_name": "Access Control & Perimeter Security"
+        },
+        {
+          "name": "Audit Log & Event Reporting Engine",
+          "level": "L4",
+          "description": "Tamper evidence record and access history export for regulatory compliance and elopement investigation",
+          "bom_standard": "INCOSE",
+          "parent_name": "Access Control & Perimeter Security"
+        }
+      ]
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

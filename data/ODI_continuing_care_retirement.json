@@ -1,0 +1,792 @@
+{
+  "id": "ODI_continuing_care_retirement",
+  "title": "ODI Matrix: Continuing Care Retirement Communities (NAICS 623311)",
+  "type": "odi_matrix",
+  "market_slug": "continuing_care_retirement",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Incumbent Technology Context (Satisfaction Recalibration Basis)",
+      "content": "Incumbents currently hired in CCRC for elopement prevention / emergency exit security:\n\n| Incumbent | Market Share Est. | Mechanism | Strengths | Weaknesses |\n|---|---|---|---|---|\n| RFID/BLE Wander-Management (Stanley Healthcare, CenTrak) | ~40% | RFID wristbands trigger door alerts; software-managed lock states | Resident-level tracking, EHR integration (Stanley), customizable alert rules | Requires wristband compliance; loses monitoring during power outages (UPS needed); no direct door physical locking; expensive infrastructure |\n| Delayed-Egress EM Locks (dormakaba, ASSA ABLOY, Allegion) | ~35% | Electric magnet holds door for 15 s delay after handle activation; unlocks on fire signal | Physical barrier, CMS-compliant 15 s delay, fire-alarm interlock | Requires mains wiring; fails open during power outage (loses delay + monitoring); expensive retrofit; licensed electrical install |\n| Basic mechanical alarm + manual patrol | ~25% | Simple door-open alarm horn; staff inspection rounds | Low cost; power-independent alarm; no infrastructure overhead | No remote monitoring; no CMS documentation; events detected only at patrol intervals (hours) |\n\n**Key recalibration signals:**\n- EM locks and RFID systems **lose monitoring during extended power outages** → N07 satisfaction downgraded (6 → 4)\n- CMS-formatted automated documentation exists only in premium Stanley deployments → N21 satisfaction downgraded (5 → 4); N18 unchanged (already 3)\n- Physical mechanism defeat (guard removed/tampered) is **undetectable by electrical monitoring** → N06 satisfaction downgraded (4 → 3)\n- Inovonics + Stanley achieve near-real-time alerting in well-equipped facilities → N22 satisfaction upgraded (4 → 5)\n\n---"
+    },
+    {
+      "title": "Step 1 + 2 — Error Statements with Recalibrated Scores",
+      "content": "### Market-Level Needs (from JTBD Step 06)\n\n| ID | Error Statement | Job Step | Imp | Sat_init | Sat_recal | Recal Reason |\n|---|---|---|---|---|---|---|\n| N07 | Minimize the likelihood of emergency exit alarm silence during an extended power outage (>8 h) on an active Memory Care unit | Execute | 10.0 | 6.0 | 4.0 | EM locks fail open; RFID wander systems lose monitoring without UPS; only basic mechanical alarm is power-independent |\n| N21 | Minimize the likelihood of a CMS Immediate Jeopardy citation resulting from an undocumented emergency exit elopement event | Monitor | 10.0 | 5.0 | 4.0 | Real-time CMS-formatted documentation absent in most deployments; Stanley generates post-hoc logs but not automated real-time packages |\n| N05 | Minimize the time to detect a non-functional emergency exit guard during active Memory Care hours (<4 h) | Monitor | 9.0 | 3.0 | 3.0 | No recalibration needed; no incumbent proactively detects mechanical failure — patrol-based discovery only |\n| N18 | Minimize the likelihood of incomplete emergency exit inspection and event documentation at annual CMS survey | Monitor | 9.0 | 3.0 | 3.0 | No recalibration; manual document preparation remains the norm; Stanley partial coverage only in premium installs |\n| N01 | Minimize the likelihood of unmonitored Memory Care emergency exits being identified during a CMS site survey | Plan | 9.0 | 5.0 | 4.0 | EM lock and RFID deployments frequently leave secondary exits uncovered due to retrofit cost; coverage gaps common |\n| N10 | Minimize the time between unauthorized emergency exit activation and staff notification during overnight / weekend staffing | Monitor | 9.0 | 4.0 | 4.0 | No recalibration; Inovonics achieves reasonable overnight alerting but is not universally deployed |\n| N13 | Minimize the likelihood of undetected battery depletion creating a wireless monitoring gap on an emergency exit door | Monitor | 8.0 | 3.0 | 3.0 | No recalibration; basic mechanical alarms have no battery monitoring; Inovonics supervised check-ins are exception, not norm |\n| N17 | Minimize the time and effort required to generate emergency exit compliance documentation for CMS regulatory review | Monitor | 8.0 | 3.0 | 3.0 | No recalibration; manual preparation remains dominant; documented automation rare |\n| N06 | Minimize the likelihood of the monitoring dashboard showing a guard as armed while the physical mechanism is defeated or removed | Monitor | 8.0 | 4.0 | 3.0 | Physical mechanism defeat is undetectable by electrical monitoring; even bidirectional radio check-ins only detect radio silence, not hardware defeat |\n| N22 | Minimize the time between emergency exit guard activation and Memory Care staff notification to less than 30 seconds | Respond | 8.0 | 4.0 | 5.0 | Inovonics + Stanley Healthcare achieve near-real-time mobile alerting in equipped facilities; this need is better served than others |\n\n### Product-Related Needs (from Step 10, job_step = \"product_constraint\")\n\n| ID | Error Statement | Source Constraint | Imp | Sat_recal |\n|---|---|---|---|---|\n| PRN-01 | Minimize the likelihood of IoT module battery depletion going undetected on a low-traffic CCRC wing, creating a wireless monitoring gap during overnight staffing | C4 — IoT Battery Life Floor | 8.0 | 3.0 |\n| PRN-05 | Minimize the time to discover that a wireless receiver serving multiple door guardians on a single care level has lost connectivity, leaving all exits without event transmission while mechanical alarms remain functional | C3 + C6 | 8.0 | 3.0 |\n| PRN-02 | Minimize the likelihood of wireless alarm event transmission failure from emergency exit doors in reinforced concrete corridors or basement wings exceeding the 30 m EasyWave transmitter range | C3 — Wireless Range | 7.0 | 4.0 |\n| PRN-04 | Minimize the likelihood of unauthorized guard removal or mechanism defeat by a cognitively impaired resident manipulating the exposed surface-mounted guard housing on the door handle | C5 — Surface Mount | 7.0 | 4.0 |\n| PRN-03 | Minimize the time to integrate EasyWave-protocol door guardian event streams into an existing BACnet or KNX building management platform deployed across a continuing care campus | C6 — Protocol Lock-In | 6.0 | 3.0 |\n\n---"
+    },
+    {
+      "title": "Step 3 — Opportunity Scores (Deterministic)",
+      "content": "`is_underserved = importance > 7.0 AND satisfaction < 5.0`\n`is_overserved  = importance < 3.0 AND satisfaction > 7.0`\n\n| ID | Imp | Sat | Opp Score | Underserved | Overserved | Product-Related | Zone |\n|---|---|---|---|---|---|---|---|\n| N07 | 10.0 | 4.0 | **16.00** | ✓ | — | — | Highly Underserved |\n| N21 | 10.0 | 4.0 | **16.00** | ✓ | — | — | Highly Underserved |\n| N05 | 9.0 | 3.0 | **15.00** | ✓ | — | — | Highly Underserved |\n| N18 | 9.0 | 3.0 | **15.00** | ✓ | — | — | Highly Underserved |\n| N01 | 9.0 | 4.0 | **14.00** | ✓ | — | — | Highly Underserved |\n| N10 | 9.0 | 4.0 | **14.00** | ✓ | — | — | Highly Underserved |\n| N13 | 8.0 | 3.0 | **13.00** | ✓ | — | — | Highly Underserved |\n| N17 | 8.0 | 3.0 | **13.00** | ✓ | — | — | Highly Underserved |\n| N06 | 8.0 | 3.0 | **13.00** | ✓ | — | — | Highly Underserved |\n| PRN-01 | 8.0 | 3.0 | **13.00** | ✓ | — | ✓ | Highly Underserved |\n| PRN-05 | 8.0 | 3.0 | **13.00** | ✓ | — | ✓ | Highly Underserved |\n| N22 | 8.0 | 5.0 | **11.00** | — | — | — | Appropriately Served |\n| PRN-02 | 7.0 | 4.0 | **10.00** | — | — | ✓ | Appropriately Served |\n| PRN-04 | 7.0 | 4.0 | **10.00** | — | — | ✓ | Appropriately Served |\n| PRN-03 | 6.0 | 3.0 | **9.00** | — | — | ✓ | Appropriately Served |\n\n**Formula verification (spot-check):**\n- N07: 10.0 + max(10.0−4.0, 0) = 10.0 + 6.0 = 16.00 ✓\n- N22: 8.0 + max(8.0−5.0, 0) = 8.0 + 3.0 = 11.00 ✓; is_underserved = (8.0>7 AND 5.0<5) = false ✓\n- PRN-03: 6.0 + max(6.0−3.0, 0) = 6.0 + 3.0 = 9.00 ✓\n\n---"
+    },
+    {
+      "title": "Step 4 — Market ODI Summary",
+      "content": "| Field | Value |\n|---|---|\n| **market_name** | Continuing Care Retirement Communities |\n| **naics_code** | 623311 |\n| **total_needs** | 15 (subset — full JTBD file unavailable as input) |\n| **underserved_count** | 11 |\n| **overserved_count** | 0 |\n| **avg_opportunity_score** | **13.00** |\n| **zone** | Highly Underserved (ODI avg > 15 threshold not reached, but 11/15 entries individually qualify as Highly Underserved) |\n\n**Top 5 Opportunities (by opportunity score):**\n\n| Rank | Score | Error Statement |\n|---|---|---|\n| 1 | 16.00 | Minimize the likelihood of emergency exit alarm silence during an extended power outage (>8 h) on an active Memory Care unit |\n| 2 | 16.00 | Minimize the likelihood of a CMS Immediate Jeopardy citation resulting from an undocumented emergency exit elopement event |\n| 3 | 15.00 | Minimize the time to detect a non-functional emergency exit guard during active Memory Care hours (<4 h) |\n| 4 | 15.00 | Minimize the likelihood of incomplete emergency exit inspection and event documentation at annual CMS survey |\n| 5 | 14.00 | Minimize the likelihood of unmonitored Memory Care emergency exits being identified during a CMS site survey |\n\n---"
+    },
+    {
+      "title": "Step 5 — Cross-Check: ODI vs Feature-Market Fit",
+      "content": "Feature-Market Fit averages from FIT_continuing_care_retirement.md (Step 09):\n\n| Feature | Kano | Overall Fit |\n|---|---|---|\n| Mechanical Handle Locking | must_be | 6.00 |\n| Audible Alarm Trigger | must_be | 6.22 |\n| Single-Motion Emergency Release | must_be | 5.89 |\n| Key Override Bypass | one_dimensional | 5.89 |\n| Battery-Powered Operation | attractive | 6.44 |\n| Pre-Alarm Warning | one_dimensional | 4.67 |\n| **Average** | | **5.85** |\n\n| Threshold | Condition | Result |\n|---|---|---|\n| HIGH opportunity + LOW fit | ODI avg > 12 AND Fit avg < 4 | **Not triggered** (ODI 13.0 > 12 ✓, but Fit 5.85 > 4) |\n| LOW opportunity + HIGH fit | ODI avg < 8 AND Fit avg > 7 | Not triggered |\n\n**Interpretation:** No inconsistency flag. CCRC is a high-opportunity market structurally underserved by all incumbent solutions (ODI avg 13.0). Technology-class fit is moderate (5.85/10) — the product class addresses the must-be requirements (physical locking, audible alarm, single-motion release) but has structural gaps on monitoring depth (N05, N06), documentation automation (N17, N18), and workflow integration. The gap signals addressable product-extension opportunity rather than product-market mismatch.\n\n---"
+    },
+    {
+      "title": "Key Findings",
+      "content": "| Finding | Detail |\n|---|---|\n| 11 of 15 needs are Highly Underserved | All of importance ≥ 8 with satisfaction ≤ 4 qualify — incumbents systematically fail this market |\n| Zero overserved needs | No feature is over-delivered; no cost-reduction-only play available |\n| Documentation gap is the #2 and #4 opportunity | N21 (CMS IJ citation) + N18 (survey completeness) — both at opp ≥ 15 — are pure software/workflow gaps, not hardware gaps |\n| Power-independence is the top mechanical gap | N07 (opp=16) is the highest-scoring need; Türwächter's mechanical primary alarm directly addresses it; EM lock incumbents do not |\n| Product-related needs (PRN-01, PRN-05) are also highly underserved | Battery monitoring and receiver connectivity detection are structural IoT architecture gaps shared with most wireless alternatives |\n| N22 (alert latency) is the only appropriately-served market need | Inovonics + Stanley mobile alerting adequately addresses this; not a differentiation lever |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"step\": \"12_odi_matrix\",\n  \"market_name\": \"Continuing Care Retirement Communities\",\n  \"naics_code\": \"623311\",\n  \"entries\": [\n    {\n      \"error_statement\": \"Minimize the likelihood of emergency exit alarm silence during an extended power outage (>8 h) on an active Memory Care unit\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"importance\": 10.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 16.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 5,\n      \"job_step_name\": \"Execute\",\n      \"impact_category\": \"safety\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of a CMS Immediate Jeopardy citation resulting from an undocumented emergency exit elopement event\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"importance\": 10.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 16.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 6,\n      \"job_step_name\": \"Monitor\",\n      \"impact_category\": \"compliance\"\n    },\n    {\n      \"error_statement\": \"Minimize the time to detect a non-functional emergency exit guard during active Memory Care hours (target <4 h)\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"importance\": 9.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 15.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 6,\n      \"job_step_name\": \"Monitor\",\n      \"impact_category\": \"reliability\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of incomplete emergency exit inspection and event documentation at annual CMS survey\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"importance\": 9.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 15.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 6,\n      \"job_step_name\": \"Monitor\",\n      \"impact_category\": \"compliance\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of unmonitored Memory Care emergency exits being identified during a CMS site survey\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"importance\": 9.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 14.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 1,\n      \"job_step_name\": \"Plan\",\n      \"impact_category\": \"compliance\"\n    },\n    {\n      \"error_statement\": \"Minimize the time between unauthorized emergency exit activation and staff notification during overnight and weekend staffing periods\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"importance\": 9.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 14.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 6,\n      \"job_step_name\": \"Monitor\",\n      \"impact_category\": \"reliability\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of undetected battery depletion creating a wireless monitoring gap on an emergency exit door\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 13.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 6,\n      \"job_step_name\": \"Monitor\",\n      \"impact_category\": \"reliability\"\n    },\n    {\n      \"error_statement\": \"Minimize the time and effort required to generate emergency exit compliance documentation for CMS regulatory review\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 13.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 6,\n      \"job_step_name\": \"Monitor\",\n      \"impact_category\": \"compliance\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of the monitoring dashboard showing a guard as armed while the physical mechanism has been defeated or removed\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 13.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 6,\n      \"job_step_name\": \"Monitor\",\n      \"impact_category\": \"reliability\"\n    },\n    {\n      \"error_statement\": \"Minimize the time between emergency exit guard activation and Memory Care staff notification to less than 30 seconds\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 5.0,\n      \"opportunity_score\": 11.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": false,\n      \"job_step_number\": 7,\n      \"job_step_name\": \"Respond\",\n      \"impact_category\": \"time\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of IoT module battery depletion going undetected on a low-traffic CCRC wing, creating a wireless monitoring gap during overnight staffing periods\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 13.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 0,\n      \"job_step_name\": \"product_constraint\",\n      \"impact_category\": \"reliability\"\n    },\n    {\n      \"error_statement\": \"Minimize the time to discover that a wireless receiver serving multiple door guardians on a single care level has lost connectivity, leaving all exits without event transmission while mechanical alarms remain functional\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"importance\": 8.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 13.0,\n      \"is_underserved\": true,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 0,\n      \"job_step_name\": \"product_constraint\",\n      \"impact_category\": \"reliability\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of wireless alarm event transmission failure from emergency exit doors in reinforced concrete corridors or basement wings exceeding the 30 m EasyWave transmitter range\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 10.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 0,\n      \"job_step_name\": \"product_constraint\",\n      \"impact_category\": \"reliability\"\n    },\n    {\n      \"error_statement\": \"Minimize the likelihood of unauthorized guard removal or mechanism defeat by a cognitively impaired resident manipulating the exposed surface-mounted guard housing on the door handle\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"importance\": 7.0,\n      \"satisfaction_current\": 4.0,\n      \"opportunity_score\": 10.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 0,\n      \"job_step_name\": \"product_constraint\",\n      \"impact_category\": \"safety\"\n    },\n    {\n      \"error_statement\": \"Minimize the time to integrate EasyWave-protocol door guardian event streams into an existing BACnet or KNX building management platform deployed across a continuing care campus\",\n      \"market_name\": \"Continuing Care Retirement Communities\",\n      \"naics_code\": \"623311\",\n      \"importance\": 6.0,\n      \"satisfaction_current\": 3.0,\n      \"opportunity_score\": 9.0,\n      \"is_underserved\": false,\n      \"is_overserved\": false,\n      \"product_related\": true,\n      \"job_step_number\": 0,\n      \"job_step_name\": \"product_constraint\",\n      \"impact_category\": \"time\"\n    }\n  ],\n  \"market_summary\": {\n    \"market_name\": \"Continuing Care Retirement Communities\",\n    \"naics_code\": \"623311\",\n    \"total_needs\": 15,\n    \"underserved_count\": 11,\n    \"overserved_count\": 0,\n    \"avg_opportunity_score\": 13.0,\n    \"top_opportunities\": [\n      \"Minimize the likelihood of emergency exit alarm silence during an extended power outage (>8 h) on an active Memory Care unit\",\n      \"Minimize the likelihood of a CMS Immediate Jeopardy citation resulting from an undocumented emergency exit elopement event\",\n      \"Minimize the time to detect a non-functional emergency exit guard during active Memory Care hours (target <4 h)\",\n      \"Minimize the likelihood of incomplete emergency exit inspection and event documentation at annual CMS survey\",\n      \"Minimize the likelihood of unmonitored Memory Care emergency exits being identified during a CMS site survey\"\n    ]\n  },\n  \"cross_check\": {\n    \"odi_avg\": 13.0,\n    \"feature_fit_avg\": 5.85,\n    \"flag_high_opp_low_fit\": false,\n    \"flag_low_opp_high_fit\": false,\n    \"note\": \"No inconsistency. ODI avg 13.0 confirms high structural underservice. Feature-Fit avg 5.85 is above the 4.0 alert threshold — technology class is relevant but has capability gaps on monitoring depth, documentation automation, and workflow integration.\"\n  }\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Incumbent",
+        "Market Share Est.",
+        "Mechanism",
+        "Strengths",
+        "Weaknesses"
+      ],
+      "rows": [
+        {
+          "Incumbent": "RFID/BLE Wander-Management (Stanley Healthcare, CenTrak)",
+          "Market Share Est.": "~40%",
+          "Mechanism": "RFID wristbands trigger door alerts; software-managed lock states",
+          "Strengths": "Resident-level tracking, EHR integration (Stanley), customizable alert rules",
+          "Weaknesses": "Requires wristband compliance; loses monitoring during power outages (UPS needed); no direct door physical locking; expensive infrastructure"
+        },
+        {
+          "Incumbent": "Delayed-Egress EM Locks (dormakaba, ASSA ABLOY, Allegion)",
+          "Market Share Est.": "~35%",
+          "Mechanism": "Electric magnet holds door for 15 s delay after handle activation; unlocks on fire signal",
+          "Strengths": "Physical barrier, CMS-compliant 15 s delay, fire-alarm interlock",
+          "Weaknesses": "Requires mains wiring; fails open during power outage (loses delay + monitoring); expensive retrofit; licensed electrical install"
+        },
+        {
+          "Incumbent": "Basic mechanical alarm + manual patrol",
+          "Market Share Est.": "~25%",
+          "Mechanism": "Simple door-open alarm horn; staff inspection rounds",
+          "Strengths": "Low cost; power-independent alarm; no infrastructure overhead",
+          "Weaknesses": "No remote monitoring; no CMS documentation; events detected only at patrol intervals (hours)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Error Statement",
+        "Job Step",
+        "Imp",
+        "Sat_init",
+        "Sat_recal",
+        "Recal Reason"
+      ],
+      "rows": [
+        {
+          "ID": "N07",
+          "Error Statement": "Minimize the likelihood of emergency exit alarm silence during an extended power outage (>8 h) on an active Memory Care unit",
+          "Job Step": "Execute",
+          "Imp": "10.0",
+          "Sat_init": "6.0",
+          "Sat_recal": "4.0",
+          "Recal Reason": "EM locks fail open; RFID wander systems lose monitoring without UPS; only basic mechanical alarm is power-independent"
+        },
+        {
+          "ID": "N21",
+          "Error Statement": "Minimize the likelihood of a CMS Immediate Jeopardy citation resulting from an undocumented emergency exit elopement event",
+          "Job Step": "Monitor",
+          "Imp": "10.0",
+          "Sat_init": "5.0",
+          "Sat_recal": "4.0",
+          "Recal Reason": "Real-time CMS-formatted documentation absent in most deployments; Stanley generates post-hoc logs but not automated real-time packages"
+        },
+        {
+          "ID": "N05",
+          "Error Statement": "Minimize the time to detect a non-functional emergency exit guard during active Memory Care hours (<4 h)",
+          "Job Step": "Monitor",
+          "Imp": "9.0",
+          "Sat_init": "3.0",
+          "Sat_recal": "3.0",
+          "Recal Reason": "No recalibration needed; no incumbent proactively detects mechanical failure — patrol-based discovery only"
+        },
+        {
+          "ID": "N18",
+          "Error Statement": "Minimize the likelihood of incomplete emergency exit inspection and event documentation at annual CMS survey",
+          "Job Step": "Monitor",
+          "Imp": "9.0",
+          "Sat_init": "3.0",
+          "Sat_recal": "3.0",
+          "Recal Reason": "No recalibration; manual document preparation remains the norm; Stanley partial coverage only in premium installs"
+        },
+        {
+          "ID": "N01",
+          "Error Statement": "Minimize the likelihood of unmonitored Memory Care emergency exits being identified during a CMS site survey",
+          "Job Step": "Plan",
+          "Imp": "9.0",
+          "Sat_init": "5.0",
+          "Sat_recal": "4.0",
+          "Recal Reason": "EM lock and RFID deployments frequently leave secondary exits uncovered due to retrofit cost; coverage gaps common"
+        },
+        {
+          "ID": "N10",
+          "Error Statement": "Minimize the time between unauthorized emergency exit activation and staff notification during overnight / weekend staffing",
+          "Job Step": "Monitor",
+          "Imp": "9.0",
+          "Sat_init": "4.0",
+          "Sat_recal": "4.0",
+          "Recal Reason": "No recalibration; Inovonics achieves reasonable overnight alerting but is not universally deployed"
+        },
+        {
+          "ID": "N13",
+          "Error Statement": "Minimize the likelihood of undetected battery depletion creating a wireless monitoring gap on an emergency exit door",
+          "Job Step": "Monitor",
+          "Imp": "8.0",
+          "Sat_init": "3.0",
+          "Sat_recal": "3.0",
+          "Recal Reason": "No recalibration; basic mechanical alarms have no battery monitoring; Inovonics supervised check-ins are exception, not norm"
+        },
+        {
+          "ID": "N17",
+          "Error Statement": "Minimize the time and effort required to generate emergency exit compliance documentation for CMS regulatory review",
+          "Job Step": "Monitor",
+          "Imp": "8.0",
+          "Sat_init": "3.0",
+          "Sat_recal": "3.0",
+          "Recal Reason": "No recalibration; manual preparation remains dominant; documented automation rare"
+        },
+        {
+          "ID": "N06",
+          "Error Statement": "Minimize the likelihood of the monitoring dashboard showing a guard as armed while the physical mechanism is defeated or removed",
+          "Job Step": "Monitor",
+          "Imp": "8.0",
+          "Sat_init": "4.0",
+          "Sat_recal": "3.0",
+          "Recal Reason": "Physical mechanism defeat is undetectable by electrical monitoring; even bidirectional radio check-ins only detect radio silence, not hardware defeat"
+        },
+        {
+          "ID": "N22",
+          "Error Statement": "Minimize the time between emergency exit guard activation and Memory Care staff notification to less than 30 seconds",
+          "Job Step": "Respond",
+          "Imp": "8.0",
+          "Sat_init": "4.0",
+          "Sat_recal": "5.0",
+          "Recal Reason": "Inovonics + Stanley Healthcare achieve near-real-time mobile alerting in equipped facilities; this need is better served than others"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Error Statement",
+        "Source Constraint",
+        "Imp",
+        "Sat_recal"
+      ],
+      "rows": [
+        {
+          "ID": "PRN-01",
+          "Error Statement": "Minimize the likelihood of IoT module battery depletion going undetected on a low-traffic CCRC wing, creating a wireless monitoring gap during overnight staffing",
+          "Source Constraint": "C4 — IoT Battery Life Floor",
+          "Imp": "8.0",
+          "Sat_recal": "3.0"
+        },
+        {
+          "ID": "PRN-05",
+          "Error Statement": "Minimize the time to discover that a wireless receiver serving multiple door guardians on a single care level has lost connectivity, leaving all exits without event transmission while mechanical alarms remain functional",
+          "Source Constraint": "C3 + C6",
+          "Imp": "8.0",
+          "Sat_recal": "3.0"
+        },
+        {
+          "ID": "PRN-02",
+          "Error Statement": "Minimize the likelihood of wireless alarm event transmission failure from emergency exit doors in reinforced concrete corridors or basement wings exceeding the 30 m EasyWave transmitter range",
+          "Source Constraint": "C3 — Wireless Range",
+          "Imp": "7.0",
+          "Sat_recal": "4.0"
+        },
+        {
+          "ID": "PRN-04",
+          "Error Statement": "Minimize the likelihood of unauthorized guard removal or mechanism defeat by a cognitively impaired resident manipulating the exposed surface-mounted guard housing on the door handle",
+          "Source Constraint": "C5 — Surface Mount",
+          "Imp": "7.0",
+          "Sat_recal": "4.0"
+        },
+        {
+          "ID": "PRN-03",
+          "Error Statement": "Minimize the time to integrate EasyWave-protocol door guardian event streams into an existing BACnet or KNX building management platform deployed across a continuing care campus",
+          "Source Constraint": "C6 — Protocol Lock-In",
+          "Imp": "6.0",
+          "Sat_recal": "3.0"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Imp",
+        "Sat",
+        "Opp Score",
+        "Underserved",
+        "Overserved",
+        "Product-Related",
+        "Zone"
+      ],
+      "rows": [
+        {
+          "ID": "N07",
+          "Imp": "10.0",
+          "Sat": "4.0",
+          "Opp Score": "**16.00**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "Product-Related": "—",
+          "Zone": "Highly Underserved"
+        },
+        {
+          "ID": "N21",
+          "Imp": "10.0",
+          "Sat": "4.0",
+          "Opp Score": "**16.00**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "Product-Related": "—",
+          "Zone": "Highly Underserved"
+        },
+        {
+          "ID": "N05",
+          "Imp": "9.0",
+          "Sat": "3.0",
+          "Opp Score": "**15.00**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "Product-Related": "—",
+          "Zone": "Highly Underserved"
+        },
+        {
+          "ID": "N18",
+          "Imp": "9.0",
+          "Sat": "3.0",
+          "Opp Score": "**15.00**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "Product-Related": "—",
+          "Zone": "Highly Underserved"
+        },
+        {
+          "ID": "N01",
+          "Imp": "9.0",
+          "Sat": "4.0",
+          "Opp Score": "**14.00**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "Product-Related": "—",
+          "Zone": "Highly Underserved"
+        },
+        {
+          "ID": "N10",
+          "Imp": "9.0",
+          "Sat": "4.0",
+          "Opp Score": "**14.00**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "Product-Related": "—",
+          "Zone": "Highly Underserved"
+        },
+        {
+          "ID": "N13",
+          "Imp": "8.0",
+          "Sat": "3.0",
+          "Opp Score": "**13.00**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "Product-Related": "—",
+          "Zone": "Highly Underserved"
+        },
+        {
+          "ID": "N17",
+          "Imp": "8.0",
+          "Sat": "3.0",
+          "Opp Score": "**13.00**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "Product-Related": "—",
+          "Zone": "Highly Underserved"
+        },
+        {
+          "ID": "N06",
+          "Imp": "8.0",
+          "Sat": "3.0",
+          "Opp Score": "**13.00**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "Product-Related": "—",
+          "Zone": "Highly Underserved"
+        },
+        {
+          "ID": "PRN-01",
+          "Imp": "8.0",
+          "Sat": "3.0",
+          "Opp Score": "**13.00**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "Product-Related": "✓",
+          "Zone": "Highly Underserved"
+        },
+        {
+          "ID": "PRN-05",
+          "Imp": "8.0",
+          "Sat": "3.0",
+          "Opp Score": "**13.00**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "Product-Related": "✓",
+          "Zone": "Highly Underserved"
+        },
+        {
+          "ID": "N22",
+          "Imp": "8.0",
+          "Sat": "5.0",
+          "Opp Score": "**11.00**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "Product-Related": "—",
+          "Zone": "Appropriately Served"
+        },
+        {
+          "ID": "PRN-02",
+          "Imp": "7.0",
+          "Sat": "4.0",
+          "Opp Score": "**10.00**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "Product-Related": "✓",
+          "Zone": "Appropriately Served"
+        },
+        {
+          "ID": "PRN-04",
+          "Imp": "7.0",
+          "Sat": "4.0",
+          "Opp Score": "**10.00**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "Product-Related": "✓",
+          "Zone": "Appropriately Served"
+        },
+        {
+          "ID": "PRN-03",
+          "Imp": "6.0",
+          "Sat": "3.0",
+          "Opp Score": "**9.00**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "Product-Related": "✓",
+          "Zone": "Appropriately Served"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**market_name**",
+          "Value": "Continuing Care Retirement Communities"
+        },
+        {
+          "Field": "**naics_code**",
+          "Value": "623311"
+        },
+        {
+          "Field": "**total_needs**",
+          "Value": "15 (subset — full JTBD file unavailable as input)"
+        },
+        {
+          "Field": "**underserved_count**",
+          "Value": "11"
+        },
+        {
+          "Field": "**overserved_count**",
+          "Value": "0"
+        },
+        {
+          "Field": "**avg_opportunity_score**",
+          "Value": "**13.00**"
+        },
+        {
+          "Field": "**zone**",
+          "Value": "Highly Underserved (ODI avg > 15 threshold not reached, but 11/15 entries individually qualify as Highly Underserved)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Rank",
+        "Score",
+        "Error Statement"
+      ],
+      "rows": [
+        {
+          "Rank": "1",
+          "Score": "16.00",
+          "Error Statement": "Minimize the likelihood of emergency exit alarm silence during an extended power outage (>8 h) on an active Memory Care unit"
+        },
+        {
+          "Rank": "2",
+          "Score": "16.00",
+          "Error Statement": "Minimize the likelihood of a CMS Immediate Jeopardy citation resulting from an undocumented emergency exit elopement event"
+        },
+        {
+          "Rank": "3",
+          "Score": "15.00",
+          "Error Statement": "Minimize the time to detect a non-functional emergency exit guard during active Memory Care hours (<4 h)"
+        },
+        {
+          "Rank": "4",
+          "Score": "15.00",
+          "Error Statement": "Minimize the likelihood of incomplete emergency exit inspection and event documentation at annual CMS survey"
+        },
+        {
+          "Rank": "5",
+          "Score": "14.00",
+          "Error Statement": "Minimize the likelihood of unmonitored Memory Care emergency exits being identified during a CMS site survey"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Feature",
+        "Kano",
+        "Overall Fit"
+      ],
+      "rows": [
+        {
+          "Feature": "Mechanical Handle Locking",
+          "Kano": "must_be",
+          "Overall Fit": "6.00"
+        },
+        {
+          "Feature": "Audible Alarm Trigger",
+          "Kano": "must_be",
+          "Overall Fit": "6.22"
+        },
+        {
+          "Feature": "Single-Motion Emergency Release",
+          "Kano": "must_be",
+          "Overall Fit": "5.89"
+        },
+        {
+          "Feature": "Key Override Bypass",
+          "Kano": "one_dimensional",
+          "Overall Fit": "5.89"
+        },
+        {
+          "Feature": "Battery-Powered Operation",
+          "Kano": "attractive",
+          "Overall Fit": "6.44"
+        },
+        {
+          "Feature": "Pre-Alarm Warning",
+          "Kano": "one_dimensional",
+          "Overall Fit": "4.67"
+        },
+        {
+          "Feature": "**Average**",
+          "Kano": "**5.85**",
+          "Overall Fit": ""
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Threshold",
+        "Condition",
+        "Result"
+      ],
+      "rows": [
+        {
+          "Threshold": "HIGH opportunity + LOW fit",
+          "Condition": "ODI avg > 12 AND Fit avg < 4",
+          "Result": "**Not triggered** (ODI 13.0 > 12 ✓, but Fit 5.85 > 4)"
+        },
+        {
+          "Threshold": "LOW opportunity + HIGH fit",
+          "Condition": "ODI avg < 8 AND Fit avg > 7",
+          "Result": "Not triggered"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Finding",
+        "Detail"
+      ],
+      "rows": [
+        {
+          "Finding": "11 of 15 needs are Highly Underserved",
+          "Detail": "All of importance ≥ 8 with satisfaction ≤ 4 qualify — incumbents systematically fail this market"
+        },
+        {
+          "Finding": "Zero overserved needs",
+          "Detail": "No feature is over-delivered; no cost-reduction-only play available"
+        },
+        {
+          "Finding": "Documentation gap is the #2 and #4 opportunity",
+          "Detail": "N21 (CMS IJ citation) + N18 (survey completeness) — both at opp ≥ 15 — are pure software/workflow gaps, not hardware gaps"
+        },
+        {
+          "Finding": "Power-independence is the top mechanical gap",
+          "Detail": "N07 (opp=16) is the highest-scoring need; Türwächter's mechanical primary alarm directly addresses it; EM lock incumbents do not"
+        },
+        {
+          "Finding": "Product-related needs (PRN-01, PRN-05) are also highly underserved",
+          "Detail": "Battery monitoring and receiver connectivity detection are structural IoT architecture gaps shared with most wireless alternatives"
+        },
+        {
+          "Finding": "N22 (alert latency) is the only appropriately-served market need",
+          "Detail": "Inovonics + Stanley mobile alerting adequately addresses this; not a differentiation lever"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "step": "12_odi_matrix",
+      "market_name": "Continuing Care Retirement Communities",
+      "naics_code": "623311",
+      "entries": [
+        {
+          "error_statement": "Minimize the likelihood of emergency exit alarm silence during an extended power outage (>8 h) on an active Memory Care unit",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "importance": 10.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 16.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 5,
+          "job_step_name": "Execute",
+          "impact_category": "safety"
+        },
+        {
+          "error_statement": "Minimize the likelihood of a CMS Immediate Jeopardy citation resulting from an undocumented emergency exit elopement event",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "importance": 10.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 16.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 6,
+          "job_step_name": "Monitor",
+          "impact_category": "compliance"
+        },
+        {
+          "error_statement": "Minimize the time to detect a non-functional emergency exit guard during active Memory Care hours (target <4 h)",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "importance": 9.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 15.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 6,
+          "job_step_name": "Monitor",
+          "impact_category": "reliability"
+        },
+        {
+          "error_statement": "Minimize the likelihood of incomplete emergency exit inspection and event documentation at annual CMS survey",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "importance": 9.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 15.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 6,
+          "job_step_name": "Monitor",
+          "impact_category": "compliance"
+        },
+        {
+          "error_statement": "Minimize the likelihood of unmonitored Memory Care emergency exits being identified during a CMS site survey",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "importance": 9.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 14.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 1,
+          "job_step_name": "Plan",
+          "impact_category": "compliance"
+        },
+        {
+          "error_statement": "Minimize the time between unauthorized emergency exit activation and staff notification during overnight and weekend staffing periods",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "importance": 9.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 14.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 6,
+          "job_step_name": "Monitor",
+          "impact_category": "reliability"
+        },
+        {
+          "error_statement": "Minimize the likelihood of undetected battery depletion creating a wireless monitoring gap on an emergency exit door",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "importance": 8.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 13.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 6,
+          "job_step_name": "Monitor",
+          "impact_category": "reliability"
+        },
+        {
+          "error_statement": "Minimize the time and effort required to generate emergency exit compliance documentation for CMS regulatory review",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "importance": 8.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 13.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 6,
+          "job_step_name": "Monitor",
+          "impact_category": "compliance"
+        },
+        {
+          "error_statement": "Minimize the likelihood of the monitoring dashboard showing a guard as armed while the physical mechanism has been defeated or removed",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "importance": 8.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 13.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 6,
+          "job_step_name": "Monitor",
+          "impact_category": "reliability"
+        },
+        {
+          "error_statement": "Minimize the time between emergency exit guard activation and Memory Care staff notification to less than 30 seconds",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "importance": 8.0,
+          "satisfaction_current": 5.0,
+          "opportunity_score": 11.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": false,
+          "job_step_number": 7,
+          "job_step_name": "Respond",
+          "impact_category": "time"
+        },
+        {
+          "error_statement": "Minimize the likelihood of IoT module battery depletion going undetected on a low-traffic CCRC wing, creating a wireless monitoring gap during overnight staffing periods",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "importance": 8.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 13.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 0,
+          "job_step_name": "product_constraint",
+          "impact_category": "reliability"
+        },
+        {
+          "error_statement": "Minimize the time to discover that a wireless receiver serving multiple door guardians on a single care level has lost connectivity, leaving all exits without event transmission while mechanical alarms remain functional",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "importance": 8.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 13.0,
+          "is_underserved": true,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 0,
+          "job_step_name": "product_constraint",
+          "impact_category": "reliability"
+        },
+        {
+          "error_statement": "Minimize the likelihood of wireless alarm event transmission failure from emergency exit doors in reinforced concrete corridors or basement wings exceeding the 30 m EasyWave transmitter range",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "importance": 7.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 10.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 0,
+          "job_step_name": "product_constraint",
+          "impact_category": "reliability"
+        },
+        {
+          "error_statement": "Minimize the likelihood of unauthorized guard removal or mechanism defeat by a cognitively impaired resident manipulating the exposed surface-mounted guard housing on the door handle",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "importance": 7.0,
+          "satisfaction_current": 4.0,
+          "opportunity_score": 10.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 0,
+          "job_step_name": "product_constraint",
+          "impact_category": "safety"
+        },
+        {
+          "error_statement": "Minimize the time to integrate EasyWave-protocol door guardian event streams into an existing BACnet or KNX building management platform deployed across a continuing care campus",
+          "market_name": "Continuing Care Retirement Communities",
+          "naics_code": "623311",
+          "importance": 6.0,
+          "satisfaction_current": 3.0,
+          "opportunity_score": 9.0,
+          "is_underserved": false,
+          "is_overserved": false,
+          "product_related": true,
+          "job_step_number": 0,
+          "job_step_name": "product_constraint",
+          "impact_category": "time"
+        }
+      ],
+      "market_summary": {
+        "market_name": "Continuing Care Retirement Communities",
+        "naics_code": "623311",
+        "total_needs": 15,
+        "underserved_count": 11,
+        "overserved_count": 0,
+        "avg_opportunity_score": 13.0,
+        "top_opportunities": [
+          "Minimize the likelihood of emergency exit alarm silence during an extended power outage (>8 h) on an active Memory Care unit",
+          "Minimize the likelihood of a CMS Immediate Jeopardy citation resulting from an undocumented emergency exit elopement event",
+          "Minimize the time to detect a non-functional emergency exit guard during active Memory Care hours (target <4 h)",
+          "Minimize the likelihood of incomplete emergency exit inspection and event documentation at annual CMS survey",
+          "Minimize the likelihood of unmonitored Memory Care emergency exits being identified during a CMS site survey"
+        ]
+      },
+      "cross_check": {
+        "odi_avg": 13.0,
+        "feature_fit_avg": 5.85,
+        "flag_high_opp_low_fit": false,
+        "flag_low_opp_high_fit": false,
+        "note": "No inconsistency. ODI avg 13.0 confirms high structural underservice. Feature-Fit avg 5.85 is above the 4.0 alert threshold — technology class is relevant but has capability gaps on monitoring depth, documentation automation, and workflow integration."
+      }
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

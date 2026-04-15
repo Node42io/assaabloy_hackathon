@@ -1,0 +1,921 @@
+{
+  "id": "ODI_hotels_motels",
+  "title": "ODI Matrix — Hotels (except Casino Hotels) and Motels",
+  "type": "odi_matrix",
+  "market_slug": "hotels_motels",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Step 2 — Satisfaction Recalibration Notes",
+      "content": "Incumbent mix: A1 Basic mechanical alarm 45% · A2 Wired panic bar 20% · A3 IoT monitoring 25% · A4 Guard patrol ~5% · A5 Do nothing 10%.\n\n| Need | Original sat | Recalibrated | Rationale |\n|---|---|---|---|\n| E10 — Alert latency <30 sec | 5 | **4** | Dominant A1 (45%) delivers zero remote notification; blended market satisfaction ≈ 3–4. IoT minority (25%) achieves it, but majority of installed base cannot. Lowered to 4. |\n| All others | — | **unchanged** | Incumbent evidence confirms scores. E8 sat=8 (all certified products meet EN 179/1125). E15 sat=3 (no incumbent provides automated fire marshal log). E6/E9 sat=4 (A1 majority has no remote alert). |\n\n---"
+    },
+    {
+      "title": "Step 3 — Full ODI Entry Table (27 needs)",
+      "content": "### Market-Level Needs — E1–E19 (from JTBD Step 06)\n\n| ID | Error Statement (short) | Step | Imp | Sat | **OS** | Underserved | Overserved | p_rel |\n|---|---|---|---|---|---|---|---|---|\n| E1 | Unmonitored high-risk exits due to incomplete coverage mapping | DEFINE | 7 | 5 | **9** | — | — | — |\n| E2 | Wireless receiver placement before hardware purchase | LOCATE | 7 | 4 | **10** | — | — | ✓ |\n| E3 | Commission 100-room hotel in <4 hr without structural modification | PREPARE | 8 | 5 | **11** | — | — | ✓ |\n| E4 | Alarm not impaired during device mounting/pairing | PREPARE | 9 | 7 | **11** | — | — | — |\n| E5 | Single end-to-end commissioning test (transmit + alarm verified) | CONFIRM | 9 | 5 | **13** | — | — | — |\n| E6 | Unauthorized exit open >5 min without staff alert | EXECUTE | 9 | 4 | **14** | ✓ | — | — |\n| E7 | Authorized staff uses generating false alerts | EXECUTE | 8 | 4 | **12** | ✓ | — | — |\n| E8 | Monitoring device adding steps/force to fire evacuation | EXECUTE | 10 | 8 | **12** | — | — | — |\n| E9 | 1 officer monitors ≥50 exits centrally without patrol | MONITOR | 9 | 4 | **14** | ✓ | — | — |\n| E10 | Activation-to-notification latency <30 sec *(recal. sat 5→4)* | MONITOR | 9 | **4** | **14** | ✓ | — | — |\n| E11 | Wireless connectivity loss >15 min during occupied hours | MONITOR | 8 | 5 | **11** | — | — | ✓ |\n| E12 | Evacuation event misclassified as unauthorized use | MONITOR | 8 | 5 | **11** | — | — | — |\n| E13 | Triggered device reset to active state in <2 min | MODIFY | 7 | 6 | **8** | — | — | — |\n| E14 | High-priority alert missed due to saturation from low-priority events | MODIFY | 8 | 5 | **11** | — | — | — |\n| E15 | Digital audit log formatted for fire marshal, no manual compile | CONCLUDE | 8 | 3 | **13** | ✓ | — | — |\n| E16 | Proactive battery depletion ID across ≥30 devices | CONCLUDE | 7 | 4 | **10** | — | — | ✓ |\n| E17 | Integrate event data with hotel BMS (standard protocols) | CONCLUDE | 7 | 4 | **10** | — | — | ✓ |\n| E18 | Consistent compliance status across all floors at any time | P2 Core | 8 | 4 | **12** | ✓ | — | — |\n| E19 | No violations cited at fire authority / brand standards audit | P2 Core | 9 | 6 | **12** | — | — | — |\n\n### Product-Related Needs — N1–N8 (from FIT Step 10, injected as `product_constraint`)\n\n*job_step_number=0 · job_step_name=\"product_constraint\" · product_related=true*\n\n| ID | Error Statement (short) | Source Constraint | Imp | Sat | **OS** | Underserved | Overserved |\n|---|---|---|---|---|---|---|---|\n| N1 | Incomplete wireless coverage leaving exits above floor 3 unmonitored | C3 Wireless Range | 7 | 3 | **11** | — | — |\n| N2 | Time to design/validate receiver placement before procurement | C3 Wireless Range | 6 | 3 | **9** | — | — |\n| N3 | Battery depletion at high-traffic exits between maintenance cycles | C4 Battery Life | 7 | 4 | **10** | — | — |\n| N4 | Time to identify/replace near-depleted batteries across 30+ devices | C4 Battery Life | 6 | 4 | **8** | — | — |\n| N5 | Surface-mount housing conflicting with hotel brand interior finishes | C5 Surface Mount | 5 | 4 | **6** | — | — |\n| N6 | Bridge EasyWave events to BACnet/KNX BMS without per-property gateway | C6 Protocol Lock-In | 7 | 4 | **10** | — | — |\n| N7 | Proprietary protocol preventing portfolio-wide monitoring consolidation | C6 Protocol Lock-In | 6 | 4 | **8** | — | — |\n| N8 | GDPR DPIA triggered by door-event data delaying EU deployment | C8 GDPR | 6 | 5 | **7** | — | — |\n\n---"
+    },
+    {
+      "title": "Step 4 — Market ODI Summary",
+      "content": "| Field | Value |\n|---|---|\n| Market | Hotels (except Casino Hotels) and Motels |\n| NAICS | 721110 |\n| Total needs | 27 (19 market-level + 8 product-related) |\n| **Underserved** (imp > 7 AND sat < 5) | **6** — E6, E7, E9, E10, E15, E18 |\n| **Overserved** (imp < 3 AND sat > 7) | **0** |\n| Avg opportunity score | **10.63** |\n| ODI zone | Appropriately served (10–12) with high-OS underserved cluster |\n\n### Top 5 Opportunities (by OS desc)\n\n| Rank | ID | OS | Statement |\n|---|---|---|---|\n| 1 | E6 | **14** | Minimize the likelihood of an emergency exit remaining in an unauthorized open state for >5 min without triggering a staff alert |\n| 2 | E9 | **14** | Increase the ability of a single security officer to monitor real-time exit door status across ≥50 exits from one centralized interface without patrol |\n| 3 | E10 | **14** | Minimize the time from emergency exit activation to security staff notification to <30 seconds regardless of time of day |\n| 4 | E5 | **13** | Increase the ability to verify every installed device transmits correctly and alarm operates without obstruction — within a single commissioning test |\n| 5 | E15 | **13** | Increase the ability to produce a complete timestamped digital audit log formatted for fire marshal inspection without manual compilation |\n\n---"
+    },
+    {
+      "title": "Step 5 — Cross-Check: ODI vs. Feature-Market Fit",
+      "content": "Feature-Market Fit avg (from FIT_hotels_motels.md Step 09): `(5.56+5.33+6.22+5.56+6.44+4.89)/6 = **5.67**`\n\n| Threshold | Condition | Status |\n|---|---|---|\n| HIGH opp (ODI avg > 12) but LOW fit (FMA < 4) | ODI avg = 10.63 → does NOT exceed 12 | No flag |\n| LOW opp (ODI avg < 8) but HIGH fit (FMA > 7) | ODI avg = 10.63 → does NOT fall below 8 | No flag |\n\n**No ODI–Feature-Fit inconsistency.** ODI avg 10.63 (appropriately served zone) and FMA 5.67 (moderate fit) are directionally consistent: the market has meaningful unmet needs but the product delivers moderate-to-strong coverage of the top underserved cluster.\n\n**Key signal:** The 3-way tie at OS=14 (E6 / E9 / E10) represents the IoT dashboard value proposition directly — real-time detection, centralized monitoring, sub-30-sec alerts. These are all underserved by the dominant incumbent (A1, 45% basic mechanical) and constitute the primary go-to-market proof point for the IoT variant.\n\n**Protocol lock-in watch:** C6/N6/N7 + Vendor Fit inferior verdict on BUS integration cluster — three aligned signals that EasyWave proprietary lock-in is the highest-friction product-related barrier. N6 OS=10 positions this in the appropriately-served zone but with low satisfaction (sat=4), meaning incremental improvement here drives meaningful opportunity uplift.\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"odi_matrix_result\": {\n    \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n    \"naics_code\": \"721110\",\n    \"recalibration_applied\": [\n      {\n        \"id\": \"E10\",\n        \"original_satisfaction\": 5,\n        \"recalibrated_satisfaction\": 4,\n        \"rationale\": \"Dominant incumbent A1 (45% market share, basic mechanical alarm) provides zero remote notification capability. Blended market satisfaction weighted by share is approximately 3–4. Downward adjustment from 5 to 4.\"\n      }\n    ],\n    \"entries\": [\n      {\n        \"id\": \"E1\",\n        \"error_statement\": \"Minimize the likelihood of high-risk emergency exits remaining unmonitored due to incomplete upfront coverage mapping, leaving ≥1 undetected propping event per month\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 1,\n        \"job_step_name\": \"DEFINE\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 5.0,\n        \"opportunity_score\": 9.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": false,\n        \"impact_category\": \"safety\"\n      },\n      {\n        \"id\": \"E2\",\n        \"error_statement\": \"Increase the ability to determine wireless receiver placement achieving >95% floor-level signal coverage before hardware purchase or installation\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 2,\n        \"job_step_name\": \"LOCATE\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 10.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true,\n        \"impact_category\": \"reliability\"\n      },\n      {\n        \"id\": \"E3\",\n        \"error_statement\": \"Minimize the time required to install and commission emergency exit monitoring devices across a 100-room hotel to <4 hours without structural door modification\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 3,\n        \"job_step_name\": \"PREPARE\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 5.0,\n        \"opportunity_score\": 11.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true,\n        \"impact_category\": \"time\"\n      },\n      {\n        \"id\": \"E4\",\n        \"error_statement\": \"Minimize the likelihood of emergency exit alarm functionality being impaired during device mounting, pairing, or initial configuration\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 3,\n        \"job_step_name\": \"PREPARE\",\n        \"importance\": 9.0,\n        \"satisfaction_current\": 7.0,\n        \"opportunity_score\": 11.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": false,\n        \"impact_category\": \"safety\"\n      },\n      {\n        \"id\": \"E5\",\n        \"error_statement\": \"Increase the ability to verify that every installed exit monitoring device is transmitting correctly and that the audible alarm operates without obstruction — within a single end-to-end commissioning test\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 4,\n        \"job_step_name\": \"CONFIRM\",\n        \"importance\": 9.0,\n        \"satisfaction_current\": 5.0,\n        \"opportunity_score\": 13.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": false,\n        \"impact_category\": \"reliability\"\n      },\n      {\n        \"id\": \"E6\",\n        \"error_statement\": \"Minimize the likelihood of an emergency exit remaining in an unauthorized open state for >5 minutes without triggering a staff alert\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 5,\n        \"job_step_name\": \"EXECUTE\",\n        \"importance\": 9.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 14.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false,\n        \"impact_category\": \"safety\"\n      },\n      {\n        \"id\": \"E7\",\n        \"error_statement\": \"Minimize the likelihood of legitimate authorized staff uses of emergency exits generating false alerts that erode security staff confidence in the monitoring system\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 5,\n        \"job_step_name\": \"EXECUTE\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 12.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false,\n        \"impact_category\": \"reliability\"\n      },\n      {\n        \"id\": \"E8\",\n        \"error_statement\": \"Minimize the likelihood of an emergency exit monitoring device adding any additional step or force requirement that delays occupant evacuation during a fire emergency\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 5,\n        \"job_step_name\": \"EXECUTE\",\n        \"importance\": 10.0,\n        \"satisfaction_current\": 8.0,\n        \"opportunity_score\": 12.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": false,\n        \"impact_category\": \"safety\"\n      },\n      {\n        \"id\": \"E9\",\n        \"error_statement\": \"Increase the ability of a single security officer to monitor real-time exit door status across all floors from one centralized interface without physical patrol — covering ≥50 exit points simultaneously\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 6,\n        \"job_step_name\": \"MONITOR\",\n        \"importance\": 9.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 14.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false,\n        \"impact_category\": \"time\"\n      },\n      {\n        \"id\": \"E10\",\n        \"error_statement\": \"Minimize the time from emergency exit activation event to security staff notification to <30 seconds regardless of time of day\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 6,\n        \"job_step_name\": \"MONITOR\",\n        \"importance\": 9.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 14.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false,\n        \"impact_category\": \"time\",\n        \"recalibration_note\": \"satisfaction recalibrated from 5 to 4 based on incumbent data (A1 dominant, no remote notification)\"\n      },\n      {\n        \"id\": \"E11\",\n        \"error_statement\": \"Minimize the likelihood of wireless connectivity loss causing undetected monitoring gaps exceeding 15 minutes during hotel occupied hours\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 6,\n        \"job_step_name\": \"MONITOR\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 5.0,\n        \"opportunity_score\": 11.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true,\n        \"impact_category\": \"reliability\"\n      },\n      {\n        \"id\": \"E12\",\n        \"error_statement\": \"Minimize the likelihood of the monitoring system misclassifying an emergency evacuation event as an unauthorized door use, triggering an incorrect security response that delays fire evacuation\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 6,\n        \"job_step_name\": \"MONITOR\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 5.0,\n        \"opportunity_score\": 11.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": false,\n        \"impact_category\": \"safety\"\n      },\n      {\n        \"id\": \"E13\",\n        \"error_statement\": \"Minimize the time required to reset a triggered exit monitoring device and restore it to active state after investigation, to <2 minutes\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 7,\n        \"job_step_name\": \"MODIFY\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 6.0,\n        \"opportunity_score\": 8.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": false,\n        \"impact_category\": \"time\"\n      },\n      {\n        \"id\": \"E14\",\n        \"error_statement\": \"Minimize the likelihood of a high-priority unauthorized exit event being missed due to alert saturation from high-frequency low-priority activations\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 7,\n        \"job_step_name\": \"MODIFY\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 5.0,\n        \"opportunity_score\": 11.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": false,\n        \"impact_category\": \"safety\"\n      },\n      {\n        \"id\": \"E15\",\n        \"error_statement\": \"Increase the ability to produce a complete, timestamped digital audit log of all emergency exit activations and response actions, formatted for fire marshal inspection without manual compilation\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 8,\n        \"job_step_name\": \"CONCLUDE\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 13.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false,\n        \"impact_category\": \"safety\"\n      },\n      {\n        \"id\": \"E16\",\n        \"error_statement\": \"Minimize the time required to identify and proactively replace batteries approaching depletion threshold across a deployment of ≥30 exit monitoring devices before monitoring capability is lost\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 8,\n        \"job_step_name\": \"CONCLUDE\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 10.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true,\n        \"impact_category\": \"reliability\"\n      },\n      {\n        \"id\": \"E17\",\n        \"error_statement\": \"Minimize the effort required to integrate emergency exit monitoring event data with an existing hotel BMS or security platform running standard building protocols\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 8,\n        \"job_step_name\": \"CONCLUDE\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 10.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true,\n        \"impact_category\": \"cost\"\n      },\n      {\n        \"id\": \"E18\",\n        \"error_statement\": \"Minimize the variability in emergency exit compliance status across all floor levels at any given time of day\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"P2 Core Job\",\n        \"importance\": 8.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 12.0,\n        \"is_underserved\": true,\n        \"is_overserved\": false,\n        \"product_related\": false,\n        \"impact_category\": \"safety\"\n      },\n      {\n        \"id\": \"E19\",\n        \"error_statement\": \"Minimize the likelihood of emergency exit door management violations being cited during annual fire authority inspection or franchise brand standards audit\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"P2 Core Job\",\n        \"importance\": 9.0,\n        \"satisfaction_current\": 6.0,\n        \"opportunity_score\": 12.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": false,\n        \"impact_category\": \"safety\"\n      },\n      {\n        \"id\": \"N1\",\n        \"error_statement\": \"Minimize the likelihood of incomplete wireless coverage from 30 m transmitter range leaving emergency exits on floors above level 3 in multi-story hotel installations without active IoT monitoring\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"product_constraint\",\n        \"source_constraint\": \"Wireless Range Limitation\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 11.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true,\n        \"impact_category\": \"reliability\"\n      },\n      {\n        \"id\": \"N2\",\n        \"error_statement\": \"Minimize the time required to design and validate wireless receiver placement to achieve >95% floor coverage before hardware procurement in multi-story hotel installations\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"product_constraint\",\n        \"source_constraint\": \"Wireless Range Limitation\",\n        \"importance\": 6.0,\n        \"satisfaction_current\": 3.0,\n        \"opportunity_score\": 9.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true,\n        \"impact_category\": \"reliability\"\n      },\n      {\n        \"id\": \"N3\",\n        \"error_statement\": \"Minimize the likelihood of 9V battery depletion in high-traffic hotel emergency exits exhausting IoT monitoring capability between scheduled maintenance cycles while the mechanical alarm remains functional\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"product_constraint\",\n        \"source_constraint\": \"IoT Battery Life Floor\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 10.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true,\n        \"impact_category\": \"reliability\"\n      },\n      {\n        \"id\": \"N4\",\n        \"error_statement\": \"Minimize the time required to identify and replace batteries approaching depletion threshold across a 30+ device hotel deployment before wireless monitoring capability is lost\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"product_constraint\",\n        \"source_constraint\": \"IoT Battery Life Floor\",\n        \"importance\": 6.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 8.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true,\n        \"impact_category\": \"reliability\"\n      },\n      {\n        \"id\": \"N5\",\n        \"error_statement\": \"Minimize the likelihood of surface-mounted door guardian housing conflicting with hotel brand interior finish specifications in guest-facing corridors and stairwells\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"product_constraint\",\n        \"source_constraint\": \"Retrofit-Only Surface Mount\",\n        \"importance\": 5.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 6.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true,\n        \"impact_category\": \"reliability\"\n      },\n      {\n        \"id\": \"N6\",\n        \"error_statement\": \"Minimize the effort required to bridge EasyWave wireless event data to hotel BMS platforms running BACnet, KNX, or IP-based protocols without deploying a dedicated GfS-specific gateway per property\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"product_constraint\",\n        \"source_constraint\": \"EasyWave Protocol Lock-In\",\n        \"importance\": 7.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 10.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true,\n        \"impact_category\": \"reliability\"\n      },\n      {\n        \"id\": \"N7\",\n        \"error_statement\": \"Minimize the likelihood of proprietary wireless protocol dependency preventing multi-brand emergency exit monitoring consolidation in hotel portfolio standardization programs\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"product_constraint\",\n        \"source_constraint\": \"EasyWave Protocol Lock-In\",\n        \"importance\": 6.0,\n        \"satisfaction_current\": 4.0,\n        \"opportunity_score\": 8.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true,\n        \"impact_category\": \"reliability\"\n      },\n      {\n        \"id\": \"N8\",\n        \"error_statement\": \"Minimize the likelihood of door-event timestamp and access log data triggering a GDPR Data Protection Impact Assessment that delays IoT system deployment in EU hotel properties\",\n        \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n        \"naics_code\": \"721110\",\n        \"job_step_number\": 0,\n        \"job_step_name\": \"product_constraint\",\n        \"source_constraint\": \"GDPR Monitoring Data Compliance\",\n        \"importance\": 6.0,\n        \"satisfaction_current\": 5.0,\n        \"opportunity_score\": 7.0,\n        \"is_underserved\": false,\n        \"is_overserved\": false,\n        \"product_related\": true,\n        \"impact_category\": \"reliability\"\n      }\n    ],\n    \"market_summary\": {\n      \"market_name\": \"Hotels (except Casino Hotels) and Motels\",\n      \"naics_code\": \"721110\",\n      \"total_needs\": 27,\n      \"underserved_count\": 6,\n      \"overserved_count\": 0,\n      \"avg_opportunity_score\": 10.63,\n      \"top_opportunities\": [\n        \"Minimize the likelihood of an emergency exit remaining in an unauthorized open state for >5 minutes without triggering a staff alert\",\n        \"Increase the ability of a single security officer to monitor real-time exit door status across all floors from one centralized interface without physical patrol — covering ≥50 exit points simultaneously\",\n        \"Minimize the time from emergency exit activation event to security staff notification to <30 seconds regardless of time of day\",\n        \"Increase the ability to verify that every installed exit monitoring device is transmitting correctly and that the audible alarm operates without obstruction — within a single end-to-end commissioning test\",\n        \"Increase the ability to produce a complete, timestamped digital audit log of all emergency exit activations and response actions, formatted for fire marshal inspection without manual compilation\"\n      ],\n      \"odi_feature_fit_cross_check\": {\n        \"feature_fit_avg\": 5.67,\n        \"odi_avg\": 10.63,\n        \"flag\": \"none\",\n        \"note\": \"No inconsistency. ODI avg 10.63 (appropriately served) and FMA 5.67 (moderate) are directionally consistent.\"\n      }\n    }\n  }\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Need",
+        "Original sat",
+        "Recalibrated",
+        "Rationale"
+      ],
+      "rows": [
+        {
+          "Need": "E10 — Alert latency <30 sec",
+          "Original sat": "5",
+          "Recalibrated": "**4**",
+          "Rationale": "Dominant A1 (45%) delivers zero remote notification; blended market satisfaction ≈ 3–4. IoT minority (25%) achieves it, but majority of installed base cannot. Lowered to 4."
+        },
+        {
+          "Need": "All others",
+          "Original sat": "—",
+          "Recalibrated": "**unchanged**",
+          "Rationale": "Incumbent evidence confirms scores. E8 sat=8 (all certified products meet EN 179/1125). E15 sat=3 (no incumbent provides automated fire marshal log). E6/E9 sat=4 (A1 majority has no remote alert)."
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Error Statement (short)",
+        "Step",
+        "Imp",
+        "Sat",
+        "**OS**",
+        "Underserved",
+        "Overserved",
+        "p_rel"
+      ],
+      "rows": [
+        {
+          "ID": "E1",
+          "Error Statement (short)": "Unmonitored high-risk exits due to incomplete coverage mapping",
+          "Step": "DEFINE",
+          "Imp": "7",
+          "Sat": "5",
+          "**OS**": "**9**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "p_rel": "—"
+        },
+        {
+          "ID": "E2",
+          "Error Statement (short)": "Wireless receiver placement before hardware purchase",
+          "Step": "LOCATE",
+          "Imp": "7",
+          "Sat": "4",
+          "**OS**": "**10**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "p_rel": "✓"
+        },
+        {
+          "ID": "E3",
+          "Error Statement (short)": "Commission 100-room hotel in <4 hr without structural modification",
+          "Step": "PREPARE",
+          "Imp": "8",
+          "Sat": "5",
+          "**OS**": "**11**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "p_rel": "✓"
+        },
+        {
+          "ID": "E4",
+          "Error Statement (short)": "Alarm not impaired during device mounting/pairing",
+          "Step": "PREPARE",
+          "Imp": "9",
+          "Sat": "7",
+          "**OS**": "**11**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "p_rel": "—"
+        },
+        {
+          "ID": "E5",
+          "Error Statement (short)": "Single end-to-end commissioning test (transmit + alarm verified)",
+          "Step": "CONFIRM",
+          "Imp": "9",
+          "Sat": "5",
+          "**OS**": "**13**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "p_rel": "—"
+        },
+        {
+          "ID": "E6",
+          "Error Statement (short)": "Unauthorized exit open >5 min without staff alert",
+          "Step": "EXECUTE",
+          "Imp": "9",
+          "Sat": "4",
+          "**OS**": "**14**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "p_rel": "—"
+        },
+        {
+          "ID": "E7",
+          "Error Statement (short)": "Authorized staff uses generating false alerts",
+          "Step": "EXECUTE",
+          "Imp": "8",
+          "Sat": "4",
+          "**OS**": "**12**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "p_rel": "—"
+        },
+        {
+          "ID": "E8",
+          "Error Statement (short)": "Monitoring device adding steps/force to fire evacuation",
+          "Step": "EXECUTE",
+          "Imp": "10",
+          "Sat": "8",
+          "**OS**": "**12**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "p_rel": "—"
+        },
+        {
+          "ID": "E9",
+          "Error Statement (short)": "1 officer monitors ≥50 exits centrally without patrol",
+          "Step": "MONITOR",
+          "Imp": "9",
+          "Sat": "4",
+          "**OS**": "**14**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "p_rel": "—"
+        },
+        {
+          "ID": "E10",
+          "Error Statement (short)": "Activation-to-notification latency <30 sec *(recal. sat 5→4)*",
+          "Step": "MONITOR",
+          "Imp": "9",
+          "Sat": "**4**",
+          "**OS**": "**14**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "p_rel": "—"
+        },
+        {
+          "ID": "E11",
+          "Error Statement (short)": "Wireless connectivity loss >15 min during occupied hours",
+          "Step": "MONITOR",
+          "Imp": "8",
+          "Sat": "5",
+          "**OS**": "**11**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "p_rel": "✓"
+        },
+        {
+          "ID": "E12",
+          "Error Statement (short)": "Evacuation event misclassified as unauthorized use",
+          "Step": "MONITOR",
+          "Imp": "8",
+          "Sat": "5",
+          "**OS**": "**11**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "p_rel": "—"
+        },
+        {
+          "ID": "E13",
+          "Error Statement (short)": "Triggered device reset to active state in <2 min",
+          "Step": "MODIFY",
+          "Imp": "7",
+          "Sat": "6",
+          "**OS**": "**8**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "p_rel": "—"
+        },
+        {
+          "ID": "E14",
+          "Error Statement (short)": "High-priority alert missed due to saturation from low-priority events",
+          "Step": "MODIFY",
+          "Imp": "8",
+          "Sat": "5",
+          "**OS**": "**11**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "p_rel": "—"
+        },
+        {
+          "ID": "E15",
+          "Error Statement (short)": "Digital audit log formatted for fire marshal, no manual compile",
+          "Step": "CONCLUDE",
+          "Imp": "8",
+          "Sat": "3",
+          "**OS**": "**13**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "p_rel": "—"
+        },
+        {
+          "ID": "E16",
+          "Error Statement (short)": "Proactive battery depletion ID across ≥30 devices",
+          "Step": "CONCLUDE",
+          "Imp": "7",
+          "Sat": "4",
+          "**OS**": "**10**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "p_rel": "✓"
+        },
+        {
+          "ID": "E17",
+          "Error Statement (short)": "Integrate event data with hotel BMS (standard protocols)",
+          "Step": "CONCLUDE",
+          "Imp": "7",
+          "Sat": "4",
+          "**OS**": "**10**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "p_rel": "✓"
+        },
+        {
+          "ID": "E18",
+          "Error Statement (short)": "Consistent compliance status across all floors at any time",
+          "Step": "P2 Core",
+          "Imp": "8",
+          "Sat": "4",
+          "**OS**": "**12**",
+          "Underserved": "✓",
+          "Overserved": "—",
+          "p_rel": "—"
+        },
+        {
+          "ID": "E19",
+          "Error Statement (short)": "No violations cited at fire authority / brand standards audit",
+          "Step": "P2 Core",
+          "Imp": "9",
+          "Sat": "6",
+          "**OS**": "**12**",
+          "Underserved": "—",
+          "Overserved": "—",
+          "p_rel": "—"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Error Statement (short)",
+        "Source Constraint",
+        "Imp",
+        "Sat",
+        "**OS**",
+        "Underserved",
+        "Overserved"
+      ],
+      "rows": [
+        {
+          "ID": "N1",
+          "Error Statement (short)": "Incomplete wireless coverage leaving exits above floor 3 unmonitored",
+          "Source Constraint": "C3 Wireless Range",
+          "Imp": "7",
+          "Sat": "3",
+          "**OS**": "**11**",
+          "Underserved": "—",
+          "Overserved": "—"
+        },
+        {
+          "ID": "N2",
+          "Error Statement (short)": "Time to design/validate receiver placement before procurement",
+          "Source Constraint": "C3 Wireless Range",
+          "Imp": "6",
+          "Sat": "3",
+          "**OS**": "**9**",
+          "Underserved": "—",
+          "Overserved": "—"
+        },
+        {
+          "ID": "N3",
+          "Error Statement (short)": "Battery depletion at high-traffic exits between maintenance cycles",
+          "Source Constraint": "C4 Battery Life",
+          "Imp": "7",
+          "Sat": "4",
+          "**OS**": "**10**",
+          "Underserved": "—",
+          "Overserved": "—"
+        },
+        {
+          "ID": "N4",
+          "Error Statement (short)": "Time to identify/replace near-depleted batteries across 30+ devices",
+          "Source Constraint": "C4 Battery Life",
+          "Imp": "6",
+          "Sat": "4",
+          "**OS**": "**8**",
+          "Underserved": "—",
+          "Overserved": "—"
+        },
+        {
+          "ID": "N5",
+          "Error Statement (short)": "Surface-mount housing conflicting with hotel brand interior finishes",
+          "Source Constraint": "C5 Surface Mount",
+          "Imp": "5",
+          "Sat": "4",
+          "**OS**": "**6**",
+          "Underserved": "—",
+          "Overserved": "—"
+        },
+        {
+          "ID": "N6",
+          "Error Statement (short)": "Bridge EasyWave events to BACnet/KNX BMS without per-property gateway",
+          "Source Constraint": "C6 Protocol Lock-In",
+          "Imp": "7",
+          "Sat": "4",
+          "**OS**": "**10**",
+          "Underserved": "—",
+          "Overserved": "—"
+        },
+        {
+          "ID": "N7",
+          "Error Statement (short)": "Proprietary protocol preventing portfolio-wide monitoring consolidation",
+          "Source Constraint": "C6 Protocol Lock-In",
+          "Imp": "6",
+          "Sat": "4",
+          "**OS**": "**8**",
+          "Underserved": "—",
+          "Overserved": "—"
+        },
+        {
+          "ID": "N8",
+          "Error Statement (short)": "GDPR DPIA triggered by door-event data delaying EU deployment",
+          "Source Constraint": "C8 GDPR",
+          "Imp": "6",
+          "Sat": "5",
+          "**OS**": "**7**",
+          "Underserved": "—",
+          "Overserved": "—"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "Market",
+          "Value": "Hotels (except Casino Hotels) and Motels"
+        },
+        {
+          "Field": "NAICS",
+          "Value": "721110"
+        },
+        {
+          "Field": "Total needs",
+          "Value": "27 (19 market-level + 8 product-related)"
+        },
+        {
+          "Field": "**Underserved** (imp > 7 AND sat < 5)",
+          "Value": "**6** — E6, E7, E9, E10, E15, E18"
+        },
+        {
+          "Field": "**Overserved** (imp < 3 AND sat > 7)",
+          "Value": "**0**"
+        },
+        {
+          "Field": "Avg opportunity score",
+          "Value": "**10.63**"
+        },
+        {
+          "Field": "ODI zone",
+          "Value": "Appropriately served (10–12) with high-OS underserved cluster"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Rank",
+        "ID",
+        "OS",
+        "Statement"
+      ],
+      "rows": [
+        {
+          "Rank": "1",
+          "ID": "E6",
+          "OS": "**14**",
+          "Statement": "Minimize the likelihood of an emergency exit remaining in an unauthorized open state for >5 min without triggering a staff alert"
+        },
+        {
+          "Rank": "2",
+          "ID": "E9",
+          "OS": "**14**",
+          "Statement": "Increase the ability of a single security officer to monitor real-time exit door status across ≥50 exits from one centralized interface without patrol"
+        },
+        {
+          "Rank": "3",
+          "ID": "E10",
+          "OS": "**14**",
+          "Statement": "Minimize the time from emergency exit activation to security staff notification to <30 seconds regardless of time of day"
+        },
+        {
+          "Rank": "4",
+          "ID": "E5",
+          "OS": "**13**",
+          "Statement": "Increase the ability to verify every installed device transmits correctly and alarm operates without obstruction — within a single commissioning test"
+        },
+        {
+          "Rank": "5",
+          "ID": "E15",
+          "OS": "**13**",
+          "Statement": "Increase the ability to produce a complete timestamped digital audit log formatted for fire marshal inspection without manual compilation"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Threshold",
+        "Condition",
+        "Status"
+      ],
+      "rows": [
+        {
+          "Threshold": "HIGH opp (ODI avg > 12) but LOW fit (FMA < 4)",
+          "Condition": "ODI avg = 10.63 → does NOT exceed 12",
+          "Status": "No flag"
+        },
+        {
+          "Threshold": "LOW opp (ODI avg < 8) but HIGH fit (FMA > 7)",
+          "Condition": "ODI avg = 10.63 → does NOT fall below 8",
+          "Status": "No flag"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "odi_matrix_result": {
+        "market_name": "Hotels (except Casino Hotels) and Motels",
+        "naics_code": "721110",
+        "recalibration_applied": [
+          {
+            "id": "E10",
+            "original_satisfaction": 5,
+            "recalibrated_satisfaction": 4,
+            "rationale": "Dominant incumbent A1 (45% market share, basic mechanical alarm) provides zero remote notification capability. Blended market satisfaction weighted by share is approximately 3–4. Downward adjustment from 5 to 4."
+          }
+        ],
+        "entries": [
+          {
+            "id": "E1",
+            "error_statement": "Minimize the likelihood of high-risk emergency exits remaining unmonitored due to incomplete upfront coverage mapping, leaving ≥1 undetected propping event per month",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 1,
+            "job_step_name": "DEFINE",
+            "importance": 7.0,
+            "satisfaction_current": 5.0,
+            "opportunity_score": 9.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": false,
+            "impact_category": "safety"
+          },
+          {
+            "id": "E2",
+            "error_statement": "Increase the ability to determine wireless receiver placement achieving >95% floor-level signal coverage before hardware purchase or installation",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 2,
+            "job_step_name": "LOCATE",
+            "importance": 7.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 10.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true,
+            "impact_category": "reliability"
+          },
+          {
+            "id": "E3",
+            "error_statement": "Minimize the time required to install and commission emergency exit monitoring devices across a 100-room hotel to <4 hours without structural door modification",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 3,
+            "job_step_name": "PREPARE",
+            "importance": 8.0,
+            "satisfaction_current": 5.0,
+            "opportunity_score": 11.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true,
+            "impact_category": "time"
+          },
+          {
+            "id": "E4",
+            "error_statement": "Minimize the likelihood of emergency exit alarm functionality being impaired during device mounting, pairing, or initial configuration",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 3,
+            "job_step_name": "PREPARE",
+            "importance": 9.0,
+            "satisfaction_current": 7.0,
+            "opportunity_score": 11.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": false,
+            "impact_category": "safety"
+          },
+          {
+            "id": "E5",
+            "error_statement": "Increase the ability to verify that every installed exit monitoring device is transmitting correctly and that the audible alarm operates without obstruction — within a single end-to-end commissioning test",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 4,
+            "job_step_name": "CONFIRM",
+            "importance": 9.0,
+            "satisfaction_current": 5.0,
+            "opportunity_score": 13.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": false,
+            "impact_category": "reliability"
+          },
+          {
+            "id": "E6",
+            "error_statement": "Minimize the likelihood of an emergency exit remaining in an unauthorized open state for >5 minutes without triggering a staff alert",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 5,
+            "job_step_name": "EXECUTE",
+            "importance": 9.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 14.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false,
+            "impact_category": "safety"
+          },
+          {
+            "id": "E7",
+            "error_statement": "Minimize the likelihood of legitimate authorized staff uses of emergency exits generating false alerts that erode security staff confidence in the monitoring system",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 5,
+            "job_step_name": "EXECUTE",
+            "importance": 8.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 12.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false,
+            "impact_category": "reliability"
+          },
+          {
+            "id": "E8",
+            "error_statement": "Minimize the likelihood of an emergency exit monitoring device adding any additional step or force requirement that delays occupant evacuation during a fire emergency",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 5,
+            "job_step_name": "EXECUTE",
+            "importance": 10.0,
+            "satisfaction_current": 8.0,
+            "opportunity_score": 12.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": false,
+            "impact_category": "safety"
+          },
+          {
+            "id": "E9",
+            "error_statement": "Increase the ability of a single security officer to monitor real-time exit door status across all floors from one centralized interface without physical patrol — covering ≥50 exit points simultaneously",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 6,
+            "job_step_name": "MONITOR",
+            "importance": 9.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 14.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false,
+            "impact_category": "time"
+          },
+          {
+            "id": "E10",
+            "error_statement": "Minimize the time from emergency exit activation event to security staff notification to <30 seconds regardless of time of day",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 6,
+            "job_step_name": "MONITOR",
+            "importance": 9.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 14.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false,
+            "impact_category": "time",
+            "recalibration_note": "satisfaction recalibrated from 5 to 4 based on incumbent data (A1 dominant, no remote notification)"
+          },
+          {
+            "id": "E11",
+            "error_statement": "Minimize the likelihood of wireless connectivity loss causing undetected monitoring gaps exceeding 15 minutes during hotel occupied hours",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 6,
+            "job_step_name": "MONITOR",
+            "importance": 8.0,
+            "satisfaction_current": 5.0,
+            "opportunity_score": 11.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true,
+            "impact_category": "reliability"
+          },
+          {
+            "id": "E12",
+            "error_statement": "Minimize the likelihood of the monitoring system misclassifying an emergency evacuation event as an unauthorized door use, triggering an incorrect security response that delays fire evacuation",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 6,
+            "job_step_name": "MONITOR",
+            "importance": 8.0,
+            "satisfaction_current": 5.0,
+            "opportunity_score": 11.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": false,
+            "impact_category": "safety"
+          },
+          {
+            "id": "E13",
+            "error_statement": "Minimize the time required to reset a triggered exit monitoring device and restore it to active state after investigation, to <2 minutes",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 7,
+            "job_step_name": "MODIFY",
+            "importance": 7.0,
+            "satisfaction_current": 6.0,
+            "opportunity_score": 8.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": false,
+            "impact_category": "time"
+          },
+          {
+            "id": "E14",
+            "error_statement": "Minimize the likelihood of a high-priority unauthorized exit event being missed due to alert saturation from high-frequency low-priority activations",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 7,
+            "job_step_name": "MODIFY",
+            "importance": 8.0,
+            "satisfaction_current": 5.0,
+            "opportunity_score": 11.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": false,
+            "impact_category": "safety"
+          },
+          {
+            "id": "E15",
+            "error_statement": "Increase the ability to produce a complete, timestamped digital audit log of all emergency exit activations and response actions, formatted for fire marshal inspection without manual compilation",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 8,
+            "job_step_name": "CONCLUDE",
+            "importance": 8.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 13.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false,
+            "impact_category": "safety"
+          },
+          {
+            "id": "E16",
+            "error_statement": "Minimize the time required to identify and proactively replace batteries approaching depletion threshold across a deployment of ≥30 exit monitoring devices before monitoring capability is lost",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 8,
+            "job_step_name": "CONCLUDE",
+            "importance": 7.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 10.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true,
+            "impact_category": "reliability"
+          },
+          {
+            "id": "E17",
+            "error_statement": "Minimize the effort required to integrate emergency exit monitoring event data with an existing hotel BMS or security platform running standard building protocols",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 8,
+            "job_step_name": "CONCLUDE",
+            "importance": 7.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 10.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true,
+            "impact_category": "cost"
+          },
+          {
+            "id": "E18",
+            "error_statement": "Minimize the variability in emergency exit compliance status across all floor levels at any given time of day",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 0,
+            "job_step_name": "P2 Core Job",
+            "importance": 8.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 12.0,
+            "is_underserved": true,
+            "is_overserved": false,
+            "product_related": false,
+            "impact_category": "safety"
+          },
+          {
+            "id": "E19",
+            "error_statement": "Minimize the likelihood of emergency exit door management violations being cited during annual fire authority inspection or franchise brand standards audit",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 0,
+            "job_step_name": "P2 Core Job",
+            "importance": 9.0,
+            "satisfaction_current": 6.0,
+            "opportunity_score": 12.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": false,
+            "impact_category": "safety"
+          },
+          {
+            "id": "N1",
+            "error_statement": "Minimize the likelihood of incomplete wireless coverage from 30 m transmitter range leaving emergency exits on floors above level 3 in multi-story hotel installations without active IoT monitoring",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "source_constraint": "Wireless Range Limitation",
+            "importance": 7.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 11.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true,
+            "impact_category": "reliability"
+          },
+          {
+            "id": "N2",
+            "error_statement": "Minimize the time required to design and validate wireless receiver placement to achieve >95% floor coverage before hardware procurement in multi-story hotel installations",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "source_constraint": "Wireless Range Limitation",
+            "importance": 6.0,
+            "satisfaction_current": 3.0,
+            "opportunity_score": 9.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true,
+            "impact_category": "reliability"
+          },
+          {
+            "id": "N3",
+            "error_statement": "Minimize the likelihood of 9V battery depletion in high-traffic hotel emergency exits exhausting IoT monitoring capability between scheduled maintenance cycles while the mechanical alarm remains functional",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "source_constraint": "IoT Battery Life Floor",
+            "importance": 7.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 10.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true,
+            "impact_category": "reliability"
+          },
+          {
+            "id": "N4",
+            "error_statement": "Minimize the time required to identify and replace batteries approaching depletion threshold across a 30+ device hotel deployment before wireless monitoring capability is lost",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "source_constraint": "IoT Battery Life Floor",
+            "importance": 6.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 8.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true,
+            "impact_category": "reliability"
+          },
+          {
+            "id": "N5",
+            "error_statement": "Minimize the likelihood of surface-mounted door guardian housing conflicting with hotel brand interior finish specifications in guest-facing corridors and stairwells",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "source_constraint": "Retrofit-Only Surface Mount",
+            "importance": 5.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 6.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true,
+            "impact_category": "reliability"
+          },
+          {
+            "id": "N6",
+            "error_statement": "Minimize the effort required to bridge EasyWave wireless event data to hotel BMS platforms running BACnet, KNX, or IP-based protocols without deploying a dedicated GfS-specific gateway per property",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "source_constraint": "EasyWave Protocol Lock-In",
+            "importance": 7.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 10.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true,
+            "impact_category": "reliability"
+          },
+          {
+            "id": "N7",
+            "error_statement": "Minimize the likelihood of proprietary wireless protocol dependency preventing multi-brand emergency exit monitoring consolidation in hotel portfolio standardization programs",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "source_constraint": "EasyWave Protocol Lock-In",
+            "importance": 6.0,
+            "satisfaction_current": 4.0,
+            "opportunity_score": 8.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true,
+            "impact_category": "reliability"
+          },
+          {
+            "id": "N8",
+            "error_statement": "Minimize the likelihood of door-event timestamp and access log data triggering a GDPR Data Protection Impact Assessment that delays IoT system deployment in EU hotel properties",
+            "market_name": "Hotels (except Casino Hotels) and Motels",
+            "naics_code": "721110",
+            "job_step_number": 0,
+            "job_step_name": "product_constraint",
+            "source_constraint": "GDPR Monitoring Data Compliance",
+            "importance": 6.0,
+            "satisfaction_current": 5.0,
+            "opportunity_score": 7.0,
+            "is_underserved": false,
+            "is_overserved": false,
+            "product_related": true,
+            "impact_category": "reliability"
+          }
+        ],
+        "market_summary": {
+          "market_name": "Hotels (except Casino Hotels) and Motels",
+          "naics_code": "721110",
+          "total_needs": 27,
+          "underserved_count": 6,
+          "overserved_count": 0,
+          "avg_opportunity_score": 10.63,
+          "top_opportunities": [
+            "Minimize the likelihood of an emergency exit remaining in an unauthorized open state for >5 minutes without triggering a staff alert",
+            "Increase the ability of a single security officer to monitor real-time exit door status across all floors from one centralized interface without physical patrol — covering ≥50 exit points simultaneously",
+            "Minimize the time from emergency exit activation event to security staff notification to <30 seconds regardless of time of day",
+            "Increase the ability to verify that every installed exit monitoring device is transmitting correctly and that the audible alarm operates without obstruction — within a single end-to-end commissioning test",
+            "Increase the ability to produce a complete, timestamped digital audit log of all emergency exit activations and response actions, formatted for fire marshal inspection without manual compilation"
+          ],
+          "odi_feature_fit_cross_check": {
+            "feature_fit_avg": 5.67,
+            "odi_avg": 10.63,
+            "flag": "none",
+            "note": "No inconsistency. ODI avg 10.63 (appropriately served) and FMA 5.67 (moderate) are directionally consistent."
+          }
+        }
+      }
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

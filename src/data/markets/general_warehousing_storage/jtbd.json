@@ -1,0 +1,494 @@
+{
+  "naicsCode": "493110",
+  "marketName": "General Warehousing and Storage",
+  "slug": "general_warehousing_storage",
+  "coreJobStatement": "Receive, store, and dispatch client goods with full inventory integrity",
+  "productJobStatement": "Help Facility Safety & Security to maintain emergency exit door compliance and prevent unauthorized door use across large-footprint DC facilities operating under multi-shift schedules -- without mains wiring at each door point",
+  "anchorLevel": "L5",
+  "lPath": "L6 Facility Safety & Security (H) > L5 Emergency Exit Security Device",
+  "segments": [
+    {
+      "segmentNumber": 1,
+      "name": "High-throughput e-commerce DC",
+      "qualifier": "",
+      "characteristics": "24/7 multi-shift, high dock door frequency, large headcount",
+      "isTargetable": true,
+      "targetabilityReason": "Wired systems cost-justified; wireless fills secondary exits; highest door activation volume drives battery drain risk",
+      "circumstance": "24/7 multi-shift, high dock door frequency, large headcount",
+      "alternativesDiffer": "Wired systems cost-justified at scale; wireless fills secondary exits"
+    },
+    {
+      "segmentNumber": 2,
+      "name": "Ambient bulk/pallet DC (3PL)",
+      "qualifier": "",
+      "characteristics": "Large footprint, infrequent maintenance access, tenant variety",
+      "isTargetable": true,
+      "targetabilityReason": "Battery-powered wireless ideal; retrofit-first; highest volume segment for this product",
+      "circumstance": "Large footprint, infrequent maintenance access, tenant variety",
+      "alternativesDiffer": "Battery-powered wireless ideal; retrofit-first environment"
+    },
+    {
+      "segmentNumber": 3,
+      "name": "Cold-chain / regulated DC",
+      "qualifier": "",
+      "characteristics": "Temperature-controlled zones, pharmaceutical/food compliance overlay, frequent audits",
+      "isTargetable": true,
+      "targetabilityReason": "IP-rated device required; stricter logging needed for compliance",
+      "circumstance": "Temperature-controlled zones, pharmaceutical/food compliance overlay, frequent audits",
+      "alternativesDiffer": "IP-rated device required; stricter compliance logging; battery performance affected by temperature"
+    },
+    {
+      "segmentNumber": 4,
+      "name": "Hazmat / restricted goods DC",
+      "qualifier": "",
+      "characteristics": "Regulated goods (pharma, chemicals), mandatory tamper evidence",
+      "isTargetable": true,
+      "targetabilityReason": "Electronic exit control with log is mandatory; compliance pressure high",
+      "circumstance": "Regulated goods (pharma, chemicals), mandatory tamper evidence",
+      "alternativesDiffer": "Electronic exit control with log required by regulation"
+    },
+    {
+      "segmentNumber": 5,
+      "name": "Cross-docking terminal",
+      "qualifier": "",
+      "characteristics": "High dock activity, many doors, shift-based staffing, no storage dwell",
+      "isTargetable": true,
+      "targetabilityReason": "Low cost per door; rapid deployment needed; highest door count per facility",
+      "circumstance": "High dock activity, many doors, shift-based staffing, no storage dwell",
+      "alternativesDiffer": "Low cost per door critical; rapid deployment needed"
+    }
+  ],
+  "alternatives": [
+    {
+      "name": "Wired alarmed exit bars (e.g., Von Duprin 98/99)",
+      "unspsc": "46171600",
+      "tradeoffs": "Licensed electrician + conduit per door; high retrofit cost; reliable; centralized panel; no wireless flexibility"
+    },
+    {
+      "name": "Mechanical-only door alarm guard (e.g., GfS Basic, ABUS)",
+      "unspsc": "46171500",
+      "tradeoffs": "No remote monitoring; local alarm only; zero battery dependency for alarm; lowest cost; no event log"
+    },
+    {
+      "name": "Wireless electronic exit control (e.g., dormakaba SafeRoute, GEZE SecuLogic)",
+      "unspsc": "46171600",
+      "tradeoffs": "Higher per-door cost; richer BACnet/KNX protocol integration; battery-dependent for full function; EN 13637 compliant"
+    },
+    {
+      "name": "CCTV + staff patrol",
+      "unspsc": "46181600",
+      "tradeoffs": "High ongoing labor cost; no door-level alarm; GDPR complexity; no automatic compliance log; coverage gaps in non-camera zones"
+    },
+    {
+      "name": "Do nothing / accept risk",
+      "unspsc": "",
+      "tradeoffs": "Zero cost; full OSHA exposure ($16,550/violation serious, $165,514 willful/repeat); fire marshal citation risk; insurance premium impact"
+    }
+  ],
+  "jobSteps": [
+    {
+      "stepNumber": 1,
+      "verb": "Define",
+      "description": "Determine which emergency exit doors require guarding, compliance threshold per zone, and wireless gateway coverage plan across DC footprint",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Product selection requires site survey to size gateway coverage and confirm which exits need EN 179/1125 hardware",
+      "rawStatement": "Determine which emergency exit doors require guarding, compliance threshold per zone, and wireless gateway coverage plan across DC footprint",
+      "jobStep": "DEFINE",
+      "relevant": true,
+      "rationale": "Product selection requires site survey to size gateway coverage and confirm which exits need EN 179/1125 hardware"
+    },
+    {
+      "stepNumber": 2,
+      "verb": "Locate",
+      "description": "Survey all emergency exit door locations; assess RF propagation constraints through steel racking, metal cladding, and reinforced concrete",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Wireless range constraint (C3) makes RF site survey mandatory before device placement; steel racking and metal cladding are primary attenuators in DC environments",
+      "rawStatement": "Survey all emergency exit door locations; assess RF propagation constraints through steel racking, metal cladding, and reinforced concrete",
+      "jobStep": "LOCATE",
+      "relevant": true,
+      "rationale": "Wireless range constraint (C3) makes RF site survey mandatory before device placement; steel racking and metal cladding are primary attenuators in DC environments"
+    },
+    {
+      "stepNumber": 3,
+      "verb": "Prepare",
+      "description": "Install devices surface-mounted on door handles; deploy wireless gateways; commission the wireless network; test BMS integration",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Surface-mount retrofit without electrician is the primary installation differentiator for DC environments",
+      "rawStatement": "Install devices surface-mounted on door handles; deploy wireless gateways; commission the wireless network; test BMS integration",
+      "jobStep": "PREPARE",
+      "relevant": true,
+      "rationale": "Surface-mount retrofit without electrician is the primary installation differentiator for DC environments"
+    },
+    {
+      "stepNumber": 4,
+      "verb": "Confirm",
+      "description": "Verify 95 dB alarm audibility in high-ambient-noise dock areas; confirm wireless link quality for all devices; complete commissioning checklist",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "DC ambient noise from IC/diesel forklifts (85-95 dB) and backup alarms (97-112 dB) can mask 95 dB alarm; wireless commissioning must be confirmed pre-handover",
+      "rawStatement": "Verify 95 dB alarm audibility in high-ambient-noise dock areas; confirm wireless link quality for all devices",
+      "jobStep": "CONFIRM",
+      "relevant": true,
+      "rationale": "DC ambient noise from IC/diesel forklifts (85-95 dB) and backup alarms (97-112 dB) can mask 95 dB alarm; wireless commissioning must be confirmed pre-handover"
+    },
+    {
+      "stepNumber": 5,
+      "verb": "Execute",
+      "description": "Mechanical guard physically prevents handle depression; 45-degree swing triggers 95 dB alarm and transmits alert to monitoring gateway",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Primary security function -- mechanical guard + alarm is the core value in warehouse environments",
+      "rawStatement": "Mechanical guard physically prevents handle depression; 45-degree swing triggers 95 dB alarm and transmits alert to monitoring gateway",
+      "jobStep": "EXECUTE",
+      "relevant": true,
+      "rationale": "Primary security function -- mechanical guard + alarm is the core value in warehouse environments"
+    },
+    {
+      "stepNumber": 6,
+      "verb": "Monitor",
+      "description": "Receive and act on real-time door status alerts across all monitored exits; track battery status remotely; escalate active alarms to shift operations team",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "IoT overlay is the key differentiator vs. mechanical-only; monitoring is the value proposition for 3-shift DC operations where patrol is impractical",
+      "rawStatement": "Receive and act on real-time door status alerts across all monitored exits; track battery status remotely",
+      "jobStep": "MONITOR",
+      "relevant": true,
+      "rationale": "IoT overlay is the key differentiator vs. mechanical-only; monitoring is the value proposition for 3-shift DC operations where patrol is impractical"
+    },
+    {
+      "stepNumber": 7,
+      "verb": "Modify",
+      "description": "Respond to alarm events; physically investigate the triggered door; reset device to secured state; log investigation outcome",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Post-alarm response is a real-time operational task; door identification and reset differ for authorized vs. unauthorized events",
+      "rawStatement": "Respond to alarm events; physically investigate the triggered door; reset device to secured state; log investigation outcome",
+      "jobStep": "MODIFY",
+      "relevant": true,
+      "rationale": "Post-alarm response is a real-time operational task; door identification and reset differ for authorized vs. unauthorized events"
+    },
+    {
+      "stepNumber": 8,
+      "verb": "Conclude",
+      "description": "Generate compliance reports for fire marshal audit and OSHA 1910.36 inspection; execute battery replacement before depletion; archive event logs per regulatory retention requirements",
+      "isSensorRelevant": true,
+      "sensorDependencyRationale": "Bi-annual fire marshal inspections and OSHA 3-year NEP on warehouse safety make documented automated compliance logs a primary deliverable",
+      "rawStatement": "Generate compliance reports for fire marshal audit and OSHA 1910.36 inspection; execute battery replacement before depletion",
+      "jobStep": "CONCLUDE",
+      "relevant": true,
+      "rationale": "Bi-annual fire marshal inspections and OSHA 3-year NEP on warehouse safety make documented automated compliance logs a primary deliverable"
+    }
+  ],
+  "stakeholders": [
+    {
+      "role": "Job Executor",
+      "who": "Facility Safety Manager / HSE coordinator",
+      "pyramidLevels": "P1 (all), P2, P3, P4, P5"
+    },
+    {
+      "role": "Job Overseer",
+      "who": "DC Operations Director / 3PL GM",
+      "pyramidLevels": "P1 (own), P2, P4"
+    },
+    {
+      "role": "Job Beneficiary",
+      "who": "Warehouse operator organization -- avoids compliance liability and incidents",
+      "pyramidLevels": "P2, P5"
+    },
+    {
+      "role": "Lifecycle Support — Installer",
+      "who": "Security integrator / maintenance technician",
+      "pyramidLevels": "P1 Preparation"
+    },
+    {
+      "role": "Lifecycle Support — Maintainer",
+      "who": "Facilities team / maintenance tech (battery replacement)",
+      "pyramidLevels": "P1 Maintenance"
+    },
+    {
+      "role": "Purchase Executor",
+      "who": "Procurement / CFO -- CAPEX decision, ROI vs. basic mechanical or wired",
+      "pyramidLevels": "P1 Acquisition"
+    },
+    {
+      "role": "Purchase Influencer",
+      "who": "Fire marshal, insurance underwriter, OSHA inspector",
+      "pyramidLevels": "P2, P4"
+    }
+  ],
+  "needs": [
+    {
+      "id": "N01",
+      "statement": "Minimize the likelihood of missing an emergency exit door requiring compliance coverage in a multi-building DC campus, resulting in a citation gap exceeding 1 door per 10,000 m2 floor area",
+      "jobStep": "DEFINE",
+      "errorType": "ACCURACY",
+      "importance": 9,
+      "satisfaction": 3,
+      "opportunity": 15,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "N02",
+      "statement": "Minimize the effort required to generate a site-specific wireless coverage plan for a DC facility with >30,000 m2 floor area and steel racking infrastructure",
+      "jobStep": "DEFINE",
+      "errorType": "EFFORT",
+      "importance": 7,
+      "satisfaction": 3,
+      "opportunity": 11,
+      "impactCategory": "time",
+      "productRelated": true,
+      "confidence": 0.75
+    },
+    {
+      "id": "N03",
+      "statement": "Minimize the likelihood of deploying wireless receivers in locations with insufficient RF signal penetration through steel racking, corrugated metal cladding, and reinforced concrete walls",
+      "jobStep": "LOCATE",
+      "errorType": "ACCURACY",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.80
+    },
+    {
+      "id": "N04",
+      "statement": "Minimize the installation time per door for surface-mount emergency exit security retrofit without requiring licensed electrical contractors or structural modification",
+      "jobStep": "PREPARE",
+      "errorType": "EFFORT",
+      "importance": 7,
+      "satisfaction": 6,
+      "opportunity": 8,
+      "impactCategory": "cost",
+      "productRelated": false,
+      "confidence": 0.90
+    },
+    {
+      "id": "N05",
+      "statement": "Minimize variability in installation quality across different EN 179 lever handle and EN 1125 panic bar configurations within the same DC facility",
+      "jobStep": "PREPARE",
+      "errorType": "CONSISTENCY",
+      "importance": 6,
+      "satisfaction": 5,
+      "opportunity": 7,
+      "impactCategory": "reliability",
+      "productRelated": false,
+      "confidence": 0.70
+    },
+    {
+      "id": "N06",
+      "statement": "Minimize the likelihood that mounting configuration impairs single-motion escape capability, creating a non-compliance condition detectable only at fire marshal inspection",
+      "jobStep": "PREPARE",
+      "errorType": "ACCURACY",
+      "importance": 9,
+      "satisfaction": 4,
+      "opportunity": 14,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "N07",
+      "statement": "Minimize the likelihood that 95 dB alarm output falls below audibility threshold in dock areas with ambient noise levels of 85-95 dB from IC forklifts and backup alarms",
+      "jobStep": "CONFIRM",
+      "errorType": "ACCURACY",
+      "importance": 9,
+      "satisfaction": 4,
+      "opportunity": 14,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "N08",
+      "statement": "Minimize the time to detect wireless device commissioning failures (dead zones, signal interference from MHE) before system handover to operations",
+      "jobStep": "CONFIRM",
+      "errorType": "DETECTION",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.80
+    },
+    {
+      "id": "N09",
+      "statement": "Minimize the likelihood of an unauthorized door-opening event going undetected due to battery depletion at a high-traffic dock exit during multi-shift operations",
+      "jobStep": "EXECUTE",
+      "errorType": "ROBUSTNESS",
+      "importance": 9,
+      "satisfaction": 3,
+      "opportunity": 15,
+      "impactCategory": "safety",
+      "productRelated": true,
+      "confidence": 0.85
+    },
+    {
+      "id": "N10",
+      "statement": "Minimize the false alarm rate caused by inadvertent handle contact by dock workers and forklift operators in narrow dock corridors, measured as false activations per 1,000 door passes",
+      "jobStep": "EXECUTE",
+      "errorType": "ACCURACY",
+      "importance": 7,
+      "satisfaction": 4,
+      "opportunity": 10,
+      "impactCategory": "cost",
+      "productRelated": true,
+      "confidence": 0.80
+    },
+    {
+      "id": "N11",
+      "statement": "Maximize the number of emergency exit doors that can be monitored per wireless gateway installation across a DC facility exceeding 20,000 m2",
+      "jobStep": "EXECUTE",
+      "errorType": "THROUGHPUT",
+      "importance": 7,
+      "satisfaction": 4,
+      "opportunity": 10,
+      "impactCategory": "cost",
+      "productRelated": true,
+      "confidence": 0.75
+    },
+    {
+      "id": "N12",
+      "statement": "Minimize the time between an emergency door-opening event and alert delivery to shift operations staff during 24/7 multi-shift DC operations",
+      "jobStep": "MONITOR",
+      "errorType": "DETECTION",
+      "importance": 9,
+      "satisfaction": 4,
+      "opportunity": 14,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "N13",
+      "statement": "Minimize the effort required for operations staff to identify the precise physical location of the door that triggered an active alarm in a DC exceeding 20,000 m2 floor area",
+      "jobStep": "MONITOR",
+      "errorType": "EFFORT",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "N14",
+      "statement": "Minimize monitoring system downtime when a wireless gateway or receiver loses connectivity due to power outage or RF interference from warehouse equipment",
+      "jobStep": "MONITOR",
+      "errorType": "ROBUSTNESS",
+      "importance": 8,
+      "satisfaction": 4,
+      "opportunity": 12,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.75
+    },
+    {
+      "id": "N15",
+      "statement": "Minimize the time to restore an emergency exit door to its secured state and return the monitoring system to active status following an authorized or unauthorized activation event",
+      "jobStep": "MODIFY",
+      "errorType": "RECOVERY",
+      "importance": 7,
+      "satisfaction": 5,
+      "opportunity": 9,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "N16",
+      "statement": "Increase the ability to distinguish between genuine unauthorized door use and inadvertent activation, with sufficient event context (timestamp, door ID, pre-event status) to support post-event investigation with >90% incident classification accuracy",
+      "jobStep": "MODIFY",
+      "errorType": "DETECTION",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "reliability",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "N17",
+      "statement": "Minimize the time required to compile emergency exit compliance evidence for bi-annual fire marshal inspection and OSHA 29 CFR 1910.36 audit, measured in staff-hours per inspection cycle",
+      "jobStep": "CONCLUDE",
+      "errorType": "EFFORT",
+      "importance": 8,
+      "satisfaction": 2,
+      "opportunity": 14,
+      "impactCategory": "time",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "N18",
+      "statement": "Minimize the likelihood of compliance documentation gaps caused by manual event log entry errors or missed recording during shift handover",
+      "jobStep": "CONCLUDE",
+      "errorType": "ACCURACY",
+      "importance": 9,
+      "satisfaction": 3,
+      "opportunity": 15,
+      "impactCategory": "safety",
+      "productRelated": false,
+      "confidence": 0.85
+    },
+    {
+      "id": "N19",
+      "statement": "Maximize the percentage of door events automatically captured in an audit-ready tamper-evident log without manual data entry by operations staff",
+      "jobStep": "CONCLUDE",
+      "errorType": "THROUGHPUT",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "cost",
+      "productRelated": false,
+      "confidence": 0.80
+    },
+    {
+      "id": "N20",
+      "statement": "Minimize the time to detect battery status degradation below the replacement threshold before alarm or monitoring capability is compromised, measured as lead time between alert and battery failure",
+      "jobStep": "CONCLUDE",
+      "errorType": "DETECTION",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "reliability",
+      "productRelated": true,
+      "confidence": 0.80
+    },
+    {
+      "id": "P3-1",
+      "statement": "Minimize the gap between actual door-event record completeness and an audit-ready compliance log, measured in preparation hours per inspection cycle",
+      "jobStep": "P3 ROLE IDENTITY",
+      "errorType": "P3_ROLE_IDENTITY",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "confidence",
+      "productRelated": false,
+      "confidence": 0.50
+    },
+    {
+      "id": "P4-1",
+      "statement": "Minimize reliance on manually prepared paper or spreadsheet documentation during fire marshal and insurance audit",
+      "jobStep": "P4 IMAGE IDENTITY",
+      "errorType": "P4_IMAGE_IDENTITY",
+      "importance": 7,
+      "satisfaction": 3,
+      "opportunity": 11,
+      "impactCategory": "confidence",
+      "productRelated": false,
+      "confidence": 0.50
+    },
+    {
+      "id": "P5-1",
+      "statement": "Minimize the maximum undetected duration of an emergency door status change during active warehouse operations",
+      "jobStep": "P5 EMOTIONAL",
+      "errorType": "P5_EMOTIONAL",
+      "importance": 8,
+      "satisfaction": 3,
+      "opportunity": 13,
+      "impactCategory": "confidence",
+      "productRelated": false,
+      "confidence": 0.50
+    }
+  ],
+  "sources": []
+}

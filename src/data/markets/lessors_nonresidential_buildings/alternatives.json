@@ -1,0 +1,32 @@
+{
+  "naicsCode": "531120",
+  "marketName": "Lessors of Nonresidential Buildings (except Miniwarehouses)",
+  "slug": "lessors_nonresidential_buildings",
+  "alternatives": [
+    {
+      "name": "Mechanical door alarm guards, no connectivity (~40% share)",
+      "unspsc": "",
+      "tradeoffs": "No remote monitoring; compliance issues discovered during physical inspection (hours-days lag); no battery monitoring; lowest per-door cost"
+    },
+    {
+      "name": "Wireless IoT exit alarm guards ← Türwächter (~20% share)",
+      "unspsc": "",
+      "tradeoffs": "Battery dependency; EasyWave protocol not natively interoperable with BACnet/KNX (C6); 30 m RF range limit (C3); higher per-door cost (~730 EUR, C7)"
+    },
+    {
+      "name": "Wired electronic exit control, alarm-panel-integrated (~25% share)",
+      "unspsc": "",
+      "tradeoffs": "Requires mains wiring + conduit to each door; electrician for install and maintenance; not retrofit-friendly in occupied buildings; full FACP integration possible"
+    },
+    {
+      "name": "Integrated alarmed panic hardware (e-Bar type) (~15% share)",
+      "unspsc": "",
+      "tradeoffs": "Replaces entire panic bar assembly; highest per-door cost; no retrofit onto existing hardware; heavy installation footprint"
+    },
+    {
+      "name": "Do nothing / manual patrol + paper inspection logs [Status Quo]",
+      "unspsc": "",
+      "tradeoffs": "Zero hardware cost; highest ongoing labor cost; detection lag measured in hours-shifts; compliance documentation gap at audits; zero P1 burden"
+    }
+  ]
+}

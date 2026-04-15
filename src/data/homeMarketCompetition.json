@@ -1,0 +1,12 @@
+{
+  "marketName": "Home Market Analysis — Skipped",
+  "naicsCode": "332321",
+  "naicsTitle": "Metal Window and Door Manufacturing",
+  "functionalNeed": "Skipped per project scope: the Türwächter IoT is analyzed as a new product entering new markets. GfS Rettungswegtechnik manufactures within NAICS 332321 but the product's end markets are downstream building operations, not the manufacturing NAICS itself.",
+  "switchingCost": null,
+  "switchingCostFactors": {},
+  "incumbents": [],
+  "positioningTable": [],
+  "sources": [],
+  "skipReason": "Per INSTRUCTIONS.md: 'Skip Step 04 (Home Market / Incumbents) — this is a new product, no established home market.' The competitive landscape is analyzed per target market in the COMPAT_* sections instead."
+}

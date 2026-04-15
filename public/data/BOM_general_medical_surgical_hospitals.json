@@ -1,0 +1,689 @@
+{
+  "id": "BOM_general_medical_surgical_hospitals",
+  "title": "Product BOM Decomposition — General Medical and Surgical Hospitals",
+  "type": "product_bom",
+  "market_slug": "general_medical_surgical_hospitals",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "NAICS Routing Check",
+      "content": "| Field | Value |\n|---|---|\n| Deployment market NAICS | 622110 — General Medical and Surgical Hospitals (Service sector 62) |\n| Manufacturer NAICS (GfS / Assa Abloy) | ~332510 Hardware Manufacturing / 334290 Other Communications Equipment Manufacturing |\n| BOM applies? | **YES** — the BOM subject is the Türwächter (manufactured physical hardware), not the hospital's output (patient outcomes). Hospital = deployment context only. |\n| Output type (L5) | Emergency Exit Security Device with IoT |\n\n> **Note:** Per routing rules a BOM is not constructed for the hospital's output. A hospital produces patient outcomes, not physical products. This BOM decomposes the Türwächter as it is configured for hospital deployment.\n\n---"
+    },
+    {
+      "title": "B.1 — L4 Subsystems",
+      "content": "| L4 | Category | Function |\n|---|---|---|\n| L4.1 Mechanical guard subsystem | Primary functional | Blocks door handle; triggers alarm on 45° swing; key override bypass |\n| L4.2 Acoustic alarm subsystem | Primary functional | Generates ≤95 dB alarm on activation; pre-alarm warning tone on touch |\n| L4.3 IoT communication subsystem | Control / interface | Transmits guard state and alarm events wirelessly to receiver / BMS gateway |\n| L4.4 Power subsystem | Auxiliary | Supplies 9 V to IoT module; acoustic alarm is mechanically independent of power |\n| L4.5 Housing / enclosure subsystem | Containment | Surface-mounted casing; mounting base; RAL 6029 green safety identification |\n\nAugmentation check: primary functional core ✓ · control system ✓ · power system ✓ · containment ✓ · key override ✓\n\n---"
+    },
+    {
+      "title": "B.2 + B.3 — Decomposition and Alternatives",
+      "content": "### L4.1 — Mechanical Guard Subsystem\n\n```\nL4  Mechanical guard subsystem\n│\n├── L3  Guard arm & pivot module\n│   ├── L2  Pivot assembly\n│   │   └── L1  Pivot pin ──────────── L0  Stainless steel (304/316)\n│   └── L2  Return spring assembly\n│       └── L1  Torsion spring ──────── L0  Spring steel (65Mn or CrSi alloy)\n│\n├── L3  Key override module (profile half-cylinder)\n│   └── L2  Lock cylinder assembly\n│       ├── L1  Cylinder body ─────── L0  Zinc alloy (Zamak 3/5)\n│       └── L1  Tumbler pins ──────── L0  Brass (CuZn37)\n│\n└── L3  Handle block element\n    └── L1  Block cam / stop arm ───── L0  Polyamide 66 (PA66) or POM (Acetal)\n```\n\n**Alternatives at L3 — Guard mechanism principle**\n\n| Alternative | Share (est.) | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Spring-loaded mechanical guard arm (GfS-type) | ~55% | Stable | LOW | Analyst estimate |\n| Integrated alarmed push bar (GfS e-Bar, Detex-type) | ~25% | Growing | LOW | Analyst estimate; Detex, commercialdoorhardwaresupply.com (2024) |\n| Electromagnetic delayed-egress lock (15-sec) | ~15% | Stable | LOW | Analyst estimate; silvaconsultants.com (2024) |\n| Other mechanical restraint configurations | ~5% | Declining | LOW | Analyst estimate |\n\n> **Hospital note:** Electromagnetic delayed-egress is common in psychiatric and dementia wards (NFPA 101 §7.2.1.6 permits 15-second delay). Mechanical guard arm preferred for general corridors, OR exits, and stairwells where instant egress is mandatory.\n\n**Alternatives at L0 — Handle block material**\n\n| Alternative | Share (est.) | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Polyamide 66 (PA66) | ~45% | Stable | LOW | Analyst estimate |\n| POM (Acetal / Delrin) | ~35% | Stable | LOW | Analyst estimate |\n| Die-cast zinc (Zamak) | ~15% | Declining | LOW | Analyst estimate |\n| Other engineering plastics | ~5% | Growing | LOW | Analyst estimate |\n\n---\n\n### L4.2 — Acoustic Alarm Subsystem\n\n```\nL4  Acoustic alarm subsystem\n│\n├── L3  Alarm transducer module\n│   ├── L2  Piezoelectric transducer assembly\n│   │   ├── L1  PZT ceramic disc ────── L0  Lead zirconate titanate (PZT-5A/5H)\n│   │   └── L1  Brass diaphragm ──────── L0  Brass (CuZn30)\n│   └── L1  Volume adjustment potentiometer ── L0  Carbon resistive film\n│\n└── L3  Horn / resonating chamber\n    └── L1  Horn body ──────────────── L0  ABS thermoplastic\n```\n\n**Alternatives at L3 — Alarm transducer type**\n\n| Alternative | Share (est.) | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Piezoelectric (PZT) buzzer/horn | ~75% | Stable | MEDIUM | Piezoelectric Buzzer Market (OpenPR, 2024); Business Research Insights, Buzzer Market $722.6M (2024) |\n| Electromagnetic moving-armature buzzer | ~20% | Declining | MEDIUM | Cognitive Market Research — electromagnetic buzzers $1,351.5M global (2024); simpler but lower max SPL |\n| Electrodynamic mini-speaker | ~5% | Growing | LOW | Analyst estimate; emerging in voice-capable alarm systems |\n\n> **Hospital note:** 95 dB at 1 m violates WHO daytime noise guidelines (40 dB) for patient wards and ICUs. Hospital deployments require software-configurable SPL (65–80 dB for patient-proximate doors). The GfS product supports volume adjustment — verify per variant before specifying.\n\n**Alternatives at L0 — PZT disc material**\n\n| Alternative | Share (est.) | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Lead zirconate titanate (PZT-5A/5H) | ~80% | Stable | MEDIUM | Industry standard for high-SPL applications |\n| Lead-free piezo ceramics (BNT-BT, KNN) | ~15% | Growing | LOW | RoHS pressure; EU Directive 2011/65/EU restricts lead in EEE |\n| PVDF polymer piezo film | ~5% | Stable | LOW | Analyst estimate; niche flexible/low-profile configurations |\n\n---\n\n### L4.3 — IoT Communication Subsystem\n\n```\nL4  IoT communication subsystem\n│\n├── L3  RF transceiver module\n│   ├── L2  PCB assembly\n│   │   ├── L1  Transceiver SoC (868 MHz) ─── L0  Silicon (semiconductor grade)\n│   │   ├── L1  MCU ──────────────────────── L0  Silicon\n│   │   ├── L1  PCB ──────────────────────── L0  FR4 (glass-reinforced epoxy)\n│   │   └── L1  Passive components ─────────── L0  MLCC ceramic (C0G / X5R)\n│   └── L1  Antenna (PCB trace or whip) ─────── L0  Copper (Cu)\n│\n└── L3  State detection module\n    ├── L1  Reed switch ──────────────────── L0  Hermetic glass capsule (reed)\n    └── L1  Hall-effect sensor (alternative)  ── L0  Silicon\n```\n\n**Alternatives at L3 — Wireless protocol (primary design choice)**\n\n| Alternative | Share in building security IoT (est.) | Trend | Confidence | Source |\n|---|---|---|---|---|\n| Zigbee 2.4 GHz | ~30% | Stable | MEDIUM | IHS Markit; Emergen Research (2024) — 1.4B active Zigbee devices; dominant in building automation |\n| BLE 5.x (Bluetooth Low Energy) | ~25% | Growing | MEDIUM | Emergen Research (2024) — BLE in 82% of smartwatches; strong growth in commercial building security |\n| LoRaWAN 868/915 MHz | ~20% | Growing fast | MEDIUM | GM Insights: LoRaWAN market $3.7B (2024), CAGR 41.1% (2025–2034); wall-penetrating range advantage |\n| Z-Wave 868 MHz | ~10% | Stable | MEDIUM | IHS Markit; strong residential; less dominant in commercial |\n| EasyWave 868 MHz (proprietary GfS) | ~10% | Stable (niche) | LOW | Analyst estimate — proprietary ecosystem, GfS-specific receivers only |\n| Wi-Fi 802.11 | ~5% | Declining for battery | MEDIUM | TMR (2024) — dominant overall IoT share but ~10× higher power draw, impractical for 9V battery |\n\n> **Hospital note:** Hospitals standardize on BACnet/IP or KNX via Siemens Desigo CC or Honeywell EBI. EasyWave is not natively interoperable — a GfS BUS gateway (sold separately) is required. LoRaWAN is attractive for large multi-wing campuses due to 868 MHz penetration through reinforced concrete. Zigbee/BLE suit ward-level deployments where gateway infrastructure already exists.\n\n---\n\n### L4.4 — Power Subsystem\n\n```\nL4  Power subsystem\n│\n└── L3  Battery holder module\n    ├── L2  Battery contact assembly\n    │   ├── L1  Spring contacts ──────── L0  Phosphor bronze (Cu-Sn-P alloy)\n    │   └── L1  Contact housing ─────── L0  ABS thermoplastic\n    └── L1  Battery holder frame ──────── L0  ABS thermoplastic\n    (Battery = consumable, not part of product BOM; chemistry IS a design-choice input)\n```\n\n**Alternatives at L0 — Battery chemistry (9 V form factor)**\n\n| Alternative | Share in commercial alarm devices (est.) | Trend | Confidence | Source |\n|---|---|---|---|---|\n| 9V alkaline (Zn-MnO2) | ~60% | Declining | MEDIUM | Industry standard for commercial alarms; GP Batteries, Duracell, Energizer |\n| 9V lithium primary (Li-FeS2) | ~30% | Growing | MEDIUM | 3× longer shelf life; better at extreme temps; preferred for infrequently accessed doors |\n| 9V NiMH rechargeable | ~10% | Stable (niche) | LOW | Analyst estimate; requires recharge infrastructure |\n\n> **Hospital note:** Hospital biomedical engineering departments often mandate specific battery brands for maintenance inventory control. Lithium 9V (e.g., Energizer Ultimate Lithium L522) is preferred for ward doors with high activation frequency — reduces maintenance callouts and battery-failure alarm gaps (Constraint C4).\n\n---\n\n### L4.5 — Housing / Enclosure Subsystem\n\n```\nL4  Housing / enclosure subsystem\n│\n├── L3  Guard arm housing\n│   └── L2  Guard arm body (RAL 6029 safety green)\n│       └── L1  Molded guard body ──────── L0  ABS thermoplastic\n│\n├── L3  Mounting base\n│   ├── L2  Base plate assembly\n│   │   ├── L1  Base plate ─────────────── L0  ABS or Polycarbonate (PC)\n│   │   └── L1  Mounting fasteners ─────── L0  Stainless steel A2-70\n│   └── L1  Glass-frame adapter (Art. 991170, optional) ── L0  ABS\n│\n└── L3  Identification / labelling element\n    └── L1  Warning label ──────────────── L0  Polycarbonate film (UV-stable)\n```\n\n**Alternatives at L0 — Housing material**\n\n| Alternative | Share in safety device housings (est.) | Trend | Confidence | Source |\n|---|---|---|---|---|\n| ABS thermoplastic | ~60% | Stable | MEDIUM | Dominant in commercial door hardware; cost-effective; Grand View Research (2024) |\n| Polycarbonate (PC) | ~20% | Growing | MEDIUM | PC electrical enclosures market $489M (2024); higher impact/temperature resistance |\n| PC/ABS blend | ~15% | Stable | MEDIUM | Business Research Insights PC/ABS $4.94B (2024); balance of both properties |\n| Glass-filled polyamide (PA-GF) | ~5% | Stable | LOW | Analyst estimate; niche industrial/high-temp |\n\n> **Hospital note:** Antimicrobial ABS (silver-ion or copper-infused) is an emerging requirement for door hardware in clinical zones (ICU, OR ante-room, neonatal unit). No GfS antimicrobial housing variant is currently listed — this is a **product gap** vs. dormakaba SafeRoute and ASSA ABLOY's own CLIQ range, which offer antimicrobial finish options.\n\n---"
+    },
+    {
+      "title": "Hospital-Specific Adaptation Matrix",
+      "content": "| BOM Position | Adaptation Required | Severity | Action |\n|---|---|---|---|\n| L4.2 → L3 transducer | Configurable alarm volume (95 dB → 65–80 dB) for patient-proximate doors | HIGH | Confirm volume-adjustable firmware available per variant before specifying |\n| L4.3 → L3 protocol | BACnet/IP or KNX gateway for Siemens Desigo / Honeywell EBI | HIGH | GfS BUS gateway accessory required; add to project BOM |\n| L4.5 → L0 housing | Antimicrobial surface treatment for clinical zone installations | MEDIUM | Product gap — no current GfS SKU; workaround: antimicrobial cover/trim sourced separately |\n| L4.4 → L0 battery | Lithium 9V for high-traffic ward doors; biomedical standardization | MEDIUM | Specify Energizer L522 or equivalent in hospital installation spec |\n| L4.1 → L3 mechanism | No structural change needed; EN 179/1125 hardware fits standard hospital fire doors | NONE | — |\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "```json\n{\n  \"bom_context\": {\n    \"product\": \"GfS Türwächter / Exit Control 179/1125 with IoT\",\n    \"deployment_market\": \"General Medical and Surgical Hospitals\",\n    \"naics_code\": \"622110\",\n    \"manufacturer_naics\": \"332510\",\n    \"output_type\": \"Emergency Exit Security Device with IoT\",\n    \"bom_applies\": true,\n    \"routing_note\": \"BOM is for the manufactured Türwächter hardware, not the hospital's service output\"\n  },\n  \"bom_units\": [\n    {\n      \"name\": \"Mechanical guard subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"Spring-loaded guard arm that physically blocks door handle, triggers alarm on 45° swing, and provides key-override bypass\",\n      \"naics_code\": \"332510\",\n      \"output_type\": \"Emergency Exit Security Device with IoT\"\n    },\n    {\n      \"name\": \"Guard arm & pivot module\",\n      \"level\": \"L3\",\n      \"description\": \"Pivoting arm with return-spring return force and torsion-spring hinge\",\n      \"naics_code\": \"332510\",\n      \"output_type\": \"Emergency Exit Security Device with IoT\",\n      \"parent\": \"Mechanical guard subsystem\"\n    },\n    {\n      \"name\": \"Key override module\",\n      \"level\": \"L3\",\n      \"description\": \"Profile half-cylinder lock for authorized bypass without triggering alarm\",\n      \"naics_code\": \"332510\",\n      \"output_type\": \"Emergency Exit Security Device with IoT\",\n      \"parent\": \"Mechanical guard subsystem\"\n    },\n    {\n      \"name\": \"Handle block element\",\n      \"level\": \"L3\",\n      \"description\": \"Cam or stop-arm that prevents door handle depression in locked state\",\n      \"naics_code\": \"332510\",\n      \"output_type\": \"Emergency Exit Security Device with IoT\",\n      \"parent\": \"Mechanical guard subsystem\"\n    },\n    {\n      \"name\": \"Acoustic alarm subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"Piezoelectric alarm horn (≤95 dB) triggered mechanically; independent of electrical power\",\n      \"naics_code\": \"332510\",\n      \"output_type\": \"Emergency Exit Security Device with IoT\"\n    },\n    {\n      \"name\": \"Alarm transducer module\",\n      \"level\": \"L3\",\n      \"description\": \"PZT-based buzzer/horn assembly with volume adjustment; delivers ≤95 dB SPL\",\n      \"naics_code\": \"332510\",\n      \"output_type\": \"Emergency Exit Security Device with IoT\",\n      \"parent\": \"Acoustic alarm subsystem\"\n    },\n    {\n      \"name\": \"Horn / resonating chamber\",\n      \"level\": \"L3\",\n      \"description\": \"ABS horn body that shapes and amplifies the transducer output\",\n      \"naics_code\": \"332510\",\n      \"output_type\": \"Emergency Exit Security Device with IoT\",\n      \"parent\": \"Acoustic alarm subsystem\"\n    },\n    {\n      \"name\": \"IoT communication subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"868 MHz EasyWave radio module that transmits guard-state and alarm events to centralized receivers\",\n      \"naics_code\": \"332510\",\n      \"output_type\": \"Emergency Exit Security Device with IoT\"\n    },\n    {\n      \"name\": \"RF transceiver module\",\n      \"level\": \"L3\",\n      \"description\": \"SoC + antenna + PCB assembly implementing 868 MHz radio protocol\",\n      \"naics_code\": \"332510\",\n      \"output_type\": \"Emergency Exit Security Device with IoT\",\n      \"parent\": \"IoT communication subsystem\"\n    },\n    {\n      \"name\": \"State detection module\",\n      \"level\": \"L3\",\n      \"description\": \"Reed switch or Hall-effect sensor detecting guard open/closed state\",\n      \"naics_code\": \"332510\",\n      \"output_type\": \"Emergency Exit Security Device with IoT\",\n      \"parent\": \"IoT communication subsystem\"\n    },\n    {\n      \"name\": \"Power subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"9V battery holder supplying IoT module; mechanical alarm operates without battery power\",\n      \"naics_code\": \"332510\",\n      \"output_type\": \"Emergency Exit Security Device with IoT\"\n    },\n    {\n      \"name\": \"Battery holder module\",\n      \"level\": \"L3\",\n      \"description\": \"Spring-contact holder for 9V block battery; tool-free battery replacement\",\n      \"naics_code\": \"332510\",\n      \"output_type\": \"Emergency Exit Security Device with IoT\",\n      \"parent\": \"Power subsystem\"\n    },\n    {\n      \"name\": \"Housing / enclosure subsystem\",\n      \"level\": \"L4\",\n      \"description\": \"Surface-mounted ABS casing in RAL 6029 safety green; mounting base; warning labels\",\n      \"naics_code\": \"332510\",\n      \"output_type\": \"Emergency Exit Security Device with IoT\"\n    },\n    {\n      \"name\": \"Guard arm housing\",\n      \"level\": \"L3\",\n      \"description\": \"Outer casing of guard arm in RAL 6029 green ABS\",\n      \"naics_code\": \"332510\",\n      \"output_type\": \"Emergency Exit Security Device with IoT\",\n      \"parent\": \"Housing / enclosure subsystem\"\n    },\n    {\n      \"name\": \"Mounting base\",\n      \"level\": \"L3\",\n      \"description\": \"Base plate and fastener set for door-handle surface mount; includes glass-frame adapter option\",\n      \"naics_code\": \"332510\",\n      \"output_type\": \"Emergency Exit Security Device with IoT\",\n      \"parent\": \"Housing / enclosure subsystem\"\n    }\n  ],\n  \"bom_alternatives\": [\n    {\n      \"bom_position\": \"Guard arm & pivot module\",\n      \"name\": \"Spring-loaded mechanical guard arm\",\n      \"market_share\": 55,\n      \"trend\": \"Stable\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\"\n    },\n    {\n      \"bom_position\": \"Guard arm & pivot module\",\n      \"name\": \"Integrated alarmed push bar\",\n      \"market_share\": 25,\n      \"trend\": \"Growing\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate; Detex, commercialdoorhardwaresupply.com (2024)\"\n    },\n    {\n      \"bom_position\": \"Guard arm & pivot module\",\n      \"name\": \"Electromagnetic delayed-egress lock\",\n      \"market_share\": 15,\n      \"trend\": \"Stable\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate; silvaconsultants.com (2024)\"\n    },\n    {\n      \"bom_position\": \"Guard arm & pivot module\",\n      \"name\": \"Other mechanical restraint\",\n      \"market_share\": 5,\n      \"trend\": \"Declining\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\"\n    },\n    {\n      \"bom_position\": \"Alarm transducer module\",\n      \"name\": \"Piezoelectric (PZT) buzzer/horn\",\n      \"market_share\": 75,\n      \"trend\": \"Stable\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Piezoelectric Buzzer Market (OpenPR, 2024); Business Research Insights Buzzer Market $722.6M (2024)\"\n    },\n    {\n      \"bom_position\": \"Alarm transducer module\",\n      \"name\": \"Electromagnetic moving-armature buzzer\",\n      \"market_share\": 20,\n      \"trend\": \"Declining\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Cognitive Market Research — electromagnetic buzzers $1,351.5M global (2024)\"\n    },\n    {\n      \"bom_position\": \"Alarm transducer module\",\n      \"name\": \"Electrodynamic mini-speaker\",\n      \"market_share\": 5,\n      \"trend\": \"Growing\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\"\n    },\n    {\n      \"bom_position\": \"RF transceiver module\",\n      \"name\": \"Zigbee 2.4 GHz\",\n      \"market_share\": 30,\n      \"trend\": \"Stable\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"IHS Markit; Emergen Research IoT Protocol Market (2024) — 1.4B active Zigbee devices\"\n    },\n    {\n      \"bom_position\": \"RF transceiver module\",\n      \"name\": \"BLE 5.x (Bluetooth Low Energy)\",\n      \"market_share\": 25,\n      \"trend\": \"Growing\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Emergen Research IoT Protocol Market (2024)\"\n    },\n    {\n      \"bom_position\": \"RF transceiver module\",\n      \"name\": \"LoRaWAN 868/915 MHz\",\n      \"market_share\": 20,\n      \"trend\": \"Growing fast\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"GM Insights: LoRaWAN market $3.7B (2024), CAGR 41.1% (2025–2034)\"\n    },\n    {\n      \"bom_position\": \"RF transceiver module\",\n      \"name\": \"Z-Wave 868 MHz\",\n      \"market_share\": 10,\n      \"trend\": \"Stable\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"IHS Markit connectivity report\"\n    },\n    {\n      \"bom_position\": \"RF transceiver module\",\n      \"name\": \"EasyWave 868 MHz (proprietary GfS)\",\n      \"market_share\": 10,\n      \"trend\": \"Stable\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate — proprietary ecosystem\"\n    },\n    {\n      \"bom_position\": \"RF transceiver module\",\n      \"name\": \"Wi-Fi 802.11\",\n      \"market_share\": 5,\n      \"trend\": \"Declining for battery\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"TMR IoT Protocol Market (2024) — dominant overall but power-impractical for 9V battery\"\n    },\n    {\n      \"bom_position\": \"Battery holder module\",\n      \"name\": \"9V alkaline (Zn-MnO2)\",\n      \"market_share\": 60,\n      \"trend\": \"Declining\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Industry standard; GP Batteries, Duracell, Energizer\"\n    },\n    {\n      \"bom_position\": \"Battery holder module\",\n      \"name\": \"9V lithium primary (Li-FeS2)\",\n      \"market_share\": 30,\n      \"trend\": \"Growing\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Analyst estimate; 3× shelf life advantage documented by Energizer product data\"\n    },\n    {\n      \"bom_position\": \"Battery holder module\",\n      \"name\": \"9V NiMH rechargeable\",\n      \"market_share\": 10,\n      \"trend\": \"Stable\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\"\n    },\n    {\n      \"bom_position\": \"Guard arm housing\",\n      \"name\": \"ABS thermoplastic\",\n      \"market_share\": 60,\n      \"trend\": \"Stable\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Grand View Research polycarbonate/plastic enclosures market (2024)\"\n    },\n    {\n      \"bom_position\": \"Guard arm housing\",\n      \"name\": \"Polycarbonate (PC)\",\n      \"market_share\": 20,\n      \"trend\": \"Growing\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Polycarbonate electrical enclosures market $489M (2024)\"\n    },\n    {\n      \"bom_position\": \"Guard arm housing\",\n      \"name\": \"PC/ABS blend\",\n      \"market_share\": 15,\n      \"trend\": \"Stable\",\n      \"confidence\": \"MEDIUM\",\n      \"source\": \"Business Research Insights PC/ABS market $4.94B (2024)\"\n    },\n    {\n      \"bom_position\": \"Guard arm housing\",\n      \"name\": \"Glass-filled polyamide (PA-GF)\",\n      \"market_share\": 5,\n      \"trend\": \"Stable\",\n      \"confidence\": \"LOW\",\n      \"source\": \"Analyst estimate\"\n    }\n  ]\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "Deployment market NAICS",
+          "Value": "622110 — General Medical and Surgical Hospitals (Service sector 62)"
+        },
+        {
+          "Field": "Manufacturer NAICS (GfS / Assa Abloy)",
+          "Value": "~332510 Hardware Manufacturing / 334290 Other Communications Equipment Manufacturing"
+        },
+        {
+          "Field": "BOM applies?",
+          "Value": "**YES** — the BOM subject is the Türwächter (manufactured physical hardware), not the hospital's output (patient outcomes). Hospital = deployment context only."
+        },
+        {
+          "Field": "Output type (L5)",
+          "Value": "Emergency Exit Security Device with IoT"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "L4",
+        "Category",
+        "Function"
+      ],
+      "rows": [
+        {
+          "L4": "L4.1 Mechanical guard subsystem",
+          "Category": "Primary functional",
+          "Function": "Blocks door handle; triggers alarm on 45° swing; key override bypass"
+        },
+        {
+          "L4": "L4.2 Acoustic alarm subsystem",
+          "Category": "Primary functional",
+          "Function": "Generates ≤95 dB alarm on activation; pre-alarm warning tone on touch"
+        },
+        {
+          "L4": "L4.3 IoT communication subsystem",
+          "Category": "Control / interface",
+          "Function": "Transmits guard state and alarm events wirelessly to receiver / BMS gateway"
+        },
+        {
+          "L4": "L4.4 Power subsystem",
+          "Category": "Auxiliary",
+          "Function": "Supplies 9 V to IoT module; acoustic alarm is mechanically independent of power"
+        },
+        {
+          "L4": "L4.5 Housing / enclosure subsystem",
+          "Category": "Containment",
+          "Function": "Surface-mounted casing; mounting base; RAL 6029 green safety identification"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share (est.)",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Spring-loaded mechanical guard arm (GfS-type)",
+          "Share (est.)": "~55%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate"
+        },
+        {
+          "Alternative": "Integrated alarmed push bar (GfS e-Bar, Detex-type)",
+          "Share (est.)": "~25%",
+          "Trend": "Growing",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; Detex, commercialdoorhardwaresupply.com (2024)"
+        },
+        {
+          "Alternative": "Electromagnetic delayed-egress lock (15-sec)",
+          "Share (est.)": "~15%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; silvaconsultants.com (2024)"
+        },
+        {
+          "Alternative": "Other mechanical restraint configurations",
+          "Share (est.)": "~5%",
+          "Trend": "Declining",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share (est.)",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Polyamide 66 (PA66)",
+          "Share (est.)": "~45%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate"
+        },
+        {
+          "Alternative": "POM (Acetal / Delrin)",
+          "Share (est.)": "~35%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate"
+        },
+        {
+          "Alternative": "Die-cast zinc (Zamak)",
+          "Share (est.)": "~15%",
+          "Trend": "Declining",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate"
+        },
+        {
+          "Alternative": "Other engineering plastics",
+          "Share (est.)": "~5%",
+          "Trend": "Growing",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share (est.)",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Piezoelectric (PZT) buzzer/horn",
+          "Share (est.)": "~75%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Piezoelectric Buzzer Market (OpenPR, 2024); Business Research Insights, Buzzer Market $722.6M (2024)"
+        },
+        {
+          "Alternative": "Electromagnetic moving-armature buzzer",
+          "Share (est.)": "~20%",
+          "Trend": "Declining",
+          "Confidence": "MEDIUM",
+          "Source": "Cognitive Market Research — electromagnetic buzzers $1,351.5M global (2024); simpler but lower max SPL"
+        },
+        {
+          "Alternative": "Electrodynamic mini-speaker",
+          "Share (est.)": "~5%",
+          "Trend": "Growing",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; emerging in voice-capable alarm systems"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share (est.)",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Lead zirconate titanate (PZT-5A/5H)",
+          "Share (est.)": "~80%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Industry standard for high-SPL applications"
+        },
+        {
+          "Alternative": "Lead-free piezo ceramics (BNT-BT, KNN)",
+          "Share (est.)": "~15%",
+          "Trend": "Growing",
+          "Confidence": "LOW",
+          "Source": "RoHS pressure; EU Directive 2011/65/EU restricts lead in EEE"
+        },
+        {
+          "Alternative": "PVDF polymer piezo film",
+          "Share (est.)": "~5%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; niche flexible/low-profile configurations"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share in building security IoT (est.)",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "Zigbee 2.4 GHz",
+          "Share in building security IoT (est.)": "~30%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "IHS Markit; Emergen Research (2024) — 1.4B active Zigbee devices; dominant in building automation"
+        },
+        {
+          "Alternative": "BLE 5.x (Bluetooth Low Energy)",
+          "Share in building security IoT (est.)": "~25%",
+          "Trend": "Growing",
+          "Confidence": "MEDIUM",
+          "Source": "Emergen Research (2024) — BLE in 82% of smartwatches; strong growth in commercial building security"
+        },
+        {
+          "Alternative": "LoRaWAN 868/915 MHz",
+          "Share in building security IoT (est.)": "~20%",
+          "Trend": "Growing fast",
+          "Confidence": "MEDIUM",
+          "Source": "GM Insights: LoRaWAN market $3.7B (2024), CAGR 41.1% (2025–2034); wall-penetrating range advantage"
+        },
+        {
+          "Alternative": "Z-Wave 868 MHz",
+          "Share in building security IoT (est.)": "~10%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "IHS Markit; strong residential; less dominant in commercial"
+        },
+        {
+          "Alternative": "EasyWave 868 MHz (proprietary GfS)",
+          "Share in building security IoT (est.)": "~10%",
+          "Trend": "Stable (niche)",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate — proprietary ecosystem, GfS-specific receivers only"
+        },
+        {
+          "Alternative": "Wi-Fi 802.11",
+          "Share in building security IoT (est.)": "~5%",
+          "Trend": "Declining for battery",
+          "Confidence": "MEDIUM",
+          "Source": "TMR (2024) — dominant overall IoT share but ~10× higher power draw, impractical for 9V battery"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share in commercial alarm devices (est.)",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "9V alkaline (Zn-MnO2)",
+          "Share in commercial alarm devices (est.)": "~60%",
+          "Trend": "Declining",
+          "Confidence": "MEDIUM",
+          "Source": "Industry standard for commercial alarms; GP Batteries, Duracell, Energizer"
+        },
+        {
+          "Alternative": "9V lithium primary (Li-FeS2)",
+          "Share in commercial alarm devices (est.)": "~30%",
+          "Trend": "Growing",
+          "Confidence": "MEDIUM",
+          "Source": "3× longer shelf life; better at extreme temps; preferred for infrequently accessed doors"
+        },
+        {
+          "Alternative": "9V NiMH rechargeable",
+          "Share in commercial alarm devices (est.)": "~10%",
+          "Trend": "Stable (niche)",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; requires recharge infrastructure"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alternative",
+        "Share in safety device housings (est.)",
+        "Trend",
+        "Confidence",
+        "Source"
+      ],
+      "rows": [
+        {
+          "Alternative": "ABS thermoplastic",
+          "Share in safety device housings (est.)": "~60%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Dominant in commercial door hardware; cost-effective; Grand View Research (2024)"
+        },
+        {
+          "Alternative": "Polycarbonate (PC)",
+          "Share in safety device housings (est.)": "~20%",
+          "Trend": "Growing",
+          "Confidence": "MEDIUM",
+          "Source": "PC electrical enclosures market $489M (2024); higher impact/temperature resistance"
+        },
+        {
+          "Alternative": "PC/ABS blend",
+          "Share in safety device housings (est.)": "~15%",
+          "Trend": "Stable",
+          "Confidence": "MEDIUM",
+          "Source": "Business Research Insights PC/ABS $4.94B (2024); balance of both properties"
+        },
+        {
+          "Alternative": "Glass-filled polyamide (PA-GF)",
+          "Share in safety device housings (est.)": "~5%",
+          "Trend": "Stable",
+          "Confidence": "LOW",
+          "Source": "Analyst estimate; niche industrial/high-temp"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "BOM Position",
+        "Adaptation Required",
+        "Severity",
+        "Action"
+      ],
+      "rows": [
+        {
+          "BOM Position": "L4.2 → L3 transducer",
+          "Adaptation Required": "Configurable alarm volume (95 dB → 65–80 dB) for patient-proximate doors",
+          "Severity": "HIGH",
+          "Action": "Confirm volume-adjustable firmware available per variant before specifying"
+        },
+        {
+          "BOM Position": "L4.3 → L3 protocol",
+          "Adaptation Required": "BACnet/IP or KNX gateway for Siemens Desigo / Honeywell EBI",
+          "Severity": "HIGH",
+          "Action": "GfS BUS gateway accessory required; add to project BOM"
+        },
+        {
+          "BOM Position": "L4.5 → L0 housing",
+          "Adaptation Required": "Antimicrobial surface treatment for clinical zone installations",
+          "Severity": "MEDIUM",
+          "Action": "Product gap — no current GfS SKU; workaround: antimicrobial cover/trim sourced separately"
+        },
+        {
+          "BOM Position": "L4.4 → L0 battery",
+          "Adaptation Required": "Lithium 9V for high-traffic ward doors; biomedical standardization",
+          "Severity": "MEDIUM",
+          "Action": "Specify Energizer L522 or equivalent in hospital installation spec"
+        },
+        {
+          "BOM Position": "L4.1 → L3 mechanism",
+          "Adaptation Required": "No structural change needed; EN 179/1125 hardware fits standard hospital fire doors",
+          "Severity": "NONE",
+          "Action": "—"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "bom_context": {
+        "product": "GfS Türwächter / Exit Control 179/1125 with IoT",
+        "deployment_market": "General Medical and Surgical Hospitals",
+        "naics_code": "622110",
+        "manufacturer_naics": "332510",
+        "output_type": "Emergency Exit Security Device with IoT",
+        "bom_applies": true,
+        "routing_note": "BOM is for the manufactured Türwächter hardware, not the hospital's service output"
+      },
+      "bom_units": [
+        {
+          "name": "Mechanical guard subsystem",
+          "level": "L4",
+          "description": "Spring-loaded guard arm that physically blocks door handle, triggers alarm on 45° swing, and provides key-override bypass",
+          "naics_code": "332510",
+          "output_type": "Emergency Exit Security Device with IoT"
+        },
+        {
+          "name": "Guard arm & pivot module",
+          "level": "L3",
+          "description": "Pivoting arm with return-spring return force and torsion-spring hinge",
+          "naics_code": "332510",
+          "output_type": "Emergency Exit Security Device with IoT",
+          "parent": "Mechanical guard subsystem"
+        },
+        {
+          "name": "Key override module",
+          "level": "L3",
+          "description": "Profile half-cylinder lock for authorized bypass without triggering alarm",
+          "naics_code": "332510",
+          "output_type": "Emergency Exit Security Device with IoT",
+          "parent": "Mechanical guard subsystem"
+        },
+        {
+          "name": "Handle block element",
+          "level": "L3",
+          "description": "Cam or stop-arm that prevents door handle depression in locked state",
+          "naics_code": "332510",
+          "output_type": "Emergency Exit Security Device with IoT",
+          "parent": "Mechanical guard subsystem"
+        },
+        {
+          "name": "Acoustic alarm subsystem",
+          "level": "L4",
+          "description": "Piezoelectric alarm horn (≤95 dB) triggered mechanically; independent of electrical power",
+          "naics_code": "332510",
+          "output_type": "Emergency Exit Security Device with IoT"
+        },
+        {
+          "name": "Alarm transducer module",
+          "level": "L3",
+          "description": "PZT-based buzzer/horn assembly with volume adjustment; delivers ≤95 dB SPL",
+          "naics_code": "332510",
+          "output_type": "Emergency Exit Security Device with IoT",
+          "parent": "Acoustic alarm subsystem"
+        },
+        {
+          "name": "Horn / resonating chamber",
+          "level": "L3",
+          "description": "ABS horn body that shapes and amplifies the transducer output",
+          "naics_code": "332510",
+          "output_type": "Emergency Exit Security Device with IoT",
+          "parent": "Acoustic alarm subsystem"
+        },
+        {
+          "name": "IoT communication subsystem",
+          "level": "L4",
+          "description": "868 MHz EasyWave radio module that transmits guard-state and alarm events to centralized receivers",
+          "naics_code": "332510",
+          "output_type": "Emergency Exit Security Device with IoT"
+        },
+        {
+          "name": "RF transceiver module",
+          "level": "L3",
+          "description": "SoC + antenna + PCB assembly implementing 868 MHz radio protocol",
+          "naics_code": "332510",
+          "output_type": "Emergency Exit Security Device with IoT",
+          "parent": "IoT communication subsystem"
+        },
+        {
+          "name": "State detection module",
+          "level": "L3",
+          "description": "Reed switch or Hall-effect sensor detecting guard open/closed state",
+          "naics_code": "332510",
+          "output_type": "Emergency Exit Security Device with IoT",
+          "parent": "IoT communication subsystem"
+        },
+        {
+          "name": "Power subsystem",
+          "level": "L4",
+          "description": "9V battery holder supplying IoT module; mechanical alarm operates without battery power",
+          "naics_code": "332510",
+          "output_type": "Emergency Exit Security Device with IoT"
+        },
+        {
+          "name": "Battery holder module",
+          "level": "L3",
+          "description": "Spring-contact holder for 9V block battery; tool-free battery replacement",
+          "naics_code": "332510",
+          "output_type": "Emergency Exit Security Device with IoT",
+          "parent": "Power subsystem"
+        },
+        {
+          "name": "Housing / enclosure subsystem",
+          "level": "L4",
+          "description": "Surface-mounted ABS casing in RAL 6029 safety green; mounting base; warning labels",
+          "naics_code": "332510",
+          "output_type": "Emergency Exit Security Device with IoT"
+        },
+        {
+          "name": "Guard arm housing",
+          "level": "L3",
+          "description": "Outer casing of guard arm in RAL 6029 green ABS",
+          "naics_code": "332510",
+          "output_type": "Emergency Exit Security Device with IoT",
+          "parent": "Housing / enclosure subsystem"
+        },
+        {
+          "name": "Mounting base",
+          "level": "L3",
+          "description": "Base plate and fastener set for door-handle surface mount; includes glass-frame adapter option",
+          "naics_code": "332510",
+          "output_type": "Emergency Exit Security Device with IoT",
+          "parent": "Housing / enclosure subsystem"
+        }
+      ],
+      "bom_alternatives": [
+        {
+          "bom_position": "Guard arm & pivot module",
+          "name": "Spring-loaded mechanical guard arm",
+          "market_share": 55,
+          "trend": "Stable",
+          "confidence": "LOW",
+          "source": "Analyst estimate"
+        },
+        {
+          "bom_position": "Guard arm & pivot module",
+          "name": "Integrated alarmed push bar",
+          "market_share": 25,
+          "trend": "Growing",
+          "confidence": "LOW",
+          "source": "Analyst estimate; Detex, commercialdoorhardwaresupply.com (2024)"
+        },
+        {
+          "bom_position": "Guard arm & pivot module",
+          "name": "Electromagnetic delayed-egress lock",
+          "market_share": 15,
+          "trend": "Stable",
+          "confidence": "LOW",
+          "source": "Analyst estimate; silvaconsultants.com (2024)"
+        },
+        {
+          "bom_position": "Guard arm & pivot module",
+          "name": "Other mechanical restraint",
+          "market_share": 5,
+          "trend": "Declining",
+          "confidence": "LOW",
+          "source": "Analyst estimate"
+        },
+        {
+          "bom_position": "Alarm transducer module",
+          "name": "Piezoelectric (PZT) buzzer/horn",
+          "market_share": 75,
+          "trend": "Stable",
+          "confidence": "MEDIUM",
+          "source": "Piezoelectric Buzzer Market (OpenPR, 2024); Business Research Insights Buzzer Market $722.6M (2024)"
+        },
+        {
+          "bom_position": "Alarm transducer module",
+          "name": "Electromagnetic moving-armature buzzer",
+          "market_share": 20,
+          "trend": "Declining",
+          "confidence": "MEDIUM",
+          "source": "Cognitive Market Research — electromagnetic buzzers $1,351.5M global (2024)"
+        },
+        {
+          "bom_position": "Alarm transducer module",
+          "name": "Electrodynamic mini-speaker",
+          "market_share": 5,
+          "trend": "Growing",
+          "confidence": "LOW",
+          "source": "Analyst estimate"
+        },
+        {
+          "bom_position": "RF transceiver module",
+          "name": "Zigbee 2.4 GHz",
+          "market_share": 30,
+          "trend": "Stable",
+          "confidence": "MEDIUM",
+          "source": "IHS Markit; Emergen Research IoT Protocol Market (2024) — 1.4B active Zigbee devices"
+        },
+        {
+          "bom_position": "RF transceiver module",
+          "name": "BLE 5.x (Bluetooth Low Energy)",
+          "market_share": 25,
+          "trend": "Growing",
+          "confidence": "MEDIUM",
+          "source": "Emergen Research IoT Protocol Market (2024)"
+        },
+        {
+          "bom_position": "RF transceiver module",
+          "name": "LoRaWAN 868/915 MHz",
+          "market_share": 20,
+          "trend": "Growing fast",
+          "confidence": "MEDIUM",
+          "source": "GM Insights: LoRaWAN market $3.7B (2024), CAGR 41.1% (2025–2034)"
+        },
+        {
+          "bom_position": "RF transceiver module",
+          "name": "Z-Wave 868 MHz",
+          "market_share": 10,
+          "trend": "Stable",
+          "confidence": "MEDIUM",
+          "source": "IHS Markit connectivity report"
+        },
+        {
+          "bom_position": "RF transceiver module",
+          "name": "EasyWave 868 MHz (proprietary GfS)",
+          "market_share": 10,
+          "trend": "Stable",
+          "confidence": "LOW",
+          "source": "Analyst estimate — proprietary ecosystem"
+        },
+        {
+          "bom_position": "RF transceiver module",
+          "name": "Wi-Fi 802.11",
+          "market_share": 5,
+          "trend": "Declining for battery",
+          "confidence": "MEDIUM",
+          "source": "TMR IoT Protocol Market (2024) — dominant overall but power-impractical for 9V battery"
+        },
+        {
+          "bom_position": "Battery holder module",
+          "name": "9V alkaline (Zn-MnO2)",
+          "market_share": 60,
+          "trend": "Declining",
+          "confidence": "MEDIUM",
+          "source": "Industry standard; GP Batteries, Duracell, Energizer"
+        },
+        {
+          "bom_position": "Battery holder module",
+          "name": "9V lithium primary (Li-FeS2)",
+          "market_share": 30,
+          "trend": "Growing",
+          "confidence": "MEDIUM",
+          "source": "Analyst estimate; 3× shelf life advantage documented by Energizer product data"
+        },
+        {
+          "bom_position": "Battery holder module",
+          "name": "9V NiMH rechargeable",
+          "market_share": 10,
+          "trend": "Stable",
+          "confidence": "LOW",
+          "source": "Analyst estimate"
+        },
+        {
+          "bom_position": "Guard arm housing",
+          "name": "ABS thermoplastic",
+          "market_share": 60,
+          "trend": "Stable",
+          "confidence": "MEDIUM",
+          "source": "Grand View Research polycarbonate/plastic enclosures market (2024)"
+        },
+        {
+          "bom_position": "Guard arm housing",
+          "name": "Polycarbonate (PC)",
+          "market_share": 20,
+          "trend": "Growing",
+          "confidence": "MEDIUM",
+          "source": "Polycarbonate electrical enclosures market $489M (2024)"
+        },
+        {
+          "bom_position": "Guard arm housing",
+          "name": "PC/ABS blend",
+          "market_share": 15,
+          "trend": "Stable",
+          "confidence": "MEDIUM",
+          "source": "Business Research Insights PC/ABS market $4.94B (2024)"
+        },
+        {
+          "bom_position": "Guard arm housing",
+          "name": "Glass-filled polyamide (PA-GF)",
+          "market_share": 5,
+          "trend": "Stable",
+          "confidence": "LOW",
+          "source": "Analyst estimate"
+        }
+      ]
+    }
+  ],
+  "has_bom": true,
+  "naics_sector_type": "non_manufacturing"
+}

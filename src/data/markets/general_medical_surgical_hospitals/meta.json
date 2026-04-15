@@ -1,0 +1,21 @@
+{
+  "slug": "general_medical_surgical_hospitals",
+  "name": "General Medical and Surgical Hospitals",
+  "naicsCode": "622110",
+  "isReference": false,
+  "rank": 8,
+  "scores": {
+    "odi": 6.04,
+    "featureFit": 6.72,
+    "constraintCompatibility": 4.5,
+    "jobCoverage": 6.25,
+    "vnHierarchy": 6.5,
+    "incumbentVulnerability": 4.9,
+    "composite": 5.76
+  },
+  "recommendation": "investigate",
+  "rationale": "",
+  "entryStrategy": "Enter via hospital FM/engineering departments; lead with Joint Commission EC.02.01.01 egress documentation automation; partner with healthcare security integrators",
+  "estimatedTimeToEntry": "8-14 months",
+  "estimatedInvestment": "€150000-350000"
+}

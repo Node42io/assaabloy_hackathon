@@ -1,0 +1,21 @@
+{
+  "slug": "museums_historical_sites",
+  "name": "Museums, Historical Sites, and Similar Institutions",
+  "naicsCode": "712110",
+  "isReference": false,
+  "rank": 5,
+  "scores": {
+    "odi": 5.79,
+    "featureFit": 6.16,
+    "constraintCompatibility": 7,
+    "jobCoverage": 5,
+    "vnHierarchy": 6.5,
+    "incumbentVulnerability": 8.6,
+    "composite": 6.54
+  },
+  "recommendation": "investigate",
+  "rationale": "",
+  "entryStrategy": "Partner with heritage security specialists; target museum associations' collective procurement; lead with reversible surface-mount differentiator for listed buildings",
+  "estimatedTimeToEntry": "3-6 months",
+  "estimatedInvestment": "€50000-100000"
+}

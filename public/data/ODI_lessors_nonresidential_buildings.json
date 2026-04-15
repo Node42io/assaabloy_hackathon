@@ -1,0 +1,1215 @@
+{
+  "id": "ODI_lessors_nonresidential_buildings",
+  "title": "ODI Matrix: Lessors of Nonresidential Buildings (NAICS 531120)",
+  "type": "odi_matrix",
+  "market_slug": "lessors_nonresidential_buildings",
+  "is_per_market": true,
+  "sections": [
+    {
+      "title": "Market Context",
+      "content": "| Field | Value |\n|---|---|\n| **Surviving market** | NAICS 531120 — confirmed by Step 08 (no knockout constraints) |\n| **Product job** | Help Emergency Exit Security prevent unauthorized use across multi-tenant commercial property while maintaining evacuation compliance, providing portfolio-level status visibility, and generating audit-ready compliance records — without mains wiring |\n| **Dominant alternative** | A1 mechanical-only door alarms (~40% share); A5 manual patrol / do nothing (~30%) |\n| **Best monitoring incumbent** | A3 dormakaba SafeRoute (wired electronic, LON/BACnet, ~25% share) |\n| **Total needs scored** | 26 (22 from JTBD Step 06 + 4 injected from FIT Step 10) |\n\n---"
+    },
+    {
+      "title": "Step 1 — Error Statements Gathered",
+      "content": "### 1a. Market-Level Needs (JTBD Step 06 — N01–N22)\n\n| ID | Statement (abbreviated) | Step | Imp | Sat₀ | Impact | Prod-Rel |\n|---|---|---|---|---|---|---|\n| N01 | Minimize likelihood of installation requiring permanent electrical infrastructure modifications | PREPARE | 8 | 3 | cost | F |\n| N02 | Minimize likelihood of commissioning requiring specialist RF survey | PREPARE | 7 | 5 | time | **T** |\n| N03 | Increase ability to retrofit without structural modification (EN 179 + EN 1125 doors) | PREPARE | 8 | 5 | cost | F |\n| N04 | Minimize likelihood of device failing to trigger alarm on unauthorized activation (false-negative rate) | CONFIRM | 10 | 6 | safety | F |\n| N05 | Increase ability to verify all devices in alarm-ready state pre-inspection without manual per-door testing | CONFIRM | 9 | 3 | safety | F |\n| N06 | Minimize likelihood of wireless address collision on adjacent doors | CONFIRM | 7 | 5 | reliability | **T** |\n| N07 | Minimize likelihood of device becoming non-functional during building power interruption | EXECUTE | 10 | 8 | safety | F |\n| N08 | Minimize likelihood of false-positive alarms from authorized key-override access | EXECUTE | 8 | 5 | reliability | F |\n| N09 | Minimize inconsistent alarm thresholds across lever-handle vs. panic-bar variants | EXECUTE | 7 | 6 | safety | F |\n| N10 | Increase ability to detect door propped open or activated within 60 seconds of event | MONITOR | 9 | 2 | safety | F |\n| N11 | Increase ability to monitor portfolio-wide exit status from single operator dashboard | MONITOR | 8 | 2 | time | F |\n| N12 | Increase ability to detect wireless connectivity failures before next inspection cycle | MONITOR | 8 | 3 | reliability | **T** |\n| N13 | Increase ability to detect approaching battery depletion before device failure | MONITOR | 9 | 3 | reliability | **T** |\n| N14 | Minimize likelihood of battery replacement requiring specialist skills or triggering false alarm | MODIFY | 7 | 5 | cost | **T** |\n| N15 | Minimize likelihood of on-site dispatch required for non-emergency activations resolvable remotely | MODIFY | 7 | 4 | cost | F |\n| N16 | Minimize likelihood of monitoring losing BMS communication after network infrastructure updates | MODIFY | 8 | 4 | reliability | **T** |\n| N17 | Increase ability to generate compliance documentation meeting fire marshal requirements without manual data entry | CONCLUDE | 9 | 3 | safety | F |\n| N18 | Minimize manual compilation effort for annual fire safety audit across multiple properties | CONCLUDE | 8 | 3 | time | F |\n| N19 | Minimize inter-property variance in compliance documentation completeness scores | CONCLUDE | 7 | 3 | cost | F |\n| N20 | Increase ability to provide asset managers with proactive compliance status without manual reporting | P3 | 7 | 2 | time | F |\n| N21 | Increase ability to produce portfolio-level compliance evidence on demand at fire marshal inspection | P4 | 8 | 3 | cost | F |\n| N22 | Minimize likelihood of discovering compliance failure first time at a scheduled fire marshal inspection | P5 | 8 | 2 | safety | F |\n\n### 1b. Product-Related Needs Injected (FIT Step 10 — PR1–PR4)\n\n*Injected with job_step_number=0, job_step_name=\"product_constraint\", impact_category=\"reliability\", product_related=True.*\n\n| ID | Statement (abbreviated) | Source Constraint | Imp | Sat₀ |\n|---|---|---|---|---|\n| PR1 | Minimize likelihood of EasyWave protocol dependency requiring full hardware replacement on BMS platform migration (KNX/BACnet) | C6 EasyWave Lock-In | 8 | 2 |\n| PR2 | Minimize likelihood of 868 MHz attenuation through reinforced concrete slabs creating per-floor monitoring blackouts | C3 Wireless Range | 7 | 3 |\n| PR3 | Minimize likelihood of IoT door-event timestamp collection triggering GDPR Article 35 DPIA in EU deployments | C8 GDPR | 7 | 3 |\n| PR4 | Minimize likelihood of HVAC-dark zone temperature variations reducing battery service life below 2-year target | C4 Battery Life | 6 | 4 |\n\n---"
+    },
+    {
+      "title": "Step 2 — Satisfaction Recalibration (Incumbent Evidence)",
+      "content": "### Incumbent Profiles (Step 03)\n\n| Incumbent | Share | Mechanism | Key Strengths | Key Weaknesses |\n|---|---|---|---|---|\n| A1 Mechanical door alarms | ~40% | Spring-loaded handle guard, local piezo alarm | Power-independent (N07 ✓), no RF constraints, low cost, deterministic alarm mechanism | Zero remote monitoring (N10/N11/N13 ✗), no compliance documentation (N17/N18 ✗), no battery alerts |\n| A3 dormakaba SafeRoute | ~25% | Wired electronic exit control, LON/BACnet | Real-time monitoring (N10 ✓), open protocol BMS integration, compliance logging (N17 ✓) | Requires mains wiring + conduit per door (N01/N03 ✗), not retrofit-friendly in occupied buildings |\n| A5 Manual patrol / do nothing | ~30% | Paper inspection logs, security patrols | Zero hardware cost | No alarm hardware (N04 fails at 0%), detection lag = hours/shifts (N10 ✗), no compliance records |\n\n### Recalibration Decisions\n\n| ID | Original Sat | Recalibrated Sat | Reason | Direction |\n|---|---|---|---|---|\n| N04 | 6 | **5.5** | A5 (~30% share) has zero alarm hardware → market-weighted sat ≈ 0.40×8 + 0.25×8 + 0.30×0 = 5.6. Original score of 6 was mildly optimistic. | ↓ −0.5 |\n| N07 | 8 | **8** | Confirmed by A1 dominance: mechanical alarm operates at 0 V (C2 pre-satisfied). A3's electronic system also has UPS options. Score validated. | — no change |\n| N10 | 2 | **2** | A1 (40%) + A5 (30%) = 70% market with zero real-time detection. Score confirmed. | — no change |\n| N11 | 2 | **2** | Only A3 (25%) provides portfolio monitoring. 75% of market has none. Score confirmed. | — no change |\n| N17 | 3 | **3** | A1 + A5 (70%) require fully manual paper records. A3 provides some logging but requires integration effort. Score confirmed. | — no change |\n| N22 | 2 | **2** | A1/A5 dominant market: proactive failure detection non-existent for 70% of lessors. Score confirmed. | — no change |\n\n*All other satisfaction scores confirmed against incumbent evidence. Total adjustments: 1 (N04 −0.5).*\n\n---"
+    },
+    {
+      "title": "Step 3 — Computed Opportunity Scores (Deterministic)",
+      "content": "*Formula: opportunity_score = importance + max(importance − satisfaction, 0)*\n*is_underserved: importance > 7.0 AND satisfaction < 5.0*\n*is_overserved: importance < 3.0 AND satisfaction > 7.0*\n\n### Full ODI Table — All 26 Entries\n\n| ID | Statement (abbreviated) | Step | Imp | Sat (recal) | **Opp** | Under | Over | Prod-Rel |\n|---|---|---|---|---|---|---|---|---|\n| **N10** | Detect door open/propped within 60 sec | MONITOR | 9 | 2 | **16.00** | ✓ | — | F |\n| **N05** | Verify all devices alarm-ready pre-inspection, no manual testing | CONFIRM | 9 | 3 | **15.00** | ✓ | — | F |\n| **N13** | Detect battery depletion before device failure | MONITOR | 9 | 3 | **15.00** | ✓ | — | T |\n| **N17** | Generate compliance docs without manual data entry | CONCLUDE | 9 | 3 | **15.00** | ✓ | — | F |\n| **N04** | False-negative alarm rate on unauthorized activation | CONFIRM | 10 | 5.5 | **14.50** | — | — | F |\n| **N11** | Portfolio-wide exit status from single dashboard | MONITOR | 8 | 2 | **14.00** | ✓ | — | F |\n| **N22** | Avoid discovering compliance failure first time at inspection | P5 | 8 | 2 | **14.00** | ✓ | — | F |\n| **PR1** | EasyWave protocol → hardware replacement on BMS migration | product_constraint | 8 | 2 | **14.00** | ✓ | — | T |\n| **N01** | No permanent electrical infrastructure modification | PREPARE | 8 | 3 | **13.00** | ✓ | — | F |\n| **N12** | Detect wireless connectivity failure pre-inspection | MONITOR | 8 | 3 | **13.00** | ✓ | — | T |\n| **N18** | Minimize manual audit compilation across properties | CONCLUDE | 8 | 3 | **13.00** | ✓ | — | F |\n| **N21** | Produce compliance evidence on demand at inspection | P4 | 8 | 3 | **13.00** | ✓ | — | F |\n| **N07** | Power-independent alarm under grid outage | EXECUTE | 10 | 8 | **12.00** | — | — | F |\n| **N16** | Maintain BMS communication after firmware updates | MODIFY | 8 | 4 | **12.00** | ✓ | — | T |\n| **N20** | Proactive compliance status updates without manual reporting | P3 | 7 | 2 | **12.00** | — | — | F |\n| **N15** | Minimize on-site dispatch for remotely resolvable alarms | MODIFY | 7 | 4 | **10.00** | — | — | F |\n| **N19** | Minimize inter-property variance in documentation quality | CONCLUDE | 7 | 3 | **11.00** | — | — | F |\n| **PR2** | 868 MHz attenuation creating per-floor monitoring blackouts | product_constraint | 7 | 3 | **11.00** | — | — | T |\n| **PR3** | IoT timestamps triggering GDPR Art. 35 DPIA | product_constraint | 7 | 3 | **11.00** | — | — | T |\n| **N08** | False alarms from authorized key-override access | EXECUTE | 8 | 5 | **8.00** | — | — | F |\n| **N03** | Retrofit to existing EN 179 + EN 1125 doors without structural modification | PREPARE | 8 | 5 | **8.00** | — | — | F |\n| **PR4** | HVAC-dark zone temperatures reducing battery life below 2-year target | product_constraint | 6 | 4 | **8.00** | — | — | T |\n| **N02** | RF survey requirement at commissioning | PREPARE | 7 | 5 | **7.00** | — | — | T |\n| **N06** | Wireless address collision on adjacent doors | CONFIRM | 7 | 5 | **7.00** | — | — | T |\n| **N14** | Battery replacement triggering false alarm or requiring specialist | MODIFY | 7 | 5 | **7.00** | — | — | T |\n| **N09** | Inconsistent alarm thresholds across door handle types | EXECUTE | 7 | 6 | **7.00** | — | — | F |\n\n*QA spot checks (5 entries):*\n- *N10: 9 + max(9−2,0) = 9+7 = 16.00 ✓*\n- *N04: 10 + max(10−5.5,0) = 10+4.5 = 14.50 ✓*\n- *N07: 10 + max(10−8,0) = 10+2 = 12.00 ✓*\n- *N16: 8 + max(8−4,0) = 8+4 = 12.00 ✓*\n- *PR4: 6 + max(6−4,0) = 6+2 = 8.00 ✓*\n\n---"
+    },
+    {
+      "title": "Step 4 — Market ODI Summary",
+      "content": "| Field | Value |\n|---|---|\n| **Market** | Lessors of Nonresidential Buildings |\n| **NAICS** | 531120 |\n| **Total needs scored** | 26 |\n| **Underserved** (imp > 7 AND sat < 5) | **12** |\n| **Overserved** (imp < 3 AND sat > 7) | **0** |\n| **Avg opportunity score** | **11.56** |\n| **Zone** | Appropriately Served (10–12) — pulled down by N07/N08/N03/N09 cluster; high-importance monitoring sub-cluster is strongly underserved |\n\n### Top 5 Opportunities\n\n| Rank | ID | Statement (abbreviated) | Score | Zone |\n|---|---|---|---|---|\n| 1 | N10 | Detect door propped open or activated within 60 seconds | **16.00** | Highly Underserved |\n| 2 | N05 | Verify all devices alarm-ready pre-inspection without manual testing | **15.00** | Underserved |\n| 2 | N13 | Detect approaching battery depletion before device failure | **15.00** | Underserved |\n| 2 | N17 | Generate compliance docs without manual data entry | **15.00** | Underserved |\n| 5 | N04 | Minimize false-negative alarm rate on unauthorized activation | **14.50** | Appropriately Served (sat=5.5, not flagged underserved) |\n\n### Underserved Cluster Analysis\n\n| Cluster | Needs | Key Gap | Türwächter Address? |\n|---|---|---|---|\n| **IoT Monitoring** | N10, N11, N12, N13 (opp 13–16) | A1/A5 (~70% share) have zero monitoring → detection lags hours | Yes — primary IoT differentiator vs. A1 |\n| **Compliance Documentation** | N17, N18, N21, N22 (opp 13–15) | A1/A5 require manual paper records; no audit-ready automation | Partially — dashboard logging addresses this; automated reports need integration |\n| **Portfolio-Level Visibility** | N11, N20, N21 (opp 12–14) | No portfolio aggregation in 75% of market | Yes — BUS gateway enables multi-unit aggregation |\n| **Installation Without Wiring** | N01 (opp 13) | A3 SafeRoute requires conduit+mains; A5 avoids by not solving the job | Yes — core Türwächter differentiator |\n| **Protocol Migration Risk** | PR1 (opp 14) | EasyWave lock-in → hardware replacement on BMS platform migration | No — structural product gap (C6) |\n\n---"
+    },
+    {
+      "title": "Step 5 — Cross-Check vs. Feature-Market Fit (Step 09)",
+      "content": "*Feature-Market Fit data from FIT_lessors_nonresidential_buildings.md*\n\n| Metric | Value | Threshold |\n|---|---|---|\n| ODI avg opportunity score | 11.56 | — |\n| Feature-Fit avg (F1–F6 overall_fit mean) | 5.44 | — |\n| Flag: ODI avg > 12 AND Fit avg < 4? | **No** (ODI = 11.56 < 12) | \"high opportunity, low fit\" |\n| Flag: ODI avg < 8 AND Fit avg > 7? | **No** (ODI = 11.56 ≥ 8) | \"low opportunity, high fit\" |\n\n**Result: No cross-check inconsistencies.**\n\n**Interpretation note:** The overall ODI average (11.56) understates the true opportunity concentration. The top-12 underserved needs average 13.8 (well above the > 12 threshold), while the remaining 14 appropriately-served or overserved needs anchor the avg in the 10–12 zone. The Türwächter IoT variant addresses 9 of the 12 underserved needs directly; 3 remain structural gaps (PR1 EasyWave lock-in, PR2 RF attenuation, PR3 GDPR DPIA). Feature-Fit avg of 5.44 is consistent with a product that addresses must-be and one-dimensional needs well but leaves advanced monitoring and compliance documentation partially unresolved.\n\n---"
+    },
+    {
+      "title": "Structured Data",
+      "content": "### ODIEntry[]\n\n```json\n[\n  {\n    \"error_statement\": \"Increase the ability to detect an emergency exit door being propped open or activated within 60 seconds of the event, measured as mean detection lag from door-open event to operator notification\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 6,\n    \"job_step_name\": \"MONITOR\",\n    \"importance\": 9.0,\n    \"satisfaction_current\": 2.0,\n    \"opportunity_score\": 16.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Increase the ability to verify that all emergency exit security devices across a portfolio are in functional alarm-ready state before a scheduled fire safety inspection, measured as confirmed-active device rate achievable without manual per-door physical testing\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 4,\n    \"job_step_name\": \"CONFIRM\",\n    \"importance\": 9.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 15.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Increase the ability to detect approaching battery depletion in emergency exit monitoring devices before failure, measured as percentage of battery replacements performed before the device becomes non-functional\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 6,\n    \"job_step_name\": \"MONITOR\",\n    \"importance\": 9.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 15.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": true\n  },\n  {\n    \"error_statement\": \"Increase the ability to generate complete emergency exit compliance documentation meeting fire marshal requirements at any time without manual data entry, measured as documentation completeness score achievable at an unannounced inspection\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 8,\n    \"job_step_name\": \"CONCLUDE\",\n    \"importance\": 9.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 15.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of an emergency exit security device failing to trigger an alarm upon unauthorized door activation, measured as false-negative alarm rate per 1,000 activations\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 4,\n    \"job_step_name\": \"CONFIRM\",\n    \"importance\": 10.0,\n    \"satisfaction_current\": 5.5,\n    \"opportunity_score\": 14.5,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Increase the ability to monitor real-time emergency exit door status across an entire commercial property portfolio from a single operator dashboard, measured as number of buildings and doors simultaneously visible per interface\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 6,\n    \"job_step_name\": \"MONITOR\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 2.0,\n    \"opportunity_score\": 14.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of a building operator discovering an emergency exit compliance failure for the first time during a scheduled fire marshal inspection rather than through proactive monitoring, measured as ratio of compliance failures detected pre-inspection vs. at inspection\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 8,\n    \"job_step_name\": \"CONCLUDE\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 2.0,\n    \"opportunity_score\": 14.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of EasyWave protocol dependency requiring full hardware replacement when a commercial property portfolio transitions to an open-standard BMS platform (KNX or BACnet), measured as percentage of installed door guardian units requiring hardware replacement versus gateway reconfiguration during BMS platform migration\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 0,\n    \"job_step_name\": \"product_constraint\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 2.0,\n    \"opportunity_score\": 14.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": true\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of emergency exit security installation requiring permanent electrical infrastructure modifications to building fabric, measured as percentage of door deployments triggering conduit or wiring work\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 3,\n    \"job_step_name\": \"PREPARE\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 13.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Increase the ability to detect emergency exit monitoring device wireless connectivity failures before the next scheduled inspection cycle, measured as mean time from connectivity loss to operator notification\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 6,\n    \"job_step_name\": \"MONITOR\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 13.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": true\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of annual fire safety audit preparation requiring manual compilation of exit inspection records across multiple properties, measured as person-hours per property required to produce a complete compliance evidence package\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 8,\n    \"job_step_name\": \"CONCLUDE\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 13.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Increase the ability to produce portfolio-level emergency exit compliance evidence on demand during fire marshal inspections or insurance renewals, measured as time-to-produce a complete compliance evidence package from request to delivery\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 8,\n    \"job_step_name\": \"CONCLUDE\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 13.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of an emergency exit security device becoming non-functional during a building power interruption, measured as alarm activation availability rate under complete grid power loss\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 5,\n    \"job_step_name\": \"EXECUTE\",\n    \"importance\": 10.0,\n    \"satisfaction_current\": 8.0,\n    \"opportunity_score\": 12.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of emergency exit monitoring losing BMS communication following network infrastructure updates, measured as connectivity restoration time after BMS or gateway firmware changes\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 7,\n    \"job_step_name\": \"MODIFY\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 12.0,\n    \"is_underserved\": true,\n    \"is_overserved\": false,\n    \"product_related\": true\n  },\n  {\n    \"error_statement\": \"Increase the ability to provide asset managers with proactive emergency exit compliance status updates without manual report generation, measured as automated compliance status communications per property per week\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 8,\n    \"job_step_name\": \"CONCLUDE\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 2.0,\n    \"opportunity_score\": 12.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of compliance documentation quality varying significantly between properties within a portfolio, measured as inter-property variance in documentation completeness scores at audit point\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 8,\n    \"job_step_name\": \"CONCLUDE\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 11.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of 868 MHz signal attenuation through reinforced concrete floor slabs creating per-floor monitoring blackouts in multi-story commercial office buildings, measured as number of unplanned repeater additions required to achieve full portfolio coverage versus initial installation plan\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 0,\n    \"job_step_name\": \"product_constraint\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 11.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": true\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of IoT door-event timestamp collection triggering a GDPR Article 35 Data Protection Impact Assessment in EU commercial office deployments with employee-occupied areas, measured as percentage of deployments requiring DPIA completion before system activation\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 0,\n    \"job_step_name\": \"product_constraint\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 3.0,\n    \"opportunity_score\": 11.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": true\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of on-site dispatch responses being required for non-emergency door activations that could be resolved remotely, measured as percentage of alarm events requiring physical visit vs. remotely resolvable via monitoring platform\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 7,\n    \"job_step_name\": \"MODIFY\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 10.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of emergency exit alarm devices triggering false positives from authorized key-override access by facility personnel, measured as false-alarm incidents per 100 authorized key activations per month\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 5,\n    \"job_step_name\": \"EXECUTE\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 5.0,\n    \"opportunity_score\": 8.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Increase the ability to retrofit emergency exit security devices to existing commercial doors without structural modification, measured as percentage of existing EN 179 and EN 1125 door variants addressable without frame alteration\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 3,\n    \"job_step_name\": \"PREPARE\",\n    \"importance\": 8.0,\n    \"satisfaction_current\": 5.0,\n    \"opportunity_score\": 8.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of unheated commercial stairwell and service corridor temperature variations reducing battery service life below the 2-year maintenance target, measured as mean observed battery replacement interval deviation for units in HVAC-dark zones versus conditioned-space units\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 0,\n    \"job_step_name\": \"product_constraint\",\n    \"importance\": 6.0,\n    \"satisfaction_current\": 4.0,\n    \"opportunity_score\": 8.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": true\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of wireless emergency exit monitoring commissioning requiring specialist RF survey support, measured as percentage of installations requiring dedicated RF coverage validation beyond standard FM technician scope\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 3,\n    \"job_step_name\": \"PREPARE\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 5.0,\n    \"opportunity_score\": 7.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": true\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of incorrect wireless address assignment causing two door guardian units on adjacent doors to share a transmission channel, measured as address-collision incidents per 50-door deployment\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 4,\n    \"job_step_name\": \"CONFIRM\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 5.0,\n    \"opportunity_score\": 7.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": true\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of battery replacement in emergency exit monitoring devices requiring specialist skills or triggering false alarm events, measured as percentage of battery replacements completable by standard building staff without alarm activation\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 7,\n    \"job_step_name\": \"MODIFY\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 5.0,\n    \"opportunity_score\": 7.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": true\n  },\n  {\n    \"error_statement\": \"Minimize the likelihood of inconsistent alarm activation thresholds causing premature or late alarm triggers across door types with different handle configurations, measured as alarm force variance across lever-handle and panic-bar variants within the same building\",\n    \"market_name\": \"Lessors of Nonresidential Buildings\",\n    \"naics_code\": \"531120\",\n    \"job_step_number\": 5,\n    \"job_step_name\": \"EXECUTE\",\n    \"importance\": 7.0,\n    \"satisfaction_current\": 6.0,\n    \"opportunity_score\": 7.0,\n    \"is_underserved\": false,\n    \"is_overserved\": false,\n    \"product_related\": false\n  }\n]\n```\n\n### MarketODISummary\n\n```json\n{\n  \"market_name\": \"Lessors of Nonresidential Buildings\",\n  \"naics_code\": \"531120\",\n  \"total_needs\": 26,\n  \"underserved_count\": 12,\n  \"overserved_count\": 0,\n  \"avg_opportunity_score\": 11.56,\n  \"top_opportunities\": [\n    \"Increase the ability to detect an emergency exit door being propped open or activated within 60 seconds of the event, measured as mean detection lag from door-open event to operator notification\",\n    \"Increase the ability to verify that all emergency exit security devices across a portfolio are in functional alarm-ready state before a scheduled fire safety inspection, measured as confirmed-active device rate achievable without manual per-door physical testing\",\n    \"Increase the ability to detect approaching battery depletion in emergency exit monitoring devices before failure, measured as percentage of battery replacements performed before the device becomes non-functional\",\n    \"Increase the ability to generate complete emergency exit compliance documentation meeting fire marshal requirements at any time without manual data entry, measured as documentation completeness score achievable at an unannounced inspection\",\n    \"Minimize the likelihood of an emergency exit security device failing to trigger an alarm upon unauthorized door activation, measured as false-negative alarm rate per 1,000 activations\"\n  ],\n  \"cross_check_flags\": [],\n  \"recalibration_notes\": \"N04 satisfaction recalibrated 6.0→5.5 based on A5 (manual/do-nothing, ~30% share) having zero alarm hardware, pulling market-weighted satisfaction below original estimate. All other satisfaction scores confirmed against incumbent evidence.\"\n}\n```"
+    }
+  ],
+  "tables": [
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Surviving market**",
+          "Value": "NAICS 531120 — confirmed by Step 08 (no knockout constraints)"
+        },
+        {
+          "Field": "**Product job**",
+          "Value": "Help Emergency Exit Security prevent unauthorized use across multi-tenant commercial property while maintaining evacuation compliance, providing portfolio-level status visibility, and generating audit-ready compliance records — without mains wiring"
+        },
+        {
+          "Field": "**Dominant alternative**",
+          "Value": "A1 mechanical-only door alarms (~40% share); A5 manual patrol / do nothing (~30%)"
+        },
+        {
+          "Field": "**Best monitoring incumbent**",
+          "Value": "A3 dormakaba SafeRoute (wired electronic, LON/BACnet, ~25% share)"
+        },
+        {
+          "Field": "**Total needs scored**",
+          "Value": "26 (22 from JTBD Step 06 + 4 injected from FIT Step 10)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Statement (abbreviated)",
+        "Step",
+        "Imp",
+        "Sat₀",
+        "Impact",
+        "Prod-Rel"
+      ],
+      "rows": [
+        {
+          "ID": "N01",
+          "Statement (abbreviated)": "Minimize likelihood of installation requiring permanent electrical infrastructure modifications",
+          "Step": "PREPARE",
+          "Imp": "8",
+          "Sat₀": "3",
+          "Impact": "cost",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "N02",
+          "Statement (abbreviated)": "Minimize likelihood of commissioning requiring specialist RF survey",
+          "Step": "PREPARE",
+          "Imp": "7",
+          "Sat₀": "5",
+          "Impact": "time",
+          "Prod-Rel": "**T**"
+        },
+        {
+          "ID": "N03",
+          "Statement (abbreviated)": "Increase ability to retrofit without structural modification (EN 179 + EN 1125 doors)",
+          "Step": "PREPARE",
+          "Imp": "8",
+          "Sat₀": "5",
+          "Impact": "cost",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "N04",
+          "Statement (abbreviated)": "Minimize likelihood of device failing to trigger alarm on unauthorized activation (false-negative rate)",
+          "Step": "CONFIRM",
+          "Imp": "10",
+          "Sat₀": "6",
+          "Impact": "safety",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "N05",
+          "Statement (abbreviated)": "Increase ability to verify all devices in alarm-ready state pre-inspection without manual per-door testing",
+          "Step": "CONFIRM",
+          "Imp": "9",
+          "Sat₀": "3",
+          "Impact": "safety",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "N06",
+          "Statement (abbreviated)": "Minimize likelihood of wireless address collision on adjacent doors",
+          "Step": "CONFIRM",
+          "Imp": "7",
+          "Sat₀": "5",
+          "Impact": "reliability",
+          "Prod-Rel": "**T**"
+        },
+        {
+          "ID": "N07",
+          "Statement (abbreviated)": "Minimize likelihood of device becoming non-functional during building power interruption",
+          "Step": "EXECUTE",
+          "Imp": "10",
+          "Sat₀": "8",
+          "Impact": "safety",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "N08",
+          "Statement (abbreviated)": "Minimize likelihood of false-positive alarms from authorized key-override access",
+          "Step": "EXECUTE",
+          "Imp": "8",
+          "Sat₀": "5",
+          "Impact": "reliability",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "N09",
+          "Statement (abbreviated)": "Minimize inconsistent alarm thresholds across lever-handle vs. panic-bar variants",
+          "Step": "EXECUTE",
+          "Imp": "7",
+          "Sat₀": "6",
+          "Impact": "safety",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "N10",
+          "Statement (abbreviated)": "Increase ability to detect door propped open or activated within 60 seconds of event",
+          "Step": "MONITOR",
+          "Imp": "9",
+          "Sat₀": "2",
+          "Impact": "safety",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "N11",
+          "Statement (abbreviated)": "Increase ability to monitor portfolio-wide exit status from single operator dashboard",
+          "Step": "MONITOR",
+          "Imp": "8",
+          "Sat₀": "2",
+          "Impact": "time",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "N12",
+          "Statement (abbreviated)": "Increase ability to detect wireless connectivity failures before next inspection cycle",
+          "Step": "MONITOR",
+          "Imp": "8",
+          "Sat₀": "3",
+          "Impact": "reliability",
+          "Prod-Rel": "**T**"
+        },
+        {
+          "ID": "N13",
+          "Statement (abbreviated)": "Increase ability to detect approaching battery depletion before device failure",
+          "Step": "MONITOR",
+          "Imp": "9",
+          "Sat₀": "3",
+          "Impact": "reliability",
+          "Prod-Rel": "**T**"
+        },
+        {
+          "ID": "N14",
+          "Statement (abbreviated)": "Minimize likelihood of battery replacement requiring specialist skills or triggering false alarm",
+          "Step": "MODIFY",
+          "Imp": "7",
+          "Sat₀": "5",
+          "Impact": "cost",
+          "Prod-Rel": "**T**"
+        },
+        {
+          "ID": "N15",
+          "Statement (abbreviated)": "Minimize likelihood of on-site dispatch required for non-emergency activations resolvable remotely",
+          "Step": "MODIFY",
+          "Imp": "7",
+          "Sat₀": "4",
+          "Impact": "cost",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "N16",
+          "Statement (abbreviated)": "Minimize likelihood of monitoring losing BMS communication after network infrastructure updates",
+          "Step": "MODIFY",
+          "Imp": "8",
+          "Sat₀": "4",
+          "Impact": "reliability",
+          "Prod-Rel": "**T**"
+        },
+        {
+          "ID": "N17",
+          "Statement (abbreviated)": "Increase ability to generate compliance documentation meeting fire marshal requirements without manual data entry",
+          "Step": "CONCLUDE",
+          "Imp": "9",
+          "Sat₀": "3",
+          "Impact": "safety",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "N18",
+          "Statement (abbreviated)": "Minimize manual compilation effort for annual fire safety audit across multiple properties",
+          "Step": "CONCLUDE",
+          "Imp": "8",
+          "Sat₀": "3",
+          "Impact": "time",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "N19",
+          "Statement (abbreviated)": "Minimize inter-property variance in compliance documentation completeness scores",
+          "Step": "CONCLUDE",
+          "Imp": "7",
+          "Sat₀": "3",
+          "Impact": "cost",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "N20",
+          "Statement (abbreviated)": "Increase ability to provide asset managers with proactive compliance status without manual reporting",
+          "Step": "P3",
+          "Imp": "7",
+          "Sat₀": "2",
+          "Impact": "time",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "N21",
+          "Statement (abbreviated)": "Increase ability to produce portfolio-level compliance evidence on demand at fire marshal inspection",
+          "Step": "P4",
+          "Imp": "8",
+          "Sat₀": "3",
+          "Impact": "cost",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "N22",
+          "Statement (abbreviated)": "Minimize likelihood of discovering compliance failure first time at a scheduled fire marshal inspection",
+          "Step": "P5",
+          "Imp": "8",
+          "Sat₀": "2",
+          "Impact": "safety",
+          "Prod-Rel": "F"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Statement (abbreviated)",
+        "Source Constraint",
+        "Imp",
+        "Sat₀"
+      ],
+      "rows": [
+        {
+          "ID": "PR1",
+          "Statement (abbreviated)": "Minimize likelihood of EasyWave protocol dependency requiring full hardware replacement on BMS platform migration (KNX/BACnet)",
+          "Source Constraint": "C6 EasyWave Lock-In",
+          "Imp": "8",
+          "Sat₀": "2"
+        },
+        {
+          "ID": "PR2",
+          "Statement (abbreviated)": "Minimize likelihood of 868 MHz attenuation through reinforced concrete slabs creating per-floor monitoring blackouts",
+          "Source Constraint": "C3 Wireless Range",
+          "Imp": "7",
+          "Sat₀": "3"
+        },
+        {
+          "ID": "PR3",
+          "Statement (abbreviated)": "Minimize likelihood of IoT door-event timestamp collection triggering GDPR Article 35 DPIA in EU deployments",
+          "Source Constraint": "C8 GDPR",
+          "Imp": "7",
+          "Sat₀": "3"
+        },
+        {
+          "ID": "PR4",
+          "Statement (abbreviated)": "Minimize likelihood of HVAC-dark zone temperature variations reducing battery service life below 2-year target",
+          "Source Constraint": "C4 Battery Life",
+          "Imp": "6",
+          "Sat₀": "4"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Incumbent",
+        "Share",
+        "Mechanism",
+        "Key Strengths",
+        "Key Weaknesses"
+      ],
+      "rows": [
+        {
+          "Incumbent": "A1 Mechanical door alarms",
+          "Share": "~40%",
+          "Mechanism": "Spring-loaded handle guard, local piezo alarm",
+          "Key Strengths": "Power-independent (N07 ✓), no RF constraints, low cost, deterministic alarm mechanism",
+          "Key Weaknesses": "Zero remote monitoring (N10/N11/N13 ✗), no compliance documentation (N17/N18 ✗), no battery alerts"
+        },
+        {
+          "Incumbent": "A3 dormakaba SafeRoute",
+          "Share": "~25%",
+          "Mechanism": "Wired electronic exit control, LON/BACnet",
+          "Key Strengths": "Real-time monitoring (N10 ✓), open protocol BMS integration, compliance logging (N17 ✓)",
+          "Key Weaknesses": "Requires mains wiring + conduit per door (N01/N03 ✗), not retrofit-friendly in occupied buildings"
+        },
+        {
+          "Incumbent": "A5 Manual patrol / do nothing",
+          "Share": "~30%",
+          "Mechanism": "Paper inspection logs, security patrols",
+          "Key Strengths": "Zero hardware cost",
+          "Key Weaknesses": "No alarm hardware (N04 fails at 0%), detection lag = hours/shifts (N10 ✗), no compliance records"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Original Sat",
+        "Recalibrated Sat",
+        "Reason",
+        "Direction"
+      ],
+      "rows": [
+        {
+          "ID": "N04",
+          "Original Sat": "6",
+          "Recalibrated Sat": "**5.5**",
+          "Reason": "A5 (~30% share) has zero alarm hardware → market-weighted sat ≈ 0.40×8 + 0.25×8 + 0.30×0 = 5.6. Original score of 6 was mildly optimistic.",
+          "Direction": "↓ −0.5"
+        },
+        {
+          "ID": "N07",
+          "Original Sat": "8",
+          "Recalibrated Sat": "**8**",
+          "Reason": "Confirmed by A1 dominance: mechanical alarm operates at 0 V (C2 pre-satisfied). A3's electronic system also has UPS options. Score validated.",
+          "Direction": "— no change"
+        },
+        {
+          "ID": "N10",
+          "Original Sat": "2",
+          "Recalibrated Sat": "**2**",
+          "Reason": "A1 (40%) + A5 (30%) = 70% market with zero real-time detection. Score confirmed.",
+          "Direction": "— no change"
+        },
+        {
+          "ID": "N11",
+          "Original Sat": "2",
+          "Recalibrated Sat": "**2**",
+          "Reason": "Only A3 (25%) provides portfolio monitoring. 75% of market has none. Score confirmed.",
+          "Direction": "— no change"
+        },
+        {
+          "ID": "N17",
+          "Original Sat": "3",
+          "Recalibrated Sat": "**3**",
+          "Reason": "A1 + A5 (70%) require fully manual paper records. A3 provides some logging but requires integration effort. Score confirmed.",
+          "Direction": "— no change"
+        },
+        {
+          "ID": "N22",
+          "Original Sat": "2",
+          "Recalibrated Sat": "**2**",
+          "Reason": "A1/A5 dominant market: proactive failure detection non-existent for 70% of lessors. Score confirmed.",
+          "Direction": "— no change"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "ID",
+        "Statement (abbreviated)",
+        "Step",
+        "Imp",
+        "Sat (recal)",
+        "**Opp**",
+        "Under",
+        "Over",
+        "Prod-Rel"
+      ],
+      "rows": [
+        {
+          "ID": "**N10**",
+          "Statement (abbreviated)": "Detect door open/propped within 60 sec",
+          "Step": "MONITOR",
+          "Imp": "9",
+          "Sat (recal)": "2",
+          "**Opp**": "**16.00**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "**N05**",
+          "Statement (abbreviated)": "Verify all devices alarm-ready pre-inspection, no manual testing",
+          "Step": "CONFIRM",
+          "Imp": "9",
+          "Sat (recal)": "3",
+          "**Opp**": "**15.00**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "**N13**",
+          "Statement (abbreviated)": "Detect battery depletion before device failure",
+          "Step": "MONITOR",
+          "Imp": "9",
+          "Sat (recal)": "3",
+          "**Opp**": "**15.00**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-Rel": "T"
+        },
+        {
+          "ID": "**N17**",
+          "Statement (abbreviated)": "Generate compliance docs without manual data entry",
+          "Step": "CONCLUDE",
+          "Imp": "9",
+          "Sat (recal)": "3",
+          "**Opp**": "**15.00**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "**N04**",
+          "Statement (abbreviated)": "False-negative alarm rate on unauthorized activation",
+          "Step": "CONFIRM",
+          "Imp": "10",
+          "Sat (recal)": "5.5",
+          "**Opp**": "**14.50**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "**N11**",
+          "Statement (abbreviated)": "Portfolio-wide exit status from single dashboard",
+          "Step": "MONITOR",
+          "Imp": "8",
+          "Sat (recal)": "2",
+          "**Opp**": "**14.00**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "**N22**",
+          "Statement (abbreviated)": "Avoid discovering compliance failure first time at inspection",
+          "Step": "P5",
+          "Imp": "8",
+          "Sat (recal)": "2",
+          "**Opp**": "**14.00**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "**PR1**",
+          "Statement (abbreviated)": "EasyWave protocol → hardware replacement on BMS migration",
+          "Step": "product_constraint",
+          "Imp": "8",
+          "Sat (recal)": "2",
+          "**Opp**": "**14.00**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-Rel": "T"
+        },
+        {
+          "ID": "**N01**",
+          "Statement (abbreviated)": "No permanent electrical infrastructure modification",
+          "Step": "PREPARE",
+          "Imp": "8",
+          "Sat (recal)": "3",
+          "**Opp**": "**13.00**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "**N12**",
+          "Statement (abbreviated)": "Detect wireless connectivity failure pre-inspection",
+          "Step": "MONITOR",
+          "Imp": "8",
+          "Sat (recal)": "3",
+          "**Opp**": "**13.00**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-Rel": "T"
+        },
+        {
+          "ID": "**N18**",
+          "Statement (abbreviated)": "Minimize manual audit compilation across properties",
+          "Step": "CONCLUDE",
+          "Imp": "8",
+          "Sat (recal)": "3",
+          "**Opp**": "**13.00**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "**N21**",
+          "Statement (abbreviated)": "Produce compliance evidence on demand at inspection",
+          "Step": "P4",
+          "Imp": "8",
+          "Sat (recal)": "3",
+          "**Opp**": "**13.00**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "**N07**",
+          "Statement (abbreviated)": "Power-independent alarm under grid outage",
+          "Step": "EXECUTE",
+          "Imp": "10",
+          "Sat (recal)": "8",
+          "**Opp**": "**12.00**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "**N16**",
+          "Statement (abbreviated)": "Maintain BMS communication after firmware updates",
+          "Step": "MODIFY",
+          "Imp": "8",
+          "Sat (recal)": "4",
+          "**Opp**": "**12.00**",
+          "Under": "✓",
+          "Over": "—",
+          "Prod-Rel": "T"
+        },
+        {
+          "ID": "**N20**",
+          "Statement (abbreviated)": "Proactive compliance status updates without manual reporting",
+          "Step": "P3",
+          "Imp": "7",
+          "Sat (recal)": "2",
+          "**Opp**": "**12.00**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "**N15**",
+          "Statement (abbreviated)": "Minimize on-site dispatch for remotely resolvable alarms",
+          "Step": "MODIFY",
+          "Imp": "7",
+          "Sat (recal)": "4",
+          "**Opp**": "**10.00**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "**N19**",
+          "Statement (abbreviated)": "Minimize inter-property variance in documentation quality",
+          "Step": "CONCLUDE",
+          "Imp": "7",
+          "Sat (recal)": "3",
+          "**Opp**": "**11.00**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "**PR2**",
+          "Statement (abbreviated)": "868 MHz attenuation creating per-floor monitoring blackouts",
+          "Step": "product_constraint",
+          "Imp": "7",
+          "Sat (recal)": "3",
+          "**Opp**": "**11.00**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-Rel": "T"
+        },
+        {
+          "ID": "**PR3**",
+          "Statement (abbreviated)": "IoT timestamps triggering GDPR Art. 35 DPIA",
+          "Step": "product_constraint",
+          "Imp": "7",
+          "Sat (recal)": "3",
+          "**Opp**": "**11.00**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-Rel": "T"
+        },
+        {
+          "ID": "**N08**",
+          "Statement (abbreviated)": "False alarms from authorized key-override access",
+          "Step": "EXECUTE",
+          "Imp": "8",
+          "Sat (recal)": "5",
+          "**Opp**": "**8.00**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "**N03**",
+          "Statement (abbreviated)": "Retrofit to existing EN 179 + EN 1125 doors without structural modification",
+          "Step": "PREPARE",
+          "Imp": "8",
+          "Sat (recal)": "5",
+          "**Opp**": "**8.00**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-Rel": "F"
+        },
+        {
+          "ID": "**PR4**",
+          "Statement (abbreviated)": "HVAC-dark zone temperatures reducing battery life below 2-year target",
+          "Step": "product_constraint",
+          "Imp": "6",
+          "Sat (recal)": "4",
+          "**Opp**": "**8.00**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-Rel": "T"
+        },
+        {
+          "ID": "**N02**",
+          "Statement (abbreviated)": "RF survey requirement at commissioning",
+          "Step": "PREPARE",
+          "Imp": "7",
+          "Sat (recal)": "5",
+          "**Opp**": "**7.00**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-Rel": "T"
+        },
+        {
+          "ID": "**N06**",
+          "Statement (abbreviated)": "Wireless address collision on adjacent doors",
+          "Step": "CONFIRM",
+          "Imp": "7",
+          "Sat (recal)": "5",
+          "**Opp**": "**7.00**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-Rel": "T"
+        },
+        {
+          "ID": "**N14**",
+          "Statement (abbreviated)": "Battery replacement triggering false alarm or requiring specialist",
+          "Step": "MODIFY",
+          "Imp": "7",
+          "Sat (recal)": "5",
+          "**Opp**": "**7.00**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-Rel": "T"
+        },
+        {
+          "ID": "**N09**",
+          "Statement (abbreviated)": "Inconsistent alarm thresholds across door handle types",
+          "Step": "EXECUTE",
+          "Imp": "7",
+          "Sat (recal)": "6",
+          "**Opp**": "**7.00**",
+          "Under": "—",
+          "Over": "—",
+          "Prod-Rel": "F"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Field",
+        "Value"
+      ],
+      "rows": [
+        {
+          "Field": "**Market**",
+          "Value": "Lessors of Nonresidential Buildings"
+        },
+        {
+          "Field": "**NAICS**",
+          "Value": "531120"
+        },
+        {
+          "Field": "**Total needs scored**",
+          "Value": "26"
+        },
+        {
+          "Field": "**Underserved** (imp > 7 AND sat < 5)",
+          "Value": "**12**"
+        },
+        {
+          "Field": "**Overserved** (imp < 3 AND sat > 7)",
+          "Value": "**0**"
+        },
+        {
+          "Field": "**Avg opportunity score**",
+          "Value": "**11.56**"
+        },
+        {
+          "Field": "**Zone**",
+          "Value": "Appropriately Served (10–12) — pulled down by N07/N08/N03/N09 cluster; high-importance monitoring sub-cluster is strongly underserved"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Rank",
+        "ID",
+        "Statement (abbreviated)",
+        "Score",
+        "Zone"
+      ],
+      "rows": [
+        {
+          "Rank": "1",
+          "ID": "N10",
+          "Statement (abbreviated)": "Detect door propped open or activated within 60 seconds",
+          "Score": "**16.00**",
+          "Zone": "Highly Underserved"
+        },
+        {
+          "Rank": "2",
+          "ID": "N05",
+          "Statement (abbreviated)": "Verify all devices alarm-ready pre-inspection without manual testing",
+          "Score": "**15.00**",
+          "Zone": "Underserved"
+        },
+        {
+          "Rank": "2",
+          "ID": "N13",
+          "Statement (abbreviated)": "Detect approaching battery depletion before device failure",
+          "Score": "**15.00**",
+          "Zone": "Underserved"
+        },
+        {
+          "Rank": "2",
+          "ID": "N17",
+          "Statement (abbreviated)": "Generate compliance docs without manual data entry",
+          "Score": "**15.00**",
+          "Zone": "Underserved"
+        },
+        {
+          "Rank": "5",
+          "ID": "N04",
+          "Statement (abbreviated)": "Minimize false-negative alarm rate on unauthorized activation",
+          "Score": "**14.50**",
+          "Zone": "Appropriately Served (sat=5.5, not flagged underserved)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Cluster",
+        "Needs",
+        "Key Gap",
+        "Türwächter Address?"
+      ],
+      "rows": [
+        {
+          "Cluster": "**IoT Monitoring**",
+          "Needs": "N10, N11, N12, N13 (opp 13–16)",
+          "Key Gap": "A1/A5 (~70% share) have zero monitoring → detection lags hours",
+          "Türwächter Address?": "Yes — primary IoT differentiator vs. A1"
+        },
+        {
+          "Cluster": "**Compliance Documentation**",
+          "Needs": "N17, N18, N21, N22 (opp 13–15)",
+          "Key Gap": "A1/A5 require manual paper records; no audit-ready automation",
+          "Türwächter Address?": "Partially — dashboard logging addresses this; automated reports need integration"
+        },
+        {
+          "Cluster": "**Portfolio-Level Visibility**",
+          "Needs": "N11, N20, N21 (opp 12–14)",
+          "Key Gap": "No portfolio aggregation in 75% of market",
+          "Türwächter Address?": "Yes — BUS gateway enables multi-unit aggregation"
+        },
+        {
+          "Cluster": "**Installation Without Wiring**",
+          "Needs": "N01 (opp 13)",
+          "Key Gap": "A3 SafeRoute requires conduit+mains; A5 avoids by not solving the job",
+          "Türwächter Address?": "Yes — core Türwächter differentiator"
+        },
+        {
+          "Cluster": "**Protocol Migration Risk**",
+          "Needs": "PR1 (opp 14)",
+          "Key Gap": "EasyWave lock-in → hardware replacement on BMS platform migration",
+          "Türwächter Address?": "No — structural product gap (C6)"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Metric",
+        "Value",
+        "Threshold"
+      ],
+      "rows": [
+        {
+          "Metric": "ODI avg opportunity score",
+          "Value": "11.56",
+          "Threshold": "—"
+        },
+        {
+          "Metric": "Feature-Fit avg (F1–F6 overall_fit mean)",
+          "Value": "5.44",
+          "Threshold": "—"
+        },
+        {
+          "Metric": "Flag: ODI avg > 12 AND Fit avg < 4?",
+          "Value": "**No** (ODI = 11.56 < 12)",
+          "Threshold": "\"high opportunity, low fit\""
+        },
+        {
+          "Metric": "Flag: ODI avg < 8 AND Fit avg > 7?",
+          "Value": "**No** (ODI = 11.56 ≥ 8)",
+          "Threshold": "\"low opportunity, high fit\""
+        }
+      ]
+    }
+  ],
+  "entities": [
+    [
+      {
+        "error_statement": "Increase the ability to detect an emergency exit door being propped open or activated within 60 seconds of the event, measured as mean detection lag from door-open event to operator notification",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 6,
+        "job_step_name": "MONITOR",
+        "importance": 9.0,
+        "satisfaction_current": 2.0,
+        "opportunity_score": 16.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Increase the ability to verify that all emergency exit security devices across a portfolio are in functional alarm-ready state before a scheduled fire safety inspection, measured as confirmed-active device rate achievable without manual per-door physical testing",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 4,
+        "job_step_name": "CONFIRM",
+        "importance": 9.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 15.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Increase the ability to detect approaching battery depletion in emergency exit monitoring devices before failure, measured as percentage of battery replacements performed before the device becomes non-functional",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 6,
+        "job_step_name": "MONITOR",
+        "importance": 9.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 15.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": true
+      },
+      {
+        "error_statement": "Increase the ability to generate complete emergency exit compliance documentation meeting fire marshal requirements at any time without manual data entry, measured as documentation completeness score achievable at an unannounced inspection",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 8,
+        "job_step_name": "CONCLUDE",
+        "importance": 9.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 15.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize the likelihood of an emergency exit security device failing to trigger an alarm upon unauthorized door activation, measured as false-negative alarm rate per 1,000 activations",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 4,
+        "job_step_name": "CONFIRM",
+        "importance": 10.0,
+        "satisfaction_current": 5.5,
+        "opportunity_score": 14.5,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Increase the ability to monitor real-time emergency exit door status across an entire commercial property portfolio from a single operator dashboard, measured as number of buildings and doors simultaneously visible per interface",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 6,
+        "job_step_name": "MONITOR",
+        "importance": 8.0,
+        "satisfaction_current": 2.0,
+        "opportunity_score": 14.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize the likelihood of a building operator discovering an emergency exit compliance failure for the first time during a scheduled fire marshal inspection rather than through proactive monitoring, measured as ratio of compliance failures detected pre-inspection vs. at inspection",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 8,
+        "job_step_name": "CONCLUDE",
+        "importance": 8.0,
+        "satisfaction_current": 2.0,
+        "opportunity_score": 14.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize the likelihood of EasyWave protocol dependency requiring full hardware replacement when a commercial property portfolio transitions to an open-standard BMS platform (KNX or BACnet), measured as percentage of installed door guardian units requiring hardware replacement versus gateway reconfiguration during BMS platform migration",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 0,
+        "job_step_name": "product_constraint",
+        "importance": 8.0,
+        "satisfaction_current": 2.0,
+        "opportunity_score": 14.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": true
+      },
+      {
+        "error_statement": "Minimize the likelihood of emergency exit security installation requiring permanent electrical infrastructure modifications to building fabric, measured as percentage of door deployments triggering conduit or wiring work",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 3,
+        "job_step_name": "PREPARE",
+        "importance": 8.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 13.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Increase the ability to detect emergency exit monitoring device wireless connectivity failures before the next scheduled inspection cycle, measured as mean time from connectivity loss to operator notification",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 6,
+        "job_step_name": "MONITOR",
+        "importance": 8.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 13.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": true
+      },
+      {
+        "error_statement": "Minimize the likelihood of annual fire safety audit preparation requiring manual compilation of exit inspection records across multiple properties, measured as person-hours per property required to produce a complete compliance evidence package",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 8,
+        "job_step_name": "CONCLUDE",
+        "importance": 8.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 13.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Increase the ability to produce portfolio-level emergency exit compliance evidence on demand during fire marshal inspections or insurance renewals, measured as time-to-produce a complete compliance evidence package from request to delivery",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 8,
+        "job_step_name": "CONCLUDE",
+        "importance": 8.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 13.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize the likelihood of an emergency exit security device becoming non-functional during a building power interruption, measured as alarm activation availability rate under complete grid power loss",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 5,
+        "job_step_name": "EXECUTE",
+        "importance": 10.0,
+        "satisfaction_current": 8.0,
+        "opportunity_score": 12.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize the likelihood of emergency exit monitoring losing BMS communication following network infrastructure updates, measured as connectivity restoration time after BMS or gateway firmware changes",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 7,
+        "job_step_name": "MODIFY",
+        "importance": 8.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 12.0,
+        "is_underserved": true,
+        "is_overserved": false,
+        "product_related": true
+      },
+      {
+        "error_statement": "Increase the ability to provide asset managers with proactive emergency exit compliance status updates without manual report generation, measured as automated compliance status communications per property per week",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 8,
+        "job_step_name": "CONCLUDE",
+        "importance": 7.0,
+        "satisfaction_current": 2.0,
+        "opportunity_score": 12.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize the likelihood of compliance documentation quality varying significantly between properties within a portfolio, measured as inter-property variance in documentation completeness scores at audit point",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 8,
+        "job_step_name": "CONCLUDE",
+        "importance": 7.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 11.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize the likelihood of 868 MHz signal attenuation through reinforced concrete floor slabs creating per-floor monitoring blackouts in multi-story commercial office buildings, measured as number of unplanned repeater additions required to achieve full portfolio coverage versus initial installation plan",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 0,
+        "job_step_name": "product_constraint",
+        "importance": 7.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 11.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": true
+      },
+      {
+        "error_statement": "Minimize the likelihood of IoT door-event timestamp collection triggering a GDPR Article 35 Data Protection Impact Assessment in EU commercial office deployments with employee-occupied areas, measured as percentage of deployments requiring DPIA completion before system activation",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 0,
+        "job_step_name": "product_constraint",
+        "importance": 7.0,
+        "satisfaction_current": 3.0,
+        "opportunity_score": 11.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": true
+      },
+      {
+        "error_statement": "Minimize the likelihood of on-site dispatch responses being required for non-emergency door activations that could be resolved remotely, measured as percentage of alarm events requiring physical visit vs. remotely resolvable via monitoring platform",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 7,
+        "job_step_name": "MODIFY",
+        "importance": 7.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 10.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize the likelihood of emergency exit alarm devices triggering false positives from authorized key-override access by facility personnel, measured as false-alarm incidents per 100 authorized key activations per month",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 5,
+        "job_step_name": "EXECUTE",
+        "importance": 8.0,
+        "satisfaction_current": 5.0,
+        "opportunity_score": 8.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Increase the ability to retrofit emergency exit security devices to existing commercial doors without structural modification, measured as percentage of existing EN 179 and EN 1125 door variants addressable without frame alteration",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 3,
+        "job_step_name": "PREPARE",
+        "importance": 8.0,
+        "satisfaction_current": 5.0,
+        "opportunity_score": 8.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false
+      },
+      {
+        "error_statement": "Minimize the likelihood of unheated commercial stairwell and service corridor temperature variations reducing battery service life below the 2-year maintenance target, measured as mean observed battery replacement interval deviation for units in HVAC-dark zones versus conditioned-space units",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 0,
+        "job_step_name": "product_constraint",
+        "importance": 6.0,
+        "satisfaction_current": 4.0,
+        "opportunity_score": 8.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": true
+      },
+      {
+        "error_statement": "Minimize the likelihood of wireless emergency exit monitoring commissioning requiring specialist RF survey support, measured as percentage of installations requiring dedicated RF coverage validation beyond standard FM technician scope",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 3,
+        "job_step_name": "PREPARE",
+        "importance": 7.0,
+        "satisfaction_current": 5.0,
+        "opportunity_score": 7.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": true
+      },
+      {
+        "error_statement": "Minimize the likelihood of incorrect wireless address assignment causing two door guardian units on adjacent doors to share a transmission channel, measured as address-collision incidents per 50-door deployment",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 4,
+        "job_step_name": "CONFIRM",
+        "importance": 7.0,
+        "satisfaction_current": 5.0,
+        "opportunity_score": 7.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": true
+      },
+      {
+        "error_statement": "Minimize the likelihood of battery replacement in emergency exit monitoring devices requiring specialist skills or triggering false alarm events, measured as percentage of battery replacements completable by standard building staff without alarm activation",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 7,
+        "job_step_name": "MODIFY",
+        "importance": 7.0,
+        "satisfaction_current": 5.0,
+        "opportunity_score": 7.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": true
+      },
+      {
+        "error_statement": "Minimize the likelihood of inconsistent alarm activation thresholds causing premature or late alarm triggers across door types with different handle configurations, measured as alarm force variance across lever-handle and panic-bar variants within the same building",
+        "market_name": "Lessors of Nonresidential Buildings",
+        "naics_code": "531120",
+        "job_step_number": 5,
+        "job_step_name": "EXECUTE",
+        "importance": 7.0,
+        "satisfaction_current": 6.0,
+        "opportunity_score": 7.0,
+        "is_underserved": false,
+        "is_overserved": false,
+        "product_related": false
+      }
+    ],
+    {
+      "market_name": "Lessors of Nonresidential Buildings",
+      "naics_code": "531120",
+      "total_needs": 26,
+      "underserved_count": 12,
+      "overserved_count": 0,
+      "avg_opportunity_score": 11.56,
+      "top_opportunities": [
+        "Increase the ability to detect an emergency exit door being propped open or activated within 60 seconds of the event, measured as mean detection lag from door-open event to operator notification",
+        "Increase the ability to verify that all emergency exit security devices across a portfolio are in functional alarm-ready state before a scheduled fire safety inspection, measured as confirmed-active device rate achievable without manual per-door physical testing",
+        "Increase the ability to detect approaching battery depletion in emergency exit monitoring devices before failure, measured as percentage of battery replacements performed before the device becomes non-functional",
+        "Increase the ability to generate complete emergency exit compliance documentation meeting fire marshal requirements at any time without manual data entry, measured as documentation completeness score achievable at an unannounced inspection",
+        "Minimize the likelihood of an emergency exit security device failing to trigger an alarm upon unauthorized door activation, measured as false-negative alarm rate per 1,000 activations"
+      ],
+      "cross_check_flags": [],
+      "recalibration_notes": "N04 satisfaction recalibrated 6.0→5.5 based on A5 (manual/do-nothing, ~30% share) having zero alarm hardware, pulling market-weighted satisfaction below original estimate. All other satisfaction scores confirmed against incumbent evidence."
+    }
+  ],
+  "has_bom": false,
+  "naics_sector_type": "non_manufacturing"
+}

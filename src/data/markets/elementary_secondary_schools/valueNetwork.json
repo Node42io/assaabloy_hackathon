@@ -1,0 +1,186 @@
+{
+  "naicsCode": "611110",
+  "marketName": "Elementary and Secondary Schools",
+  "slug": "elementary_secondary_schools",
+  "coreJobStatement": "Deliver structured K-12 academic instruction to enrolled students within a safe, legally compliant, and supervised facility environment",
+  "outputTypes": [],
+  "hierarchy": "Process VN only (L7 → L4). No Product BOM — output is an educational outcome.",
+  "architectureDistance": 0,
+  "marketSize": "",
+  "l6Systems": [
+    {
+      "id": "L6a",
+      "name": "Student Enrollment & Records Management",
+      "type": "Core",
+      "jobFamily": "Admit and track enrolled students against legal, funding, and safety requirements",
+      "l5Units": []
+    },
+    {
+      "id": "L6b",
+      "name": "Instructional Program Delivery",
+      "type": "Core",
+      "jobFamily": "Deliver accredited curriculum to enrolled students",
+      "l5Units": []
+    },
+    {
+      "id": "L6c",
+      "name": "Student Support & Welfare Services",
+      "type": "Core",
+      "jobFamily": "Sustain physical safety and wellbeing of students during the school day",
+      "l5Units": []
+    },
+    {
+      "id": "L6d",
+      "name": "Campus Safety, Security & Emergency Management",
+      "type": "Core",
+      "jobFamily": "Protect occupants and property while enabling legally compliant evacuation at all times",
+      "l5Units": []
+    },
+    {
+      "id": "L6e",
+      "name": "Facilities Management & Building Operations",
+      "type": "Core",
+      "jobFamily": "Maintain physical environment to code and operational readiness",
+      "l5Units": []
+    },
+    {
+      "id": "L6-H1",
+      "name": "IT & EdTech Infrastructure (H)",
+      "type": "Horizontal",
+      "jobFamily": "Provide reliable network, device, and software infrastructure for all core steps",
+      "l5Units": []
+    },
+    {
+      "id": "L6-H2",
+      "name": "Administrative, Finance & Regulatory Compliance (H)",
+      "type": "Horizontal",
+      "jobFamily": "Ensure legal, financial, and reporting compliance across all operations",
+      "l5Units": []
+    }
+  ],
+  "vnUnits": [
+    {
+      "level": "L5",
+      "id": "L5.a.1",
+      "name": "Student Information System (SIS)",
+      "functionalJob": "Central database for all student records: enrollment, demographics, attendance, grades, IEP status, custody alerts. Required for state funding reporting. Accessed by administrators, teachers, counselors.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.a.2",
+      "name": "Identity & Access Credential Management",
+      "functionalJob": "Issues and manages staff and student credentials used for building access, IT login, library, and cashless food service. Integrates with the physical access control layer in L6d.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.b.1",
+      "name": "Learning Management System (LMS)",
+      "functionalJob": "Hosts curriculum, assignments, assessments, and parent communication. Increasingly the instructional core post-pandemic.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.b.2",
+      "name": "Classroom AV & Display Technology",
+      "functionalJob": "Interactive whiteboards, projectors, displays that enable multimodal instruction.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.c.1",
+      "name": "School Nutrition Management System",
+      "functionalJob": "Manages USDA National School Lunch Program (NSLP) eligibility, meal transactions, and reimbursement claims. Cafeteria POS at every school is federal mandate.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.c.2",
+      "name": "Health & Medical Records Platform",
+      "functionalJob": "Stores student health information, medication orders, immunization records, and emergency contacts. Required for HIPAA compliance in nurse operations.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.d.1",
+      "name": "Visitor Management & Building Entry Control",
+      "functionalJob": "Manages who enters the building at the main entrance. The first physical security layer.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.d.2",
+      "name": "Emergency Exit Alarm & Monitoring Systems",
+      "functionalJob": "**← TÜRWÄCHTER ENTRY POINT.** Guards secondary fire exits, stairwell doors, and perimeter doors against unauthorized opening during school hours while maintaining instant single-motion evacuation capability per IBC / NFPA 101. Post-Uvalde, these doors are a primary security gap in most schools — any intruder can enter through an unmonitored propped fire exit.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.d.3",
+      "name": "Video Surveillance (CCTV)",
+      "functionalJob": "Monitors building perimeter, corridors, entry/exit points. Required by many state school safety laws post-2018.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.d.4",
+      "name": "Lockdown & Duress Alert System",
+      "functionalJob": "Enables instant all-staff and law enforcement notification in an active threat. Fastest-growing category since 2018.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.d.5",
+      "name": "Fire Detection & Alarm System",
+      "functionalJob": "Mandatory life-safety system. Governed by NFPA 72 (National Fire Alarm Code) and IBC Chapter 9. Activates evacuation protocols.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.d.6",
+      "name": "Emergency Communication & PA System",
+      "functionalJob": "Provides real-time occupant notification during emergencies and daily operations.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.e.1",
+      "name": "Building Automation & HVAC Controls",
+      "functionalJob": "Controls HVAC, lighting, and building systems. IAQ-monitoring requirements post-COVID have accelerated upgrades.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.e.2",
+      "name": "Facilities Work Order & Asset Management",
+      "functionalJob": "Manages maintenance requests, preventive maintenance schedules, and asset lifecycle for the building portfolio.",
+      "description": "",
+      "dependencies": []
+    },
+    {
+      "level": "L5",
+      "id": "L5.h1.1",
+      "name": "Campus Network Infrastructure",
+      "functionalJob": "| Alternative | Market Share | Confidence |",
+      "description": "",
+      "dependencies": []
+    }
+  ],
+  "marquardtPosition": "",
+  "strategicPosition": null,
+  "sources": []
+}
