@@ -337,7 +337,7 @@
       "description": "",
       "parentL6": "L6e",
       "dependencies": [],
-      "isPrimaryPosition": false,
+      "isPrimaryPosition": true,
       "alternatives": [
         {
           "name": "Hardwired electronic alarm systems (door contacts wired to fire panel)",
@@ -495,7 +495,7 @@
       ]
     }
   ],
-  "marquardtPosition": "",
+  "marquardtPosition": "L5 Door & Exit Monitoring System under L6e Safety & Regulatory Compliance Management — GfS Türwächter IoT (Exit Control 179/1125) enters as wireless exit alarm device enabling FM providers to monitor emergency exit compliance across client buildings",
   "strategicPosition": null,
   "sources": []
 }

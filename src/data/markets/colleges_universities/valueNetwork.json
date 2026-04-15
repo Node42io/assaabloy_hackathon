@@ -175,7 +175,8 @@
       "name": "Emergency Exit Alarm Guards — **Türwächter Entry Point**",
       "functionalJob": "Surface-mounted mechanical guard devices that prevent unauthorized use of emergency exit doors while maintaining EN 179 / EN 1125 single-motion escape capability and (in IoT variants) broadcasting door-open and alarm events to centralized campus monitoring. Installed on existing door handles — no structural modification required.",
       "description": "",
-      "dependencies": []
+      "dependencies": [],
+      "isPrimaryPosition": true
     },
     {
       "level": "L5",
@@ -242,7 +243,7 @@
       "dependencies": []
     }
   ],
-  "marquardtPosition": "",
+  "marquardtPosition": "L5 Emergency Exit Alarm Guards under L6-H1 Campus Safety, Security & Emergency Management — GfS Türwächter IoT (Exit Control 179/1125) enters as surface-mounted exit alarm guard with IoT monitoring for campus building emergency exits",
   "strategicPosition": null,
   "sources": []
 }

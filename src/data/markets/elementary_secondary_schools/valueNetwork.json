@@ -121,7 +121,8 @@
       "name": "Emergency Exit Alarm & Monitoring Systems",
       "functionalJob": "**← TÜRWÄCHTER ENTRY POINT.** Guards secondary fire exits, stairwell doors, and perimeter doors against unauthorized opening during school hours while maintaining instant single-motion evacuation capability per IBC / NFPA 101. Post-Uvalde, these doors are a primary security gap in most schools — any intruder can enter through an unmonitored propped fire exit.",
       "description": "",
-      "dependencies": []
+      "dependencies": [],
+      "isPrimaryPosition": true
     },
     {
       "level": "L5",
@@ -180,7 +181,7 @@
       "dependencies": []
     }
   ],
-  "marquardtPosition": "",
+  "marquardtPosition": "L5 Emergency Exit Alarm & Monitoring Systems under L6d Campus Safety, Security & Emergency Management — GfS Türwächter IoT (Exit Control 179/1125) enters as the primary exit alarm guard securing secondary fire exits against unauthorized access",
   "strategicPosition": null,
   "sources": []
 }
